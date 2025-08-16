@@ -1,0 +1,74 @@
+.dn-footer {
+    background: #071a33;
+    color: #cfe3ff;
+    margin-top: 60px
+}
+
+.dn-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    gap: 24px;
+    padding: 40px 24px
+}
+
+.dn-footer .dn-logo-text {
+    color: #fff;
+    font-size: 18px
+}
+
+.dn-quote {
+    margin: 8px 0 16px;
+    color: #b6d1ff
+}
+
+.dn-social a {
+    color: #fff;
+    margin-right: 12px
+}
+
+.dn-newsletter label {
+    display: block;
+    margin-bottom: 8px;
+    color: #eaf2ff
+}
+
+.dn-input-row {
+    display: flex;
+    gap: 8px
+}
+
+.dn-input-row input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #355c9a;
+    background: #0c2b5b;
+    color: #fff
+}
+
+.dn-input-row button {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #4da3ff, #0b3d91);
+    color: #fff;
+    border: 0;
+    border-radius: 10px
+}
+
+.dn-footer-links a {
+    display: block;
+    color: #d6e7ff;
+    margin: 6px 0;
+    text-decoration: none
+}
+
+.dn-footer-bottom {
+    text-align: center;
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, .1)
+}
+
+@media(max-width:900px) {
+    .dn-footer-top {
+        grid-template-columns: 1fr
+    }
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinova | Premium Flight Booking</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+
+  <header id="header">
+    <div class="nav-container">
+      <div class="logo">
+        <h1>Destin<span>ova</span></h1>
+      </div>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#search" class="nav-link">Flights</a></li>
+          <li><a href="#destinations" class="nav-link">Destinations</a></li>
+          <li><a href="#offers" class="nav-link">Offers</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-signin">Sign In</a>
+        <button class="mobile-menu-btn" id="menu-toggle" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1 data-aos="fade-down" data-aos-duration="800">Discover the World with Destinova</h1>
+        <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">Experience seamless travel to your dream
+          destinations with our premium flight services.</p>
+
+        <div class="quote" data-aos="fade-up" data-aos-delay="400">
+          "The journey of a thousand miles begins with a single step. Let Destinova be your first step to unforgettable
+          adventures."
+          <span class="quote-author">- The Destinova Team</span>
+        </div>
+
+        <a href="#search" class="btn btn-light" data-aos="fade-up" data-aos-delay="600">Book Your Flight</a>
+      </div>
+    </section>
+
+    <section class="search-section" id="search">
+      <div class="search-form-container" data-aos="fade-up" data-aos-duration="1000">
+        <h3 class="form-title">Find Your Perfect Flight</h3>
+        <form class="form-grid">
+          <div class="form-group">
+            <label for="from">From</label>
+            <input type="text" id="from" placeholder="City or Airport">
+          </div>
+          <div class="form-group">
+            <label for="to">To</label>
+            <input type="text" id="to" placeholder="City or Airport">
+          </div>
+          <div class="form-group">
+            <label for="departure">Departure Date</label>
+            <input type="date" id="departure">
+          </div>
+          <div class="form-group">
+            <label for="return">Return Date</label>
+            <input type="date" id="return">
+          </div>
+          <div class="form-group passenger-selector">
+            <label for="passengers">Passengers</label>
+            <input type="text" id="passengers" value="1 Adult" readonly>
+            <div class="passenger-dropdown">
+              <div class="passenger-item">
+                <span>Adults (12+)</span>
+                <div class="passenger-controls">
+                  <button type="button" class="decrease-adult" aria-label="Decrease adults">-</button>
+                  <span id="adult-count">1</span>
+                  <button type="button" class="increase-adult" aria-label="Increase adults">+</button>
+                </div>
+              </div>
+              <div class="passenger-item">
+                <span>Children (2-11)</span>
+                <div class="passenger-controls">
+                  <button type="button" class="decrease-child" aria-label="Decrease children">-</button>
+                  <span id="child-count">0</span>
+                  <button type="button" class="increase-child" aria-label="Increase children">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary">Search Flights</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="destinations">
+      <div class="section-title">
+        <h2 data-aos="fade-up">Popular Destinations</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Explore our most sought-after travel destinations, where dreams take
+          flight.</p>
+      </div>
+      <div class="destinations-grid">
+        <div class="destination-card" data-aos="zoom-in">
+          <div class="destination-image"
+            style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80');">
+          </div>
+          <div class="destination-info">
+            <h3>Paris, France</h3>
+            <p>The city of love and lights, perfect for romantic getaways and cultural exploration.</p>
+            <div class="destination-meta">
+              <span class="destination-price">From $499</span>
+              <span class="destination-offer">Direct Flights</span>
+            </div>
+          </div>
+        </div>
+        <div class="destination-card" data-aos="zoom-in" data-aos-delay="150">
+          <div class="destination-image"
+            style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80');">
+          </div>
+          <div class="destination-info">
+            <h3>Tokyo, Japan</h3>
+            <p>A dazzling metropolis where ancient traditions blend seamlessly with futuristic technology.</p>
+            <div class="destination-meta">
+              <span class="destination-price">From $799</span>
+              <span class="destination-offer">1 Stop</span>
+            </div>
+          </div>
+        </div>
+        <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="destination-image"
+            style="background-image: url('https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&w=800&q=80');">
+          </div>
+          <div class="destination-info">
+            <h3>New York, USA</h3>
+            <p>The iconic city that never sleeps, offering endless excitement and world-class attractions.</p>
+            <div class="destination-meta">
+              <span class="destination-price">From $349</span>
+              <span class="destination-offer">Direct Flights</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flight-classes" id="classes">
+      <div class="section-title">
+        <h2 data-aos="fade-up">Travel in Your Comfort</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Choose the perfect travel experience for your journey from our
+          selection of flight classes.</p>
+      </div>
+
+      <div class="class-container">
+        <div class="class-section" data-aos="fade-right">
+          <div class="class-image" id="business-class-slider">
+          </div>
+          <div class="class-content">
+            <h3>Business Class</h3>
+            <p>Indulge in an elevated travel experience with lie-flat seats, gourmet dining, and exclusive lounge
+              access.</p>
+            <div class="class-features">
+              <div class="feature-item"><i class="fas fa-chair"></i><span>Lie-flat seat & direct aisle access</span>
+              </div>
+              <div class="feature-item"><i class="fas fa-wifi"></i><span>High-speed Wi-Fi & entertainment</span></div>
+              <div class="feature-item"><i class="fas fa-user-check"></i><span>Priority check-in and boarding</span>
+              </div>
+            </div>
+            <div class="class-price">Starting at $1,299</div>
+            <a href="#" class="btn btn-primary">Explore Business</a>
+            <div class="slider-controls" id="business-class-dots">
+            </div>
+          </div>
+        </div>
+
+        <div class="class-section" data-aos="fade-left">
+          <div class="class-image" id="economy-class-slider">
+          </div>
+          <div class="class-content">
+            <h3>Economy Class</h3>
+            <p>Enjoy comfortable and affordable travel with all the essential amenities for a pleasant journey.</p>
+            <div class="class-features">
+              <div class="feature-item"><i class="fas fa-utensils"></i><span>Complimentary meals and beverages</span>
+              </div>
+              <div class="feature-item"><i class="fas fa-tablet-alt"></i><span>Personal on-demand entertainment</span>
+              </div>
+              <div class="feature-item"><i class="fas fa-hands-helping"></i><span>Friendly and attentive cabin
+                  crew</span></div>
+            </div>
+            <div class="class-price">Starting at $399</div>
+            <a href="#" class="btn btn-primary">Explore Economy</a>
+            <div class="slider-controls" id="economy-class-dots">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offers">
+      <div class="section-title">
+        <h2 data-aos="fade-up">Exclusive Offers</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Don't miss out on our limited-time deals to breathtaking
+          destinations.</p>
+      </div>
+      <div class="offers-container">
+        <div class="offer-card" data-aos="flip-left">
+          <div class="offer-header"
+            style="background-image: url('https://images.unsplash.com/photo-1595514535195-4aae7d5e8d75?auto=format&fit=crop&w=800&q=80');">
+            <div class="offer-badge">30% OFF</div>
+          </div>
+          <div class="offer-body">
+            <h3 class="offer-title">Summer Getaway Sale</h3>
+            <p>Book flights to European destinations and save up to 30% on your summer vacation.</p>
+            <div class="offer-details">
+              <span>Valid until: Aug 31, 2025</span>
+              <a href="#">View Deal <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="offer-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="offer-header"
+            style="background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=800&q=80');">
+            <div class="offer-badge">25% OFF</div>
+          </div>
+          <div class="offer-body">
+            <h3 class="offer-title">Early Bird Discount</h3>
+            <p>Plan ahead and save 25% when you book your flight 90+ days in advance to any destination.</p>
+            <div class="offer-details">
+              <span>Book in advance</span>
+              <a href="#">View Deal <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="offer-card" data-aos="flip-left" data-aos-delay="400">
+          <div class="offer-header"
+            style="background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80');">
+            <div class="offer-badge">Kids Fly Free</div>
+          </div>
+          <div class="offer-body">
+            <h3 class="offer-title">Family Vacation Package</h3>
+            <p>Create lasting memories with our special family packages where kids under 12 fly free.</p>
+            <div class="offer-details">
+              <span>Limited availability</span>
+              <a href="#">View Deal <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials" id="about">
+      <div class="section-title">
+        <h2 data-aos="fade-up">What Our Flyers Say</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Hear from travelers who have experienced the Destinova difference.
+        </p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial-card" data-aos="zoom-in-up">
+          <div class="testimonial-text">"Booking with Destinova was seamless. The flight was comfortable, and the staff
+            was incredibly attentive. Will definitely fly with them again!"</div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Avatar of Sarah Johnson"
+              class="author-avatar">
+            <div class="author-info">
+              <h4>Sarah Johnson</h4>
+              <p>Frequent Flyer</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos="zoom-in-up" data-aos-delay="150">
+          <div class="testimonial-text">"The Business Class experience exceeded my expectations. The lie-flat seats made
+            the long flight a dream, and the dining was exceptional."</div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar of Michael Chen"
+              class="author-avatar">
+            <div class="author-info">
+              <h4>Michael Chen</h4>
+              <p>Business Traveler</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-aos="zoom-in-up" data-aos-delay="300">
+          <div class="testimonial-text">"Found an amazing deal to Bali through their special offers. The entire process
+            from booking to boarding was smooth and hassle-free."</div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Avatar of Emma Rodriguez"
+              class="author-avatar">
+            <div class="author-info">
+              <h4>Emma Rodriguez</h4>
+              <p>Vacation Traveler</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="newsletter-container" data-aos="fade-up">
+        <h2>Subscribe for Exclusive Deals</h2>
+        <p>Get travel tips, destination inspiration, and special offers delivered to your inbox.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Destinova</h3>
+        <p>Your trusted partner for seamless air travel experiences to destinations worldwide.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#search">Flights</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#offers">Special Offers</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Booking Guide</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Info</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Aviation Way, New York, NY 10001</li>
+          <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> info@destinova.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Destinova Airlines. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script src="../js/index.js"></script>
+</body>
+
+</html>
