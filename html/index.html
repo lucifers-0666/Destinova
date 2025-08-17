@@ -5,63 +5,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinova | Premium Flight Booking</title>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+  <!-- CSS Files -->
   <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
 </head>
 
 <body>
-
-  <header id="header">
-    <div class="nav-container">
-      <div class="logo">
-        <h1>Destin<span>ova</span></h1>
-      </div>
-      <nav id="nav-menu">
-        <ul>
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#search" class="nav-link">Flights</a></li>
-          <li><a href="#destinations" class="nav-link">Destinations</a></li>
-          <li><a href="#offers" class="nav-link">Offers</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-actions">
-        <a href="#" class="btn btn-signin">Sign In</a>
-        <button class="mobile-menu-btn" id="menu-toggle" aria-label="Open menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+  <!-- Header Component -->
+  <div id="header-placeholder"></div>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero" id="home">
       <div class="hero-content">
-        <h1 data-aos="fade-down" data-aos-duration="800">Discover the World with Destinova</h1>
-        <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">Experience seamless travel to your dream
-          destinations with our premium flight services.</p>
+        <h1>Discover the World with Destinova</h1>
+        <p>Experience seamless travel to your dream destinations with our premium flight services.</p>
 
-        <div class="quote" data-aos="fade-up" data-aos-delay="400">
+        <div class="quote">
           "The journey of a thousand miles begins with a single step. Let Destinova be your first step to unforgettable
           adventures."
           <span class="quote-author">- The Destinova Team</span>
         </div>
 
-        <a href="#search" class="btn btn-light" data-aos="fade-up" data-aos-delay="600">Book Your Flight</a>
+        <a href="#search" class="btn btn-light">Book Your Flight</a>
       </div>
     </section>
 
+    <!-- Flight Search Section -->
     <section class="search-section" id="search">
-      <div class="search-form-container" data-aos="fade-up" data-aos-duration="1000">
+      <div class="search-form-container">
         <h3 class="form-title">Find Your Perfect Flight</h3>
         <form class="form-grid">
           <div class="form-group">
@@ -109,14 +87,14 @@
       </div>
     </section>
 
+    <!-- Popular Destinations -->
     <section class="section" id="destinations">
       <div class="section-title">
-        <h2 data-aos="fade-up">Popular Destinations</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Explore our most sought-after travel destinations, where dreams take
-          flight.</p>
+        <h2>Popular Destinations</h2>
+        <p>Explore our most sought-after travel destinations, where dreams take flight.</p>
       </div>
       <div class="destinations-grid">
-        <div class="destination-card" data-aos="zoom-in">
+        <div class="destination-card">
           <div class="destination-image"
             style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80');">
           </div>
@@ -129,7 +107,7 @@
             </div>
           </div>
         </div>
-        <div class="destination-card" data-aos="zoom-in" data-aos-delay="150">
+        <div class="destination-card">
           <div class="destination-image"
             style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80');">
           </div>
@@ -142,7 +120,7 @@
             </div>
           </div>
         </div>
-        <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
+        <div class="destination-card">
           <div class="destination-image"
             style="background-image: url('https://images.unsplash.com/photo-1546436836-07a91091f160?auto=format&fit=crop&w=800&q=80');">
           </div>
@@ -158,16 +136,17 @@
       </div>
     </section>
 
+    <!-- Flight Classes -->
     <section class="section flight-classes" id="classes">
       <div class="section-title">
-        <h2 data-aos="fade-up">Travel in Your Comfort</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Choose the perfect travel experience for your journey from our
-          selection of flight classes.</p>
+        <h2>Travel in Your Comfort</h2>
+        <p>Choose the perfect travel experience for your journey from our selection of flight classes.</p>
       </div>
 
       <div class="class-container">
-        <div class="class-section" data-aos="fade-right">
-          <div class="class-image" id="business-class-slider">
+        <div class="class-section">
+          <div class="class-image"
+            style="background-image: url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?auto=format&fit=crop&w=800&q=80');">
           </div>
           <div class="class-content">
             <h3>Business Class</h3>
@@ -181,14 +160,13 @@
               </div>
             </div>
             <div class="class-price">Starting at $1,299</div>
-            <a href="#" class="btn btn-primary">Explore Business</a>
-            <div class="slider-controls" id="business-class-dots">
-            </div>
+            <a href="#" class="btn btn-outline">Explore Business</a>
           </div>
         </div>
 
-        <div class="class-section" data-aos="fade-left">
-          <div class="class-image" id="economy-class-slider">
+        <div class="class-section">
+          <div class="class-image"
+            style="background-image: url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&w=800&q=80');">
           </div>
           <div class="class-content">
             <h3>Economy Class</h3>
@@ -202,22 +180,20 @@
                   crew</span></div>
             </div>
             <div class="class-price">Starting at $399</div>
-            <a href="#" class="btn btn-primary">Explore Economy</a>
-            <div class="slider-controls" id="economy-class-dots">
-            </div>
+            <a href="#" class="btn btn-outline">Explore Economy</a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Special Offers -->
     <section class="section" id="offers">
       <div class="section-title">
-        <h2 data-aos="fade-up">Exclusive Offers</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Don't miss out on our limited-time deals to breathtaking
-          destinations.</p>
+        <h2>Exclusive Offers</h2>
+        <p>Don't miss out on our limited-time deals to breathtaking destinations.</p>
       </div>
       <div class="offers-container">
-        <div class="offer-card" data-aos="flip-left">
+        <div class="offer-card">
           <div class="offer-header"
             style="background-image: url('https://images.unsplash.com/photo-1595514535195-4aae7d5e8d75?auto=format&fit=crop&w=800&q=80');">
             <div class="offer-badge">30% OFF</div>
@@ -231,7 +207,7 @@
             </div>
           </div>
         </div>
-        <div class="offer-card" data-aos="flip-left" data-aos-delay="200">
+        <div class="offer-card">
           <div class="offer-header"
             style="background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=800&q=80');">
             <div class="offer-badge">25% OFF</div>
@@ -245,7 +221,7 @@
             </div>
           </div>
         </div>
-        <div class="offer-card" data-aos="flip-left" data-aos-delay="400">
+        <div class="offer-card">
           <div class="offer-header"
             style="background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=800&q=80');">
             <div class="offer-badge">Kids Fly Free</div>
@@ -262,14 +238,14 @@
       </div>
     </section>
 
+    <!-- Testimonials -->
     <section class="section testimonials" id="about">
       <div class="section-title">
-        <h2 data-aos="fade-up">What Our Flyers Say</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Hear from travelers who have experienced the Destinova difference.
-        </p>
+        <h2>What Our Flyers Say</h2>
+        <p>Hear from travelers who have experienced the Destinova difference.</p>
       </div>
       <div class="testimonials-container">
-        <div class="testimonial-card" data-aos="zoom-in-up">
+        <div class="testimonial-card">
           <div class="testimonial-text">"Booking with Destinova was seamless. The flight was comfortable, and the staff
             was incredibly attentive. Will definitely fly with them again!"</div>
           <div class="testimonial-author">
@@ -281,7 +257,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card" data-aos="zoom-in-up" data-aos-delay="150">
+        <div class="testimonial-card">
           <div class="testimonial-text">"The Business Class experience exceeded my expectations. The lie-flat seats made
             the long flight a dream, and the dining was exceptional."</div>
           <div class="testimonial-author">
@@ -293,7 +269,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card" data-aos="zoom-in-up" data-aos-delay="300">
+        <div class="testimonial-card">
           <div class="testimonial-text">"Found an amazing deal to Bali through their special offers. The entire process
             from booking to boarding was smooth and hassle-free."</div>
           <div class="testimonial-author">
@@ -308,8 +284,9 @@
       </div>
     </section>
 
+    <!-- Newsletter -->
     <section class="newsletter">
-      <div class="newsletter-container" data-aos="fade-up">
+      <div class="newsletter-container">
         <h2>Subscribe for Exclusive Deals</h2>
         <p>Get travel tips, destination inspiration, and special offers delivered to your inbox.</p>
         <form class="newsletter-form">
@@ -320,55 +297,14 @@
     </section>
   </main>
 
-  <footer id="contact">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>Destinova</h3>
-        <p>Your trusted partner for seamless air travel experiences to destinations worldwide.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#search">Flights</a></li>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#offers">Special Offers</a></li>
-          <li><a href="#about">About Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Booking Guide</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Contact Info</h3>
-        <ul class="contact-info">
-          <li><i class="fas fa-map-marker-alt"></i> 123 Aviation Way, New York, NY 10001</li>
-          <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
-          <li><i class="fas fa-envelope"></i> info@destinova.com</li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2025 Destinova Airlines. All Rights Reserved.</p>
-    </div>
-  </footer>
+  <!-- Footer Component -->
+  <div id="footer-placeholder"></div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+  <!-- JavaScript Files -->
   <script src="../js/index.js"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+  <script></script>
 </body>
 
 </html>

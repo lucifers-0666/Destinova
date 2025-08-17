@@ -1,24 +1,48 @@
-<!-- Header Component -->
-<header id="header">
+<!-- Modern Navigation Bar -->
+<header id="navbar">
     <div class="nav-container">
         <div class="logo">
             <h1>Destin<span>ova</span></h1>
         </div>
-        <nav id="nav">
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
             <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Flights</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#search" class="nav-link">Flights</a></li>
+                <li><a href="#destinations" class="nav-link">Destinations</a></li>
+                <li><a href="#offers" class="nav-link">Offers</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
-        <div class="header-actions">
-            <a href="#" class="btn btn-signin">Sign In</a>
-            <button class="mobile-menu-btn" id="menuToggle">
-                <i class="fas fa-bars"></i>
+
+        <div class="sign-in-container">
+            <button id="signInBtn">
+                <i class="fas fa-user-circle"></i> Sign In
+            </button>
+            <button id="userIcon">
+                <i class="fas fa-user"></i>
             </button>
         </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul>
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#search" class="nav-link">Flights</a></li>
+            <li><a href="#destinations" class="nav-link">Destinations</a></li>
+            <li><a href="#offers" class="nav-link">Offers</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
     </div>
 </header>
