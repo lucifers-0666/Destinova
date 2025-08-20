@@ -1,32 +1,47 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Footer functionality can be added here
-    // For now, footer is mainly static content
-    
-    // You can add newsletter form handling, social media links, etc.
-    const newsletterForm = document.querySelector('.newsletter-form');
-    
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
-            // Add your newsletter subscription logic here
-            console.log('Newsletter subscription for:', email);
-            
-            // Show success message (you can customize this)
-            alert('Thank you for subscribing to our newsletter!');
-            this.reset();
-        });
-    }
+// Destinova Footer - Dynamic Loader and Updated Footer Scripts
 
-    // Add click tracking for social media links
-    const socialLinks = document.querySelectorAll('.social-links a');
-    socialLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const platform = this.getAttribute('aria-label');
-            console.log(`Clicked on ${platform} social link`);
-            // Add your social media link handling here
-        });
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  // Adjust path depending on your site's folder structure
+  fetch('../html/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      const placeholder = document.getElementById('footer-placeholder');
+      if (placeholder) {
+        placeholder.innerHTML = data;
+        initializeFooter();
+        // Signal footer loaded
+        window.dispatchEvent(new CustomEvent('footerLoaded'));
+      }
+    })
+    .catch(error => console.error('Error loading footer:', error));
 });
+
+function initializeFooter() {
+  // Back to top button logic
+  const backToTopButton = document.querySelector('.destinova-back-top');
+  if (backToTopButton) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('show');
+      } else {
+        backToTopButton.classList.remove('show');
+      }
+    });
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Newsletter subscription form for new footer
+  const newsletterForm = document.getElementById('footerNewsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
+      if (emailInput.value) {
+        alert(`Thank you for subscribing with ${emailInput.value}!`);
+        emailInput.value = '';
+      }
+    });
+  }
+}

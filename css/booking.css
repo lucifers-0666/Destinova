@@ -1,0 +1,547 @@
+/* CSS Variables for Color Palette */
+:root {
+    --deep-emerald: #1A3C34;
+    --cream: #FFF8E7;
+    --champagne-gold: #E8D4A6;
+    --charcoal-black: #1C2526;
+    --slate-grey: #5C6B73;
+    --soft-white: #FAFAFA;
+    --burnished-bronze: #8C6B3F;
+    --taupe: #D8CFC2;
+    --light-blue: #E8F4F8;
+    --section-bg: #F5F7F9;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-blue);
+    color: var(--charcoal-black);
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    color: var(--charcoal-black);
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Header & Footer Placeholders */
+#header-placeholder, #footer-placeholder {
+    background-color: var(--deep-emerald);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Hero Banner Section */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: var(--champagne-gold);
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+/* Flight Search Form */
+.search-form-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: -70px;
+    position: relative;
+    z-index: 10;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--charcoal-black);
+    font-weight: 500;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--slate-grey);
+}
+
+.input-with-icon input,
+.input-with-icon select {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid var(--taupe);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--charcoal-black);
+}
+
+.passenger-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--taupe);
+    border-radius: 8px;
+    background-color: white;
+    padding: 10px 15px;
+}
+
+.passenger-selector button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--slate-grey);
+    padding: 0 10px;
+}
+
+.passenger-selector span {
+    margin: 0 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.search-btn {
+    background-color: var(--deep-emerald);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #2a5c50;
+}
+
+/* Filters Sidebar */
+.filters-sidebar {
+    flex: 0 0 280px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filters-header h3 {
+    font-size: 1.2rem;
+}
+
+.toggle-filters {
+    background: none;
+    border: none;
+    color: var(--deep-emerald);
+    font-size: 1.2rem;
+    display: none;
+}
+
+.filter-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--taupe);
+}
+
+.filter-section h4 {
+    margin-bottom: 15px;
+    color: var(--charcoal-black);
+}
+
+.filter-options label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--slate-grey);
+}
+
+.price-slider {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.price-range {
+    display: flex;
+    justify-content: space-between;
+    color: var(--slate-grey);
+    font-size: 0.9rem;
+}
+
+/* Flight Results */
+.flight-results {
+    flex: 1;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sort-options select {
+    padding: 10px;
+    border: 1px solid var(--taupe);
+    border-radius: 8px;
+    background-color: white;
+    color: var(--charcoal-black);
+}
+
+.flight-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    transition: transform 0.3s;
+}
+
+.flight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.flight-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.airline-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.airline-logo {
+    width: 40px;
+    height: 40px;
+    background-color: var(--taupe);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.flight-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.flight-time {
+    text-align: center;
+}
+
+.flight-time .time {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.flight-time .date {
+    color: var(--slate-grey);
+    font-size: 0.9rem;
+}
+
+.flight-duration {
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.flight-duration:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--taupe);
+}
+
+.flight-duration .duration {
+    position: relative;
+    background-color: white;
+    padding: 0 10px;
+    color: var(--slate-grey);
+}
+
+.flight-stops {
+    color: var(--slate-grey);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.flight-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-left: 20px;
+    border-left: 1px solid var(--taupe);
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--deep-emerald);
+    margin-bottom: 10px;
+}
+
+.book-btn {
+    background-color: var(--deep-emerald);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.book-btn:hover {
+    background-color: #2a5c50;
+}
+
+.best-deal-badge {
+    background-color: var(--champagne-gold);
+    color: var(--charcoal-black);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+/* Booking Summary */
+.booking-summary {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
+}
+
+.summary-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--taupe);
+}
+
+.summary-details {
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: var(--slate-grey);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--deep-emerald);
+    padding-top: 15px;
+    border-top: 1px solid var(--taupe);
+    margin-bottom: 20px;
+}
+
+.proceed-btn {
+    background-color: var(--deep-emerald);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.proceed-btn:hover {
+    background-color: #2a5c50;
+}
+
+/* Why Choose Destinova Section */
+.why-choose {
+    background-color: var(--section-bg);
+    border-radius: 10px;
+    padding: 40px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--charcoal-black);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    color: var(--deep-emerald);
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    margin-bottom: 15px;
+    color: var(--charcoal-black);
+}
+
+.benefit-card p {
+    color: var(--slate-grey);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .filters-sidebar {
+        flex: 0 0 auto;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .booking-summary {
+        position: relative;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .flight-card {
+        flex-direction: column;
+    }
+    
+    .flight-price {
+        border-left: none;
+        border-top: 1px solid var(--taupe);
+        padding-left: 0;
+        padding-top: 20px;
+        margin-top: 20px;
+        align-items: center;
+    }
+    
+    .toggle-filters {
+        display: block;
+    }
+    
+    .filter-content {
+        display: none;
+    }
+    
+    .filter-content.show {
+        display: block;
+    }
+}

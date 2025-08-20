@@ -1,33 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Booking — Destinova</title>
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/footer.css">
-  <link rel="stylesheet" href="../css/booking.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Flight | Destinova Airlines</title>
+    <!-- Main theme and variables -->
+    <link rel="stylesheet" href="../css/index.css">
+    <!-- Header and Footer styling -->
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <!-- Page-specific styles -->
+    <link rel="stylesheet" href="../css/booking.css">
+    <!-- Font Awesome or icon set if used in nav -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
+
 <body>
-  <div id="dn-header-mount"></div>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
-  <main class="booking-page">
-    <h1 class="reveal">Complete Your Booking</h1>
-    <p id="chosen" class="reveal"></p>
-    <form id="bookingForm" class="reveal">
-      <div class="row">
-        <input placeholder="Full Name" required>
-        <input placeholder="Email" type="email" required>
-        <input placeholder="Phone" required>
-      </div>
-      <button class="dn-btn" type="submit">Proceed to Payment</button>
-    </form>
-  </main>
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Book Your Journey with Destinova Airlines</h1>
+            <p>Seamless, Elegant, Reliable.</p>
+        </div>
+    </section>
 
-  <div id="dn-footer-mount"></div>
+    <div class="container">
+        <!-- Flight Search Form -->
+        <section class="search-form-container">
+            <form class="search-form">
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-plane-departure"></i>
+                        <input type="text" id="from" placeholder="Departure city">
+                    </div>
+                </div>
 
-  <script src="../js/header.js"></script>
-  <script src="../js/footer.js"></script>
-  <script src="../js/booking.js"></script>
+                <div class="form-group">
+                    <label for="to">To</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-plane-arrival"></i>
+                        <input type="text" id="to" placeholder="Destination city">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="departure">Departure Date</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="departure">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="return">Return Date (Optional)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="date" id="return">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="class">Class</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-couch"></i>
+                        <select id="class">
+                            <option value="economy">Economy</option>
+                            <option value="premium">Premium Economy</option>
+                            <option value="business">Business Class</option>
+                            <option value="first">First Class</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Passengers</label>
+                    <div class="passenger-selector">
+                        <button type="button" id="decrease-adults">-</button>
+                        <span id="adults-count">1</span> Adult(s)
+                        <button type="button" id="increase-adults">+</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="search-btn">Search Flights</button>
+                </div>
+            </form>
+        </section>
+
+        <div class="main-content">
+            <!-- Filters Sidebar -->
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h3>Filters</h3>
+                    <button class="toggle-filters" id="toggle-filters">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+
+                <div class="filter-content" id="filter-content">
+                    <div class="filter-section">
+                        <h4>Stops</h4>
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="stops" value="nonstop"> Non-stop</label>
+                            <label><input type="checkbox" name="stops" value="1stop"> 1 stop</label>
+                            <label><input type="checkbox" name="stops" value="2stops"> 2+ stops</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Airlines</h4>
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="airline" value="destinova" checked> Destinova
+                                Airlines</label>
+                            <label><input type="checkbox" name="airline" value="partner1"> Star Alliance</label>
+                            <label><input type="checkbox" name="airline" value="partner2"> SkyTeam Partners</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h4>Price Range</h4>
+                        <input type="range" class="price-slider" min="100" max="2000" step="50" value="500">
+                        <div class="price-range">
+                            <span>$100</span>
+                            <span>$2000</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Flight Results Section -->
+            <section class="flight-results">
+                <div class="results-header">
+                    <h2>Available Flights</h2>
+                    <div class="sort-options">
+                        <select>
+                            <option value="price">Sort by Price</option>
+                            <option value="duration">Sort by Duration</option>
+                            <option value="departure">Sort by Departure Time</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-info">
+                        <div class="airline-header">
+                            <div class="airline-logo">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div>
+                                <h3>Destinova Airlines</h3>
+                                <p>Flight DA 247</p>
+                            </div>
+                        </div>
+
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">08:00</div>
+                                <div class="date">JFK, New York</div>
+                            </div>
+
+                            <div class="flight-duration">
+                                <div class="duration">2h 30m</div>
+                            </div>
+
+                            <div class="flight-time">
+                                <div class="time">10:30</div>
+                                <div class="date">MIA, Miami</div>
+                            </div>
+                        </div>
+
+                        <div class="flight-stops">Non-stop</div>
+                    </div>
+
+                    <div class="flight-price">
+                        <div class="price">$249</div>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="flight-card" style="position: relative;">
+                    <div class="best-deal-badge">Best Deal</div>
+
+                    <div class="flight-info">
+                        <div class="airline-header">
+                            <div class="airline-logo">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div>
+                                <h3>Destinova Airlines</h3>
+                                <p>Flight DA 385</p>
+                            </div>
+                        </div>
+
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">14:15</div>
+                                <div class="date">JFK, New York</div>
+                            </div>
+
+                            <div class="flight-duration">
+                                <div class="duration">2h 45m</div>
+                            </div>
+
+                            <div class="flight-time">
+                                <div class="time">17:00</div>
+                                <div class="date">MIA, Miami</div>
+                            </div>
+                        </div>
+
+                        <div class="flight-stops">Non-stop</div>
+                    </div>
+
+                    <div class="flight-price">
+                        <div class="price">$199</div>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="flight-card">
+                    <div class="flight-info">
+                        <div class="airline-header">
+                            <div class="airline-logo">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div>
+                                <h3>Destinova Airlines</h3>
+                                <p>Flight DA 512</p>
+                            </div>
+                        </div>
+
+                        <div class="flight-details">
+                            <div class="flight-time">
+                                <div class="time">19:30</div>
+                                <div class="date">JFK, New York</div>
+                            </div>
+
+                            <div class="flight-duration">
+                                <div class="duration">3h 15m</div>
+                            </div>
+
+                            <div class="flight-time">
+                                <div class="time">22:45</div>
+                                <div class="date">MIA, Miami</div>
+                            </div>
+                        </div>
+
+                        <div class="flight-stops">1 stop (ATL)</div>
+                    </div>
+
+                    <div class="flight-price">
+                        <div class="price">$179</div>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking Summary -->
+            <aside class="booking-summary">
+                <div class="summary-header">
+                    <h2>Booking Summary</h2>
+                </div>
+
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span>Flight:</span>
+                        <span>DA 385 (JFK → MIA)</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Date:</span>
+                        <span>Aug 25, 2023</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Time:</span>
+                        <span>14:15 - 17:00</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Passengers:</span>
+                        <span>1 Adult</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Class:</span>
+                        <span>Economy</span>
+                    </div>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total:</span>
+                    <span>$199</span>
+                </div>
+
+                <button class="proceed-btn">Proceed to Payment</button>
+            </aside>
+        </div>
+
+        <!-- Why Choose Destinova Section -->
+        <section class="why-choose">
+            <h2 class="section-title">Why Choose Destinova Airlines</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our customer service team is available around the clock to assist with your travel needs.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Luxury Experience</h3>
+                    <p>Enjoy premium amenities, gourmet dining, and exceptional comfort throughout your journey.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>On-Time Guarantee</h3>
+                    <p>We pride ourselves on punctuality with one of the industry's best on-time performance records.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/booking.js"></script>
 </body>
+
 </html>
