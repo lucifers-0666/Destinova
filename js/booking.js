@@ -31,23 +31,27 @@ document.addEventListener('DOMContentLoaded', function() {
     bookButtons.forEach(button => {
         button.addEventListener('click', function() {
             const flightCard = this.closest('.flight-card');
-            const flightNumber = flightCard.querySelector('p').textContent;
-            const from = flightCard.querySelectorAll('.flight-time .date')[0].textContent;
-            const to = flightCard.querySelectorAll('.flight-time .date')[1].textContent;
+            const airline = flightCard.querySelector('.airline-info h3').textContent;
+            const flightNumber = flightCard.querySelector('.flight-number').textContent;
+            const from = flightCard.querySelectorAll('.airport-code')[0].textContent;
+            const to = flightCard.querySelectorAll('.airport-code')[1].textContent;
             const time = `${flightCard.querySelectorAll('.time')[0].textContent} - ${flightCard.querySelectorAll('.time')[1].textContent}`;
+            const date = flightCard.querySelector('.flight-date').textContent;
             const price = flightCard.querySelector('.price').textContent;
             
             // Update booking summary
             document.querySelector('.summary-item:nth-child(1) span:last-child').textContent = `${flightNumber} (${from} → ${to})`;
-            document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = 'Aug 25, 2023';
+            document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = date;
             document.querySelector('.summary-item:nth-child(3) span:last-child').textContent = time;
             document.querySelector('.summary-total span:last-child').textContent = `$${price}`;
             
             // Highlight selected flight
             document.querySelectorAll('.flight-card').forEach(card => {
-                card.style.border = 'none';
+                card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
+                card.style.borderLeft = '4px solid var(--deep-emerald)';
             });
-            flightCard.style.border = `2px solid var(--deep-emerald)`;
+            flightCard.style.boxShadow = '0 12px 25px rgba(26, 60, 52, 0.2)';
+            flightCard.style.borderLeft = '4px solid var(--champagne-gold)';
         });
     });
     

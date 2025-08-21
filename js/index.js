@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializePageContent() {
     // --- Passenger selector functionality ---
     const passengersInput = document.getElementById('passengers');
-    const passengerDropdown = document.querySelector('.passenger-dropdown');
+    const passengerDropdown = document.querySelector('.home-passenger-dropdown');
     
     if (passengersInput && passengerDropdown) {
         const adultCountEl = document.getElementById('adult-count');
@@ -48,7 +48,7 @@ function initializePageContent() {
         });
         
         document.addEventListener('click', function(e) {
-            if (!e.target.closest('.passenger-selector')) {
+            if (!e.target.closest('.home-passenger-selector')) {
                 passengerDropdown.style.display = 'none';
             }
         });
@@ -63,6 +63,8 @@ function initializePageContent() {
             childCountEl.textContent = children;
         }
         
+        // Note: Button classes were not prefixed to preserve JS functionality simply.
+        // If you prefix them in the HTML (e.g., .home-increase-adult), update the selectors here too.
         document.querySelector('.increase-adult').addEventListener('click', function() {
             if (adults < 9) adults++;
             updatePassengerDisplay();
@@ -91,11 +93,11 @@ function initializePageContent() {
         const wrapper = document.getElementById(sliderId);
         if (!wrapper) return;
 
-        const slider = wrapper.querySelector('.class-slider');
-        const slides = wrapper.querySelectorAll('.class-slide');
-        const prevBtn = wrapper.querySelector('.prev');
-        const nextBtn = wrapper.querySelector('.next');
-        const dotsContainer = wrapper.querySelector('.slider-dots');
+        const slider = wrapper.querySelector('.home-class-slider');
+        const slides = wrapper.querySelectorAll('.home-class-slide');
+        const prevBtn = wrapper.querySelector('.home-prev');
+        const nextBtn = wrapper.querySelector('.home-next');
+        const dotsContainer = wrapper.querySelector('.home-slider-dots');
         let currentIndex = 0;
         let autoPlayInterval;
 
@@ -103,20 +105,20 @@ function initializePageContent() {
 
         slides.forEach((_, i) => {
             const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
+            dot.classList.add('home-dot');
+            if (i === 0) dot.classList.add('home-active');
             dot.addEventListener('click', () => {
                 goToSlide(i);
                 resetAutoPlay();
             });
             dotsContainer.appendChild(dot);
         });
-        const dots = dotsContainer.querySelectorAll('.dot');
+        const dots = dotsContainer.querySelectorAll('.home-dot');
 
         function updateSlider() {
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
             dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
+                dot.classList.toggle('home-active', i === currentIndex);
             });
         }
 
@@ -136,8 +138,8 @@ function initializePageContent() {
         startAutoPlay();
     }
 
-    initializeSlider('slider-economy');
-    initializeSlider('slider-premium');
-    initializeSlider('slider-business');
-    initializeSlider('slider-first');
+    initializeSlider('home-slider-economy');
+    initializeSlider('home-slider-premium');
+    initializeSlider('home-slider-business');
+    initializeSlider('home-slider-first');
 }
