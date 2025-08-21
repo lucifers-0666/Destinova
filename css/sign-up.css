@@ -4,12 +4,10 @@
     box-sizing: border-box;
 }
 
-body.sign-in {
+body.sign-up {
     font-family: 'Inter', sans-serif;
-    background-color: #FFFFFF;
-    /* Soft White */
-    color: #1A1A1A;
-    /* Charcoal Black */
+    background-color: #FFFFFF; /* Soft White */
+    color: #1A1A1A; /* Charcoal Black */
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -36,21 +34,18 @@ body.sign-in {
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 8px;
-    color: #064E3B;
-    /* Deep Emerald Green */
+    color: #064E3B; /* Deep Emerald Green */
 }
 
 .tagline {
     font-size: 1rem;
     font-weight: 300;
     letter-spacing: 2px;
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
 }
 
 .auth-card {
-    background-color: #E8E0D5;
-    /* Taupe */
+    background-color: #E8E0D5; /* Taupe */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -68,13 +63,11 @@ body.sign-in {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #064E3B;
-    /* Deep Emerald Green */
+    color: #064E3B; /* Deep Emerald Green */
 }
 
 .form-subtitle {
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
     font-size: 0.95rem;
 }
 
@@ -92,8 +85,7 @@ body.sign-in {
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    color: #C1AA80;
-    /* Champagne Gold */
+    color: #C1AA80; /* Champagne Gold */
     font-size: 18px;
 }
 
@@ -103,8 +95,7 @@ body.sign-in {
     background-color: #FFFFFF;
     border: 2px solid transparent;
     border-radius: 8px;
-    color: #1A1A1A;
-    /* Charcoal Black */
+    color: #1A1A1A; /* Charcoal Black */
     font-size: 16px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -112,8 +103,7 @@ body.sign-in {
 
 .input-group input:focus {
     outline: none;
-    border-color: #C1AA80;
-    /* Champagne Gold */
+    border-color: #C1AA80; /* Champagne Gold */
     box-shadow: 0 0 0 3px rgba(193, 170, 128, 0.2);
 }
 
@@ -122,22 +112,19 @@ body.sign-in {
     left: 45px;
     top: 50%;
     transform: translateY(-50%);
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
     pointer-events: none;
     transition: all 0.3s ease;
     background-color: transparent;
 }
 
-.input-group input:focus+label,
-.input-group input:not(:placeholder-shown)+label {
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
     top: -10px;
     left: 10px;
     font-size: 12px;
-    color: #064E3B;
-    /* Deep Emerald Green */
-    background-color: #E8E0D5;
-    /* Taupe */
+    color: #064E3B; /* Deep Emerald Green */
+    background-color: #E8E0D5; /* Taupe */
     padding: 0 8px;
 }
 
@@ -160,8 +147,7 @@ body.sign-in {
     padding-left: 30px;
     cursor: pointer;
     font-size: 14px;
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
 }
 
 .checkbox-container input {
@@ -185,9 +171,8 @@ body.sign-in {
     background-color: #F9FAFB;
 }
 
-.checkbox-container input:checked~.checkmark {
-    background-color: #064E3B;
-    /* Deep Emerald Green */
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #064E3B; /* Deep Emerald Green */
     border-color: #064E3B;
 }
 
@@ -197,7 +182,7 @@ body.sign-in {
     display: none;
 }
 
-.checkbox-container input:checked~.checkmark:after {
+.checkbox-container input:checked ~ .checkmark:after {
     display: block;
 }
 
@@ -211,25 +196,20 @@ body.sign-in {
     transform: rotate(45deg);
 }
 
-.forgot-link {
-    color: #064E3B;
-    /* Deep Emerald Green */
+.terms-link {
+    color: #064E3B; /* Deep Emerald Green */
     text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
 }
 
-.forgot-link:hover {
-    color: #C1AA80;
-    /* Champagne Gold */
+.terms-link:hover {
+    color: #C1AA80; /* Champagne Gold */
     text-decoration: underline;
 }
 
 .submit-btn {
     width: 100%;
     padding: 16px;
-    background-color: #064E3B;
-    /* Deep Emerald Green */
+    background-color: #064E3B; /* Deep Emerald Green */
     color: #FFFFFF;
     border: none;
     border-radius: 8px;
@@ -249,20 +229,17 @@ body.sign-in {
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid #D1D5DB;
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
 }
 
 .auth-link {
-    color: #064E3B;
-    /* Deep Emerald Green */
+    color: #064E3B; /* Deep Emerald Green */
     text-decoration: none;
     font-weight: 500;
 }
 
 .auth-link:hover {
-    color: #C1AA80;
-    /* Champagne Gold */
+    color: #C1AA80; /* Champagne Gold */
     text-decoration: underline;
 }
 
@@ -270,42 +247,34 @@ body.sign-in {
     text-align: center;
     margin-top: 30px;
     font-size: 14px;
-    color: #6B7280;
-    /* Slate Grey */
+    color: #6B7280; /* Slate Grey */
     opacity: 0;
     animation: fadeIn 0.8s ease-out 0.8s forwards;
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes slideDown {
-    from {
+    from { 
         opacity: 0;
         transform: translateY(-30px);
     }
-
-    to {
+    to { 
         opacity: 1;
         transform: translateY(0);
     }
 }
 
 @keyframes slideUp {
-    from {
+    from { 
         opacity: 0;
         transform: translateY(30px);
     }
-
-    to {
+    to { 
         opacity: 1;
         transform: translateY(0);
     }
@@ -316,31 +285,26 @@ body.sign-in {
     .auth-container {
         padding: 10px;
     }
-
+    
     .company-name {
         font-size: 2rem;
     }
-
+    
     .auth-card {
         padding: 20px;
     }
-
+    
     .form-options {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-    }
-
-    .forgot-link {
-        margin-left: 30px;
     }
 }
 
 /* Accessibility Improvements */
 input:focus,
 button:focus {
-    outline: 2px solid #C1AA80;
-    /* Champagne Gold */
+    outline: 2px solid #C1AA80; /* Champagne Gold */
     outline-offset: 2px;
 }
 
