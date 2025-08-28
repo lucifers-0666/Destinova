@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     /**
      * Initializes all JavaScript functionality for the footer elements.
@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- Newsletter form submission animation ---
         const newsletterForm = document.getElementById('newsletter-form');
         if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function(e) {
+            newsletterForm.addEventListener('submit', function (e) {
                 e.preventDefault(); // Prevent actual form submission
                 this.classList.add('submitted');
                 console.log('Newsletter subscription submitted!');
-                
+
                 // Reset animation and form after it finishes
                 setTimeout(() => {
                     this.classList.remove('submitted');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         if (scrollToTopBtn) {
             // Show or hide the button based on scroll position
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 if (window.scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Smooth scroll to top on click
-            scrollToTopBtn.addEventListener('click', function() {
+            scrollToTopBtn.addEventListener('click', function () {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
