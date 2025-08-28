@@ -1,58 +1,67 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Initialize page content that doesn't depend on header/footer
-    initializePageContent();
+document.addEventListener('DOMContentLoaded', function () {
 
-    // Set up a system to wait for both header and footer to load
-    let headerReady = false;
-    let footerReady = false;
-
-    function checkComponentsReady() {
-        // This function now only initializes the animation library
-        if (headerReady && footerReady) {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 150,
-                easing: 'ease-out-quad'
-            });
-        }
+    // --- MERGED HEADER SCRIPT ---
+    const header = document.getElementById('header-main');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('header-scrolled', window.scrollY > 50);
+        });
     }
 
-    window.addEventListener('headerLoaded', () => {
-        headerReady = true;
-        checkComponentsReady();
+    const menuToggle = document.getElementById('header-menuToggle');
+    const nav = document.getElementById('header-mobile-nav');
+    const overlay = document.getElementById('header-mobileNavOverlay');
+
+    if (menuToggle && nav && overlay) {
+        const toggleMenu = () => {
+            nav.classList.toggle('header-active');
+            overlay.classList.toggle('header-active');
+            document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.header-mobile-nav a').forEach(link => {
+            // Ensure we don't prevent dropdown toggles from working
+            if (!link.parentElement.classList.contains('header-dropdown')) {
+                link.addEventListener('click', toggleMenu);
+            }
+        });
+    }
+
+    // Handle mobile dropdowns
+    document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent navigation for the top-level dropdown link
+            const parent = link.parentElement;
+            parent.classList.toggle('header-open');
+        });
     });
 
-    window.addEventListener('footerLoaded', () => {
-        footerReady = true;
-        checkComponentsReady();
-    });
-});
-
-function initializePageContent() {
+    // --- ORIGINAL INDEX.JS SCRIPT ---
     // --- Passenger selector functionality ---
     const passengersInput = document.getElementById('passengers');
     const passengerDropdown = document.querySelector('.home-passenger-dropdown');
-    
+
     if (passengersInput && passengerDropdown) {
         const adultCountEl = document.getElementById('adult-count');
         const childCountEl = document.getElementById('child-count');
-        
+
         let adults = 1;
         let children = 0;
-        
-        passengersInput.addEventListener('click', function(event) {
+
+        passengersInput.addEventListener('click', function (event) {
             event.stopPropagation();
             passengerDropdown.style.display = passengerDropdown.style.display === 'block' ? 'none' : 'block';
         });
-        
-        document.addEventListener('click', function(e) {
+
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.home-passenger-selector')) {
                 passengerDropdown.style.display = 'none';
             }
         });
-        
+
         function updatePassengerDisplay() {
             let text = `${adults} Adult${adults !== 1 ? 's' : ''}`;
             if (children > 0) {
@@ -62,29 +71,27 @@ function initializePageContent() {
             adultCountEl.textContent = adults;
             childCountEl.textContent = children;
         }
-        
-        // Note: Button classes were not prefixed to preserve JS functionality simply.
-        // If you prefix them in the HTML (e.g., .home-increase-adult), update the selectors here too.
-        document.querySelector('.increase-adult').addEventListener('click', function() {
+
+        document.querySelector('.increase-adult').addEventListener('click', function () {
             if (adults < 9) adults++;
             updatePassengerDisplay();
         });
-        
-        document.querySelector('.decrease-adult').addEventListener('click', function() {
+
+        document.querySelector('.decrease-adult').addEventListener('click', function () {
             if (adults > 1) adults--;
             updatePassengerDisplay();
         });
-        
-        document.querySelector('.increase-child').addEventListener('click', function() {
+
+        document.querySelector('.increase-child').addEventListener('click', function () {
             if (children < 6) children++;
             updatePassengerDisplay();
         });
-        
-        document.querySelector('.decrease-child').addEventListener('click', function() {
+
+        document.querySelector('.decrease-child').addEventListener('click', function () {
             if (children > 0) children--;
             updatePassengerDisplay();
         });
-        
+
         updatePassengerDisplay();
     }
 
@@ -142,4 +149,13 @@ function initializePageContent() {
     initializeSlider('home-slider-premium');
     initializeSlider('home-slider-business');
     initializeSlider('home-slider-first');
-}
+
+    // --- INITIALIZE AOS ANIMATION LIBRARY ---
+    // This should be one of the last things to run
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 150,
+        easing: 'ease-out-quad'
+    });
+});

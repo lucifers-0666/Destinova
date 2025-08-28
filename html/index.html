@@ -40,13 +40,75 @@
   </script>
 
   <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/header.css">
   <link rel="stylesheet" href="../css/footer.css">
 </head>
 
 <body>
-  <div id="header-placeholder"></div>
+  <header id="header-main">
+    <div class="header-nav-container">
+      <div class="header-logo">
+        <h1>Destin<span>ova</span></h1>
+      </div>
 
+      <ul class="header-desktop-nav">
+        <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+        <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+        <li class="header-dropdown">
+          <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+          <ul class="header-dropdown-menu">
+            <li><a href="classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+            <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+            <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+          </ul>
+        </li>
+        <li class="header-dropdown">
+          <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+          <ul class="header-dropdown-menu">
+            <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+            <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+            <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+          </ul>
+        </li>
+        <li><a href="about.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
+        <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="signin.html" class="btn header-btn-signin">Sign In</a>
+        <button class="header-mobile-menu-btn" id="header-menuToggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="header-mobile-nav" id="header-mobile-nav">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+      <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+      <li class="header-dropdown">
+        <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+        <ul class="header-dropdown-menu">
+          <li><a href="classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+          <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+          <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+        </ul>
+      </li>
+      <li class="header-dropdown">
+        <a href="#"><i class="fas fa-tools"></i> Manage</a>
+        <ul class="header-dropdown-menu">
+          <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+          <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+          <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html"><i class="fas fa-building"></i> About Us</a></li>
+      <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
   <main>
     <section class="home-hero">
       <div class="home-hero-content">
@@ -327,7 +389,8 @@
             <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author">
             <h4>Jessica Miller</h4>
           </div>
-          <p class="home-testimonial-text">"Booking with Destinova was a breeze! The website is so user-friendly, and I found
+          <p class="home-testimonial-text">"Booking with Destinova was a breeze! The website is so user-friendly, and I
+            found
             an incredible deal for my trip to Italy. The flight was comfortable, and the service was top-notch. Highly
             recommended!"</p>
         </div>
@@ -339,7 +402,6 @@
   <div id="footer-placeholder"></div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="../js/header.js"></script>
   <script src="../js/footer.js"></script>
   <script src="../js/index.js"></script>
 </body>
