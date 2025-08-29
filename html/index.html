@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinova | Premium Flight Booking</title>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
-    rel="stylesheet">
-
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // UPDATED Tailwind configuration with the new color palette
     tailwind.config = {
       theme: {
         extend: {
@@ -38,9 +34,8 @@
       }
     }
   </script>
-
+  
   <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/footer.css">
 </head>
 
 <body>
@@ -109,6 +104,7 @@
     </ul>
   </nav>
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+
   <main>
     <section class="home-hero">
       <div class="home-hero-content">
@@ -233,7 +229,7 @@
               style="background-image: url('https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=60');">
             </div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1520405616561-5d9f1d1d78b0?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('https://images.unsplash.com/photo-1520405616561-5d9f1f1d78b0?auto=format&fit=crop&w=800&q=60');">
             </div>
           </div>
           <button class="home-slider-nav home-prev"><i class="fas fa-chevron-left"></i></button>
@@ -396,14 +392,92 @@
         </div>
       </div>
     </section>
-
   </main>
 
-  <div id="footer-placeholder"></div>
+  <footer class="destinova-footer" id="destinova-footer">
+    <div class="footer-content max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+
+        <div class="footer-col">
+          <div class="footer-logo mb-4">
+            <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2>
+          </div>
+          <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler. Discover a new standard in air travel.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="fas fa-compass"></i>
+            Quick Links
+          </h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="quick-link-item"><a href="#"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon w-5"></i> Book a Flight</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-gift link-icon w-5"></i> Special Offers</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-info-circle link-icon w-5"></i> About Us</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-envelope link-icon w-5"></i> Contact</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-plane-up link-icon w-5"></i> Flight Status</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-briefcase link-icon w-5"></i> Manage Booking</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="fas fa-headset"></i>
+            Customer Support
+          </h3>
+          <div class="text-gray-300 space-y-3">
+            <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors">support@destinova.com</a></p>
+            <p><a href="tel:+1234567890" class="hover:text-white transition-colors">+1 (234) 567-890</a></p>
+            <div class="support-badge">24/7 Assistance</div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">
+            <i class="fas fa-share-nodes"></i>
+            Stay Connected
+          </h3>
+          <form class="newsletter-form mb-6" id="newsletter-form">
+            <input type="email" placeholder="Your email address" required class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm">
+            <button type="submit" class="newsletter-button" aria-label="Subscribe">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+          <div class="flex items-center space-x-4">
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
+        <div class="flex items-center space-x-4 text-sm text-gray-400">
+          <a href="#" class="legal-link transition-colors">Privacy Policy</a>
+          <span>|</span>
+          <a href="#" class="legal-link transition-colors">Terms of Service</a>
+        </div>
+          <div class="flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
+            <i class="fas fa-shield-alt text-green-300"></i>
+            <span>Trusted by 1M+ Travelers</span>
+          </div>
+      </div>
+    </div>
+  </footer>
+
+  <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-plane-up"></i>
+  </a>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="../js/footer.js"></script>
   <script src="../js/index.js"></script>
 </body>
-
 </html>
