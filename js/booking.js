@@ -1,65 +1,149 @@
-// Passenger counter functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const decreaseAdults = document.getElementById('decrease-adults');
-    const increaseAdults = document.getElementById('increase-adults');
-    const adultsCount = document.getElementById('adults-count');
-    
-    decreaseAdults.addEventListener('click', function() {
-        let count = parseInt(adultsCount.textContent);
-        if (count > 1) {
-            adultsCount.textContent = count - 1;
-        }
-    });
-    
-    increaseAdults.addEventListener('click', function() {
-        let count = parseInt(adultsCount.textContent);
-        if (count < 9) {
-            adultsCount.textContent = count + 1;
-        }
-    });
-    
-    // Toggle filters on mobile
-    const toggleFilters = document.getElementById('toggle-filters');
-    const filterContent = document.getElementById('filter-content');
-    
-    toggleFilters.addEventListener('click', function() {
-        filterContent.classList.toggle('show');
-    });
-    
-    // Flight selection
-    const bookButtons = document.querySelectorAll('.book-btn');
-    bookButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const flightCard = this.closest('.flight-card');
-            const airline = flightCard.querySelector('.airline-info h3').textContent;
-            const flightNumber = flightCard.querySelector('.flight-number').textContent;
-            const from = flightCard.querySelectorAll('.airport-code')[0].textContent;
-            const to = flightCard.querySelectorAll('.airport-code')[1].textContent;
-            const time = `${flightCard.querySelectorAll('.time')[0].textContent} - ${flightCard.querySelectorAll('.time')[1].textContent}`;
-            const date = flightCard.querySelector('.flight-date').textContent;
-            const price = flightCard.querySelector('.price').textContent;
-            
-            // Update booking summary
-            document.querySelector('.summary-item:nth-child(1) span:last-child').textContent = `${flightNumber} (${from} → ${to})`;
-            document.querySelector('.summary-item:nth-child(2) span:last-child').textContent = date;
-            document.querySelector('.summary-item:nth-child(3) span:last-child').textContent = time;
-            document.querySelector('.summary-total span:last-child').textContent = `$${price}`;
-            
-            // Highlight selected flight
-            document.querySelectorAll('.flight-card').forEach(card => {
-                card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
-                card.style.borderLeft = '4px solid var(--deep-emerald)';
-            });
-            flightCard.style.boxShadow = '0 12px 25px rgba(26, 60, 52, 0.2)';
-            flightCard.style.borderLeft = '4px solid var(--champagne-gold)';
+document.addEventListener('DOMContentLoaded', function () {
+    // --- HEADER FUNCTIONALITY ---
+    const header = document.getElementById('header-main');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+    }
+
+    const menuToggle = document.getElementById('header-menuToggle');
+    const nav = document.getElementById('header-mobile-nav');
+    const overlay = document.getElementById('header-mobileNavOverlay');
+
+    if (menuToggle && nav && overlay) {
+        const toggleMenu = () => {
+            nav.classList.toggle('header-active');
+            overlay.classList.toggle('header-active');
+            document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.header-mobile-nav a').forEach(link => {
+            if (!link.parentElement.classList.contains('header-dropdown')) {
+                link.addEventListener('click', toggleMenu);
+            }
+        });
+    }
+
+    // Handle mobile dropdowns
+    document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const parent = link.parentElement;
+            parent.classList.toggle('header-open');
         });
     });
-    
-    // Form submission
-    const searchForm = document.querySelector('.search-form');
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // In a real application, this would process the form data and fetch results
-        alert('Searching for flights...');
-    });
+    // Passenger selector functionality
+    const passengersInput = document.getElementById('passengers');
+    const passengerDropdown = document.querySelector('.home-passenger-dropdown');
+
+    if (passengersInput && passengerDropdown) {
+        const adultCountEl = document.getElementById('adult-count');
+        const childCountEl = document.getElementById('child-count');
+
+        let adults = 1;
+        let children = 0;
+
+        passengersInput.addEventListener('click', function (event) {
+            event.stopPropagation();
+            passengerDropdown.style.display = passengerDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.home-passenger-selector')) {
+                passengerDropdown.style.display = 'none';
+            }
+        });
+
+        function updatePassengerDisplay() {
+            let text = `${adults} Adult${adults !== 1 ? 's' : ''}`;
+            if (children > 0) {
+                text += `, ${children} Child${children !== 1 ? 'ren' : ''}`;
+            }
+            passengersInput.value = text;
+            adultCountEl.textContent = adults;
+            childCountEl.textContent = children;
+        }
+
+        document.querySelector('.increase-adult').addEventListener('click', function () {
+            if (adults < 9) adults++;
+            updatePassengerDisplay();
+        });
+
+        document.querySelector('.decrease-adult').addEventListener('click', function () {
+            if (adults > 1) adults--;
+            updatePassengerDisplay();
+        });
+
+        document.querySelector('.increase-child').addEventListener('click', function () {
+            if (children < 6) children++;
+            updatePassengerDisplay();
+        });
+
+        document.querySelector('.decrease-child').addEventListener('click', function () {
+            if (children > 0) children--;
+            updatePassengerDisplay();
+        });
+
+        updatePassengerDisplay();
+    }
+    // --- FOOTER FUNCTIONALITY ---
+    function initializeFooterScripts() {
+        // Intersection Observer for footer scroll animations
+        const footer = document.getElementById('destinova-footer');
+        if (footer) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        footer.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(footer);
+        }
+
+        // Newsletter form submission animation
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                this.classList.add('submitted');
+                console.log('Newsletter subscription submitted!');
+
+                // Reset animation and form after it finishes
+                setTimeout(() => {
+                    this.classList.remove('submitted');
+                    this.reset();
+                }, 1000);
+            });
+        }
+
+        // Scroll-to-Top button functionality
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            // Show or hide the button based on scroll position
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            // Smooth scroll to top on click
+            scrollToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
+    // Initialize footer scripts
+    initializeFooterScripts();
 });
