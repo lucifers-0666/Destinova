@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Destinova | Home </title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'primary-emerald': '#1A3C34',
-            'secondary-cream': '#FFF8E7',
-            'accent-gold': '#E8D4A6',
+            'primary-emerald': '#1d5e33',
+            'secondary-cream': '#FFFBF2',
+            'accent-gold': '#E5CBAF',
             'text-charcoal': '#1C2526',
             'text-slate': '#5C6B73',
             'background-white': '#FAFAFA',
-            'support-bronze': '#8C6B3F',
-            'support-taupe': '#D8CFC2',
           },
           fontFamily: {
             sans: ['Poppins', 'sans-serif'],
@@ -34,7 +35,7 @@
       }
     }
   </script>
-  
+
   <link rel="stylesheet" href="../css/index.css">
 </head>
 
@@ -212,20 +213,48 @@
       </div>
     </section>
 
+    <section class="home-features-section">
+      <div class="home-section-title">
+        <h2 data-aos="fade-up">Our Commitment to You</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Experience the difference with Destinova's signature service and
+          quality.</p>
+      </div>
+      <div class="home-features-grid">
+        <div class="home-feature-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <i class="fas fa-couch"></i>
+          </div>
+          <h3>Luxury Cabins</h3>
+          <p>Travel in unparalleled comfort with our ergonomically designed seats and spacious cabins.</p>
+        </div>
+        <div class="home-feature-item" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <i class="fas fa-concierge-bell"></i>
+          </div>
+          <h3>World-Class Service</h3>
+          <p>Our attentive cabin crew is dedicated to making your journey seamless and memorable.</p>
+        </div>
+        <div class="home-feature-item" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <h3>Exclusive Destinations</h3>
+          <p>We connect you to the world's most desired locations with an expanding network of routes.</p>
+        </div>
+      </div>
+    </section>
     <section id="home-flight-classes" class="home-section home-flight-classes-section">
       <div class="home-section-title">
         <h2 data-aos="fade-up">Travel in Your Comfort</h2>
         <p data-aos="fade-up" data-aos-delay="100">Choose the perfect travel experience for your journey from our
           selection of flight classes.</p>
       </div>
-<!-- flight classes start from here  -->
 
-      <div class="home-alt-content-container home-left-side-alt-content" data-aos="fade-right">
+      <div class="home-alt-content-container home-left-side-alt-content" data-animation="reveal">
         <div class="home-class-slider-wrapper" id="home-slider-economy">
           <div class="home-class-slider">
             <div class="home-class-slide"
-              style="background-image: url('../site-images/EC-P1.jpg');">
-            </div>
+              style="background-image: url('../site-images/EC-P1.jpg');"></div>
             <div class="home-class-slide"
               style="background-image: url('../site-images/EC-P2.webp');">
             </div>
@@ -245,11 +274,12 @@
             <li><i class="fas fa-tv"></i> Personal entertainment system</li>
             <li><i class="fas fa-wifi"></i> Wi-Fi available for purchase</li>
           </ul>
-          <a href="#" class="btn btn-primary">Book Economy</a>
+          <a href="#" class="btn btn-primary">Book Economy <span class="plane-icon"><i
+                class="fas fa-paper-plane"></i></span></a>
         </div>
       </div>
 
-      <div class="home-alt-content-container home-right-side-alt-content" data-aos="fade-left">
+      <div class="home-alt-content-container home-right-side-alt-content" data-animation="reveal">
         <div class="home-class-content">
           <h3>Premium Economy</h3>
           <ul class="home-class-features">
@@ -258,18 +288,18 @@
             <li><i class="fas fa-suitcase"></i> Increased baggage allowance</li>
             <li><i class="fas fa-tv"></i> Premium entertainment options</li>
           </ul>
-          <a href="#" class="btn btn-primary">Book Premium Economy</a>
+          <a href="#" class="btn btn-primary">Book Premium Economy <span class="plane-icon"><i
+                class="fas fa-paper-plane"></i></span></a>
         </div>
         <div class="home-class-slider-wrapper" id="home-slider-premium">
           <div class="home-class-slider">
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1586367725474-3a6f9b0e0a1f?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/PEC-P1.webp');">
             </div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1556663216-9a0e2a6f1a1d?auto=format&fit=crop&w=800&q=60');">
-            </div>
+              style="background-image: url('../site-images/PEC-P2.jpg');"></div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1603481547576-0d1f0f1b4b9c?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/PEC-P3.jpeg');">
             </div>
           </div>
           <button class="home-slider-nav home-prev"><i class="fas fa-chevron-left"></i></button>
@@ -278,19 +308,18 @@
         </div>
       </div>
 
-      <div class="home-alt-content-container home-left-side-alt-content" data-aos="fade-right">
+      <div class="home-alt-content-container home-left-side-alt-content" data-animation="reveal">
         <div class="home-class-slider-wrapper" id="home-slider-business">
           <div class="home-class-slider">
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1560254549-23803a3a4869?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/BC-P4.jpg');"></div>
+            <div class="home-class-slide"
+              style="background-image: url('../site-images/BC-P2.jpg');">
             </div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1611599539915-a89c7224524d?auto=format&fit=crop&w=800&q=60');">
-            </div>
-            <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1544016768-9a8b8b3132a7?auto=format&fit=crop&w=800&q=60');">
-            </div>
+              style="background-image: url('../site-images/BC-P3.jpg');"></div>
           </div>
+          
           <button class="home-slider-nav home-prev"><i class="fas fa-chevron-left"></i></button>
           <button class="home-slider-nav home-next"><i class="fas fa-chevron-right"></i></button>
           <div class="home-slider-dots"></div>
@@ -303,11 +332,12 @@
             <li><i class="fas fa-utensils"></i> Premium dining and beverage selection</li>
             <li><i class="fas fa-wifi"></i> High-speed Wi-Fi and entertainment</li>
           </ul>
-          <a href="#" class="btn btn-primary">Book Business Class</a>
+          <a href="#" class="btn btn-primary">Book Business Class <span class="plane-icon"><i
+                class="fas fa-paper-plane"></i></span></a>
         </div>
       </div>
 
-      <div class="home-alt-content-container home-right-side-alt-content" data-aos="fade-left">
+      <div class="home-alt-content-container home-right-side-alt-content" data-animation="reveal">
         <div class="home-class-content">
           <h3>First Class</h3>
           <ul class="home-class-features">
@@ -316,18 +346,19 @@
             <li><i class="fas fa-glass-cheers"></i> Premium champagne and wines</li>
             <li><i class="fas fa-bed"></i> Fully lie-flat bed with luxury bedding</li>
           </ul>
-          <a href="#" class="btn btn-primary">Book First Class</a>
+          <a href="#" class="btn btn-primary">Book First Class <span class="plane-icon"><i
+                class="fas fa-paper-plane"></i></span></a>
         </div>
         <div class="home-class-slider-wrapper" id="home-slider-first">
           <div class="home-class-slider">
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1620894589999-5231804c605a?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/FC-P1.webp');">
             </div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1574611464434-45a7a7a5b312?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/FC-P2.webp');">
             </div>
             <div class="home-class-slide"
-              style="background-image: url('https://images.unsplash.com/photo-1606836576958-2b935515c12a?auto=format&fit=crop&w=800&q=60');">
+              style="background-image: url('../site-images/FC-P3.webp');">
             </div>
           </div>
           <button class="home-slider-nav home-prev"><i class="fas fa-chevron-left"></i></button>
@@ -336,8 +367,6 @@
         </div>
       </div>
     </section>
-
-    <!-- flight classes end  here  -->
 
     <section id="home-offers" class="home-section">
       <div class="home-section-title">
@@ -399,7 +428,7 @@
 
   <footer class="destinova-footer" id="destinova-footer">
     <div class="footer-content max-w-7xl mx-auto">
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
 
         <div class="footer-col">
@@ -408,7 +437,8 @@
           </div>
           <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
           <p class="text-xs text-gray-400 leading-relaxed">
-            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler. Discover a new standard in air travel.
+            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
+            Discover a new standard in air travel.
           </p>
         </div>
 
@@ -419,12 +449,14 @@
           </h3>
           <ul class="space-y-3 text-gray-300">
             <li class="quick-link-item"><a href="#"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
-            <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon w-5"></i> Book a Flight</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon w-5"></i> Book a
+                Flight</a></li>
             <li class="quick-link-item"><a href="#"><i class="fas fa-gift link-icon w-5"></i> Special Offers</a></li>
             <li class="quick-link-item"><a href="#"><i class="fas fa-info-circle link-icon w-5"></i> About Us</a></li>
             <li class="quick-link-item"><a href="#"><i class="fas fa-envelope link-icon w-5"></i> Contact</a></li>
             <li class="quick-link-item"><a href="#"><i class="fas fa-plane-up link-icon w-5"></i> Flight Status</a></li>
-            <li class="quick-link-item"><a href="#"><i class="fas fa-briefcase link-icon w-5"></i> Manage Booking</a></li>
+            <li class="quick-link-item"><a href="#"><i class="fas fa-briefcase link-icon w-5"></i> Manage Booking</a>
+            </li>
           </ul>
         </div>
 
@@ -434,7 +466,8 @@
             Customer Support
           </h3>
           <div class="text-gray-300 space-y-3">
-            <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors">support@destinova.com</a></p>
+            <p><a href="mailto:support@destinova.com"
+                class="hover:text-white transition-colors">support@destinova.com</a></p>
             <p><a href="tel:+1234567890" class="hover:text-white transition-colors">+1 (234) 567-890</a></p>
             <div class="support-badge">24/7 Assistance</div>
           </div>
@@ -446,32 +479,39 @@
             Stay Connected
           </h3>
           <form class="newsletter-form mb-6" id="newsletter-form">
-            <input type="email" placeholder="Your email address" required class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm">
+            <input type="email" placeholder="Your email address" required
+              class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm">
             <button type="submit" class="newsletter-button" aria-label="Subscribe">
               <i class="fas fa-paper-plane"></i>
             </button>
           </form>
           <div class="flex items-center space-x-4">
-            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Facebook"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Twitter"><i
+                class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Instagram"><i
+                class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="LinkedIn"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon rounded-full flex items-center justify-center" aria-label="Youtube"><i
+                class="fab fa-youtube"></i></a>
           </div>
         </div>
       </div>
 
-      <div class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+      <div
+        class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
         <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
         <div class="flex items-center space-x-4 text-sm text-gray-400">
           <a href="#" class="legal-link transition-colors">Privacy Policy</a>
           <span>|</span>
           <a href="#" class="legal-link transition-colors">Terms of Service</a>
         </div>
-          <div class="flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-            <i class="fas fa-shield-alt text-green-300"></i>
-            <span>Trusted by 1M+ Travelers</span>
-          </div>
+        <div class="flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
+          <i class="fas fa-shield-alt text-green-300"></i>
+          <span>Trusted by 1M+ Travelers</span>
+        </div>
       </div>
     </div>
   </footer>
@@ -483,4 +523,5 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="../js/index.js"></script>
 </body>
+
 </html>
