@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -9,9 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
         rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,11 +35,10 @@
             }
         }
     </script>
-
     <link rel="stylesheet" href="../css/booking.css">
 </head>
 
-<body>
+<body class="bg-background-white">
     <header id="header-main">
         <div class="header-nav-container">
             <div class="header-logo">
@@ -111,71 +108,232 @@
 
     <main>
         <section class="home-hero">
-            <div class="home-hero-content">
-                <h1 data-aos="fade-down" data-aos-duration="800">Your Journey Starts Here.</h1>
-                <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">Find and book flights to your dream
-                    destinations with ease.</p>
-                <a href="#search-section-anchor" class="btn btn-light" data-aos="fade-up" data-aos-delay="400">Book Your
-                    Flight</a>
+            <div class="home-hero-content text-center">
+                <h1 class="font-display text-5xl md:text-7xl" data-aos="fade-down" data-aos-duration="800">Your Journey
+                    Starts Here.</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto" data-aos="fade-down" data-aos-duration="800"
+                    data-aos-delay="200">Find and book flights to your dream destinations with ease.</p>
+                <a href="#search-section-anchor" class="btn-hero" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-plane-departure mr-2"></i> Book Your Flight
+                </a>
             </div>
         </section>
 
-        <div id="search-section-anchor" style="position: relative; top: -80px;"></div>
+        <div id="search-section-anchor" class="relative -top-24"></div>
 
-        <section class="home-search-section">
-            <div class="home-search-form-container" data-aos="fade-up" data-aos-duration="1000">
-                <h3 class="home-form-title">Find Your Perfect Flight</h3>
-                <div class="home-form-grid">
-                    <div class="home-form-group">
-                        <label for="from">From</label>
-                        <input type="text" id="from" placeholder="City or Airport">
-                    </div>
-                    <div class="home-form-group">
-                        <label for="to">To</label>
-                        <input type="text" id="to" placeholder="City or Airport">
-                    </div>
-                    <div class="home-form-group">
-                        <label for="departure">Departure</label>
-                        <input type="date" id="departure">
-                    </div>
-                    <div class="home-form-group">
-                        <label for="return">Return</label>
-                        <input type="date" id="return">
-                    </div>
-                    <div class="home-form-group home-passenger-selector">
-                        <label for="passengers">Passengers</label>
-                        <input type="text" id="passengers" placeholder="1 Adult" readonly>
-                        <div class="home-passenger-dropdown">
-                            <div class="home-passenger-item">
-                                <span>Adults</span>
-                                <div class="home-passenger-controls">
-                                    <button class="decrease-adult">-</button>
-                                    <span id="adult-count">1</span>
-                                    <button class="increase-adult">+</button>
+        <section class="pb-16 md:pb-24">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="search-form-container" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+                            <div class="floating-label-group" data-aos="fade-up" data-aos-delay="100">
+                                <i class="fa-solid fa-plane-departure input-icon"></i>
+                                <input type="text" id="from" class="form-input" placeholder=" " required>
+                                <label for="from" class="floating-label">From</label>
+                            </div>
+
+                            <div class="floating-label-group" data-aos="fade-up" data-aos-delay="150">
+                                <i class="fa-solid fa-plane-arrival input-icon"></i>
+                                <input type="text" id="to" class="form-input" placeholder=" " required>
+                                <label for="to" class="floating-label">To</label>
+                            </div>
+
+                            <div class="floating-label-group" data-aos="fade-up" data-aos-delay="200">
+                                <i class="fa-solid fa-calendar-day input-icon"></i>
+                                <input type="date" id="departure" class="form-input" placeholder=" " required>
+                                <label for="departure" class="floating-label">Departure</label>
+                            </div>
+
+                            <div class="floating-label-group" data-aos="fade-up" data-aos-delay="250">
+                                <i class="fa-solid fa-calendar-day input-icon"></i>
+                                <input type="date" id="return" class="form-input" placeholder=" ">
+                                <label for="return" class="floating-label">Return (Optional)</label>
+                            </div>
+
+                            <div class="home-passenger-selector floating-label-group" data-aos="fade-up"
+                                data-aos-delay="300">
+                                <i class="fa-solid fa-users input-icon"></i>
+                                <input type="text" id="passengers" value="1 Adult" readonly
+                                    class="form-input cursor-pointer" required>
+                                <label for="passengers" class="floating-label always-float">Passengers</label>
+                                <div class="home-passenger-dropdown">
+                                    <div class="home-passenger-item">
+                                        <span>Adults <small class="text-text-slate">(12+)</small></span>
+                                        <div class="home-passenger-controls">
+                                            <button class="decrease-adult">-</button><span
+                                                id="adult-count">1</span><button class="increase-adult">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="home-passenger-item">
+                                        <span>Children <small class="text-text-slate">(2-11)</small></span>
+                                        <div class="home-passenger-controls">
+                                            <button class="decrease-child">-</button><span
+                                                id="child-count">0</span><button class="increase-child">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="home-passenger-item">
-                                <span>Children</span>
-                                <div class="home-passenger-controls">
-                                    <button class="decrease-child">-</button>
-                                    <span id="child-count">0</span>
-                                    <button class="increase-child">+</button>
+
+                            <div data-aos="fade-up" data-aos-delay="350">
+                                <label class="form-label mb-3">Travel Class</label>
+                                <div class="travel-class-selector">
+                                    <button type="button" class="travel-class-btn active">Economy</button>
+                                    <button type="button" class="travel-class-btn">Business</button>
+                                    <button type="button" class="travel-class-btn">First Class</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="home-form-submit">
-                    <button class="btn btn-primary">Search Flights</button>
+
+                    <div class="px-8" data-aos="fade-up" data-aos-delay="400">
+                        <hr class="border-t border-accent-gold/20">
+                    </div>
+
+                    <div class="p-8">
+                        <h3 class="form-label font-semibold mb-4 text-base" data-aos="fade-up" data-aos-delay="450">
+                            Additional Options</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                            <div class="custom-checkbox" data-aos="fade-up" data-aos-delay="500"><input type="checkbox"
+                                    id="flexible-dates"><label for="flexible-dates">Flexible with dates (±3
+                                    days)</label></div>
+                            <div class="custom-checkbox" data-aos="fade-up" data-aos-delay="550"><input type="checkbox"
+                                    id="add-hotel"><label for="add-hotel">Add hotel accommodation</label></div>
+                            <div class="custom-checkbox" data-aos="fade-up" data-aos-delay="600"><input type="checkbox"
+                                    id="add-car"><label for="add-car">Add car rental</label></div>
+                            <div class="custom-checkbox" data-aos="fade-up" data-aos-delay="650"><input type="checkbox"
+                                    id="special-assistance"><label for="special-assistance">Special assistance
+                                    required</label></div>
+                        </div>
+                    </div>
+
+                    <div class="p-8 pt-0" data-aos="fade-up" data-aos-delay="700">
+                        <button class="form-submit-btn">Search Flights</button>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section class="py-16 md:py-24 bg-secondary-cream">
+            <div class="max-w-6xl mx-auto px-4 text-center">
+                <h2 class="section-title" data-aos="fade-up">Booking In <span class="text-support-bronze">3 Easy
+                        Steps</span></h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">A seamless experience from start to
+                    finish.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative process-line">
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="process-icon"><i class="fas fa-search-location"></i></div>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-6 mb-2">Search & Compare</h3>
+                        <p class="text-text-slate">Enter your destinations and find the best flights from our curated
+                            selection of premium airlines.</p>
+                    </div>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="process-icon"><i class="fas fa-check-double"></i></div>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-6 mb-2">Select & Customize
+                        </h3>
+                        <p class="text-text-slate">Choose your preferred flight, select seats, and add exclusive extras
+                            like lounge access.</p>
+                    </div>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="process-icon"><i class="fas fa-credit-card"></i></div>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-6 mb-2">Book & Fly</h3>
+                        <p class="text-text-slate">Confirm your details with our secure payment system and receive your
+                            e-tickets instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 bg-background-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="section-title" data-aos="fade-up">Explore Our <span class="text-support-bronze">Top
+                            Destinations</span></h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Get inspired for your next
+                        adventure.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <a href="#" class="destination-card" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=2070&auto=format&fit=crop"
+                            alt="Paris">
+                        <div class="destination-overlay">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display">Paris</h3>
+                                <p class="text-sm">Flights from $699</p>
+                            </div><span class="destination-button">Explore <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="#" class="destination-card" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=2070&auto=format&fit=crop"
+                            alt="Tokyo">
+                        <div class="destination-overlay">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display">Tokyo</h3>
+                                <p class="text-sm">Flights from $950</p>
+                            </div><span class="destination-button">Explore <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="#" class="destination-card" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=1966&auto=format&fit=crop"
+                            alt="Rome">
+                        <div class="destination-overlay">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display">Rome</h3>
+                                <p class="text-sm">Flights from $720</p>
+                            </div><span class="destination-button">Explore <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="#" class="destination-card" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2071&auto=format&fit=crop"
+                            alt="Dubai">
+                        <div class="destination-overlay">
+                            <div>
+                                <h3 class="text-2xl font-bold font-display">Dubai</h3>
+                                <p class="text-sm">Flights from $880</p>
+                            </div><span class="destination-button">Explore <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="section-title" data-aos="fade-up">Fly Beyond <span
+                            class="text-support-bronze">Ordinary</span></h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">We are committed to providing a
+                        premier, seamless booking experience.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-award feature-icon"></i>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-4 mb-2">Curated Selection</h3>
+                        <p class="text-text-slate">We partner only with the world's leading airlines to ensure your
+                            comfort and safety.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-concierge-bell feature-icon"></i>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-4 mb-2">VIP Concierge Service
+                        </h3>
+                        <p class="text-text-slate">Our 24/7 support team is here to assist with any request, from
+                            booking to landing.</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-lock feature-icon"></i>
+                        <h3 class="text-xl font-bold font-display text-primary-emerald mt-4 mb-2">Transparent Pricing
+                        </h3>
+                        <p class="text-text-slate">No hidden fees. The price you see is the price you pay. Simple and
+                            secure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
+
     <footer class="destinova-footer" id="destinova-footer">
         <div class="footer-content max-w-7xl mx-auto">
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-
                 <div class="footer-col">
                     <div class="footer-logo mb-4">
                         <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i>
@@ -187,7 +345,6 @@
                         traveler. Discover a new standard in air travel.
                     </p>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-compass"></i>
@@ -209,7 +366,6 @@
                                 Booking</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-headset"></i>
@@ -222,7 +378,6 @@
                         <div class="support-badge">24/7 Assistance</div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-share-nodes"></i>
@@ -249,7 +404,6 @@
                     </div>
                 </div>
             </div>
-
             <div
                 class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
@@ -269,6 +423,7 @@
     <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
         <i class="fas fa-plane-up"></i>
     </a>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/booking.js"></script>
 </body>
