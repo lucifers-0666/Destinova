@@ -1,11 +1,48 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
+    // =============================================
+    // HEADER SCROLL & MOBILE MENU LOGIC
+    // =============================================
+    const header = document.getElementById('header-main');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+    }
+
+    const menuToggle = document.getElementById('header-menuToggle');
+    const nav = document.getElementById('header-mobile-nav');
+    const overlay = document.getElementById('header-mobileNavOverlay');
+
+    if (menuToggle && nav && overlay) {
+        const toggleMenu = () => {
+            nav.classList.toggle('header-active');
+            overlay.classList.toggle('header-active');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    }
+
+    // Handle mobile dropdowns
+    document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Check if the clicked link has a valid href other than '#'
+            if (link.getAttribute('href') === '#') {
+                e.preventDefault(); // Prevent navigation only for placeholder dropdown links
+                const parent = link.parentElement;
+                parent.classList.toggle('header-open');
+            }
+        });
+    });
 
     // =============================================
     // SMOOTH SCROLL FOR "START EXPLORING" BUTTON
     // =============================================
     const startExploringBtn = document.getElementById('start-exploring-btn');
     if (startExploringBtn) {
-        startExploringBtn.addEventListener('click', function(e) {
+        startExploringBtn.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
@@ -30,85 +67,61 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextButton = slider.querySelector('.next');
         const prevButton = slider.querySelector('.prev');
 
-        if (slides.length === 0) return;
+        if (slides.length <= 1) return; // No need for slider if 1 or 0 slides
 
-        // Clone slides for infinite loop effect
-        const visibleSlides = 1; // Change this based on how many are visible at once
-        for (let i = 0; i < visibleSlides; i++) {
-            track.appendChild(slides[i].cloneNode(true));
-        }
-        for (let i = slides.length - 1; i >= slides.length - visibleSlides; i--) {
-            track.insertBefore(slides[i].cloneNode(true), slides[0]);
-        }
-        
-        const allSlides = Array.from(track.children);
-        const slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
-        let currentIndex = visibleSlides;
+        let slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
+        let currentIndex = 0;
 
-        // Initial position
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-
-        const moveToSlide = (index) => {
+        const updateSliderPosition = () => {
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             track.style.transition = 'transform 0.5s ease-in-out';
-            track.style.transform = `translateX(-${index * slideWidth}px)`;
-            currentIndex = index;
         };
-        
+
         nextButton.addEventListener('click', () => {
-            if (currentIndex >= allSlides.length - visibleSlides) return;
-            moveToSlide(currentIndex + 1);
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop to start
+            }
+            updateSliderPosition();
         });
 
         prevButton.addEventListener('click', () => {
-            if (currentIndex <= 0) return;
-            moveToSlide(currentIndex - 1);
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = slides.length - 1; // Loop to end
+            }
+            updateSliderPosition();
         });
 
-        track.addEventListener('transitionend', () => {
-            if (currentIndex === 0) {
-                track.style.transition = 'none';
-                moveToSlide(slides.length);
-            }
-            if (currentIndex === allSlides.length - visibleSlides) {
-                track.style.transition = 'none';
-                moveToSlide(visibleSlides);
-            }
-        });
-        
-        // Handle window resize
+        // Adjust on window resize
         window.addEventListener('resize', () => {
-            const newSlideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
-            track.style.transition = 'none';
-            track.style.transform = `translateX(-${currentIndex * newSlideWidth}px)`;
+            slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
+            track.style.transition = 'none'; // Disable transition during resize adjustment
+            updateSliderPosition();
         });
     }
 
-    // Initialize all sliders on the page
     initializeSlider('offers-slider');
     initializeSlider('testimonials-slider');
-
 
     // =============================================
     // SCROLL-TRIGGERED FADE/SLIDE-IN ANIMATIONS
     // =============================================
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Get delay from data attribute
                 const delay = entry.target.dataset.delay || 0;
-                
                 setTimeout(() => {
                     entry.target.classList.add('is-visible');
                 }, delay);
-
-                // Stop observing the element once it's visible
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
+        threshold: 0.1
     });
 
     animatedElements.forEach(element => {
