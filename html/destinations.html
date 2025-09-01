@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Destinations - Your Airline</title>
+    
+    <meta name="description" content="Explore top travel destinations worldwide. Book your flights to Paris, Dubai, New York, and more with our special offers.">
+    <meta name="keywords" content="flights, airline, destinations, travel, booking, offers, vacation">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/destinations.css">
+    
+    <script src="../js/destinations.js" defer></script>
+</head>
+<body>
+
+    <section class="hero-section">
+        <div class="hero-video-container">
+             <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=2070&auto=format&fit=crop" alt="Panoramic view of Paris with Eiffel Tower at dusk" class="hero-bg-image">
+            </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="animate-on-scroll fade-in">Discover Your Next Destination</h1>
+            <p class="animate-on-scroll fade-in" data-delay="100">Explore top cities and book flights easily with unparalleled service.</p>
+            <a href="#popular-destinations" class="btn btn-primary animate-on-scroll fade-in" data-delay="200" id="start-exploring-btn">Start Exploring</a>
+        </div>
+    </section>
+
+    <main>
+        <section id="popular-destinations" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll slide-up">Popular Destinations</h2>
+                <div class="destination-grid">
+                    <div class="destination-card animate-on-scroll slide-up">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2070&auto=format&fit=crop" alt="Eiffel Tower, Paris">
+                        <div class="card-content">
+                            <h3>Paris, France</h3>
+                            <p>The city of love, art, and fashion awaits your arrival.</p>
+                            <a href="booking.html?destination=Paris" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="destination-card animate-on-scroll slide-up" data-delay="100">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop" alt="Dubai Skyline">
+                        <div class="card-content">
+                            <h3>Dubai, UAE</h3>
+                            <p>Experience futuristic luxury and timeless desert landscapes.</p>
+                            <a href="booking.html?destination=Dubai" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="destination-card animate-on-scroll slide-up" data-delay="200">
+                        <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1974&auto=format&fit=crop" alt="Gardens by the Bay, Singapore">
+                        <div class="card-content">
+                            <h3>Singapore</h3>
+                            <p>A vibrant city-state blending lush nature with modern marvels.</p>
+                            <a href="booking.html?destination=Singapore" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="destination-card animate-on-scroll slide-up" data-delay="300">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2070&auto=format&fit=crop" alt="Times Square, New York">
+                        <div class="card-content">
+                            <h3>New York, USA</h3>
+                            <p>The city that never sleeps, offering endless excitement.</p>
+                            <a href="booking.html?destination=NewYork" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="destination-card animate-on-scroll slide-up" data-delay="400">
+                        <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590b8?q=80&w=2070&auto=format&fit=crop" alt="Overwater bungalows in the Maldives">
+                        <div class="card-content">
+                            <h3>Maldives</h3>
+                            <p>Unwind in paradise with pristine beaches and crystal-clear waters.</p>
+                            <a href="booking.html?destination=Maldives" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                    <div class="destination-card animate-on-scroll slide-up" data-delay="500">
+                        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=2070&auto=format&fit=crop" alt="Shibuya Crossing, Tokyo">
+                        <div class="card-content">
+                            <h3>Tokyo, Japan</h3>
+                            <p>A dazzling blend of ancient traditions and futuristic technology.</p>
+                            <a href="booking.html?destination=Tokyo" class="btn btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll slide-up">Limited-Time Offers</h2>
+                <div class="slider-container animate-on-scroll fade-in" id="offers-slider">
+                    <div class="slider-track">
+                        <div class="offer-card">
+                            <img src="https://images.unsplash.com/photo-1565967521873-95c589098908?q=80&w=1974&auto=format&fit=crop" alt="Sydney Opera House">
+                            <div class="offer-tag">25% OFF</div>
+                            <div class="offer-content">
+                                <h4>Sydney Explorer</h4>
+                                <p>Fly to Sydney this summer. Sale ends soon!</p>
+                                <div class="price">From $999</div>
+                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            </div>
+                        </div>
+                        <div class="offer-card">
+                            <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop" alt="London city view">
+                            <div class="offer-tag">Business Class Special</div>
+                            <div class="offer-content">
+                                <h4>London Calling</h4>
+                                <p>Upgrade your London trip. Limited seats available.</p>
+                                <div class="price">From $2,450</div>
+                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            </div>
+                        </div>
+                        <div class="offer-card">
+                            <img src="https://images.unsplash.com/photo-1591454728342-2621b6785834?q=80&w=1964&auto=format&fit=crop" alt="Kyoto temple">
+                            <div class="offer-tag">20% OFF</div>
+                            <div class="offer-content">
+                                <h4>Kyoto Serenity</h4>
+                                <p>Discover the ancient capital of Japan this autumn.</p>
+                                <div class="price">From $1,200</div>
+                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            </div>
+                        </div>
+                        <div class="offer-card">
+                            <img src="https://images.unsplash.com/photo-1543054111-b4a8a8a4362b?q=80&w=2070&auto=format&fit=crop" alt="Rome Colosseum">
+                             <div class="offer-tag">Weekend Getaway</div>
+                            <div class="offer-content">
+                                <h4>Roman Holiday</h4>
+                                <p>A 3-day trip to the eternal city of Rome.</p>
+                                <div class="price">From $750</div>
+                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll slide-up">Travel Your Way</h2>
+                <div class="thematic-grid">
+                    <div class="thematic-card animate-on-scroll fade-in" data-delay="100">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723a996f6ea?q=80&w=2070&auto=format&fit=crop" alt="Sunny beach">
+                        <div class="thematic-overlay"><h3>Summer Getaways</h3></div>
+                    </div>
+                    <div class="thematic-card animate-on-scroll fade-in" data-delay="200">
+                        <img src="https://images.unsplash.com/photo-1491002052546-bf38f186af56?q=80&w=2108&auto=format&fit=crop" alt="Snowy mountains">
+                        <div class="thematic-overlay"><h3>Winter Escapes</h3></div>
+                    </div>
+                    <div class="thematic-card animate-on-scroll fade-in" data-delay="300">
+                        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop" alt="Couple on a beach">
+                        <div class="thematic-overlay"><h3>Honeymoon Specials</h3></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll slide-up">Travel Inspiration</h2>
+                <div class="inspiration-container">
+                    <div class="inspiration-image animate-on-scroll slide-up">
+                        <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1974&auto=format&fit=crop" alt="Burj Khalifa in Dubai">
+                    </div>
+                    <div class="inspiration-content animate-on-scroll slide-up" data-delay="200">
+                        <h3>Why Visit Dubai?</h3>
+                        <p>Dubai is a destination that mixes modern culture with history, adventure with world-class shopping and entertainment.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Iconic architecture like the Burj Khalifa.</li>
+                            <li><i class="fas fa-check-circle"></i> World-class shopping malls and souks.</li>
+                            <li><i class="fas fa-check-circle"></i> Thrilling desert safari adventures.</li>
+                            <li><i class="fas fa-check-circle"></i> A vibrant culinary scene with global cuisines.</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Read Dubai Guide</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll slide-up">Stories from Our Travelers</h2>
+                <div class="slider-container animate-on-scroll fade-in" id="testimonials-slider">
+                    <div class="slider-track">
+                        <div class="testimonial-card">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer photo" class="avatar">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"The booking process was seamless, and our flight to Paris was wonderful. The crew was amazing. Can't wait for our next trip!"</p>
+                            <h4>- Sarah L.</h4>
+                        </div>
+                        <div class="testimonial-card">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer photo" class="avatar">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p>"Found an incredible deal to the Maldives through their offers section. It was the honeymoon of our dreams. Highly recommended."</p>
+                            <h4>- Mark & Chloe T.</h4>
+                        </div>
+                        <div class="testimonial-card">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer photo" class="avatar">
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p>"My business trip to New York was comfortable and on time. The lounge access was a great perk. Will be flying with them again."</p>
+                            <h4>- David Chen</h4>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="container animate-on-scroll fade-in">
+                <h2>Ready to Book Your Next Trip?</h2>
+                <p>Find the best fares and book your dream vacation with us today.</p>
+                <a href="booking.html" class="btn btn-primary">Book a Flight Now</a>
+            </div>
+        </section>
+    </main>
+
+    </body>
+</html>
