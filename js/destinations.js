@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // =============================================
-    // HEADER SCROLL & MOBILE MENU LOGIC
+    // HEADER SCROLL & MOBILE MENU LOGIC (NEW SCRIPT)
     // =============================================
     const header = document.getElementById('header-main');
     if (header) {
@@ -18,19 +18,24 @@ document.addEventListener('DOMContentLoaded', function () {
         const toggleMenu = () => {
             nav.classList.toggle('header-active');
             overlay.classList.toggle('header-active');
-            // Prevent body scroll when menu is open
             document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
         };
         menuToggle.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked (if it's not a dropdown)
+        document.querySelectorAll('.header-mobile-nav a').forEach(link => {
+            if (!link.parentElement.classList.contains('header-dropdown')) {
+                link.addEventListener('click', toggleMenu);
+            }
+        });
     }
 
     // Handle mobile dropdowns
     document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
         link.addEventListener('click', (e) => {
-            // Check if the clicked link has a valid href other than '#'
             if (link.getAttribute('href') === '#') {
-                e.preventDefault(); // Prevent navigation only for placeholder dropdown links
+                e.preventDefault();
                 const parent = link.parentElement;
                 parent.classList.toggle('header-open');
             }
@@ -38,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // =============================================
-    // SMOOTH SCROLL FOR "START EXPLORING" BUTTON
+    // PAGE-SPECIFIC: SMOOTH SCROLL FOR "START EXPLORING" BUTTON
     // =============================================
     const startExploringBtn = document.getElementById('start-exploring-btn');
     if (startExploringBtn) {
@@ -56,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // =============================================
-    // REUSABLE SLIDER FUNCTIONALITY
+    // PAGE-SPECIFIC: REUSABLE SLIDER FUNCTIONALITY
     // =============================================
     function initializeSlider(sliderId) {
         const slider = document.getElementById(sliderId);
@@ -67,9 +72,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextButton = slider.querySelector('.next');
         const prevButton = slider.querySelector('.prev');
 
-        if (slides.length <= 1) return; // No need for slider if 1 or 0 slides
+        if (slides.length <= 1) return;
 
-        let slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
+        let slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
         let currentIndex = 0;
 
         const updateSliderPosition = () => {
@@ -78,27 +83,18 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         nextButton.addEventListener('click', () => {
-            if (currentIndex < slides.length - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Loop to start
-            }
+            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
             updateSliderPosition();
         });
 
         prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = slides.length - 1; // Loop to end
-            }
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
             updateSliderPosition();
         });
 
-        // Adjust on window resize
         window.addEventListener('resize', () => {
-            slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight) * 2;
-            track.style.transition = 'none'; // Disable transition during resize adjustment
+            slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
+            track.style.transition = 'none';
             updateSliderPosition();
         });
     }
@@ -107,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSlider('testimonials-slider');
 
     // =============================================
-    // SCROLL-TRIGGERED FADE/SLIDE-IN ANIMATIONS
+    // PAGE-SPECIFIC: SCROLL-TRIGGERED ANIMATIONS
     // =============================================
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     const observer = new IntersectionObserver((entries) => {
@@ -128,4 +124,58 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(element);
     });
 
+    // =============================================
+    // FOOTER FUNCTIONALITY (NEW SCRIPT)
+    // =============================================
+    function initializeFooterScripts() {
+        // Animate footer into view
+        const footer = document.getElementById('destinova-footer');
+        if (footer) {
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        footer.classList.add('in-view');
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            footerObserver.observe(footer);
+        }
+
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                this.classList.add('submitted');
+                console.log('Newsletter subscription submitted!');
+
+                setTimeout(() => {
+                    this.classList.remove('submitted');
+                    this.reset();
+                }, 1000);
+            });
+        }
+
+        // Scroll-to-top button
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        if (scrollToTopBtn) {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
+    initializeFooterScripts(); // Run the footer scripts
 });
