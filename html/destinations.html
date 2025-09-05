@@ -25,42 +25,40 @@
 
 <body>
 
+    <!-- header.html -->
     <header id="header-main">
         <div class="header-nav-container">
             <div class="header-logo">
-                <a href="index.html" style="text-decoration: none;">
-                    <h1>Destin<span>ova</span></h1>
-                </a>
+                <h1>Destin<span>ova</span></h1>
             </div>
 
             <ul class="header-desktop-nav">
                 <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html" class="header-active-page"><i
-                            class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li><a href="#"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="#"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
                 <li class="header-dropdown">
                     <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i
                             class="fas fa-chevron-down"></i></a>
                     <ul class="header-dropdown-menu">
-                        <li><a href="classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                        <li><a href="#"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="#"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="#"><i class="fas fa-star"></i> Loyalty Program</a></li>
                     </ul>
                 </li>
                 <li class="header-dropdown">
                     <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
                     <ul class="header-dropdown-menu">
-                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                        <li><a href="#"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="#"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Flight Status</a></li>
                     </ul>
                 </li>
                 <li><a href="about.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
-                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+                <li><a href="#"><i class="fas fa-headset"></i><span>Contact</span></a></li>
             </ul>
 
             <div class="header-actions">
-                <a href="signin.html" class="btn header-btn-signin">Sign In</a>
+                <a href="#" class="btn header-btn-signin">Sign In</a>
                 <button class="header-mobile-menu-btn" id="header-menuToggle">
                     <span></span><span></span><span></span>
                 </button>
@@ -71,28 +69,30 @@
     <nav class="header-mobile-nav" id="header-mobile-nav">
         <ul>
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+            <li><a href="#"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+            <li><a href="#"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
             <li class="header-dropdown">
                 <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
                 <ul class="header-dropdown-menu">
-                    <li><a href="classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    <li><a href="#"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> Offers</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Loyalty Program</a></li>
                 </ul>
             </li>
             <li class="header-dropdown">
                 <a href="#"><i class="fas fa-tools"></i> Manage</a>
                 <ul class="header-dropdown-menu">
-                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    <li><a href="#"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                    <li><a href="#"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> Flight Status</a></li>
                 </ul>
             </li>
             <li><a href="about.html"><i class="fas fa-building"></i> About Us</a></li>
-            <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-headset"></i> Contact</a></li>
         </ul>
     </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+
     <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
     <section class="hero-section">
         <div class="hero-video-container">
@@ -335,96 +335,103 @@
         </section>
     </main>
 
+    <!-- footer.html -->
     <footer class="destinova-footer" id="destinova-footer">
-        <div class="footer-content">
-
-            <div class="footer-grid">
-
+        <div class="footer-content max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
                 <div class="footer-col">
-                    <div class="footer-logo">
-                        <h2>Destin<span class="highlight">ova</span> <i class="fas fa-plane takeoff-plane"></i></h2>
+                    <div class="footer-logo mb-4">
+                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i>
+                        </h2>
                     </div>
-                    <p class="tagline">Fly Beyond Ordinary.</p>
-                    <p class="description">
+                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">
                         Destinova is committed to providing a premier, seamless booking experience for the modern luxury
                         traveler.
                         Discover a new standard in air travel.
                     </p>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-compass"></i>
                         Quick Links
                     </h3>
-                    <ul>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-home link-icon"></i> Home</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon"></i> Book a
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"></i>
+                                Home</a></li>
+                        <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon w-5"></i>
+                                Book a
                                 Flight</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-gift link-icon"></i> Special Offers</a>
-                        </li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-info-circle link-icon"></i> About
-                                Us</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-envelope link-icon"></i> Contact</a>
-                        </li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-plane-up link-icon"></i> Flight
+                        <li class="quick-link-item"><a href="#"><i class="fas fa-gift link-icon w-5"></i> Special
+                                Offers</a></li>
+                        <li class="quick-link-item"><a href="about.html"><i
+                                    class="fas fa-info-circle link-icon w-5"></i> About Us</a></li>
+                        <li class="quick-link-item"><a href="#"><i class="fas fa-envelope link-icon w-5"></i>
+                                Contact</a></li>
+                        <li class="quick-link-item"><a href="#"><i class="fas fa-plane-up link-icon w-5"></i> Flight
                                 Status</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-briefcase link-icon"></i> Manage
-                                Booking</a></li>
+                        <li class="quick-link-item"><a href="#"><i class="fas fa-briefcase link-icon w-5"></i> Manage
+                                Booking</a>
+                        </li>
                     </ul>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-headset"></i>
                         Customer Support
                     </h3>
-                    <div class="support-info">
-                        <p><a href="mailto:support@destinova.com">support@destinova.com</a></p>
-                        <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    <div class="text-gray-300 space-y-3">
+                        <p><a href="mailto:support@destinova.com"
+                                class="hover:text-white transition-colors">support@destinova.com</a></p>
+                        <p><a href="tel:+1234567890" class="hover:text-white transition-colors">+91 1234567891</a></p>
                         <div class="support-badge">24/7 Assistance</div>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3 class="footer-title">
                         <i class="fas fa-share-nodes"></i>
                         Stay Connected
                     </h3>
-                    <form class="newsletter-form" id="newsletter-form">
-                        <input type="email" placeholder="Your email address" required class="newsletter-input">
+                    <form class="newsletter-form mb-6" id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required
+                            class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm">
                         <button type="submit" class="newsletter-button" aria-label="Subscribe">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
-                    <div class="social-links">
-                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-icon" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Youtube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
-
-            <div class="footer-bottom-bar">
-                <p>&copy; 2025 Destinova. All Rights Reserved.</p>
-                <div class="legal-links">
-                    <a href="#" class="legal-link">Privacy Policy</a>
+            <div
+                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
+                <div class="flex items-center space-x-4 text-sm text-gray-400">
+                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
                     <span>|</span>
-                    <a href="#" class="legal-link">Terms of Service</a>
+                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
                 </div>
-                <div class="trusted-badge">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
+                    <i class="fas fa-shield-alt text-green-300"></i>
                     <span>Trusted by 1M+ Travelers</span>
                 </div>
             </div>
         </div>
     </footer>
-
     <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
         <i class="fas fa-plane-up"></i>
     </a>
+
 </body>
 
 </html>

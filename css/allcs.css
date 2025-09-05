@@ -469,13 +469,7 @@ body {
     opacity: 0.9;
 }
 
-/* --- Search Form --- */
-.home-search-section {
-    padding: 80px 40px;
-    background: var(--background-white);
-    position: relative;
-    z-index: 10;
-}
+
 
 .home-search-form-container {
     max-width: 1000px;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page with Header Included by Div</title>
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+    
+    <main style="margin-top:120px;">
+        <h2>Welcome to the Normal HTML Page</h2>
+        <p>Main content goes here.</p>
+    </main>
+    
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="../js/header-footer.js"></script>
+    <script>
+    // Function to load HTML into a div
+    function loadHTML(id, url) {
+        fetch(url)
+            .then(resp => resp.text())
+            .then(html => {
+                document.getElementById(id).innerHTML = html;
+                // Re-initialize header/footer JS after loading
+                if (typeof initializeHeaderAndFooter === 'function') {
+                    initializeHeaderAndFooter();
+                }
+            })
+            .catch(err => console.warn('Error loading ' + url + ':', err));
+    }
+    // When DOM is ready, load header and footer
+    document.addEventListener('DOMContentLoaded', function() {
+        loadHTML('header-placeholder', '../header.html');
+        loadHTML('footer-placeholder', '../footer.html');
+    });
+    </script>
+</body>
+</html>
