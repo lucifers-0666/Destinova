@@ -1,0 +1,240 @@
+/* --- TRAVEL CLASSES PAGE STYLES --- */
+
+.home-flight-classes-section {
+    padding: 100px 40px;
+    background-color: var(--background-cream);
+    overflow-x: clip; /* Prevent horizontal scroll from shadows */
+}
+
+.home-alt-content-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 120px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-alt-content-container:last-child {
+    margin-bottom: 0;
+}
+
+.home-class-slider-wrapper {
+    flex: 1 1 60%;
+    min-width: 0; /* Allow flex item to shrink */
+    height: 550px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.home-class-slider {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.home-class-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Overlapping Content Panel */
+.content-panel {
+    flex: 1 1 45%;
+    max-width: 480px;
+    background-color: #FCFCFC;
+    padding: 48px;
+    border-radius: 24px;
+    border: 1px solid #EAEAEA;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.home-left-side-alt-content .content-panel {
+    margin-left: -80px;
+}
+
+.home-right-side-alt-content {
+    flex-direction: row-reverse;
+}
+
+.home-right-side-alt-content .content-panel {
+    margin-right: -80px;
+}
+
+.content-panel h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    margin-bottom: 12px;
+}
+
+.class-description {
+    color: var(--text-slate);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.feature-icon-wrapper {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(29, 94, 51, 0.08);
+    color: var(--primary-emerald);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.feature-text strong {
+    display: block;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    margin-bottom: 2px;
+}
+
+.feature-text p {
+    font-size: 0.9rem;
+    color: var(--text-slate);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.content-panel .btn i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.content-panel .btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .home-alt-content-container {
+        flex-direction: column;
+        margin-bottom: 80px;
+    }
+
+    .home-class-slider-wrapper {
+        width: 100%;
+        height: 400px;
+        margin-bottom: -60px; /* Pull content panel up */
+    }
+
+    .content-panel {
+        width: 90%;
+        margin: 0 !important; /* Remove horizontal margins */
+    }
+}
+
+/* --- SLIDER STYLES (Restored for this page) --- */
+.home-class-slide {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.8s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.home-class-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.home-class-slider-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent 60%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.home-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    color: var(--text-charcoal);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    font-size: 16px;
+    opacity: 0;
+}
+
+.home-class-slider-wrapper:hover .home-slider-nav {
+    opacity: 0.8;
+}
+
+.home-slider-nav:hover {
+    background-color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+}
+
+.home-slider-nav.home-prev { left: 20px; }
+.home-slider-nav.home-next { right: 20px; }
+
+.home-slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 5;
+}
+
+.home-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: none;
+    padding: 0;
+}
+
+.home-dot.active {
+    background: var(--white);
+    width: 30px;
+    border-radius: 5px;
+}

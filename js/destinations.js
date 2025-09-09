@@ -1,48 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // =============================================
-    // HEADER SCROLL & MOBILE MENU LOGIC (NEW SCRIPT)
-    // =============================================
-    const header = document.getElementById('header-main');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('header-scrolled', window.scrollY > 50);
-        });
-    }
-
-    const menuToggle = document.getElementById('header-menuToggle');
-    const nav = document.getElementById('header-mobile-nav');
-    const overlay = document.getElementById('header-mobileNavOverlay');
-
-    if (menuToggle && nav && overlay) {
-        const toggleMenu = () => {
-            nav.classList.toggle('header-active');
-            overlay.classList.toggle('header-active');
-            document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
-        };
-        menuToggle.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
-
-        // Close menu when a link is clicked (if it's not a dropdown)
-        document.querySelectorAll('.header-mobile-nav a').forEach(link => {
-            if (!link.parentElement.classList.contains('header-dropdown')) {
-                link.addEventListener('click', toggleMenu);
-            }
-        });
-    }
-
-    // Handle mobile dropdowns
-    document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (link.getAttribute('href') === '#') {
-                e.preventDefault();
-                const parent = link.parentElement;
-                parent.classList.toggle('header-open');
-            }
-        });
-    });
-
-    // =============================================
     // PAGE-SPECIFIC: SMOOTH SCROLL FOR "START EXPLORING" BUTTON
     // =============================================
     const startExploringBtn = document.getElementById('start-exploring-btn');
@@ -124,58 +82,4 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(element);
     });
 
-    // =============================================
-    // FOOTER FUNCTIONALITY (NEW SCRIPT)
-    // =============================================
-    function initializeFooterScripts() {
-        // Animate footer into view
-        const footer = document.getElementById('destinova-footer');
-        if (footer) {
-            const footerObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        footer.classList.add('in-view');
-                        footerObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            footerObserver.observe(footer);
-        }
-
-        // Newsletter form submission
-        const newsletterForm = document.getElementById('newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                this.classList.add('submitted');
-                console.log('Newsletter subscription submitted!');
-
-                setTimeout(() => {
-                    this.classList.remove('submitted');
-                    this.reset();
-                }, 1000);
-            });
-        }
-
-        // Scroll-to-top button
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', function () {
-                if (window.scrollY > 300) {
-                    scrollToTopBtn.classList.add('visible');
-                } else {
-                    scrollToTopBtn.classList.remove('visible');
-                }
-            });
-
-            scrollToTopBtn.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    }
-
-    initializeFooterScripts(); // Run the footer scripts
 });

@@ -4,28 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinova | Premium Flight Booking</title>
+    <title>Book Your Flight - Destinova</title>
+    <meta name="description"
+        content="Book premium flights with Destinova. Experience luxury travel with our world-class service and exclusive destinations.">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../site-images/logo/Destinova-svg.svg">
+
+    <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'primary-emerald': '#1A3C34',
-                        'secondary-cream': '#FFF8E7',
-                        'accent-gold': '#E8D4A6',
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
                         'text-charcoal': '#1C2526',
                         'text-slate': '#5C6B73',
                         'background-white': '#FAFAFA',
-                        'support-bronze': '#8C6B3F',
-                        'support-taupe': '#D8CFC2',
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
@@ -35,10 +44,13 @@
             }
         }
     </script>
+
+    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/booking.css">
 </head>
 
 <body class="bg-background-white">
+    <!-- HEADER START -->
     <header id="header-main">
         <div class="header-nav-container">
             <div class="header-logo">
@@ -58,7 +70,7 @@
                         <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
                     </ul>
                 </li>
-                <li class="header-dropdown">
+                <li class="header-dropdown" id="manage-menu-desktop">
                     <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
                     <ul class="header-dropdown-menu">
                         <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
@@ -71,7 +83,10 @@
             </ul>
 
             <div class="header-actions">
-                <a href="signin.html" class="btn header-btn-signin">Sign In</a>
+                <a href="signin.html" class="btn header-btn-signin">
+                    <i class="fas fa-right-to-bracket"></i>
+                    <span>Sign In</span>
+                </a>
                 <button class="header-mobile-menu-btn" id="header-menuToggle">
                     <span></span><span></span><span></span>
                 </button>
@@ -92,7 +107,7 @@
                     <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
                 </ul>
             </li>
-            <li class="header-dropdown">
+            <li class="header-dropdown" id="manage-menu-mobile">
                 <a href="#"><i class="fas fa-tools"></i> Manage</a>
                 <ul class="header-dropdown-menu">
                     <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
@@ -105,6 +120,7 @@
         </ul>
     </nav>
     <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
 
     <main>
         <section class="home-hero">
@@ -331,6 +347,7 @@
 
     </main>
 
+    <!-- FOOTER START -->
     <footer class="destinova-footer" id="destinova-footer">
         <div class="footer-content max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
@@ -351,14 +368,14 @@
                         Quick Links
                     </h3>
                     <ul class="space-y-3 text-gray-300">
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-plane-departure link-icon w-5"></i>
+                        <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
+                        <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"></i>
                                 Book a Flight</a></li>
                         <li class="quick-link-item"><a href="#"><i class="fas fa-gift link-icon w-5"></i> Special
                                 Offers</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-info-circle link-icon w-5"></i> About
+                        <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"></i> About
                                 Us</a></li>
-                        <li class="quick-link-item"><a href="#"><i class="fas fa-envelope link-icon w-5"></i>
+                        <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"></i>
                                 Contact</a></li>
                         <li class="quick-link-item"><a href="#"><i class="fas fa-plane-up link-icon w-5"></i> Flight
                                 Status</a></li>
@@ -419,12 +436,14 @@
             </div>
         </div>
     </footer>
+    <!-- FOOTER END -->
 
     <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
         <i class="fas fa-plane-up"></i>
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/index.js"></script>
     <script src="../js/booking.js"></script>
 </body>
 
