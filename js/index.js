@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         navLinks.forEach(link => {
             const linkPage = link.getAttribute('href').split('/').pop();
-            
+
             if (linkPage === currentPage) {
                 link.classList.add('nav-active');
-                
+
                 // If the active link is inside a dropdown, also highlight the main dropdown link
                 const dropdownParent = link.closest('.header-dropdown');
                 if (dropdownParent) {
                     const parentLink = dropdownParent.querySelector(':scope > a');
-                    if(parentLink) parentLink.classList.add('nav-active');
+                    if (parentLink) parentLink.classList.add('nav-active');
                 }
             }
         });
@@ -210,12 +210,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let cardWidthWithGap = 0;
         let maxIndex = 0;
 
-        function updateCarouselState() {
+        function updateCarouselDimensions() {
             const gap = window.innerWidth <= 768 ? 20 : 30;
             carousel.style.gap = `${gap}px`;
 
             const firstCard = cards[0];
-            if (firstCard) {
+            if (firstCard) { // Ensure cards are loaded
                 cardWidthWithGap = firstCard.offsetWidth + gap;
             }
 
@@ -225,33 +225,39 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentIndex > maxIndex) {
                 currentIndex = maxIndex;
             }
+            moveCarousel();
+        }
 
-            const translateX = -currentIndex * cardWidthWithGap;
-            carousel.style.transform = `translateX(${translateX}px)`;
+        function moveCarousel() {
+            // Avoid running if width is not calculated yet
+            if (cardWidthWithGap > 0) {
+                const translateX = -currentIndex * cardWidthWithGap;
+                carousel.style.transform = `translateX(${translateX}px)`;
+            }
         }
 
         prevBtn.addEventListener('click', () => {
             currentIndex = Math.max(0, currentIndex - 1);
-            updateCarouselState();
+            moveCarousel();
         });
 
         nextBtn.addEventListener('click', () => {
             currentIndex = Math.min(maxIndex, currentIndex + 1);
-            updateCarouselState();
+            moveCarousel();
         });
 
         setInterval(() => {
+            // To prevent moving if maxIndex is 0 (all cards are visible)
+            if (maxIndex === 0) return;
             currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-            updateCarouselState();
+            moveCarousel();
         }, 5000);
 
-        window.addEventListener('resize', updateCarouselState);
-        updateCarouselState(); // Initial call
+        window.addEventListener('resize', updateCarouselDimensions);
+        updateCarouselDimensions(); // Initial call
     }
-
     initializeOffersCarousel();
 
-    // --- REAL-TIME ACTIVITY FEED ---
     function initializeActivityFeed() {
         const activities = [
             { icon: 'fas fa-plane-departure', text: 'Sarah from New York just booked a flight to Paris', time: '2 minutes ago' },
@@ -261,32 +267,32 @@ document.addEventListener('DOMContentLoaded', function () {
             { icon: 'fas fa-heart', text: 'Lisa added Rome to her wishlist', time: '15 minutes ago' },
             { icon: 'fas fa-plane', text: 'David booked a business class seat to Singapore', time: '18 minutes ago' }
         ];
-        
+
         let currentActivityIndex = 0;
-        
+
         function updateActivity() {
             const activityItems = document.querySelectorAll('.activity-item');
             if (activityItems.length === 0) return;
-            
+
             activityItems.forEach((item, index) => {
                 const activity = activities[(currentActivityIndex + index) % activities.length];
                 const icon = item.querySelector('i');
                 const text = item.querySelector('span');
                 const time = item.querySelector('small');
-                
+
                 if (icon && text && time) {
                     icon.className = activity.icon;
                     text.textContent = activity.text;
                     time.textContent = activity.time;
                 }
             });
-            
+
             currentActivityIndex = (currentActivityIndex + 1) % activities.length;
         }
-        
+
         // Update activity feed every 8 seconds
         setInterval(updateActivity, 8000);
-        
+
         // Animate customer counter
         const customerCounter = document.getElementById('customer-counter');
         if (customerCounter) {
@@ -297,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 15000);
         }
     }
-    
+
     initializeActivityFeed();
 
     // Initialize AOS for other sections with enhanced settings
@@ -407,25 +413,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     addMicrointeractions();
-    
-    // --- NEW TICKET SEARCH FORM LOGIC ---
+
+    // --- FLIGHT SEARCH FORM LOGIC ---
     function initializeTicketSearchForm() {
         const form = document.getElementById('booking-form');
         if (!form) return;
-
+    
         const optionsToggle = document.getElementById('flight-options-toggle');
         const optionsPopover = document.getElementById('flight-options-popover');
         const closePopoverBtn = document.getElementById('close-popover-btn');
-
+        const tripTypeRadios = form.querySelectorAll('input[name="trip-type"]');
+        const returnInput = form.querySelector('#return');
+    
+        // --- Swap Button Logic ---
+        const swapBtn = form.querySelector('.swap-icon');
+        if (swapBtn) {
+            swapBtn.addEventListener('click', () => {
+                const fromInput = form.querySelector('#from');
+                const toInput = form.querySelector('#to');
+                if (fromInput && toInput) {
+                    [fromInput.value, toInput.value] = [toInput.value, fromInput.value];
+                }
+            });
+        }
+    
         // --- Date Picker Logic ---
         const departureInput = form.querySelector('#departure');
-        const returnInput = form.querySelector('#return');
-
         if (departureInput && returnInput) {
             const today = new Date().toISOString().split('T')[0];
             departureInput.setAttribute('min', today);
             returnInput.setAttribute('min', today);
-
+    
             departureInput.addEventListener('change', function() {
                 const departureDate = this.value;
                 if (departureDate) {
@@ -436,260 +454,234 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
-
+    
         // --- Popover Logic ---
         if (optionsToggle && optionsPopover) {
             optionsToggle.addEventListener('click', () => {
-                optionsPopover.classList.toggle('active');
+                optionsPopover.classList.toggle('visible');
             });
-
             if (closePopoverBtn) {
                 closePopoverBtn.addEventListener('click', () => {
-                    optionsPopover.classList.remove('active');
+                    optionsPopover.classList.remove('visible');
                 });
             }
-
             document.addEventListener('click', (e) => {
-                if (!optionsToggle.contains(e.target) && !optionsPopover.contains(e.target)) {
-                    optionsPopover.classList.remove('active');
+                if (!optionsToggle.contains(e.target) && !optionsPopover.contains(e.target) && optionsPopover.classList.contains('visible')) {
+                    optionsPopover.classList.remove('visible');
                 }
             });
         }
-
-        // --- Options Logic within Popover ---
-        let tripType = 'round-trip';
+    
+        // --- Options Logic within Popover --- 
         let adults = 1;
         let children = 0;
         let flightClass = 'Economy';
-
-        function updateSummary() {
-            const tripText = tripType === 'round-trip' ? 'Round-trip' : 'One-way';
-            const totalPassengers = adults + children;
-            const passengerText = `${totalPassengers} Traveler${totalPassengers > 1 ? 's' : ''}`;
-            optionsToggle.textContent = `${tripText}, ${passengerText}, ${flightClass}`;
+    
+        function updateFlightSummary() {
+            if (!optionsToggle || !returnInput) return;
+    
+            // Build passenger string
+            let passengerText = `${adults} Adult${adults > 1 ? 's' : ''}`;
+            if (children > 0) {
+                passengerText += `, ${children} Child${children > 1 ? 'ren' : ''}`;
+            }
+    
+            optionsToggle.textContent = `${passengerText}, ${flightClass}`;
+    
+            // Handle return date input based on trip type
+            const selectedTripTypeRadio = form.querySelector('input[name="trip-type"]:checked');
+            if (selectedTripTypeRadio && selectedTripTypeRadio.value === 'one-way') {
+                returnInput.disabled = true;
+                returnInput.classList.add('disabled');
+                returnInput.value = ''; // Clear value for one-way trips
+            } else {
+                returnInput.disabled = false;
+                returnInput.classList.remove('disabled');
+            }
         }
-
-        // Trip Type
-        optionsPopover.querySelectorAll('.option-btn[data-value]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                optionsPopover.querySelectorAll('.option-btn[data-value]').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                tripType = btn.dataset.value;
-                updateSummary();
-            });
+    
+        // Trip Type Change Handler
+        tripTypeRadios.forEach(radio => {
+            radio.addEventListener('change', updateFlightSummary);
         });
-
+    
         // Passenger Counters
         optionsPopover.querySelectorAll('.counter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const type = btn.dataset.type;
-                const action = btn.dataset.action;
+                const { type, action } = btn.dataset;
                 const valueEl = optionsPopover.querySelector(`.counter-value[data-type="${type}"]`);
-
+    
                 if (action === 'increase') {
-                    if (type === 'adult' && adults < 9) adults++;
-                    if (type === 'child' && children < 9) children++;
-                } else {
+                    if (type === 'adult') adults++;
+                    if (type === 'child') children++;
+                } else { // decrease
                     if (type === 'adult' && adults > 1) adults--;
                     if (type === 'child' && children > 0) children--;
                 }
-
-                valueEl.textContent = type === 'adult' ? adults : children;
-                updateSummary();
+    
+                if (valueEl) {
+                    valueEl.textContent = type === 'adult' ? adults : children;
+                }
+                updateFlightSummary();
             });
         });
-
-        // Flight Class
+    
+        // Class Selection
         optionsPopover.querySelectorAll('.option-btn-class').forEach(btn => {
             btn.addEventListener('click', () => {
                 optionsPopover.querySelectorAll('.option-btn-class').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 flightClass = btn.dataset.value;
-                updateSummary();
+                updateFlightSummary();
             });
         });
-
+    
         // --- Form Submission ---
-        const searchBtn = document.getElementById('search-flights-btn');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log('Search submitted with:', { tripType, adults, children, flightClass, from: form.from.value, to: form.to.value, departure: form.departure.value, return: form.return.value });
-            
-            // Set flag in localStorage to indicate a booking has been made
+            const tripType = form.querySelector('input[name="trip-type"]:checked').value;
+            console.log('Search submitted with:', { 
+                tripType, 
+                adults, 
+                children, 
+                flightClass, 
+                from: form.from.value, 
+                to: form.to.value, 
+                departure: form.departure.value, 
+                return: tripType === 'one-way' ? null : form.return.value 
+            });
+    
             localStorage.setItem('hasBookedTicket', 'true');
-            handleManageMenuVisibility(); // This function is already global
+            handleManageMenuVisibility();
         });
+    
+        // Initial call on page load to set the correct initial state
+        updateFlightSummary();
     }
     initializeTicketSearchForm();
 
+    // --- SWIPE SUPPORT FOR MOBILE ---
     function addSwipeSupport() {
         // Add swipe support to offers carousel
         const offersCarousel = document.querySelector('.home-offers-carousel');
         if (offersCarousel) {
             let startX = 0;
-            let currentX = 0;
             let isDragging = false;
-            
+
             offersCarousel.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 isDragging = true;
             });
-            
+
             offersCarousel.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
-                currentX = e.touches[0].clientX;
+                const currentX = e.touches[0].clientX;
                 const diffX = startX - currentX;
-                
-                if (Math.abs(diffX) > 50) {
+
+                if (Math.abs(diffX) > 50) { // Threshold to detect a swipe
                     if (diffX > 0) {
-                        // Swipe left - next
                         document.querySelector('.carousel-next')?.click();
                     } else {
-                        // Swipe right - previous
                         document.querySelector('.carousel-prev')?.click();
                     }
-                    isDragging = false;
+                    isDragging = false; // End swipe after one action
                 }
             });
-            
+
             offersCarousel.addEventListener('touchend', () => {
                 isDragging = false;
             });
         }
-        
+
         // Add swipe support to testimonials
         const testimonialsSlider = document.querySelector('.home-testimonial-slider');
         if (testimonialsSlider) {
             let startX = 0;
             let isDragging = false;
-            
+
             testimonialsSlider.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
                 isDragging = true;
             });
-            
+
             testimonialsSlider.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
                 const currentX = e.touches[0].clientX;
                 const diffX = startX - currentX;
-                
+
                 if (Math.abs(diffX) > 50) {
                     const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
                     const activeIndex = Array.from(indicators).findIndex(ind => ind.classList.contains('active'));
-                    
+
                     if (diffX > 0 && activeIndex < indicators.length - 1) {
-                        // Swipe left - next
                         indicators[activeIndex + 1].click();
                     } else if (diffX < 0 && activeIndex > 0) {
-                        // Swipe right - previous
                         indicators[activeIndex - 1].click();
                     }
                     isDragging = false;
                 }
             });
-            
+
             testimonialsSlider.addEventListener('touchend', () => {
                 isDragging = false;
             });
         }
     }
-    
+
     addSwipeSupport();
 
-    // --- Custom Scroll-Based Reveal Animation ---
-    try {
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+    // =============================================
+    // FOOTER-RELATED: SCROLL TO TOP BUTTON
+    // =============================================
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
 
-        const elementsToReveal = document.querySelectorAll('[data-animation="reveal"]');
-        if (elementsToReveal.length > 0) {
-            elementsToReveal.forEach(el => revealObserver.observe(el));
-        }
-    } catch (e) { console.error("Intersection Observer error:", e); }
-
-    // --- CTA Button Click Animation ---
-    const ctaButtons = document.querySelectorAll('.home-alt-content-container .btn.btn-primary');
-    if (ctaButtons.length > 0) {
-        ctaButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (button.classList.contains('is-clicked')) return;
-                button.classList.add('is-clicked');
-                setTimeout(() => button.classList.remove('is-clicked'), 1000);
+        scrollToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     }
 
-    // --- FOOTER FUNCTIONALITY ---
-    function initializeFooterScripts() {
-        const footer = document.getElementById('destinova-footer');
-        if (footer) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        footer.classList.add('in-view');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            observer.observe(footer);
-        }
-
-        const newsletterForm = document.getElementById('newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                this.classList.add('submitted');
-                setTimeout(() => {
-                    this.classList.remove('submitted');
-                    this.reset();
-                }, 1000);
-            });
-        }
-
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', function () {
-                scrollToTopBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        }
+    // =============================================
+    // FOOTER-RELATED: NEWSLETTER & ANIMATIONS
+    // =============================================
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.classList.add('submitted');
+            setTimeout(() => {
+                this.classList.remove('submitted');
+                const input = this.querySelector('input[type="email"]');
+                if(input) input.value = '';
+            }, 2000);
+        });
     }
 
-    initializeFooterScripts();
+    // =============================================
+    // FOOTER-RELATED: SCROLL-IN ANIMATION
+    // =============================================
+    const footer = document.getElementById('destinova-footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('in-view');
+                    footerObserver.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the footer is visible
 
-    // --- BENTO GRID RESPONSIVE HANDLING ---
-    function handleBentoGridResponsive() {
-        const bentoGrid = document.querySelector('.home-destinations-bento-grid');
-        if (!bentoGrid) return;
-
-        function adjustBentoGrid() {
-            const largeCard = bentoGrid.querySelector('.bento-large');
-            if (!largeCard) return;
-
-            if (window.innerWidth <= 768) {
-                bentoGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                bentoGrid.style.gridTemplateRows = 'repeat(2, 250px)'; // Corrected from 3 rows
-                largeCard.style.gridColumn = 'span 2';
-                largeCard.style.gridRow = 'span 1';
-            } else {
-                // Reset to default CSS behavior on larger screens
-                bentoGrid.style.gridTemplateColumns = '';
-                bentoGrid.style.gridTemplateRows = '';
-                largeCard.style.gridColumn = '';
-                largeCard.style.gridRow = '';
-            }
-        }
-
-        window.addEventListener('resize', adjustBentoGrid);
-        adjustBentoGrid();
+        footerObserver.observe(footer);
     }
-
-    handleBentoGridResponsive();
 });

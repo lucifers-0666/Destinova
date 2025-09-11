@@ -146,81 +146,94 @@
 
     <div id="search-section-anchor" style="position: relative; top: -80px;"></div>
 
-    <section class="home-search-section" role="search" aria-label="Flight search">
-      <div class="boarding-pass-container" data-aos="fade-up" data-aos-duration="1000">
+<section class="home-search-section" role="search" aria-label="Flight search">
+    <div class="boarding-pass-container" data-aos="fade-up" data-aos-duration="1000">
         <!-- Main Ticket Body -->
         <div class="pass-main-content">
-          <form id="booking-form" class="pass-form">
-            <div class="airport-group">
-              <div class="pass-form-group">
-                <label for="from"><i class="fas fa-plane-departure"></i> FROM</label>
-                <input type="text" id="from" name="from" placeholder="City or Airport" required>
-              </div>
-              <div class="flight-path-separator">
-                <i class="fas fa-plane"></i>
-              </div>
-              <div class="pass-form-group">
-                <label for="to"><i class="fas fa-plane-landing"></i> TO</label>
-                <input type="text" id="to" name="to" placeholder="City or Airport" required>
-              </div>
+            <div class="pass-header">
+                <div class="pass-logo">
+                    <i class="fas fa-plane"></i> Destinova
+                </div>
+                <div class="pass-type">BOARDING PASS</div>
             </div>
+            <form id="booking-form" class="pass-form">
+                <!-- This entire grid is replaced with the new structure -->
+                <div class="pass-grid">
+                    <div class="trip-type-selector">
+                        <label><input type="radio" name="trip-type" value="round-trip" checked><span>Round Trip</span></label>
+                        <label><input type="radio" name="trip-type" value="one-way"><span>One Way</span></label>
+                        <label><input type="radio" name="trip-type" value="multi-city"><span>Multi City</span></label>
+                    </div>
 
-            <div class="details-group">
-              <div class="pass-form-group">
-                <label for="departure"><i class="fas fa-calendar-alt"></i> DATE OF TRAVEL</label>
-                <div class="date-fields">
-                  <input type="date" id="departure" name="departure" required>
-                  <input type="date" id="return" name="return" placeholder="Return">
+                    <div class="pass-main-inputs-row">
+                        <div class="pass-input-group from-input">
+                            <label for="from">From</label>
+                            <input type="text" id="from" name="from" placeholder="City or Airport" required>
+                        </div>
+                        <div class="swap-icon-wrapper">
+                            <button type="button" class="swap-icon" aria-label="Swap origin and destination"><i class="fas fa-exchange-alt"></i></button>
+                        </div>
+                        <div class="pass-input-group to-input">
+                            <label for="to">To</label>
+                            <input type="text" id="to" name="to" placeholder="City or Airport" required>
+                        </div>
+                        <div class="pass-input-group date-input">
+                            <label for="departure">Departure & Return</label>
+                            <div class="date-fields-wrapper">
+                                <input type="date" id="departure" name="departure" required>
+                                <input type="date" id="return" name="return">
+                            </div>
+                        </div>
+                        <div class="pass-input-group travelers-input">
+                            <label for="flight-options-toggle">Travellers & Class</label>
+                            <button type="button" id="flight-options-toggle" class="flight-options-summary">
+                                1 Adult, Economy
+                            </button>
+                            <!-- Popover for options -->
+                            <div class="flight-options-popover" id="flight-options-popover">
+                                <div class="option-section">
+                                    <h5><i class="fas fa-user-friends"></i> Passengers</h5>
+                                    <div class="passenger-counter">
+                                        <span>Adults</span>
+                                        <div class="counter-controls">
+                                            <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
+                                            <span class="counter-value" data-type="adult">1</span>
+                                            <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="passenger-counter">
+                                        <span>Children</span>
+                                        <div class="counter-controls">
+                                            <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
+                                            <span class="counter-value" data-type="child">0</span>
+                                            <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="option-section">
+                                    <h5><i class="fas fa-chair"></i> Class</h5>
+                                    <div class="option-controls">
+                                        <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
+                                        <button type="button" class="option-btn-class" data-value="Business">Business</button>
+                                        <button type="button" class="option-btn-class" data-value="First">First</button>
+                                    </div>
+                                </div>
+                                <button type="button" id="close-popover-btn" class="close-popover-btn">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fare-selector">
+                        <span class="fare-selector-title">Select a special fare:</span>
+                        <div class="fare-options">
+                            <label><input type="radio" name="fare-type" value="regular" checked><span>Regular</span></label>
+                            <label><input type="radio" name="fare-type" value="student"><span>Student</span></label>
+                            <label><input type="radio" name="fare-type" value="senior"><span>Senior Citizen</span></label>
+                            <label><input type="radio" name="fare-type" value="forces"><span>Armed Forces</span></label>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="pass-form-group">
-                <label for="flight-options-toggle"><i class="fas fa-users"></i> TRAVELERS & CLASS</label>
-                <button type="button" id="flight-options-toggle" class="flight-options-summary">
-                  Round-trip, 1 Adult, Economy
-                </button>
-                <!-- Popover for options -->
-                <div class="flight-options-popover" id="flight-options-popover">
-                  <div class="option-section">
-                    <h5><i class="fas fa-retweet"></i> Trip Type</h5>
-                    <div class="option-controls">
-                      <button type="button" class="option-btn active" data-value="round-trip"><i
-                          class="fas fa-exchange-alt"></i> Round-trip</button>
-                      <button type="button" class="option-btn" data-value="one-way"><i class="fas fa-arrow-right"></i>
-                        One-way</button>
-                    </div>
-                  </div>
-                  <div class="option-section">
-                    <h5><i class="fas fa-user-friends"></i> Passengers</h5>
-                    <div class="passenger-counter">
-                      <span>Adults</span>
-                      <div class="counter-controls">
-                        <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
-                        <span class="counter-value" data-type="adult">1</span>
-                        <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
-                      </div>
-                    </div>
-                    <div class="passenger-counter">
-                      <span>Children</span>
-                      <div class="counter-controls">
-                        <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
-                        <span class="counter-value" data-type="child">0</span>
-                        <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="option-section">
-                    <h5><i class="fas fa-chair"></i> Class</h5>
-                    <div class="option-controls">
-                      <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
-                      <button type="button" class="option-btn-class" data-value="Business">Business</button>
-                      <button type="button" class="option-btn-class" data-value="First">First</button>
-                    </div>
-                  </div>
-                  <button type="button" id="close-popover-btn" class="close-popover-btn">Confirm</button>
-                </div>
-              </div>
-            </div>
-          </form>
+            </form>
         </div>
 
         <!-- Perforated Line -->
@@ -228,26 +241,23 @@
 
         <!-- Ticket Stub -->
         <div class="pass-stub-content">
-          <div class="stub-logo">
-            <i class="fas fa-plane"></i> Destinova
-          </div>
-          <button type="submit" form="booking-form" class="stub-search-btn" id="search-flights-btn"
-            aria-label="Search Flights">
-            <i class="fas fa-arrow-right"></i>
-          </button>
-          <div class="stub-barcode">
-            <div class="barcode-line"></div>
-            <div class="barcode-line short"></div>
-            <div class="barcode-line"></div>
-            <div class="barcode-line"></div>
-            <div class="barcode-line short"></div>
-            <div class="barcode-line"></div>
-            <div class="barcode-line short"></div>
-            <div class="barcode-line"></div>
-          </div>
+            <div class="stub-header">
+                <div class="stub-logo">Destinova</div>
+            </div>
+            <button type="submit" form="booking-form" class="stub-search-btn" id="search-flights-btn" aria-label="Search Flights">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </button>
+            <div class="stub-barcode">
+                <div class="pass-info-group flight-group">
+                    <label>FLIGHT</label>
+                    <div class="pass-info-value">DN-815</div>
+                                </div>
+                <i class="fas fa-qrcode"></i>
+            </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 
     <section id="home-destinations" class="home-section">
       <div class="home-section-title">
@@ -470,7 +480,7 @@
               <div class="author-info">
                 <h4>Michael Chen</h4>
                 <div class="star-rating">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                   <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                     class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
               </div>

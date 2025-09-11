@@ -82,4 +82,59 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(element);
     });
 
+    // =============================================
+    // FOOTER-RELATED: SCROLL TO TOP BUTTON
+    // =============================================
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // =============================================
+    // FOOTER-RELATED: NEWSLETTER & ANIMATIONS
+    // =============================================
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            this.classList.add('submitted');
+            setTimeout(() => {
+                this.classList.remove('submitted');
+                const input = this.querySelector('input[type="email"]');
+                if(input) input.value = '';
+            }, 2000);
+        });
+    }
+
+    // =============================================
+    // FOOTER-RELATED: SCROLL-IN ANIMATION
+    // =============================================
+    const footer = document.getElementById('destinova-footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('in-view');
+                    footerObserver.unobserve(entry.target); // Animate only once
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the footer is visible
+
+        footerObserver.observe(footer);
+    }
+
 });
