@@ -144,120 +144,166 @@
       </div>
     </section>
 
-    <div id="search-section-anchor" style="position: relative; top: -80px;"></div>
-
-<section class="home-search-section" role="search" aria-label="Flight search">
-    <div class="boarding-pass-container" data-aos="fade-up" data-aos-duration="1000">
-        <!-- Main Ticket Body -->
-        <div class="pass-main-content">
-            <div class="pass-header">
-                <div class="pass-logo">
-                    <i class="fas fa-plane"></i> Destinova
-                </div>
-                <div class="pass-type">BOARDING PASS</div>
-            </div>
-            <form id="booking-form" class="pass-form">
-                <!-- This entire grid is replaced with the new structure -->
-                <div class="pass-grid">
-                    <div class="trip-type-selector">
-                        <label><input type="radio" name="trip-type" value="round-trip" checked><span>Round Trip</span></label>
-                        <label><input type="radio" name="trip-type" value="one-way"><span>One Way</span></label>
-                        <label><input type="radio" name="trip-type" value="multi-city"><span>Multi City</span></label>
-                    </div>
-
-                    <div class="pass-main-inputs-row">
-                        <div class="pass-input-group from-input">
-                            <label for="from">From</label>
-                            <input type="text" id="from" name="from" placeholder="City or Airport" required>
-                        </div>
-                        <div class="swap-icon-wrapper">
-                            <button type="button" class="swap-icon" aria-label="Swap origin and destination"><i class="fas fa-exchange-alt"></i></button>
-                        </div>
-                        <div class="pass-input-group to-input">
-                            <label for="to">To</label>
-                            <input type="text" id="to" name="to" placeholder="City or Airport" required>
-                        </div>
-                        <div class="pass-input-group date-input">
-                            <label for="departure">Departure & Return</label>
-                            <div class="date-fields-wrapper">
-                                <input type="date" id="departure" name="departure" required>
-                                <input type="date" id="return" name="return">
-                            </div>
-                        </div>
-                        <div class="pass-input-group travelers-input">
-                            <label for="flight-options-toggle">Travellers & Class</label>
-                            <button type="button" id="flight-options-toggle" class="flight-options-summary">
-                                1 Adult, Economy
-                            </button>
-                            <!-- Popover for options -->
-                            <div class="flight-options-popover" id="flight-options-popover">
-                                <div class="option-section">
-                                    <h5><i class="fas fa-user-friends"></i> Passengers</h5>
-                                    <div class="passenger-counter">
-                                        <span>Adults</span>
-                                        <div class="counter-controls">
-                                            <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
-                                            <span class="counter-value" data-type="adult">1</span>
-                                            <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="passenger-counter">
-                                        <span>Children</span>
-                                        <div class="counter-controls">
-                                            <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
-                                            <span class="counter-value" data-type="child">0</span>
-                                            <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="option-section">
-                                    <h5><i class="fas fa-chair"></i> Class</h5>
-                                    <div class="option-controls">
-                                        <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
-                                        <button type="button" class="option-btn-class" data-value="Business">Business</button>
-                                        <button type="button" class="option-btn-class" data-value="First">First</button>
-                                    </div>
-                                </div>
-                                <button type="button" id="close-popover-btn" class="close-popover-btn">Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fare-selector">
-                        <span class="fare-selector-title">Select a special fare:</span>
-                        <div class="fare-options">
-                            <label><input type="radio" name="fare-type" value="regular" checked><span>Regular</span></label>
-                            <label><input type="radio" name="fare-type" value="student"><span>Student</span></label>
-                            <label><input type="radio" name="fare-type" value="senior"><span>Senior Citizen</span></label>
-                            <label><input type="radio" name="fare-type" value="forces"><span>Armed Forces</span></label>
-                        </div>
-                    </div>
-                </div>
-            </form>
+    <section id="search-section-anchor" class="home-search-section" role="search" aria-label="Flight search">
+      <div class="flight-search-widget-container" data-aos="fade-up" data-aos-duration="1000">
+        <!-- Promotional Banner -->
+        <div class="promo-banner">
+            <i class="fas fa-tags"></i>
+            <span>Use code <strong class="promo-code">FLY15</strong> for 15% off on your next booking!</span>
+            <a href="offers.html">View All Offers</a>
         </div>
 
-        <!-- Perforated Line -->
-        <div class="pass-perforation"></div>
-
-        <!-- Ticket Stub -->
-        <div class="pass-stub-content">
-            <div class="stub-header">
-                <div class="stub-logo">Destinova</div>
+        <form id="booking-form" class="flight-search-card">
+          <div class="search-form-header">
+            <!-- Trip Type Selector -->
+            <div class="trip-type-selector">
+              <label><input type="radio" name="trip-type" value="one-way"><span><i class="fas fa-arrow-right"></i> One Way</span></label>
+              <label><input type="radio" name="trip-type" value="round-trip" checked><span><i class="fas fa-retweet"></i> Round Trip</span></label>
+              <label><input type="radio" name="trip-type" value="multi-city"><span><i class="fas fa-random"></i> Multi-City</span></label>
             </div>
-            <button type="submit" form="booking-form" class="stub-search-btn" id="search-flights-btn" aria-label="Search Flights">
-                <i class="fas fa-search"></i>
-                <span>Search</span>
-            </button>
-            <div class="stub-barcode">
-                <div class="pass-info-group flight-group">
-                    <label>FLIGHT</label>
-                    <div class="pass-info-value">DN-815</div>
-                                </div>
-                <i class="fas fa-qrcode"></i>
+            <!-- Recent Searches -->
+            <div class="recent-searches-container">
+              <button type="button" class="recent-searches-btn" aria-label="View recent searches">
+                <i class="fas fa-history"></i> Recent Searches
+              </button>
+              <div class="recent-searches-dropdown" id="recent-searches-dropdown">
+                <div class="dropdown-header">Recent Searches</div>
+                <div class="dropdown-content" id="recent-searches-list">
+                  <div class="no-searches">No recent searches</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Inputs -->
+          <div class="main-inputs-grid">
+            <div class="input-field from-field">
+              <label for="from">From</label>
+              <input type="text" id="from" name="from" placeholder="e.g., Delhi" value="" required aria-describedby="from-airport" aria-label="Origin city or airport">
+              <span class="airport-code" id="from-airport">Enter origin city or airport</span>
+            </div>
+            <button type="button" class="swap-btn" aria-label="Swap origin and destination"><i class="fas fa-exchange-alt"></i></button>
+            <div class="input-field to-field">
+              <label for="to">To</label>
+              <input type="text" id="to" name="to" placeholder="Mumbai" value="Mumbai" required>
+              <span class="airport-code">BOM, Chhatrapati Shivaji International Airport</span>
+            </div>
+            <div class="input-field date-field">
+              <label for="departure"><i class="fas fa-calendar-alt"></i> Departure</label>
+              <input type="date" id="departure" name="departure" required>
+              <div id="flexible-dates-options" class="flexible-dates-options" style="display: none;">
+                <label>Flexible ±3 days:</label>
+                <input type="date" id="departure-start" name="departure-start" placeholder="Start date">
+                <span>to</span>
+                <input type="date" id="departure-end" name="departure-end" placeholder="End date">
+              </div>
+            </div>
+            <div class="input-field date-field" id="return-date-wrapper">
+              <label for="return"><i class="fas fa-calendar-alt"></i> Return</label>
+              <input type="date" id="return" name="return">
+              <div id="flexible-return-options" class="flexible-dates-options" style="display: none;">
+                <label>Flexible ±3 days:</label>
+                <input type="date" id="return-start" name="return-start" placeholder="Start date">
+                <span>to</span>
+                <input type="date" id="return-end" name="return-end" placeholder="End date">
+              </div>
+            </div>
+            <div class="input-field traveller-field">
+              <label for="flight-options-toggle"><i class="fas fa-user"></i> Travellers & Class</label>
+              <button type="button" id="flight-options-toggle" class="flight-options-summary">1 Adult, Economy</button>
+              <!-- Popover -->
+              <div class="flight-options-popover" id="flight-options-popover">
+                <div class="option-section">
+                  <h5><i class="fas fa-users"></i> Passengers</h5>
+                  <div class="passenger-counter">
+                    <span>Adults <small>(12+ yrs)</small></span>
+                    <div class="counter-controls">
+                      <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
+                      <span class="counter-value" data-type="adult">1</span>
+                      <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
+                    </div>
+                  </div>
+                  <div class="passenger-counter">
+                    <span>Children <small>(2-12 yrs)</small></span>
+                    <div class="counter-controls">
+                      <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
+                      <span class="counter-value" data-type="child">0</span>
+                      <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
+                    </div>
+                  </div>
+                  <div class="passenger-counter">
+                    <span>Infants <small>(Below 2 yrs)</small></span>
+                    <div class="counter-controls">
+                      <button type="button" class="counter-btn" data-type="infant" data-action="decrease">-</button>
+                      <span class="counter-value" data-type="infant">0</span>
+                      <button type="button" class="counter-btn" data-type="infant" data-action="increase">+</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="option-section">
+                  <h5><i class="fas fa-couch"></i> Cabin Class</h5>
+                  <div class="option-controls">
+                    <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
+                    <button type="button" class="option-btn-class" data-value="Premium Economy">Premium Economy</button>
+                    <button type="button" class="option-btn-class" data-value="Business">Business</button>
+                    <button type="button" class="option-btn-class" data-value="First">First</button>
+                  </div>
+                </div>
+                <button type="button" id="close-popover-btn" class="close-popover-btn">Apply</button>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Fare Type Selector -->
+          <div class="fare-type-container">
+            <span class="fare-title">Select a fare type:</span>
+            <div class="fare-options">
+              <label><input type="radio" name="fare-type" value="regular" checked><span><i class="fas fa-tag"></i> Regular</span></label>
+              <label><input type="radio" name="fare-type" value="student"><span><i class="fas fa-user-graduate"></i> Student <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Save up to 10% with a valid student ID.</span></span></span></label>
+              <label><input type="radio" name="fare-type" value="senior"><span><i class="fas fa-user-friends"></i> Senior Citizen <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Special fares for travelers aged 60 and above.</span></span></span></label>
+              <label><input type="radio" name="fare-type" value="forces"><span><i class="fas fa-shield-alt"></i> Armed Forces <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Exclusive fares for armed forces personnel and their families.</span></span></span></label>
+              <label><input type="radio" name="fare-type" value="corporate"><span><i class="fas fa-briefcase"></i> Corporate <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Benefits for business travelers, including easier changes.</span></span></span></label>
+            </div>
+            <div class="currency-selector">
+              <select id="currency" name="currency" aria-label="Select currency">
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+              </select>
+            </div>
+          </div>
+    
+          <!-- Extra Options -->
+          <div class="extra-options">
+            <div class="flex flex-wrap gap-x-6 gap-y-2" id="additional-options">
+                <label class="form-checkbox-label"><input type="checkbox" id="direct-flights"> Direct flights only</label>
+                <label class="form-checkbox-label"><input type="checkbox" id="nearby-airports"> Search nearby airports</label>
+                <label class="form-checkbox-label"><input type="checkbox" id="flexible-dates"> Flexible Dates (±3 days)</label>
+            </div>
+          </div>
+        </form>
+    
+        <!-- Search Button -->
+        <div class="search-button-container">
+          <button type="submit" form="booking-form" class="search-flights-btn">
+            <i class="fas fa-search"></i> Search
+          </button>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges-container">
+            <div class="trust-badge">
+                <i class="fas fa-lock"></i><span>SSL Secured</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-check-circle"></i><span>IATA Certified</span>
+            </div>
+            <div class="trust-badge">
+                <i class="fas fa-headset"></i><span>24/7 Support</span>
             </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
     <section id="home-destinations" class="home-section">
       <div class="home-section-title">

@@ -422,141 +422,468 @@ document.addEventListener('DOMContentLoaded', function () {
         const optionsToggle = document.getElementById('flight-options-toggle');
         const optionsPopover = document.getElementById('flight-options-popover');
         const closePopoverBtn = document.getElementById('close-popover-btn');
+        const fromInput = form.querySelector('#from');
+        const toInput = form.querySelector('#to');
+        const swapBtn = form.querySelector('.swap-btn');
         const tripTypeRadios = form.querySelectorAll('input[name="trip-type"]');
+        const departureInput = form.querySelector('#departure');
         const returnInput = form.querySelector('#return');
+        const returnDateWrapper = document.getElementById('return-date-wrapper');
+        const flexibleDatesCheckbox = form.querySelector('#flexible-dates');
+        const flexibleDepartureOptions = document.getElementById('flexible-dates-options');
+        const flexibleReturnOptions = document.getElementById('flexible-return-options');
+        const departureStart = form.querySelector('#departure-start');
+        const departureEnd = form.querySelector('#departure-end');
+        const returnStart = form.querySelector('#return-start');
+        const returnEnd = form.querySelector('#return-end');
+        const recentSearchesBtn = form.querySelector('.recent-searches-btn');
+        const recentSearchesDropdown = document.getElementById('recent-searches-dropdown');
+        const recentSearchesList = document.getElementById('recent-searches-list'); // Ensure this element exists
     
-        // --- Swap Button Logic ---
-        const swapBtn = form.querySelector('.swap-icon');
+        // --- User Location Detection ---
+        function autoFillOrigin() {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    console.log('User location:', latitude, longitude);
+                    // Static list of major airports with coords for demo (in real app, use API)
+                    const airports = [
+                        { name: 'Delhi', code: 'DEL', lat: 28.5562, lon: 77.1000 },
+                        { name: 'Mumbai', code: 'BOM', lat: 19.0760, lon: 72.8777 },
+                        { name: 'Bangalore', code: 'BLR', lat: 13.0827, lon: 80.2707 },
+                        { name: 'Chennai', code: 'MAA', lat: 13.0827, lon: 80.2707 },
+                        { name: 'Kolkata', code: 'CCU', lat: 22.5726, lon: 88.3639 },
+                        { name: 'Hyderabad', code: 'HYD', lat: 17.3850, lon: 78.4867 },
+                        { name: 'Pune', code: 'PNQ', lat: 18.5204, lon: 73.8567 },
+                        { name: 'Ahmedabad', code: 'AMD', lat: 23.0225, lon: 72.5714 },
+                        { name: 'Jaipur', code: 'JAI', lat: 26.9124, lon: 75.7873 },
+                        { name: 'Lucknow', code: 'LKO', lat: 26.7606, lon: 80.8893 }
+                    ];
+                    // Find nearest airport
+                    let nearest = airports[0];
+                    let minDist = Infinity;
+                    airports.forEach(airport => {
+                        const dist = Math.sqrt((latitude - airport.lat)**2 + (longitude - airport.lon)**2);
+                        if (dist < minDist) {
+                            minDist = dist;
+                            nearest = airport;
+                        }
+                    });
+                    fromInput.value = nearest.name;
+                    document.getElementById('from-airport').textContent = `${nearest.code}, ${nearest.name} Airport`;
+                }, error => {
+                    console.warn("Could not get user location:", error.message);
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+        autoFillOrigin(); // Call this to activate
+
+        // --- Search History Functions ---
+        function saveSearch(searchData) {
+            const searches = JSON.parse(localStorage.getItem('flightSearches') || '[]');
+            searches.unshift(searchData); // Add to beginning
+            if (searches.length > 10) searches.pop(); // Keep only 10
+            localStorage.setItem('flightSearches', JSON.stringify(searches.filter((v,i,a)=>a.findIndex(t=>(t.from === v.from && t.to===v.to))===i))); // Keep unique
+            loadRecentSearches();
+        }
+
+        function loadRecentSearches() {
+            const searches = JSON.parse(localStorage.getItem('flightSearches') || '[]');
+            recentSearchesList.innerHTML = '';
+            if (searches.length === 0) {
+                recentSearchesList.innerHTML = '<div class="no-searches">No recent searches found.</div>';
+                return;
+            }
+            searches.forEach(search => {
+                const item = document.createElement('div');
+                item.className = 'recent-search-item';
+                item.innerHTML = `
+                    <div class="search-route">${search.from} → ${search.to}</div>
+                    <div class="search-details">${search.departure}${search.return ? ' - ' + search.return : ''} • ${search.adults + search.children + search.infants} Traveller(s)</div>
+                `;
+                item.addEventListener('click', () => {
+                    // Populate form with this search
+                    fromInput.value = search.from;
+                    toInput.value = search.to;
+                    departureInput.value = search.departure;
+                    if (search.return) returnInput.value = search.return;
+                    // Set trip type
+                    const tripRadio = form.querySelector(`input[name="trip-type"][value="${search.tripType}"]`);
+                    if (tripRadio) tripRadio.checked = true;
+                    // Set passengers and class
+                    adults = search.adults;
+                    children = search.children;
+                    infants = search.infants;
+                    flightClass = search.flightClass;
+                    updateUI();
+                    // Close dropdown
+                    recentSearchesDropdown.classList.remove('visible');
+                });
+                recentSearchesList.appendChild(item);
+            });
+        }
+    
+
+        // Toggle dropdown
+        if (recentSearchesBtn && recentSearchesDropdown) {
+            recentSearchesBtn.addEventListener('click', () => {
+                recentSearchesDropdown.classList.toggle('visible');
+                loadRecentSearches(); // Refresh list
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!recentSearchesBtn.contains(e.target) && !recentSearchesDropdown.contains(e.target)) {
+                    recentSearchesDropdown.classList.remove('visible');
+                }
+            });
+        }
+
+        // State
+        let adults = 1;
+        let children = 0;
+        let infants = 0;
+        let flightClass = 'Economy';
+    
+        // --- Swap Button ---
         if (swapBtn) {
             swapBtn.addEventListener('click', () => {
-                const fromInput = form.querySelector('#from');
-                const toInput = form.querySelector('#to');
                 if (fromInput && toInput) {
                     [fromInput.value, toInput.value] = [toInput.value, fromInput.value];
                 }
             });
         }
     
-        // --- Date Picker Logic ---
-        const departureInput = form.querySelector('#departure');
-        if (departureInput && returnInput) {
+        // --- Date Pickers ---
+        if (departureInput && returnInput && returnDateWrapper) {
             const today = new Date().toISOString().split('T')[0];
             departureInput.setAttribute('min', today);
             returnInput.setAttribute('min', today);
     
-            departureInput.addEventListener('change', function() {
-                const departureDate = this.value;
-                if (departureDate) {
-                    returnInput.setAttribute('min', departureDate);
-                    if (returnInput.value && returnInput.value < departureDate) {
-                        returnInput.value = '';
+            departureInput.addEventListener('change', () => {
+                if (departureInput.value) {
+                    returnInput.setAttribute('min', departureInput.value);
+                    if (returnInput.value && returnInput.value < departureInput.value) {
+                        returnInput.value = ''; // Clear if invalid
                     }
                 }
             });
-        }
-    
-        // --- Popover Logic ---
-        if (optionsToggle && optionsPopover) {
-            optionsToggle.addEventListener('click', () => {
-                optionsPopover.classList.toggle('visible');
-            });
-            if (closePopoverBtn) {
-                closePopoverBtn.addEventListener('click', () => {
-                    optionsPopover.classList.remove('visible');
+
+            // --- Flexible Dates Toggle ---
+            if (flexibleDatesCheckbox && flexibleDepartureOptions && flexibleReturnOptions) {
+                flexibleDatesCheckbox.addEventListener('change', () => {
+                    const isChecked = flexibleDatesCheckbox.checked;
+                    flexibleDepartureOptions.style.display = isChecked ? 'flex' : 'none';
+                    flexibleReturnOptions.style.display = isChecked ? 'flex' : 'none';
+
+                    if (isChecked) {
+                        // Set default ±3 days ranges based on selected dates
+                        if (departureInput.value) {
+                            const depDate = new Date(departureInput.value);
+                            const start = new Date(depDate);
+                            start.setDate(depDate.getDate() - 3);
+                            const end = new Date(depDate);
+                            end.setDate(depDate.getDate() + 3);
+                            departureStart.value = start.toISOString().split('T')[0];
+                            departureEnd.value = end.toISOString().split('T')[0];
+                        }
+                        if (returnInput.value) {
+                            const retDate = new Date(returnInput.value);
+                            const start = new Date(retDate);
+                            start.setDate(retDate.getDate() - 3);
+                            const end = new Date(retDate);
+                            end.setDate(retDate.getDate() + 3);
+                            returnStart.value = start.toISOString().split('T')[0];
+                            returnEnd.value = end.toISOString().split('T')[0];
+                        }
+                    } else {
+                        // Clear flexible ranges
+                        departureStart.value = '';
+                        departureEnd.value = '';
+                        returnStart.value = '';
+                        returnEnd.value = '';
+                    }
                 });
             }
-            document.addEventListener('click', (e) => {
-                if (!optionsToggle.contains(e.target) && !optionsPopover.contains(e.target) && optionsPopover.classList.contains('visible')) {
-                    optionsPopover.classList.remove('visible');
-                }
-            });
         }
     
-        // --- Options Logic within Popover --- 
-        let adults = 1;
-        let children = 0;
-        let flightClass = 'Economy';
+        // --- Enhanced Travellers & Class Popover ---
+        if (optionsToggle && optionsPopover) {
+            console.log('Traveller selector elements found:', { optionsToggle, optionsPopover });
+            
+            optionsToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Traveller selector clicked');
+                
+                // Close any other open dropdowns first
+                document.querySelectorAll('.recent-searches-dropdown.visible').forEach(dropdown => {
+                    dropdown.classList.remove('visible');
+                });
+                
+                // Toggle the popover
+                const isVisible = optionsPopover.classList.contains('visible');
+                optionsPopover.classList.toggle('visible');
+                
+                console.log('Popover visibility toggled:', !isVisible);
+                
+                // Add visual feedback to the button
+                if (!isVisible) {
+                    optionsToggle.style.backgroundColor = 'rgba(29, 94, 51, 0.1)';
+                    optionsToggle.style.borderColor = 'var(--primary-emerald)';
+                } else {
+                    optionsToggle.style.backgroundColor = '';
+                    optionsToggle.style.borderColor = '';
+                }
+            });
     
-        function updateFlightSummary() {
-            if (!optionsToggle || !returnInput) return;
-    
-            // Build passenger string
-            let passengerText = `${adults} Adult${adults > 1 ? 's' : ''}`;
-            if (children > 0) {
-                passengerText += `, ${children} Child${children > 1 ? 'ren' : ''}`;
+            if (closePopoverBtn) {
+                closePopoverBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    optionsPopover.classList.remove('visible');
+                    optionsToggle.style.backgroundColor = '';
+                    optionsToggle.style.borderColor = '';
+                });
             }
     
+            document.addEventListener('click', (e) => {
+                if (!optionsToggle.contains(e.target) && !optionsPopover.contains(e.target)) {
+                    optionsPopover.classList.remove('visible');
+                    optionsToggle.style.backgroundColor = '';
+                    optionsToggle.style.borderColor = '';
+                }
+            });
+        } else {
+            console.error('Traveller selector elements not found:', { optionsToggle, optionsPopover });
+        }
+    
+        // --- Enhanced Update UI Function ---
+        function updateUI() {
+            if (!optionsToggle || !returnDateWrapper) return;
+    
+            // Update passenger summary text with better formatting
+            let totalPassengers = adults + children + infants;
+            let passengerParts = [];
+            
+            if (adults > 0) passengerParts.push(`${adults} Adult${adults > 1 ? 's' : ''}`);
+            if (children > 0) passengerParts.push(`${children} Child${children > 1 ? 'ren' : ''}`);
+            if (infants > 0) passengerParts.push(`${infants} Infant${infants > 1 ? 's' : ''}`);
+            
+            let passengerText = passengerParts.join(', ');
             optionsToggle.textContent = `${passengerText}, ${flightClass}`;
     
-            // Handle return date input based on trip type
-            const selectedTripTypeRadio = form.querySelector('input[name="trip-type"]:checked');
-            if (selectedTripTypeRadio && selectedTripTypeRadio.value === 'one-way') {
+            // Update passenger counts in popover with animation
+            const adultCounter = optionsPopover.querySelector('.counter-value[data-type="adult"]');
+            const childCounter = optionsPopover.querySelector('.counter-value[data-type="child"]');
+            const infantCounter = optionsPopover.querySelector('.counter-value[data-type="infant"]');
+            
+            if (adultCounter && adultCounter.textContent !== adults.toString()) {
+                adultCounter.style.transform = 'scale(1.2)';
+                adultCounter.textContent = adults;
+                setTimeout(() => adultCounter.style.transform = '', 200);
+            }
+            if (childCounter && childCounter.textContent !== children.toString()) {
+                childCounter.style.transform = 'scale(1.2)';
+                childCounter.textContent = children;
+                setTimeout(() => childCounter.style.transform = '', 200);
+            }
+            if (infantCounter && infantCounter.textContent !== infants.toString()) {
+                infantCounter.style.transform = 'scale(1.2)';
+                infantCounter.textContent = infants;
+                setTimeout(() => infantCounter.style.transform = '', 200);
+            }
+    
+            // Handle return date based on trip type
+            const selectedTripType = form.querySelector('input[name="trip-type"]:checked').value;
+            if (selectedTripType === 'one-way' || selectedTripType === 'multi-city') {
+                returnDateWrapper.classList.add('disabled');
                 returnInput.disabled = true;
-                returnInput.classList.add('disabled');
-                returnInput.value = ''; // Clear value for one-way trips
-            } else {
+                returnInput.value = '';
+            } else { // round-trip
+                returnDateWrapper.classList.remove('disabled');
                 returnInput.disabled = false;
-                returnInput.classList.remove('disabled');
+            }
+
+            // Update counter button states
+            if (typeof updateCounterButtonStates === 'function') {
+                updateCounterButtonStates();
             }
         }
     
-        // Trip Type Change Handler
-        tripTypeRadios.forEach(radio => {
-            radio.addEventListener('change', updateFlightSummary);
-        });
+        // --- Event Listeners ---
     
-        // Passenger Counters
+        // Trip Type Change
+        tripTypeRadios.forEach(radio => radio.addEventListener('change', updateUI));
+    
+        // Passenger Counters - Enhanced with better validation and feedback
         optionsPopover.querySelectorAll('.counter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent popover from closing
                 const { type, action } = btn.dataset;
-                const valueEl = optionsPopover.querySelector(`.counter-value[data-type="${type}"]`);
-    
+                let changed = false;
+
                 if (action === 'increase') {
-                    if (type === 'adult') adults++;
-                    if (type === 'child') children++;
+                    if (type === 'adult' && adults < 9) { // Max 9 adults
+                        adults++;
+                        changed = true;
+                    }
+                    if (type === 'child' && children < 9) { // Max 9 children
+                        children++;
+                        changed = true;
+                    }
+                    // Business rule: Infants on lap cannot exceed adults
+                    if (type === 'infant' && infants < adults && infants < 9) {
+                        infants++;
+                        changed = true;
+                    }
                 } else { // decrease
-                    if (type === 'adult' && adults > 1) adults--;
-                    if (type === 'child' && children > 0) children--;
+                    if (type === 'adult' && adults > 1) {
+                        adults--;
+                        // If removing an adult makes infants > adults, reduce infants
+                        if (infants > adults) {
+                            infants = adults;
+                        }
+                        changed = true;
+                    }
+                    if (type === 'child' && children > 0) {
+                        children--;
+                        changed = true;
+                    }
+                    if (type === 'infant' && infants > 0) {
+                        infants--;
+                        changed = true;
+                    }
                 }
-    
-                if (valueEl) {
-                    valueEl.textContent = type === 'adult' ? adults : children;
+
+                // Add visual feedback for button press
+                if (changed) {
+                    btn.style.transform = 'scale(0.95)';
+                    btn.style.backgroundColor = 'var(--primary-emerald)';
+                    btn.style.color = 'white';
+                    setTimeout(() => {
+                        btn.style.transform = '';
+                        btn.style.backgroundColor = '';
+                        btn.style.color = '';
+                    }, 150);
+                    updateUI();
+                } else {
+                    // Shake animation for invalid actions
+                    btn.style.animation = 'shake 0.3s ease-in-out';
+                    setTimeout(() => {
+                        btn.style.animation = '';
+                    }, 300);
                 }
-                updateFlightSummary();
+
+                // Update button states
+                updateCounterButtonStates();
             });
         });
+
+        // Function to update counter button states
+        function updateCounterButtonStates() {
+            // Disable/enable buttons based on limits
+            const adultDecrease = optionsPopover.querySelector('.counter-btn[data-type="adult"][data-action="decrease"]');
+            const adultIncrease = optionsPopover.querySelector('.counter-btn[data-type="adult"][data-action="increase"]');
+            const childDecrease = optionsPopover.querySelector('.counter-btn[data-type="child"][data-action="decrease"]');
+            const childIncrease = optionsPopover.querySelector('.counter-btn[data-type="child"][data-action="increase"]');
+            const infantDecrease = optionsPopover.querySelector('.counter-btn[data-type="infant"][data-action="decrease"]');
+            const infantIncrease = optionsPopover.querySelector('.counter-btn[data-type="infant"][data-action="increase"]');
+
+            // Adult constraints
+            if (adultDecrease) adultDecrease.disabled = adults <= 1;
+            if (adultIncrease) adultIncrease.disabled = adults >= 9;
+
+            // Child constraints
+            if (childDecrease) childDecrease.disabled = children <= 0;
+            if (childIncrease) childIncrease.disabled = children >= 9;
+
+            // Infant constraints
+            if (infantDecrease) infantDecrease.disabled = infants <= 0;
+            if (infantIncrease) infantIncrease.disabled = infants >= adults || infants >= 9;
+        }
     
         // Class Selection
         optionsPopover.querySelectorAll('.option-btn-class').forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 optionsPopover.querySelectorAll('.option-btn-class').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 flightClass = btn.dataset.value;
-                updateFlightSummary();
+                updateUI();
             });
         });
     
-        // --- Form Submission ---
+        // Form Submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const tripType = form.querySelector('input[name="trip-type"]:checked').value;
-            console.log('Search submitted with:', { 
-                tripType, 
-                adults, 
-                children, 
-                flightClass, 
-                from: form.from.value, 
-                to: form.to.value, 
-                departure: form.departure.value, 
-                return: tripType === 'one-way' ? null : form.return.value 
+            const fareType = form.querySelector('input[name="fare-type"]:checked').value;
+            
+            // Simple validation
+            if (fromInput.value.trim() === toInput.value.trim()) {
+                alert('"From" and "To" destinations cannot be the same.');
+                return;
+            }
+    
+            console.log('Search Submitted:', {
+                tripType,
+                from: fromInput.value,
+                to: toInput.value,
+                departure: departureInput.value,
+                return: tripType === 'round-trip' ? returnInput.value : null,
+                flexibleDeparture: flexibleDatesCheckbox.checked ? { start: departureStart.value, end: departureEnd.value } : null,
+                flexibleReturn: flexibleDatesCheckbox.checked ? { start: returnStart.value, end: returnEnd.value } : null,
+                currency: form.querySelector('#currency').value,
+                adults,
+                children,
+                infants,
+                flightClass,
+                fareType,
+                directFlights: form.querySelector('#direct-flights').checked,
+                nearbyAirports: form.querySelector('#nearby-airports').checked,
+                flexibleDates: form.querySelector('#flexible-dates').checked
             });
     
-            localStorage.setItem('hasBookedTicket', 'true');
-            handleManageMenuVisibility();
+            // Save search to history
+            const searchData = {
+                tripType,
+                from: fromInput.value,
+                to: toInput.value,
+                departure: departureInput.value,
+                return: tripType === 'round-trip' ? returnInput.value : null,
+                adults,
+                children,
+                infants,
+                flightClass,
+                fareType,
+                currency: form.querySelector('#currency').value,
+                directFlights: form.querySelector('#direct-flights').checked,
+                nearbyAirports: form.querySelector('#nearby-airports').checked,
+                flexibleDates: form.querySelector('#flexible-dates').checked
+            };
+            saveSearch(searchData);
+
+            // Save search data for results page
+            localStorage.setItem('lastSearch', JSON.stringify(searchData));
+
+            // For demo: redirect to results page
+            window.location.href = 'results.html?' + new URLSearchParams({
+                from: fromInput.value,
+                to: toInput.value,
+                departure: departureInput.value,
+                return: tripType === 'round-trip' ? returnInput.value : null,
+                adults: adults,
+                children: children,
+                infants: infants,
+                class: flightClass,
+                currency: form.querySelector('#currency').value
+            }).toString();
         });
     
-        // Initial call on page load to set the correct initial state
-        updateFlightSummary();
+        // Initial UI setup on page load
+        if (form) updateUI();
     }
     initializeTicketSearchForm();
 
@@ -629,6 +956,64 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     addSwipeSupport();
+
+    // --- TESTIMONIALS SLIDER FUNCTIONALITY ---
+    function initializeTestimonialsSlider() {
+        const slider = document.querySelector('.home-testimonial-slider');
+        const cards = document.querySelectorAll('.home-testimonial-card');
+        const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
+        
+        if (!slider || cards.length === 0 || indicators.length === 0) return;
+        
+        let currentSlide = 0;
+        let autoSlideInterval;
+        
+        function showSlide(index) {
+            // Hide all cards
+            cards.forEach((card, i) => {
+                card.classList.toggle('active', i === index);
+            });
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            const next = (currentSlide + 1) % cards.length;
+            showSlide(next);
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 6000); // Change slide every 6 seconds
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Add click handlers to indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+                stopAutoSlide();
+                startAutoSlide(); // Restart auto-slide
+            });
+        });
+        
+        // Pause auto-slide on hover
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+        
+        // Initialize
+        showSlide(0);
+        startAutoSlide();
+    }
+    
+    initializeTestimonialsSlider();
 
     // =============================================
     // FOOTER-RELATED: SCROLL TO TOP BUTTON

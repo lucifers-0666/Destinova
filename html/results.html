@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Search Results | Destinova</title>
+  <meta name="description" content="Find and compare flight options with Destinova. Book your perfect journey today.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="../site-images/logo/Destinova-svg.svg">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-emerald': '#1d5e33',
+            'secondary-cream': '#FFFBF2',
+            'accent-gold': '#E5CBAF',
+            'text-charcoal': '#1C2526',
+            'text-slate': '#5C6B73',
+            'background-white': '#FAFAFA',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.6s ease-out',
+            'slide-in': 'slideIn 0.5s ease-out',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="../css/results.css">
+</head>
+
+<body>
+  <header id="header-main">
+    <div class="header-nav-container">
+      <div class="header-logo">
+        <h1>Destin<span>ova</span></h1>
+      </div>
+
+      <ul class="header-desktop-nav">
+        <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+        <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+        <li class="header-dropdown">
+          <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+          <ul class="header-dropdown-menu">
+            <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+            <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+            <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+          </ul>
+        </li>
+        <li class="header-dropdown" id="manage-menu-desktop">
+          <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+          <ul class="header-dropdown-menu">
+            <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+            <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+            <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+          </ul>
+        </li>
+        <li><a href="about-us.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
+        <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="signin.html" class="btn header-btn-signin">
+          <i class="fas fa-right-to-bracket"></i>
+          <span>Sign In</span>
+        </a>
+        <button class="header-mobile-menu-btn" id="header-menuToggle">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="header-mobile-nav" id="header-mobile-nav">
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+      <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+      <li class="header-dropdown">
+        <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+        <ul class="header-dropdown-menu">
+          <li><a href="classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+          <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+          <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+        </ul>
+      </li>
+      <li class="header-dropdown" id="manage-menu-mobile">
+        <a href="#"><i class="fas fa-tools"></i> Manage</a>
+        <ul class="header-dropdown-menu">
+          <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+          <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+          <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html"><i class="fas fa-building"></i> About Us</a></li>
+      <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+    </ul>
+  </nav>
+  <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+
+  <main>
+    <section class="results-hero">
+      <div class="results-summary">
+        <h1>Flight Search Results</h1>
+        <div class="search-summary">
+          <span id="search-route">Delhi → Mumbai</span>
+          <span id="search-dates">Departure: 2025-01-15</span>
+          <span id="search-passengers">1 Adult, Economy</span>
+        </div>
+        <button class="btn btn-light modify-search-btn">
+          <i class="fas fa-edit"></i> Modify Search
+        </button>
+      </div>
+    </section>
+
+    <section class="results-content">
+      <div class="results-container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar">
+          <div class="filters-header">
+            <h3>Filters</h3>
+            <button class="clear-filters-btn">Clear All</button>
+          </div>
+
+          <div class="filter-group">
+            <h4>Stops</h4>
+            <label><input type="checkbox" id="nonstop" checked> Nonstop</label>
+            <label><input type="checkbox" id="onestop"> 1 Stop</label>
+            <label><input type="checkbox" id="twostops"> 2+ Stops</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Airlines</h4>
+            <label><input type="checkbox" id="airindia"> Air India</label>
+            <label><input type="checkbox" id="indigo"> IndiGo</label>
+            <label><input type="checkbox" id="spicejet"> SpiceJet</label>
+            <label><input type="checkbox" id="vistara"> Vistara</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Departure Time</h4>
+            <label><input type="checkbox" id="morning"> Morning (6AM - 12PM)</label>
+            <label><input type="checkbox" id="afternoon"> Afternoon (12PM - 6PM)</label>
+            <label><input type="checkbox" id="evening"> Evening (6PM - 12AM)</label>
+            <label><input type="checkbox" id="night"> Night (12AM - 6AM)</label>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price Range</h4>
+            <input type="range" id="price-range" min="1000" max="50000" value="50000">
+            <div class="price-display">Up to ₹<span id="price-value">50,000</span></div>
+          </div>
+        </aside>
+
+        <!-- Results Main -->
+        <div class="results-main">
+          <!-- Sorting and View Options -->
+          <div class="results-header">
+            <div class="results-count">
+              <span id="results-count">0</span> flights found
+            </div>
+            <div class="sort-options">
+              <label>Sort by:</label>
+              <select id="sort-select">
+                <option value="price-low">Price (Low to High)</option>
+                <option value="price-high">Price (High to Low)</option>
+                <option value="duration">Duration</option>
+                <option value="departure">Departure Time</option>
+                <option value="arrival">Arrival Time</option>
+              </select>
+            </div>
+            <div class="view-options">
+              <button class="view-btn active" data-view="list">
+                <i class="fas fa-list"></i> List
+              </button>
+              <button class="view-btn" data-view="calendar">
+                <i class="fas fa-calendar-alt"></i> Calendar
+              </button>
+            </div>
+          </div>
+
+          <!-- Flight Results -->
+          <div class="flights-list" id="flights-list">
+            <!-- Flights will be populated by JS -->
+          </div>
+
+          <!-- Fare Calendar View -->
+          <div class="fare-calendar-view" id="fare-calendar-view" style="display: none;">
+            <div class="calendar-header">
+              <h3>Fare Calendar</h3>
+              <p>Select a date to see available fares</p>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+              <!-- Calendar will be generated by JS -->
+            </div>
+          </div>
+
+          <!-- Price Alert Modal -->
+          <div class="price-alert-modal" id="price-alert-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3>Set Price Alert</h3>
+                <button class="close-modal-btn">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Get notified when prices drop for this route.</p>
+                <form id="price-alert-form">
+                  <input type="email" placeholder="Enter your email" required>
+                  <input type="number" placeholder="Target price (₹)" min="1000" required>
+                  <button type="submit" class="btn btn-primary">Set Alert</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+    <!-- Footer content same as index.html -->
+  </footer>
+
+  <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+    <i class="fas fa-plane-up"></i>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/results.js"></script>
+</body>
+
+</html>
