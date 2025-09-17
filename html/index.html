@@ -72,7 +72,7 @@
             <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
           </ul>
         </li>
-        <li class="header-dropdown" id="manage-menu-desktop">
+        <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
           <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
           <ul class="header-dropdown-menu">
             <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
@@ -109,7 +109,7 @@
           <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
         </ul>
       </li>
-      <li class="header-dropdown" id="manage-menu-mobile">
+      <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
         <a href="#"><i class="fas fa-tools"></i> Manage</a>
         <ul class="header-dropdown-menu">
           <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
@@ -310,41 +310,114 @@
         <h2 data-aos="fade-up">Popular Destinations</h2>
         <p data-aos="fade-up" data-aos-delay="100">Explore our most sought-after travel hotspots around the globe.</p>
       </div>
-      <div class="home-destinations-bento-grid">
-        <div class="home-destination-card bento-large" data-aos="fade-up" data-aos-delay="200">
-          <div class="home-destination-img"
-            style="background-image: url('https://images.unsplash.com/photo-1550340499-a6c60fc8287c?auto=format&fit=crop&w=1200&q=80')">
-            <div class="destination-overlay">
-              <h3>Paris, France</h3>
-              <button class="explore-btn">Explore Flights</button>
+      <div class="home-destinations-bento-grid" id="destinations-grid">
+        <!-- Card 1: Large Hero -->
+        <div class="home-destination-card card-large" data-aos="fade-up" data-destination-code="CDG" data-destination-name="Paris">
+          <img src="../site-images/card1_ps.jpg" alt="Eiffel Tower in Paris" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>Paris, <span class="country">France</span></h3>
+              <p class="tagline">The City of Romance & Lights</p>
             </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹45,999*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
+            <span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>
           </div>
         </div>
-        <div class="home-destination-card bento-small" data-aos="fade-up" data-aos-delay="300">
-          <div class="home-destination-img"
-            style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80')">
-            <div class="destination-overlay">
-              <h3>Tokyo, Japan</h3>
-              <button class="explore-btn">Explore Flights</button>
+        <!-- Card 2: Vertical -->
+        <div class="home-destination-card card-vertical" data-aos="fade-up" data-aos-delay="100" data-destination-code="NRT" data-destination-name="Tokyo">
+          <img src="../site-images/card_2_ps.jpg" alt="Shibuya Crossing in Tokyo at night" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>Tokyo, <span class="country">Japan</span></h3>
+              <p class="tagline">Where Tradition Meets Future</p>
             </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹52,500*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
           </div>
         </div>
-        <div class="home-destination-card bento-small" data-aos="fade-up" data-aos-delay="400">
-          <div class="home-destination-img"
-            style="background-image: url('https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80')">
-            <div class="destination-overlay">
-              <h3>Rome, Italy</h3>
-              <button class="explore-btn">Explore Flights</button>
+        <!-- Card 3: Horizontal -->
+        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="200" data-destination-code="DXB" data-destination-name="Dubai">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80" alt="Dubai skyline with Burj Khalifa" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>Dubai, <span class="country">United Arab Emirates</span></h3>
+              <p class="tagline">Oasis of Modern Luxury</p>
             </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹18,999*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
           </div>
         </div>
-        <div class="home-destination-card bento-small" data-aos="fade-up" data-aos-delay="500">
-          <div class="home-destination-img"
-            style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80')">
-            <div class="destination-overlay">
-              <h3>London, UK</h3>
-              <button class="explore-btn">Explore Flights</button>
+        <!-- Card 4: Square -->
+        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="300" data-destination-code="LHR" data-destination-name="London">
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" alt="Tower Bridge in London" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>London, <span class="country">United Kingdom</span></h3>
+              <p class="tagline">Historic & Modern Majesty</p>
             </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹48,200*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Card 5: Square -->
+        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="400" data-destination-code="FCO" data-destination-name="Rome">
+          <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80" alt="The Colosseum in Rome, Italy" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>Florence, <span class="country">Italy</span></h3>
+              <p class="tagline">The Eternal City's Legacy</p>
+            </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹41,800*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Card 6: Horizontal -->
+        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="500" data-destination-code="SYD" data-destination-name="Sydney">
+          <img src="../site-images/card6_ps.jpg" alt="Sydney Opera House and Harbour Bridge" class="home-destination-img" loading="lazy">
+          <div class="destination-overlay">
+            <div class="destination-info">
+              <h3>Sydney, <span class="country">Australia</span></h3>
+              <p class="tagline">Iconic Views & Vibrant Culture</p>
+            </div>
+            <div class="destination-actions">
+              <p class="price-pill">From ₹65,000*</p>
+              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button class="wishlist-btn" aria-label="Add to wishlist">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-heart"></i>
+            </button>
           </div>
         </div>
       </div>

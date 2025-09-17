@@ -1,4 +1,4 @@
-z/* ===== COMBINED CSS FILE - home.css ===== */
+/* ===== COMBINED CSS FILE - home.css ===== */
 
 /* --- GLOBAL VARIABLES & STYLES (COLOR OVERHAUL + CRYSTAL EFFECTS) --- */
 :root {
@@ -1713,7 +1713,6 @@ body {
   border: 1px solid rgba(29, 94, 51, 0.1);
   margin-top: 16px;
 }
-
 #additional-options .form-checkbox-label {
   background: white;
   padding: 8px 12px;
@@ -1732,13 +1731,14 @@ body {
   color: var(--primary-emerald);
 }
 
-/* --- Featured Destinations - Immersive Gallery --- */
+/* --- Featured Destinations - Asymmetric Bento Grid --- */
 .home-destinations-bento-grid {
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
+  /* Updated for better responsiveness */
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 250px;
+  grid-auto-flow: dense;
   gap: 20px;
 }
 
@@ -1746,84 +1746,185 @@ body {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  /* Consistent aspect ratio */
+  aspect-ratio: 1 / 1;
 }
-
 .home-destination-card:hover {
   transform: translateY(-10px);
-  z-index: 10;
+  z-index: 5; /* Lower z-index to prevent overlap with header */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
-
-.home-destination-card.bento-large {
+/* Grid item sizing */
+.card-large {
   grid-column: span 2;
   grid-row: span 2;
 }
-
+.card-large {
+  aspect-ratio: auto; /* Let the grid define its aspect ratio */
+}
+.card-vertical {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+.card-horizontal {
+  grid-column: span 2;
+}
+.card-square {
+  grid-row: span 1;
+  grid-column: span 1;
+}
 .home-destination-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-position: center;
+  /* Ensure images are always centered */
+  font-family: 'object-fit: cover;';
+  z-index: 1;
 }
-
+.card-large .home-destination-img {
+  animation: kenBurnsEffect 20s ease-in-out infinite;
+}
 .home-destination-card:hover .home-destination-img {
   transform: scale(1.1);
 }
-
 .destination-overlay {
   position: absolute;
-  bottom: 0;
   left: 0;
-  width: 100%;
-  padding: 24px;
-  /* Glassmorphism Effect */
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  /* Hidden by default */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  /* Flexbox for content alignment */
+  right: 0;
+  bottom: 0;
+  width: 100%; /* This was already correct */
+  /* Reduced padding for better button visibility */
+  padding: 16px;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 30%, transparent 100%);
+  color: var(--white);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
 }
 
-.home-destination-card:hover .destination-overlay {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.destination-overlay h3 {
+.destination-info h3 {
   color: #fff;
-  font-size: 28px;
+  font-size: 1.5rem; /* Use rem for responsiveness */
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
   margin: 0;
+  line-height: 1.2;
+}
+
+.destination-info .country {
+  font-weight: 400;
+  font-size: 0.8em; /* This is fine relative to h3 */
+  opacity: 0.8;
+}
+.destination-info .tagline {
+  font-size: 0.875rem; /* Use rem */
+  opacity: 0.9;
+  margin-top: 4px;
+  max-width: 90%;
+}
+.destination-actions {
+  flex-shrink: 0;
+  /* Use flexbox for consistent alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price-pill {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  /* Consistent padding */
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .explore-btn {
-  /* Ghost button style */
   background: transparent;
   border: 2px solid var(--white);
   color: var(--white);
-  padding: 10px 24px;
+  padding: 10px 24px; /* Standardized button padding */
+  /* Adjusted padding for button */
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-
 .explore-btn:hover {
   background: var(--white);
   color: var(--primary-emerald);
+  transform: scale(1.05) translateY(-2px); /* Added subtle lift */
+}
+.explore-btn i {
+  transition: transform 0.3s ease;
+}
+.explore-btn:hover i {
+  transform: translateX(4px);
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+}
+
+.wishlist-btn:hover,
+.wishlist-btn.active {
+  background: var(--accent-red);
+  transform: scale(1.1);
+}
+.wishlist-btn .fa-solid.fa-heart {
+  display: none;
+}
+.wishlist-btn.active .fa-regular.fa-heart {
+  display: none;
+}
+.wishlist-btn.active .fa-solid.fa-heart {
+  display: inline-block;
+}
+
+.trending-badge {
+  position: absolute;
+  top: 5px;
+  left: 16px;
+  background: var(--accent-orange);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 3;
 }
 
 .why-choose-us-grid {
@@ -1977,6 +2078,27 @@ body {
 
 .compare-classes-cta .btn:hover i {
   transform: translateX(4px);
+}
+
+/* Responsive adjustments for the Bento Grid */
+@media (max-width: 992px) {
+  .home-destinations-bento-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+  }
+  .card-large, .card-vertical, .card-horizontal {
+    grid-column: span 1; /* Reset spans */
+    grid-row: span 1; /* Reset spans */
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio for all */
+  }
+  .destination-overlay {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-destinations-bento-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
 }
 
   /* --- SPECIAL OFFERS CAROUSEL (REDESIGNED) --- */

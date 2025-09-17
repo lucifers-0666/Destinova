@@ -1,16 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     // --- MANAGE MENU VISIBILITY ---
     function handleManageMenuVisibility() {
+        // Conditions to show the "Manage" menu:
+        const isSignedIn = localStorage.getItem('isUserSignedIn') === 'true';
         const hasBooked = localStorage.getItem('hasBookedTicket') === 'true';
+
         const manageMenuDesktop = document.getElementById('manage-menu-desktop');
         const manageMenuMobile = document.getElementById('manage-menu-mobile');
 
-        if (!hasBooked) {
-            if (manageMenuDesktop) manageMenuDesktop.classList.add('manage-menu-hidden');
-            if (manageMenuMobile) manageMenuMobile.classList.add('manage-menu-hidden');
-        } else {
+        if (isSignedIn && hasBooked) {
             if (manageMenuDesktop) manageMenuDesktop.classList.remove('manage-menu-hidden');
             if (manageMenuMobile) manageMenuMobile.classList.remove('manage-menu-hidden');
+        } else {
+            if (manageMenuDesktop) manageMenuDesktop.classList.add('manage-menu-hidden');
+            if (manageMenuMobile) manageMenuMobile.classList.add('manage-menu-hidden');
         }
     }
     handleManageMenuVisibility(); // Call on page load
@@ -413,6 +416,44 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     addMicrointeractions();
+
+    // --- DESTINATIONS GRID INTERACTIVITY ---
+    function initializeDestinationsGrid() {
+        const destinationsGrid = document.getElementById('destinations-grid');
+        if (!destinationsGrid) return;
+
+        const toInput = document.getElementById('to');
+        const searchSection = document.getElementById('search-section-anchor');
+
+        destinationsGrid.addEventListener('click', function(e) {
+            const card = e.target.closest('.home-destination-card');
+            if (!card) return;
+
+            // Handle Wishlist Button Click
+            if (e.target.closest('.wishlist-btn')) {
+                e.stopPropagation(); // Prevent other card actions
+                const wishlistBtn = e.target.closest('.wishlist-btn');
+                wishlistBtn.classList.toggle('active');
+                
+                // You can add logic here to save to localStorage
+                const isWishlisted = wishlistBtn.classList.contains('active');
+                console.log(`Destination ${card.dataset.destinationName} wishlisted: ${isWishlisted}`);
+                return;
+            }
+
+            // Handle "Explore" Button or Card Click
+            if (toInput && (e.target.closest('.explore-btn') || e.target.closest('.destination-info'))) {
+                const destinationName = card.dataset.destinationName;
+                
+                toInput.value = destinationName;
+                // Optional: Update airport code display if you have one
+                // document.getElementById('to-airport').textContent = `${card.dataset.destinationCode}, ...`;
+                
+                searchSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+    initializeDestinationsGrid();
 
     // --- FLIGHT SEARCH FORM LOGIC ---
     function initializeTicketSearchForm() {
