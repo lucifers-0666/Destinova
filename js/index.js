@@ -179,23 +179,50 @@ document.addEventListener('DOMContentLoaded', function () {
         const tabContainer = document.querySelector('.travel-class-tabs-container');
         if (!tabContainer) return;
 
-        const tabButtons = tabContainer.querySelectorAll('.tab-button');
-        const tabPanels = tabContainer.querySelectorAll('.tab-panel');
+        const tabButtons = Array.from(tabContainer.querySelectorAll('.tab-button'));
+        const tabPanels = Array.from(tabContainer.querySelectorAll('.tab-panel'));
+        let currentIndex = 0;
+        let autoPlayInterval;
 
-        tabButtons.forEach(button => {
+        if (tabButtons.length === 0) return;
+
+        function showTab(index) {
+            currentIndex = index;
+            const tabId = tabButtons[currentIndex].dataset.tab;
+
+            tabButtons.forEach((btn, i) => btn.classList.toggle('active', i === currentIndex));
+            tabPanels.forEach(panel => panel.classList.toggle('active', panel.id === `tab-${tabId}`));
+        }
+
+        function nextTab() {
+            const nextIndex = (currentIndex + 1) % tabButtons.length;
+            showTab(nextIndex);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextTab, 5000); // Change tab every 5 seconds
+        }
+
+        tabButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
-                const tabId = button.dataset.tab;
-
-                // Update buttons
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                // Update panels
-                tabPanels.forEach(panel => {
-                    panel.classList.toggle('active', panel.id === `tab-${tabId}`);
-                });
+                showTab(index);
+                resetAutoPlay(); // Reset and restart auto-play on manual interaction
             });
         });
+
+        // Pause on hover
+        tabContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        tabContainer.addEventListener('mouseleave', resetAutoPlay);
+
+        // Initial setup
+        const initialActiveIndex = tabButtons.findIndex(btn => btn.classList.contains('active'));
+        if (initialActiveIndex !== -1) {
+            currentIndex = initialActiveIndex;
+        }
+        
+        showTab(currentIndex);
+        resetAutoPlay();
     }
     initializeTravelClassTabs();
 
@@ -240,12 +267,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = Math.max(0, currentIndex - 1);
+            if (maxIndex === 0) return;
+            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
             moveCarousel();
         });
 
         nextBtn.addEventListener('click', () => {
-            currentIndex = Math.min(maxIndex, currentIndex + 1);
+            if (maxIndex === 0) return;
+            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
             moveCarousel();
         });
 
