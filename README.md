@@ -1,10 +1,10 @@
 # Destinova - Premium Flight Booking Experience
 
-Destinova is a modern, responsive flight booking website built with HTML, CSS, and JavaScript. It offers a premium user experience with advanced search features, personalization, and comprehensive flight result management.
+Destinova is a modern, responsive front-end prototype for a premium flight booking website, meticulously crafted with HTML, CSS, and vanilla JavaScript. It showcases a rich, interactive user experience with a focus on a clean, luxurious aesthetic, advanced search capabilities, and a variety of engaging UI components.
 
 ## Features
 
-### Enhanced Search Form Intelligence
+### 1. Home Page & Search
 
 - **Flexible Date Selection**: Toggle "Flexible Dates" to search ±3 days around your selected dates with custom range inputs
 - **Nearby Airports**: Checkbox to include nearby airports for origin and destination to find cheaper fares
@@ -12,20 +12,38 @@ Destinova is a modern, responsive flight booking website built with HTML, CSS, a
 - **Direct Flights Filter**: Prominent checkbox for nonstop flights only
 - **Fare Type Selection**: Choose from Regular, Student, Senior Citizen, Armed Forces, and Corporate fares with informative tooltips
 
-### User Personalization & Convenience
-
 - **Location Detection**: Automatic geolocation to pre-fill nearest major airport in the "From" field
 - **Search History**: Dropdown showing recent searches for quick re-booking
 - **Currency Selection**: Choose display currency (INR, USD, EUR)
 - **Promotional Elements**: Rotating promotional banner with discount codes and trust badges (SSL Secured, IATA Certified, 24/7 Support)
+- **Interactive Destination Grid**: "Bento box" style grid of popular destinations. Clicking a destination populates the search form.
+- **Wishlist Functionality**: Add destinations to a wishlist directly from the cards.
+- **Animated Content Sections**:
+    - **Travel Classes**: An auto-playing tabbed interface showcasing First, Business, Premium Economy, and Economy classes.
+    - **Special Offers**: A responsive, auto-scrolling carousel for promotional deals.
+    - **Testimonials**: A smooth, auto-playing slider for customer reviews.
 
-### Post-Search Features
+### 2. Booking Process
 
-- **Smart Sorting**: Sort results by price, duration, departure/arrival time
-- **Advanced Filtering**: Filter by stops, airlines, departure time, and price range
-- **Fare Calendar View**: Visual calendar showing cheapest fares for each day
-- **Price Alerts**: Set email alerts for price drops on specific routes
-- **Responsive Design**: Fully responsive layout for mobile and desktop
+- **Multi-Step Booking Flow**: A clean, guided 3-step process for booking:
+    1.  **Passenger Details**: Dynamically add or remove passenger forms.
+    2.  **Seat Selection**: An interactive mock seat map.
+    3.  **Review & Payment**: A summary and payment form layout.
+- **Live E-Ticket Preview**: A sticky sidebar on the booking page that updates with the primary passenger's name and shows a summary of the flight.
+
+### 3. Content Pages
+
+- **Destinations Page**: A visually rich page with a hero video/image, destination grid, offer slider, and travel inspiration sections.
+- **Travel Classes Page**: Detailed sections for each class with dedicated image sliders and feature lists.
+- **About Us Page**: A well-structured page introducing the company, team, and values.
+
+### 4. General UI/UX
+
+- **Consistent Branding & Design**: A cohesive and premium design language is used across all pages, with a consistent color palette and typography.
+- **Smooth Animations**: Uses the AOS (Animate On Scroll) library and custom CSS animations for an elegant user experience.
+- **Microinteractions**: Subtle hover effects, 3D transforms on cards, and button feedback to enhance interactivity.
+- **Fully Responsive Design**: A mobile-first approach ensures a seamless experience on all devices, from small phones to large desktops.
+- **Shared Header/Footer**: A consistent and fully functional header and footer are present on all pages.
 
 ## File Structure
 
