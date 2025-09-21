@@ -1,6 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // =============================================
+    // HEADER & NAVIGATION LOGIC (from index.js)
+    // =============================================
+
+    // --- ACTIVE PAGE INDICATOR IN NAVBAR ---
+    function setActiveNavLink() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.header-desktop-nav a, .header-mobile-nav a');
+
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href').split('/').pop();
+
+            if (linkPage === currentPage) {
+                link.classList.add('nav-active');
+
+                // If the active link is inside a dropdown, also highlight the main dropdown link
+                const dropdownParent = link.closest('.header-dropdown');
+                if (dropdownParent) {
+                    const parentLink = dropdownParent.querySelector(':scope > a');
+                    if (parentLink) parentLink.classList.add('nav-active');
+                }
+            }
+        });
+    }
+    setActiveNavLink();
+
+    // --- HEADER SCROLL & MOBILE MENU ---
+    const header = document.getElementById('header-main');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('header-scrolled', window.scrollY > 50);
+        });
+    }
+
+    const menuToggle = document.getElementById('header-menuToggle');
+    const nav = document.getElementById('header-mobile-nav');
+    const overlay = document.getElementById('header-mobileNavOverlay');
+
+    if (menuToggle && nav && overlay) {
+        const toggleMenu = () => {
+            nav.classList.toggle('header-active');
+            overlay.classList.toggle('header-active');
+            document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
+        };
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    }
+
+    document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const parent = link.parentElement;
+            parent.classList.toggle('header-open');
+        });
+    });
+
+    // =============================================
     // PAGE-SPECIFIC: SMOOTH SCROLL FOR "START EXPLORING" BUTTON
     // =============================================
     const startExploringBtn = document.getElementById('start-exploring-btn');

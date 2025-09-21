@@ -888,15 +888,26 @@ document.addEventListener('DOMContentLoaded', function () {
         // Form Submission
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+            const errorMessageDiv = document.getElementById('form-error-message');
             const tripType = form.querySelector('input[name="trip-type"]:checked').value;
             const fareType = form.querySelector('input[name="fare-type"]:checked').value;
             
             // Simple validation
-            if (fromInput.value.trim() === toInput.value.trim()) {
-                alert('"From" and "To" destinations cannot be the same.');
+            if (fromInput.value.trim() === '' || toInput.value.trim() === '') {
+                errorMessageDiv.textContent = 'Please enter both "From" and "To" destinations.';
+                errorMessageDiv.style.display = 'block';
+                errorMessageDiv.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            if (fromInput.value.trim().toLowerCase() === toInput.value.trim().toLowerCase()) {
+                errorMessageDiv.textContent = '"From" and "To" destinations cannot be the same.';
+                errorMessageDiv.style.display = 'block';
+                errorMessageDiv.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
     
+            errorMessageDiv.style.display = 'none'; // Hide error on successful validation
+
             console.log('Search Submitted:', {
                 tripType,
                 from: fromInput.value,

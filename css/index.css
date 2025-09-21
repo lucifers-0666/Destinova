@@ -34,6 +34,7 @@
   --font-mono: 'IBM Plex Mono', monospace;
   --accent-red: #D93025;
   --accent-orange: #FF6138;
+  --error-red: #d8000c;
   /* New accent for offers */
 }
 
@@ -888,6 +889,18 @@ body {
   margin-top: -30px; /* Overlap with the card */
   position: relative;
   z-index: 21;
+}
+
+.form-error {
+    background-color: #ffdddd;
+    border: 1px solid #ff8888;
+    color: var(--error-red);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+    animation: shake 0.5s ease-in-out;
 }
 
 .search-flights-btn {
@@ -2186,6 +2199,10 @@ body {
     letter-spacing: 0.5px;
   }
 
+.home-offer-badge.limited-time {
+    background-color: var(--accent-red);
+}
+
   .offer-price-pill {
     position: absolute;
     top: 16px;
@@ -2518,6 +2535,13 @@ body {
       transform: translateY(0);
     }
   }
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
 
   /* --- FOOTER STYLES (AS PROVIDED BY USER) --- */
   .destinova-footer {

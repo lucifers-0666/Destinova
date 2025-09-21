@@ -131,7 +131,8 @@
         <h1 data-aos="fade-down" data-aos-duration="800">Your Journey Starts Here</h1>
         <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">Experience premium travel with Destinova.
           Discover exclusive destinations and book flights with world-class service.</p>
-        <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
+        <p class="text-lg mt-4 text-amber-100/80" data-aos="fade-down" data-aos-duration="800" data-aos-delay="300">Start your journey with exclusive offers and unparalleled service.</p>
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
           <a href="#search-section-anchor" class="btn btn-primary hero-cta">
             <i class="fas fa-plane-departure" aria-hidden="true"></i>
             Book Your Flight
@@ -154,6 +155,7 @@
         </div>
 
         <form id="booking-form" class="flight-search-card">
+          <div id="form-error-message" class="form-error" style="display: none;"></div>
           <div class="search-form-header">
             <!-- Trip Type Selector -->
             <div class="trip-type-selector">
@@ -321,6 +323,77 @@
       </div>
     </section>
 
+    <section id="home-offers" class="home-section">
+      <div class="home-section-title">
+        <h2 data-aos="fade-up">Special Offers</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Don't miss our exclusive deals and seasonal promotions.</p>
+      </div>
+      <div class="home-offers-carousel-container" data-aos="fade-up" data-aos-delay="200">
+        <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
+        <div class="home-offers-carousel">
+          <!-- Offer 1: Paris -->
+          <div class="home-offer-card">
+            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card1.webp')"></div>
+            <div class="home-offer-badge">20% OFF</div>
+            <div class="offer-price-pill">From ₹45,999</div>
+            <div class="home-offer-content">
+              <h3>Parisian Dream</h3>
+              <p>Experience the magic of Paris. Offer valid for summer travel.</p>
+              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            </div>
+          </div>
+          <!-- Offer 2: Maldives -->
+          <div class="home-offer-card">
+            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card2.jpg')"></div>
+            <div class="home-offer-badge">Honeymoon Special</div>
+            <div class="offer-price-pill">From ₹75,500</div>
+            <div class="home-offer-content">
+              <h3>Maldives Escape</h3>
+              <p>Unwind in paradise with our exclusive couples package.</p>
+              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            </div>
+          </div>
+          <!-- Offer 3: London -->
+          <div class="home-offer-card">
+            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card3.jpg')"></div>
+            <div class="home-offer-badge limited-time">Business Class Deal</div>
+            <div class="offer-price-pill">From ₹98,000</div>
+            <div class="home-offer-content">
+              <h3>London Calling</h3>
+              <p>Fly Business Class to London for the price of Premium Economy.</p>
+              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            </div>
+          </div>
+          <!-- Offer 4: Sydney -->
+          <div class="home-offer-card">
+            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card4.jpg')"></div>
+            <div class="home-offer-badge">Adventure Awaits</div>
+            <div class="offer-price-pill">From ₹62,300</div>
+            <div class="home-offer-content">
+              <h3>Sydney Explorer</h3>
+              <p>Discover the stunning landscapes and vibrant city life of Sydney.</p>
+              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            </div>
+          </div>
+          <!-- Offer 5: New York -->
+          <div class="home-offer-card">
+            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card5.jpg')"></div>
+            <div class="home-offer-badge">City Break</div>
+            <div class="offer-price-pill">From ₹88,900</div>
+            <div class="home-offer-content">
+              <h3>New York Minute</h3>
+              <p>Experience the city that never sleeps with our weekend package.</p>
+              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="view-all-offers-cta">
+        <a href="offers.html" class="btn btn-light">View All Offers <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </section>
+
     <section id="home-destinations" class="home-section">
       <div class="home-section-title">
         <h2 data-aos="fade-up">Popular Destinations</h2>
@@ -449,6 +522,9 @@
           </div>
         </div>
       </div>
+      <div class="text-center mt-12" data-aos="fade-up">
+        <a href="destinations.html" class="btn btn-light">Explore All Destinations <i class="fas fa-arrow-right ml-2"></i></a>
+      </div>
     </section>
 
 
@@ -559,78 +635,7 @@
       </div>
     </section>
 
-    <section id="home-offers" class="home-section">
-      <div class="home-section-title">
-        <h2 data-aos="fade-up">Special Offers</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Don't miss our exclusive deals and seasonal promotions.</p>
-      </div>
-      <div class="home-offers-carousel-container" data-aos="fade-up" data-aos-delay="200">
-        <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
-        <div class="home-offers-carousel">
-          <!-- Offer 1: Paris -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card1.webp')"></div>
-            <div class="home-offer-badge">20% OFF</div>
-            <div class="offer-price-pill">From ₹45,999</div>
-            <div class="home-offer-content">
-              <h3>Parisian Dream</h3>
-              <p>Experience the magic of Paris. Offer valid for summer travel.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
-          </div>
-          <!-- Offer 2: Maldives -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card2.jpg')"></div>
-            <div class="home-offer-badge">Honeymoon Special</div>
-            <div class="offer-price-pill">From ₹75,500</div>
-            <div class="home-offer-content">
-              <h3>Maldives Escape</h3>
-              <p>Unwind in paradise with our exclusive couples package.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
-          </div>
-          <!-- Offer 3: London -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card3.jpg')"></div>
-            <div class="home-offer-badge">Business Class Deal</div>
-            <div class="offer-price-pill">From ₹98,000</div>
-            <div class="home-offer-content">
-              <h3>London Calling</h3>
-              <p>Fly Business Class to London for the price of Premium Economy.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
-          </div>
-          <!-- Offer 4: Sydney -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card4.jpg')"></div>
-            <div class="home-offer-badge">Adventure Awaits</div>
-            <div class="offer-price-pill">From ₹62,300</div>
-            <div class="home-offer-content">
-              <h3>Sydney Explorer</h3>
-              <p>Discover the stunning landscapes and vibrant city life of Sydney.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
-          </div>
-          <!-- Offer 5: New York -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card5.jpg')"></div>
-            <div class="home-offer-badge">City Break</div>
-            <div class="offer-price-pill">From ₹88,900</div>
-            <div class="home-offer-content">
-              <h3>New York Minute</h3>
-              <p>Experience the city that never sleeps with our weekend package.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="view-all-offers-cta">
-        <a href="offers.html" class="btn btn-light">View All Offers <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </section>
-
-    <section id="why-choosze-us" class="home-section">
+    <section id="why-choose-us" class="home-section">
       <div class="home-section-title">
         <h2 data-aos="fade-up">Why Choose Destinova?</h2>
         <p data-aos="fade-up" data-aos-delay="100">We are committed to providing a premier, seamless booking experience
@@ -651,6 +656,11 @@
           <div class="why-choose-us-icon"><i class="fas fa-headset"></i></div>
           <h3>24/7 Support</h3>
           <p>Our dedicated support team is available around the clock to assist you.</p>
+        </div>
+        <div class="why-choose-us-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="why-choose-us-icon"><i class="fas fa-tags"></i></div>
+          <h3>Best Price Guarantee</h3>
+          <p>Find the best fares for your flights, with our promise of no hidden fees.</p>
         </div>
       </div>
     </section>
