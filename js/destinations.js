@@ -1,6 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // =============================================
+    // MANAGE MENU VISIBILITY (from index.js)
+    // =============================================
+    function handleManageMenuVisibility() {
+        const isSignedIn = localStorage.getItem('isUserSignedIn') === 'true';
+        const hasBooked = localStorage.getItem('hasBookedTicket') === 'true';
+
+        const manageMenuDesktop = document.getElementById('manage-menu-desktop');
+        const manageMenuMobile = document.getElementById('manage-menu-mobile');
+
+        if (!(isSignedIn && hasBooked)) {
+            if (manageMenuDesktop) manageMenuDesktop.classList.add('manage-menu-hidden');
+            if (manageMenuMobile) manageMenuMobile.classList.add('manage-menu-hidden');
+        }
+    }
+    handleManageMenuVisibility();
+    // =============================================
     // HEADER & NAVIGATION LOGIC (from index.js)
     // =============================================
 
@@ -192,5 +208,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
         footerObserver.observe(footer);
     }
+
+    // =============================================
+    // PAGE-SPECIFIC: TRAVEL YOUR WAY INTERACTIVITY
+    // =============================================
+    function initializeTravelStyles() {
+        const container = document.querySelector('.travel-style-container');
+        if (!container) return;
+
+        const options = container.querySelectorAll('.style-option');
+        const images = container.querySelectorAll('.style-image');
+
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const style = option.dataset.style;
+
+                // Update active state for options
+                options.forEach(opt => {
+                    opt.classList.toggle('active', opt.dataset.style === style);
+                });
+
+                // Update active state for images
+                images.forEach(img => {
+                    img.classList.toggle('active', img.dataset.style === style);
+                });
+
+                // Optional: Update the "Find Flights" button link
+                const ctaButton = container.querySelector('.style-preview-content .btn');
+                if (ctaButton) {
+                    ctaButton.href = `booking.html?category=${style}`;
+                }
+            });
+        });
+    }
+    initializeTravelStyles();
+
+    // =============================================
+    // PAGE-SPECIFIC: INSPIRATION CARD GLOW EFFECT
+    // =============================================
+    function initializeInspirationCardGlow() {
+        const card = document.querySelector('.inspiration-card-modern');
+        if (!card) return;
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Use setProperty to update CSS custom properties for the glow
+            card.style.setProperty('--glow-x', `${x}px`);
+            card.style.setProperty('--glow-y', `${y}px`);
+        });
+    }
+    initializeInspirationCardGlow();
 
 });
