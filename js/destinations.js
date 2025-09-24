@@ -93,134 +93,43 @@ document.addEventListener('DOMContentLoaded', function () {
     // =============================================
     // PAGE-SPECIFIC: REUSABLE SLIDER FUNCTIONALITY
     // =============================================
-    function initializeSlider(sliderId, options = {}) {
+    function initializeSlider(sliderId) {
         const slider = document.getElementById(sliderId);
         if (!slider) return;
 
         const track = slider.querySelector('.slider-track');
         const slides = Array.from(track.children);
-        const nextButton = slider.querySelector('.next') || slider.parentElement.querySelector('.next');
-        const prevButton = slider.querySelector('.prev') || slider.parentElement.querySelector('.prev');
-        const dotsContainer = slider.parentElement.querySelector('.testimonial-dots-container');
+        const nextButton = slider.querySelector('.next');
+        const prevButton = slider.querySelector('.prev');
 
-        if (slides.length === 0) return;
+        if (slides.length <= 1) return;
 
-        const config = {
-            slidesToShow: options.slidesToShow || 1,
-            autoPlay: options.autoPlay || false,
-            autoPlaySpeed: options.autoPlaySpeed || 5000,
-        };
-
-        let slideWidth = slides[0].offsetWidth + (parseFloat(getComputedStyle(slides[0]).marginRight) || 0) * 2;
+        let slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
         let currentIndex = 0;
-        let autoPlayInterval;
-
-        const totalSlides = slides.length;
-        const maxIndex = Math.ceil(totalSlides / config.slidesToShow) -1;
 
         const updateSliderPosition = () => {
-            const moveDistance = currentIndex * (slideWidth * config.slidesToShow);
-            track.style.transform = `translateX(-${moveDistance}px)`;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             track.style.transition = 'transform 0.5s ease-in-out';
-            updateDots();
         };
 
-        const updateDots = () => {
-            if (!dotsContainer) return;
-            const dots = dotsContainer.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        };
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+            updateSliderPosition();
+        });
 
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
-                updateSliderPosition();
-                if (config.autoPlay) resetAutoPlay();
-            });
-        }
-
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : maxIndex;
-                updateSliderPosition();
-                if (config.autoPlay) resetAutoPlay();
-            });
-        }
-
-        if (dotsContainer) {
-            for (let i = 0; i <= maxIndex; i++) {
-                const dot = document.createElement('button');
-                dot.classList.add('dot');
-                dot.addEventListener('click', () => {
-                    currentIndex = i;
-                    updateSliderPosition();
-                    if (config.autoPlay) resetAutoPlay();
-                });
-                dotsContainer.appendChild(dot);
-            }
-            updateDots();
-        }
-
-        const startAutoPlay = () => autoPlayInterval = setInterval(() => nextButton.click(), config.autoPlaySpeed);
-        const resetAutoPlay = () => { clearInterval(autoPlayInterval); startAutoPlay(); };
-
-        if (config.autoPlay) startAutoPlay();
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+            updateSliderPosition();
+        });
 
         window.addEventListener('resize', () => {
-            slideWidth = slides[0].offsetWidth + (parseFloat(getComputedStyle(slides[0]).marginRight) || 0) * 2;
+            slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
             track.style.transition = 'none';
             updateSliderPosition();
         });
     }
 
     initializeSlider('offers-slider');
-    // Updated initialization for the new testimonial slider
-    const testimonialSlider = document.querySelector('.testimonial-slider-container');
-    if (testimonialSlider) {
-        initializeSlider(testimonialSlider.id, { slidesToShow: 1, autoPlay: true });
-    }
-
-    // =============================================
-    // PAGE-SPECIFIC: COUNTDOWN TIMERS FOR OFFERS
-    // =============================================
-    function initializeCountdownTimers() {
-        const countdownElements = document.querySelectorAll('.offer-countdown');
-
-        countdownElements.forEach(element => {
-            const endTime = new Date(element.dataset.endTime).getTime();
-
-            if (isNaN(endTime)) {
-                element.innerHTML = "Offer expired";
-                return;
-            }
-
-            const timerInterval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = endTime - now;
-
-                if (distance < 0) {
-                    clearInterval(timerInterval);
-                    element.innerHTML = "Offer Expired";
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Pad with leading zeros
-                const fHours = hours.toString().padStart(2, '0');
-                const fMinutes = minutes.toString().padStart(2, '0');
-                const fSeconds = seconds.toString().padStart(2, '0');
-
-                element.innerHTML = `<i class="far fa-clock"></i> ${days}d ${fHours}:${fMinutes}:${fSeconds}`;
-            }, 1000);
-        });
-    }
-    initializeCountdownTimers();
 
     // =============================================
     // PAGE-SPECIFIC: SCROLL-TRIGGERED ANIMATIONS
@@ -353,49 +262,69 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeInspirationCardGlow();
 
     // =============================================
-    // PAGE-SPECIFIC: ENHANCED BOOKING SECTION ANIMATIONS
+    // PAGE-SPECIFIC: NEW TESTIMONIAL CAROUSEL
     // =============================================
-    function initializeEnhancedBookingSection() {
-        const iconsContainer = document.querySelector('.floating-icons-bg');
-        const tickerContainer = document.querySelector('.success-ticker');
+    function initializeTestimonialCarousel() {
+        const container = document.getElementById('testimonial-carousel');
+        if (!container) return;
 
-        // 1. Generate Floating Background Icons
-        if (iconsContainer) {
-            const icons = ['fa-plane', 'fa-globe-americas', 'fa-suitcase', 'fa-map-marked-alt', 'fa-passport', 'fa-compass'];
-            for (let i = 0; i < 15; i++) {
-                const icon = document.createElement('i');
-                icon.className = `fas ${icons[Math.floor(Math.random() * icons.length)]}`;
-                icon.style.left = `${Math.random() * 100}%`;
-                icon.style.top = `${Math.random() * 100}%`;
-                icon.style.fontSize = `${Math.random() * 30 + 20}px`;
-                icon.style.animationDuration = `${Math.random() * 20 + 15}s`;
-                icon.style.animationDelay = `${Math.random() * -20}s`;
-                iconsContainer.appendChild(icon);
-            }
-        }
+        const track = container.querySelector('.testimonial-carousel-track');
+        const cards = Array.from(track.children);
+        const dotsContainer = container.nextElementSibling;
+        if (!dotsContainer || cards.length === 0) return;
 
-        // 2. Generate Success Stories Ticker
-        if (tickerContainer) {
-            const stories = [
-                "<strong>Maria S.</strong> just booked a family trip to <strong>Paris</strong>!",
-                "<strong>David L.</strong> saved <strong>₹8,500</strong> on a business flight to <strong>New York</strong>.",
-                "<strong>Aisha K.</strong> is exploring <strong>Kyoto's</strong> temples.",
-                "<strong>The Chen Family</strong> are on their way to a <strong>Kenyan Safari</strong>.",
-                "<strong>Raj P.</strong> found a last-minute deal to the <strong>Maldives</strong>.",
-                "<strong>Sophie B.</strong> is enjoying the sunsets in <strong>Santorini</strong>."
-            ];
+        let currentIndex = 0;
+        let autoPlayInterval;
 
-            // Duplicate stories for a seamless loop
-            const allStories = [...stories, ...stories];
+        const getVisibleCardsCount = () => {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1200) return 2;
+            return 3;
+        };
 
-            allStories.forEach(story => {
-                const item = document.createElement('div');
-                item.className = 'success-ticker-item';
-                item.innerHTML = `<i class="fas fa-check-circle"></i> ${story}`;
-                tickerContainer.appendChild(item);
+        const totalPages = Math.ceil(cards.length / getVisibleCardsCount());
+
+        // Create dots
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('testimonial-dot');
+            dot.addEventListener('click', () => {
+                goToPage(i);
+                resetAutoPlay();
             });
+            dotsContainer.appendChild(dot);
         }
-    }
-    initializeEnhancedBookingSection();
+        const dots = Array.from(dotsContainer.children);
 
+        function goToPage(pageIndex) {
+            currentIndex = pageIndex;
+            const visibleCards = getVisibleCardsCount();
+            const cardWidth = cards[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(track).gap) || 30;
+            const offset = currentIndex * visibleCards * (cardWidth + gap);
+            
+            track.style.transform = `translateX(-${offset}px)`;
+
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+        }
+
+        function autoPlay() {
+            const nextPage = (currentIndex + 1) % totalPages;
+            goToPage(nextPage);
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(autoPlay, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        goToPage(0);
+        startAutoPlay();
+    }
+    initializeTestimonialCarousel();
 });
