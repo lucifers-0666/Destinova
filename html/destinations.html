@@ -126,11 +126,53 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="animate-on-scroll fade-in">Discover Your Next Destination</h1>
-            <p class="animate-on-scroll fade-in" data-delay="100">Explore top cities and book flights easily with
-                unparalleled service.</p>
-            <a href="#popular-destinations" class="btn btn-primary animate-on-scroll fade-in" data-delay="200"
-                id="start-exploring-btn">Start Exploring</a>
+            <h1 class="animate-on-scroll fade-in">Turn Your Travel Dreams Into Unforgettable Adventures</h1>
+            <p class="subheading animate-on-scroll fade-in" data-delay="100">Curated experiences • Expert guidance • Memories that last forever</p>
+
+            <!-- Smart Search Bar -->
+            <div class="hero-search-container animate-on-scroll fade-in" data-delay="200">
+                <form class="hero-search-form">
+                    <div class="search-input-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" placeholder="Where to?" id="hero-destination-input">
+                    </div>
+                    <div class="search-input-group">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="text" placeholder="Select Dates" id="hero-date-picker">
+                    </div>
+                    <div class="search-input-group">
+                        <i class="fas fa-users"></i>
+                        <input type="text" placeholder="1 Traveler" id="hero-traveler-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Find My Perfect Trip</button>
+                </form>
+                <div class="quick-filters">
+                    <span><a href="#">Adventure</a></span>
+                    <span><a href="#">Luxury</a></span>
+                    <span><a href="#">Family</a></span>
+                    <span><a href="#">Solo</a></span>
+                    <span><a href="#">Cultural</a></span>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-indicators animate-on-scroll fade-in" data-delay="300">
+                <div class="stat-item"><i class="fas fa-globe-americas"></i> 500+ Destinations</div>
+                <div class="stat-item"><i class="fas fa-users"></i> 50,000+ Happy Travelers</div>
+                <div class="stat-item"><i class="fas fa-star"></i> 4.9★ Rating</div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="hero-actions animate-on-scroll fade-in" data-delay="400">
+                <a href="#popular-destinations" class="btn btn-secondary" id="explore-destinations-btn">Explore Destinations</a>
+            </div>
+        </div>
+        <div class="partner-logos">
+            <img src="https://logodownload.org/wp-content/uploads/2017/05/emirates-logo-5.png" alt="Emirates">
+            <img src="https://logodownload.org/wp-content/uploads/2019/11/qatar-airways-logo-1.png" alt="Qatar Airways">
+            <img src="https://logodownload.org/wp-content/uploads/2019/11/singapore-airlines-logo-1.png" alt="Singapore Airlines">
+            <img src="https://logodownload.org/wp-content/uploads/2020/11/marriott-logo-1.png" alt="Marriott">
+            <img src="https://logodownload.org/wp-content/uploads/2014/09/hyatt-logo-3.png" alt="Hyatt">
         </div>
     </section>
 
@@ -316,54 +358,76 @@
                 <h2 class="section-title animate-on-scroll slide-up">Limited-Time Offers</h2>
                 <div class="slider-container animate-on-scroll fade-in" id="offers-slider">
                     <div class="slider-track">
+                        <!-- Offer 1: Santorini -->
                         <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1565967521873-95c589098908?q=80&w=1974&auto=format&fit=crop"
-                                alt="Sydney Opera House">                               
-                            <div class="countdown-timer">
-                                Offer ends in: <span id="countdown-1">00:00:00</span>
+                            <div class="offer-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1599797198128-733ae85e2632?q=80&w=1964&auto=format&fit=crop" alt="Santorini, Greece">
+                                <div class="offer-badge discount-badge">Save 20%</div>
                             </div>
-                            <div class="offer-tag">25% OFF</div>
                             <div class="offer-content">
-                                <h4>Sydney Explorer</h4>
-                                <p>Fly to Sydney this summer. Sale ends soon!</p>
-                                <div class="price">From $999</div>
-                            <p class="original-price"><del>$1,332</del></p>
-                                <p class="social-proof">
-                                34 people have booked this deal today!</p>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
-                            </div>
-                        </div>
-                        <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop"
-                                alt="London city view">
-                            <div class="offer-tag">Business Class Special</div>
-                            <div class="offer-content">
-                                <h4>London Calling</h4>
-                                <p>Upgrade your London trip. Limited seats available.</p>
-                                <div class="price">From $2,450</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                                <h4 class="offer-title">Santorini Sunsets</h4>
+                                <p class="offer-description">Experience the iconic blue domes and breathtaking sunsets of Greece.</p>
+                                <div class="offer-countdown" data-end-time="2025-12-31T23:59:59"></div>
+                                <div class="offer-details">
+                                    <div class="offer-price">
+                                        <span class="original-price">₹95,000</span>
+                                        <span class="current-price">₹76,000</span>
+                                    </div>
+                                    <a href="booking.html?destination=Santorini" class="btn btn-primary offer-button">View Deal</a>
+                                </div>
                             </div>
                         </div>
+                        <!-- Offer 2: Maldives -->
                         <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1591454728342-2621b6785834?q=80&w=1964&auto=format&fit=crop"
-                                alt="Kyoto temple">
-                            <div class="offer-tag">20% OFF</div>
+                            <div class="offer-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" alt="Overwater bungalows in the Maldives">
+                                <div class="offer-badge special-badge">Couples Getaway</div>
+                            </div>
                             <div class="offer-content">
-                                <h4>Kyoto Serenity</h4>
-                                <p>Discover the ancient capital of Japan this autumn.</p>
-                                <div class="price">From $1,200</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                                <h4 class="offer-title">Maldives Overwater Bliss</h4>
+                                <p class="offer-description">Stay in a luxurious overwater villa with our exclusive couples package.</p>
+                                <div class="offer-details">
+                                    <div class="offer-price">
+                                        <span class="current-price">₹1,50,000</span>
+                                    </div>
+                                    <a href="booking.html?destination=Maldives" class="btn btn-primary offer-button">View Deal</a>
+                                </div>
                             </div>
                         </div>
+                        <!-- Offer 3: Kyoto -->
                         <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1543054111-b4a8a8a4362b?q=80&w=2070&auto=format&fit=crop"
-                                alt="Rome Colosseum">
-                            <div class="offer-tag">Weekend Getaway</div>
+                            <div class="offer-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=2070&auto=format&fit=crop" alt="Fushimi Inari Shrine in Kyoto, Japan">
+                                <div class="offer-badge discount-badge">Save 15%</div>
+                            </div>
                             <div class="offer-content">
-                                <h4>Roman Holiday</h4>
-                                <p>A 3-day trip to the eternal city of Rome.</p>
-                                <div class="price">From $750</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                                <h4 class="offer-title">Kyoto's Autumn Colors</h4>
+                                <p class="offer-description">Witness the stunning autumn foliage in Japan's historic capital.</p>
+                                <div class="offer-countdown" data-end-time="2026-03-31T23:59:59"></div>
+                                <div class="offer-details">
+                                    <div class="offer-price">
+                                        <span class="original-price">₹88,000</span>
+                                        <span class="current-price">₹74,800</span>
+                                    </div>
+                                    <a href="booking.html?destination=Kyoto" class="btn btn-primary offer-button">View Deal</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Offer 4: Rome -->
+                        <div class="offer-card">
+                            <div class="offer-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1930&auto=format&fit=crop" alt="The Colosseum in Rome, Italy">
+                                <div class="offer-badge special-badge">City Break</div>
+                            </div>
+                            <div class="offer-content">
+                                <h4 class="offer-title">Roman Holiday</h4>
+                                <p class="offer-description">Explore ancient ruins and vibrant streets in the heart of Italy.</p>
+                                <div class="offer-details">
+                                    <div class="offer-price">
+                                        <span class="current-price">₹62,000</span>
+                                    </div>
+                                    <a href="booking.html?destination=Rome" class="btn btn-primary offer-button">View Deal</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -374,50 +438,174 @@
         </section>
 
         <section class="content-section">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll slide-up">Travel Your Way</h2>
-                <div class="travel-style-container animate-on-scroll fade-in" data-aos="fade-up">
-                    <div class="style-selector">
-                        <div class="style-option active" data-style="summer">
-                            <i class="fas fa-sun"></i>
-                            <div class="style-text">
-                                <h4>Summer Getaways</h4>
-                                <p>Chase the sun and find your perfect beach paradise.</p>
+            <div class="container-fluid">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">Find Your Perfect Travel Style</h2>
+                    <p class="section-subtitle">Every traveler is unique. Discover experiences tailored to your passion.</p>
+                </div>
+                <div class="theme-carousel-container animate-on-scroll fade-in">
+                    <div class="theme-carousel">
+                        <!-- Card 1: Adventure -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" alt="Mountain climbing">
+                            <div class="theme-card-content">
+                                <h3>Adventure & Outdoors</h3>
+                                <p>Push your limits with thrilling experiences.</p>
+                                <div class="theme-popular">Hiking • Diving • Safari • Mountaineering</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">150+ Adventures</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="style-option" data-style="winter">
-                            <i class="fas fa-snowflake"></i>
-                            <div class="style-text">
-                                <h4>Winter Escapes</h4>
-                                <p>Embrace the chill with cozy mountain retreats.</p>
+                        <!-- Card 2: Luxury -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1562790351-d273a961e0e9?q=80&w=1965&auto=format&fit=crop" alt="Luxury resort">
+                            <div class="theme-card-content">
+                                <h3>Luxury & Wellness</h3>
+                                <p>Indulge in world-class comfort and service.</p>
+                                <div class="theme-popular">5★ Resorts • Spa Retreats • Private Tours</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">80+ Luxury Escapes</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="style-option" data-style="honeymoon">
-                            <i class="fas fa-heart"></i>
-                            <div class="style-text">
-                                <h4>Honeymoon Specials</h4>
-                                <p>Create timeless memories in romantic destinations.</p>
+                        <!-- Card 3: Family -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1503793622362-6a7540799017?q=80&w=2070&auto=format&fit=crop" alt="Family on beach">
+                            <div class="theme-card-content">
+                                <h3>Family Adventures</h3>
+                                <p>Create lasting memories with loved ones.</p>
+                                <div class="theme-popular">Theme Parks • Kid-Friendly • All-Inclusive</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">200+ Family Trips</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="style-preview">
-                        <div class="style-image-wrapper">
-                            <div class="style-image active" data-style="summer" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723a996f6ea?q=80&w=2070&auto=format&fit=crop');"></div>
-                            <div class="style-image" data-style="winter" style="background-image: url('https://images.unsplash.com/photo-1491002052546-bf38f186af56?q=80&w=2108&auto=format&fit=crop');"></div>
-                            <div class="style-image" data-style="honeymoon" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1932&auto=format&fit=crop');"></div>
+                        <!-- Card 4: Cultural -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1534469589338-9b9d4f335c83?q=80&w=1935&auto=format&fit=crop" alt="Local market">
+                            <div class="theme-card-content">
+                                <h3>Cultural Immersion</h3>
+                                <p>Connect with local traditions and history.</p>
+                                <div class="theme-popular">Museums • Food Tours • Festivals</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">300+ Cultural Sites</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="style-preview-content">
-                            <h3>Find Your Perfect Trip</h3>
-                            <p>Select a travel style to see curated destinations.</p>
-                            <a href="booking.html" class="btn btn-primary">Find Flights</a>
+                        <!-- Card 5: Solo -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" alt="Solo traveler">
+                            <div class="theme-card-content">
+                                <h3>Solo Journeys</h3>
+                                <p>Discover yourself while exploring the world.</p>
+                                <div class="theme-popular">Group Tours • Safe Destinations • Hostels</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">120+ Solo-Friendly</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 6: Romantic -->
+                        <div class="theme-card">
+                            <img src="https://images.unsplash.com/photo-1515876305430-f06ed50fed5b?q=80&w=1974&auto=format&fit=crop" alt="Couple watching sunset">
+                            <div class="theme-card-content">
+                                <h3>Romantic Escapes</h3>
+                                <p>Unforgettable moments for two.</p>
+                                <div class="theme-popular">Honeymoons • Anniversaries • Couples Retreats</div>
+                                <div class="theme-footer">
+                                    <span class="theme-dest-count">90+ Romantic Spots</span>
+                                    <a href="#" class="btn btn-secondary">Explore</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="content-section bg-light">
+        <!-- ============================================= -->
+        <!-- TRAVEL PLANNING TOOLS SECTION -->
+        <!-- ============================================= -->
+        <section class="travel-tools-section">
             <div class="container">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">Plan Your Perfect Trip</h2>
+                    <p class="section-subtitle">Use our free tools to make travel planning effortless.</p>
+                </div>
+                <div class="tool-grid">
+                    <!-- Tool 1: Budget Calculator -->
+                    <div class="tool-card animate-on-scroll fade-in" data-delay="100">
+                        <div class="tool-icon-wrapper"><i class="fas fa-calculator"></i></div>
+                        <h3 class="tool-title">Trip Budget Calculator</h3>
+                        <p class="tool-description">Get realistic cost estimates for any destination.</p>
+                        <div class="tool-preview budget-preview">
+                            <div class="preview-row"><span>Flights:</span><span class="preview-bar" style="width: 60%;"></span><span>₹45,000</span></div>
+                            <div class="preview-row"><span>Stays:</span><span class="preview-bar" style="width: 45%;"></span><span>₹30,000</span></div>
+                            <div class="preview-row"><span>Food:</span><span class="preview-bar" style="width: 30%;"></span><span>₹15,000</span></div>
+                        </div>
+                        <a href="#" class="btn btn-secondary tool-cta">Calculate Now</a>
+                    </div>
+
+                    <!-- Tool 2: Packing Assistant -->
+                    <div class="tool-card animate-on-scroll fade-in" data-delay="200">
+                        <div class="tool-icon-wrapper"><i class="fas fa-clipboard-list"></i></div>
+                        <h3 class="tool-title">Smart Packing Assistant</h3>
+                        <p class="tool-description">Never forget essentials with our destination-specific lists.</p>
+                        <div class="tool-preview packing-preview">
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Passport & Visas</li>
+                                <li><i class="fas fa-check-circle"></i> Universal Adapter</li>
+                                <li><i class="fas fa-check-circle"></i> Local Currency</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-secondary tool-cta">Create Checklist</a>
+                    </div>
+
+                    <!-- Tool 3: Weather Planner -->
+                    <div class="tool-card animate-on-scroll fade-in" data-delay="300">
+                        <div class="tool-icon-wrapper"><i class="fas fa-cloud-sun-rain"></i></div>
+                        <h3 class="tool-title">Best Time to Visit</h3>
+                        <p class="tool-description">Find the perfect weather for your travel dates.</p>
+                        <div class="tool-preview weather-preview">
+                            <div class="weather-location">Paris, FR</div>
+                            <div class="weather-info">
+                                <i class="fas fa-sun"></i>
+                                <span class="weather-temp">24°C</span>
+                            </div>
+                            <div class="weather-status">Sunny & Clear</div>
+                        </div>
+                        <a href="#" class="btn btn-secondary tool-cta">Check Weather</a>
+                    </div>
+
+                    <!-- Tool 4: Visa Guide -->
+                    <div class="tool-card animate-on-scroll fade-in" data-delay="400">
+                        <div class="tool-icon-wrapper"><i class="fas fa-passport"></i></div>
+                        <h3 class="tool-title">Visa & Documents Guide</h3>
+                        <p class="tool-description">Know exactly what documents you need before you travel.</p>
+                        <div class="tool-preview visa-preview">
+                            <div class="visa-row">
+                                <span class="flag-icon">🇺🇸</span> USA: <span class="status-required">Visa Required</span>
+                            </div>
+                            <div class="visa-row">
+                                <span class="flag-icon">🇹🇭</span> Thailand: <span class="status-on-arrival">Visa on Arrival</span>
+                            </div>
+                            <div class="visa-row">
+                                <span class="flag-icon">🇦🇪</span> UAE: <span class="status-required">Visa Required</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-secondary tool-cta">Check Requirements</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light">
+            <div class="container-fluid">
                 <h2 class="section-title animate-on-scroll slide-up">Travel Inspiration</h2>
                 <div class="inspiration-container-modern animate-on-scroll fade-in" data-aos="fade-up">
                     <div class="inspiration-bg-image"
@@ -442,56 +630,189 @@
             </div>
         </section>
 
-        <section class="content-section">
+        <!-- ============================================= -->
+        <!-- CUSTOMER STORIES SECTION (REDESIGNED) -->
+        <!-- ============================================= -->
+        <section class="stories-section content-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll slide-up">Stories from Our Travelers</h2>
-                <div class="slider-container animate-on-scroll fade-in" id="testimonials-slider">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">Stories from Our Travelers</h2>
+                    <p class="section-subtitle">Real experiences from real adventurers.</p>
+                </div>
+                <div class="testimonial-slider-container animate-on-scroll fade-in">
                     <div class="slider-track">
+                        <!-- Testimonial 1 -->
                         <div class="testimonial-card">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer photo"
-                                class="avatar">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <div class="testimonial-header">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Photo of Sarah L." class="testimonial-avatar">
+                                <div class="testimonial-author">
+                                    <h4>Sarah L.</h4>
+                                    <span>London, UK</span>
+                                </div>
+                                <div class="testimonial-rating">★★★★★</div>
                             </div>
-                            <p>"The booking process was seamless, and our flight to Paris was wonderful. The crew was
-                                amazing. Can't wait for our next trip!"</p>
-                            <h4>- Sarah L.</h4>
+                            <blockquote class="testimonial-quote">
+                                <p>"The booking process was seamless, and our flight to Paris was wonderful. The crew was amazing. Can't wait for our next trip!"</p>
+                            </blockquote>
+                            <div class="testimonial-gallery">
+                                <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=400" alt="Eiffel Tower">
+                                <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?q=80&w=400" alt="Louvre Museum">
+                                <img src="https://images.unsplash.com/photo-1551893478-d726eaf0442c?q=80&w=400" alt="Parisian cafe">
+                            </div>
+                            <div class="testimonial-footer">
+                                <span class="trip-details">Parisian Weekend Getaway, May 2024</span>
+                                <a href="#" class="read-story-link">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
+                        <!-- Testimonial 2 -->
                         <div class="testimonial-card">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer photo"
-                                class="avatar">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=300" alt="Photo of Maria Rodriguez">
+                                <div class="testimonial-author">
+                                    <h4>Maria Rodriguez</h4>
+                                    <span>Madrid, Spain</span>
+                                </div>
+                                <div class="testimonial-rating">★★★★★</div>
                             </div>
-                            <p>"Found an incredible deal to the Maldives through their offers section. It was the
-                                honeymoon of our dreams. Highly recommended."</p>
-                            <h4>- Mark & Chloe T.</h4>
+                            <blockquote class="testimonial-quote">
+                                <p>"The Japan cherry blossom tour exceeded every expectation. Our guide knew hidden spots away from the crowds!"</p>
+                            </blockquote>
+                            <div class="testimonial-gallery">
+                                <img src="https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=400" alt="Cherry blossoms in Japan">
+                                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=400" alt="Japanese temple">
+                                <img src="https://images.unsplash.com/photo-1559102877-4321887344b5?q=80&w=400" alt="Japanese food">
+                            </div>
+                            <div class="testimonial-footer">
+                                <span class="trip-details">Japan Cultural Tour, April 2024</span>
+                                <a href="#" class="read-story-link">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
+                        <!-- Testimonial 3 -->
                         <div class="testimonial-card">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer photo"
-                                class="avatar">
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300" alt="Photo of David & Lisa Chen">
+                                <div class="testimonial-author">
+                                    <h4>David & Lisa Chen</h4>
+                                    <span>Toronto, Canada</span>
+                                </div>
+                                <div class="testimonial-rating">★★★★★</div>
                             </div>
-                            <p>"My business trip to New York was comfortable and on time. The lounge access was a great
-                                perk. Will be flying with them again."</p>
-                            <h4>- David Chen</h4>
+                            <blockquote class="testimonial-quote">
+                                <p>"Best family vacation ever! The kids are still talking about the African safari six months later. Everything was perfectly organized."</p>
+                            </blockquote>
+                            <div class="testimonial-gallery">
+                                <img src="https://images.unsplash.com/photo-1534476363373-724c820a2a49?q=80&w=400" alt="Elephants on safari">
+                                <img src="https://images.unsplash.com/photo-1525078739620-1a45456375b4?q=80&w=400" alt="Giraffe on safari">
+                                <img src="https://images.unsplash.com/photo-1589405858862-2ac9cbb41321?q=80&w=400" alt="Family on safari">
+                            </div>
+                            <div class="testimonial-footer">
+                                <span class="trip-details">Kenya Safari Adventure, August 2024</span>
+                                <a href="#" class="read-story-link">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Photo of Mark & Chloe T.">
+                                <div class="testimonial-author">
+                                    <h4>Mark & Chloe T.</h4>
+                                    <span>Sydney, Australia</span>
+                                </div>
+                                <div class="testimonial-rating">★★★★★</div>
+                            </div>
+                            <blockquote class="testimonial-quote">
+                                <p>"Found an incredible deal to the Maldives through their offers section. It was the honeymoon of our dreams. Highly recommended."</p>
+                            </blockquote>
+                            <div class="testimonial-gallery">
+                                <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=400" alt="Overwater bungalows in Maldives">
+                                <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=400" alt="Beach in Maldives">
+                                <img src="https://images.unsplash.com/photo-1543731225-6a1b34a707a3?q=80&w=400" alt="Couple on beach">
+                            </div>
+                            <div class="testimonial-footer">
+                                <span class="trip-details">Maldives Honeymoon, June 2024</span>
+                                <a href="#" class="read-story-link">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="testimonial-dots-container"></div>
+                <div class="testimonial-cta-container">
+                    <a href="#" class="btn btn-primary">Share Your Story</a>
+                    <div class="review-platforms">
+                        <span>Review us on:</span>
+                        <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#" aria-label="Google"><i class="fab fa-google"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="cta-section">
-            <div class="container animate-on-scroll fade-in">
-                <h2 class="section-title">Ready to Book Your Next Trip?</h2>
-                <p>Find the best fares and book your dream vacation with us today.</p>
-                <a href="booking.html" class="btn btn-primary">Book a Flight Now</a>
+        <!-- ============================================= -->
+        <!-- ENHANCED BOOKING SECTION -->
+        <!-- ============================================= -->
+        <section class="enhanced-booking-section">
+            <div class="floating-icons-bg">
+                <!-- Icons will be generated by JS -->
+            </div>
+            <div class="container">
+                <div class="booking-section-grid">
+                    <!-- Left Content -->
+                    <div class="booking-content-left animate-on-scroll slide-up">
+                        <h2 class="booking-headline">Your Dream Trip is Just One Click Away</h2>
+                        <p class="booking-subheading">Join thousands of satisfied travelers. Start planning your perfect getaway today!</p>
+
+                        <ul class="value-propositions">
+                            <li><i class="fas fa-check-circle"></i> Best Price Guarantee</li>
+                            <li><i class="fas fa-check-circle"></i> 24/7 Customer Support</li>
+                            <li><i class="fas fa-check-circle"></i> Flexible Booking Options</li>
+                            <li><i class="fas fa-check-circle"></i> Expert Travel Consultants</li>
+                            <li><i class="fas fa-check-circle"></i> Instant Confirmation</li>
+                        </ul>
+
+                        <div class="booking-cta-buttons">
+                            <a href="booking.html" class="btn btn-primary btn-cta-primary">Start Planning My Trip</a>
+                            <a href="contact.html" class="btn btn-secondary btn-cta-secondary"><i class="fas fa-phone-alt"></i> Speak to Travel Expert</a>
+                            <a href="destinations.html" class="btn-cta-tertiary">Browse All Destinations <i class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                        <div class="trust-indicators-enhanced">
+                            <div class="review-summary">
+                                <div class="stars">★★★★★</div>
+                                <strong>4.9/5 stars</strong> from 2,847 reviews
+                            </div>
+                            <div class="security-badges">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-paypal"></i>
+                                <span class="ssl-badge"><i class="fas fa-lock"></i> SSL SECURED</span>
+                            </div>
+                            <div class="no-fees-guarantee">
+                                <i class="fas fa-check-circle"></i> No booking fees, ever.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Image -->
+                    <div class="booking-image-right animate-on-scroll fade-in" data-delay="200">
+                        <img src="https://images.unsplash.com/photo-1523908511403-7fc7b25592f4?q=80&w=1974&auto=format&fit=crop" alt="Happy travelers enjoying their vacation">
+                        <div class="floating-review-bubble">
+                            <p>"Absolutely seamless experience. Best trip of my life!"</p>
+                            <span>- Chloe R., Australia</span>
+                        </div>
+                        <div class="consultant-chat-bubble">
+                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Travel consultant">
+                            <div class="chat-content">
+                                <strong>Need help?</strong>
+                                <span>Chat now</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="success-ticker-container">
+                <div class="success-ticker">
+                    <!-- Ticker items will be generated by JS -->
+                </div>
             </div>
         </section>
     </main>
