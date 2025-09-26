@@ -91,6 +91,199 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // =============================================
+    // HERO SECTION: CINEMATIC UPGRADE
+    // =============================================
+
+    // --- 1. Typing Animation for Headline ---
+    function typeAnimation() {
+        const headline = document.getElementById('hero-headline');
+        if (!headline) return;
+
+        const text = "Turn Your Travel Dreams Into Unforgettable Adventures";
+        let i = 0;
+        headline.innerHTML = ""; // Clear existing text
+
+        function type() {
+            if (i < text.length) {
+                headline.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 50); // Adjust typing speed here
+            } else {
+                headline.classList.add('typing-finished'); // Optional class to stop blinking cursor
+            }
+        }
+        type();
+    }
+
+    // --- 2. Personalization: Time & Geo Greeting ---
+    function personalizeHero() {
+        const timeGreeting = document.getElementById('time-based-greeting');
+        const geoGreeting = document.getElementById('geo-location-greeting');
+
+        // Time-based greeting
+        if (timeGreeting) {
+            const hour = new Date().getHours();
+            let greeting = "Ready for an adventure?";
+            if (hour < 12) {
+                greeting = "Good morning! Ready for an adventure?";
+            } else if (hour < 18) {
+                greeting = "Good afternoon! Where to next?";
+            } else {
+                greeting = "Good evening! Planning a getaway?";
+            }
+            timeGreeting.textContent = greeting;
+        }
+
+        // Geo-location greeting (mocked for demonstration)
+        if (geoGreeting) {
+            // In a real app, you would use a Geolocation API
+            const cities = ["New York", "London", "Tokyo", "Sydney", "your city"];
+            const randomCity = cities[Math.floor(Math.random() * cities.length)];
+            geoGreeting.textContent = `Discover amazing trips from ${randomCity}`;
+        }
+    }
+
+    // --- 3. Trust Indicator Counter Animation ---
+    function animateCounters() {
+        const ratingCounter = document.getElementById('rating-counter');
+
+        const animateValue = (element, start, end, duration, decimals = 1) => {
+            if (!element) return;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = progress * (end - start) + start;
+                element.innerText = value.toFixed(decimals);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (ratingCounter) animateValue(ratingCounter, 0, 4.9, 2000, 1);
+                    // You can add the "50,000+" counter here if you add an ID to it
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const trustIndicators = document.querySelector('.trust-indicators');
+        if (trustIndicators) {
+            observer.observe(trustIndicators);
+        }
+    }
+
+    // --- 4. Smart Search Enhancements ---
+    function initializeSmartSearch() {
+        const destinationInput = document.getElementById('hero-destination-input');
+        const autocompleteContainer = document.getElementById('autocomplete-results');
+        const surpriseBtn = document.getElementById('surprise-me-btn');
+
+        if (!destinationInput || !autocompleteContainer) return;
+
+        const mockDestinations = [
+            { name: 'Paris', country: 'France', img: 'https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=100' },
+            { name: 'Tokyo', country: 'Japan', img: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=100' },
+            { name: 'Bora Bora', country: 'French Polynesia', img: 'https://images.unsplash.com/photo-1507525428034-b723a996f3ea?q=80&w=100' },
+            { name: 'Rome', country: 'Italy', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=100' },
+            { name: 'New York', country: 'USA', img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=100' }
+        ];
+
+        destinationInput.addEventListener('input', () => {
+            const query = destinationInput.value.toLowerCase();
+            if (query.length < 2) {
+                autocompleteContainer.style.display = 'none';
+                return;
+            }
+
+            const filtered = mockDestinations.filter(d => d.name.toLowerCase().includes(query));
+            autocompleteContainer.innerHTML = '';
+
+            if (filtered.length > 0) {
+                filtered.forEach(dest => {
+                    const item = document.createElement('div');
+                    item.className = 'autocomplete-item';
+                    item.innerHTML = `
+                        <img src="${dest.img}" alt="${dest.name}">
+                        <div>
+                            <div class="item-name">${dest.name}</div>
+                            <div class="item-country">${dest.country}</div>
+                        </div>
+                    `;
+                    item.addEventListener('click', () => {
+                        destinationInput.value = dest.name;
+                        autocompleteContainer.style.display = 'none';
+                    });
+                    autocompleteContainer.appendChild(item);
+                });
+                autocompleteContainer.style.display = 'block';
+            } else {
+                autocompleteContainer.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!destinationInput.contains(e.target)) {
+                autocompleteContainer.style.display = 'none';
+            }
+        });
+
+        if (surpriseBtn) {
+            surpriseBtn.addEventListener('click', () => {
+                const randomDest = mockDestinations[Math.floor(Math.random() * mockDestinations.length)];
+                destinationInput.value = randomDest.name;
+            });
+        }
+
+        // Smart suggestions based on season
+        const month = new Date().getMonth();
+        const suggestion1 = document.getElementById('suggestion-1');
+        const suggestion2 = document.getElementById('suggestion-2');
+        if (suggestion1 && suggestion2) {
+            if (month >= 5 && month <= 8) { // Summer
+                suggestion1.textContent = 'Beach Escapes';
+                suggestion2.textContent = 'Mountain Hikes';
+            } else { // Winter/Other
+                suggestion1.textContent = 'City Breaks';
+                suggestion2.textContent = 'Cultural Tours';
+            }
+            document.querySelector('.smart-suggestions').style.display = 'flex';
+        }
+    }
+
+    // --- 5. Live Booking Ticker ---
+    function initializeLiveTicker() {
+        const ticker = document.getElementById('live-booking-ticker');
+        const tickerText = document.getElementById('ticker-text');
+        const tickerTime = document.getElementById('ticker-time');
+        if (!ticker || !tickerText || !tickerTime) return;
+
+        const mockBookings = [
+            "Michael from London just booked a trip to Rome!",
+            "The Smith family is heading to Orlando!",
+            "Priya from Mumbai found a deal to Dubai!",
+            "Kenji from Osaka is exploring the temples of Kyoto."
+        ];
+
+        let bookingIndex = 0;
+
+        setInterval(() => {
+            ticker.classList.remove('visible');
+            setTimeout(() => {
+                bookingIndex = (bookingIndex + 1) % mockBookings.length;
+                tickerText.textContent = mockBookings[bookingIndex];
+                tickerTime.textContent = `${Math.floor(Math.random() * 10) + 1} minutes ago`;
+                ticker.classList.add('visible');
+            }, 500);
+        }, 8000); // Change every 8 seconds
+    }
+
+    // =============================================
     // PAGE-SPECIFIC: REUSABLE SLIDER FUNCTIONALITY
     // =============================================
     function initializeSlider(sliderId) {
@@ -152,6 +345,14 @@ document.addEventListener('DOMContentLoaded', function () {
     animatedElements.forEach(element => {
         observer.observe(element);
     });
+
+    // --- Initialize All New Hero Features ---
+    typeAnimation();
+    personalizeHero();
+    animateCounters();
+    initializeSmartSearch();
+    initializeLiveTicker();
+
 
     // =============================================
     // FOOTER-RELATED: SCROLL TO TOP BUTTON
