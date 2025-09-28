@@ -12,15 +12,13 @@
     <link rel="icon" type="image/png" href="../site-images/favicon.png">
 
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
     <!-- Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -183,217 +181,285 @@
         <!-- POPULAR DESTINATIONS - REFINED CARD DESIGN (from image) -->
         <!-- REDESIGNED FOR 2025 STANDARDS -->
         <!-- ============================================= -->
-        <section id="popular-destinations" class="destinations-section">
+        <section id="popular-destinations" class="destinations-section-new">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Popular Flight Destinations</h2>
-                    <p class="section-subtitle">Handpicked journeys to the world's most captivating places.</p>
+                <div class="section-header-new">
+                    <h2 class="section-title-new">Popular Flight Destinations</h2>
+                    <p class="section-subtitle-new">Handpicked journeys to the world's most captivating places.</p>
                 </div>
 
-                <div class="featured-destinations-grid">
+                <div class="destinations-grid-new">
                     <!-- Card 1: Cairo -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="../site-images/des_pg_crd4.jpg" alt="The Great Sphinx with a pyramid in the background in Giza, Egypt" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge cultural">CULTURAL HUB</span>
-                            <div class="card-meta-info">
-                                6 Days • Oct-Apr • Easy
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73a6e?w=400&h=250&fit=crop" alt="Ancient pyramids and the Sphinx in Cairo, Egypt" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new cultural">CULTURAL HUB</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Cairo</h3>
-                                <p class="card-country">Egypt</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Cairo</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> Egypt</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 23 times this week</span>
+                                </div>
+                                <p class="destination-description-new">Embark on a journey through the cradle of ancient civilization.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">4.7</span>
-                                <span class="review-count">(205 reviews)</span>
-                            </div>
-                            <div class="card-trust-indicator">
-                                <i class="fas fa-fire"></i> Booked 23 times this week
-                            </div>
-                            <p class="card-description">Embark on a journey through the cradle of ancient civilization, witnessing majestic pyramids and historical treasures.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹50,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Cairo">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Cairo"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹50,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Cairo">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Cairo"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 2: Sydney -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800" alt="Aerial view of Bondi Beach in Sydney, Australia" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge adventure">BEST FOR ADVENTURE</span>
-                            <div class="card-meta-info">
-                                9 Days • Sep-Feb • Moderate
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=250&fit=crop" alt="Sydney Opera House against a blue sky" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new adventure">BEST FOR ADVENTURE</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Sydney</h3>
-                                <p class="card-country">Australia</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Sydney</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> Australia</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 45 times this week</span>
+                                </div>
+                                <p class="destination-description-new">Discover iconic landmarks and a sun-kissed beach culture.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">4.8</span>
-                                <span class="review-count">(288 reviews)</span>
-                            </div>
-                            <p class="card-description">Discover iconic landmarks, a sun-kissed beach culture, and a vibrant lifestyle in Australia's most famous city.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹72,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Sydney">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Sydney"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹72,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Sydney">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Sydney"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 3: Rome -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="../site-images/des_pg_crd7.jpg" alt="The Colosseum in Rome, Italy" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge cultural">CULTURAL HUB</span>
-                            <div class="card-meta-info">
-                                5 Days • Apr-Jun • Easy
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1552832230-c0197047dc16?w=400&h=250&fit=crop" alt="The ancient Colosseum in Rome, Italy" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new popular">POPULAR</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Rome</h3>
-                                <p class="card-country">Italy</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Rome</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> Italy</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 52 times this week</span>
+                                </div>
+                                <p class="destination-description-new">Step back in time in the Eternal City, where history and art converge.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">4.9</span>
-                                <span class="review-count">(351 reviews)</span>
-                            </div>
-                            <p class="card-description">Step back in time in the Eternal City, where ancient history, incredible art, and vibrant street life come together.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹68,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Rome">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Rome"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹68,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Rome">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Rome"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 4: Bora Bora -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="../site-images/des_pg_crd8.jpg" alt="Overwater bungalows in Bora Bora, French Polynesia" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge luxury">LUXURY ESCAPE</span>
-                            <div class="card-meta-info">
-                                7 Days • May-Oct • Easy
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop" alt="Luxurious overwater bungalows in Bora Bora" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new luxury">LUXURY ESCAPE</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Bora Bora</h3>
-                                <p class="card-country">French Polynesia</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Bora Bora</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> French Polynesia</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 18 times this week</span>
+                                </div>
+                                <p class="destination-description-new">Indulge in an island paradise with crystal-clear turquoise waters.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">5.0</span>
-                                <span class="review-count">(198 reviews)</span>
-                            </div>
-                            <p class="card-description">Indulge in an island paradise with crystal-clear turquoise waters and luxurious overwater bungalows.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹150,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Bora Bora">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Bora Bora"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹150,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Bora Bora">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Bora Bora"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 5: Paris -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=800" alt="The Eiffel Tower in Paris, France" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge popular">POPULAR</span>
-                            <div class="card-meta-info">
-                                5 Days • All Year • Easy
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=400&h=250&fit=crop" alt="The Eiffel Tower in Paris, France" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new popular">POPULAR</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Paris</h3>
-                                <p class="card-country">France</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Paris</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> France</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 61 times this week</span>
+                                </div>
+                                <p class="destination-description-new">The city of romance, art, and lights awaits your exploration.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">4.8</span>
-                                <span class="review-count">(412 reviews)</span>
-                            </div>
-                            <p class="card-description">The city of romance, art, and lights awaits. Explore iconic landmarks and charming streets.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹65,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Paris">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Paris"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹65,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Paris">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Paris"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 6: Tokyo -->
-                    <div class="featured-card">
-                        <div class="card-image-wrapper">
-                            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=800" alt="Senso-ji Temple in Tokyo, Japan" class="card-image">
-                            <div class="card-image-overlay"></div>
-                            <span class="card-badge flash-sale">FLASH SALE</span>
-                            <div class="card-meta-info">
-                                8 Days • Mar-May • Moderate
-                            </div>
+                    <div class="destination-card-new">
+                        <div class="card-image-wrapper-new">
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=250&fit=crop" alt="Shibuya Crossing in Tokyo, Japan at night" class="card-image-new" loading="lazy" decoding="async">
+                            <div class="card-badge-new flash-sale">FLASH SALE</div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h3 class="card-title">Tokyo</h3>
-                                <p class="card-country">Japan</p>
+                        <div class="card-content-new">
+                            <div class="card-body-new">
+                                <h3 class="destination-name-new">Tokyo</h3>
+                                <p class="destination-country-new"><i class="bi bi-geo-alt-fill"></i> Japan</p>
+                                <div class="destination-rating-new">
+                                    <div class="stars-new"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                                    <span class="trust-indicator-new"><i class="bi bi-people-fill"></i> Booked 39 times this week</span>
+                                </div>
+                                <p class="destination-description-new">Experience the vibrant contrast of ancient tradition and futuristic tech.</p>
                             </div>
-                            <div class="card-rating">
-                                <span class="stars">★★★★★</span>
-                                <span class="rating-value">4.9</span>
-                                <span class="review-count">(380 reviews)</span>
-                            </div>
-                            <p class="card-description">Experience the vibrant contrast of ancient tradition and futuristic technology in Japan's capital.</p>
-                            <div class="card-pricing">
-                                <span class="price-label">Starting from</span>
-                                <span class="price-value">₹58,000</span>
-                                <span class="price-details">per person | includes flights + hotel</span>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="card-cta primary" aria-label="View details for Tokyo">View Details</a>
-                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Tokyo"><i class="fas fa-bolt"></i> Quick Book</a>
+                            <div class="card-footer-new">
+                                <div class="destination-price-new">
+                                    <span class="price-label-new">Starting from</span>
+                                    <span class="price-value-new"><i class="bi bi-airplane-fill"></i> ₹58,000</span>
+                                </div>
+                                <div class="destination-buttons-new">
+                                    <a href="#" class="btn-details-new" aria-label="View details for Tokyo">View Details <i class="bi bi-arrow-right"></i></a>
+                                    <a href="#" class="btn-quick-book-new" aria-label="Quick book a flight to Tokyo"><i class="bi bi-lightning-fill"></i> Quick Book</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ============================================= -->
+        <!-- TODAY'S FLIGHT DEALS (INDUSTRY STANDARD) -->
+        <!-- ============================================= -->
+        <section id="flight-deals-section" class="content-section bg-light">
+            <div class="container">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">Today's Flight Deals</h2>
+                    <p class="section-subtitle">Limited-time offers updated every hour. Don't miss out!</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="deals-filter-bar animate-on-scroll fade-in" data-delay="200">
+                    <div class="quick-deal-filters">
+                        <button class="quick-deal-filter active" data-filter="all">All Deals</button>
+                        <button class="quick-deal-filter" data-filter="international">International</button>
+                        <button class="quick-deal-filter" data-filter="domestic">Domestic</button>
+                    </div>
+                    <div class="deal-sort-options">
+                        <label for="deal-sort-select">Sort by:</label>
+                        <select id="deal-sort-select">
+                            <option value="best">Best Value</option>
+                            <option value="cheapest">Cheapest</option>
+                            <option value="shortest">Shortest</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Deals List -->
+                <div class="flight-deals-list animate-on-scroll fade-in" data-delay="300">
+                    <!-- Deal Card 1 -->
+                    <div class="deal-card-horizontal" data-category="international">
+                        <div class="deal-left">
+                            <div class="deal-airline-logo" style="background-color: #5D122D;">AI</div>
+                            <div class="deal-airline-info">
+                                <span class="deal-airline-name">Air India</span>
+                                <div class="deal-rating">★★★★★</div>
+                            </div>
+                        </div>
+                        <div class="deal-center">
+                            <div class="deal-route">Mumbai → Dubai</div>
+                            <div class="deal-flight-details">
+                                <span><i class="bi bi-clock"></i> 14:30 - 17:45</span>
+                                <span><i class="bi bi-hourglass-split"></i> 3h 15m</span>
+                                <span><i class="bi bi-geo-alt"></i> Non-stop</span>
+                                <span><i class="bi bi-airplane"></i> Boeing 777</span>
+                            </div>
+                        </div>
+                        <div class="deal-right">
+                            <div class="deal-pricing-info">
+                                <span class="deal-price-current">₹12,999</span>
+                                <span class="deal-price-original"><del>₹18,500</del></span>
+                                <span class="deal-price-save">Save ₹5,501</span>
+                            </div>
+                            <a href="#" class="btn btn-primary deal-book-btn">Book Now</a>
+                        </div>
+                        <div class="deal-indicators">
+                            <span class="deal-badge-time">Expires in 6h 45m</span>
+                            <span class="deal-badge-demand"><i class="bi bi-fire"></i> High Demand</span>
+                        </div>
+                    </div>
+
+                    <!-- Deal Card 2 -->
+                    <div class="deal-card-horizontal" data-category="domestic">
+                        <div class="deal-left">
+                            <div class="deal-airline-logo" style="background-color: #003876;">6E</div>
+                            <div class="deal-airline-info">
+                                <span class="deal-airline-name">IndiGo</span>
+                                <div class="deal-rating">★★★★☆</div>
+                            </div>
+                        </div>
+                        <div class="deal-center">
+                            <div class="deal-route">Delhi → Bengaluru</div>
+                            <div class="deal-flight-details">
+                                <span><i class="bi bi-clock"></i> 08:00 - 10:45</span>
+                                <span><i class="bi bi-hourglass-split"></i> 2h 45m</span>
+                                <span><i class="bi bi-geo-alt"></i> Non-stop</span>
+                                <span><i class="bi bi-airplane"></i> Airbus A320</span>
+                            </div>
+                        </div>
+                        <div class="deal-right">
+                            <div class="deal-pricing-info">
+                                <span class="deal-price-current">₹4,899</span>
+                                <span class="deal-price-original"><del>₹6,200</del></span>
+                                <span class="deal-price-save">Save ₹1,301</span>
+                            </div>
+                            <a href="#" class="btn btn-primary deal-book-btn">Book Now</a>
+                        </div>
+                        <div class="deal-indicators">
+                            <span class="deal-badge-time">Expires in 2h 10m</span>
+                            <span class="deal-badge-trend"><i class="bi bi-arrow-down-short"></i> Price Drop</span>
+                        </div>
+                    </div>
+
+                    <!-- Add more deal cards as needed -->
+
+                </div>
+            </div>
+        </section>
+
 
         <!-- ============================================= -->
         <!-- ADVANCED SEARCH HUB SECTION -->
@@ -447,7 +513,7 @@
                     <!-- Center Panel: Interactive Map -->
                     <div class="hub-panel-center">
                         <div class="map-container">
-                            <img src="https://i.imgur.com/sSIV1pQ.png" alt="World map with destination pins" class="map-image">
+                            <img src="https://i.imgur.com/sSIV1pQ.png" alt="World map with destination pins" class="map-image" loading="lazy" decoding="async">
                             <!-- Example Pins -->
                             <div class="map-pin" style="top: 35%; left: 18%;" data-info='{"name":"Brazil","price":"$1500+","weather":"28°C","best_time":"Dec-Mar"}'></div>
                             <div class="map-pin" style="top: 30%; left: 48%;" data-info='{"name":"Egypt","price":"$900+","weather":"22°C","best_time":"Oct-Apr"}'></div>
@@ -625,7 +691,7 @@
                 <div class="theme-carousel-container animate-on-scroll fade-in">
                     <div class="theme-carousel">
                         <!-- Card 1: Adventure -->
-                        <div class="theme-card" data-style="adventure">
+                        <div class="theme-card" data-style="adventure" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" alt="Mountain climbing" loading="lazy">
                             <div class="theme-card-badge popular">Most Popular</div>
                             <div class="theme-card-content">
@@ -640,7 +706,7 @@
                             </div>
                         </div>
                         <!-- Card 2: Luxury -->
-                        <div class="theme-card" data-style="luxury">
+                        <div class="theme-card" data-style="luxury" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1562790351-d273a961e0e9?q=80&w=1965&auto=format&fit=crop" alt="Luxury resort" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Luxury & Wellness</h3>
@@ -654,7 +720,7 @@
                             </div>
                         </div>
                         <!-- Card 3: Family -->
-                        <div class="theme-card" data-style="family">
+                        <div class="theme-card" data-style="family" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1503793622362-6a7540799017?q=80&w=2070&auto=format&fit=crop" alt="Family on beach" loading="lazy">
                             <div class="theme-card-badge popular">Most Popular</div>
                             <div class="theme-card-content">
@@ -669,7 +735,7 @@
                             </div>
                         </div>
                         <!-- Card 4: Cultural -->
-                        <div class="theme-card" data-style="art-culture">
+                        <div class="theme-card" data-style="art-culture" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1534469589338-9b9d4f335c83?q=80&w=1935&auto=format&fit=crop" alt="Local market" loading="lazy">
                             <div class="theme-card-badge seasonal">Perfect for Spring</div>
                             <div class="theme-card-content">
@@ -684,7 +750,7 @@
                             </div>
                         </div>
                         <!-- Card 5: Solo -->
-                        <div class="theme-card" data-style="solo">
+                        <div class="theme-card" data-style="solo" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" alt="Solo traveler" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Solo Journeys</h3>
@@ -697,7 +763,7 @@
                             </div>
                         </div>
                         <!-- Card 6: Romantic -->
-                        <div class="theme-card" data-style="couples">
+                        <div class="theme-card" data-style="couples" loading="lazy" decoding="async">
                             <img src="https://images.unsplash.com/photo-1515876305430-f06ed50fed5b?q=80&w=1974&auto=format&fit=crop" alt="Couple watching sunset" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Romantic Escapes</h3>
@@ -1061,7 +1127,7 @@
                     </div>
                 </div>
                 <div class="booking-cta-image-column">
-                    <img src="https://images.unsplash.com/photo-1524169358666-79f22534bc6e?q=80&w=2070&auto=format&fit=crop" alt="Happy travelers taking a photo" class="main-image">
+                    <img src="https://images.unsplash.com/photo-1524169358666-79f22534bc6e?q=80&w=2070&auto=format&fit=crop" alt="Happy travelers taking a photo" class="main-image" loading="lazy" decoding="async">
                     <div class="floating-review-bubble">
                         <p>"Absolutely seamless experience. Best trip of our lives!"</p>
                         <span>- The Johnson Family</span>

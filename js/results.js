@@ -192,16 +192,22 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.clear-filters-btn').addEventListener('click', clearFilters);
 
         // Price alert modal
-        document.querySelectorAll('.select-flight-btn').forEach(btn => {
-            btn.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-                showPriceAlertModal();
+        const priceAlertToggle = document.getElementById('price-alert-toggle');
+        if (priceAlertToggle) {
+            priceAlertToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    showPriceAlertModal();
+                }
             });
-        });
+        }
 
-        document.querySelector('.close-modal-btn').addEventListener('click', () => {
-            document.getElementById('price-alert-modal').style.display = 'none';
-        });
+        const closeModalBtn = document.querySelector('.close-modal-btn');
+        if(closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                document.getElementById('price-alert-modal').style.display = 'none';
+                if (priceAlertToggle) priceAlertToggle.checked = false;
+            });
+        }
 
         document.getElementById('price-alert-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -220,6 +226,25 @@ document.addEventListener('DOMContentLoaded', function () {
         // Modify search
         document.querySelector('.modify-search-btn').addEventListener('click', () => {
             window.location.href = 'index.html';
+        });
+
+        // Mobile filter modal
+        document.getElementById('open-filters-mobile').addEventListener('click', () => {
+            document.getElementById('filters-modal-container').classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        });
+
+        document.getElementById('close-filters-mobile').addEventListener('click', closeMobileFilters);
+        document.getElementById('filters-modal-container').addEventListener('click', (e) => {
+            if (e.target.id === 'filters-modal-container') {
+                closeMobileFilters();
+            }
+        });
+
+        // Sync mobile sort with desktop sort
+        document.getElementById('mobile-sort-select').addEventListener('change', (e) => {
+            document.getElementById('sort-select').value = e.target.value;
+            sortFlights(e.target.value);
         });
     }
 
@@ -271,37 +296,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Apply filters
     function applyFilters() {
-        const nonstop = document.getElementById('nonstop').checked;
-        const onestop = document.getElementById('onestop').checked;
-        const twostops = document.getElementById('twostops').checked;
-        const airindia = document.getElementById('airindia').checked;
-        const indigo = document.getElementById('indigo').checked;
-        const spicejet = document.getElementById('spicejet').checked;
-        const vistara = document.getElementById('vistara').checked;
-        const morning = document.getElementById('morning').checked;
-        const afternoon = document.getElementById('afternoon').checked;
-        const evening = document.getElementById('evening').checked;
-        const night = document.getElementById('night').checked;
+        // Get selected stops
+        const selectedStops = [...document.querySelectorAll('input[name="stops"]:checked')].map(el => parseInt(el.value));
+        
+        // Get selected airlines
+        const selectedAirlines = [...document.querySelectorAll('input[name="airline"]:checked')].map(el => el.value);
+
+        // Get selected times
+        const selectedTimes = [...document.querySelectorAll('.time-block.active')].map(el => el.dataset.time);
+
         const maxPrice = parseInt(document.getElementById('price-range').value);
 
         currentFlights = mockFlights.filter(flight => {
             // Stops filter
-            if (!nonstop && flight.stops === 0) return false;
-            if (!onestop && flight.stops === 1) return false;
-            if (!twostops && flight.stops >= 2) return false;
+            if (!selectedStops.includes(flight.stops)) return false;
 
             // Airlines filter
-            if (airindia && flight.airline !== 'Air India') return false;
-            if (indigo && flight.airline !== 'IndiGo') return false;
-            if (spicejet && flight.airline !== 'SpiceJet') return false;
-            if (vistara && flight.airline !== 'Vistara') return false;
+            if (selectedAirlines.length > 0 && !selectedAirlines.includes(flight.airline)) return false;
 
             // Time filter
             const hour = parseInt(flight.departure.time.split(':')[0]);
-            if (morning && !(hour >= 6 && hour < 12)) return false;
-            if (afternoon && !(hour >= 12 && hour < 18)) return false;
-            if (evening && !(hour >= 18 && hour < 24)) return false;
-            if (night && !(hour >= 0 && hour < 6)) return false;
+            let timeOfDay;
+            if (hour >= 0 && hour < 6) timeOfDay = 'early_morning';
+            else if (hour >= 6 && hour < 12) timeOfDay = 'morning';
+            else if (hour >= 12 && hour < 18) timeOfDay = 'afternoon';
+            else timeOfDay = 'evening';
+            
+            if (selectedTimes.length > 0 && !selectedTimes.includes(timeOfDay)) return false;
 
             // Price filter
             if (flight.price > maxPrice) return false;
@@ -310,17 +331,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         renderFlights();
+        updateAppliedFiltersCount();
     }
 
     // Clear filters
     function clearFilters() {
         document.querySelectorAll('.filter-group input[type="checkbox"]').forEach(checkbox => {
-            checkbox.checked = true;
+            checkbox.checked = false;
         });
-        document.getElementById('price-range').value = 50000;
-        document.getElementById('price-value').textContent = '50,000';
+        // Re-check the default ones
+        document.querySelectorAll('input[name="stops"], input[name="airline"]').forEach(cb => cb.checked = true);
+
+        document.getElementById('price-range').value = 15000;
+        document.getElementById('price-value').textContent = '15,000';
+
+        document.querySelectorAll('.time-block').forEach(block => block.classList.add('active'));
+
         currentFlights = [...mockFlights];
         renderFlights();
+        updateAppliedFiltersCount();
+    }
+
+    function updateAppliedFiltersCount() {
+        // This is a placeholder. A real implementation would count active filters.
+        const count = 0; // Replace with actual count logic
+        document.getElementById('applied-filters-count').textContent = `(${count})`;
+        document.getElementById('mobile-filters-count').textContent = `(${count})`;
     }
 
     // Generate fare calendar
@@ -358,6 +394,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Show price alert modal
     function showPriceAlertModal() {
         document.getElementById('price-alert-modal').style.display = 'flex';
+    }
+
+    function closeMobileFilters() {
+        document.getElementById('filters-modal-container').classList.remove('visible');
+        document.body.style.overflow = '';
     }
 
     // Initialize on page load

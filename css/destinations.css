@@ -6,13 +6,17 @@
   --primary-emerald: #1d5e33;
   --champagne-gold: #E5CBAF;
   --white: #ffffff;
-  --background-cream: #FFFBF2;
+  --background-cream: #FFFBF2; /* Main background */
+  --background-white: #FAFAFA; /* For cards and modals */
   --text-charcoal: #1C2526;
   --text-slate: #5C6B73;
   --shadow-light: rgba(29, 94, 51, 0.1);
   --shadow-medium: rgba(29, 94, 51, 0.2);
-  --radius: 16px;
+  --radius: 16px; /* Standardized border-radius */
   --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --success: #10B981;
+  --error: #EF4444;
+  --warning: #F59E0B;
 
   /* Iridescent Crystal Color Palette */
   --crystal-blue: rgba(59, 130, 246, 0.15);
@@ -40,11 +44,22 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-slate);
   background-color: var(--background-cream);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.5; /* Standard body line-height */
+}
+
+/* Accessibility: Focus visible state */
+:focus-visible {
+  outline: 3px solid var(--primary-emerald);
+  outline-offset: 2px;
+  border-radius: 4px; /* Optional: makes focus ring match element shape */
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-charcoal);
 }
 
 /* Base button style needed for header */
@@ -91,7 +106,7 @@ body {
 
 .header-logo h1 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 36px;
   color: var(--white);
   letter-spacing: 1px;
@@ -611,7 +626,7 @@ body {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 32px;
 }
 
 @media (max-width: 768px) {
@@ -763,9 +778,9 @@ body {
 
 .section-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 32px;
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Inter', sans-serif;
   margin-bottom: 50px;
   color: var(--text-charcoal);
   position: relative;
@@ -788,7 +803,7 @@ body {
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 18px;
   color: var(--text-slate);
   margin-top: 10px;
 }
@@ -812,14 +827,14 @@ body {
 .btn-primary {
   background: var(--primary-emerald);
   color: var(--white);
-  box-shadow: 0 4px 15px rgba(26, 60, 52, 0.2);
+  box-shadow: 0 4px 15px var(--shadow-light);
 }
 
 .btn-primary:hover {
-  background: var(--accent-gold);
-  color: var(--text-charcoal);
+  background: var(--primary-emerald);
+  opacity: 0.9;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(232, 212, 166, 0.4);
+  box-shadow: 0 6px 20px var(--shadow-medium);
 }
 
 .btn-secondary {
@@ -875,9 +890,9 @@ body {
 }
 
 .hero-minimalist-headline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 84px;
-    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    font-size: 76px;
+    font-weight: 800;
     color: var(--white);
     line-height: 0.95;
     letter-spacing: -0.02em;
@@ -888,7 +903,7 @@ body {
     font-size: 22px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.4;
+    line-height: 1.6;
     margin: 32px auto 0; /* Center the subheading block */
     max-width: 600px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -900,7 +915,7 @@ body {
     height: 76px;
     background-color: var(--white);
     border: 2px solid #F3F4F6;
-    border-radius: 16px;
+    border-radius: var(--radius);
     max-width: 700px; /* Allow form to be a bit wider */
     margin-left: auto; /* Add this to center the form */
     margin-right: auto; /* Add this to center the form */
@@ -961,7 +976,7 @@ body {
 
 .hero-minimalist-trust {
     margin-top: 24px;
-    font-size: 16px;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
     display: inline-block;
     background: rgba(255,255,255,0.1);
@@ -1172,7 +1187,7 @@ body {
     position: absolute;
     top: 100px;
     right: 40px;
-    background-color: var(--champagne-gold);
+    background-color: var(--warning);
     color: var(--primary-emerald);
     padding: 10px 16px;
     border-radius: 8px;
@@ -1188,230 +1203,397 @@ body {
 /* ============================================= */
 /* POPULAR DESTINATIONS - 2025 REDESIGN */
 /* ============================================= */
-.destinations-section {
-    background-color: #F8F8F8;
-    padding: 4rem 0;
-}
-
-.section-header {
+/* --- NEW: Section Header --- */
+.section-header-new {
     text-align: center;
     margin-bottom: 64px;
 }
 
-.section-header .section-title {
-    font-size: 52px;
+.section-title-new {
+    font-size: 32px;
     font-weight: 700;
     color: var(--text-charcoal);
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
-.section-header .section-subtitle {
-    font-size: 20px;
-    color: var(--text-slate);
+.section-subtitle-new {
+    font-size: 18px;
+    color: #5C6B73;
     max-width: 700px;
     margin: 0 auto;
 }
 
-.featured-destinations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
+/* --- NEW: Main Container & Grid --- */
+.destinations-section-new {
+    padding: 80px 20px 0 20px;
 }
 
-.featured-card {
-    background-color: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+.destinations-section-new .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.destinations-grid-new {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* --- NEW: Card Structure --- */
+.destination-card-new {
+    background-color: #ffffff;
+    border-radius: var(--radius);
+    height: 500px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 420px;
 }
 
-.featured-card:hover {
+.destination-card-new:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(29, 94, 51, 0.15);
+    box-shadow: 0 16px 32px var(--shadow-light);
 }
 
-.card-image-wrapper {
+/* --- NEW: Image & Badge --- */
+.card-image-wrapper-new {
     position: relative;
-    aspect-ratio: 16 / 10;
+    width: 100%;
+    height: 200px;
     overflow: hidden;
 }
 
-.card-image {
+.card-image-new {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.featured-card:hover .card-image {
+.destination-card-new:hover .card-image-new {
     transform: scale(1.05);
 }
 
-.card-image-overlay {
+.card-badge-new {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-}
-
-.card-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    color: var(--white);
+    top: 16px;
+    left: 16px;
     padding: 6px 12px;
-    border-radius: 20px;
+    border-radius: 6px;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 2;
 }
 
-/* Badge Colors */
-.card-badge.cultural { background-color: var(--primary-emerald); }
-.card-badge.adventure { background-color: var(--champagne-gold); color: var(--text-charcoal); }
-.card-badge.luxury { background-color: rgba(29, 94, 51, 0.9); }
-.card-badge.popular { background-color: #db2777; }
-.card-badge.flash-sale { background-color: #EF4444; }
+.card-badge-new.cultural { background-color: #1d5e33; color: white; }
+.card-badge-new.adventure { background-color: #E5CBAF; color: #1C2526; }
+.card-badge-new.luxury { background-color: #1d5e33; color: white; }
+.card-badge-new.flash-sale { background-color: #EF4444; color: white; }
+.card-badge-new.popular { background-color: var(--warning); color: white; }
 
-.card-meta-info {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255,255,255,0.9);
-    padding: 6px 10px;
-    border-radius: 8px;
-    color: var(--text-charcoal);
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 2;
-}
-
-.card-content {
+/* --- NEW: Card Content --- */
+.card-content-new {
     padding: 24px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     flex-grow: 1;
 }
 
-.card-title-row {
-    margin-bottom: 8px;
+.destination-name-new {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1C2526;
 }
 
-.card-title {
+.destination-country-new {
+    font-size: 16px;
+    color: #5C6B73;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.destination-rating-new {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.stars-new {
+    color: #E5CBAF;
+    font-size: 16px;
+}
+
+.trust-indicator-new {
+    font-size: 14px;
+    color: #5C6B73;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.destination-description-new {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5C6B73;
+    margin: 16px 0;
+}
+
+.destination-price-new {
+    margin-bottom: 16px;
+}
+
+.price-label-new {
+    font-size: 14px;
+    color: #5C6B73;
+}
+
+.price-value-new {
+    display: block;
     font-size: 28px;
     font-weight: 700;
-    color: var(--text-charcoal);
-}
-
-.card-country {
-    font-size: 16px;
-    color: var(--text-slate);
-    margin-top: 4px;
-}
-
-.card-rating {
+    color: #1d5e33;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.card-rating .stars {
-    color: var(--champagne-gold);
-    font-size: 16px;
-}
-.card-rating .rating-value {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-charcoal);
-}
-.card-rating .review-count {
-    font-size: 14px;
-    color: var(--text-slate);
-}
-
-.card-trust-indicator {
-    font-size: 12px;
-    color: var(--primary-emerald);
-    font-weight: 600;
-    margin-top: 8px;
-}
-
-.card-description {
-    font-size: 15px;
-    color: var(--text-slate);
-    line-height: 1.4;
-    margin: 12px 0 16px 0;
-    flex-grow: 1;
-}
-
-.card-pricing {
-    margin-bottom: 20px;
-}
-
-.price-label {
-    font-size: 14px;
-    color: var(--text-slate);
-}
-
-.price-value {
-    display: block;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--primary-emerald);
-    line-height: 1;
-}
-
-.price-details {
-    font-size: 13px;
-    color: var(--text-slate);
-}
-
-.card-actions {
+/* --- NEW: Buttons --- */
+.destination-buttons-new {
     display: flex;
-    gap: 2%;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.card-cta {
+.btn-details-new, .btn-quick-book-new {
+    height: 48px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 48px;
-    border-radius: 12px;
     font-weight: 600;
-    font-size: 16px;
     text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.btn-details-new {
+    flex: 1;
+    background-color: #1d5e33;
+    color: white;
+    gap: 8px;
+}
+
+.btn-quick-book-new {
+    width: 120px;
+    border: 2px solid #1d5e33;
+    color: #1d5e33;
+    gap: 8px;
+}
+
+.btn-details-new:hover, .btn-quick-book-new:hover {
+    opacity: 0.9;
+}
+
+/* --- NEW: Responsive Fixes --- */
+@media (max-width: 1024px) {
+    .destinations-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .destinations-section-new {
+        padding: 40px 16px;
+    }
+    .section-title-new {
+        font-size: 28px;
+    }
+    .destinations-grid-new {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .destination-card-new {
+        height: auto;
+        margin-bottom: 24px;
+    }
+    .destination-name-new {
+        font-size: 20px;
+    }
+    .destination-buttons-new {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .btn-quick-book-new {
+        width: 100%;
+    }
+}
+
+/* --- OLD STYLES TO BE REMOVED/REPLACED --- */
+.masonry-destinations-section,
+.masonry-grid,
+.masonry-card,
+.masonry-image-wrapper,
+.masonry-image,
+.masonry-favorite-btn,
+.masonry-content,
+.masonry-deal-badge,
+.masonry-city,
+.masonry-country,
+.masonry-price,
+.masonry-cta-btn,
+.masonry-booking-info,
+.masonry-load-more {
+    display: none !important;
+}
+
+/* ============================================= */
+/* TODAY'S FLIGHT DEALS (INDUSTRY STANDARD) */
+/* ============================================= */
+.deals-filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 10px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.quick-deal-filters {
+    display: flex;
+    gap: 8px;
+}
+
+.quick-deal-filter {
+    padding: 8px 20px;
+    border: 1px solid #e2e8f0;
+    background-color: transparent;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.card-cta.primary {
-    flex-basis: 60%;
+.quick-deal-filter.active,
+.quick-deal-filter:hover {
     background-color: var(--primary-emerald);
     color: var(--white);
-}
-.card-cta.primary:hover {
-    background-color: #154b27;
+    border-color: var(--primary-emerald);
 }
 
-.card-cta.secondary {
-    flex-basis: 38%;
-    background-color: transparent;
-    color: var(--primary-emerald);
-    border: 2px solid var(--primary-emerald);
-}
-.card-cta.secondary:hover {
-    background-color: #f0fdf4;
+.deal-sort-options label {
+    font-weight: 500;
+    margin-right: 10px;
 }
 
-/* ============================================= */
-/* SLIDER SECTIONS (OFFERS & TESTIMONIALS) */
-/* ============================================= */
+.deal-sort-options select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: var(--white);
+}
+
+.flight-deals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.deal-card-horizontal {
+    width: 100%;
+    height: 140px;
+    background-color: var(--white);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1.5fr;
+    align-items: center;
+    padding: 20px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.deal-card-horizontal:hover {
+    border-color: var(--primary-emerald);
+    transform: translateY(-4px);
+}
+
+.deal-left { display: flex; align-items: center; gap: 15px; }
+.deal-airline-logo {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+.deal-airline-name { font-size: 18px; font-weight: 600; color: var(--text-charcoal); }
+.deal-rating { color: var(--champagne-gold); }
+
+.deal-center { text-align: center; }
+.deal-route { font-size: 24px; font-weight: 700; color: var(--text-charcoal); margin-bottom: 8px; }
+.deal-flight-details { display: flex; justify-content: center; gap: 16px; font-size: 14px; color: var(--text-slate); }
+.deal-flight-details i { margin-right: 4px; }
+
+.deal-right { display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
+.deal-pricing-info { text-align: right; }
+.deal-price-current { font-size: 32px; font-weight: 800; color: var(--primary-emerald); display: block; line-height: 1; }
+.deal-price-original { color: var(--text-slate); font-size: 14px; }
+.deal-price-save { color: var(--success); font-weight: 600; font-size: 14px; display: block; }
+.deal-book-btn { padding: 12px 24px; font-size: 16px; }
+
+.deal-indicators {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+}
+.deal-indicators span {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    background-color: var(--champagne-gold);
+}
+.deal-indicators .deal-badge-demand { background-color: #fecaca; color: var(--error); }
+.deal-indicators .deal-badge-trend { background-color: #dcfce7; color: #166534; }
+
+/* Responsive for Deals */
+@media (max-width: 768px) {
+    .deal-card-horizontal {
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 15px;
+    }
+    .deal-left, .deal-right {
+        justify-content: space-between;
+    }
+    .deal-center {
+        text-align: left;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 15px 0;
+    }
+    .deal-route { font-size: 20px; }
+    .deal-flight-details { justify-content: flex-start; flex-wrap: wrap; gap: 10px; }
+    .deal-pricing-info { text-align: left; }
+    .deal-price-current { font-size: 24px; }
+    .deals-filter-bar { flex-direction: column; gap: 15px; }
+}
+
 /* --- DEALS SECTION (Formerly Offers Slider) --- */
 .deals-grid {
   display: grid;

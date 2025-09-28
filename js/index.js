@@ -98,6 +98,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // --- LANGUAGE SWITCHER ---
+    const langSwitcherBtn = document.querySelector('.language-switcher-btn');
+    const langMenu = document.querySelector('.language-switcher-menu');
+    if (langSwitcherBtn && langMenu) {
+        langSwitcherBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langMenu.style.display = langMenu.style.display === 'block' ? 'none' : 'block';
+        });
+        document.addEventListener('click', () => {
+            langMenu.style.display = 'none';
+        });
+        langMenu.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent menu from closing when clicking inside
+        });
+        // Add translation logic here in a real app
+    }
+
     // --- REBUILT FLIGHT CLASS SLIDERS with Full Controls ---
     function initializeSlider(sliderId) {
         const wrapper = document.getElementById(sliderId);
@@ -240,6 +257,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let cardWidthWithGap = 0;
         let maxIndex = 0;
 
+        // --- Skeleton Loader Logic ---
+        const skeletonLoader = container.querySelector('.offers-skeleton-loader');
+        // Simulate loading
+        setTimeout(() => {
+            if (skeletonLoader) skeletonLoader.style.display = 'none';
+            carousel.style.visibility = 'visible';
+            // Initialize carousel dimensions after content is visible
+            updateCarouselDimensions();
+        }, 1500); // Simulate 1.5s loading time
+
         function updateCarouselDimensions() {
             const gap = window.innerWidth <= 768 ? 20 : 30;
             carousel.style.gap = `${gap}px`;
@@ -286,44 +313,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
 
         window.addEventListener('resize', updateCarouselDimensions);
-        updateCarouselDimensions(); // Initial call
+        // updateCarouselDimensions(); // This is now called after skeleton loader timeout
     }
     initializeOffersCarousel();
 
     function initializeActivityFeed() {
-        const activities = [
-            { icon: 'fas fa-plane-departure', text: 'Sarah from New York just booked a flight to Paris', time: '2 minutes ago' },
-            { icon: 'fas fa-ticket-alt', text: 'Michael saved $247 on his London trip', time: '5 minutes ago' },
-            { icon: 'fas fa-star', text: 'Emma rated her Dubai experience 5 stars', time: '8 minutes ago' },
-            { icon: 'fas fa-map-marker-alt', text: 'John discovered a new route to Tokyo', time: '12 minutes ago' },
-            { icon: 'fas fa-heart', text: 'Lisa added Rome to her wishlist', time: '15 minutes ago' },
-            { icon: 'fas fa-plane', text: 'David booked a business class seat to Singapore', time: '18 minutes ago' }
-        ];
+        // Animate real-time stats counter
+        const flightsBookedStat = document.getElementById('flights-booked-stat');
+        if (flightsBookedStat) {
+            let startCount = 2800;
+            const endCount = 2847; // The number displayed in HTML
+            const duration = 2000;
+            let startTime = null;
 
-        let currentActivityIndex = 0;
-
-        function updateActivity() {
-            const activityItems = document.querySelectorAll('.activity-item');
-            if (activityItems.length === 0) return;
-
-            activityItems.forEach((item, index) => {
-                const activity = activities[(currentActivityIndex + index) % activities.length];
-                const icon = item.querySelector('i');
-                const text = item.querySelector('span');
-                const time = item.querySelector('small');
-
-                if (icon && text && time) {
-                    icon.className = activity.icon;
-                    text.textContent = activity.text;
-                    time.textContent = activity.time;
+            function animateCounter(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const current = Math.min(startCount + Math.floor(progress / duration * (endCount - startCount)), endCount);
+                flightsBookedStat.textContent = current.toLocaleString();
+                if (progress < duration) {
+                    requestAnimationFrame(animateCounter);
+                } else {
+                    // After initial animation, increment slowly
+                    setInterval(() => {
+                        endCount += Math.floor(Math.random() * 3) + 1;
+                        flightsBookedStat.textContent = endCount.toLocaleString();
+                    }, 5000);
                 }
-            });
-
-            currentActivityIndex = (currentActivityIndex + 1) % activities.length;
+            }
+            requestAnimationFrame(animateCounter);
         }
-
-        // Update activity feed every 8 seconds
-        setInterval(updateActivity, 8000);
 
         // Animate customer counter
         const customerCounter = document.getElementById('customer-counter');
@@ -454,33 +473,57 @@ document.addEventListener('DOMContentLoaded', function () {
         const toInput = document.getElementById('to');
         const searchSection = document.getElementById('search-section-anchor');
 
-        destinationsGrid.addEventListener('click', function(e) {
+        destinationsGrid.addEventListener('click', function (e) {
             const card = e.target.closest('.home-destination-card');
             if (!card) return;
 
-            // Handle Wishlist Button Click
-            if (e.target.closest('.wishlist-btn')) {
-                e.stopPropagation(); // Prevent other card actions
-                const wishlistBtn = e.target.closest('.wishlist-btn');
-                wishlistBtn.classList.toggle('active');
-                
-                // You can add logic here to save to localStorage
-                const isWishlisted = wishlistBtn.classList.contains('active');
-                console.log(`Destination ${card.dataset.destinationName} wishlisted: ${isWishlisted}`);
+            // Handle Price Alert Button
+            if (e.target.closest('.alert-btn')) {
+                e.stopPropagation();
+                const alertBtn = e.target.closest('.alert-btn');
+                alertBtn.innerHTML = '<i class="fas fa-check"></i>';
+                alertBtn.style.backgroundColor = 'var(--primary-emerald)';
+                alert(`Price alert set for ${card.dataset.destinationName}! (Demo)`);
                 return;
             }
 
-            // Handle "Explore" Button or Card Click
-            if (toInput && (e.target.closest('.explore-btn') || e.target.closest('.destination-info'))) {
+            // Handle "Explore" Button Click
+            if (e.target.closest('.explore-btn')) {
+                e.stopPropagation();
+                // Expand the card to show insider tip
+                card.classList.toggle('expanded');
+                // If you want to scroll to the search form instead/also:
+                /*
                 const destinationName = card.dataset.destinationName;
-                
                 toInput.value = destinationName;
-                // Optional: Update airport code display if you have one
-                // document.getElementById('to-airport').textContent = `${card.dataset.destinationCode}, ...`;
-                
                 searchSection.scrollIntoView({ behavior: 'smooth' });
+                */
+            } else {
+                // If clicking anywhere else on the card, you might want to navigate
+                // For this demo, we'll just log it.
+                console.log(`Navigating to details for ${card.dataset.destinationName}`);
+                saveRecentlyViewed(card);
+                // window.location.href = `destinations.html#${card.dataset.destinationName}`;
             }
         });
+
+        function saveRecentlyViewed(card) {
+            const destination = {
+                name: card.dataset.destinationName,
+                img: card.querySelector('.home-destination-img').src
+            };
+
+            let recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewedFlights')) || [];
+            // Remove if already exists to move it to the front
+            recentlyViewed = recentlyViewed.filter(item => item.name !== destination.name);
+            // Add to the front
+            recentlyViewed.unshift(destination);
+            // Keep only the last 5
+            if (recentlyViewed.length > 5) {
+                recentlyViewed.pop();
+            }
+            localStorage.setItem('recentlyViewedFlights', JSON.stringify(recentlyViewed));
+        }
     }
     initializeDestinationsGrid();
 
@@ -1042,59 +1085,119 @@ document.addEventListener('DOMContentLoaded', function () {
     function initializeTestimonialsSlider() {
         const slider = document.querySelector('.home-testimonial-slider');
         const cards = document.querySelectorAll('.home-testimonial-card');
-        const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
-        
-        if (!slider || cards.length === 0 || indicators.length === 0) return;
-        
+        const indicatorsContainer = document.querySelector('.testimonial-indicators');
+        const filterButtons = document.querySelectorAll('.testimonial-filters .filter-btn');
+
+        if (!slider || cards.length === 0 || !indicatorsContainer) return;
+
         let currentSlide = 0;
         let autoSlideInterval;
-        
+        let visibleCards = Array.from(cards);
+
+        function generateIndicators() {
+            indicatorsContainer.innerHTML = '';
+            visibleCards.forEach((_, index) => {
+                const button = document.createElement('button');
+                button.classList.add('indicator');
+                if (index === 0) button.classList.add('active');
+                button.dataset.slide = index;
+                indicatorsContainer.appendChild(button);
+            });
+            // Add click handlers to new indicators
+            indicatorsContainer.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                    stopAutoSlide();
+                    startAutoSlide();
+                });
+            });
+        }
+
         function showSlide(index) {
-            // Hide all cards
-            cards.forEach((card, i) => {
-                card.classList.toggle('active', i === index);
-            });
-            
-            // Update indicators
-            indicators.forEach((indicator, i) => {
-                indicator.classList.toggle('active', i === index);
-            });
-            
+            if (index >= visibleCards.length) index = 0;
+            if (index < 0) index = visibleCards.length - 1;
+
+            visibleCards.forEach((card, i) => card.style.display = i === index ? 'flex' : 'none');
+            indicatorsContainer.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === index));
             currentSlide = index;
         }
-        
+
         function nextSlide() {
-            const next = (currentSlide + 1) % cards.length;
+            const next = (currentSlide + 1) % visibleCards.length;
             showSlide(next);
         }
-        
+
         function startAutoSlide() {
+            stopAutoSlide();
             autoSlideInterval = setInterval(nextSlide, 6000); // Change slide every 6 seconds
         }
-        
+
         function stopAutoSlide() {
             clearInterval(autoSlideInterval);
         }
-        
-        // Add click handlers to indicators
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                showSlide(index);
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+
+                if (filter === 'all') {
+                    visibleCards = Array.from(cards);
+                } else {
+                    visibleCards = Array.from(cards).filter(card => card.dataset.category === filter);
+                }
+
+                generateIndicators();
+                showSlide(0);
                 stopAutoSlide();
-                startAutoSlide(); // Restart auto-slide
+                startAutoSlide();
             });
         });
-        
+
+        slider.addEventListener('click', (e) => {
+            if (e.target.closest('.vote-btn')) {
+                const parent = e.target.closest('.helpful-vote');
+                parent.innerHTML = '<p style="color: var(--primary-emerald); font-weight: 600;">Thank you for your feedback!</p>';
+            }
+        });
+
         // Pause auto-slide on hover
         slider.addEventListener('mouseenter', stopAutoSlide);
         slider.addEventListener('mouseleave', startAutoSlide);
-        
-        // Initialize
+
+        // Initial setup
+        generateIndicators();
         showSlide(0);
         startAutoSlide();
     }
-    
     initializeTestimonialsSlider();
+
+    // --- FOOTER: RECENTLY VIEWED FLIGHTS ---
+    function initializeFooterFeatures() {
+        const recentlyViewedList = document.getElementById('recently-viewed-list');
+        if (!recentlyViewedList) return;
+
+        const viewedItems = JSON.parse(localStorage.getItem('recentlyViewedFlights')) || [];
+
+        if (viewedItems.length > 0) {
+            recentlyViewedList.innerHTML = ''; // Clear the placeholder text
+            viewedItems.forEach(item => {
+                const card = document.createElement('a');
+                card.href = `destinations.html#${item.name}`;
+                card.className = 'recent-view-card';
+                card.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" loading="lazy">
+                    <div class="recent-view-card-content">
+                        <p>${item.name}</p>
+                    </div>
+                `;
+                recentlyViewedList.appendChild(card);
+            });
+        }
+        // If no items, the default HTML message will be shown.
+    }
+    initializeFooterFeatures();
 
     // =============================================
     // FOOTER-RELATED: SCROLL TO TOP BUTTON
@@ -1150,4 +1253,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
         footerObserver.observe(footer);
     }
+
+    // --- COOKIE CONSENT BANNER ---
+    function initializeCookieBanner() {
+        const banner = document.getElementById('cookie-consent-banner');
+        const acceptBtn = document.getElementById('cookie-accept-btn');
+        const declineBtn = document.getElementById('cookie-decline-btn');
+
+        if (!banner || !acceptBtn || !declineBtn) return;
+
+        const consent = localStorage.getItem('cookie_consent');
+
+        if (!consent) {
+            banner.classList.add('visible');
+        }
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'accepted');
+            banner.classList.remove('visible');
+        });
+
+        declineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'declined');
+            banner.classList.remove('visible');
+        });
+    }
+    initializeCookieBanner();
 });

@@ -138,41 +138,129 @@
     <section class="results-content">
       <div class="results-container">
         <!-- Filters Sidebar -->
-        <aside class="filters-sidebar">
-          <div class="filters-header">
-            <h3>Filters</h3>
-            <button class="clear-filters-btn">Clear All</button>
-          </div>
+        <div class="filters-modal-container" id="filters-modal-container">
+          <aside class="filters-sidebar">
+            <div class="filters-header">
+              <h3>Filters <span class="applied-filters-count" id="applied-filters-count">(0)</span></h3>
+              <button class="clear-filters-btn">Clear All</button>
+              <button class="close-filters-mobile" id="close-filters-mobile">&times;</button>
+            </div>
 
-          <div class="filter-group">
-            <h4>Stops</h4>
-            <label><input type="checkbox" id="nonstop" checked> Nonstop</label>
-            <label><input type="checkbox" id="onestop"> 1 Stop</label>
-            <label><input type="checkbox" id="twostops"> 2+ Stops</label>
-          </div>
+            <!-- Smart Filters -->
+            <div class="filter-group smart-filters">
+              <h4>Smart Filters</h4>
+              <div class="smart-filter-chips">
+                <button class="smart-chip" data-filter="best">🌟 Best Deals</button>
+                <button class="smart-chip" data-filter="shortest">✈️ Shortest</button>
+                <button class="smart-chip" data-filter="direct">✅ Direct Flights</button>
+              </div>
+            </div>
 
-          <div class="filter-group">
-            <h4>Airlines</h4>
-            <label><input type="checkbox" id="airindia"> Air India</label>
-            <label><input type="checkbox" id="indigo"> IndiGo</label>
-            <label><input type="checkbox" id="spicejet"> SpiceJet</label>
-            <label><input type="checkbox" id="vistara"> Vistara</label>
-          </div>
+            <!-- Price Range -->
+            <div class="filter-group">
+              <h4>Price Range</h4>
+              <div class="price-histogram">
+                <div class="histogram-bar" style="height: 40%;"></div>
+                <div class="histogram-bar" style="height: 70%;"></div>
+                <div class="histogram-bar" style="height: 90%;"></div>
+                <div class="histogram-bar" style="height: 60%;"></div>
+                <div class="histogram-bar" style="height: 30%;"></div>
+              </div>
+              <input type="range" id="price-range" min="3000" max="15000" value="15000" step="100">
+              <div class="price-display">
+                <span>₹3,000</span>
+                <span>₹<span id="price-value">15,000</span></span>
+              </div>
+            </div>
 
-          <div class="filter-group">
-            <h4>Departure Time</h4>
-            <label><input type="checkbox" id="morning"> Morning (6AM - 12PM)</label>
-            <label><input type="checkbox" id="afternoon"> Afternoon (12PM - 6PM)</label>
-            <label><input type="checkbox" id="evening"> Evening (6PM - 12AM)</label>
-            <label><input type="checkbox" id="night"> Night (12AM - 6AM)</label>
-          </div>
+            <!-- Stops -->
+            <div class="filter-group">
+              <h4>Stops</h4>
+              <div class="filter-options-grid">
+                <label><input type="checkbox" name="stops" value="0" checked> Non-stop</label>
+                <label><input type="checkbox" name="stops" value="1" checked> 1 Stop</label>
+                <label><input type="checkbox" name="stops" value="2" checked> 2+ Stops</label>
+              </div>
+            </div>
 
-          <div class="filter-group">
-            <h4>Price Range</h4>
-            <input type="range" id="price-range" min="1000" max="50000" value="50000">
-            <div class="price-display">Up to ₹<span id="price-value">50,000</span></div>
+            <!-- Airlines -->
+            <div class="filter-group">
+              <h4>Airlines</h4>
+              <input type="search" class="airline-search" placeholder="Search airlines...">
+              <div class="airline-list">
+                <label><input type="checkbox" name="airline" value="IndiGo" checked> <img src="https://i.imgur.com/T0b1t1f.png" alt="IndiGo"> IndiGo</label>
+                <label><input type="checkbox" name="airline" value="Air India" checked> <img src="https://i.imgur.com/sC3mYh1.png" alt="Air India"> Air India</label>
+                <label><input type="checkbox" name="airline" value="Vistara" checked> <img src="https://i.imgur.com/WJm4z2a.png" alt="Vistara"> Vistara</label>
+                <label><input type="checkbox" name="airline" value="SpiceJet" checked> <img src="https://i.imgur.com/uSmNnS2.png" alt="SpiceJet"> SpiceJet</label>
+              </div>
+            </div>
+
+            <!-- Departure Time -->
+            <div class="filter-group">
+              <h4>Departure Time</h4>
+              <div class="time-selector">
+                <div class="time-block" data-time="early_morning">
+                  <i class="fas fa-moon"></i>
+                  <span>00-06</span>
+                </div>
+                <div class="time-block active" data-time="morning">
+                  <i class="fas fa-cloud-sun"></i>
+                  <span>06-12</span>
+                </div>
+                <div class="time-block active" data-time="afternoon">
+                  <i class="fas fa-sun"></i>
+                  <span>12-18</span>
+                </div>
+                <div class="time-block active" data-time="evening">
+                  <i class="fas fa-cloud-moon"></i>
+                  <span>18-00</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced Options -->
+            <div class="filter-group advanced-filters">
+              <h4>Advanced Options</h4>
+              <label class="switch">
+                <input type="checkbox" id="baggage-included">
+                <span class="slider"></span>
+                Baggage Included
+              </label>
+              <label class="switch">
+                <input type="checkbox" id="wifi-available">
+                <span class="slider"></span>
+                WiFi Available
+              </label>
+            </div>
+
+            <!-- Filter Actions -->
+            <div class="filter-actions">
+              <button class="btn btn-secondary save-search-btn"><i class="fas fa-save"></i> Save Search</button>
+              <div class="price-alert-toggle">
+                <span>Price Alerts</span>
+                <label class="switch">
+                  <input type="checkbox" id="price-alert-toggle">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Mobile Filter Trigger -->
+        <div class="mobile-filter-trigger">
+          <button class="btn btn-primary" id="open-filters-mobile">
+            <i class="fas fa-filter"></i> Filters <span class="applied-filters-count" id="mobile-filters-count">(0)</span>
+          </button>
+          <div class="mobile-sort-options">
+            <label for="mobile-sort-select">Sort:</label>
+            <select id="mobile-sort-select">
+              <option value="best">Best Value</option>
+              <option value="price-low">Cheapest</option>
+              <option value="shortest">Shortest</option>
+            </select>
           </div>
-        </aside>
+        </div>
 
         <!-- Results Main -->
         <div class="results-main">

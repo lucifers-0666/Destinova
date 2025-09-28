@@ -11,6 +11,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="../site-images/favicon.png">
 
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+
   <!-- Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
@@ -85,6 +88,16 @@
       </ul>
 
       <div class="header-actions">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
+          <ul class="language-switcher-menu">
+            <li><a href="#" data-lang="en">English (EN)</a></li>
+            <li><a href="#" data-lang="es">Español (ES)</a></li>
+            <li><a href="#" data-lang="fr">Français (FR)</a></li>
+          </ul>
+        </div>
+
         <a href="signin.html" class="btn header-btn-signin">
           <i class="fas fa-right-to-bracket"></i>
           <span>Sign In</span>
@@ -126,10 +139,10 @@
   <main>
     <section class="home-hero" role="banner">
       <div class="home-hero-bg-animation" aria-hidden="true"></div>
-      <div class="home-hero-overlay" aria-hidden="true"></div>
+      <div class="home-hero-overlay" aria-hidden="true" data-i18n-key="heroOverlay"></div>
       <div class="home-hero-content">
-        <h1 data-aos="fade-down" data-aos-duration="800">Your Journey Starts Here</h1>
-        <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">Experience premium travel with Destinova.
+        <h1 data-aos="fade-down" data-aos-duration="800" data-i18n-key="heroTitle">Your Journey Starts Here</h1>
+        <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200" data-i18n-key="heroSubtitle">Experience premium travel with Destinova.
           Discover exclusive destinations and book flights with world-class service.</p>
         <p class="text-lg mt-4 text-amber-100/80" data-aos="fade-down" data-aos-duration="800" data-aos-delay="300">Start your journey with exclusive offers and unparalleled service.</p>
         <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
@@ -137,7 +150,7 @@
             <i class="fas fa-plane-departure" aria-hidden="true"></i>
             Book Your Flight
           </a>
-          <a href="#home-destinations" class="btn btn-light hero-secondary">
+          <a href="#home-destinations" class="btn btn-light hero-secondary" data-i18n-key="exploreDestinations">
             <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
             Explore Destinations
           </a>
@@ -328,66 +341,109 @@
         <h2 data-aos="fade-up">Special Offers</h2>
         <p data-aos="fade-up" data-aos-delay="100">Don't miss our exclusive deals and seasonal promotions.</p>
       </div>
-      <div class="home-offers-carousel-container" data-aos="fade-up" data-aos-delay="200">
-        <button class="carousel-nav carousel-prev"><i class="fas fa-chevron-left"></i></button>
-        <div class="home-offers-carousel">
-          <!-- Offer 1: Paris -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card1.webp')"></div>
-            <div class="home-offer-badge">20% OFF</div>
-            <div class="offer-price-pill">From ₹45,999</div>
-            <div class="home-offer-content">
-              <h3>Parisian Dream</h3>
-              <p>Experience the magic of Paris. Offer valid for summer travel.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
+      <div class="offers-masonry-grid" data-aos="fade-up" data-aos-delay="200">
+        <!-- Featured Card -->
+        <div class="offer-card featured-card">
+          <div class="offer-image-wrapper">
+            <img src="../site-images/sp_of_card1.webp" loading="lazy" alt="Romantic view of Paris">
+          </div>
+          <div class="offer-content">
+            <div class="offer-badges">
+              <span class="offer-badge badge-city-break">City Break</span>
+              <span class="offer-badge badge-discount">Save 35%</span>
+            </div>
+            <div class="offer-header">
+              <h3 class="offer-title">Parisian Dream</h3>
+              <div class="offer-rating">★★★★★ <span class="review-count">4.9 (1,284 reviews)</span></div>
+            </div>
+            <div class="offer-pricing">
+              <span class="price-from">FROM</span>
+              <span class="price-current">₹45,999</span>
+              <span class="price-original">₹69,999</span>
+            </div>
+            <div class="offer-urgency">
+              <div class="countdown-timer"><i class="fas fa-clock"></i> Ends in: 2d 14h 22m</div>
+              <div class="seats-left"><i class="fas fa-chair"></i> Only 8 seats left!</div>
+            </div>
+            <div class="offer-actions">
+              <button class="btn-offer btn-primary-offer">Book Now</button>
+              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
             </div>
           </div>
-          <!-- Offer 2: Maldives -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card2.jpg')"></div>
-            <div class="home-offer-badge">Honeymoon Special</div>
-            <div class="offer-price-pill">From ₹75,500</div>
-            <div class="home-offer-content">
-              <h3>Maldives Escape</h3>
-              <p>Unwind in paradise with our exclusive couples package.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
+          <div class="offer-deal-progress">
+            <div class="progress-bar" style="width: 85%;"></div>
           </div>
-          <!-- Offer 3: London -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card3.jpg')"></div>
-            <div class="home-offer-badge limited-time">Business Class Deal</div>
-            <div class="offer-price-pill">From ₹98,000</div>
-            <div class="home-offer-content">
-              <h3>London Calling</h3>
-              <p>Fly Business Class to London for the price of Premium Economy.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
-            </div>
+        </div>
+        <!-- Standard Card 1 -->
+        <div class="offer-card">
+          <div class="offer-image-wrapper">
+            <img src="../site-images/sp_of_card2.jpg" loading="lazy" alt="Overwater bungalows in the Maldives">
           </div>
-          <!-- Offer 4: Sydney -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card4.jpg')"></div>
-            <div class="home-offer-badge">Adventure Awaits</div>
-            <div class="offer-price-pill">From ₹62,300</div>
-            <div class="home-offer-content">
-              <h3>Sydney Explorer</h3>
-              <p>Discover the stunning landscapes and vibrant city life of Sydney.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
+          <div class="offer-content">
+            <div class="offer-badges">
+              <span class="offer-badge badge-adventure">Adventure</span>
             </div>
-          </div>
-          <!-- Offer 5: New York -->
-          <div class="home-offer-card">
-            <div class="home-offer-img" style="background-image: url('../site-images/sp_of_card5.jpg')"></div>
-            <div class="home-offer-badge">City Break</div>
-            <div class="offer-price-pill">From ₹88,900</div>
-            <div class="home-offer-content">
-              <h3>New York Minute</h3>
-              <p>Experience the city that never sleeps with our weekend package.</p>
-              <a href="booking.html" class="btn offer-btn">Book Now</a>
+            <h3 class="offer-title">Maldives Escape</h3>
+            <div class="offer-rating">★★★★☆ <span class="review-count">4.8 (971 reviews)</span></div>
+            <div class="offer-pricing">
+              <span class="price-from">FROM</span>
+              <span class="price-current">₹75,500</span>
+            </div>
+            <div class="offer-actions">
+              <button class="btn-offer btn-primary-offer">Book Now</button>
+              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
             </div>
           </div>
         </div>
-        <button class="carousel-nav carousel-next"><i class="fas fa-chevron-right"></i></button>
+        <!-- Standard Card 2 -->
+        <div class="offer-card">
+          <div class="offer-image-wrapper">
+            <img src="../site-images/sp_of_card3.jpg" loading="lazy" alt="Business district in London">
+          </div>
+          <div class="offer-content">
+            <div class="offer-badges">
+              <span class="offer-badge badge-business">Business Class</span>
+              <span class="offer-badge badge-last-chance">Last Chance</span>
+            </div>
+            <h3 class="offer-title">London Calling</h3>
+            <div class="offer-rating">★★★★★ <span class="review-count">5.0 (450 reviews)</span></div>
+            <div class="offer-pricing">
+              <span class="price-from">FROM</span>
+              <span class="price-current">₹98,000</span>
+              <span class="price-original">₹120,000</span>
+            </div>
+            <div class="offer-actions">
+              <button class="btn-offer btn-primary-offer">Book Now</button>
+              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+        <!-- Compact Card 1 -->
+        <div class="offer-card compact-card">
+          <div class="offer-image-wrapper">
+            <img src="../site-images/sp_of_card4.jpg" loading="lazy" alt="Sydney Opera House">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Sydney Explorer</h3>
+            <div class="offer-pricing">
+              <span class="price-from">FROM</span>
+              <span class="price-current">₹62,300</span>
+            </div>
+          </div>
+        </div>
+        <!-- Compact Card 2 -->
+        <div class="offer-card compact-card">
+          <div class="offer-image-wrapper">
+            <img src="../site-images/sp_of_card5.jpg" loading="lazy" alt="New York City skyline">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">New York Minute</h3>
+            <div class="offer-pricing">
+              <span class="price-from">FROM</span>
+              <span class="price-current">₹88,900</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="view-all-offers-cta">
         <a href="offers.html" class="btn btn-light">View All Offers <i class="fas fa-arrow-right"></i></a>
@@ -401,124 +457,163 @@
       </div>
       <div class="home-destinations-bento-grid" id="destinations-grid">
         <!-- Card 1: Large Hero -->
-        <div class="home-destination-card card-large" data-aos="fade-up" data-destination-code="CDG"
-          data-destination-name="Paris">
-          <img src="../site-images/card1_ps.jpg"
-            alt="Eiffel Tower in Paris" class="home-destination-img" loading="lazy">
+        <div class="home-destination-card card-large" data-aos="fade-up" data-destination-code="CDG" data-destination-name="Paris">
+          <img src="../site-images/card1_ps.jpg" alt="Eiffel Tower in Paris" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>
+              <div class="weather-widget">
+                <i class="fas fa-cloud-sun"></i> 19°C
+              </div>
+            </div>
             <div class="destination-info">
               <h3>Paris, <span class="country">France</span></h3>
               <p class="tagline">The City of Romance & Lights</p>
+              <div class="destination-meta">
+                <span><i class="fas fa-calendar-alt"></i> Best time: Apr-Jun</span>
+                <span><i class="fas fa-users"></i> 15,200+ travelers this month</span>
+              </div>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹45,999*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹45,999*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
-            <span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>
+            <div class="destination-hover-gallery">
+              <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=100&h=100&fit=crop" alt="Paris street">
+              <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=100&h=100&fit=crop" alt="Louvre Museum">
+              <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=100&h=100&fit=crop" alt="Sacre-Coeur">
+            </div>
+            <div class="destination-insider-tip">
+              <p><strong>Local Tip:</strong> Skip the Eiffel Tower lines by booking a restaurant reservation inside.</p>
+            </div>
           </div>
         </div>
         <!-- Card 2: Vertical -->
-        <div class="home-destination-card card-vertical" data-aos="fade-up" data-aos-delay="100"
-          data-destination-code="NRT" data-destination-name="Tokyo">
-          <img src="/site-images/card_2_ps.jpg" alt="Shibuya Crossing in Tokyo at night" class="home-destination-img"
-            loading="lazy">
+        <div class="home-destination-card card-vertical" data-aos="fade-up" data-aos-delay="100" data-destination-code="NRT" data-destination-name="Tokyo">
+          <img src="/site-images/card_2_ps.jpg" alt="Shibuya Crossing in Tokyo at night" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <span class="trending-badge hot-deal"><i class="fas fa-tag"></i> Hot Deal</span>
+              <div class="weather-widget"><i class="fas fa-cloud-rain"></i> 22°C</div>
+            </div>
             <div class="destination-info">
               <h3>Tokyo, <span class="country">Japan</span></h3>
               <p class="tagline">Where Tradition Meets Future</p>
+              <div class="destination-meta">
+                <span><i class="fas fa-calendar-alt"></i> Best time: Mar-May</span>
+              </div>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹52,500*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹52,500*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
+            <div class="destination-insider-tip">
+              <p><strong>Local Tip:</strong> Visit during cherry blossom season (late March to early April) for a magical experience.</p>
+            </div>
           </div>
         </div>
         <!-- Card 3: Horizontal -->
-        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="200"
-          data-destination-code="DXB" data-destination-name="Dubai">
-          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80"
-            alt="Dubai skyline with Burj Khalifa" class="home-destination-img" loading="lazy">
+        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="200" data-destination-code="DXB" data-destination-name="Dubai">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80" alt="Dubai skyline with Burj Khalifa" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <div class="weather-widget"><i class="fas fa-sun"></i> 35°C</div>
+            </div>
             <div class="destination-info">
               <h3>Dubai, <span class="country">United Arab Emirates</span></h3>
               <p class="tagline">Oasis of Modern Luxury</p>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹18,999*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹18,999*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
           </div>
         </div>
         <!-- Card 4: Square -->
-        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="300"
-          data-destination-code="LHR" data-destination-name="London">
-          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80"
-            alt="Tower Bridge in London" class="home-destination-img" loading="lazy">
+        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="300" data-destination-code="LHR" data-destination-name="London">
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" alt="Tower Bridge in London" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <div class="weather-widget"><i class="fas fa-cloud"></i> 15°C</div>
+            </div>
             <div class="destination-info">
               <h3>London, <span class="country">United Kingdom</span></h3>
               <p class="tagline">Historic & Modern Majesty</p>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹48,200*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹48,200*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
           </div>
         </div>
         <!-- Card 5: Square -->
-        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="400"
-          data-destination-code="FCO" data-destination-name="Rome">
-          <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80"
-            alt="The Colosseum in Rome, Italy" class="home-destination-img" loading="lazy">
+        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="400" data-destination-code="FCO" data-destination-name="Rome">
+          <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80" alt="The Colosseum in Rome, Italy" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <div class="weather-widget"><i class="fas fa-sun"></i> 24°C</div>
+            </div>
             <div class="destination-info">
               <h3>Florence, <span class="country">Italy</span></h3>
               <p class="tagline">The Eternal City's Legacy</p>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹41,800*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹41,800*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
           </div>
         </div>
         <!-- Card 6: Horizontal -->
-        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="500"
-          data-destination-code="SYD" data-destination-name="Sydney">
-          <img src="/site-images/card6_ps.jpg" alt="Sydney Opera House and Harbour Bridge"
-            class="home-destination-img" loading="lazy">
+        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="500" data-destination-code="SYD" data-destination-name="Sydney">
+          <img src="/site-images/card6_ps.jpg" alt="Sydney Opera House and Harbour Bridge" class="home-destination-img" loading="lazy">
           <div class="destination-overlay">
+            <div class="destination-header">
+              <div class="weather-widget"><i class="fas fa-wind"></i> 21°C</div>
+            </div>
             <div class="destination-info">
               <h3>Sydney, <span class="country">Australia</span></h3>
               <p class="tagline">Iconic Views & Vibrant Culture</p>
             </div>
-            <div class="destination-actions">
-              <p class="price-pill">From ₹65,000*</p>
-              <button class="explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+            <div class="destination-footer">
+              <div class="destination-pricing">
+                <span class="price-label">From Your City</span>
+                <span class="price-value">₹65,000*</span>
+              </div>
+              <div class="destination-actions">
+                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
+                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+              </div>
             </div>
-            <button class="wishlist-btn" aria-label="Add to wishlist">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-heart"></i>
-            </button>
           </div>
         </div>
       </div>
@@ -526,8 +621,6 @@
         <a href="destinations.html" class="btn btn-light">Explore All Destinations <i class="fas fa-arrow-right ml-2"></i></a>
       </div>
     </section>
-
-
 
     <section class="home-section home-flight-classes-section bg-secondary-cream py-20 sm:py-24" aria-labelledby="travel-classes-heading">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -635,52 +728,96 @@
       </div>
     </section>
 
-    <section id="why-choose-us" class="home-section why-choose-us-section">
-      <div class="home-section-title">
-        <h2 data-aos="fade-up">Why 50,000+ Travelers Choose DestiNova</h2>
-      </div>
-      <div class="why-choose-us-grid">
-        <!-- Column 1: Expertise -->
-        <div class="why-choose-us-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="why-choose-us-icon"><i class="fas fa-map-marked-alt"></i></div>
-          <h3>Local Expertise</h3>
-          <p>Our destination specialists have personally visited every location we recommend, ensuring authentic experiences you won't find elsewhere.</p>
-          <div class="card-extra-info">500+ Destinations Explored</div>
+    <!-- ============================================= -->
+    <!-- NEW: TRUST & COMFORT SECTION (REPLACES OLD SECTIONS) -->
+    <!-- ============================================= -->
+    <section id="trust-comfort-section" class="home-section bg-secondary-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title text-center">
+          <h2 data-aos="fade-up">Fly with Confidence. Book with Destinova.</h2>
+          <p data-aos="fade-up" data-aos-delay="100" class="max-w-3xl">We're more than just a booking site. We're your trusted partner in travel, ensuring every journey is seamless, secure, and spectacular.</p>
         </div>
-        <!-- Column 2: Trust (Highlighted) -->
-        <div class="why-choose-us-card highlighted-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="highlight-badge">Rated #1 Travel Agency 2024</div>
-          <div class="why-choose-us-icon"><i class="fas fa-shield-alt"></i></div>
-          <h3>100% Satisfaction Guaranteed</h3>
-          <p>Your peace of mind is our priority. If your trip doesn't exceed expectations, we'll make it right or provide a full refund.</p>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center mt-16">
+          <!-- Left Column: Interactive Checklist -->
+          <div class="trust-checklist-container" data-aos="fade-right" data-aos-delay="200">
+            <div class="trust-checklist-item">
+              <div class="checklist-icon"><i class="fas fa-headset"></i></div>
+              <div class="checklist-content">
+                <h4>24/7 Customer Support</h4>
+                <p>Our global team is always on standby, offering support in 15 languages. <br><strong class="text-primary-emerald">Avg. Response Time: 2 mins</strong></p>
+              </div>
+            </div>
+            <div class="trust-checklist-item">
+              <div class="checklist-icon"><i class="fas fa-calendar-check"></i></div>
+              <div class="checklist-content">
+                <h4>Free Cancellation</h4>
+                <p>Change of plans? No problem. Cancel free up to 24 hours before your flight.</p>
+              </div>
+            </div>
+            <div class="trust-checklist-item">
+              <div class="checklist-icon"><i class="fas fa-tags"></i></div>
+              <div class="checklist-content">
+                <h4>Price Match Guarantee</h4>
+                <p>Found a better price? We'll not only match it, we'll beat it. That's our promise.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Visuals & Social Proof -->
+          <div class="trust-visuals-container" data-aos="fade-left" data-aos-delay="300">
+            <div class="customer-photo-grid">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop" alt="Happy customer 1" class="rounded-full">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Happy customer 2" class="rounded-full">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop" alt="Happy customer 3" class="rounded-full">
+              <div class="photo-grid-text">
+                <span class="font-bold text-primary-emerald text-2xl">50k+</span>
+                <span>Happy Travelers</span>
+              </div>
+            </div>
+            <div class="real-time-stats">
+              <div class="stat-item">
+                <span class="stat-value" id="flights-booked-stat">2,847</span>
+                <span class="stat-label">Flights Booked This Week</span>
+              </div>
+              <!-- Activity items will be injected by JS -->
+            </div>
+          </div>
         </div>
-        <!-- Column 3: Support -->
-        <div class="why-choose-us-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="why-choose-us-icon"><i class="fas fa-clock"></i></div>
-          <h3>24/7 Travel Support</h3>
-          <p>From planning to return, our expert travel consultants are available around the clock via phone, chat, or email.</p>
-          <div class="card-extra-info contact-info">Support Hotline: +1-800-TRAVEL</div>
+
+        <!-- Airline Partners & Security -->
+        <div class="trust-footer-container mt-16" data-aos="fade-up" data-aos-delay="400">
+          <h4 class="text-center text-text-slate font-semibold mb-4">Our Trusted Airline & Security Partners</h4>
+          <div class="partner-logos">
+            <img src="https://logodownload.org/wp-content/uploads/2019/09/iata-logo-1.png" alt="IATA Certified" title="IATA Certified">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Norton-logo-2021.svg/2560px-Norton-logo-2021.svg.png" alt="Norton Secured" title="Norton Secured">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal Verified" title="PayPal Verified">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Tripadvisor_logo.svg/2560px-Tripadvisor_logo.svg.png" alt="TripAdvisor" title="TripAdvisor">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png" alt="Emirates" title="Emirates">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Qatar_Airways_Logo.svg/1200px-Qatar_Airways_Logo.svg.png" alt="Qatar Airways" title="Qatar Airways">
+          </div>
+          <div class="awards-mentions">
+            <div class="award-item"><i class="fas fa-award"></i> <strong>Skytrax 2024 Winner:</strong> Best Online Travel Agency</div>
+            <div class="award-item"><i class="fas fa-newspaper"></i> <strong>Featured in:</strong> Forbes Travel Guide</div>
+          </div>
         </div>
-      </div>
-      <div class="trust-badges-strip" data-aos="fade-up" data-aos-delay="500">
-        <img src="https://logodownload.org/wp-content/uploads/2019/09/iata-logo-1.png" alt="IATA Certified"
-          title="IATA Certified">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Norton-logo-2021.svg/2560px-Norton-logo-2021.svg.png"
-          alt="Norton Secured" title="Norton Secured">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal Verified"
-          title="PayPal Verified">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Tripadvisor_logo.svg/2560px-Tripadvisor_logo.svg.png"
-          alt="TripAdvisor" title="TripAdvisor">
       </div>
     </section>
 
     <section class="home-section home-testimonials">
       <div class="home-section-title">
         <h2 data-aos="fade-up">What Our Travelers Say</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Real stories from our global community of explorers.</p>
       </div>
-      <div class="home-testimonial-slider-container" data-aos="fade-up" data-aos-delay="200">
+      <div class="testimonial-filters" data-aos="fade-up" data-aos-delay="150">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="leisure">Leisure</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+      </div>
+      <div class="home-testimonial-slider-container" data-aos="fade-up" data-aos-delay="250">
         <div class="home-testimonial-slider">
-          <div class="home-testimonial-card active">
+          <div class="home-testimonial-card active" data-category="leisure">
             <div class="testimonial-quote-mark">"</div>
             <p class="home-testimonial-text">Booking with Destinova was a breeze! The website is so user-friendly, and I
               found an incredible deal for my trip to Italy. The flight was comfortable, and the service was top-notch.
@@ -688,15 +825,23 @@
             <div class="home-testimonial-author">
               <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica Miller">
               <div class="author-info">
-                <h4>Jessica Miller</h4>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                <h4>Jessica Miller, <span class="author-location">New York</span></h4>
+                <div class="author-meta">
+                  <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</span>
+                  <a href="#" class="social-link" aria-label="Jessica Miller's LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
               </div>
             </div>
+            <div class="testimonial-footer">
+              <div class="trip-details">Leisure trip to Rome, saved ₹8,000</div>
+              <div class="helpful-vote">
+                <span>Was this helpful?</span>
+                <button class="vote-btn"><i class="fas fa-thumbs-up"></i> Yes</button>
+                <button class="vote-btn"><i class="fas fa-thumbs-down"></i> No</button>
+              </div>
+            </div>
           </div>
-          <div class="home-testimonial-card">
+          <div class="home-testimonial-card" data-category="business">
             <div class="testimonial-quote-mark">"</div>
             <p class="home-testimonial-text">Outstanding service from start to finish! The crew was incredibly
               professional, and the business class experience exceeded all my expectations. I'll definitely be flying
@@ -704,15 +849,23 @@
             <div class="home-testimonial-author">
               <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
               <div class="author-info">
-                <h4>Michael Chen</h4>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                <h4>Michael Chen, <span class="author-location">Singapore</span></h4>
+                <div class="author-meta">
+                  <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</span>
+                  <a href="#" class="social-link" aria-label="Michael Chen's LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
               </div>
             </div>
+            <div class="testimonial-footer">
+              <div class="trip-details">Business trip to London, saved $340</div>
+              <div class="helpful-vote">
+                <span>Was this helpful?</span>
+                <button class="vote-btn"><i class="fas fa-thumbs-up"></i> Yes</button>
+                <button class="vote-btn"><i class="fas fa-thumbs-down"></i> No</button>
+              </div>
+            </div>
           </div>
-          <div class="home-testimonial-card">
+          <div class="home-testimonial-card" data-category="family">
             <div class="testimonial-quote-mark">"</div>
             <p class="home-testimonial-text">Family vacation made perfect! The kids loved the entertainment system, and
               we appreciated the extra legroom. Great value for money and exceptional customer service throughout our
@@ -720,15 +873,23 @@
             <div class="home-testimonial-author">
               <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Johnson">
               <div class="author-info">
-                <h4>Sarah Johnson</h4>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                <h4>Sarah Johnson, <span class="author-location">Sydney</span></h4>
+                <div class="author-meta">
+                  <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</span>
+                  <a href="#" class="social-link" aria-label="Sarah Johnson's LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
               </div>
             </div>
+            <div class="testimonial-footer">
+              <div class="trip-details">Family trip to Bali, 4 passengers</div>
+              <div class="helpful-vote">
+                <span>Was this helpful?</span>
+                <button class="vote-btn"><i class="fas fa-thumbs-up"></i> Yes</button>
+                <button class="vote-btn"><i class="fas fa-thumbs-down"></i> No</button>
+              </div>
+            </div>
           </div>
-          <div class="home-testimonial-card">
+          <div class="home-testimonial-card" data-category="leisure">
             <div class="testimonial-quote-mark">"</div>
             <p class="home-testimonial-text">Luxury redefined! The first-class experience was absolutely phenomenal.
               From
@@ -737,30 +898,38 @@
             <div class="home-testimonial-author">
               <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David Rodriguez">
               <div class="author-info">
-                <h4>David Rodriguez</h4>
-                <div class="star-rating">
-                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                <h4>David Rodriguez, <span class="author-location">Dubai</span></h4>
+                <div class="author-meta">
+                  <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Buyer</span>
+                  <a href="#" class="social-link" aria-label="David Rodriguez's LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
+              </div>
+            </div>
+            <div class="testimonial-footer">
+              <div class="trip-details">Anniversary trip to Maldives</div>
+              <div class="helpful-vote">
+                <span>Was this helpful?</span>
+                <button class="vote-btn"><i class="fas fa-thumbs-up"></i> Yes</button>
+                <button class="vote-btn"><i class="fas fa-thumbs-down"></i> No</button>
               </div>
             </div>
           </div>
         </div>
         <div class="testimonial-indicators">
-          <button class="indicator active" data-slide="0"></button>
-          <button class="indicator" data-slide="1"></button>
-          <button class="indicator" data-slide="2"></button>
-          <button class="indicator" data-slide="3"></button>
+          <!-- Indicators will be generated by JS -->
         </div>
+      </div>
+      <div class="share-experience-cta" data-aos="fade-up">
+        <a href="contact.html?subject=My%20Experience" class="btn btn-light">Share Your Experience <i class="fas fa-pen-alt"></i></a>
       </div>
     </section>
   </main>
 
   <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-    <div class="footer-content max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+    <div class="footer-content max-w-screen-2xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
         <!-- Company Info -->
-        <div class="footer-col">
+        <div class="footer-col xl:col-span-2">
           <div class="footer-logo mb-4">
             <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
                 aria-hidden="true"></i></h2>
@@ -770,6 +939,22 @@
             Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
             Discover a new standard in air travel.
           </p>
+          <!-- Achievements Timeline -->
+          <div class="achievements-timeline mt-8">
+            <h3 class="footer-title">Our Journey</h3>
+            <div class="timeline-item">
+              <div class="timeline-year">2020</div>
+              <div class="timeline-desc">Destinova Founded</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2022</div>
+              <div class="timeline-desc">10,000+ Happy Travelers</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-desc">Awarded "Best Online Agency"</div>
+            </div>
+          </div>
         </div>
 
         <!-- Quick Links -->
@@ -830,6 +1015,7 @@
             <i class="fas fa-share-nodes" aria-hidden="true"></i>
             Stay Connected
           </h3>
+          <p class="text-xs text-gray-400 mb-4">Get exclusive travel tips & deals straight to your inbox.</p>
           <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
             <div class="newsletter-input-wrapper">
               <input type="email" placeholder="Your email address" required
@@ -839,6 +1025,18 @@
                 <i class="fas fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
+          </form>
+          <div class="app-download-section">
+            <div class="app-badges">
+              <a href="#" aria-label="Download on the App Store"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" alt="App Store Badge"></a>
+              <a href="#" aria-label="Get it on Google Play"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Google Play Badge"></a>
+            </div>
+            <div class="qr-code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com/app" alt="QR code for app download">
+            </div>
+          </div>
+          <h3 class="footer-title mt-8">
+            Follow Us
           </form>
           <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
             <a href="#" class="social-icon rounded-full flex items-center justify-center"
@@ -864,6 +1062,15 @@
           </div>
         </div>
       </div>
+      
+      <!-- Recently Viewed Section -->
+      <div id="recently-viewed-container" class="recently-viewed-section" data-aos="fade-up">
+        <h3 class="footer-title">Recently Viewed Flights</h3>
+        <div id="recently-viewed-list" class="recently-viewed-list">
+          <!-- Items will be injected by JS -->
+          <p class="no-recent-views">You haven't viewed any flights yet. Start exploring!</p>
+        </div>
+      </div>
 
       <!-- Footer Bottom -->
       <div
@@ -882,12 +1089,38 @@
     </div>
   </footer>
 
+  <!-- Live Chat Widget -->
+  <button id="live-chat-btn" class="live-chat-widget" aria-label="Open live chat">
+    <i class="fas fa-comment-dots"></i>
+  </button>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner" class="cookie-consent-banner">
+    <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="#">Learn More</a></p>
+    <div class="cookie-actions">
+      <button id="cookie-accept-btn" class="btn btn-primary">Accept</button>
+      <button id="cookie-decline-btn" class="btn btn-light">Decline</button>
+    </div>
+  </div>
+
   <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
     <i class="fas fa-plane-up"></i>
   </a>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="../js/index.js"></script>
+  <script>
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
 </body>
 
 </html>

@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // PAGE-SPECIFIC: IMMERSIVE DESTINATION CARDS
     // =============================================
     function initializeDestinationCards() {
-      // All card interactions are now handled by CSS hover states.
-      // No JavaScript is needed for this card design.
+      // All card interactions for the new design are handled by CSS hover states.
+      // No JavaScript is needed for the card layout or basic interactivity.
     }
     initializeDestinationCards();
     // =============================================
@@ -245,6 +245,24 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSimpleSearchForm();
     initializeQuickFilters();
 
+    // =============================================
+    // FLIGHT DEALS FILTER INTERACTIVITY
+    // =============================================
+    function initializeDealFilters() {
+        const dealFiltersContainer = document.querySelector('.deals-filters .filter-chips');
+        if (!dealFiltersContainer) return;
+
+        dealFiltersContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                dealFiltersContainer.querySelectorAll('.filter-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                // Add logic here to filter deal cards based on the selected chip
+            }
+        });
+    }
+    initializeDealFilters();
     // =============================================
     // FOOTER-RELATED: SCROLL TO TOP BUTTON
     // =============================================
@@ -688,6 +706,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     initializeSearchHub();
+
+    // =============================================
+    // PAGE-SPECIFIC: TODAY'S FLIGHT DEALS FILTERS
+    // =============================================
+    function initializeFlightDealsFilters() {
+        const filterContainer = document.querySelector('.quick-deal-filters');
+        if (!filterContainer) return;
+
+        const dealCards = document.querySelectorAll('.deal-card-horizontal');
+
+        filterContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-deal-filter')) {
+                const filterValue = e.target.dataset.filter;
+
+                // Update active button
+                filterContainer.querySelector('.active').classList.remove('active');
+                e.target.classList.add('active');
+
+                // Show/hide cards
+                dealCards.forEach(card => {
+                    const cardCategory = card.dataset.category;
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'grid';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+    }
+    initializeFlightDealsFilters();
+
 
     // ... (rest of the existing code)
 });
