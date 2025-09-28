@@ -85,7 +85,7 @@ body {
 .header-logo h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 32px;
+  font-size: 36px;
   color: var(--white);
   letter-spacing: 1px;
   transition: color 0.3s ease-in-out;

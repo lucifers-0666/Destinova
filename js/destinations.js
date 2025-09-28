@@ -95,235 +95,130 @@ document.addEventListener('DOMContentLoaded', function () {
     // =============================================
 
     // --- 1. Typing Animation for Headline ---
-    function typeAnimation() {
-        const headline = document.getElementById('hero-headline');
-        if (!headline) return;
-
-        const text = "Turn Your Travel Dreams Into Unforgettable Adventures";
-        let i = 0;
-        headline.innerHTML = ""; // Clear existing text
-
-        function type() {
-            if (i < text.length) {
-                headline.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 50); // Adjust typing speed here
-            } else {
-                headline.classList.add('typing-finished'); // Optional class to stop blinking cursor
-            }
-        }
-        type();
+    function initializeHeroAmbience() {
+        // This function is kept for potential future ambience effects.
+        // Current design is mostly CSS-driven.
     }
 
-    // --- 2. Personalization: Time & Geo Greeting ---
-    function personalizeHero() {
-        const timeGreeting = document.getElementById('time-based-greeting');
-        const geoGreeting = document.getElementById('geo-location-greeting');
-
-        // Time-based greeting
-        if (timeGreeting) {
-            const hour = new Date().getHours();
-            let greeting = "Ready for an adventure?";
-            if (hour < 12) {
-                greeting = "Good morning! Ready for an adventure?";
-            } else if (hour < 18) {
-                greeting = "Good afternoon! Where to next?";
-            } else {
-                greeting = "Good evening! Planning a getaway?";
-            }
-            timeGreeting.textContent = greeting;
-        }
-
-        // Geo-location greeting (mocked for demonstration)
-        if (geoGreeting) {
-            // In a real app, you would use a Geolocation API
-            const cities = ["New York", "London", "Tokyo", "Sydney", "your city"];
-            const randomCity = cities[Math.floor(Math.random() * cities.length)];
-            geoGreeting.textContent = `Discover amazing trips from ${randomCity}`;
-        }
+    // --- 2. Glassmorphism Card Tabs & Autocomplete ---
+    function initializeSimpleSearchForm() {
+        // All interactions for the new simple form are handled by CSS.
+        // This function is a placeholder for any future JS-based interactions
+        // like form validation or dynamic passenger input.
     }
 
-    // --- 3. Trust Indicator Counter Animation ---
-    function animateCounters() {
-        const ratingCounter = document.getElementById('rating-counter');
+    // =============================================
+    // QUICK FILTERS INTERACTIVITY
+    // =============================================
+    function initializeQuickFilters() {
+        const quickFiltersContainer = document.querySelector('.quick-filters');
+        if (!quickFiltersContainer) return;
 
-        const animateValue = (element, start, end, duration, decimals = 1) => {
-            if (!element) return;
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = progress * (end - start) + start;
-                element.innerText = value.toFixed(decimals);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        };
+        quickFiltersContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-filter-chip')) {
+                // Remove active class from all chips
+                quickFiltersContainer.querySelectorAll('.quick-filter-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                });
+                // Add active class to the clicked chip
+                e.target.classList.add('active');
+            }
+        });
+    }
+
+    // =============================================
+    // PAGE-SPECIFIC: DEALS SECTION URGENCY
+    // =============================================
+
+    // --- Countdown Timer Logic ---
+    function initializeCountdown(elementId, hours) {
+        const countdownElement = document.getElementById(elementId);
+        if (!countdownElement) return;
+
+        const endTime = new Date().getTime() + hours * 60 * 60 * 1000;
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = endTime - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                countdownElement.innerHTML = "<div class='deal-expired'>DEAL EXPIRED</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const daysEl = countdownElement.querySelector('[data-unit="days"]');
+            const hoursEl = countdownElement.querySelector('[data-unit="hours"]');
+            const minutesEl = countdownElement.querySelector('[data-unit="minutes"]');
+            const secondsEl = countdownElement.querySelector('[data-unit="seconds"]');
+
+            if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+            if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+            if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+
+            // Color psychology
+            const totalHours = distance / (1000 * 60 * 60);
+            if (totalHours < 1) {
+                countdownElement.classList.add('danger');
+                countdownElement.classList.remove('warning');
+            } else if (totalHours < 12) {
+                countdownElement.classList.add('warning');
+                countdownElement.classList.remove('danger');
+            }
+
+        }, 1000);
+    }
+
+    // --- Scarcity Bar Animation ---
+    function animateScarcityBar() {
+        const scarcityBar = document.querySelector('.featured-deal .progress-fill');
+        const scarcityText = document.querySelector('.featured-deal .scarcity-text span:first-child');
+        if (!scarcityBar || !scarcityText) return;
+
+        let claimed = 73;
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (ratingCounter) animateValue(ratingCounter, 0, 4.9, 2000, 1);
-                    // You can add the "50,000+" counter here if you add an ID to it
+                    // Animate the bar on view
+                    scarcityBar.style.width = `${claimed}%`;
+
+                    // Simulate real-time claims
+                    setInterval(() => {
+                        if (claimed < 98) {
+                            claimed += Math.random() > 0.5 ? 1 : 0;
+                            scarcityBar.style.width = `${claimed}%`;
+                            scarcityText.innerHTML = `<i class="fas fa-fire"></i> ${claimed}% Claimed`;
+                        }
+                    }, (Math.random() * 10 + 5) * 1000); // every 5-15 seconds
+
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.7 });
 
-        const trustIndicators = document.querySelector('.trust-indicators');
-        if (trustIndicators) {
-            observer.observe(trustIndicators);
-        }
+        observer.observe(scarcityBar);
     }
 
-    // --- 4. Smart Search Enhancements ---
-    function initializeSmartSearch() {
-        const destinationInput = document.getElementById('hero-destination-input');
-        const autocompleteContainer = document.getElementById('autocomplete-results');
-        const surpriseBtn = document.getElementById('surprise-me-btn');
-
-        if (!destinationInput || !autocompleteContainer) return;
-
-        const mockDestinations = [
-            { name: 'Paris', country: 'France', img: 'https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=100' },
-            { name: 'Tokyo', country: 'Japan', img: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=100' },
-            { name: 'Bora Bora', country: 'French Polynesia', img: 'https://images.unsplash.com/photo-1507525428034-b723a996f3ea?q=80&w=100' },
-            { name: 'Rome', country: 'Italy', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=100' },
-            { name: 'New York', country: 'USA', img: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=100' }
-        ];
-
-        destinationInput.addEventListener('input', () => {
-            const query = destinationInput.value.toLowerCase();
-            if (query.length < 2) {
-                autocompleteContainer.style.display = 'none';
-                return;
-            }
-
-            const filtered = mockDestinations.filter(d => d.name.toLowerCase().includes(query));
-            autocompleteContainer.innerHTML = '';
-
-            if (filtered.length > 0) {
-                filtered.forEach(dest => {
-                    const item = document.createElement('div');
-                    item.className = 'autocomplete-item';
-                    item.innerHTML = `
-                        <img src="${dest.img}" alt="${dest.name}">
-                        <div>
-                            <div class="item-name">${dest.name}</div>
-                            <div class="item-country">${dest.country}</div>
-                        </div>
-                    `;
-                    item.addEventListener('click', () => {
-                        destinationInput.value = dest.name;
-                        autocompleteContainer.style.display = 'none';
-                    });
-                    autocompleteContainer.appendChild(item);
-                });
-                autocompleteContainer.style.display = 'block';
-            } else {
-                autocompleteContainer.style.display = 'none';
-            }
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!destinationInput.contains(e.target)) {
-                autocompleteContainer.style.display = 'none';
-            }
-        });
-
-        if (surpriseBtn) {
-            surpriseBtn.addEventListener('click', () => {
-                const randomDest = mockDestinations[Math.floor(Math.random() * mockDestinations.length)];
-                destinationInput.value = randomDest.name;
-            });
-        }
-
-        // Smart suggestions based on season
-        const month = new Date().getMonth();
-        const suggestion1 = document.getElementById('suggestion-1');
-        const suggestion2 = document.getElementById('suggestion-2');
-        if (suggestion1 && suggestion2) {
-            if (month >= 5 && month <= 8) { // Summer
-                suggestion1.textContent = 'Beach Escapes';
-                suggestion2.textContent = 'Mountain Hikes';
-            } else { // Winter/Other
-                suggestion1.textContent = 'City Breaks';
-                suggestion2.textContent = 'Cultural Tours';
-            }
-            document.querySelector('.smart-suggestions').style.display = 'flex';
-        }
-    }
-
-    // --- 5. Live Booking Ticker ---
-    function initializeLiveTicker() {
-        const ticker = document.getElementById('live-booking-ticker');
-        const tickerText = document.getElementById('ticker-text');
-        const tickerTime = document.getElementById('ticker-time');
-        if (!ticker || !tickerText || !tickerTime) return;
-
-        const mockBookings = [
-            "Michael from London just booked a trip to Rome!",
-            "The Smith family is heading to Orlando!",
-            "Priya from Mumbai found a deal to Dubai!",
-            "Kenji from Osaka is exploring the temples of Kyoto."
-        ];
-
-        let bookingIndex = 0;
-
-        setInterval(() => {
-            ticker.classList.remove('visible');
-            setTimeout(() => {
-                bookingIndex = (bookingIndex + 1) % mockBookings.length;
-                tickerText.textContent = mockBookings[bookingIndex];
-                tickerTime.textContent = `${Math.floor(Math.random() * 10) + 1} minutes ago`;
-                ticker.classList.add('visible');
-            }, 500);
-        }, 8000); // Change every 8 seconds
-    }
+    // Initialize all deals features
+    initializeCountdown('featured-countdown', 38); // 1 day + 14 hours
+    initializeCountdown('weekend-countdown', 72);
+    animateScarcityBar();
 
     // =============================================
-    // PAGE-SPECIFIC: REUSABLE SLIDER FUNCTIONALITY
+    // PAGE-SPECIFIC: IMMERSIVE DESTINATION CARDS
     // =============================================
-    function initializeSlider(sliderId) {
-        const slider = document.getElementById(sliderId);
-        if (!slider) return;
-
-        const track = slider.querySelector('.slider-track');
-        const slides = Array.from(track.children);
-        const nextButton = slider.querySelector('.next');
-        const prevButton = slider.querySelector('.prev');
-
-        if (slides.length <= 1) return;
-
-        let slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
-        let currentIndex = 0;
-
-        const updateSliderPosition = () => {
-            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            track.style.transition = 'transform 0.5s ease-in-out';
-        };
-
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-            updateSliderPosition();
-        });
-
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-            updateSliderPosition();
-        });
-
-        window.addEventListener('resize', () => {
-            slideWidth = slides[0].getBoundingClientRect().width + parseInt(getComputedStyle(slides[0]).marginRight || 0) * 2;
-            track.style.transition = 'none';
-            updateSliderPosition();
-        });
+    function initializeDestinationCards() {
+      // All card interactions are now handled by CSS hover states.
+      // No JavaScript is needed for this card design.
     }
-
-    initializeSlider('offers-slider');
-
+    initializeDestinationCards();
     // =============================================
     // PAGE-SPECIFIC: SCROLL-TRIGGERED ANIMATIONS
     // =============================================
@@ -346,13 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(element);
     });
 
-    // --- Initialize All New Hero Features ---
-    typeAnimation();
-    personalizeHero();
-    animateCounters();
-    initializeSmartSearch();
-    initializeLiveTicker();
-
+    initializeHeroAmbience();
+    initializeSimpleSearchForm();
+    initializeQuickFilters();
 
     // =============================================
     // FOOTER-RELATED: SCROLL TO TOP BUTTON
@@ -412,120 +303,391 @@ document.addEventListener('DOMContentLoaded', function () {
     // =============================================
     // PAGE-SPECIFIC: TRAVEL YOUR WAY INTERACTIVITY
     // =============================================
-    function initializeTravelStyles() {
-        const container = document.querySelector('.travel-style-container');
-        if (!container) return;
+    function initializeTravelStylesAndModal() {
+        const themeCards = document.querySelectorAll('.theme-card');
+        const modalContainer = document.getElementById('style-modal-container');
+        const popularDestinationsSection = document.getElementById('popular-destinations');
+        const destinationCards = document.querySelectorAll('#popular-destinations .destination-card');
 
-        const options = container.querySelectorAll('.style-option');
-        const images = container.querySelectorAll('.style-image');
+        if (themeCards.length === 0 || !modalContainer) return;
 
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-                const style = option.dataset.style;
+        const modalContent = {
+            adventure: {
+                title: 'Adventure & Outdoors',
+                description: 'For the thrill-seekers and nature lovers. Our adventure trips range from scaling mountains to diving into the deep blue. Get your adrenaline pumping!',
+                itineraries: ['Himalayan Trekking', 'Costa Rica Ziplining', 'African Safari']
+            },
+            luxury: {
+                title: 'Luxury & Wellness',
+                description: 'Indulge in the finest experiences the world has to offer. From 5-star resorts to private tours and spa retreats, every moment is curated for your comfort.',
+                itineraries: ['Maldives Overwater Bungalow Stay', 'Tuscan Vineyard Tour', 'Japanese Onsen Retreat']
+            },
+            family: {
+                title: 'Family Adventures',
+                description: 'Create memories that will last a lifetime with our family-friendly packages. We focus on fun, safety, and activities for all ages.',
+                itineraries: ['Orlando Theme Parks', 'Australian Outback Exploration', 'European Castle Tour']
+            },
+            'art-culture': {
+                title: 'Cultural Immersion',
+                description: 'Dive deep into the heart of a destination. Explore ancient ruins, savor local cuisines, and experience the traditions that make each place unique.',
+                itineraries: ['Kyoto Temple Tour', 'Egyptian Pyramids Discovery', 'Peruvian Food Journey']
+            },
+            solo: {
+                title: 'Solo Journeys',
+                description: 'Discover the world and yourself. Our solo trips are designed for safety, social opportunities, and personal discovery.',
+                itineraries: ['Southeast Asia Backpacking', 'New Zealand Road Trip', 'Iceland Ring Road Adventure']
+            },
+            couples: {
+                title: 'Romantic Escapes',
+                description: 'Whether it\'s a honeymoon or a quiet getaway, our romantic escapes provide the perfect backdrop for moments you\'ll cherish forever.',
+                itineraries: ['Paris & Rome Discovery', 'Santorini Sunsets', 'Bora Bora Honeymoon']
+            }
+        };
 
-                // Update active state for options
-                options.forEach(opt => {
-                    opt.classList.toggle('active', opt.dataset.style === style);
-                });
+        function showModal(style) {
+            const content = modalContent[style];
+            if (!content) return;
 
-                // Update active state for images
-                images.forEach(img => {
-                    img.classList.toggle('active', img.dataset.style === style);
-                });
+            const modalHTML = `
+                <div class="style-modal-overlay">
+                    <div class="style-modal">
+                        <div class="style-modal-header">
+                            <h3>${content.title}</h3>
+                            <button class="style-modal-close">&times;</button>
+                        </div>
+                        <div class="style-modal-body">
+                            <p>${content.description}</p>
+                            <h4>Sample Itineraries:</h4>
+                            <ul>
+                                ${content.itineraries.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                            <a href="#">See All Sample Itineraries</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modalContainer.innerHTML = modalHTML;
+            const overlay = modalContainer.querySelector('.style-modal-overlay');
+            setTimeout(() => overlay.classList.add('visible'), 10);
 
-                // Optional: Update the "Find Flights" button link
-                const ctaButton = container.querySelector('.style-preview-content .btn');
-                if (ctaButton) {
-                    ctaButton.href = `booking.html?category=${style}`;
+            overlay.addEventListener('click', (e) => {
+                if (e.target.classList.contains('style-modal-overlay') || e.target.classList.contains('style-modal-close')) {
+                    overlay.classList.remove('visible');
+                    setTimeout(() => modalContainer.innerHTML = '', 300);
+                }
+            });
+        }
+
+        function filterDestinations(style) {
+            destinationCards.forEach(card => {
+                const cardStyles = card.dataset.style.split(',');
+                if (cardStyles.includes(style)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            if (popularDestinationsSection) {
+                popularDestinationsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        themeCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const style = card.dataset.style;
+                if (e.target.closest('.btn-book-style')) {
+                    e.preventDefault();
+                    filterDestinations(style);
+                } else {
+                    showModal(style);
                 }
             });
         });
     }
-    initializeTravelStyles();
+    initializeTravelStylesAndModal();
 
     // =============================================
     // PAGE-SPECIFIC: INSPIRATION CARD GLOW EFFECT
     // =============================================
-    function initializeInspirationCardGlow() {
-        const card = document.querySelector('.inspiration-card-modern');
-        if (!card) return;
+    function initializeInspirationSection() {
+        const inspirationCards = document.querySelectorAll('.inspiration-card');
+        const lightboxOverlay = document.getElementById('lightbox-overlay');
+        if (!lightboxOverlay) return;
 
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
 
-            // Use setProperty to update CSS custom properties for the glow
-            card.style.setProperty('--glow-x', `${x}px`);
-            card.style.setProperty('--glow-y', `${y}px`);
+        const galleries = {
+            dubai: [
+                'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200',
+                'https://images.unsplash.com/photo-1523813676091-5341b31b5b53?q=80&w=1200',
+                'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b1?q=80&w=1200'
+            ],
+            japan: [
+                'https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=1200',
+                'https://images.unsplash.com/photo-1526481280643-3b9462cd7a25?q=80&w=1200',
+                'https://images.unsplash.com/photo-1559756472-390969c86183?q=80&w=1200'
+            ],
+            safari: [
+                'https://images.unsplash.com/photo-1534437431034-0a6a4a131575?q=80&w=1200',
+                'https://images.unsplash.com/photo-1588965861394-329489a23839?q=80&w=1200',
+                'https://images.unsplash.com/photo-1558533386-d3b3c398535a?q=80&w=1200'
+            ],
+            winter: [
+                'https://images.unsplash.com/photo-1603811498297-1229b59d9c35?q=80&w=1200',
+                'https://images.unsplash.com/photo-1482338533771-5d4553533145?q=80&w=1200',
+                'https://images.unsplash.com/photo-1511184151939-57595a51030e?q=80&w=1200'
+            ]
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        function showLightbox(galleryKey) {
+            currentGallery = galleries[galleryKey];
+            if (!currentGallery || currentGallery.length === 0) return;
+            currentIndex = 0;
+            updateLightboxImage();
+            lightboxOverlay.classList.add('visible');
+        }
+
+        function closeLightbox() {
+            lightboxOverlay.classList.remove('visible');
+        }
+
+        function updateLightboxImage() {
+            lightboxImage.src = currentGallery[currentIndex];
+        }
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % currentGallery.length;
+            updateLightboxImage();
+        }
+
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+            updateLightboxImage();
+        }
+
+        inspirationCards.forEach(card => {
+            const wishlistBtn = card.querySelector('.wishlist-btn');
+            const galleryBtn = card.querySelector('.gallery-btn');
+
+            if (wishlistBtn) {
+                wishlistBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    wishlistBtn.classList.toggle('active');
+                    const icon = wishlistBtn.querySelector('i');
+                    icon.classList.toggle('far');
+                    icon.classList.toggle('fas');
+                });
+            }
+
+            if (galleryBtn) {
+                galleryBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const galleryKey = card.dataset.gallery;
+                    showLightbox(galleryKey);
+                });
+            }
         });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) closeLightbox();
+        });
+        lightboxNext.addEventListener('click', showNextImage);
+        lightboxPrev.addEventListener('click', showPrevImage);
     }
-    initializeInspirationCardGlow();
+    initializeInspirationSection();
 
     // =============================================
     // PAGE-SPECIFIC: NEW TESTIMONIAL CAROUSEL
     // =============================================
-    function initializeTestimonialCarousel() {
-        const container = document.getElementById('testimonial-carousel');
+    function initializeTestimonials() {
+        const grid = document.getElementById('testimonial-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.testimonial-card-new');
+
+        if (!grid) return;
+
+        // "Read More" functionality
+        grid.addEventListener('click', (e) => {
+            const readMoreBtn = e.target.closest('.testimonial-read-more');
+            if (readMoreBtn) {
+                const card = readMoreBtn.closest('.testimonial-card-new');
+                const quote = card.querySelector('.testimonial-quote');
+                
+                quote.classList.toggle('expanded');
+                readMoreBtn.classList.toggle('active');
+
+                if (quote.classList.contains('expanded')) {
+                    readMoreBtn.innerHTML = 'Read Less <i class="fas fa-arrow-up"></i>';
+                } else {
+                    readMoreBtn.innerHTML = 'Read Full Story <i class="fas fa-arrow-down"></i>';
+                }
+            }
+        });
+
+        // Filtering functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter cards
+                cards.forEach(card => {
+                    const tags = card.dataset.filterTags;
+                    if (filter === 'all' || (tags && tags.includes(filter))) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+    initializeTestimonials();
+
+    // =============================================
+    // LIVE ACTIVITY NOTIFICATIONS
+    // =============================================
+    function initializeLiveActivityFeed() {
+        const container = document.getElementById('live-activity-container');
         if (!container) return;
 
-        const track = container.querySelector('.testimonial-carousel-track');
-        const cards = Array.from(track.children);
-        const dotsContainer = container.nextElementSibling;
-        if (!dotsContainer || cards.length === 0) return;
+        const mockActivities = [
+            { type: 'booking', text: 'Emma from Seattle 🇺🇸 just booked the Tokyo Cherry Blossom tour!', icon: 'https://i.pravatar.cc/150?img=1' },
+            { type: 'rating', text: 'Mike rated his Bali adventure 5 stars ⭐⭐⭐⭐⭐', icon: 'https://i.pravatar.cc/150?img=2' },
+            { type: 'trending', text: 'Trending: 127 people searched for Thailand today', icon: 'fas fa-fire' },
+            { type: 'deal', text: 'Flash deal: 34 people are viewing Maldives packages right now!', icon: 'fas fa-tags' },
+            { type: 'review', text: "New review: 'Best travel experience of my life!'", icon: 'fas fa-comment-dots' },
+            { type: 'price', text: 'Price alert: European tour just dropped ₹25,000!', icon: 'fas fa-dollar-sign' }
+        ];
 
-        let currentIndex = 0;
-        let autoPlayInterval;
-
-        const getVisibleCardsCount = () => {
-            if (window.innerWidth <= 768) return 1;
-            if (window.innerWidth <= 1200) return 2;
-            return 3;
-        };
-
-        const totalPages = Math.ceil(cards.length / getVisibleCardsCount());
-
-        // Create dots
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalPages; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('testimonial-dot');
-            dot.addEventListener('click', () => {
-                goToPage(i);
-                resetAutoPlay();
-            });
-            dotsContainer.appendChild(dot);
-        }
-        const dots = Array.from(dotsContainer.children);
-
-        function goToPage(pageIndex) {
-            currentIndex = pageIndex;
-            const visibleCards = getVisibleCardsCount();
-            const cardWidth = cards[0].offsetWidth;
-            const gap = parseInt(getComputedStyle(track).gap) || 30;
-            const offset = currentIndex * visibleCards * (cardWidth + gap);
+        function createNotification() {
+            const activity = mockActivities[Math.floor(Math.random() * mockActivities.length)];
             
-            track.style.transform = `translateX(-${offset}px)`;
+            const card = document.createElement('div');
+            card.className = 'activity-popup-card';
 
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+            let iconHTML = '';
+            if (activity.icon.startsWith('fas')) {
+                iconHTML = `<div class="activity-popup-icon"><i class="${activity.icon}"></i></div>`;
+            } else {
+                iconHTML = `<div class="activity-popup-icon"><img src="${activity.icon}" alt="User photo"></div>`;
+            }
+
+            card.innerHTML = `
+                ${iconHTML}
+                <div class="activity-popup-content">
+                    <p>${activity.text}</p>
+                    <small>${Math.floor(Math.random() * 10) + 1} minutes ago</small>
+                </div>
+            `;
+
+            // Add click listener
+            card.addEventListener('click', () => {
+                alert(`Viewing details for: "${activity.text}"`);
+                // In a real app, this would open a modal or navigate to a relevant page.
+                card.remove(); // Remove immediately on click
+            });
+
+            container.appendChild(card);
+
+            // Auto-dismiss logic
+            setTimeout(() => {
+                card.classList.add('hiding');
+                // Remove from DOM after animation finishes
+                card.addEventListener('animationend', () => {
+                    if (card.parentNode) {
+                        card.remove();
+                    }
+                }, { once: true });
+            }, 5000); // 5-second lifespan
         }
 
-        function autoPlay() {
-            const nextPage = (currentIndex + 1) % totalPages;
-            goToPage(nextPage);
+        function startFeed() {
+            // Initial notification
+            setTimeout(createNotification, 3000);
+
+            // Subsequent notifications at random intervals
+            setInterval(() => {
+                // Limit the number of visible notifications to avoid clutter
+                if (container.children.length < 3) {
+                    createNotification();
+                }
+            }, Math.random() * (30000 - 15000) + 15000); // Randomly between 15 and 30 seconds
         }
 
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(autoPlay, 5000);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
-        }
-
-        goToPage(0);
-        startAutoPlay();
+        startFeed();
     }
-    initializeTestimonialCarousel();
+    initializeLiveActivityFeed();
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // ... (existing code)
+
+    // =============================================
+    // PAGE-SPECIFIC: ADVANCED SEARCH HUB
+    // =============================================
+    function initializeSearchHub() {
+        const searchHub = document.getElementById('advanced-search-hub');
+        if (!searchHub) return;
+
+        // Budget Slider
+        const budgetSlider = document.getElementById('budget-slider');
+        const budgetValue = document.getElementById('budget-value');
+        if (budgetSlider && budgetValue) {
+            budgetSlider.addEventListener('input', () => {
+                const value = parseInt(budgetSlider.value);
+                if (value >= 10000) {
+                    budgetValue.textContent = '$10,000+';
+                } else {
+                    budgetValue.textContent = '$' + value.toLocaleString();
+                }
+            });
+        }
+
+        // Chip Groups
+        const chipGroups = searchHub.querySelectorAll('.chip-group');
+        chipGroups.forEach(group => {
+            group.addEventListener('click', (e) => {
+                if (e.target.classList.contains('chip')) {
+                    // For single-select groups, remove active from others
+                    if (group.closest('.filter-block').querySelector('label').textContent === 'Duration') {
+                        group.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+                    }
+                    e.target.classList.toggle('active');
+                }
+            });
+        });
+
+        // Map Tooltip
+        const mapPins = searchHub.querySelectorAll('.map-pin');
+        const mapTooltip = document.getElementById('map-tooltip');
+        if (mapPins.length > 0 && mapTooltip) {
+            mapPins.forEach(pin => {
+                pin.addEventListener('mouseenter', (e) => {
+                    const info = JSON.parse(pin.dataset.info);
+                    mapTooltip.innerHTML = `<h4>${info.name}</h4><p>From ${info.price}</p><p><i class="fas fa-cloud-sun"></i> ${info.weather}</p>`;
+                    mapTooltip.style.left = `${e.clientX - searchHub.getBoundingClientRect().left + 15}px`;
+                    mapTooltip.style.top = `${e.clientY - searchHub.getBoundingClientRect().top + 15}px`;
+                    mapTooltip.classList.add('visible');
+                });
+                pin.addEventListener('mouseleave', () => {
+                    mapTooltip.classList.remove('visible');
+                });
+            });
+        }
+    }
+    initializeSearchHub();
+
+    // ... (rest of the existing code)
 });

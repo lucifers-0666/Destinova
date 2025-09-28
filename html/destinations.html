@@ -9,7 +9,7 @@
         content="Book premium flights with Destinova. Experience luxury travel with our world-class service and exclusive destinations.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/site-images/logo/Destinova-svg.svg">
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
 
     <!-- Fonts -->
     <link
@@ -18,6 +18,9 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
     <!-- Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -119,356 +122,390 @@
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
     <!-- HEADER END -->
 
-    <section class="hero-section">
-        <div class="hero-video-container">
-            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1935&auto=format&fit=crop"
-                alt="A person looking at a map with a scenic mountain and lake background" class="hero-bg-image">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="animate-on-scroll fade-in">Turn Your Travel Dreams Into Unforgettable Adventures</h1>
-            <p class="subheading animate-on-scroll fade-in" data-delay="100">Curated experiences • Expert guidance • Memories that last forever</p>
+    <main>
+        <!-- ============================================= -->
+        <!-- HERO SECTION (MINIMALIST 2025) -->
+        <!-- ============================================= -->
+        <section class="hero-minimalist">
+            <!-- Price Alert Notification -->
+            <div class="price-alert-notification">
+                <i class="fas fa-tags"></i>
+                <span>Prices are <strong>12% lower</strong> than usual for Delhi-Dubai flights!</span>
+            </div>
 
-            <!-- Smart Search Bar -->
-            <div class="hero-search-container animate-on-scroll fade-in" data-delay="200">
-                <form class="hero-search-form">
-                    <div class="search-input-group">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" placeholder="Where to?" id="hero-destination-input">
+            <div class="hero-minimalist-container">
+                <div class="hero-minimalist-content">
+                    <h1 class="hero-minimalist-headline">Book Flights. Save Money. Travel More.</h1>
+                    <p class="hero-minimalist-subheading">Your gateway to unforgettable journeys. Discover exclusive fares and book your next adventure with confidence.</p>
+    
+                    <form class="hero-minimalist-form">
+                        <div class="minimalist-input-group">
+                            <div class="minimalist-input">
+                                <label for="from-minimal" class="sr-only">From</label>
+                                <input type="text" id="from-minimal" placeholder="From → To">
+                            </div>
+                            <div class="minimalist-input">
+                                <label for="date-minimal" class="sr-only">Date</label>
+                                <input type="date" id="date-minimal">
+                            </div>
+                            <div class="minimalist-input">
+                                <label for="passengers-minimal" class="sr-only">Passengers</label>
+                                <input type="text" id="passengers-minimal" placeholder="Passengers">
+                            </div>
+                        </div>
+                        <button type="submit" class="minimalist-search-btn">Search Flights</button>
+                    </form>
+
+                    <!-- Quick Filters -->
+                    <div class="quick-filters">
+                        <button class="quick-filter-chip active">Cheapest</button>
+                        <button class="quick-filter-chip">Fastest</button>
+                        <button class="quick-filter-chip">Best Value</button>
                     </div>
-                    <div class="search-input-group">
-                        <i class="fas fa-calendar-alt"></i>
-                        <input type="text" placeholder="Select Dates" id="hero-date-picker">
+    
+                    <div class="hero-minimalist-trust">
+                        <span class="stars">★★★★★</span> 4.9/5 from 50k+ travelers
                     </div>
-                    <div class="search-input-group">
-                        <i class="fas fa-users"></i>
-                        <input type="text" placeholder="1 Traveler" id="hero-traveler-input">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Find My Perfect Trip</button>
-                </form>
-                <div class="quick-filters">
-                    <span><a href="#">Adventure</a></span>
-                    <span><a href="#">Luxury</a></span>
-                    <span><a href="#">Family</a></span>
-                    <span><a href="#">Solo</a></span>
-                    <span><a href="#">Cultural</a></span>
                 </div>
             </div>
+        </section>
 
-            <!-- Trust Indicators -->
-            <div class="trust-indicators animate-on-scroll fade-in" data-delay="300">
-                <div class="stat-item"><i class="fas fa-globe-americas"></i> 500+ Destinations</div>
-                <div class="stat-item"><i class="fas fa-users"></i> 50,000+ Happy Travelers</div>
-                <div class="stat-item"><i class="fas fa-star"></i> <span id="rating-counter">4.9</span>★ Rating</div>
+        <!-- Social Proof Ticker Bar -->
+        <section class="social-proof-ticker-bar">
+            <div class="ticker-content">
+                <span><i class="fas fa-check-circle"></i> Sarah from Mumbai just saved ₹15,000 on a London flight.</span>
+                <span><i class="fas fa-check-circle"></i> The Kumar family just booked a trip to Paris!</span>
+                <span><i class="fas fa-check-circle"></i> Michael from Bangalore found a last-minute deal to Goa.</span>
+                <span><i class="fas fa-check-circle"></i> Sarah from Mumbai just saved ₹15,000 on a London flight.</span>
             </div>
-
-            <!-- CTA Buttons -->
-            <div class="hero-actions animate-on-scroll fade-in" data-delay="400">
-                <a href="#popular-destinations" class="btn btn-secondary" id="explore-destinations-btn">Explore Destinations</a>
-            </div>
-        </div>
-        <div class="partner-logos">
-            <img src="https://logodownload.org/wp-content/uploads/2017/05/emirates-logo-5.png" alt="Emirates">
-            <img src="https://logodownload.org/wp-content/uploads/2019/11/qatar-airways-logo-1.png" alt="Qatar Airways">
-            <img src="https://logodownload.org/wp-content/uploads/2019/11/singapore-airlines-logo-1.png" alt="Singapore Airlines">
-            <img src="https://logodownload.org/wp-content/uploads/2020/11/marriott-logo-1.png" alt="Marriott">
-            <img src="https://logodownload.org/wp-content/uploads/2014/09/hyatt-logo-3.png" alt="Hyatt">
-        </div>
-    </section>
-
-    <main>
-        <section id="popular-destinations" class="content-section">
+        </section>
+        <!-- ============================================= -->
+        <!-- POPULAR DESTINATIONS - REFINED CARD DESIGN (from image) -->
+        <!-- REDESIGNED FOR 2025 STANDARDS -->
+        <!-- ============================================= -->
+        <section id="popular-destinations" class="destinations-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll slide-up">Popular Destinations</h2>
-                <div class="destination-grid">
-                    <!-- Card 1: Paris -->
-                    <div class="destination-card animate-on-scroll slide-up">
-                        <div class="card-image-container">
-                            <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?q=80&w=2070&auto=format&fit=crop"
-                                alt="The Louvre Museum in Paris at dusk">
-                            <div class="card-top-badge">Cultural Hub</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 7 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Mar - May</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Easy</div>
+                <div class="section-header">
+                    <h2 class="section-title">Popular Flight Destinations</h2>
+                    <p class="section-subtitle">Handpicked journeys to the world's most captivating places.</p>
+                </div>
+
+                <div class="featured-destinations-grid">
+                    <!-- Card 1: Cairo -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="../site-images/des_pg_crd4.jpg" alt="The Great Sphinx with a pyramid in the background in Giza, Egypt" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge cultural">CULTURAL HUB</span>
+                            <div class="card-meta-info">
+                                6 Days • Oct-Apr • Easy
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>Paris</h2>
-                                <div class="card-country"><span>🇫🇷</span> France</div>
+                                <h3 class="card-title">Cairo</h3>
+                                <p class="card-country">Egypt</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.8 <span class="review-count">(234 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">4.7</span>
+                                <span class="review-count">(205 reviews)</span>
                             </div>
-                            <p class="card-description">Experience iconic art at the Louvre, ascend the Eiffel Tower, and wander through charming streets in the timeless city of love.</p>
+                            <div class="card-trust-indicator">
+                                <i class="fas fa-fire"></i> Booked 23 times this week
+                            </div>
+                            <p class="card-description">Embark on a journey through the cradle of ancient civilization, witnessing majestic pyramids and historical treasures.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="original-price">₹75,000</span>
-                                    <span class="current-price">₹65,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹50,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Cairo">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Cairo"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 2: Tokyo -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="100">
-                        <div class="card-image-container">
-                            <img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?q=80&w=2072&auto=format&fit=crop"
-                                alt="Vibrant streets of Shinjuku, Tokyo at night">
-                            <div class="card-top-badge">Cultural Hub</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 10 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Sep - Nov</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Moderate</div>
+
+                    <!-- Card 2: Sydney -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=800" alt="Aerial view of Bondi Beach in Sydney, Australia" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge adventure">BEST FOR ADVENTURE</span>
+                            <div class="card-meta-info">
+                                9 Days • Sep-Feb • Moderate
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>Tokyo</h2>
-                                <div class="card-country"><span>🇯🇵</span> Japan</div>
+                                <h3 class="card-title">Sydney</h3>
+                                <p class="card-country">Australia</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.9 <span class="review-count">(312 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">4.8</span>
+                                <span class="review-count">(288 reviews)</span>
                             </div>
-                            <p class="card-description">Explore a dazzling blend of ancient temples, futuristic skyscrapers, and a world-renowned culinary scene in Japan's bustling capital city.</p>
+                            <p class="card-description">Discover iconic landmarks, a sun-kissed beach culture, and a vibrant lifestyle in Australia's most famous city.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹58,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹72,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Sydney">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Sydney"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 3: New York -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="200">
-                        <div class="card-image-container">
-                            <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=2070&auto=format&fit=crop"
-                                alt="The Brooklyn Bridge in New York City">
-                            <div class="card-top-badge">Budget-Friendly</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 5 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> All Year</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Easy</div>
+
+                    <!-- Card 3: Rome -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="../site-images/des_pg_crd7.jpg" alt="The Colosseum in Rome, Italy" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge cultural">CULTURAL HUB</span>
+                            <div class="card-meta-info">
+                                5 Days • Apr-Jun • Easy
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>New York</h2>
-                                <div class="card-country"><span>🇺🇸</span> USA</div>
+                                <h3 class="card-title">Rome</h3>
+                                <p class="card-country">Italy</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.7 <span class="review-count">(450 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">4.9</span>
+                                <span class="review-count">(351 reviews)</span>
                             </div>
-                            <p class="card-description">Dive into the vibrant energy of the city that never sleeps, from Broadway shows to iconic skyscrapers and endless shopping avenues.</p>
+                            <p class="card-description">Step back in time in the Eternal City, where ancient history, incredible art, and vibrant street life come together.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹85,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 3★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹68,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Rome">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Rome"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 4: Rio de Janeiro -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="300">
-                        <div class="card-image-container">
-                            <img src="https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?q=80&w=2070&auto=format&fit=crop"
-                                alt="View of Sugarloaf Mountain in Rio de Janeiro">
-                            <div class="card-top-badge">Best for Adventure</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 8 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Dec - Mar</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Moderate</div>
+
+                    <!-- Card 4: Bora Bora -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="../site-images/des_pg_crd8.jpg" alt="Overwater bungalows in Bora Bora, French Polynesia" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge luxury">LUXURY ESCAPE</span>
+                            <div class="card-meta-info">
+                                7 Days • May-Oct • Easy
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>Rio de Janeiro</h2>
-                                <div class="card-country"><span>🇧🇷</span> Brazil</div>
+                                <h3 class="card-title">Bora Bora</h3>
+                                <p class="card-country">French Polynesia</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.6 <span class="review-count">(189 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">5.0</span>
+                                <span class="review-count">(198 reviews)</span>
                             </div>
-                            <p class="card-description">Immerse yourself in a world of samba, sun, and breathtaking natural beauty, from famous beaches to stunning mountain views.</p>
+                            <p class="card-description">Indulge in an island paradise with crystal-clear turquoise waters and luxurious overwater bungalows.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹110,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹150,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Bora Bora">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Bora Bora"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 5: Cairo -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="400">
-                        <div class="card-image-container">
-                            <img src="../site-images/des_pg_crd4.jpg"
-                                alt="The Great Sphinx with a pyramid in the background, Giza">
-                            <div class="card-top-badge">Cultural Hub</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 6 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Oct - Apr</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Easy</div>
+
+                    <!-- Card 5: Paris -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=800" alt="The Eiffel Tower in Paris, France" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge popular">POPULAR</span>
+                            <div class="card-meta-info">
+                                5 Days • All Year • Easy
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>Cairo</h2>
-                                <div class="card-country"><span>🇪🇬</span> Egypt</div>
+                                <h3 class="card-title">Paris</h3>
+                                <p class="card-country">France</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.7 <span class="review-count">(205 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">4.8</span>
+                                <span class="review-count">(412 reviews)</span>
                             </div>
-                            <p class="card-description">Embark on a journey through the cradle of ancient civilization, witnessing the majestic pyramids and uncovering historical treasures.</p>
+                            <p class="card-description">The city of romance, art, and lights awaits. Explore iconic landmarks and charming streets.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="original-price">₹55,000</span>
-                                    <span class="current-price">₹50,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹65,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Paris">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Paris"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 6: Sydney -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="500">
-                        <div class="card-image-container">
-                            <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2070&auto=format&fit=crop"
-                                alt="Aerial view of Bondi Beach in Sydney, Australia">
-                            <div class="card-top-badge">Best for Adventure</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 9 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Sep - Feb</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Moderate</div>
+
+                    <!-- Card 6: Tokyo -->
+                    <div class="featured-card">
+                        <div class="card-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=800" alt="Senso-ji Temple in Tokyo, Japan" class="card-image">
+                            <div class="card-image-overlay"></div>
+                            <span class="card-badge flash-sale">FLASH SALE</span>
+                            <div class="card-meta-info">
+                                8 Days • Mar-May • Moderate
                             </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title-row">
-                                <h2>Sydney</h2>
-                                <div class="card-country"><span>🇦🇺</span> Australia</div>
+                                <h3 class="card-title">Tokyo</h3>
+                                <p class="card-country">Japan</p>
                             </div>
                             <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.8 <span class="review-count">(288 reviews)</span>
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-value">4.9</span>
+                                <span class="review-count">(380 reviews)</span>
                             </div>
-                            <p class="card-description">Discover iconic landmarks, a sun-kissed beach culture, and a vibrant lifestyle in Australia's most famous and dynamic city.</p>
+                            <p class="card-description">Experience the vibrant contrast of ancient tradition and futuristic technology in Japan's capital.</p>
                             <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹72,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
+                                <span class="price-label">Starting from</span>
+                                <span class="price-value">₹58,000</span>
+                                <span class="price-details">per person | includes flights + hotel</span>
                             </div>
                             <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                                <a href="#" class="card-cta primary" aria-label="View details for Tokyo">View Details</a>
+                                <a href="#" class="card-cta secondary" aria-label="Quick book a trip to Tokyo"><i class="fas fa-bolt"></i> Quick Book</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 7: Rome -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="600">
-                        <div class="card-image-container">
-                            <img src="../site-images/des_pg_crd7.jpg"
-                                alt="Colosseum in Rome, Italy">
-                            <div class="card-top-badge">Cultural Hub</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 5 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> Apr - Jun</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Easy</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!-- ADVANCED SEARCH HUB SECTION -->
+        <!-- ============================================= -->
+        <section id="advanced-search-hub" class="content-section">
+            <div class="container">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">Advanced Search Hub</h2>
+                    <p class="section-subtitle">Craft your perfect journey with our interactive planning tool.</p>
+                </div>
+
+                <div class="search-hub-panel animate-on-scroll fade-in" data-delay="200">
+                    <!-- Left Panel: Smart Filters -->
+                    <div class="hub-panel-left">
+                        <h3 class="panel-title">Smart Filters</h3>
+                        <div class="filter-block">
+                            <label for="budget-slider">Budget (per person)</label>
+                            <input type="range" id="budget-slider" min="500" max="10000" value="5000" step="100">
+                            <div class="budget-display">Up to <span id="budget-value">$5,000</span></div>
+                        </div>
+                        <div class="filter-block">
+                            <label>Duration</label>
+                            <div class="chip-group">
+                                <button class="chip">Weekend (2-3d)</button>
+                                <button class="chip active">Week (4-7d)</button>
+                                <button class="chip">Extended (8d+)</button>
                             </div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h2>Rome</h2>
-                                <div class="card-country"><span>🇮🇹</span> Italy</div>
+                        <div class="filter-block">
+                            <label>Travel Style</label>
+                            <div class="chip-group">
+                                <button class="chip">Adventure</button>
+                                <button class="chip">Luxury</button>
+                                <button class="chip">Cultural</button>
+                                <button class="chip">Beach</button>
+                                <button class="chip">City</button>
+                                <button class="chip">Nature</button>
                             </div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i> 4.9 <span class="review-count">(351 reviews)</span>
-                            </div>
-                            <p class="card-description">Step back in time in the Eternal City, where ancient history, incredible art, and vibrant street life come together in perfect harmony.</p>
-                            <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹68,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 4★ hotel</div>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
+                        </div>
+                        <div class="filter-block">
+                            <label>Group Type</label>
+                            <div class="chip-group">
+                                <button class="chip">Solo</button>
+                                <button class="chip">Couple</button>
+                                <button class="chip">Family</button>
+                                <button class="chip">Friends</button>
                             </div>
                         </div>
                     </div>
-                    <!-- Card 8: Bora Bora -->
-                    <div class="destination-card animate-on-scroll slide-up" data-delay="700">
-                        <div class="card-image-container">
-                            <img src="../site-images/des_pg_crd8.jpg"
-                                alt="Overwater bungalows in Bora Bora">
-                            <div class="card-top-badge">Luxury Escape</div>
-                            <div class="card-image-overlay">
-                                <div class="overlay-item"><i class="fas fa-clock"></i> 7 Days</div>
-                                <div class="overlay-item"><i class="fas fa-calendar-alt"></i> May - Oct</div>
-                                <div class="overlay-item"><i class="fas fa-shoe-prints"></i> Easy</div>
+
+                    <!-- Center Panel: Interactive Map -->
+                    <div class="hub-panel-center">
+                        <div class="map-container">
+                            <img src="https://i.imgur.com/sSIV1pQ.png" alt="World map with destination pins" class="map-image">
+                            <!-- Example Pins -->
+                            <div class="map-pin" style="top: 35%; left: 18%;" data-info='{"name":"Brazil","price":"$1500+","weather":"28°C","best_time":"Dec-Mar"}'></div>
+                            <div class="map-pin" style="top: 30%; left: 48%;" data-info='{"name":"Egypt","price":"$900+","weather":"22°C","best_time":"Oct-Apr"}'></div>
+                            <div class="map-pin" style="top: 25%; left: 75%;" data-info='{"name":"Japan","price":"$2000+","weather":"15°C","best_time":"Mar-May"}'></div>
+                            <div class="map-pin" style="top: 55%; left: 85%;" data-info='{"name":"Australia","price":"$1800+","weather":"24°C","best_time":"Sep-Feb"}'></div>
+                            <div id="map-tooltip" class="map-tooltip"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Advanced Options -->
+                    <div class="hub-panel-right">
+                        <h3 class="panel-title">Advanced Options</h3>
+                        <div class="filter-block">
+                            <label>Activities</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox"> Hiking</label>
+                                <label><input type="checkbox"> Museums</label>
+                                <label><input type="checkbox"> Nightlife</label>
+                                <label><input type="checkbox"> Food Tours</label>
                             </div>
                         </div>
-                        <div class="card-content">
-                            <div class="card-title-row">
-                                <h2>Bora Bora</h2>
-                                <div class="card-country"><span>🇵🇫</span> French Polynesia</div>
+                        <div class="filter-block">
+                            <label>Accommodation</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" checked> Hotel</label>
+                                <label><input type="checkbox"> Resort</label>
+                                <label><input type="checkbox"> Rental</label>
                             </div>
-                            <div class="card-rating">
-                                <i class="fas fa-star"></i> 5.0 <span class="review-count">(198 reviews)</span>
+                        </div>
+                        <div class="filter-block">
+                            <label>Transport</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" checked> Flights Included</label>
+                                <label><input type="checkbox"> Rental Car</label>
                             </div>
-                            <p class="card-description">Indulge in an island paradise with crystal-clear turquoise waters, luxurious overwater bungalows, and world-class snorkeling.</p>
-                            <div class="card-pricing">
-                                <div class="price-label">Starting from</div>
-                                <div class="price-value-row">
-                                    <span class="current-price">₹150,000</span>
-                                    <span class="price-clarification">per person</span>
-                                </div>
-                                <div class="price-includes">Includes flights + 5★ resort</div>
-                            </div>
-                            <div class="card-actions">
-                                <a href="#" class="btn btn-primary">View Details</a>
-                                <button class="btn-icon btn-save"><i class="far fa-heart"></i></button>
-                                <a href="#" class="btn-quick-book">Quick Book</a>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Recommendations & Results Preview -->
+                <div class="results-hub-panel animate-on-scroll fade-in" data-delay="300">
+                    <div class="ai-recommendations">
+                        <div class="ai-item"><i class="fas fa-lightbulb"></i><strong>Trending:</strong> Japan (Cherry Blossom Season)</div>
+                        <div class="ai-item"><i class="fas fa-gem"></i><strong>Hidden Gem:</strong> Under $1,500 to Portugal</div>
+                        <div class="ai-item"><i class="fas fa-users"></i><strong>Similar travelers loved:</strong> Thailand, Vietnam</div>
+                    </div>
+                    <div class="results-preview">
+                        <div class="match-count">
+                            <span id="match-count-value">47</span> perfect matches found
+                        </div>
+                        <div class="results-actions">
+                            <select id="sort-results">
+                                <option>Sort by: Popularity</option>
+                                <option>Sort by: Price</option>
+                                <option>Sort by: Weather</option>
+                            </select>
+                            <button class="btn btn-secondary"><i class="fas fa-bell"></i> Save Search</button>
+                            <button class="btn btn-primary" id="surprise-me-hub-btn"><i class="fas fa-random"></i> Surprise Me!</button>
                         </div>
                     </div>
                 </div>
@@ -477,62 +514,103 @@
 
         <section class="content-section bg-light">
             <div class="container">
-                <h2 class="section-title animate-on-scroll slide-up">Limited-Time Offers</h2>
-                <div class="slider-container animate-on-scroll fade-in" id="offers-slider">
-                    <div class="slider-track">
-                        <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1565967521873-95c589098908?q=80&w=1974&auto=format&fit=crop"
-                                alt="Sydney Opera House">                               
-                            <div class="countdown-timer">
-                                Offer ends in: <span id="countdown-1">00:00:00</span>
-                            </div>
-                            <div class="offer-tag">25% OFF</div>
-                            <div class="offer-content">
-                                <h4>Sydney Explorer</h4>
-                                <p>Fly to Sydney this summer. Sale ends soon!</p>
-                                <div class="price">From $999</div>
-                            <p class="original-price"><del>$1,332</del></p>
-                                <p class="social-proof">
-                                34 people have booked this deal today!</p>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
-                            </div>
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">🔥 FLASH SALE: Save Up to 60% on Dream Destinations</h2>
+                    <p class="section-subtitle">⏰ Limited Time: These Prices Disappear at Midnight!</p>
+                </div>
+                <div class="deals-grid animate-on-scroll fade-in">
+                    <!-- Featured Deal -->
+                    <div class="deal-card featured-deal">
+                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1565967521873-95c589098908?q=80&w=1974&auto=format&fit=crop');">
+                            <div class="deal-badge exclusive">MEMBERS ONLY - 48 Hours Left</div>
                         </div>
-                        <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop"
-                                alt="London city view">
-                            <div class="offer-tag">Business Class Special</div>
-                            <div class="offer-content">
-                                <h4>London Calling</h4>
-                                <p>Upgrade your London trip. Limited seats available.</p>
-                                <div class="price">From $2,450</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                        <div class="deal-content">
+                            <h3 class="deal-title">Sydney Explorer</h3>
+                            <p class="deal-description">Fly to Sydney this summer and experience its iconic beauty. This exclusive price is for members only.</p>
+                            <div class="deal-countdown" id="featured-countdown">
+                                <div class="time-block"><span class="time-value" data-unit="days">01</span><span class="time-label">Days</span></div>
+                                <div class="time-block"><span class="time-value" data-unit="hours">14</span><span class="time-label">Hours</span></div>
+                                <div class="time-block"><span class="time-value" data-unit="minutes">29</span><span class="time-label">Mins</span></div>
+                                <div class="time-block"><span class="time-value" data-unit="seconds">55</span><span class="time-label">Secs</span></div>
                             </div>
-                        </div>
-                        <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1591454728342-2621b6785834?q=80&w=1964&auto=format&fit=crop"
-                                alt="Kyoto temple">
-                            <div class="offer-tag">20% OFF</div>
-                            <div class="offer-content">
-                                <h4>Kyoto Serenity</h4>
-                                <p>Discover the ancient capital of Japan this autumn.</p>
-                                <div class="price">From $1,200</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            <div class="deal-pricing">
+                                <div class="price-before">Before: <del>₹98,500</del></div>
+                                <div class="price-after">Now: ₹48,999</div>
+                                <div class="price-save">SAVE ₹49,501</div>
                             </div>
-                        </div>
-                        <div class="offer-card">
-                            <img src="https://images.unsplash.com/photo-1543054111-b4a8a8a4362b?q=80&w=2070&auto=format&fit=crop"
-                                alt="Rome Colosseum">
-                            <div class="offer-tag">Weekend Getaway</div>
-                            <div class="offer-content">
-                                <h4>Roman Holiday</h4>
-                                <p>A 3-day trip to the eternal city of Rome.</p>
-                                <div class="price">From $750</div>
-                                <a href="#" class="btn btn-primary">Grab Deal</a>
+                            <div class="scarcity-bar">
+                                <div class="scarcity-text">
+                                    <span><i class="fas fa-fire"></i> 73% Claimed</span>
+                                    <span class="live-update">12 bookings in last hour</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill" style="width: 73%;"></div>
+                                </div>
                             </div>
+                            <a href="#" class="btn btn-primary btn-block">Claim This Deal</a>
                         </div>
                     </div>
-                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+
+                    <!-- Small Deal 1: Weekend Flash -->
+                    <div class="deal-card small-deal">
+                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=800&auto=format&fit=crop');">
+                            <div class="deal-badge flash-sale">WEEKEND FLASH ⚡</div>
+                        </div>
+                        <div class="deal-content">
+                            <h3 class="deal-title">London Calling</h3>
+                            <p class="deal-description">A whirlwind weekend in the heart of London. Expires Sunday!</p>
+                            <div class="deal-countdown small" id="weekend-countdown">
+                                <span class="time-value" data-unit="hours">71</span>h <span class="time-value" data-unit="minutes">59</span>m <span class="time-value" data-unit="seconds">59</span>s
+                            </div>
+                            <div class="deal-pricing small">
+                                <span class="price-after">From ₹55,000</span>
+                                <span class="price-save small-save">Save ₹15,000+</span>
+                            </div>
+                            <a href="#" class="btn btn-secondary btn-block">Grab It</a>
+                        </div>
+                    </div>
+
+                    <!-- Small Deal 2: Last Minute -->
+                    <div class="deal-card small-deal">
+                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1591454728342-2621b6785834?q=80&w=800&auto=format&fit=crop');">
+                            <div class="deal-badge last-minute">LAST-MINUTE ESCAPE 🛫</div>
+                        </div>
+                        <div class="deal-content">
+                            <h3 class="deal-title">Kyoto Serenity</h3>
+                            <p class="deal-description">Discover Japan's ancient capital. Departures within 30 days.</p>
+                            <div class="urgency-info">
+                                <span class="fly-this-month">Fly This Month</span>
+                                <span class="discount-tag">40% OFF</span>
+                            </div>
+                            <div class="scarcity-text small-scarcity">
+                                <i class="fas fa-ticket-alt"></i> Only 6 seats left
+                            </div>
+                            <a href="#" class="btn btn-secondary btn-block">Book Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Small Deal 3: Group Special -->
+                    <div class="deal-card small-deal">
+                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1543054111-b4a8a8a4362b?q=80&w=800&auto=format&fit=crop');">
+                            <div class="deal-badge group-special">GROUP SPECIAL 👥</div>
+                        </div>
+                        <div class="deal-content">
+                            <h3 class="deal-title">Roman Holiday</h3>
+                            <p class="deal-description">Bring 3+ friends, save an extra 25% on your Italian adventure!</p>
+                            <div class="group-incentive">
+                                <i class="fas fa-users"></i>
+                                <span>Perfect for: Friends, Families</span>
+                            </div>
+                            <div class="social-share-incentive">
+                                <a href="#"><i class="fab fa-whatsapp"></i> Share & Save</a>
+                            </div>
+                            <a href="#" class="btn btn-secondary btn-block">Plan Group Trip</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="deals-footer animate-on-scroll fade-in">
+                    <p class="social-proof-text"><i class="fas fa-users"></i> <strong>2,847 travelers</strong> booked deals today</p>
+                    <p class="fomo-text">Don't let your dream trip slip away!</p>
                 </div>
             </div>
         </section>
@@ -542,90 +620,99 @@
                 <div class="section-header-center animate-on-scroll slide-up">
                     <h2 class="section-title">Find Your Perfect Travel Style</h2>
                     <p class="section-subtitle">Every traveler is unique. Discover experiences tailored to your passion.</p>
+                    <a href="quiz.html" class="btn btn-primary" style="margin-top: 20px;"><i class="fas fa-question-circle"></i> Find Your Style Quiz</a>
                 </div>
                 <div class="theme-carousel-container animate-on-scroll fade-in">
                     <div class="theme-carousel">
                         <!-- Card 1: Adventure -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" alt="Mountain climbing">
+                        <div class="theme-card" data-style="adventure">
+                            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=2070&auto=format&fit=crop" alt="Mountain climbing" loading="lazy">
+                            <div class="theme-card-badge popular">Most Popular</div>
                             <div class="theme-card-content">
                                 <h3>Adventure & Outdoors</h3>
                                 <p>Push your limits with thrilling experiences.</p>
                                 <div class="theme-popular">Hiking • Diving • Safari • Mountaineering</div>
+                                <div class="theme-budget">Typical Budget: ₹60,000 - ₹1,50,000</div>
                                 <div class="theme-footer">
-                                    <span class="theme-dest-count">150+ Adventures</span>
-                                    <a href="#" class="btn btn-secondary">Explore Adventure</a>
+                                    <span class="theme-dest-count">12,000+ travelers</span>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 2: Luxury -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1562790351-d273a961e0e9?q=80&w=1965&auto=format&fit=crop" alt="Luxury resort">
+                        <div class="theme-card" data-style="luxury">
+                            <img src="https://images.unsplash.com/photo-1562790351-d273a961e0e9?q=80&w=1965&auto=format&fit=crop" alt="Luxury resort" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Luxury & Wellness</h3>
                                 <p>Indulge in world-class comfort and service.</p>
                                 <div class="theme-popular">5★ Resorts • Spa Retreats • Private Tours</div>
+                                <div class="theme-budget">Typical Budget: ₹1,20,000 - ₹5,00,000+</div>
                                 <div class="theme-footer">
-                                    <span class="theme-dest-count">80+ Luxury Escapes</span>
-                                    <a href="#" class="btn btn-secondary">Explore Luxury</a>
+                                    <span class="theme-dest-count">8,000+ travelers</span>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 3: Family -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1503793622362-6a7540799017?q=80&w=2070&auto=format&fit=crop" alt="Family on beach">
+                        <div class="theme-card" data-style="family">
+                            <img src="https://images.unsplash.com/photo-1503793622362-6a7540799017?q=80&w=2070&auto=format&fit=crop" alt="Family on beach" loading="lazy">
+                            <div class="theme-card-badge popular">Most Popular</div>
                             <div class="theme-card-content">
                                 <h3>Family Adventures</h3>
                                 <p>Create lasting memories with loved ones.</p>
                                 <div class="theme-popular">Theme Parks • Kid-Friendly • All-Inclusive</div>
+                                <div class="theme-budget">Typical Budget: ₹80,000 - ₹2,50,000</div>
                                 <div class="theme-footer">
-                                    <span class="theme-dest-count">200+ Family Trips</span>
-                                    <a href="#" class="btn btn-secondary">Explore Family</a>
+                                    <span class="theme-dest-count">25,000+ travelers</span>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 4: Cultural -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1534469589338-9b9d4f335c83?q=80&w=1935&auto=format&fit=crop" alt="Local market">
+                        <div class="theme-card" data-style="art-culture">
+                            <img src="https://images.unsplash.com/photo-1534469589338-9b9d4f335c83?q=80&w=1935&auto=format&fit=crop" alt="Local market" loading="lazy">
+                            <div class="theme-card-badge seasonal">Perfect for Spring</div>
                             <div class="theme-card-content">
                                 <h3>Cultural Immersion</h3>
                                 <p>Connect with local traditions and history.</p>
                                 <div class="theme-popular">Museums • Food Tours • Festivals</div>
+                                <div class="theme-budget">Typical Budget: ₹50,000 - ₹1,20,000</div>
                                 <div class="theme-footer">
-                                    <span class="theme-dest-count">300+ Cultural Sites</span>
-                                    <a href="#" class="btn btn-secondary">Explore Cultural</a>
+                                    <span class="theme-dest-count">18,000+ travelers</span>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 5: Solo -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" alt="Solo traveler">
+                        <div class="theme-card" data-style="solo">
+                            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" alt="Solo traveler" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Solo Journeys</h3>
                                 <p>Discover yourself while exploring the world.</p>
                                 <div class="theme-popular">Group Tours • Safe Destinations • Hostels</div>
                                 <div class="theme-footer">
                                     <span class="theme-dest-count">120+ Solo-Friendly</span>
-                                    <a href="#" class="btn btn-secondary">Explore Solo</a>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 6: Romantic -->
-                        <div class="theme-card">
-                            <img src="https://images.unsplash.com/photo-1515876305430-f06ed50fed5b?q=80&w=1974&auto=format&fit=crop" alt="Couple watching sunset">
+                        <div class="theme-card" data-style="couples">
+                            <img src="https://images.unsplash.com/photo-1515876305430-f06ed50fed5b?q=80&w=1974&auto=format&fit=crop" alt="Couple watching sunset" loading="lazy">
                             <div class="theme-card-content">
                                 <h3>Romantic Escapes</h3>
                                 <p>Unforgettable moments for two.</p>
                                 <div class="theme-popular">Honeymoons • Anniversaries • Couples Retreats</div>
                                 <div class="theme-footer">
                                     <span class="theme-dest-count">90+ Romantic Spots</span>
-                                    <a href="#" class="btn btn-secondary">Explore Romantic</a>
+                                    <a href="#" class="btn btn-primary btn-book-style">Book Now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="style-modal-container"></div>
         </section>
 
         <section class="content-section bg-tools">
@@ -708,162 +795,231 @@
                     <p class="section-subtitle">Discover hidden gems, seasonal highlights, and expert recommendations</p>
                 </div>
                 <div class="inspiration-grid animate-on-scroll fade-in" data-aos="fade-up">
-                    <!-- Large Card 1: Dubai (Video) -->
-                    <div class="inspiration-card large-card video-card">
+                    <!-- Card 1: Dubai -->
+                    <div class="inspiration-card large-card video-card" data-gallery="dubai">
                         <video autoplay muted loop playsinline class="inspiration-bg-video">
                             <source src="../site-images/dubai-skyline.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="inspiration-overlay"></div>
+                        <div class="inspiration-badges">
+                            <span class="featured-in-badge"><i class="fas fa-award"></i> Featured In Forbes</span>
+                            <span class="temp-badge"><i class="fas fa-thermometer-half"></i> 35°C</span>
+                        </div>
                         <div class="inspiration-card-content">
                             <span class="inspiration-eyebrow">Featured Guide</span>
                             <h3>Discover Dubai</h3>
-                            <p>A dazzling destination that mixes modern culture with rich history, and thrilling adventures with world-class shopping.</p>
+                            <blockquote class="inspiration-quote">"A city of superlatives that has to be seen to be believed. The future is here." <span>- Alex Johnson</span></blockquote>
+                            <div class="inspiration-info-bar">
+                                <span><i class="fas fa-clock"></i> 5-7 Days</span>
+                                <span><i class="fas fa-shoe-prints"></i> Easy</span>
+                            </div>
                             <a href="#" class="btn btn-primary">Read Dubai Guide <i class="fas fa-arrow-right"></i></a>
                         </div>
                         <div class="inspiration-card-actions">
-                            <button class="action-btn video-play-btn"><i class="fas fa-play"></i> Watch Full Guide</button>
-                            <div class="social-share">
-                                <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" aria-label="Save to Wishlist"><i class="fas fa-heart"></i></a>
-                            </div>
+                            <button class="action-btn gallery-btn" aria-label="View Photo Gallery"><i class="fas fa-images"></i> Gallery</button>
+                            <button class="action-btn wishlist-btn" aria-label="Save to Wishlist"><i class="far fa-heart"></i></button>
                         </div>
                     </div>
-                    <!-- Large Card 2: Japan -->
-                    <div class="inspiration-card large-card">
+                    <!-- Card 2: Japan -->
+                    <div class="inspiration-card large-card" data-gallery="japan">
                         <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=1974&auto=format&fit=crop');"></div>
                         <div class="inspiration-overlay"></div>
-                        <div class="inspiration-card-content">
+                        <div class="inspiration-badges">
                             <span class="inspiration-eyebrow time-badge"><i class="fas fa-clock"></i> Best Time: March-May</span>
+                            <span class="temp-badge"><i class="fas fa-thermometer-half"></i> 15°C</span>
+                        </div>
+                        <div class="inspiration-card-content">
                             <h3>Japan's Cherry Blossom Season</h3>
-                            <p>Experience the magical spectacle of spring in Japan as sakura trees blanket the country in pink and white.</p>
-                            <ul class="inspiration-features">
-                                <li><i class="fas fa-check-circle"></i> Best viewing spots in Tokyo & Kyoto.</li>
-                                <li><i class="fas fa-check-circle"></i> Traditional hanami festivals.</li>
-                            </ul>
+                            <blockquote class="inspiration-quote">"Walking under the sakura was like being in a dream. An unforgettable, magical experience." <span>- Maria S.</span></blockquote>
+                            <div class="inspiration-info-bar">
+                                <span><i class="fas fa-clock"></i> 10-14 Days</span>
+                                <span><i class="fas fa-shoe-prints"></i> Moderate</span>
+                            </div>
                             <a href="#" class="btn btn-primary">Plan Your Sakura Trip <i class="fas fa-arrow-right"></i></a>
                         </div>
-                    </div>
-                    <!-- Small Card 1: Winter -->
-                    <div class="inspiration-card small-card">
-                        <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1517282011995-53342a75fac3?q=80&w=2070&auto=format&fit=crop');"></div>
-                        <div class="inspiration-overlay"></div>
-                        <div class="inspiration-card-content">
-                            <h4>Winter Wonderlands</h4>
-                            <p>Cozy cabins and snowy adventures.</p>
-                            <a href="#" class="btn-explore-small">Explore Winter Trips <i class="fas fa-arrow-right"></i></a>
+                        <div class="inspiration-card-actions">
+                            <button class="action-btn gallery-btn" aria-label="View Photo Gallery"><i class="fas fa-images"></i> Gallery</button>
+                            <button class="action-btn wishlist-btn" aria-label="Save to Wishlist"><i class="far fa-heart"></i></button>
                         </div>
                     </div>
-                    <!-- Small Card 2: Hidden Gems -->
-                    <div class="inspiration-card small-card">
-                        <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1534214526114-0ea5d580ba6a?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <!-- Card 3: African Safari -->
+                    <div class="inspiration-card large-card video-card" data-gallery="safari">
+                        <video autoplay muted loop playsinline class="inspiration-bg-video">
+                            <source src="../site-images/safari-wildebeest.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                         <div class="inspiration-overlay"></div>
+                        <div class="inspiration-badges">
+                            <span class="inspiration-eyebrow time-badge"><i class="fas fa-clock"></i> Best Time: July-Oct</span>
+                            <span class="temp-badge"><i class="fas fa-thermometer-half"></i> 25°C</span>
+                        </div>
                         <div class="inspiration-card-content">
-                            <h4>Off the Beaten Path</h4>
-                            <p>Discover secret destinations.</p>
-                            <a href="#" class="btn-explore-small">Find Hidden Gems <i class="fas fa-arrow-right"></i></a>
+                            <h3>African Safari Adventure</h3>
+                            <blockquote class="inspiration-quote">"Witnessing the Great Migration was a life-changing moment. The raw power of nature is humbling." <span>- David Chen</span></blockquote>
+                            <div class="inspiration-info-bar">
+                                <span><i class="fas fa-clock"></i> 7-10 Days</span>
+                                <span><i class="fas fa-shoe-prints"></i> Challenging</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Plan My Safari <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="inspiration-card-actions">
+                            <button class="action-btn gallery-btn" aria-label="View Photo Gallery"><i class="fas fa-images"></i> Gallery</button>
+                            <button class="action-btn wishlist-btn" aria-label="Save to Wishlist"><i class="far fa-heart"></i></button>
                         </div>
                     </div>
-                    <!-- Small Card 3: Adventure -->
-                    <div class="inspiration-card small-card">
-                        <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop');"></div>
+                    <!-- Card 4: European Winter -->
+                    <div class="inspiration-card large-card" data-gallery="winter">
+                        <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1603811498297-1229b59d9c35?q=80&w=1974&auto=format&fit=crop');"></div>
                         <div class="inspiration-overlay"></div>
-                        <div class="inspiration-card-content">
-                            <h4>Thrill Seeker's Paradise</h4>
-                            <p>Heart-pumping adventures await.</p>
-                            <a href="#" class="btn-explore-small">Book Adventures <i class="fas fa-arrow-right"></i></a>
+                        <div class="inspiration-badges">
+                            <span class="featured-in-badge seasonal"><i class="fas fa-snowflake"></i> Winter Special</span>
+                            <span class="temp-badge"><i class="fas fa-thermometer-half"></i> -2°C</span>
                         </div>
-                    </div>
-                    <!-- Small Card 4: Luxury -->
-                    <div class="inspiration-card small-card">
-                        <div class="inspiration-bg-image" style="background-image: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop');"></div>
-                        <div class="inspiration-overlay"></div>
                         <div class="inspiration-card-content">
-                            <h4>Luxury Redefined</h4>
-                            <p>Indulge in ultimate comfort.</p>
-                            <a href="#" class="btn-explore-small">Explore Luxury <i class="fas fa-arrow-right"></i></a>
+                            <h3>European Winter Magic</h3>
+                            <blockquote class="inspiration-quote">"Cozy cabins, festive Christmas markets, and mulled wine. It was the perfect fairytale holiday." <span>- The Miller Family</span></blockquote>
+                            <div class="inspiration-info-bar">
+                                <span><i class="fas fa-clock"></i> 8-12 Days</span>
+                                <span><i class="fas fa-shoe-prints"></i> Easy</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Explore Winter Europe <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <div class="inspiration-card-actions">
+                            <button class="action-btn gallery-btn" aria-label="View Photo Gallery"><i class="fas fa-images"></i> Gallery</button>
+                            <button class="action-btn wishlist-btn" aria-label="Save to Wishlist"><i class="far fa-heart"></i></button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Lightbox Structure -->
+            <div id="lightbox-overlay" class="lightbox-overlay">
+                <button id="lightbox-close" class="lightbox-close">&times;</button>
+                <button id="lightbox-prev" class="lightbox-nav prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="lightbox-content">
+                    <img id="lightbox-image" src="" alt="Lightbox image">
+                </div>
+                <button id="lightbox-next" class="lightbox-nav next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
         <section class="content-section">
             <div class="container-fluid">
                 <div class="section-header-center animate-on-scroll slide-up">
-                    <h2 class="section-title">Stories from Our Travelers</h2>
-                    <p class="section-subtitle">Real experiences from real adventurers</p>
+                    <h2 class="section-title">Real Stories from Our Travelers</h2>
+                    <p class="section-subtitle">Unfiltered experiences from the Destinova community.</p>
                 </div>
-                <div class="testimonial-carousel-container animate-on-scroll fade-in" id="testimonial-carousel">
-                    <div class="testimonial-carousel-track">
+
+                <!-- Social Proof & Filtering -->
+                <div class="testimonial-summary-container animate-on-scroll fade-in">
+                    <div class="rating-overview">
+                        <div class="total-rating">
+                            <span class="rating-value">4.9</span>
+                            <div class="stars">★★★★★</div>
+                            <p>Based on <strong>5,847 reviews</strong></p>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar-row"><span>5</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 92%;"></div></div><span>5,379</span></div>
+                            <div class="rating-bar-row"><span>4</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 6%;"></div></div><span>350</span></div>
+                            <div class="rating-bar-row"><span>3</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 1%;"></div></div><span>58</span></div>
+                            <div class="rating-bar-row"><span>2</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 0.5%;"></div></div><span>29</span></div>
+                            <div class="rating-bar-row"><span>1</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 0.5%;"></div></div><span>31</span></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-filters">
+                        <h4>Filter Stories By:</h4>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="maldives">Maldives</button>
+                            <button class="filter-btn" data-filter="japan">Japan</button>
+                            <button class="filter-btn" data-filter="kenya">Kenya</button>
+                            <button class="filter-btn" data-filter="video">Video</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-grid animate-on-scroll fade-in" id="testimonial-grid">
                         <!-- Card 1: Maldives -->
-                        <div class="testimonial-card-new">
+                        <div class="testimonial-card-new" data-filter-tags="maldives">
+                            <div class="testimonial-badge helpful-badge"><i class="fas fa-medal"></i> Most Helpful</div>
                             <div class="testimonial-header">
                                 <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Portrait of Mark & Chloe T." class="testimonial-avatar">
                                 <div class="testimonial-author">
                                     <h4>Mark & Chloe T.</h4>
-                                    <p>Australia</p>
+                                    <p class="author-meta">Australia <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
                                     <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                                 </div>
                             </div>
-                            <blockquote class="testimonial-quote">"Found an incredible deal to the Maldives through their offers section. It was the honeymoon of our dreams. Highly recommended."</blockquote>
+                            <blockquote class="testimonial-quote expandable">"Found an incredible deal to the Maldives through their offers section. It was the honeymoon of our dreams. The overwater bungalow was breathtaking, and the service was impeccable from the moment we landed. Destinova handled all the transfers seamlessly. Highly recommended for any couple looking for a truly special getaway."</blockquote>
                             <div class="testimonial-trip-details">
                                 <p><strong>Trip:</strong> Maldives Honeymoon, May 2024</p>
-                                <p><strong>Details:</strong> 7 Days, 2 Travelers</p>
+                                <p class="review-timestamp">Reviewed 2 weeks ago</p>
                             </div>
                             <div class="testimonial-gallery">
                                 <img src="https://images.unsplash.com/photo-1516589178581-6ba3a4413a23?q=80&w=200" alt="Maldives beach">
                                 <img src="https://images.unsplash.com/photo-1573952219926-0519a2a82e38?q=80&w=200" alt="Overwater bungalow">
                                 <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=200" alt="Couple on beach">
                             </div>
-                            <a href="#" class="testimonial-read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            <div class="agent-response">
+                                <p><strong>Destinova Agent Reply:</strong> "Thanks Mark & Chloe! So glad you loved it! It was a pleasure helping you plan your dream honeymoon."</p>
+                            </div>
+                            <div class="testimonial-actions">
+                                <button class="testimonial-read-more">Read Full Story <i class="fas fa-arrow-down"></i></button>
+                                <div class="social-share-testimonial">
+                                    <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
+                            </div>
                         </div>
                         <!-- Card 2: Japan -->
-                        <div class="testimonial-card-new">
+                        <div class="testimonial-card-new" data-filter-tags="japan">
                             <div class="testimonial-header">
                                 <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="Portrait of Maria Rodriguez" class="testimonial-avatar">
                                 <div class="testimonial-author">
                                     <h4>Maria Rodriguez</h4>
-                                    <p>Spain</p>
+                                    <p class="author-meta">Spain <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
                                     <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                                 </div>
                             </div>
-                            <blockquote class="testimonial-quote">"The Japan cherry blossom tour exceeded every expectation. Our guide knew hidden spots away from crowds!"</blockquote>
+                            <blockquote class="testimonial-quote">"The Japan cherry blossom tour exceeded every expectation. Our guide knew all the hidden spots away from the crowds!"</blockquote>
                             <div class="testimonial-trip-details">
                                 <p><strong>Trip:</strong> Japan Cultural Tour, April 2024</p>
+                                <p class="review-timestamp">Reviewed 1 month ago</p>
                             </div>
                             <div class="testimonial-gallery">
                                 <img src="https://images.unsplash.com/photo-1553614223-5a0a1c672237?q=80&w=200" alt="Cherry blossoms">
                                 <img src="https://images.unsplash.com/photo-1526481280643-3b9462cd7a25?q=80&w=200" alt="Japanese temple">
                                 <img src="https://images.unsplash.com/photo-1559756472-390969c86183?q=80&w=200" alt="Japanese food">
                             </div>
-                            <a href="#" class="testimonial-read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
+                            <div class="testimonial-actions">
+                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
+                            </div>
                         </div>
-                        <!-- Card 3: Kenya -->
-                        <div class="testimonial-card-new">
+                        <!-- Card 3: Kenya (Video) -->
+                        <div class="testimonial-card-new video-testimonial" data-filter-tags="kenya,video">
+                            <div class="testimonial-video-container">
+                                <img src="https://images.unsplash.com/photo-1534437431034-0a6a4a131575?q=80&w=800" alt="Elephant on safari" class="video-thumbnail">
+                                <button class="play-video-btn"><i class="fas fa-play"></i></button>
+                            </div>
                             <div class="testimonial-header">
                                 <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Portrait of David & Lisa Chen" class="testimonial-avatar">
                                 <div class="testimonial-author">
                                     <h4>David & Lisa Chen</h4>
-                                    <p>Canada</p>
+                                    <p class="author-meta">Canada <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
                                     <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                                 </div>
                             </div>
                             <blockquote class="testimonial-quote">"Best family vacation ever! Kids are still talking about the African safari six months later."</blockquote>
                             <div class="testimonial-trip-details">
                                 <p><strong>Trip:</strong> Kenya Safari Adventure, August 2024</p>
+                                <p class="review-timestamp">Reviewed 3 weeks ago</p>
                             </div>
-                            <div class="testimonial-gallery">
-                                <img src="https://images.unsplash.com/photo-1534437431034-0a6a4a131575?q=80&w=200" alt="Elephant on safari">
-                                <img src="https://images.unsplash.com/photo-1588965861394-329489a23839?q=80&w=200" alt="Giraffe on safari">
-                                <img src="https://images.unsplash.com/photo-1558533386-d3b3c398535a?q=80&w=200" alt="Family on safari">
+                            <div class="testimonial-actions">
+                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
                             </div>
-                            <a href="#" class="testimonial-read-more">Read Full Story <i class="fas fa-arrow-right"></i></a>
                         </div>
-                    </div>
                 </div>
-                <div class="testimonial-dots-container"></div>
                 <div class="testimonial-cta-container">
                     <a href="#" class="btn btn-primary">Share Your Story</a>
                     <p>Read more reviews on <a href="#" class="review-platform-link">TripAdvisor</a></p>
@@ -1063,6 +1219,9 @@
     <!-- FOOTER END -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Live Activity Notifications Container -->
+    <div id="live-activity-container"></div>
 
     <script src="../js/destinations.js" defer></script>
 </body>
