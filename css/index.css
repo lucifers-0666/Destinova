@@ -103,10 +103,13 @@ body {
   display: flex;
   list-style: none;
   align-items: center;
+  justify-content: center; /* Center links within their container */
+  flex-grow: 1; /* Allow this element to grow and fill space */
+  gap: 1rem; /* Add space between nav items */
 }
 
 .header-desktop-nav li {
-  margin: 0 15px;
+  margin: 0; /* Remove margin, use gap instead */
 }
 
 .header-desktop-nav li a {
@@ -116,7 +119,7 @@ body {
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 16px;
   position: relative;
   color: var(--white);
@@ -128,6 +131,7 @@ body {
 
 /* Active link style (Top of page) */
 .header-desktop-nav li a.nav-active {
+  padding: 8px 24px; /* Reduced vertical padding for a sleeker look */
   background-color: var(--champagne-gold);
   color: var(--primary-emerald);
   font-weight: 600;
@@ -228,8 +232,8 @@ body {
 .header-btn-signin {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 28px;
+  gap: 8px; /* This is the padding for the sign in button. */
+  padding: 8px 24px; /* Reduced vertical padding to match other nav items */
   background: var(--champagne-gold);
   color: var(--primary-emerald);
   border-radius: 50px;
