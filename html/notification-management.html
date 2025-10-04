@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Management - Admin - Destinova</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/admin-base.css"> <!-- Assuming a base admin style -->
+    <link rel="stylesheet" href="../css/notification-management.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- Admin Sidebar (Placeholder) -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <h1>Destin<span>ova</span> Admin</h1>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-plane-departure"></i> Bookings</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                <li class="active"><a href="notification-management.html"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="admin-main-content">
+        <!-- Admin Header (Placeholder) -->
+        <header class="admin-header">
+            <h2>Notification Management</h2>
+            <div class="admin-user-profile">
+                <span>Admin User</span>
+                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Admin">
+            </div>
+        </header>
+
+        <main id="notification-container">
+            <div class="page-header">
+                <h1>Campaigns & Templates</h1>
+                <button id="show-create-panel-btn" class="btn-create-new"><i class="fas fa-plus"></i> Create New Notification</button>
+            </div>
+
+            <div class="notification-tabs">
+                <button class="tab-btn active" data-tab="active">Active</button>
+                <button class="tab-btn" data-tab="scheduled">Scheduled</button>
+                <button class="tab-btn" data-tab="sent">Sent</button>
+                <button class="tab-btn" data-tab="templates">Templates</button>
+                <button class="tab-btn" data-tab="analytics">Analytics</button>
+            </div>
+
+            <div id="tab-content-active" class="tab-content active">
+                <div class="notification-cards-grid">
+                    <!-- Example Active Notification Card -->
+                    <div class="notification-card">
+                        <div class="card-type-icon email"><i class="fas fa-envelope"></i></div>
+                        <div class="card-content">
+                            <h3 class="card-title">Summer Sale Kickoff!</h3>
+                            <p class="card-recipients"><i class="fas fa-users"></i> 250,000 Users</p>
+                            <p class="card-date">Created: 20 May 2024</p>
+                            <div class="card-status"><span class="status-badge active">Active</span></div>
+                        </div>
+                        <div class="card-actions">
+                            <button title="Edit"><i class="fas fa-edit"></i></button>
+                            <button title="Pause"><i class="fas fa-pause"></i></button>
+                            <button title="Delete"><i class="fas fa-trash"></i></button>
+                            <button title="View Analytics"><i class="fas fa-chart-bar"></i></button>
+                        </div>
+                    </div>
+                    <!-- More cards populated by JS -->
+                </div>
+            </div>
+
+            <div id="tab-content-templates" class="tab-content">
+                <div class="templates-grid">
+                    <!-- Example Template Card -->
+                    <div class="template-card">
+                        <div class="template-preview">
+                            <h4>Booking Confirmation</h4>
+                            <p>Thank you, {user_name}! Your flight DN-123 is confirmed.</p>
+                        </div>
+                        <div class="template-info">
+                            <h3 class="template-title">Booking Confirmation</h3>
+                            <p class="template-desc">Sent when a user successfully books a flight.</p>
+                        </div>
+                        <div class="template-actions">
+                            <button class="btn-template use">Use Template</button>
+                            <button class="btn-template edit">Edit</button>
+                            <button class="btn-template delete">Delete</button>
+                        </div>
+                    </div>
+                    <!-- More templates populated by JS -->
+                </div>
+            </div>
+
+            <div id="tab-content-analytics" class="tab-content">
+                <div class="analytics-dashboard">
+                    <div class="stats-cards">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-paper-plane"></i></div>
+                            <div class="stat-value">12,540</div>
+                            <div class="stat-label">Total Sent Today</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-value">99.2%</div>
+                            <div class="stat-label">Delivery Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-envelope-open"></i></div>
+                            <div class="stat-value">28.5%</div>
+                            <div class="stat-label">Open Rate</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-mouse-pointer"></i></div>
+                            <div class="stat-value">4.1%</div>
+                            <div class="stat-label">Click Rate</div>
+                        </div>
+                    </div>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Notifications Sent Over Time</h3>
+                            <canvas id="sent-over-time-chart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Notifications by Type</h3>
+                            <canvas id="by-type-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other tab content divs (scheduled, sent) would go here -->
+
+        </main>
+    </div>
+
+    <!-- Create Notification Panel (Modal/Overlay) -->
+    <div id="create-notification-overlay" class="modal-overlay">
+        <div id="create-notification-panel">
+            <button class="modal-close-btn">&times;</button>
+            <h2>Create New Notification</h2>
+            <div class="step-indicator">
+                <div class="step active" data-step="1">1</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">2</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">3</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="4">4</div>
+                <div class="step-line"></div>
+                <div class="step" data-step="5">5</div>
+            </div>
+
+            <form id="notification-form">
+                <!-- Step 1: Type -->
+                <div class="wizard-step active" data-step-content="1">
+                    <h3>Step 1: Choose Notification Type</h3>
+                    <div class="type-selection-grid">
+                        <div class="type-card" data-type="Email">
+                            <i class="fas fa-envelope"></i>
+                            <h4>Email</h4>
+                        </div>
+                        <div class="type-card" data-type="SMS">
+                            <i class="fas fa-comment-alt"></i>
+                            <h4>SMS</h4>
+                        </div>
+                        <div class="type-card" data-type="Push">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Push</h4>
+                        </div>
+                        <div class="type-card" data-type="In-App">
+                            <i class="fas fa-window-maximize"></i>
+                            <h4>In-App</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Audience -->
+                <div class="wizard-step" data-step-content="2">
+                    <h3>Step 2: Select Target Audience</h3>
+                    <div class="audience-options">
+                        <label><input type="radio" name="audience" value="all" checked> All Users</label>
+                        <label><input type="radio" name="audience" value="segment"> Specific Segments</label>
+                    </div>
+                    <div id="segment-options" class="segment-options">
+                        <label><input type="checkbox" value="new"> New Users (Last 30 days)</label>
+                        <label><input type="checkbox" value="active"> Active Bookers (Last 3 months)</label>
+                        <label><input type="checkbox" value="high_spenders"> High Spenders</label>
+                    </div>
+                </div>
+
+                <!-- Step 3: Content -->
+                <div class="wizard-step" data-step-content="3">
+                    <h3>Step 3: Compose Your Message</h3>
+                    <div class="content-editor-grid">
+                        <div class="editor-main">
+                            <input type="text" id="notification-subject" placeholder="Subject Line (for emails)">
+                            <textarea id="notification-message" placeholder="Type your message here..."></textarea>
+                            <div id="char-counter">160 characters remaining</div>
+                        </div>
+                        <div class="editor-sidebar">
+                            <h4>Insert Variables</h4>
+                            <div class="variables-list">
+                                <span class="variable-chip">{user_name}</span>
+                                <span class="variable-chip">{booking_reference}</span>
+                                <span class="variable-chip">{amount}</span>
+                            </div>
+                            <h4>Preview</h4>
+                            <div class="preview-pane">
+                                <p id="preview-content">Your message preview will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Scheduling -->
+                <div class="wizard-step" data-step-content="4">
+                    <h3>Step 4: Schedule Delivery</h3>
+                    <div class="scheduling-options">
+                        <label><input type="radio" name="schedule" value="now" checked> Send Now</label>
+                        <label><input type="radio" name="schedule" value="later"> Schedule for Later</label>
+                    </div>
+                    <input type="datetime-local" id="schedule-datetime" disabled>
+                </div>
+
+                <!-- Step 5: Review -->
+                <div class="wizard-step" data-step-content="5">
+                    <h3>Step 5: Review & Send</h3>
+                    <div class="review-summary">
+                        <!-- Summary details populated by JS -->
+                    </div>
+                    <div class="review-actions">
+                        <button type="button" id="test-send-btn" class="btn-test">Send Test</button>
+                        <button type="submit" id="confirm-send-btn" class="btn-confirm" disabled>Confirm & Send</button>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="wizard-navigation">
+                    <button type="button" id="prev-step-btn" class="btn-nav" disabled>Previous</button>
+                    <button type="button" id="next-step-btn" class="btn-nav">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/notification-management.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Destinova</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS (for header/footer consistency) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/faq.css">
+</head>
+
+<body>
+
+    <!-- HEADER START -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="signin.html" class="btn header-btn-signin"><i class="fas fa-right-to-bracket"></i><span>Sign In</span></a>
+                <button class="header-mobile-menu-btn" id="header-menuToggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+    <nav class="header-mobile-nav" id="header-mobile-nav">
+        <!-- Mobile nav links from index.html -->
+    </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
+
+    <main>
+        <!-- FAQ Hero Section -->
+        <section class="faq-hero">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about booking, cancellations, and more.</p>
+            <div class="faq-search-container">
+                <i class="fas fa-search"></i>
+                <input type="search" id="faq-search" placeholder="Search for answers...">
+            </div>
+        </section>
+
+        <!-- Category Tabs -->
+        <div class="faq-tabs">
+            <button class="faq-tab-btn active" data-category="all">All</button>
+            <button class="faq-tab-btn" data-category="booking">Booking & Payment</button>
+            <button class="faq-tab-btn" data-category="cancellation">Cancellation & Refunds</button>
+            <button class="faq-tab-btn" data-category="checkin">Check-in & Baggage</button>
+            <button class="faq-tab-btn" data-category="account">Account & Profile</button>
+            <button class="faq-tab-btn" data-category="general">General</button>
+        </div>
+
+        <div id="faq-content-wrapper">
+            <!-- Popular Questions Section -->
+            <section id="popular-questions" class="popular-questions-section">
+                <h2>Popular Questions</h2>
+                <ul id="popular-questions-list">
+                    <!-- Popular questions will be loaded here by JS -->
+                </ul>
+            </section>
+
+            <!-- FAQ Content Area -->
+            <div id="faq-content">
+                <!-- FAQ items will be loaded here by JS -->
+                <div class="faq-category-section" id="category-booking">
+                    <h2>Booking & Payment</h2>
+                    <div class="faq-item" id="how-to-book">
+                        <div class="faq-question">
+                            <h3>How do I book a flight?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can book a flight easily through our homepage. Simply enter your departure and arrival cities, travel dates, and number of passengers, then click "Search Flights". You'll be presented with a list of available flights to choose from.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" id="payment-methods">
+                        <div class="faq-question">
+                            <h3>What payment methods do you accept?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit and debit cards (Visa, MasterCard, American Express), Net Banking, UPI, and popular digital wallets. All transactions are secure and encrypted.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category-section" id="category-cancellation">
+                    <h2>Cancellation & Refunds</h2>
+                    <div class="faq-item" id="cancellation-policy">
+                        <div class="faq-question">
+                            <h3>What is your cancellation policy?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our cancellation policy depends on the fare type you purchased. Flexible fares can be canceled free of charge up to 24 hours before departure. Standard fares may incur a cancellation fee. You can review the specific policy for your booking in the "Manage Booking" section.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category-section" id="category-checkin">
+                    <h2>Check-in & Baggage</h2>
+                     <div class="faq-item" id="baggage-allowance">
+                        <div class="faq-question">
+                            <h3>What is the baggage allowance?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Baggage allowance varies by travel class and destination. Typically, Economy class allows one checked bag up to 23kg, while Business and First Class offer more generous allowances. You can find specific details on your e-ticket or in the "Manage Booking" section.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category-section" id="category-account">
+                    <h2>Account & Profile</h2>
+                     <div class="faq-item" id="reset-password">
+                        <div class="faq-question">
+                            <h3>How do I reset my password?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If you've forgotten your password, click on the "Sign In" button and then select the "Forgot Password?" link. Enter your registered email address, and we'll send you instructions to reset it.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="faq-category-section" id="category-general">
+                    <h2>General</h2>
+                     <div class="faq-item" id="group-bookings">
+                        <div class="faq-question">
+                            <h3>Do you offer group bookings?</h3>
+                            <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we do! For bookings of 10 or more passengers, please contact our dedicated group bookings team through our <a href="contact.html">Contact Us</a> page for special fares and assistance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still Need Help Section -->
+        <section class="help-section">
+            <div class="help-card">
+                <div class="help-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Contact Support</h3>
+                <p>Can't find the answer? Our support team is here to help.</p>
+                <button id="email-support-btn" class="help-btn">Email Support</button>
+            </div>
+            <div class="help-card">
+                <div class="help-icon"><i class="fas fa-comments"></i></div>
+                <h3>Live Chat</h3>
+                <p>Chat with an agent for immediate assistance.</p>
+                <button id="live-chat-btn" class="help-btn">Start Chat</button>
+                <small id="chat-status">Available Now</small>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER START -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-7xl mx-auto">
+            <!-- Footer content from index.html -->
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <script src="../js/index.js"></script>
+    <script src="../js/faq.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - Destinova</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS (for header/footer consistency) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/reviews.css">
+</head>
+
+<body>
+
+    <!-- HEADER START -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="signin.html" class="btn header-btn-signin"><i class="fas fa-right-to-bracket"></i><span>Sign In</span></a>
+                <button class="header-mobile-menu-btn" id="header-menuToggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+    <nav class="header-mobile-nav" id="header-mobile-nav">
+        <!-- Mobile nav links from index.html -->
+    </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
+
+    <main>
+        <!-- Reviews Hero Section -->
+        <section class="reviews-hero">
+            <div class="reviews-hero-content">
+                <h1>What Our Travelers Say</h1>
+                <p>Real experiences from real travelers.</p>
+                <div class="overall-rating-display">
+                    <span id="overall-rating-value">4.8</span>/5
+                    <div class="stars" id="overall-rating-stars">★★★★★</div>
+                    <p id="overall-review-count">Based on 2,547 reviews</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rating Statistics Bar -->
+        <section class="rating-stats">
+            <div class="rating-bar" data-rating="5">
+                <div class="rating-label">5 <i class="fas fa-star"></i></div>
+                <div class="bar"><div class="fill" style="width: 85%;"></div></div>
+                <div class="rating-count" data-count="2165">2,165</div>
+            </div>
+            <div class="rating-bar" data-rating="4">
+                <div class="rating-label">4 <i class="fas fa-star"></i></div>
+                <div class="bar"><div class="fill" style="width: 10%;"></div></div>
+                <div class="rating-count" data-count="255">255</div>
+            </div>
+            <div class="rating-bar" data-rating="3">
+                <div class="rating-label">3 <i class="fas fa-star"></i></div>
+                <div class="bar"><div class="fill" style="width: 3%;"></div></div>
+                <div class="rating-count" data-count="76">76</div>
+            </div>
+            <div class="rating-bar" data-rating="2">
+                <div class="rating-label">2 <i class="fas fa-star"></i></div>
+                <div class="bar"><div class="fill" style="width: 1%;"></div></div>
+                <div class="rating-count" data-count="25">25</div>
+            </div>
+            <div class="rating-bar" data-rating="1">
+                <div class="rating-label">1 <i class="fas fa-star"></i></div>
+                <div class="bar"><div class="fill" style="width: 1%;"></div></div>
+                <div class="rating-count" data-count="26">26</div>
+            </div>
+        </section>
+
+        <!-- Review Filters Section -->
+        <section class="review-filters">
+            <select id="sort-reviews">
+                <option value="recent">Most Recent</option>
+                <option value="highest">Highest Rating</option>
+                <option value="lowest">Lowest Rating</option>
+                <option value="helpful">Most Helpful</option>
+            </select>
+            <div class="rating-filter-group">
+                <label><input type="checkbox" value="5"> 5 ★</label>
+                <label><input type="checkbox" value="4"> 4 ★</label>
+                <label><input type="checkbox" value="3"> 3 ★</label>
+                <label><input type="checkbox" value="2"> 2 ★</label>
+                <label><input type="checkbox" value="1"> 1 ★</label>
+            </div>
+            <select id="class-filter">
+                <option value="all">All Classes</option>
+                <option value="Economy">Economy</option>
+                <option value="Business">Business</option>
+                <option value="First">First</option>
+            </select>
+            <label class="verified-toggle">
+                <input type="checkbox" id="verified-only-toggle">
+                <span class="slider"></span>
+                <span>Verified Only</span>
+            </label>
+            <input type="search" id="search-reviews" placeholder="Search reviews...">
+        </section>
+
+        <!-- Reviews Grid -->
+        <div id="reviews-container">
+            <!-- Example Review Card (to be populated by JS) -->
+            <div class="review-card">
+                <div class="user-profile">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jessica M.">
+                    <div class="user-info">
+                        <span class="user-name">Jessica M. <i class="fas fa-check-circle verified-badge" title="Verified Booking"></i></span>
+                        <span class="user-meta">from New York, USA • Member since 2022</span>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-date">Reviewed on: 15 May, 2024</p>
+                <p class="flight-details">Flight: DEL → JFK, DN543, 10 May 2024 (Business)</p>
+                <h3 class="review-title">Absolutely Flawless Experience!</h3>
+                <p class="review-text">The business class suite was incredible. From the moment I stepped on board, the service was impeccable. The food was restaurant-quality, and the lie-flat bed was a dream on the long-haul flight. Worth every penny for the comfort and service. I arrived feeling refreshed and ready for my meetings.</p>
+                <div class="helpful-section">
+                    <span>Was this helpful?</span>
+                    <div class="helpful-buttons">
+                        <button class="helpful-btn" data-action="up"><i class="fas fa-thumbs-up"></i> Yes</button>
+                        <button class="helpful-btn" data-action="down"><i class="fas fa-thumbs-down"></i> No</button>
+                    </div>
+                    <span class="helpful-count">45 people found this helpful.</span>
+                </div>
+                <div class="admin-response">
+                    <img src="../site-images/favicon.png" alt="Destinova Logo" class="admin-logo">
+                    <div class="admin-response-content">
+                        <p class="response-text">"Thank you, Jessica! We're thrilled you enjoyed the Destinova Business Class experience. We look forward to welcoming you aboard again soon."</p>
+                        <p class="response-date">- The Destinova Team, 16 May, 2024</p>
+                    </div>
+                </div>
+            </div>
+            <!-- More cards will be added by JS -->
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination-container" class="pagination">
+            <!-- Pagination buttons will be generated by JS -->
+        </div>
+
+        <!-- Write Review Floating Button -->
+        <button id="write-review-btn" class="write-review-fab">
+            <i class="fas fa-plus"></i>
+        </button>
+
+    </main>
+
+    <!-- Write Review Modal -->
+    <div id="write-review-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h2>Write Your Review</h2>
+            <form id="review-form">
+                <div class="form-group">
+                    <label for="booking-select">Select your booking to review:</label>
+                    <select id="booking-select" required>
+                        <option value="">-- Please select a past flight --</option>
+                        <!-- Options to be populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Rating:</label>
+                    <div class="interactive-rating">
+                        <i class="far fa-star" data-value="1"></i>
+                        <i class="far fa-star" data-value="2"></i>
+                        <i class="far fa-star" data-value="3"></i>
+                        <i class="far fa-star" data-value="4"></i>
+                        <i class="far fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" id="rating-value" name="rating" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="review-title-input">Review Title:</label>
+                    <input type="text" id="review-title-input" placeholder="e.g., 'Amazing Service!'" required minlength="5">
+                </div>
+                <div class="form-group">
+                    <label for="review-text-input">Your Review:</label>
+                    <textarea id="review-text-input" placeholder="Share details of your experience..." required minlength="20" maxlength="500"></textarea>
+                    <div id="char-counter" class="char-counter">500 characters remaining</div>
+                </div>
+                <div class="form-group">
+                    <label>Upload Photos (optional, max 5):</label>
+                    <div id="photo-upload-area" class="photo-upload-area">
+                        <p>Drag & drop photos here, or click to select files.</p>
+                        <input type="file" id="photo-input" multiple accept="image/png, image/jpeg" hidden>
+                    </div>
+                    <div id="photo-preview-container"></div>
+                </div>
+                <div class="form-group">
+                    <label class="recommend-label">
+                        <input type="checkbox" id="recommend-checkbox">
+                        I would recommend Destinova to a friend
+                    </label>
+                </div>
+                <button type="submit" id="submit-review-btn" class="btn-submit" disabled>Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER START -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-7xl mx-auto">
+            <!-- Footer content from index.html -->
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <script src="../js/index.js"></script>
+    <script src="../js/reviews.js"></script>
+</body>
+
+</html>
