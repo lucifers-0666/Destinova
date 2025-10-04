@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Details - Destinova</title>
+    <meta name="description"
+        content="Enter passenger details to complete your Destinova flight booking.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/passenger-details.css">
+</head>
+
+<body class="bg-gray-50">
+    <!-- HEADER START -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    </ul>
+                </li>
+                <li><a href="about-us.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="signin.html" class="btn header-btn-signin"><i class="fas fa-right-to-bracket"></i><span>Sign In</span></a>
+                <button class="header-mobile-menu-btn" id="header-menuToggle"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+    <nav class="header-mobile-nav" id="header-mobile-nav">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+            <li class="header-dropdown"><a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                </ul>
+            </li>
+            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile"><a href="#"><i class="fas fa-tools"></i> Manage</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                </ul>
+            </li>
+            <li><a href="about-us.html"><i class="fas fa-building"></i> About Us</a></li>
+            <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+        </ul>
+    </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
+
+    <main class="pt-24 pb-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="step completed"><div class="icon"><i class="fas fa-check"></i></div><span>Select Flight</span></div>
+                <div class="line completed"></div>
+                <div class="step active"><div class="icon">2</div><span>Passenger Details</span></div>
+                <div class="line"></div>
+                <div class="step"><div class="icon">3</div><span>Payment</span></div>
+                <div class="line"></div>
+                <div class="step"><div class="icon">4</div><span>Confirmation</span></div>
+            </div>
+
+            <!-- Main Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-10 gap-12 mt-12">
+                <!-- Left Section (70%) -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- Flight Summary Card -->
+                    <div class="flight-summary-card">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-plane-departure text-2xl"></i>
+                            <div>
+                                <h3 class="font-bold">Your Selected Flight</h3>
+                                <p class="text-sm">Delhi (DEL) to Mumbai (BOM) - 15 Jan 2025, 08:00 - 10:10</p>
+                            </div>
+                        </div>
+                        <a href="results.html" class="text-sm font-semibold hover:underline">Change Flight</a>
+                    </div>
+
+                    <!-- Passenger Details Form -->
+                    <div id="passenger-forms-container" class="space-y-8">
+                        <!-- Passenger forms will be injected here by JS -->
+                    </div>
+                    <button id="add-passenger-btn" class="w-full border-2 border-dashed border-gray-300 text-gray-600 font-semibold py-3 rounded-lg hover:bg-gray-100 hover:border-primary-emerald hover:text-primary-emerald transition">
+                        <i class="fas fa-plus-circle mr-2"></i>Add Another Passenger
+                    </button>
+
+                    <!-- Contact Information -->
+                    <div class="form-card">
+                        <h3 class="form-card-title">Contact Information</h3>
+                        <p class="form-card-subtitle">We'll send booking confirmations and updates here.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact-email">Email Address <span class="text-red-500">*</span></label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                            <div>
+                                <label for="contact-phone">Phone Number <span class="text-red-500">*</span></label>
+                                <div class="flex">
+                                    <select class="phone-code"><option>+91</option><option>+1</option></select>
+                                    <input type="tel" id="contact-phone" class="rounded-l-none" required>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label for="emergency-contact">Emergency Contact (Optional)</label>
+                                <input type="text" id="emergency-contact" placeholder="Name and Phone Number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Requests -->
+                    <div class="form-card">
+                        <h3 class="form-card-title">Special Requests & Add-ons</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+                            <div>
+                                <label for="meal-preference">Meal Preference</label>
+                                <select id="meal-preference">
+                                    <option>No Preference</option>
+                                    <option>Vegetarian</option>
+                                    <option>Non-Vegetarian</option>
+                                    <option>Vegan</option>
+                                </select>
+                            </div>
+                            <div class="space-y-4">
+                                <label class="checkbox-label"><input type="checkbox" id="wheelchair-assistance">Wheelchair Assistance Required</label>
+                                <div class="flex items-center gap-4">
+                                    <label class="checkbox-label"><input type="checkbox" id="extra-baggage">Add Extra Baggage</label>
+                                    <div id="baggage-quantity-selector" class="hidden items-center gap-2">
+                                        <button class="quantity-btn" data-action="decrease">-</button>
+                                        <span id="baggage-quantity" class="font-bold">1</span>
+                                        <button class="quantity-btn" data-action="increase">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Travel Insurance & Save Details -->
+                    <div class="form-card">
+                        <label class="checkbox-label text-base font-semibold">
+                            <input type="checkbox" id="travel-insurance">
+                            Add Travel Insurance (₹500 per person)
+                        </label>
+                        <p class="text-xs text-gray-500 ml-7">Covers medical emergencies, trip cancellation, and lost baggage.</p>
+                        <hr class="my-6">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="save-details">
+                            Save these details for future bookings
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar (30%) -->
+                <div class="lg:col-span-3">
+                    <div class="sticky top-28 space-y-6">
+                        <div class="booking-summary-card">
+                            <h3 class="summary-title">Booking Summary</h3>
+                            <div class="summary-flight-details">
+                                <p class="font-semibold">Delhi (DEL) to Mumbai (BOM)</p>
+                                <p class="text-sm text-gray-500">1 Adult, Economy</p>
+                                <p class="text-sm text-gray-500">15 Jan 2025</p>
+                            </div>
+                            <div class="price-breakdown">
+                                <div class="price-item"><span>Base Fare</span><span id="summary-base-fare">₹4,500</span></div>
+                                <div class="price-item"><span>Taxes & Fees</span><span>₹850</span></div>
+                                <div class="price-item hidden" id="summary-baggage-item">
+                                    <span>Extra Baggage</span><span id="summary-baggage-fee">₹0</span>
+                                </div>
+                                <div class="price-item hidden" id="summary-insurance-item">
+                                    <span>Travel Insurance</span><span id="summary-insurance-fee">₹0</span>
+                                </div>
+                            </div>
+                            <div class="total-price">
+                                <span>Total Amount</span>
+                                <span id="summary-total-price">₹5,350</span>
+                            </div>
+                        </div>
+                        <a href="payment.html" class="continue-btn">Continue to Payment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER START -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+                <div class="footer-col">
+                    <div class="footer-logo mb-4">
+                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2>
+                    </div>
+                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-compass"></i> Quick Links</h3>
+                    <nav aria-label="Footer navigation">
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
+                            <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"></i> Book a Flight</a></li>
+                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"></i> Special Offers</a></li>
+                            <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"></i> About Us</a></li>
+                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"></i> Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-headset"></i> Customer Support</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors"><i class="fas fa-envelope mr-2"></i> support@destinova.com</a></p>
+                        <p><a href="tel:+1234567890" class="hover:text-white transition-colors"><i class="fas fa-phone mr-2"></i> +91 1234567891</a></p>
+                        <div class="support-badge"><i class="fas fa-clock mr-2"></i> 24/7 Assistance</div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-share-nodes"></i> Stay Connected</h3>
+                    <form class="newsletter-form mb-6" id="newsletter-form"><div class="newsletter-input-wrapper"><input type="email" placeholder="Your email address" required class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"><button type="submit" class="newsletter-button"><i class="fas fa-paper-plane"></i></button></div></form>
+                    <div class="social-links flex items-center space-x-4"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a></div>
+                </div>
+            </div>
+            <div class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
+                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400"><a href="#" class="legal-link">Privacy Policy</a><span>|</span><a href="#" class="legal-link">Terms of Service</a></nav>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top"><i class="fas fa-plane-up"></i></a>
+
+    <script src="../js/index.js"></script>
+    <script src="../js/passenger-details.js"></script>
+</body>
+
+</html>

@@ -423,3 +423,139 @@ body {
     background-color: white;
     padding: 4px;
 }
+/* booking.css */
+
+/* Progress Bar */
+.progress-step {
+    text-align: center;
+    position: relative;
+}
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+.step-label {
+    margin-top: 8px;
+    font-size: 0.875rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.progress-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #e5e7eb;
+    margin: 0 -2px;
+    transform: translateY(-20px);
+    transition: background-color 0.3s ease;
+}
+.progress-step.active .step-circle {
+    background-color: var(--primary-emerald);
+    color: white;
+    border-color: var(--primary-emerald);
+}
+.progress-step.active .step-label {
+    color: var(--primary-emerald);
+    font-weight: 600;
+}
+.progress-step.active + .progress-line {
+    background-color: var(--primary-emerald);
+}
+
+/* Passenger Form Enhancements */
+.passenger-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+.passenger-form-header h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+}
+.remove-passenger-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.remove-passenger-btn:hover {
+    color: #b91c1c;
+}
+
+/* Add-ons Section */
+.addon-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.insurance-tooltip {
+    position: relative;
+    cursor: help;
+    color: #9ca3af;
+}
+.insurance-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: var(--text-charcoal);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.8rem;
+}
+.insurance-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Extra Baggage */
+.baggage-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.baggage-quantity {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 4px;
+}
+.baggage-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--primary-emerald);
+    background-color: transparent;
+    color: var(--primary-emerald);
+    cursor: pointer;
+    font-weight: bold;
+}
+.baggage-btn:hover {
+    background-color: var(--primary-emerald);
+    color: white;
+}

@@ -1,0 +1,160 @@
+/* Profile Page Specific Styles */
+
+:root {
+    --profile-green-accent: #2d5a3d;
+    --profile-border-color: #e5e7eb;
+    --profile-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Page Header */
+.profile-page-header {
+    background-color: white;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--profile-border-color);
+    box-shadow: var(--profile-shadow);
+}
+
+.edit-profile-btn {
+    background-color: var(--profile-green-accent);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-profile-btn:hover {
+    background-color: #1d4028;
+    transform: translateY(-2px);
+}
+
+/* Left Sidebar Card */
+.profile-sidebar-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--profile-shadow);
+    border: 1px solid var(--profile-border-color);
+    position: sticky;
+    top: 7rem; /* Adjust based on header height */
+}
+
+.profile-photo-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 4px solid var(--profile-green-accent);
+    box-shadow: 0 0 15px rgba(45, 90, 61, 0.3);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-photo-btn {
+    background-color: var(--profile-green-accent);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.upload-photo-btn:hover {
+    background-color: #1d4028;
+}
+
+/* Right Content Cards */
+.profile-content-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--profile-shadow);
+    border: 1px solid var(--profile-border-color);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-charcoal);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--profile-border-color);
+    margin-bottom: 1.5rem;
+}
+
+.info-field {
+    position: relative;
+}
+
+.info-field label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-slate);
+    margin-bottom: 0.25rem;
+}
+
+.info-field p {
+    font-size: 1rem;
+    color: var(--text-charcoal);
+    font-weight: 500;
+}
+
+.edit-icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    color: var(--text-slate);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.edit-icon:hover {
+    color: var(--profile-green-accent);
+}
+
+.preference-field select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--profile-border-color);
+    background-color: #f9fafb;
+}
+
+.payment-method-item, .loyalty-program-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--profile-border-color);
+    border-radius: 8px;
+}
+
+.loyalty-program-item img {
+    height: 24px;
+    object-fit: contain;
+}
+
+.add-new-btn {
+    background-color: var(--profile-green-accent);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.add-new-btn:hover {
+    background-color: #1d4028;
+}

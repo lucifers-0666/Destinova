@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed! - Destinova</title>
+    <meta name="description" content="Your flight booking with Destinova is confirmed. View your ticket details here.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/booking-confirmation.css">
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- HEADER (Copied from index.html for consistency) -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo"><h1>Destin<span>ova</span></h1></div>
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><span>Home</span></a></li>
+                <li><a href="my-bookings.html"><span>My Bookings</span></a></li>
+                <li><a href="profile.html"><span>My Profile</span></a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="profile.html" class="btn header-btn-signin"><span>My Account</span></a>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER END -->
+
+    <main class="pt-24 pb-24">
+        <section class="success-hero">
+            <div class="success-checkmark"><i class="fas fa-check"></i></div>
+            <h1>Booking Confirmed!</h1>
+            <p class="success-message">Thank you for choosing Destinova. Your e-ticket has been sent to your email address.</p>
+            <div id="booking-ref-container">
+                <span id="booking-ref">DEST789A</span>
+                <button id="copy-ref-btn" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+                <div id="copy-tooltip">Copied!</div>
+            </div>
+        </section>
+
+        <div class="ticket-container">
+            <div class="ticket-card" id="ticket-card">
+                <div class="ticket-header">
+                    <img src="https://i.imgur.com/sC3mYh1.png" alt="Airline Logo" class="airline-logo">
+                    <div>
+                        <h2 class="airline-name">Destinova Air</h2>
+                        <p class="flight-number">Flight: DN 789</p>
+                    </div>
+                </div>
+
+                <div class="flight-path-details">
+                    <div class="flight-segment departure">
+                        <span class="city-code">DEL</span>
+                        <h3 class="city-name">New Delhi</h3>
+                        <p class="airport-name">Indira Gandhi Int'l</p>
+                        <p class="flight-time">08:00</p>
+                        <p class="flight-date">15 Mar, 2025</p>
+                        <p class="terminal-gate">Terminal: 3, Gate: 24A</p>
+                    </div>
+                    <div class="flight-info">
+                        <i class="fas fa-plane"></i>
+                        <p class="duration">2h 10m</p>
+                        <p class="stops">Non-stop</p>
+                    </div>
+                    <div class="flight-segment arrival">
+                        <span class="city-code">BOM</span>
+                        <h3 class="city-name">Mumbai</h3>
+                        <p class="airport-name">Chhatrapati Shivaji Int'l</p>
+                        <p class="flight-time">10:10</p>
+                        <p class="flight-date">15 Mar, 2025</p>
+                        <p class="terminal-gate">Terminal: 2</p>
+                    </div>
+                </div>
+
+                <div class="passenger-details">
+                    <h4 class="section-title">Passenger Information</h4>
+                    <ul>
+                        <li>
+                            <span>Diwakar Monga</span>
+                            <span>Seat: 12A</span>
+                            <span>Class: Economy</span>
+                            <span>Baggage: 2x23kg</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ticket-footer">
+                    <div class="qr-code" id="qr-code-container">
+                        <!-- QR Code will be generated here -->
+                    </div>
+                    <div class="boarding-info">
+                        <p>Scan this QR code at the gate for boarding.</p>
+                        <p>Have a wonderful journey!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="download-ticket-btn" class="btn-action btn-primary"><i class="fas fa-download"></i> Download Ticket</button>
+                <button id="email-ticket-btn" class="btn-action"><i class="fas fa-envelope"></i> Email Ticket</button>
+                <button id="add-to-calendar-btn" class="btn-action"><i class="fas fa-calendar-plus"></i> Add to Calendar</button>
+                <button id="print-btn" class="btn-action"><i class="fas fa-print"></i> Print</button>
+            </div>
+
+            <div class="next-steps">
+                <h3 class="section-title">What's Next?</h3>
+                <ul class="checklist">
+                    <li><i class="far fa-check-square"></i> Web check-in opens 24 hours before your flight.</li>
+                    <li><i class="far fa-check-square"></i> Arrive at the airport at least 2 hours before departure.</li>
+                    <li><i class="far fa-check-square"></i> Carry a valid government-issued photo ID.</li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="promo-section">
+            <div class="promo-container">
+                <h3>Plan Your Next Trip</h3>
+                <div class="destination-cards-container">
+                    <!-- Destination cards will be populated by JS -->
+                    <div class="destination-card-promo">
+                        <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=400" alt="Tokyo">
+                        <div class="promo-overlay"><h4>Tokyo</h4></div>
+                    </div>
+                    <div class="destination-card-promo">
+                        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=400" alt="Rome">
+                        <div class="promo-overlay"><h4>Rome</h4></div>
+                    </div>
+                    <div class="destination-card-promo">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=400" alt="Dubai">
+                        <div class="promo-overlay"><h4>Dubai</h4></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Copied from index.html for consistency) -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+                <div class="footer-col">
+                    <div class="footer-logo mb-4"><h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2></div>
+                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-compass"></i> Quick Links</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
+                        <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"></i> Book a Flight</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-headset"></i> Customer Support</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><a href="mailto:support@destinova.com" class="hover:text-white"><i class="fas fa-envelope mr-2"></i> support@destinova.com</a></p>
+                        <p><a href="tel:+911234567891" class="hover:text-white"><i class="fas fa-phone mr-2"></i> +91 1234567891</a></p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-share-nodes"></i> Stay Connected</h3>
+                    <div class="social-links flex items-center space-x-4"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a></div>
+                </div>
+            </div>
+            <div class="footer-bottom-bar mt-8 flex justify-between items-center">
+                <p class="text-sm text-gray-400">&copy; 2025 Destinova. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Page Script -->
+    <script src="../js/index.js"></script>
+    <script src="../js/booking-confirmation.js"></script>
+</body>
+
+</html>

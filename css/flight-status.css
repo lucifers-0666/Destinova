@@ -1,0 +1,404 @@
+/* ============================================= */
+/* FLIGHT STATUS PAGE CSS */
+/* ============================================= */
+
+/* --- THEME VARIABLES --- */
+:root {
+    --primary-emerald: #1d5e33;
+    --secondary-cream: #FFFBF2;
+    --accent-gold: #E5CBAF;
+    --text-charcoal: #1C2526;
+    --text-slate: #5C6B73;
+    --background-white: #FAFAFA;
+    --border-gray: #e5e7eb;
+    --status-on-time: #10b981;
+    --status-delayed: #f59e0b;
+    --status-cancelled: #ef4444;
+    --status-boarding: #3b82f6;
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* --- HERO SECTION --- */
+.status-hero {
+    background: linear-gradient(135deg, var(--primary-emerald), #2a8a4c);
+    color: white;
+    padding: 120px 20px 140px;
+    text-align: center;
+}
+
+.status-hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+}
+
+.status-hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+/* --- MAIN CONTAINER & SEARCH CARD --- */
+#flight-status-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.search-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    max-width: 700px;
+    margin: -100px auto 40px;
+    position: relative;
+    z-index: 10;
+}
+
+#status-search-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    align-items: center;
+}
+
+#status-search-form input {
+    padding: 14px;
+    border: 1px solid var(--border-gray);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#status-search-form input:focus {
+    outline: none;
+    border-color: var(--primary-emerald);
+    box-shadow: 0 0 0 3px rgba(29, 94, 51, 0.2);
+}
+
+.btn-search {
+    background: var(--primary-emerald);
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-search:hover {
+    transform: scale(1.02);
+}
+
+.btn-search i {
+    transition: transform 0.3s ease;
+}
+
+.btn-search:active i {
+    transform: rotate(360deg);
+}
+
+.form-error-message {
+    color: var(--status-cancelled);
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* --- RECENT & POPULAR SEARCHES --- */
+.recent-searches {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.recent-title {
+    font-weight: 500;
+    color: var(--text-slate);
+}
+
+#recent-searches-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.recent-searches .recent-pill {
+    background: #f3f4f6;
+    color: var(--text-slate);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.recent-searches .recent-pill:hover {
+    background: var(--primary-emerald);
+    color: white;
+}
+
+.popular-routes {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.popular-routes .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-gray);
+    margin-bottom: 15px;
+}
+
+.popular-routes .tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-slate);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+
+.popular-routes .tab-btn.active {
+    color: var(--primary-emerald);
+    border-bottom-color: var(--primary-emerald);
+}
+
+.popular-routes .tab-content {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.popular-routes .tab-content.active {
+    display: flex;
+}
+
+.popular-routes .tab-content a {
+    color: var(--primary-emerald);
+    text-decoration: none;
+    background: #f0fdf4;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* --- FLIGHT RESULTS --- */
+#flight-results {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    margin-top: 30px;
+    border-left: 5px solid var(--primary-emerald);
+    box-shadow: var(--shadow-md);
+    animation: slide-in-fwd-center 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes slide-in-fwd-center {
+    0% {
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+.flight-info-card .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.flight-info-card .airline {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.flight-info-card .airline img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}
+
+.flight-info-card .airline span {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.flight-status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.flight-status-badge.on-time { background-color: var(--status-on-time); }
+.flight-status-badge.delayed { background-color: var(--status-delayed); }
+.flight-status-badge.cancelled { background-color: var(--status-cancelled); }
+.flight-status-badge.boarding { background-color: var(--status-boarding); }
+
+.route-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.route-info .fa-plane {
+    color: var(--text-slate);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.progress-point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a0aec0;
+    position: relative;
+}
+
+.progress-point::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #a0aec0;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #a0aec0;
+    margin-bottom: 8px;
+    transition: all 0.4s ease;
+}
+
+.progress-point.done { color: var(--primary-emerald); }
+.progress-point.done::before {
+    background: var(--primary-emerald);
+    box-shadow: 0 0 0 2px var(--primary-emerald);
+}
+
+.progress-point.in-air.active { color: var(--primary-emerald); }
+.progress-point.in-air.active::before {
+    background: var(--primary-emerald);
+    box-shadow: 0 0 0 2px var(--primary-emerald);
+    animation: pulse 2s infinite;
+}
+
+.progress-line-container {
+    flex-grow: 1;
+    height: 4px;
+    background-color: #e2e8f0;
+    margin: 0 10px;
+}
+.progress-line-fill {
+    height: 100%;
+    width: 0%; /* Controlled by JS */
+    background-color: var(--primary-emerald);
+    transition: width 1s ease;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(29, 94, 51, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(29, 94, 51, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(29, 94, 51, 0); }
+}
+
+/* Detailed Info */
+.detailed-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.departure-details, .arrival-details {
+    padding: 20px;
+}
+
+.departure-details { border-right: 2px dashed var(--border-gray); }
+
+.detailed-info h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--primary-emerald);
+}
+
+.detailed-info p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.detailed-info span {
+    font-weight: normal;
+    color: var(--text-charcoal);
+}
+
+.extra-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-gray);
+}
+
+#delay-info {
+    color: var(--status-delayed);
+    font-weight: 500;
+}
+
+/* Skeleton Loader */
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% { background-color: hsl(200, 20%, 80%); }
+    100% { background-color: hsl(200, 20%, 95%); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .status-hero {
+        padding: 80px 20px 100px;
+    }
+    .status-hero h1 {
+        font-size: 32px;
+    }
+    #status-search-form {
+        grid-template-columns: 1fr;
+    }
+    .detailed-info {
+        grid-template-columns: 1fr;
+    }
+    .departure-details {
+        border-right: none;
+        border-bottom: 2px dashed var(--border-gray);
+    }
+    .progress-point span {
+        font-size: 12px;
+    }
+}

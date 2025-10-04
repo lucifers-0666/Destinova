@@ -1,0 +1,230 @@
+/* ============================================= */
+/* ADMIN - REVENUE REPORTS CSS */
+/* ============================================= */
+
+/* --- Header & Date Selector --- */
+.btn-action {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-emerald);
+    cursor: pointer;
+    font-weight: 600;
+    background: transparent;
+    color: var(--primary-emerald);
+}
+.btn-action:hover {
+    background: var(--primary-emerald);
+    color: var(--white);
+}
+
+.date-range-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+.date-range-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.date-range-btn:hover {
+    border-color: var(--primary-emerald);
+    color: var(--primary-emerald);
+}
+.date-range-btn.active {
+    background-color: var(--primary-emerald);
+    color: var(--white);
+    border-color: var(--primary-emerald);
+}
+.custom-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.custom-range input[type="date"] {
+    padding: 6px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+}
+.custom-range button {
+    padding: 8px 12px;
+    background-color: var(--light-green);
+    color: var(--primary-emerald);
+    border: 1px solid var(--primary-emerald);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* --- Overview Cards --- */
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+}
+.overview-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+.card-label {
+    font-size: 14px;
+    color: var(--text-slate);
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+.card-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-emerald);
+    display: block;
+}
+.card-growth {
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-top: 8px;
+}
+.card-growth.positive {
+    color: #166534;
+    background-color: #dcfce7;
+}
+.card-growth.negative {
+    color: #991b1b;
+    background-color: #fee2e2;
+}
+
+/* --- Charts Section --- */
+.charts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.chart-container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+.chart-container.large-chart {
+    grid-column: span 2;
+}
+.chart-container h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-emerald);
+    font-weight: 600;
+}
+.chart-container canvas {
+    max-height: 300px;
+    width: 100% !important;
+}
+.chart-container.large-chart canvas {
+    max-height: 350px;
+}
+
+/* --- Data Tables Section --- */
+.data-tables-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.table-wrapper {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+}
+.table-wrapper h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--primary-emerald);
+    font-weight: 600;
+}
+.data-table .positive { color: #16a34a; }
+.data-table .negative { color: #ef4444; }
+
+/* --- Additional Metrics --- */
+.additional-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.metric-card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+.metric-label {
+    font-size: 13px;
+    color: var(--text-slate);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+}
+.metric-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-charcoal);
+}
+
+/* --- Print Styles --- */
+@media print {
+    body {
+        background-color: var(--white);
+    }
+    .admin-sidebar, .main-header, .date-range-selector, .filter-sidebar {
+        display: none;
+    }
+    .admin-main-content {
+        padding: 0;
+    }
+    .overview-cards, .charts-section, .data-tables-section, .additional-metrics {
+        grid-template-columns: 1fr;
+        page-break-inside: avoid;
+    }
+    .chart-container, .table-wrapper, .overview-card, .metric-card {
+        box-shadow: none;
+        border: 1px solid var(--border-gray);
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+    .overview-cards, .additional-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .charts-section, .data-tables-section {
+        grid-template-columns: 1fr;
+    }
+    .chart-container.large-chart {
+        grid-column: span 1;
+    }
+}
+@media (max-width: 768px) {
+    .overview-cards, .additional-metrics {
+        grid-template-columns: 1fr;
+    }
+}

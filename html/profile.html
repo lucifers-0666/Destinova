@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Destinova</title>
+    <meta name="description"
+        content="Manage your Destinova profile, travel preferences, and payment methods.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body class="bg-slate-50">
+    <!-- HEADER START -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i
+                            class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    </ul>
+                </li>
+                <li><a href="about-us.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="signin.html" class="btn header-btn-signin">
+                    <i class="fas fa-right-to-bracket"></i>
+                    <span>Sign In</span>
+                </a>
+                <button class="header-mobile-menu-btn" id="header-menuToggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="header-mobile-nav" id="header-mobile-nav">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+            <li class="header-dropdown">
+                <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                </ul>
+            </li>
+            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
+                <a href="#"><i class="fas fa-tools"></i> Manage</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                </ul>
+            </li>
+            <li><a href="about-us.html"><i class="fas fa-building"></i> About Us</a></li>
+            <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+        </ul>
+    </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
+
+    <main class="pt-24 pb-24">
+        <!-- Profile Header -->
+        <section class="profile-page-header">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-text-charcoal">My Profile</h1>
+                <button class="edit-profile-btn">
+                    <i class="fas fa-pen mr-2"></i>Edit Profile
+                </button>
+            </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <!-- Main two-column layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
+
+                <!-- Left Column (Sidebar) -->
+                <div class="lg:col-span-3">
+                    <div class="profile-sidebar-card">
+                        <div class="profile-photo-container">
+                            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="User profile picture" class="profile-photo">
+                        </div>
+                        <h2 class="text-xl font-bold text-text-charcoal mt-4">Diwakar Monga</h2>
+                        <p class="text-text-slate">diwakar@example.com</p>
+                        <p class="text-sm text-gray-500 mt-2">Member since: Jan 2023</p>
+                        <button class="upload-photo-btn">
+                            <i class="fas fa-camera mr-2"></i>Upload Photo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column (Content) -->
+                <div class="lg:col-span-7 space-y-8">
+                    <!-- Contact Details Card -->
+                    <div class="profile-content-card">
+                        <h3 class="card-title">Contact Details</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="info-field">
+                                <label>Phone Number</label>
+                                <p>+91 98765 43210</p>
+                                <button class="edit-icon"><i class="fas fa-pen"></i></button>
+                            </div>
+                            <div class="info-field">
+                                <label>Email Address</label>
+                                <p>diwakar@example.com</p>
+                                <button class="edit-icon"><i class="fas fa-pen"></i></button>
+                            </div>
+                            <div class="info-field md:col-span-2">
+                                <label>Address</label>
+                                <p>123 Skyview Lane, New Delhi, 110001, India</p>
+                                <button class="edit-icon"><i class="fas fa-pen"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Travel Preferences Card -->
+                    <div class="profile-content-card">
+                        <h3 class="card-title">Travel Preferences</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="preference-field">
+                                <label for="pref-class">Preferred Class</label>
+                                <select id="pref-class">
+                                    <option>Economy</option>
+                                    <option selected>Business</option>
+                                    <option>First Class</option>
+                                </select>
+                            </div>
+                            <div class="preference-field">
+                                <label for="pref-meal">Meal Preference</label>
+                                <select id="pref-meal">
+                                    <option>Any</option>
+                                    <option selected>Vegetarian</option>
+                                    <option>Non-Vegetarian</option>
+                                    <option>Vegan</option>
+                                </select>
+                            </div>
+                            <div class="preference-field">
+                                <label for="pref-seat">Seat Preference</label>
+                                <select id="pref-seat">
+                                    <option>Any</option>
+                                    <option selected>Window</option>
+                                    <option>Aisle</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saved Payment Methods Card -->
+                    <div class="profile-content-card">
+                        <h3 class="card-title">Saved Payment Methods</h3>
+                        <div class="space-y-4">
+                            <div class="payment-method-item">
+                                <i class="fab fa-cc-visa text-3xl text-blue-800"></i>
+                                <div class="flex-grow">
+                                    <p class="font-semibold">Visa ending in 1234</p>
+                                    <p class="text-sm text-gray-500">Expires 12/26</p>
+                                </div>
+                                <button class="edit-icon"><i class="fas fa-pen"></i></button>
+                            </div>
+                        </div>
+                        <button class="add-new-btn mt-6">
+                            <i class="fas fa-plus-circle mr-2"></i>Add New Card
+                        </button>
+                    </div>
+
+                    <!-- Loyalty Programs Card -->
+                    <div class="profile-content-card">
+                        <h3 class="card-title">Loyalty Programs</h3>
+                        <div class="space-y-4">
+                            <div class="loyalty-program-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png" alt="Emirates Logo">
+                                <div class="flex-grow">
+                                    <p class="font-semibold">Emirates Skywards</p>
+                                    <p class="text-sm text-gray-500">EK123456789</p>
+                                </div>
+                                <button class="edit-icon"><i class="fas fa-pen"></i></button>
+                            </div>
+                        </div>
+                        <button class="add-new-btn mt-6">
+                            <i class="fas fa-plus-circle mr-2"></i>Add Loyalty Program
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER START -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+                <div class="footer-col">
+                    <div class="footer-logo mb-4">
+                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
+                                aria-hidden="true"></i></h2>
+                    </div>
+                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury
+                        traveler. Discover a new standard in air travel.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">
+                        <i class="fas fa-compass" aria-hidden="true"></i>
+                        Quick Links
+                    </h3>
+                    <nav aria-label="Footer navigation">
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
+                                        aria-hidden="true"></i> Home</a></li>
+                            <li class="quick-link-item"><a href="booking.html"><i
+                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
+                                    Flight</a></li>
+                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
+                                        aria-hidden="true"></i> Special Offers</a></li>
+                            <li class="quick-link-item"><a href="about-us.html"><i
+                                        class="fas fa-info-circle link-icon w-5" aria-hidden="true"></i> About Us</a>
+                            </li>
+                            <li class="quick-link-item"><a href="contact.html"><i
+                                        class="fas fa-envelope link-icon w-5" aria-hidden="true"></i> Contact</a></li>
+                            <li class="quick-link-item"><a href="status.html"><i
+                                        class="fas fa-plane-up link-icon w-5" aria-hidden="true"></i> Flight Status</a>
+                            </li>
+                            <li class="quick-link-item"><a href="manage.html"><i
+                                        class="fas fa-briefcase link-icon w-5" aria-hidden="true"></i> Manage
+                                    Booking</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">
+                        <i class="fas fa-headset" aria-hidden="true"></i>
+                        Customer Support
+                    </h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p>
+                            <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
+                                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
+                                support@destinova.com
+                            </a>
+                        </p>
+                        <p>
+                            <a href="tel:+1234567890" class="hover:text-white transition-colors">
+                                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
+                                +91 1234567891
+                            </a>
+                        </p>
+                        <div class="support-badge">
+                            <i class="fas fa-clock mr-2" aria-hidden="true"></i>
+                            24/7 Assistance
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">
+                        <i class="fas fa-share-nodes" aria-hidden="true"></i>
+                        Stay Connected
+                    </h3>
+                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
+                        <div class="newsletter-input-wrapper">
+                            <input type="email" placeholder="Your email address" required
+                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
+                                aria-label="Email address for newsletter">
+                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="social-links flex items-center space-x-4" role="list"
+                        aria-label="Social media links">
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Facebook" role="listitem">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Twitter" role="listitem">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Instagram" role="listitem">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on LinkedIn" role="listitem">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Subscribe to our YouTube channel" role="listitem">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
+                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
+                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
+                    <span aria-hidden="true">|</span>
+                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
+                </nav>
+                <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
+                    <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
+                    <span>Trusted by 1M+ Travelers</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-plane-up"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+
+</html>

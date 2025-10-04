@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Destinova</title>
+    <meta name="description"
+        content="Get in touch with Destinova. We're here to help with your flight bookings, cancellations, and any other inquiries.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS (for footer utilities) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/contact-us.css">
+</head>
+
+<body>
+    <!-- HEADER START -->
+    <header id="header-main">
+        <div class="header-nav-container">
+            <div class="header-logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+
+            <ul class="header-desktop-nav">
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i
+                            class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                        <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                        <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                        <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                    </ul>
+                </li>
+                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
+                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
+            </ul>
+
+            <div class="header-actions">
+                <a href="signin.html" class="btn header-btn-signin">
+                    <i class="fas fa-right-to-bracket"></i>
+                    <span>Sign In</span>
+                </a>
+                <button class="header-mobile-menu-btn" id="header-menuToggle">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="header-mobile-nav" id="header-mobile-nav">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
+            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
+            <li class="header-dropdown">
+                <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
+                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+                </ul>
+            </li>
+            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
+                <a href="#"><i class="fas fa-tools"></i> Manage</a>
+                <ul class="header-dropdown-menu">
+                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
+                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
+                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+                </ul>
+            </li>
+            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
+            <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
+        </ul>
+    </nav>
+    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
+    <!-- HEADER END -->
+
+    <main class="contact-page-container">
+        <div class="contact-grid">
+            <!-- Left Column: Contact Info -->
+            <div class="contact-info">
+                <h1>Get In Touch</h1>
+                <p>We're here to help with any questions or concerns you may have. Reach out to us through any of the methods below.</p>
+                <ul class="contact-methods-list">
+                    <li class="contact-method-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">
+                            <strong>Office Address</strong>
+                            <span>123 Skyward Avenue, Aero City, New Delhi, 110037, India</span>
+                            <button class="btn-map" id="open-map-btn">View on Google Maps</button>
+                        </div>
+                    </li>
+                    <li class="contact-method-item clickable" id="copy-email-btn">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">
+                            <strong>Email Us</strong>
+                            <span>support@destinova.com</span>
+                        </div>
+                    </li>
+                    <li class="contact-method-item clickable" id="copy-phone-btn">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-details">
+                            <strong>Call Us</strong>
+                            <span>+91 12345 67890</span>
+                        </div>
+                    </li>
+                    <li class="contact-method-item">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-details">
+                            <strong>Business Hours</strong>
+                            <span>Mon-Fri: 9:00 AM - 6:00 PM</span>
+                            <span>Saturday: 10:00 AM - 4:00 PM</span>
+                            <span>Sunday: Closed</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="social-media-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Column: Contact Form -->
+            <div class="contact-form-section">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form" novalidate>
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                    <div class="error-message" id="name-error"></div>
+
+                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                    <div class="error-message" id="email-error"></div>
+
+                    <div class="phone-input-group">
+                        <select id="country-code" name="country-code">
+                            <option value="+91">IN (+91)</option>
+                            <option value="+1">US (+1)</option>
+                            <option value="+44">UK (+44)</option>
+                        </select>
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
+                    </div>
+                    <div class="error-message" id="phone-error"></div>
+
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a Subject...</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Booking Support">Booking Support</option>
+                        <option value="Cancellation/Refund">Cancellation/Refund</option>
+                        <option value="Technical Issue">Technical Issue</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="error-message" id="subject-error"></div>
+
+                    <textarea id="message" name="message" placeholder="Your Message (min. 10 characters)" required minlength="10" maxlength="500"></textarea>
+                    <div class="char-counter" id="char-counter">0/500</div>
+                    <div class="error-message" id="message-error"></div>
+
+                    <label class="privacy-policy-label">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+                        I agree to the <a href="#">Privacy Policy</a>.
+                    </label>
+                    <div class="error-message" id="privacy-error"></div>
+
+                    <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
+                </form>
+                <div id="success-msg" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <p><strong>Message sent successfully!</strong><br>We'll respond within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">How do I cancel my booking? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">You can cancel your booking through the "Manage Booking" section on our website. You will need your booking reference number and the last name of the primary passenger. Please note that cancellation fees may apply depending on the fare rules.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is your refund policy? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Refunds are processed based on the fare conditions of your ticket. Refundable tickets will be credited back to the original payment method within 7-10 business days. Non-refundable tickets may be eligible for a travel credit.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the baggage allowance? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Baggage allowance varies by travel class and destination. Typically, Economy class allows one checked bag up to 23kg, while Business and First Class offer more generous allowances. You can find specific details on your e-ticket.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How can I check-in online? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Online check-in opens 48 hours before your flight's departure. Visit the "Check-in" page on our website and enter your booking reference and last name to proceed.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I select my seat after booking? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Yes, you can select or change your seat through the "Manage Booking" portal. Some seats may require an additional fee depending on your fare type.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER START -->
+    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
+        <div class="footer-content max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
+                <!-- Company Info -->
+                <div class="footer-col xl:col-span-2">
+                    <div class="footer-logo mb-4">
+                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
+                                aria-hidden="true"></i></h2>
+                    </div>
+                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury
+                        traveler.
+                        Discover a new standard in air travel.
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-compass" aria-hidden="true"></i> Quick Links</h3>
+                    <nav aria-label="Footer navigation">
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
+                                        aria-hidden="true"></i> Home</a></li>
+                            <li class="quick-link-item"><a href="booking.html"><i
+                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
+                                    Flight</a></li>
+                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
+                                        aria-hidden="true"></i> Special Offers</a></li>
+                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
+                                        aria-hidden="true"></i> Contact</a></li>
+                            <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
+                                        aria-hidden="true"></i> Flight Status</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Customer Support -->
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-headset" aria-hidden="true"></i> Customer Support</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors"><i
+                                    class="fas fa-envelope mr-2" aria-hidden="true"></i> support@destinova.com</a></p>
+                        <p><a href="tel:+1234567890" class="hover:text-white transition-colors"><i
+                                    class="fas fa-phone mr-2" aria-hidden="true"></i> +91 12345 67890</a></p>
+                        <div class="support-badge"><i class="fas fa-clock mr-2" aria-hidden="true"></i> 24/7 Assistance
+                        </div>
+                    </div>
+                </div>
+                <!-- Stay Connected -->
+                <div class="footer-col">
+                    <h3 class="footer-title"><i class="fas fa-share-nodes" aria-hidden="true"></i> Stay Connected</h3>
+                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
+                        <div class="newsletter-input-wrapper">
+                            <input type="email" placeholder="Your email address" required
+                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
+                                aria-label="Email address for newsletter">
+                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Facebook" role="listitem"><i class="fab fa-facebook-f"
+                                aria-hidden="true"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Twitter" role="listitem"><i class="fab fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
+                            aria-label="Follow us on Instagram" role="listitem"><i class="fab fa-instagram"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div
+                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
+                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
+                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
+                    <span aria-hidden="true">|</span>
+                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/contact-us.js"></script>
+</body>
+
+</html>

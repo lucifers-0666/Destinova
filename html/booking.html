@@ -174,6 +174,20 @@
                             <i class="fas fa-plus-circle"></i> Add Another Passenger
                         </button>
 
+                        <!-- Add-ons Section -->
+                        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                            <h3 class="text-xl font-semibold text-text-charcoal mb-4">Add-ons & Extras</h3>
+                            <div class="space-y-4">
+                                <div class="addon-option">
+                                    <label for="travel-insurance" class="flex items-center cursor-pointer">
+                                        <input type="checkbox" id="travel-insurance" class="h-5 w-5 rounded border-gray-300 text-primary-emerald focus:ring-primary-emerald">
+                                        <span class="ml-3 text-base font-medium text-text-charcoal">Add Travel Insurance (<span id="insurance-price">₹500</span> per person)</span>
+                                    </label>
+                                    <div class="insurance-tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Covers trip cancellation, medical emergencies, lost baggage, and flight delays.</span></div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Contact Details -->
                         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
                             <h3 class="text-xl font-semibold text-text-charcoal mb-6">Contact Details (for booking confirmation)</h3>
@@ -194,6 +208,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Save Details Checkbox -->
+                            <div class="mt-6">
+                                <label for="save-details" class="flex items-center cursor-pointer text-sm text-text-slate">
+                                    <input type="checkbox" id="save-details" class="h-4 w-4 rounded border-gray-300 text-primary-emerald focus:ring-primary-emerald">
+                                    <i class="fas fa-user-shield ml-3 mr-2 text-primary-emerald"></i>
+                                    <span class="font-medium">Save passenger details for future bookings</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -205,7 +227,7 @@
                                 <div class="eticket-main">
                                     <div class="eticket-header">
                                         <h4 class="font-bold text-primary-emerald">Destinova Airlines</h4>
-                                        <p class="text-xs text-slate-500">Passenger: <span id="primary-passenger-name">Diwakar Monga</span></p>
+                                        <p class="text-xs text-slate-500">Passenger: <span id="primary-passenger-name">Enter Details</span></p>
                                     </div>
                                     <div class="eticket-flight-info">
                                         <div class="flight-details">
@@ -253,12 +275,14 @@
                             <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
                                 <h3 class="text-lg font-semibold mb-4">Price Summary</h3>
                                 <div class="space-y-2 text-text-slate">
-                                    <div class="flex justify-between"><span>Base Fare (1 Adult)</span><span>₹4,500.00</span></div>
-                                    <div class="flex justify-between"><span>Taxes & Fees</span><span>₹850.00</span></div>
+                                    <div class="flex justify-between"><span>Base Fare (<span id="passenger-count-summary">1 Adult</span>)</span><span id="base-fare">₹4,500.00</span></div>
+                                    <div class="flex justify-between"><span>Taxes & Fees</span><span id="taxes-fees">₹850.00</span></div>
+                                    <div id="insurance-summary-line" class="flex justify-between hidden"><span>Travel Insurance</span><span id="insurance-cost">₹0.00</span></div>
+                                    <div id="baggage-summary-line" class="flex justify-between hidden"><span>Extra Baggage</span><span id="baggage-cost">₹0.00</span></div>
                                     <hr class="my-2">
                                     <div class="flex justify-between font-bold text-lg text-text-charcoal">
                                         <span>Total Price</span>
-                                        <span class="text-primary-emerald">₹5,350.00</span>
+                                        <span id="total-price" class="text-primary-emerald">₹5,350.00</span>
                                     </div>
                                 </div>
                             </div>

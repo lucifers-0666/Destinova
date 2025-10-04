@@ -48,28 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Page indicator text (shows current page under header)
-    const indicator = document.getElementById('page-indicator');
-    if (indicator) {
-        const path = window.location.pathname.split('/').pop() || 'index.html';
-        const mapping = {
-            'index.html': 'Home',
-            'booking.html': 'Book Flights',
-            'destinations.html': 'Destinations',
-            'classes.html': 'Travel Classes',
-            'offers.html': 'Special Offers',
-            'loyalty.html': 'Loyalty Program',
-            'manage.html': 'Manage Booking',
-            'checkin.html': 'Check-in',
-            'status.html': 'Flight Status',
-            'about.html': 'About Us',
-            'contact.html': 'Contact',
-            'signin.html': 'Sign In'
-        };
-        const label = mapping[path] || 'Page';
-        indicator.textContent = `You are on: ${label}`;
-    }
-
     const menuToggle = document.getElementById('header-menuToggle');
     const nav = document.getElementById('header-mobile-nav');
     const overlay = document.getElementById('header-mobileNavOverlay');

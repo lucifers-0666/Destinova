@@ -103,7 +103,7 @@ body {
   display: flex;
   list-style: none;
   align-items: center;
-  justify-content: center; /* Center links within their container */
+  justify-content: center;
   flex-grow: 1; /* Allow this element to grow and fill space */
   gap: 1rem; /* Add space between nav items */
 }

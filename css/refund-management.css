@@ -1,0 +1,208 @@
+/* ============================================= */
+/* ADMIN - REFUND MANAGEMENT CSS */
+/* ============================================= */
+
+/* --- Statistics Cards Icons --- */
+.stat-icon.pending-icon { background-color: #fef9c3; color: #ca8a04; }
+.stat-icon.approved-icon { background-color: #dcfce7; color: #16a34a; }
+.stat-icon.refunded-icon { background-color: #e0f2fe; color: #0ea5e9; }
+.stat-icon.time-icon { background-color: #f3e8ff; color: #9333ea; }
+
+/* --- Filter Section --- */
+.filter-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* --- Refund Table --- */
+.data-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.data-table .booking-ref-link {
+    color: var(--primary-emerald);
+    font-weight: 600;
+    text-decoration: none;
+}
+.data-table .booking-ref-link:hover {
+    text-decoration: underline;
+}
+
+.data-table .refund-amount {
+    font-weight: 700;
+    color: var(--primary-emerald);
+    font-size: 16px;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.status-pending { background-color: #fef9c3; color: #a16207; }
+.status-approved { background-color: #dcfce7; color: #166534; }
+.status-rejected { background-color: #fee2e2; color: #991b1b; }
+.status-processing { background-color: #dbeafe; color: #1e40af; }
+.status-completed { background-color: #e5e7eb; color: #4b5563; }
+
+/* Priority Indicators */
+.priority-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.priority-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.priority-high { background-color: #ef4444; }
+.priority-medium { background-color: #f59e0b; }
+.priority-low { background-color: #10b981; }
+
+/* Action Icons */
+.action-buttons button {
+    width: 32px;
+    height: 32px;
+}
+
+/* --- Modals --- */
+.modal-overlay.small-modal .modal-content {
+    max-width: 500px;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.modal-section {
+    margin-bottom: 25px;
+}
+.modal-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-emerald);
+    border-bottom: 1px solid var(--border-gray);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+.modal-section p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.modal-section p strong {
+    color: var(--text-slate);
+}
+
+/* Refund Calculation Table */
+.calculation-table {
+    width: 100%;
+    font-size: 14px;
+}
+.calculation-table td {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-gray);
+}
+.calculation-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+}
+.calculation-table .text-red {
+    color: #ef4444;
+}
+.calculation-table .final-amount td {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-emerald);
+    border-bottom: none;
+    padding-top: 15px;
+}
+
+/* Activity Log Timeline */
+.activity-log {
+    position: relative;
+    padding-left: 25px;
+    border-left: 2px solid var(--primary-emerald);
+}
+.log-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+.log-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: 3px solid var(--primary-emerald);
+}
+.log-item p {
+    font-size: 14px;
+    margin: 0;
+}
+.log-item small {
+    font-size: 12px;
+    color: var(--text-slate);
+}
+
+/* Admin Notes */
+#admin-notes-textarea {
+    width: 100%;
+    min-height: 100px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    resize: vertical;
+}
+#add-note-btn {
+    background-color: var(--light-green);
+    color: var(--primary-emerald);
+    border: 1px solid var(--primary-emerald);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    float: right;
+}
+
+/* Modal Action Buttons */
+.btn-modal-action.approve { background-color: #10b981; }
+.btn-modal-action.reject { background-color: #ef4444; }
+.btn-modal-action.process { background-color: #3b82f6; }
+.btn-modal-action.cancel { background-color: var(--border-gray); color: var(--text-charcoal); }
+
+/* Form Group in Modals */
+.form-group {
+    margin: 20px 0;
+}
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+}
