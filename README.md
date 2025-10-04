@@ -1,49 +1,49 @@
 # Destinova - Premium Flight Booking Experience
 
-Destinova is a modern, responsive front-end prototype for a premium flight booking website, meticulously crafted with HTML, CSS, and vanilla JavaScript. It showcases a rich, interactive user experience with a focus on a clean, luxurious aesthetic, advanced search capabilities, and a variety of engaging UI components.
+Destinova is a modern, responsive front-end prototype for a premium flight booking website. It's meticulously crafted with HTML, CSS, and vanilla JavaScript to showcase a rich, interactive user experience. The project focuses on a clean, luxurious aesthetic, a comprehensive booking flow, and a variety of well-designed user-centric pages.
 
 ## Features
 
-### 1. Home Page & Search
+### 1. Core Booking & User Management
 
-- **Flexible Date Selection**: Toggle "Flexible Dates" to search ±3 days around your selected dates with custom range inputs
-- **Nearby Airports**: Checkbox to include nearby airports for origin and destination to find cheaper fares
-- **Detailed Passenger Modal**: Comprehensive passenger selection with Adults (12+), Children (2-12), Infants (<2), and cabin classes (Economy, Premium Economy, Business, First)
-- **Direct Flights Filter**: Prominent checkbox for nonstop flights only
-- **Fare Type Selection**: Choose from Regular, Student, Senior Citizen, Armed Forces, and Corporate fares with informative tooltips
+- **Multi-Step Booking Flow (`booking.html`)**: A clean, guided 3-step process with a progress bar:
+    1.  **Passenger Details**: Dynamically add/remove passenger forms, select add-ons like travel insurance.
+    2.  **Seat Selection**: An interactive mock seat map to select seats for each passenger.
+    3.  **Review & Payment**: A final summary and a standard payment form layout.
+- **Live E-Ticket & Price Preview**: A sticky sidebar on the booking page that updates in real-time with passenger details and a full price summary.
+- **Booking Confirmation (`booking-confirmation.html`)**: A detailed confirmation page featuring:
+    - A celebratory confetti effect on load.
+    - A full e-ticket summary with a dynamically generated QR code.
+    - Action buttons to Download (as PDF), Email, Print, or Add to Calendar.
+- **My Bookings Page (`my-bookings.html`)**: A dashboard to manage user bookings:
+    - Tabbed interface for `Upcoming`, `Past`, and `Cancelled` flights.
+    - Search and filter functionality.
+    - Ability to `View Ticket`, `Modify`, or `Cancel` upcoming bookings.
+- **User Profile (`profile.html`)**: A comprehensive user profile page to manage:
+    - Contact details and address.
+    - Travel preferences (preferred class, meal, seat).
+    - Saved payment methods and loyalty programs.
 
-- **Location Detection**: Automatic geolocation to pre-fill nearest major airport in the "From" field
-- **Search History**: Dropdown showing recent searches for quick re-booking
-- **Currency Selection**: Choose display currency (INR, USD, EUR)
-- **Promotional Elements**: Rotating promotional banner with discount codes and trust badges (SSL Secured, IATA Certified, 24/7 Support)
-- **Interactive Destination Grid**: "Bento box" style grid of popular destinations. Clicking a destination populates the search form.
-- **Wishlist Functionality**: Add destinations to a wishlist directly from the cards.
-- **Animated Content Sections**:
-    - **Travel Classes**: An auto-playing tabbed interface showcasing First, Business, Premium Economy, and Economy classes.
-    - **Special Offers**: A responsive, auto-scrolling carousel for promotional deals.
-    - **Testimonials**: A smooth, auto-playing slider for customer reviews.
+### 2. Informational & Support Pages
 
-### 2. Booking Process
+- **Home Page (`index.html`)**: The main landing page with a comprehensive flight search form, promotional sections, and animated content carousels for offers and testimonials.
+- **About Us (`about-us.html`)**: A well-structured page introducing the company, its values, the team, and a testimonial carousel.
+- **Contact Us (`contact-us.html`)**: A page with contact information, a contact form with validation, and an embedded FAQ accordion.
+- **FAQ Page (`faq.html`)**: A dedicated, feature-rich FAQ section with:
+    - Live search with debouncing to filter questions.
+    - Category tabs to browse topics.
+    - A "Popular Questions" section for quick access.
+- **Terms & Conditions (`terms-conditions.html`)**: A legal page with a sticky sidebar for easy navigation through the document sections.
 
-- **Multi-Step Booking Flow**: A clean, guided 3-step process for booking:
-    1.  **Passenger Details**: Dynamically add or remove passenger forms.
-    2.  **Seat Selection**: An interactive mock seat map.
-    3.  **Review & Payment**: A summary and payment form layout.
-- **Live E-Ticket Preview**: A sticky sidebar on the booking page that updates with the primary passenger's name and shows a summary of the flight.
+### 3. UI/UX & Technical Features
 
-### 3. Content Pages
-
-- **Destinations Page**: A visually rich page with a hero video/image, destination grid, offer slider, and travel inspiration sections.
-- **Travel Classes Page**: Detailed sections for each class with dedicated image sliders and feature lists.
-- **About Us Page**: A well-structured page introducing the company, team, and values.
-
-### 4. General UI/UX
-
-- **Consistent Branding & Design**: A cohesive and premium design language is used across all pages, with a consistent color palette and typography.
+- **Consistent Branding & Design**: A cohesive and premium design language is used across all pages, with a consistent color palette, typography, and shared header/footer components.
 - **Smooth Animations**: Uses the AOS (Animate On Scroll) library and custom CSS animations for an elegant user experience.
-- **Microinteractions**: Subtle hover effects, 3D transforms on cards, and button feedback to enhance interactivity.
+- **Microinteractions**: Subtle hover effects, 3D transforms on cards, and button feedback enhance interactivity (e.g., click-to-copy on contact info).
 - **Fully Responsive Design**: A mobile-first approach ensures a seamless experience on all devices, from small phones to large desktops.
-- **Shared Header/Footer**: A consistent and fully functional header and footer are present on all pages.
+- **Dynamic Content**: JavaScript is used extensively to dynamically generate content, such as passenger forms, booking cards, FAQ items, and seat maps.
+- **Third-Party Libraries**: Integrates useful libraries like `AOS` for animations, `canvas-confetti` for user delight, and `jsPDF`/`html2canvas` for ticket downloading.
+- **Mock Data-Driven**: The front-end operates on mock data arrays within the JavaScript files, simulating a real-world API interaction for pages like "My Bookings" and "FAQ".
 
 ## File Structure
 
