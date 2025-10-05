@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Management - Destinova Admin</title>
+    <link rel="icon" type="image/png" href="../../site-images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <style>
+        .flight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
+        .flight-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+        .flight-card:hover { transform: translateY(-5px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+        .route-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .route-header h3 { color: var(--admin-primary); font-size: 24px; margin: 0; }
+        .flight-details { display: flex; flex-direction: column; gap: 12px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 6px; }
+        .btn-add-flight { background: var(--admin-secondary); color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; margin-bottom: 30px; transition: all 0.3s ease; }
+        .btn-add-flight:hover { background: var(--admin-primary); transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+            <div class="logo"><h1>Destin<span>ova</span></h1></div>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search flights..." autocomplete="off">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="notification-bell" id="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">2</span>
+            </div>
+            <div class="admin-profile" id="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <div class="profile-info">
+                    <span class="profile-name">Admin User</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li><a href="manage-bookings.html"><i class="fas fa-suitcase"></i><span>Bookings Management</span></a></li>
+                <li class="active"><a href="flight-management.html"><i class="fas fa-plane-departure"></i><span>Flight Management</span></a></li>
+                <li><a href="manage-users.html"><i class="fas fa-users"></i><span>User Management</span></a></li>
+                <li><a href="revenue-reports.html"><i class="fas fa-chart-line"></i><span>Revenue Reports</span></a></li>
+                <li><a href="refund-management.html"><i class="fas fa-undo-alt"></i><span>Refund Management</span></a></li>
+                <li><a href="notification-management.html"><i class="fas fa-bell"></i><span>Notification Management</span></a></li>
+                <li><a href="admin-settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="header-content">
+                <h1><i class="fas fa-plane-departure"></i> Flight Management</h1>
+                <p>Manage flights, schedules, and pricing</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-add-flight" onclick="alert('Add New Flight form will open here')">
+                    <i class="fas fa-plus-circle"></i> Add New Flight
+                </button>
+            </div>
+        </div>
+
+        <!-- Flight Cards Grid -->
+        <div class="flight-grid">
+            <!-- Flight Card 1 -->
+            <div class="flight-card">
+                <div class="route-header">
+                    <h3>NYC → LAX</h3>
+                    <span class="status-badge active">Active</span>
+                </div>
+                <div class="flight-details">
+                    <div class="detail-row">
+                        <strong>Flight Number:</strong>
+                        <span>AA-1234</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Airline:</strong>
+                        <span>American Airlines</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Departure:</strong>
+                        <span>08:00 AM</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Arrival:</strong>
+                        <span>11:30 AM</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Duration:</strong>
+                        <span>5h 30m</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Base Price:</strong>
+                        <span>$450</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Available Seats:</strong>
+                        <span>142/180</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button style="flex: 1; padding: 10px; background: var(--admin-secondary); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button style="flex: 1; padding: 10px; background: var(--admin-danger); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flight Card 2 -->
+            <div class="flight-card">
+                <div class="route-header">
+                    <h3>LHR → JFK</h3>
+                    <span class="status-badge active">Active</span>
+                </div>
+                <div class="flight-details">
+                    <div class="detail-row">
+                        <strong>Flight Number:</strong>
+                        <span>BA-5678</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Airline:</strong>
+                        <span>British Airways</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Departure:</strong>
+                        <span>10:00 AM</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Arrival:</strong>
+                        <span>01:15 PM</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Duration:</strong>
+                        <span>7h 15m</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Base Price:</strong>
+                        <span>$680</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Available Seats:</strong>
+                        <span>98/220</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button style="flex: 1; padding: 10px; background: var(--admin-secondary); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button style="flex: 1; padding: 10px; background: var(--admin-danger); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flight Card 3 -->
+            <div class="flight-card">
+                <div class="route-header">
+                    <h3>SFO → NRT</h3>
+                    <span class="status-badge active">Active</span>
+                </div>
+                <div class="flight-details">
+                    <div class="detail-row">
+                        <strong>Flight Number:</strong>
+                        <span>UA-9012</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Airline:</strong>
+                        <span>United Airlines</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Departure:</strong>
+                        <span>02:00 PM</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Arrival:</strong>
+                        <span>05:45 PM +1</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Duration:</strong>
+                        <span>11h 45m</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Base Price:</strong>
+                        <span>$920</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Available Seats:</strong>
+                        <span>156/280</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button style="flex: 1; padding: 10px; background: var(--admin-secondary); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button style="flex: 1; padding: 10px; background: var(--admin-danger); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+            <i class="fas fa-plane" style="font-size: 48px; color: var(--admin-secondary); margin-bottom: 20px;"></i>
+            <h2 style="color: var(--admin-primary); margin-bottom: 10px;">Flight Management System</h2>
+            <p style="color: #6c757d; margin-bottom: 20px;">Manage all your flights, schedules, pricing, and availability from this centralized dashboard.</p>
+            <p style="color: #6c757d; font-size: 14px;"><em>Note: This page template is ready. Full CRUD functionality can be implemented with backend API integration.</em></p>
+        </div>
+    </main>
+
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>

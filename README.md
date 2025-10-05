@@ -294,10 +294,11 @@ Air_ticket_booking_mini_project/
 │   ├── privacy-policy.html           # Privacy & data policy
 │   ├── terms-conditions.html         # Terms of service
 │   ├── payment-history.html          # Transaction history
-│   ├── manage-users.html             # Admin user management
-│   ├── refund-management.html        # Admin refund processing
-│   ├── revenue-reports.html          # Admin analytics dashboard
-│   └── notification-management.html  # Admin notifications
+│   └── 📂 admin/                     # Admin Panel Pages
+│       ├── manage-users.html         # Admin user management
+│       ├── refund-management.html    # Admin refund processing
+│       ├── revenue-reports.html      # Admin analytics dashboard
+│       └── notification-management.html # Admin notifications
 │
 ├── 📂 css/                           # Modular stylesheets (25+ files)
 │   ├── index.css                     # Main styles (3500+ lines)
@@ -306,7 +307,11 @@ Air_ticket_booking_mini_project/
 │   ├── booking-confirmation.css      # Confirmation page styles
 │   ├── payment.css                   # Payment form styles
 │   ├── profile.css                   # Profile page styles
-│   ├── manage-users.css              # Admin panel styles
+│   ├── 📂 admin/                     # Admin Panel Styles
+│   │   ├── manage-users.css          # User management styles
+│   │   ├── refund-management.css     # Refund management styles
+│   │   ├── revenue-reports.css       # Reports and charts styles
+│   │   └── notification-management.css # Notification styles
 │   ├── header.css                    # Header component styles
 │   ├── footer.css                    # Footer component styles
 │   └── ...                           # Page-specific stylesheets
@@ -319,7 +324,11 @@ Air_ticket_booking_mini_project/
 │   ├── payment.js                    # Payment processing
 │   ├── profile.js                    # Profile management
 │   ├── my-bookings.js                # Booking CRUD operations
-│   ├── manage-users.js               # Admin user management
+│   ├── 📂 admin/                     # Admin Panel Scripts
+│   │   ├── manage-users.js           # User management logic
+│   │   ├── refund-management.js      # Refund processing logic
+│   │   ├── revenue-reports.js        # Chart generation and data logic
+│   │   └── notification-management.js # Notification sending logic
 │   ├── flight-status.js              # Real-time status updates
 │   ├── faq.js                        # Live search & accordion
 │   └── ...                           # Page-specific scripts
@@ -399,7 +408,7 @@ Air_ticket_booking_mini_project/
 **Account**: signin.html, sign-up.html, forgot-password.html, profile.html, my-bookings.html, payment-history.html  
 **Info**: about-us.html, contact-us.html, faq.html, destinations.html, flight-status.html, offers.html, reviews.html, travel-classes.html, privacy-policy.html, terms-conditions.html
 
-### 🔧 Admin Pages
+### 🔧 Admin Pages (in `html/admin/`)
 manage-users.html, refund-management.html, revenue-reports.html, notification-management.html
 
 ---
@@ -416,7 +425,7 @@ manage-users.html, refund-management.html, revenue-reports.html, notification-ma
 - Download e-tickets → Print boarding pass
 
 ### 3. Admin Access
-- Open `manage-users.html` → Manage users/refunds/reports
+- Open `html/admin/manage-users.html` → Manage users/refunds/reports
 
 ---
 

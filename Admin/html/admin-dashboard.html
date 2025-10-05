@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Destinova</title>
+    <link rel="icon" type="image/png" href="../../site-images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search bookings, users, flights..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-bell" id="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" id="notification-count">5</span>
+                <div class="notification-dropdown" id="notification-dropdown">
+                    <div class="notification-header">
+                        <h4>Notifications</h4>
+                        <button class="mark-read">Mark all as read</button>
+                    </div>
+                    <div class="notification-list">
+                        <!-- Notifications will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-profile" id="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <div class="profile-info">
+                    <span class="profile-name">Admin User</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="admin-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-bookings.html">
+                        <i class="fas fa-suitcase"></i>
+                        <span>Bookings Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="flight-management.html">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>Flight Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="revenue-reports.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Revenue Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="refund-management.html">
+                        <i class="fas fa-undo-alt"></i>
+                        <span>Refund Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notification-management.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notification Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main id="dashboard-content" class="dashboard-content">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-text">
+                <h1>Welcome back, <span id="admin-name">Admin User</span></h1>
+                <p>Here's what's happening with your airline today</p>
+            </div>
+            <div class="datetime-widget">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="current-datetime"></span>
+            </div>
+        </section>
+
+        <!-- Statistics Overview -->
+        <section class="stats-grid">
+            <div class="stat-card stat-bookings">
+                <div class="stat-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-number" id="total-bookings">0</div>
+                    <div class="stat-label">Total Bookings Today</div>
+                    <div class="stat-trend trend-up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="bookings-trend">+12%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-revenue">
+                <div class="stat-icon">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-number">₹<span id="total-revenue">0</span></div>
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-trend trend-up">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="revenue-trend">+8.5%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-flights">
+                <div class="stat-icon">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-number" id="active-flights">0</div>
+                    <div class="stat-label">Active Flights</div>
+                    <div class="stat-trend trend-neutral">
+                        <i class="fas fa-minus"></i>
+                        <span id="flights-trend">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card stat-users">
+                <div class="stat-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="stat-details">
+                    <div class="stat-number" id="registered-users">0</div>
+                    <div class="stat-label">Registered Users</div>
+                    <div class="stat-indicator">
+                        <span id="new-users-today">+0</span> new today
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-container">
+                <h3><i class="fas fa-chart-line"></i> Revenue Trend (Last 30 Days)</h3>
+                <canvas id="revenue-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3><i class="fas fa-chart-pie"></i> Bookings by Class</h3>
+                <canvas id="class-chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Quick Actions Panel -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                <div class="action-card" data-action="create-flight">
+                    <div class="action-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <h4>Create Flight</h4>
+                    <button class="action-btn">Add New Flight</button>
+                </div>
+                <div class="action-card" data-action="add-user">
+                    <div class="action-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h4>Add User</h4>
+                    <button class="action-btn">Create User</button>
+                </div>
+                <div class="action-card" data-action="send-notification">
+                    <div class="action-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h4>Send Notification</h4>
+                    <button class="action-btn">Send Message</button>
+                </div>
+                <div class="action-card" data-action="generate-report">
+                    <div class="action-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>Generate Report</h4>
+                    <button class="action-btn">Download PDF</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Feed and Alerts -->
+        <section class="dashboard-lower">
+            <div class="activity-feed">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                    <button class="refresh-btn" id="refresh-activity">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div class="activity-list" id="activity-list">
+                    <!-- Activities will be loaded dynamically -->
+                    <div class="activity-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading activities...
+                    </div>
+                </div>
+            </div>
+
+            <div class="alerts-panel">
+                <div class="section-header">
+                    <h2><i class="fas fa-exclamation-triangle"></i> System Alerts</h2>
+                    <span class="alert-count" id="alert-count">0</span>
+                </div>
+                <div class="alerts-list" id="alerts-list">
+                    <!-- Alerts will be loaded dynamically -->
+                    <div class="alerts-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Loading alerts...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Metrics -->
+        <section class="performance-metrics">
+            <h2>Performance Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h4>Conversion Rate</h4>
+                        <span class="metric-value" id="conversion-rate">0%</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="conversion-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="conversion-trend">+2.3%</span> from last week
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h4>Avg Booking Value</h4>
+                        <span class="metric-value">₹<span id="avg-booking-value">0</span></span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="avg-value-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="avg-value-trend">+5.1%</span> from last week
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h4>Cancellation Rate</h4>
+                        <span class="metric-value" id="cancellation-rate">0%</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill danger" id="cancellation-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-trend trend-down">
+                        <i class="fas fa-arrow-down"></i>
+                        <span id="cancellation-trend">-1.2%</span> from last week
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <h4>Customer Satisfaction</h4>
+                        <span class="metric-value" id="satisfaction-score">0%</span>
+                    </div>
+                    <div class="metric-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill success" id="satisfaction-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-trend">
+                        <i class="fas fa-arrow-up"></i>
+                        <span id="satisfaction-trend">+3.5%</span> from last week
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <p>&copy; 2025 Destinova. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+</body>
+
+</html>

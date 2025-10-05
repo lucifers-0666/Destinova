@@ -1,0 +1,558 @@
+/* Manage Bookings CSS - Destinova Admin */
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+}
+
+.stat-info h3 {
+    color: #6c757d;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--admin-primary);
+    margin: 5px 0;
+}
+
+.stat-trend {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-trend.positive {
+    color: var(--admin-success);
+}
+
+.stat-trend.negative {
+    color: var(--admin-danger);
+}
+
+.stat-trend.neutral {
+    color: #6c757d;
+}
+
+/* Filters Section */
+.filters-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--admin-dark);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+    outline: none;
+    border-color: var(--admin-secondary);
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+}
+
+.btn-reset-filters {
+    padding: 12px 24px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-reset-filters:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Table Container */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bookings-table thead {
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%);
+}
+
+.bookings-table th {
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.bookings-table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s ease;
+}
+
+.bookings-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.bookings-table td {
+    padding: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+/* Passenger Info */
+.passenger-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.passenger-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.passenger-info div {
+    display: flex;
+    flex-direction: column;
+}
+
+.passenger-info strong {
+    color: var(--admin-dark);
+    font-weight: 600;
+}
+
+.passenger-info span {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Flight Info */
+.flight-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.flight-info strong {
+    color: var(--admin-dark);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.flight-info span {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Class Badges */
+.class-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.class-badge.economy {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+}
+
+.class-badge.business {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.class-badge.first {
+    background: rgba(250, 112, 154, 0.1);
+    color: #fa709a;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.confirmed {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--admin-success);
+}
+
+.status-badge.pending {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+}
+
+.status-badge.cancelled {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--admin-danger);
+}
+
+.status-badge.completed {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.view-btn {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+}
+
+.view-btn:hover {
+    background: #17a2b8;
+    color: white;
+}
+
+.edit-btn {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--admin-success);
+}
+
+.edit-btn:hover {
+    background: var(--admin-success);
+    color: white;
+}
+
+.delete-btn {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--admin-danger);
+}
+
+.delete-btn:hover {
+    background: var(--admin-danger);
+    color: white;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pagination-info {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.pagination-info strong {
+    color: var(--admin-dark);
+    font-weight: 600;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+}
+
+.page-btn {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #dee2e6;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--admin-dark);
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: var(--admin-secondary);
+    color: white;
+    border-color: var(--admin-secondary);
+}
+
+.page-btn.active {
+    background: var(--admin-secondary);
+    color: white;
+    border-color: var(--admin-secondary);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 25px;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-header h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-close {
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+/* Header Actions */
+.btn-export,
+.btn-refresh {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-export {
+    background: var(--admin-secondary);
+    color: white;
+}
+
+.btn-export:hover {
+    background: var(--admin-primary);
+    transform: translateY(-2px);
+}
+
+.btn-refresh {
+    background: transparent;
+    color: var(--admin-secondary);
+    border: 2px solid var(--admin-secondary);
+}
+
+.btn-refresh:hover {
+    background: var(--admin-secondary);
+    color: white;
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--admin-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .filters-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .bookings-table {
+        font-size: 12px;
+    }
+    
+    .bookings-table th,
+    .bookings-table td {
+        padding: 10px;
+    }
+    
+    .pagination-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .header-actions {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn-export,
+    .btn-refresh {
+        flex: 1;
+    }
+    
+    /* Make table scrollable on mobile */
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .bookings-table {
+        min-width: 1000px;
+    }
+}

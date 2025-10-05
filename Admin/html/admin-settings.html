@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings - Destinova</title>
+    <link rel="icon" type="image/png" href="../../site-images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-settings.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+            <div class="logo"><h1>Destin<span>ova</span></h1></div>
+        </div>
+        <div class="header-right">
+            <div class="unsaved-indicator" id="unsaved-indicator" style="display:none;">
+                <i class="fas fa-circle"></i> Unsaved Changes
+            </div>
+            <div class="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <span class="profile-name">Admin User</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li><a href="manage-bookings.html"><i class="fas fa-suitcase"></i><span>Bookings</span></a></li>
+                <li><a href="manage-users.html"><i class="fas fa-users"></i><span>Users</span></a></li>
+                <li><a href="revenue-reports.html"><i class="fas fa-chart-line"></i><span>Reports</span></a></li>
+                <li><a href="refund-management.html"><i class="fas fa-undo-alt"></i><span>Refunds</span></a></li>
+                <li><a href="notification-management.html"><i class="fas fa-bell"></i><span>Notifications</span></a></li>
+                <li class="active"><a href="admin-settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Settings Content -->
+    <main class="settings-content">
+        <div class="settings-header">
+            <h1>System Settings</h1>
+            <div class="header-actions">
+                <button class="btn-reset" id="reset-btn"><i class="fas fa-undo"></i> Reset to Defaults</button>
+                <button class="btn-save-all" id="save-all-btn"><i class="fas fa-save"></i> Save All Changes</button>
+            </div>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="settings-tabs" id="settings-tabs">
+            <button class="tab-btn active" data-tab="general-settings">
+                <i class="fas fa-cog"></i> General Settings
+            </button>
+            <button class="tab-btn" data-tab="payment-settings">
+                <i class="fas fa-credit-card"></i> Payment Configuration
+            </button>
+            <button class="tab-btn" data-tab="email-settings">
+                <i class="fas fa-envelope"></i> Email Settings
+            </button>
+            <button class="tab-btn" data-tab="sms-settings">
+                <i class="fas fa-sms"></i> SMS Configuration
+            </button>
+            <button class="tab-btn" data-tab="flight-settings">
+                <i class="fas fa-plane"></i> Flight Settings
+            </button>
+            <button class="tab-btn" data-tab="user-settings">
+                <i class="fas fa-user-cog"></i> User Management
+            </button>
+            <button class="tab-btn" data-tab="security-settings">
+                <i class="fas fa-shield-alt"></i> Security
+            </button>
+            <button class="tab-btn" data-tab="backup-settings">
+                <i class="fas fa-database"></i> Backup & Maintenance
+            </button>
+            <button class="tab-btn" data-tab="api-settings">
+                <i class="fas fa-code"></i> API Configuration
+            </button>
+            <button class="tab-btn" data-tab="appearance-settings">
+                <i class="fas fa-palette"></i> Appearance
+            </button>
+        </div>
+
+        <!-- General Settings Tab -->
+        <div class="tab-content active" id="general-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-info-circle"></i> System Information</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" id="company-name" placeholder="Destinova Airlines" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email *</label>
+                        <input type="email" id="contact-email" placeholder="contact@destinova.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Phone</label>
+                        <input type="tel" id="contact-phone" placeholder="+91 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select id="timezone">
+                            <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+                            <option value="America/New_York">America/New_York (EST)</option>
+                            <option value="Europe/London">Europe/London (GMT)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select id="currency">
+                            <option value="INR">INR - Indian Rupee</option>
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Default Language</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="es">Spanish</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Company Logo</label>
+                    <div class="file-upload-area" id="logo-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop logo here or click to browse</p>
+                        <p class="file-hint">PNG, JPG up to 2MB</p>
+                        <input type="file" id="logo-file" accept="image/*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-globe"></i> Website Settings</h2>
+                <div class="form-group">
+                    <label>Site Title</label>
+                    <input type="text" id="site-title" placeholder="Destinova - Your Travel Partner">
+                </div>
+                <div class="form-group">
+                    <label>Meta Description</label>
+                    <textarea id="meta-description" rows="3" placeholder="Book affordable flights to destinations worldwide..."></textarea>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Maintenance Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="maintenance-mode">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Coming Soon Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="coming-soon-mode">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-ticket-alt"></i> Booking Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Send Confirmation Email</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="booking-email" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Send SMS Notifications</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="booking-sms" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Default Booking Class</label>
+                        <select id="default-class">
+                            <option value="economy">Economy</option>
+                            <option value="business">Business</option>
+                            <option value="first">First Class</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Max Passengers per Booking</label>
+                        <input type="number" id="max-passengers" value="9" min="1" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Booking Timeout (Minutes)</label>
+                        <input type="number" id="booking-timeout" value="15" min="5" max="60">
+                    </div>
+                    <div class="form-group">
+                        <label>Auto-Cancel Unpaid (Hours)</label>
+                        <input type="number" id="auto-cancel-hours" value="24" min="1" max="72">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="general">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Payment Configuration Tab -->
+        <div class="tab-content" id="payment-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-credit-card"></i> Payment Gateway Settings</h2>
+                <div class="gateway-card">
+                    <div class="gateway-header">
+                        <div>
+                            <h3><i class="fab fa-paypal"></i> PayPal</h3>
+                            <p>Accept payments via PayPal</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="paypal-enabled">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="gateway-fields">
+                        <div class="form-group">
+                            <label>Client ID</label>
+                            <input type="text" id="paypal-client-id" class="api-key-input" placeholder="Enter PayPal Client ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Secret Key</label>
+                            <input type="password" id="paypal-secret" class="api-key-input" placeholder="Enter PayPal Secret">
+                        </div>
+                        <div class="form-group toggle-group">
+                            <label>Test Mode</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="paypal-test-mode" checked>
+                                <span class="slider"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gateway-card">
+                    <div class="gateway-header">
+                        <div>
+                            <h3><i class="fab fa-stripe"></i> Stripe</h3>
+                            <p>Accept credit cards via Stripe</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="stripe-enabled">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="gateway-fields">
+                        <div class="form-group">
+                            <label>Publishable Key</label>
+                            <input type="text" id="stripe-publishable" class="api-key-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Secret Key</label>
+                            <input type="password" id="stripe-secret" class="api-key-input">
+                        </div>
+                        <div class="form-group toggle-group">
+                            <label>Test Mode</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="stripe-test-mode" checked>
+                                <span class="slider"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gateway-card">
+                    <div class="gateway-header">
+                        <div>
+                            <h3><i class="fas fa-rupee-sign"></i> Razorpay</h3>
+                            <p>Accept UPI, cards, net banking</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="razorpay-enabled" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="gateway-fields">
+                        <div class="form-group">
+                            <label>Key ID</label>
+                            <input type="text" id="razorpay-key" class="api-key-input">
+                        </div>
+                        <div class="form-group">
+                            <label>Secret Key</label>
+                            <input type="password" id="razorpay-secret" class="api-key-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-wallet"></i> Payment Methods</h2>
+                <div class="payment-methods-grid">
+                    <div class="payment-method">
+                        <input type="checkbox" id="method-credit" checked>
+                        <label for="method-credit"><i class="fas fa-credit-card"></i> Credit/Debit Cards</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="checkbox" id="method-upi" checked>
+                        <label for="method-upi"><i class="fas fa-mobile-alt"></i> UPI</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="checkbox" id="method-netbanking" checked>
+                        <label for="method-netbanking"><i class="fas fa-university"></i> Net Banking</label>
+                    </div>
+                    <div class="payment-method">
+                        <input type="checkbox" id="method-wallets" checked>
+                        <label for="method-wallets"><i class="fas fa-wallet"></i> Digital Wallets</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-chart-line"></i> Transaction Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Processing Fee (%)</label>
+                        <input type="number" id="processing-fee" value="2.5" step="0.1" min="0" max="10">
+                    </div>
+                    <div class="form-group">
+                        <label>Minimum Amount</label>
+                        <input type="number" id="min-amount" value="100" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Amount</label>
+                        <input type="number" id="max-amount" value="500000" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Refund Processing Days</label>
+                        <input type="number" id="refund-days" value="7" min="1" max="30">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="payment">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Email Settings Tab -->
+        <div class="tab-content" id="email-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-server"></i> SMTP Configuration</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>SMTP Server *</label>
+                        <input type="text" id="smtp-server" placeholder="smtp.gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>SMTP Port *</label>
+                        <input type="number" id="smtp-port" value="587" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Username *</label>
+                        <input type="text" id="smtp-username" placeholder="your-email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password *</label>
+                        <input type="password" id="smtp-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Encryption</label>
+                        <select id="smtp-encryption">
+                            <option value="tls">TLS</option>
+                            <option value="ssl">SSL</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-test" id="test-smtp"><i class="fas fa-paper-plane"></i> Test Connection</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-envelope-open-text"></i> Email Templates</h2>
+                <div class="template-selector">
+                    <button class="template-btn active" data-template="booking">Booking Confirmation</button>
+                    <button class="template-btn" data-template="cancellation">Cancellation</button>
+                    <button class="template-btn" data-template="payment">Payment Success</button>
+                    <button class="template-btn" data-template="password">Password Reset</button>
+                </div>
+                <div class="template-editor">
+                    <div class="form-group">
+                        <label>Subject Line</label>
+                        <input type="text" id="email-subject" placeholder="Your booking is confirmed!">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Body</label>
+                        <textarea id="email-body" rows="10" placeholder="Dear {customer_name}..."></textarea>
+                    </div>
+                    <div class="template-variables">
+                        <p><strong>Available Variables:</strong></p>
+                        <code>{customer_name}</code>
+                        <code>{booking_id}</code>
+                        <code>{flight_details}</code>
+                        <code>{amount}</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-user-circle"></i> Sender Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>From Name</label>
+                        <input type="text" id="email-from-name" value="Destinova Airlines">
+                    </div>
+                    <div class="form-group">
+                        <label>From Email</label>
+                        <input type="email" id="email-from" value="noreply@destinova.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Reply-To Email</label>
+                        <input type="email" id="email-reply" value="support@destinova.com">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="email">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- SMS Configuration Tab -->
+        <div class="tab-content" id="sms-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-sms"></i> SMS Gateway</h2>
+                <div class="form-group">
+                    <label>SMS Provider</label>
+                    <select id="sms-provider">
+                        <option value="twilio">Twilio</option>
+                        <option value="aws-sns">AWS SNS</option>
+                        <option value="textlocal">TextLocal</option>
+                        <option value="msg91">MSG91</option>
+                    </select>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Account SID / API Key</label>
+                        <input type="text" id="sms-api-key" class="api-key-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Auth Token / Secret</label>
+                        <input type="password" id="sms-secret" class="api-key-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Sender ID</label>
+                        <input type="text" id="sms-sender-id" placeholder="DESNVA" maxlength="6">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-test" id="test-sms"><i class="fas fa-mobile-alt"></i> Send Test SMS</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-comment-dots"></i> Message Templates</h2>
+                <div class="sms-template">
+                    <h3>Booking Confirmation SMS</h3>
+                    <textarea id="sms-booking" rows="3" maxlength="160">Your booking #{booking_id} is confirmed! Flight: {flight_no} on {date}. Total: Rs.{amount}. Have a great journey!</textarea>
+                    <span class="char-count">0/160 characters</span>
+                </div>
+                <div class="sms-template">
+                    <h3>OTP SMS</h3>
+                    <textarea id="sms-otp" rows="2" maxlength="160">{otp} is your OTP for Destinova. Valid for 10 minutes. Do not share.</textarea>
+                    <span class="char-count">0/160 characters</span>
+                </div>
+                <div class="sms-template">
+                    <h3>Flight Alert SMS</h3>
+                    <textarea id="sms-alert" rows="3" maxlength="160">Alert! Your flight {flight_no} has been {status}. New time: {new_time}. Contact support for assistance.</textarea>
+                    <span class="char-count">0/160 characters</span>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="sms">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Flight Settings Tab -->
+        <div class="tab-content" id="flight-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-plane-departure"></i> Airline Management</h2>
+                <button class="btn-add" id="add-airline"><i class="fas fa-plus"></i> Add Airline</button>
+                <table class="management-table" id="airlines-table">
+                    <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Airline Name</th>
+                            <th>Code</th>
+                            <th>Country</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="https://via.placeholder.com/40" alt="Logo"></td>
+                            <td>Air India</td>
+                            <td>AI</td>
+                            <td>India</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Airport Management</h2>
+                <button class="btn-add" id="add-airport"><i class="fas fa-plus"></i> Add Airport</button>
+                <table class="management-table" id="airports-table">
+                    <thead>
+                        <tr>
+                            <th>Airport Name</th>
+                            <th>Code</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Indira Gandhi International</td>
+                            <td>DEL</td>
+                            <td>New Delhi</td>
+                            <td>India</td>
+                            <td>
+                                <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-chair"></i> Flight Classes</h2>
+                <div class="class-config">
+                    <div class="class-item">
+                        <input type="text" value="Economy" placeholder="Class Name">
+                        <input type="number" value="200" placeholder="Base Price">
+                        <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="class-item">
+                        <input type="text" value="Business" placeholder="Class Name">
+                        <input type="number" value="500" placeholder="Base Price">
+                        <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    </div>
+                    <div class="class-item">
+                        <input type="text" value="First Class" placeholder="Class Name">
+                        <input type="number" value="1000" placeholder="Base Price">
+                        <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+                <button class="btn-add"><i class="fas fa-plus"></i> Add Custom Class</button>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-clipboard-check"></i> Booking Rules</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Min Booking Time Before Departure (Hours)</label>
+                        <input type="number" id="min-booking-time" value="2" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Advance Booking (Days)</label>
+                        <input type="number" id="max-advance-booking" value="365" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Overbooking Percentage (%)</label>
+                        <input type="number" id="overbooking-percent" value="5" min="0" max="20" step="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="flight">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- User Management Tab -->
+        <div class="tab-content" id="user-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-user-plus"></i> Registration Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Allow Public Registration</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="public-registration" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Email Verification Required</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="email-verification" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Phone Verification Required</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="phone-verification">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Admin Approval Required</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="admin-approval">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-lock"></i> Account Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Minimum Password Length</label>
+                        <input type="number" id="min-password-length" value="8" min="6" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Password Reset Expiry (Hours)</label>
+                        <input type="number" id="password-reset-expiry" value="24" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Account Lockout After (Failed Attempts)</label>
+                        <input type="number" id="lockout-attempts" value="5" min="3" max="10">
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Require Complex Password</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="complex-password" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-user-shield"></i> Role Permissions</h2>
+                <div class="permissions-table">
+                    <div class="permission-row header">
+                        <div class="permission-name">Permission</div>
+                        <div class="role-cell">Admin</div>
+                        <div class="role-cell">Agent</div>
+                        <div class="role-cell">Customer</div>
+                    </div>
+                    <div class="permission-row">
+                        <div class="permission-name">View Dashboard</div>
+                        <div class="role-cell"><input type="checkbox" checked disabled></div>
+                        <div class="role-cell"><input type="checkbox" checked></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                    </div>
+                    <div class="permission-row">
+                        <div class="permission-name">Manage Bookings</div>
+                        <div class="role-cell"><input type="checkbox" checked disabled></div>
+                        <div class="role-cell"><input type="checkbox" checked></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                    </div>
+                    <div class="permission-row">
+                        <div class="permission-name">Manage Users</div>
+                        <div class="role-cell"><input type="checkbox" checked disabled></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                    </div>
+                    <div class="permission-row">
+                        <div class="permission-name">View Reports</div>
+                        <div class="role-cell"><input type="checkbox" checked disabled></div>
+                        <div class="role-cell"><input type="checkbox" checked></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                    </div>
+                    <div class="permission-row">
+                        <div class="permission-name">Process Refunds</div>
+                        <div class="role-cell"><input type="checkbox" checked disabled></div>
+                        <div class="role-cell"><input type="checkbox" checked></div>
+                        <div class="role-cell"><input type="checkbox"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="user">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Security Settings Tab -->
+        <div class="tab-content" id="security-settings">
+            <div class="settings-section security-warning">
+                <div class="warning-banner">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Security settings affect system access and data protection. Changes require admin verification.</p>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Enable 2FA for Admins</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="2fa-admin" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>2FA Method</label>
+                        <select id="2fa-method">
+                            <option value="authenticator">Authenticator App</option>
+                            <option value="sms">SMS</option>
+                            <option value="email">Email</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-shield-alt"></i> Login Security</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Session Timeout (Minutes)</label>
+                        <input type="number" id="session-timeout" value="30" min="5" max="480">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Login Attempts</label>
+                        <input type="number" id="max-login-attempts" value="5" min="3" max="10">
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>IP Restriction</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ip-restriction">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Allowed IP Addresses (one per line)</label>
+                    <textarea id="allowed-ips" rows="4" placeholder="192.168.1.1&#10;10.0.0.1"></textarea>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-user-secret"></i> Data Protection</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Data Encryption</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="data-encryption" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>PII Anonymization</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="pii-anonymization" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>GDPR Compliance Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="gdpr-compliance" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Cookie Consent Banner</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="cookie-consent" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-history"></i> Audit Logging</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Log Admin Actions</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="log-admin" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Log User Activities</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="log-users" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Log API Calls</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="log-api" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Log Retention Period (Days)</label>
+                        <input type="number" id="log-retention" value="90" min="7" max="365">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="security">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Backup & Maintenance Tab -->
+        <div class="tab-content" id="backup-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-save"></i> Backup Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Auto Backup</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="auto-backup" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Backup Frequency</label>
+                        <select id="backup-frequency">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Backup Storage Location</label>
+                        <select id="backup-storage">
+                            <option value="local">Local Server</option>
+                            <option value="aws-s3">AWS S3</option>
+                            <option value="google-cloud">Google Cloud Storage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Notifications</label>
+                        <input type="email" id="backup-email" placeholder="admin@destinova.com">
+                    </div>
+                </div>
+                <div class="backup-actions">
+                    <button class="btn-primary" id="backup-now"><i class="fas fa-download"></i> Backup Now</button>
+                    <button class="btn-outline" id="restore-backup"><i class="fas fa-upload"></i> Restore from Backup</button>
+                </div>
+                <div class="backup-status">
+                    <h3>Last Backup</h3>
+                    <p>Date: <strong>October 4, 2025 - 11:30 PM</strong></p>
+                    <p>Size: <strong>2.4 GB</strong></p>
+                    <p>Status: <span class="status-badge success">Success</span></p>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-tools"></i> Database Maintenance</h2>
+                <div class="maintenance-actions">
+                    <button class="btn-primary" id="optimize-db"><i class="fas fa-cog fa-spin"></i> Optimize Database</button>
+                    <button class="btn-warning" id="clear-logs"><i class="fas fa-trash-alt"></i> Clear Logs</button>
+                    <button class="btn-outline" id="archive-data"><i class="fas fa-archive"></i> Archive Old Data</button>
+                </div>
+                <div class="form-group">
+                    <label>Archive Data Older Than (Days)</label>
+                    <input type="number" id="archive-days" value="365" min="90">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-chart-area"></i> System Monitoring</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Disk Space Alert Threshold (%)</label>
+                        <input type="number" id="disk-alert" value="80" min="50" max="95">
+                    </div>
+                    <div class="form-group toggle-group">
+                        <label>Performance Monitoring</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="performance-monitor" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Error Reporting Email</label>
+                        <input type="email" id="error-email" placeholder="errors@destinova.com">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="backup">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- API Configuration Tab -->
+        <div class="tab-content" id="api-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-key"></i> API Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Enable Public API</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="public-api" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>API Rate Limit (requests/hour)</label>
+                        <input type="number" id="api-rate-limit" value="1000" min="100">
+                    </div>
+                </div>
+                <button class="btn-add" id="generate-api-key"><i class="fas fa-plus"></i> Generate New API Key</button>
+                <table class="management-table" id="api-keys-table">
+                    <thead>
+                        <tr>
+                            <th>API Key</th>
+                            <th>Name</th>
+                            <th>Created</th>
+                            <th>Expires</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="api-key-cell">
+                                <code>sk_live_abc123...</code>
+                                <button class="btn-copy" title="Copy"><i class="fas fa-copy"></i></button>
+                            </td>
+                            <td>Production API</td>
+                            <td>Oct 1, 2025</td>
+                            <td>Oct 1, 2026</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <button class="btn-icon" title="Revoke"><i class="fas fa-ban"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-webhook"></i> Webhook Configuration</h2>
+                <div class="form-group">
+                    <label>Booking Webhooks URL</label>
+                    <input type="url" id="webhook-bookings" placeholder="https://your-app.com/webhooks/bookings">
+                    <button class="btn-test webhook-test" data-type="bookings"><i class="fas fa-paper-plane"></i> Test</button>
+                </div>
+                <div class="form-group">
+                    <label>Payment Webhooks URL</label>
+                    <input type="url" id="webhook-payments" placeholder="https://your-app.com/webhooks/payments">
+                    <button class="btn-test webhook-test" data-type="payments"><i class="fas fa-paper-plane"></i> Test</button>
+                </div>
+                <div class="form-group">
+                    <label>Status Change Webhooks URL</label>
+                    <input type="url" id="webhook-status" placeholder="https://your-app.com/webhooks/status">
+                    <button class="btn-test webhook-test" data-type="status"><i class="fas fa-paper-plane"></i> Test</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-puzzle-piece"></i> Third-party Integrations</h2>
+                <div class="form-group">
+                    <label>Google Maps API Key</label>
+                    <input type="text" id="google-maps-key" class="api-key-input" placeholder="AIza...">
+                </div>
+                <div class="form-group">
+                    <label>Currency Exchange API Key</label>
+                    <input type="text" id="currency-api-key" class="api-key-input" placeholder="Enter API key">
+                </div>
+                <div class="form-group">
+                    <label>Flight Data Provider API</label>
+                    <input type="text" id="flight-data-key" class="api-key-input" placeholder="Enter API key">
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="api">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Appearance Tab -->
+        <div class="tab-content" id="appearance-settings">
+            <div class="settings-section">
+                <h2><i class="fas fa-paint-brush"></i> Theme Settings</h2>
+                <div class="form-grid">
+                    <div class="form-group toggle-group">
+                        <label>Dark Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="dark-mode">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="form-group color-picker-group">
+                        <label>Primary Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="primary-color" value="#1a3a2a">
+                            <span class="color-value">#1a3a2a</span>
+                        </div>
+                    </div>
+                    <div class="form-group color-picker-group">
+                        <label>Secondary Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="secondary-color" value="#2d5a3d">
+                            <span class="color-value">#2d5a3d</span>
+                        </div>
+                    </div>
+                    <div class="form-group color-picker-group">
+                        <label>Accent Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="accent-color" value="#4ade80">
+                            <span class="color-value">#4ade80</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-image"></i> Logo Settings</h2>
+                <div class="logo-uploads">
+                    <div class="logo-upload-item">
+                        <label>Site Logo</label>
+                        <div class="logo-preview">
+                            <img src="../../site-images/favicon.png" alt="Logo" id="site-logo-preview">
+                        </div>
+                        <input type="file" id="site-logo-upload" accept="image/*" hidden>
+                        <button class="btn-outline" onclick="document.getElementById('site-logo-upload').click()">
+                            <i class="fas fa-upload"></i> Upload Logo
+                        </button>
+                    </div>
+                    <div class="logo-upload-item">
+                        <label>Favicon</label>
+                        <div class="logo-preview small">
+                            <img src="../../site-images/favicon.png" alt="Favicon" id="favicon-preview">
+                        </div>
+                        <input type="file" id="favicon-upload" accept="image/*" hidden>
+                        <button class="btn-outline" onclick="document.getElementById('favicon-upload').click()">
+                            <i class="fas fa-upload"></i> Upload Favicon
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2><i class="fas fa-code"></i> Custom CSS</h2>
+                <div class="form-group">
+                    <textarea id="custom-css" rows="10" placeholder="/* Add your custom CSS here */&#10;.custom-class {&#10;  color: #000;&#10;}"></textarea>
+                </div>
+            </div>
+
+            <div class="appearance-preview">
+                <h3>Live Preview</h3>
+                <div class="preview-box" id="preview-box">
+                    <div class="preview-header" style="background: #1a3a2a;">
+                        <span>Header</span>
+                    </div>
+                    <div class="preview-content">
+                        <button class="preview-btn" style="background: #2d5a3d;">Primary Button</button>
+                        <button class="preview-btn-outline">Secondary Button</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-save" data-category="appearance">Save Changes</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notification-toast"></div>
+
+    <!-- Modals would go here -->
+    
+    <script src="../js/admin-settings.js"></script>
+</body>
+</html>
