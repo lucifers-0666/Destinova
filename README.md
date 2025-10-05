@@ -2,7 +2,23 @@
 
 # ✈️ Destinova - Premium Flight Booking Platform
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![HTML5](https://img.shields.io/badg### 👤 User Features
+- **Authentication**: Sign in, sign up, password recovery with email validation
+- **My Bookings**: View, modify, cancel bookings with real-time updates
+- **Profile**: Manage personal info, security settings (password, 2FA), preferences, activity log
+- **Payment History**: Track all transactions with downloadable receipts
+- **Search History**: LocalStorage persistence with recent searches
+
+### 🔧 Complete Admin Panel (9 Pages)
+- **Dashboard**: Live statistics, interactive charts (Chart.js), quick actions, activity feed
+- **Bookings Management**: Advanced filters, search, export to CSV, view/edit/cancel operations
+- **Flight Management**: Add/edit/delete flights, pricing, seat availability, route management
+- **User Management**: Complete CRUD operations on user accounts with role assignments
+- **Revenue Reports**: Financial analytics with charts and detailed breakdowns
+- **Refund Management**: Process refund requests with approval workflow and history
+- **Notification Management**: Send system-wide alerts and notifications to users
+- **Settings (10 Tabs)**: General, Payment (PayPal/Stripe/Razorpay), Email (SMTP), SMS, Flight, User, Security (2FA/Audit), Backup, API, Appearance (Dark Mode/Custom CSS)
+- **Admin Profile**: Personal info, password change, 2FA setup, preferences, activity trackingF26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -17,52 +33,61 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Pages** | 25+ Pages |
-| **Lines of Code** | 19,000+ |
-| **Features** | 50+ Interactive |
+| **Total Pages** | 34+ Pages (25 User + 9 Admin) |
+| **Lines of Code** | 35,000+ |
+| **Features** | 70+ Interactive |
 | **Frameworks** | Zero! Pure Vanilla JS |
 | **Responsive** | 100% Mobile-First |
+| **Admin Panel** | Complete with 10-Tab Settings |
 | **Browser Support** | All Modern Browsers |
 
 </div>
 
 ---
 
-## � Website Workflow
+## 📊 Complete System Architecture
 
 ```mermaid
 graph TB
-    Start([👤 User Visits]) --> Home[🏠 Homepage]
-    Home --> Search{🔍 Search Flights}
+    Start([👤 User/Admin Entry]) --> UserPath{User Type?}
     
-    Search --> Results[✈️ View Results]
-    Results --> Filter[🎯 Filter & Sort]
-    Filter --> Select[📋 Select Flight]
+    %% User Flow
+    UserPath -->|Customer| Home[🏠 Homepage]
+    Home --> Search[🔍 Search Flights]
+    Search --> Results[✈️ Results - Filter & Sort]
+    Results --> Select[📋 Select Flight]
     
     Select --> Auth{🔐 Logged In?}
-    Auth -->|No| SignIn[Sign In / Sign Up]
-    Auth -->|Yes| Booking
-    SignIn --> Booking
+    Auth -->|No| SignFlow[Sign In/Sign Up]
+    Auth -->|Yes| BookingFlow
+    SignFlow --> BookingFlow
     
-    Booking[🎫 Booking Flow] --> Step1[Step 1: Passenger Details]
+    BookingFlow[🎫 Multi-Step Booking] --> Step1[Step 1: Passenger Details]
     Step1 --> Step2[Step 2: Seat Selection]
     Step2 --> Step3[Step 3: Payment]
+    Step3 --> Confirm[🎉 Confirmation<br/>QR Code & PDF]
     
-    Step3 --> Confirm[🎉 Confirmation]
-    Confirm --> Download[📄 Download E-Ticket]
+    Home --> UserDash[👤 User Dashboard]
+    UserDash --> MyBookings[📖 My Bookings]
+    UserDash --> Profile[👤 Profile - 4 Tabs]
+    UserDash --> PayHistory[💳 Payment History]
     
-    Home --> Profile[👤 My Account]
-    Profile --> MyBookings[📖 My Bookings]
-    MyBookings --> Manage[✏️ Modify/Cancel]
+    %% Admin Flow
+    UserPath -->|Admin| AdminDash[� Admin Dashboard<br/>Stats & Charts]
     
-    Home --> Admin{👔 Admin?}
-    Admin -->|Yes| Dashboard[🔧 Admin Dashboard]
-    Dashboard --> Users[👥 Manage Users]
-    Dashboard --> Reports[📊 Reports]
+    AdminDash --> ManageBook[📊 Bookings Management]
+    AdminDash --> ManageFlight[✈️ Flight Management]
+    AdminDash --> ManageUser[👥 User Management]
+    AdminDash --> Revenue[📈 Revenue Reports]
+    AdminDash --> Refund[� Refund Management]
+    AdminDash --> Notify[🔔 Notifications]
+    AdminDash --> Settings[⚙️ Settings - 10 Tabs]
+    AdminDash --> AdminProfile[👔 Admin Profile]
     
     style Start fill:#e1f5e1
     style Confirm fill:#ffe1e1
-    style Dashboard fill:#e1e5ff
+    style AdminDash fill:#e1e5ff
+    style Settings fill:#fff3e1
 ```
 
 ---
@@ -75,14 +100,16 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 
 | Feature | Implementation |
 |---------|---------------|
-| 🎨 **Premium Design** | Emerald-gold theme with glassmorphism effects |
+| 🎨 **Premium Design** | Emerald-gold user theme + Emerald-green admin theme with glassmorphism |
 | ⚡ **Zero Framework** | Pure vanilla JavaScript - no React/Vue/Angular |
-| 📱 **Fully Responsive** | Mobile-first with 4 breakpoints |
-| 🔒 **Security First** | Form validation, XSS prevention, input sanitization |
-| 🎭 **Delightful UX** | Confetti animations, QR codes, smooth transitions |
-| 👔 **Complete Admin** | Full dashboard with user management & analytics |
+| 📱 **Fully Responsive** | Mobile-first with 4 breakpoints across all 34 pages |
+| 🔒 **Security First** | Form validation, Luhn algorithm, XSS prevention, input sanitization |
+| 🎭 **Delightful UX** | Confetti animations, QR codes, smooth transitions, loading states |
+| 👔 **Complete Admin Panel** | 9 pages: Dashboard, Bookings, Flights, Users, Reports, Refunds, Notifications, Settings (10 tabs), Profile |
+| 💳 **Payment System** | Multi-gateway support (PayPal, Stripe, Razorpay) with card validation |
+| ⚙️ **Advanced Settings** | 10-tab configuration covering all system aspects |
 | ♿ **Accessible** | WCAG compliant with ARIA labels |
-| 📚 **Well Documented** | Comprehensive inline comments & README |
+| 📚 **Well Documented** | 6 documentation files + comprehensive inline comments |
 
 ---
 
@@ -401,31 +428,51 @@ Air_ticket_booking_mini_project/
 
 ---
 
-## 🗺️ Page Directory (25+ Pages)
+## 🗺️ Complete Page Directory (34 Pages)
 
-### 👥 User Pages
-**Booking**: index.html, results.html, booking.html, booking-confirmation.html, passenger-details.html, payment.html  
-**Account**: signin.html, sign-up.html, forgot-password.html, profile.html, my-bookings.html, payment-history.html  
-**Info**: about-us.html, contact-us.html, faq.html, destinations.html, flight-status.html, offers.html, reviews.html, travel-classes.html, privacy-policy.html, terms-conditions.html
+### 👥 User Pages (25 Pages in `html/`)
 
-### 🔧 Admin Pages (in `html/admin/`)
-manage-users.html, refund-management.html, revenue-reports.html, notification-management.html
+**Booking Flow (6)**
+- index.html, results.html, booking.html, passenger-details.html, payment.html, booking-confirmation.html
+
+**User Dashboard (6)**
+- signin.html, sign-up.html, forgot-password.html, profile.html, my-bookings.html, payment-history.html
+
+**Information (11)**
+- about-us.html, contact-us.html, faq.html, destinations.html, flight-status.html, offers.html, reviews.html, travel-classes.html, privacy-policy.html, terms-conditions.html
+
+**Components (2)**
+- header.html, footer.html
+
+### 🔧 Admin Panel (9 Pages in `Admin/html/`)
+- admin-dashboard.html - Main dashboard with statistics & charts
+- manage-bookings.html - Complete bookings management with filters & export
+- flight-management.html - Flight CRUD operations & scheduling
+- manage-users.html - User management & role assignments
+- revenue-reports.html - Financial analytics with Chart.js integration
+- refund-management.html - Refund processing & approval workflow
+- notification-management.html - System-wide notifications & alerts
+- admin-settings.html - 10-tab configuration system (General, Payment, Email, SMS, Flight, User, Security, Backup, API, Appearance)
+- profile.html - Admin profile with security & preferences
 
 ---
 
-## 🎮 Quick Start Guide
+## 🚀 Quick Start
 
-### 1. Search & Book
-- Open `index.html` → Allow location access → Search flights
-- View results → Filter/sort → Select flight
-- Fill passenger details → Choose seats → Complete payment
+```bash
+# Clone the repository
+git clone https://github.com/lucifers-0666/Destinova.git
+cd Destinova
 
-### 2. Manage Bookings
-- Sign in → My Bookings → View/modify/cancel
-- Download e-tickets → Print boarding pass
+# Open directly in browser
+# User Site: html/index.html
+# Admin Panel: Admin/html/admin-dashboard.html
 
-### 3. Admin Access
-- Open `html/admin/manage-users.html` → Manage users/refunds/reports
+# OR use VS Code Live Server (recommended)
+# OR run: python -m http.server 8000
+```
+
+**Requirements**: Modern browser (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) - No build tools needed!
 
 ---
 
