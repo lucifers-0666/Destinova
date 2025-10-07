@@ -524,11 +524,149 @@ a {
 /* ============================================= */
 /* RESPONSIVE DESIGN */
 /* ============================================= */
+/* ===== COMPREHENSIVE RESPONSIVE STYLES ===== */
+
+@media (max-width: 1200px) {
+    .signin-container {
+        padding: 30px;
+        max-width: 500px;
+    }
+}
+
 @media (max-width: 992px) {
     .header-desktop-nav {
         display: none;
     }
     .header-mobile-menu-btn {
         display: block;
+    }
+
+    .signin-wrapper {
+        padding: 30px 20px;
+    }
+
+    .signin-container {
+        padding: 35px 25px;
+        max-width: 480px;
+    }
+
+    .signin-header h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .signin-wrapper {
+        padding: 20px 15px;
+        min-height: calc(100vh - 150px);
+    }
+
+    .signin-container {
+        padding: 30px 20px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .signin-header h1 {
+        font-size: 26px;
+    }
+
+    .signin-header p {
+        font-size: 14px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+
+    .signin-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .social-signin-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .divider {
+        margin: 25px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .signin-wrapper {
+        padding: 15px 12px;
+    }
+
+    .signin-container {
+        padding: 25px 18px;
+        border-radius: 16px;
+    }
+
+    .signin-header h1 {
+        font-size: 24px;
+    }
+
+    .form-group input {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    .signin-btn {
+        padding: 13px;
+        font-size: 14px;
+    }
+
+    .social-signin-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .social-signin-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .signin-container {
+        padding: 20px 15px;
+    }
+
+    .signin-header h1 {
+        font-size: 22px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .signin-header h1 {
+        font-size: 20px;
+    }
+
+    .signin-container {
+        padding: 18px 12px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .form-group input,
+    .signin-btn,
+    .social-signin-btn {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .checkbox-container {
+        min-height: 44px;
     }
 }

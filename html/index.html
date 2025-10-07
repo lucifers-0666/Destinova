@@ -62,31 +62,30 @@
       <div class="header-logo">
         <h1>Destin<span>ova</span></h1>
       </div>
-
       <ul class="header-desktop-nav">
         <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
         <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
         <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
         <li class="header-dropdown">
-          <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
+          <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i class="fas fa-chevron-down"></i></a>
           <ul class="header-dropdown-menu">
             <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-            <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+            <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
+            <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
+            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
           </ul>
         </li>
         <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-          <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
+          <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
           <ul class="header-dropdown-menu">
-            <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-            <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-            <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+            <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
+            <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
           </ul>
         </li>
         <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-        <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
       </ul>
-
       <div class="header-actions">
         <!-- Language Switcher -->
         <div class="language-switcher">
@@ -97,7 +96,6 @@
             <li><a href="#" data-lang="fr">Français (FR)</a></li>
           </ul>
         </div>
-
         <a href="signin.html" class="btn header-btn-signin">
           <i class="fas fa-right-to-bracket"></i>
           <span>Sign In</span>
@@ -115,23 +113,24 @@
       <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
       <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
       <li class="header-dropdown">
-        <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
+        <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
         <ul class="header-dropdown-menu">
           <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-          <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-          <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
+          <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
+          <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
+          <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
         </ul>
       </li>
       <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-        <a href="#"><i class="fas fa-tools"></i> Manage</a>
+        <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
         <ul class="header-dropdown-menu">
-          <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-          <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-          <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
+          <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
+          <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
+          <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+          <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
         </ul>
       </li>
       <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-      <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
     </ul>
   </nav>
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
@@ -333,120 +332,6 @@
             <i class="fas fa-headset"></i><span>24/7 Support</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="home-offers" class="home-section">
-      <div class="home-section-title">
-        <h2 data-aos="fade-up">Special Offers</h2>
-        <p data-aos="fade-up" data-aos-delay="100">Don't miss our exclusive deals and seasonal promotions.</p>
-      </div>
-      <div class="offers-masonry-grid" data-aos="fade-up" data-aos-delay="200">
-        <!-- Featured Card -->
-        <div class="offer-card featured-card">
-          <div class="offer-image-wrapper">
-            <img src="../site-images/sp_of_card1.webp" loading="lazy" alt="Romantic view of Paris">
-          </div>
-          <div class="offer-content">
-            <div class="offer-badges">
-              <span class="offer-badge badge-city-break">City Break</span>
-              <span class="offer-badge badge-discount">Save 35%</span>
-            </div>
-            <div class="offer-header">
-              <h3 class="offer-title">Parisian Dream</h3>
-              <div class="offer-rating">★★★★★ <span class="review-count">4.9 (1,284 reviews)</span></div>
-            </div>
-            <div class="offer-pricing">
-              <span class="price-from">FROM</span>
-              <span class="price-current">₹45,999</span>
-              <span class="price-original">₹69,999</span>
-            </div>
-            <div class="offer-urgency">
-              <div class="countdown-timer"><i class="fas fa-clock"></i> Ends in: 2d 14h 22m</div>
-              <div class="seats-left"><i class="fas fa-chair"></i> Only 8 seats left!</div>
-            </div>
-            <div class="offer-actions">
-              <button class="btn-offer btn-primary-offer">Book Now</button>
-              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
-            </div>
-          </div>
-          <div class="offer-deal-progress">
-            <div class="progress-bar" style="width: 85%;"></div>
-          </div>
-        </div>
-        <!-- Standard Card 1 -->
-        <div class="offer-card">
-          <div class="offer-image-wrapper">
-            <img src="../site-images/sp_of_card2.jpg" loading="lazy" alt="Overwater bungalows in the Maldives">
-          </div>
-          <div class="offer-content">
-            <div class="offer-badges">
-              <span class="offer-badge badge-adventure">Adventure</span>
-            </div>
-            <h3 class="offer-title">Maldives Escape</h3>
-            <div class="offer-rating">★★★★☆ <span class="review-count">4.8 (971 reviews)</span></div>
-            <div class="offer-pricing">
-              <span class="price-from">FROM</span>
-              <span class="price-current">₹75,500</span>
-            </div>
-            <div class="offer-actions">
-              <button class="btn-offer btn-primary-offer">Book Now</button>
-              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
-            </div>
-          </div>
-        </div>
-        <!-- Standard Card 2 -->
-        <div class="offer-card">
-          <div class="offer-image-wrapper">
-            <img src="../site-images/sp_of_card3.jpg" loading="lazy" alt="Business district in London">
-          </div>
-          <div class="offer-content">
-            <div class="offer-badges">
-              <span class="offer-badge badge-business">Business Class</span>
-              <span class="offer-badge badge-last-chance">Last Chance</span>
-            </div>
-            <h3 class="offer-title">London Calling</h3>
-            <div class="offer-rating">★★★★★ <span class="review-count">5.0 (450 reviews)</span></div>
-            <div class="offer-pricing">
-              <span class="price-from">FROM</span>
-              <span class="price-current">₹98,000</span>
-              <span class="price-original">₹120,000</span>
-            </div>
-            <div class="offer-actions">
-              <button class="btn-offer btn-primary-offer">Book Now</button>
-              <button class="btn-offer-icon favorite-btn"><i class="far fa-heart"></i></button>
-            </div>
-          </div>
-        </div>
-        <!-- Compact Card 1 -->
-        <div class="offer-card compact-card">
-          <div class="offer-image-wrapper">
-            <img src="../site-images/sp_of_card4.jpg" loading="lazy" alt="Sydney Opera House">
-          </div>
-          <div class="offer-content">
-            <h3 class="offer-title">Sydney Explorer</h3>
-            <div class="offer-pricing">
-              <span class="price-from">FROM</span>
-              <span class="price-current">₹62,300</span>
-            </div>
-          </div>
-        </div>
-        <!-- Compact Card 2 -->
-        <div class="offer-card compact-card">
-          <div class="offer-image-wrapper">
-            <img src="../site-images/sp_of_card5.jpg" loading="lazy" alt="New York City skyline">
-          </div>
-          <div class="offer-content">
-            <h3 class="offer-title">New York Minute</h3>
-            <div class="offer-pricing">
-              <span class="price-from">FROM</span>
-              <span class="price-current">₹88,900</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="view-all-offers-cta">
-        <a href="offers.html" class="btn btn-light">View All Offers <i class="fas fa-arrow-right"></i></a>
       </div>
     </section>
 
@@ -800,6 +685,311 @@
             <div class="award-item"><i class="fas fa-award"></i> <strong>Skytrax 2024 Winner:</strong> Best Online Travel Agency</div>
             <div class="award-item"><i class="fas fa-newspaper"></i> <strong>Featured in:</strong> Forbes Travel Guide</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: STATISTICS COUNTER SECTION -->
+    <!-- ============================================= -->
+    <section class="stats-section bg-primary-emerald text-white py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="stat-card" data-aos="fade-up">
+            <div class="stat-icon mb-4">
+              <i class="fas fa-users text-5xl text-accent-gold"></i>
+            </div>
+            <div class="stat-number text-4xl font-bold mb-2" data-target="1000000">0</div>
+            <div class="stat-label text-lg opacity-90">Happy Travelers</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-icon mb-4">
+              <i class="fas fa-plane-departure text-5xl text-accent-gold"></i>
+            </div>
+            <div class="stat-number text-4xl font-bold mb-2" data-target="50000">0</div>
+            <div class="stat-label text-lg opacity-90">Flights Booked</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-icon mb-4">
+              <i class="fas fa-globe text-5xl text-accent-gold"></i>
+            </div>
+            <div class="stat-number text-4xl font-bold mb-2" data-target="200">0</div>
+            <div class="stat-label text-lg opacity-90">Destinations</div>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-icon mb-4">
+              <i class="fas fa-award text-5xl text-accent-gold"></i>
+            </div>
+            <div class="stat-number text-4xl font-bold mb-2" data-target="25">0</div>
+            <div class="stat-label text-lg opacity-90">Awards Won</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: HOW IT WORKS SECTION -->
+    <!-- ============================================= -->
+    <section class="how-it-works-section home-section bg-background-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 data-aos="fade-up">Book Your Flight in 3 Easy Steps</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Your journey to the skies is just moments away</p>
+        </div>
+        
+        <div class="steps-container relative">
+          <!-- Connecting Line -->
+          <div class="steps-line hidden lg:block"></div>
+          
+          <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+            <!-- Step 1 -->
+            <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="step-number">1</div>
+              <div class="step-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3>Search & Compare</h3>
+              <p>Enter your travel details and browse through hundreds of flight options from top airlines.</p>
+              <div class="step-visual">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop" alt="Search flights" loading="lazy">
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="step-number">2</div>
+              <div class="step-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3>Select & Customize</h3>
+              <p>Choose your preferred flight, seat, and add extras like meals and baggage.</p>
+              <div class="step-visual">
+                <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=400&h=300&fit=crop" alt="Select flight" loading="lazy">
+              </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="step-number">3</div>
+              <div class="step-icon">
+                <i class="fas fa-ticket-alt"></i>
+              </div>
+              <h3>Book & Fly</h3>
+              <p>Complete secure payment and receive instant confirmation. Your boarding pass awaits!</p>
+              <div class="step-visual">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=300&fit=crop" alt="Book flight" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12" data-aos="fade-up">
+          <a href="#search-section-anchor" class="btn btn-primary">Start Your Journey Now <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: MOBILE APP SECTION -->
+    <!-- ============================================= -->
+    <section class="mobile-app-section home-section bg-gradient-to-br from-primary-emerald to-green-700 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/3 translate-y-1/3"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div data-aos="fade-right">
+            <h2 class="text-4xl font-bold mb-6">Book On-The-Go with Our Mobile App</h2>
+            <p class="text-xl mb-8 opacity-90">Experience seamless booking with exclusive mobile-only deals, real-time updates, and hassle-free travel management.</p>
+            
+            <div class="features-list mb-8 space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-bolt text-primary-emerald"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Instant Booking</h4>
+                  <p class="text-sm opacity-80">Book flights in under 60 seconds</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-bell text-primary-emerald"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Real-Time Alerts</h4>
+                  <p class="text-sm opacity-80">Get notified about gate changes & delays</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-mobile-alt text-primary-emerald"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Mobile Boarding Pass</h4>
+                  <p class="text-sm opacity-80">Skip the queue with digital passes</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="app-download-buttons flex flex-wrap gap-4">
+              <a href="#" class="app-store-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" alt="Download on App Store" class="h-14">
+              </a>
+              <a href="#" class="play-store-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play" class="h-14">
+              </a>
+            </div>
+          </div>
+          
+          <!-- Phone Mockup -->
+          <div class="relative" data-aos="fade-left">
+            <div class="phone-mockup mx-auto">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=800&fit=crop" alt="Destinova Mobile App" class="rounded-3xl shadow-2xl">
+              <div class="phone-overlay"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: FAQ SECTION -->
+    <!-- ============================================= -->
+    <section class="faq-section home-section bg-background-cream">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Everything you need to know about booking with Destinova</p>
+        </div>
+        
+        <div class="faq-accordion" data-aos="fade-up" data-aos-delay="200">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I change or cancel my booking?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>You can easily manage your booking through our "My Bookings" section. Simply log in, select your booking, and choose to modify or cancel. Cancellation policies vary by airline and fare type. Free cancellation is available up to 24 hours before departure for eligible bookings.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What payment methods do you accept?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We accept all major credit cards (Visa, Mastercard, American Express), debit cards, PayPal, UPI, net banking, and digital wallets. All transactions are secured with 256-bit SSL encryption.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Do you offer travel insurance?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! We partner with leading insurance providers to offer comprehensive travel insurance covering trip cancellations, medical emergencies, lost baggage, and more. You can add insurance during the booking process.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How early should I arrive at the airport?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We recommend arriving 2 hours before domestic flights and 3 hours before international flights. This allows time for check-in, security screening, and reaching your gate comfortably.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I select my seat during booking?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! During the booking process, you'll see an interactive seat map where you can choose your preferred seat. Some airlines may charge for seat selection, while others offer it free.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12" data-aos="fade-up">
+          <p class="text-text-slate mb-4">Still have questions?</p>
+          <a href="contact-us.html" class="btn btn-primary">Contact Our Support Team <i class="fas fa-headset ml-2"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- NEW: TRAVEL BLOG/INSPIRATION SECTION -->
+    <!-- ============================================= -->
+    <section class="blog-section home-section bg-background-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 data-aos="fade-up">Travel Inspiration & Guides</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Discover insider tips and hidden gems from our travel experts</p>
+        </div>
+        
+        <div class="blog-grid grid md:grid-cols-3 gap-8">
+          <!-- Blog Post 1 -->
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=600&h=400&fit=crop" alt="Paris Travel Guide" loading="lazy">
+              <div class="blog-category">Travel Guide</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Oct 1, 2025</span>
+                <span><i class="far fa-clock"></i> 5 min read</span>
+              </div>
+              <h3>10 Hidden Gems in Paris You Must Visit</h3>
+              <p>Escape the tourist crowds and discover the authentic charm of Paris with these secret spots.</p>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+          
+          <!-- Blog Post 2 -->
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&h=400&fit=crop" alt="Budget Travel Tips" loading="lazy">
+              <div class="blog-category">Tips & Tricks</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
+                <span><i class="far fa-clock"></i> 7 min read</span>
+              </div>
+              <h3>How to Score Cheap Flights: Expert Tips</h3>
+              <p>Save hundreds on your next flight with these proven strategies from seasoned travelers.</p>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+          
+          <!-- Blog Post 3 -->
+          <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Mountain Travel" loading="lazy">
+              <div class="blog-category">Destination</div>
+            </div>
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
+                <span><i class="far fa-clock"></i> 6 min read</span>
+              </div>
+              <h3>Top 5 Mountain Getaways for Winter 2025</h3>
+              <p>From ski resorts to cozy cabins, explore the best mountain destinations for winter.</p>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+        
+        <div class="text-center mt-12" data-aos="fade-up">
+          <a href="#" class="btn btn-light">View All Articles <i class="fas fa-arrow-right ml-2"></i></a>
         </div>
       </div>
     </section>

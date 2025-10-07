@@ -26,12 +26,45 @@
         <div class="header-nav-container">
             <div class="header-logo"><h1>Destin<span>ova</span></h1></div>
             <ul class="header-desktop-nav">
-                <li><a href="index.html"><span>Home</span></a></li>
-                <li><a href="my-bookings.html"><span>My Bookings</span></a></li>
-                <li><a href="profile.html"><span>My Profile</span></a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+                <li class="header-dropdown">
+                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
+                            class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
+                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
+                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
+                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+                    </ul>
+                </li>
+                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
+                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="header-dropdown-menu">
+                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
+                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
+                    </ul>
+                </li>
+                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
             </ul>
             <div class="header-actions">
-                <a href="profile.html" class="btn header-btn-signin"><span>My Account</span></a>
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
+                    <ul class="language-switcher-menu">
+                        <li><a href="#" data-lang="en">English (EN)</a></li>
+                        <li><a href="#" data-lang="es">Español (ES)</a></li>
+                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
+                    </ul>
+                </div>
+
+                <a href="signin.html" class="btn header-btn-signin">
+                    <i class="fas fa-right-to-bracket"></i>
+                    <span>Sign In</span>
+                </a>
             </div>
         </div>
     </header>

@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const parent = link.parentElement;
+            link.querySelector('.fa-chevron-down')?.classList.toggle('fa-rotate-180');
             parent.classList.toggle('header-open');
         });
     });
@@ -221,80 +222,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     initializeTravelClassTabs();
 
-    // --- OFFERS CAROUSEL FUNCTIONALITY ---
-    function initializeOffersCarousel() {
-        const container = document.querySelector('.home-offers-carousel-container');
-        const carousel = document.querySelector('.home-offers-carousel');
-        const prevBtn = document.querySelector('.carousel-prev');
-        const nextBtn = document.querySelector('.carousel-next');
-        const cards = document.querySelectorAll('.home-offer-card');
-
-        if (!container || !carousel || !prevBtn || !nextBtn || cards.length === 0) return;
-
-        let currentIndex = 0;
-        let cardWidthWithGap = 0;
-        let maxIndex = 0;
-
-        // --- Skeleton Loader Logic ---
-        const skeletonLoader = container.querySelector('.offers-skeleton-loader');
-        // Simulate loading
-        setTimeout(() => {
-            if (skeletonLoader) skeletonLoader.style.display = 'none';
-            carousel.style.visibility = 'visible';
-            // Initialize carousel dimensions after content is visible
-            updateCarouselDimensions();
-        }, 1500); // Simulate 1.5s loading time
-
-        function updateCarouselDimensions() {
-            const gap = window.innerWidth <= 768 ? 20 : 30;
-            carousel.style.gap = `${gap}px`;
-
-            const firstCard = cards[0];
-            if (firstCard) { // Ensure cards are loaded
-                cardWidthWithGap = firstCard.offsetWidth + gap;
-            }
-
-            const visibleCards = Math.floor(container.offsetWidth / cardWidthWithGap);
-            maxIndex = Math.max(0, cards.length - visibleCards);
-
-            if (currentIndex > maxIndex) {
-                currentIndex = maxIndex;
-            }
-            moveCarousel();
-        }
-
-        function moveCarousel() {
-            // Avoid running if width is not calculated yet
-            if (cardWidthWithGap > 0) {
-                const translateX = -currentIndex * cardWidthWithGap;
-                carousel.style.transform = `translateX(${translateX}px)`;
-            }
-        }
-
-        prevBtn.addEventListener('click', () => {
-            if (maxIndex === 0) return;
-            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-            moveCarousel();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (maxIndex === 0) return;
-            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-            moveCarousel();
-        });
-
-        setInterval(() => {
-            // To prevent moving if maxIndex is 0 (all cards are visible)
-            if (maxIndex === 0) return;
-            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-            moveCarousel();
-        }, 5000);
-
-        window.addEventListener('resize', updateCarouselDimensions);
-        // updateCarouselDimensions(); // This is now called after skeleton loader timeout
-    }
-    initializeOffersCarousel();
-
     function initializeActivityFeed() {
         // Animate real-time stats counter
         const flightsBookedStat = document.getElementById('flights-booked-stat');
@@ -335,6 +262,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initializeActivityFeed();
 
+    // --- NEW: Animated Counter for Statistics ---
+    function initializeStatsCounter() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, 0, target, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        statNumbers.forEach(stat => observer.observe(stat));
+    }
+
+    function animateCounter(element, start, end, duration) {
+        let startTime = null;
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            element.textContent = value.toLocaleString();
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+        requestAnimationFrame(step);
+    }
+
+    // --- NEW: FAQ Accordion ---
+    function initializeFAQ() {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // Initialize new features
+    initializeStatsCounter();
+    initializeFAQ();
+
     // Initialize AOS for other sections with enhanced settings
     AOS.init({
         duration: 800,
@@ -362,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Observe all major sections
         const elementsToAnimate = document.querySelectorAll(
-            '.home-section-title, .home-destination-card, .home-feature-item, .home-offer-card, .btn'
+            '.home-section-title, .home-destination-card, .home-feature-item, .btn'
         );
         elementsToAnimate.forEach(el => {
             observer.observe(el);
@@ -384,32 +372,6 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = '';
                 btn.style.boxShadow = '';
-            });
-        });
-
-        // Enhanced 3D card hover effects with mouse tracking
-        const cards = document.querySelectorAll('.home-offer-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                card.style.boxShadow = `
-                    0 20px 40px rgba(0, 0, 0, 0.2),
-                    0 0 30px rgba(59, 130, 246, 0.3),
-                    0 0 50px rgba(147, 51, 234, 0.2)
-                `;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-                card.style.boxShadow = '';
             });
         });
 
@@ -989,39 +951,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     initializeTicketSearchForm();
 
-    // --- SWIPE SUPPORT FOR MOBILE ---
+    // --- SWIPE SUPPORT FOR MOBILE (Testimonials) ---
     function addSwipeSupport() {
-        // Add swipe support to offers carousel
-        const offersCarousel = document.querySelector('.home-offers-carousel');
-        if (offersCarousel) {
-            let startX = 0;
-            let isDragging = false;
-
-            offersCarousel.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-            });
-
-            offersCarousel.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const currentX = e.touches[0].clientX;
-                const diffX = startX - currentX;
-
-                if (Math.abs(diffX) > 50) { // Threshold to detect a swipe
-                    if (diffX > 0) {
-                        document.querySelector('.carousel-next')?.click();
-                    } else {
-                        document.querySelector('.carousel-prev')?.click();
-                    }
-                    isDragging = false; // End swipe after one action
-                }
-            });
-
-            offersCarousel.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-        }
-
         // Add swipe support to testimonials
         const testimonialsSlider = document.querySelector('.home-testimonial-slider');
         if (testimonialsSlider) {

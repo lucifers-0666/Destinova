@@ -319,17 +319,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // =============================================
-    // PAGE-SPECIFIC: TRAVEL YOUR WAY INTERACTIVITY
+    // REMOVED: Travel styles section no longer needed
     // =============================================
     function initializeTravelStylesAndModal() {
-        const themeCards = document.querySelectorAll('.theme-card');
-        const modalContainer = document.getElementById('style-modal-container');
-        const popularDestinationsSection = document.getElementById('popular-destinations');
-        const destinationCards = document.querySelectorAll('#popular-destinations .destination-card');
+        // Function disabled - travel styles section removed
+        return;
 
-        if (themeCards.length === 0 || !modalContainer) return;
-
-        const modalContent = {
+        const modalContent_OLD = {
             adventure: {
                 title: 'Adventure & Outdoors',
                 description: 'For the thrill-seekers and nature lovers. Our adventure trips range from scaling mountains to diving into the deep blue. Get your adrenaline pumping!',
@@ -425,10 +421,12 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeTravelStylesAndModal();
 
     // =============================================
-    // PAGE-SPECIFIC: INSPIRATION CARD GLOW EFFECT
+    // REMOVED: Inspiration section no longer needed
     // =============================================
     function initializeInspirationSection() {
-        const inspirationCards = document.querySelectorAll('.inspiration-card');
+        // Function disabled - inspiration section removed
+        return;
+
         const lightboxOverlay = document.getElementById('lightbox-overlay');
         if (!lightboxOverlay) return;
 
@@ -573,9 +571,12 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeTestimonials();
 
     // =============================================
-    // LIVE ACTIVITY NOTIFICATIONS
+    // REMOVED: Live activity notifications (too distracting)
     // =============================================
     function initializeLiveActivityFeed() {
+        // Function disabled - live notifications removed
+        return;
+
         const container = document.getElementById('live-activity-container');
         if (!container) return;
 

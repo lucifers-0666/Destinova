@@ -397,43 +397,373 @@
   align-self: flex-start;
 }
 
-/* Responsive */
+/* ===== COMPREHENSIVE RESPONSIVE STYLES ===== */
+
+@media (max-width: 1200px) {
+  .results-container {
+    padding: 20px;
+    gap: 25px;
+  }
+
+  .filters-sidebar {
+    padding: 20px;
+  }
+
+  .flight-card {
+    padding: 20px;
+  }
+}
+
 @media (max-width: 1024px) {
   .results-container {
     grid-template-columns: 1fr;
+    padding: 15px;
   }
 
   .filters-sidebar {
     position: static;
+    max-height: none;
+    margin-bottom: 25px;
+    border-radius: 12px;
+  }
+
+  .filter-group {
+    margin-bottom: 20px;
+  }
+
+  .results-header {
+    padding: 15px;
+  }
+
+  .sort-options select {
+    padding: 10px 35px 10px 12px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+  .results-page {
+    padding: 20px 15px;
+  }
+
   .results-header {
     flex-direction: column;
+    gap: 15px;
     align-items: stretch;
+  }
+
+  .sort-dropdown {
+    width: 100%;
   }
 
   .view-options {
     justify-content: center;
+    width: 100%;
+  }
+
+  .flight-list {
+    gap: 20px;
+  }
+
+  .flight-card {
+    padding: 18px;
+  }
+
+  .flight-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .airline-info {
+    width: 100%;
+  }
+
+  .flight-badges {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .results-page {
+    padding: 15px 12px;
+  }
+
+  .results-header {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .results-header h2 {
+    font-size: 20px;
+  }
+
+  .results-count {
+    font-size: 13px;
+  }
+
+  .view-options button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .filters-sidebar {
+    padding: 15px;
+  }
+
+  .filter-group h3 {
+    font-size: 16px;
+  }
+
+  .filter-option label {
+    font-size: 14px;
+  }
+
+  .flight-card {
+    padding: 15px;
+  }
+
+  .airline-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .airline-name {
+    font-size: 16px;
+  }
+
+  .flight-number {
+    font-size: 12px;
   }
 
   .flight-times {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .time-info {
+    text-align: left;
   }
 
   .flight-route {
-    margin: 5px 0;
+    margin: 10px 0;
+    justify-content: flex-start;
+  }
+
+  .route-line {
+    width: 60px;
   }
 
   .flight-details {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: stretch;
   }
 
+  .detail-item {
+    justify-content: space-between;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 6px;
+  }
+
+  .flight-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
+
   .flight-price {
-    text-align: center;
+    text-align: left;
+    width: 100%;
+  }
+
+  .price-amount {
+    font-size: 26px;
+  }
+
+  .select-flight-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .amenities-list {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .amenity-item {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .results-page {
+    padding: 12px 10px;
+  }
+
+  .results-header {
+    padding: 10px;
+  }
+
+  .results-header h2 {
+    font-size: 18px;
+  }
+
+  .view-options {
+    gap: 6px;
+  }
+
+  .view-options button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .filters-sidebar {
+    padding: 12px;
+  }
+
+  .filter-group {
+    margin-bottom: 15px;
+  }
+
+  .flight-card {
+    padding: 12px;
+  }
+
+  .airline-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .airline-name {
+    font-size: 15px;
+  }
+
+  .flight-number {
+    font-size: 11px;
+  }
+
+  .flight-badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .time-display {
+    font-size: 22px;
+  }
+
+  .date-display,
+  .airport-code {
+    font-size: 12px;
+  }
+
+  .route-line {
+    width: 50px;
+  }
+
+  .duration,
+  .stops {
+    font-size: 12px;
+  }
+
+  .detail-item {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .price-amount {
+    font-size: 24px;
+  }
+
+  .price-label {
+    font-size: 12px;
+  }
+
+  .select-flight-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .amenity-item {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .results-header h2 {
+    font-size: 16px;
+  }
+
+  .airline-name {
+    font-size: 14px;
+  }
+
+  .time-display {
+    font-size: 20px;
+  }
+
+  .price-amount {
+    font-size: 22px;
+  }
+
+  .route-line {
+    width: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .results-page {
+    padding: 10px 8px;
+  }
+
+  .results-header h2 {
+    font-size: 15px;
+  }
+
+  .flight-card {
+    padding: 10px;
+  }
+
+  .airline-name {
+    font-size: 13px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .filter-option input[type="checkbox"],
+  .filter-option input[type="radio"] {
+    min-width: 20px;
+    min-height: 20px;
+  }
+
+  .view-options button,
+  .select-flight-btn,
+  .filter-option label {
+    min-height: 44px;
+  }
+
+  .sort-options select {
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+/* Landscape Orientation Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+  .results-page {
+    padding: 15px;
+  }
+
+  .filters-sidebar {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .flight-card {
+    padding: 12px;
   }
 }

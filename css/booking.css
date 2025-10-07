@@ -559,3 +559,269 @@ body {
     background-color: var(--primary-emerald);
     color: white;
 }
+
+/* ===== COMPREHENSIVE RESPONSIVE STYLES ===== */
+
+@media (max-width: 1200px) {
+    .booking-container {
+        padding: 30px;
+    }
+
+    .booking-process {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .booking-container {
+        padding: 25px 20px;
+        margin: 30px auto;
+    }
+
+    .booking-header h1 {
+        font-size: 28px;
+    }
+
+    .booking-process {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .process-step {
+        width: 100%;
+    }
+
+    .process-line::before {
+        display: none;
+    }
+
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .destination-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .booking-container {
+        padding: 20px 15px;
+        margin: 20px auto;
+        border-radius: 16px;
+    }
+
+    .booking-header h1 {
+        font-size: 24px;
+    }
+
+    .booking-header p {
+        font-size: 14px;
+    }
+
+    .process-step {
+        padding: 15px;
+    }
+
+    .process-step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .process-step h3 {
+        font-size: 16px;
+    }
+
+    .process-step p {
+        font-size: 13px;
+    }
+
+    .search-section {
+        padding: 25px 20px;
+    }
+
+    .search-form {
+        gap: 15px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .input-with-icon input {
+        font-size: 15px;
+        padding: 12px 12px 12px 45px;
+    }
+
+    .search-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .destinations-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .destination-card h3 {
+        font-size: 18px;
+    }
+
+    .destination-card p {
+        font-size: 13px;
+    }
+
+    .destination-image {
+        height: 180px;
+    }
+
+    .baggage-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .baggage-option {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .booking-container {
+        padding: 15px 12px;
+        margin: 15px 10px;
+    }
+
+    .booking-header h1 {
+        font-size: 22px;
+    }
+
+    .process-step {
+        padding: 12px;
+    }
+
+    .process-step-number {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .process-step h3 {
+        font-size: 15px;
+    }
+
+    .search-section {
+        padding: 20px 15px;
+    }
+
+    .input-with-icon input {
+        font-size: 14px;
+        padding: 10px 10px 10px 40px;
+    }
+
+    .input-with-icon .icon {
+        left: 12px;
+        font-size: 14px;
+    }
+
+    .search-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .destination-card {
+        padding: 12px;
+    }
+
+    .destination-card h3 {
+        font-size: 16px;
+    }
+
+    .destination-image {
+        height: 150px;
+    }
+
+    .baggage-controls {
+        gap: 8px;
+    }
+
+    .baggage-quantity {
+        width: 45px;
+        font-size: 14px;
+    }
+
+    .baggage-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-header h1 {
+        font-size: 20px;
+    }
+
+    .process-step {
+        padding: 10px;
+    }
+
+    .destination-image {
+        height: 140px;
+    }
+}
+
+@media (max-width: 360px) {
+    .booking-container {
+        padding: 12px 10px;
+    }
+
+    .booking-header h1 {
+        font-size: 18px;
+    }
+
+    .process-step h3 {
+        font-size: 14px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .input-with-icon input,
+    .input-with-icon select {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .search-btn,
+    .baggage-btn,
+    .destination-card {
+        min-height: 44px;
+    }
+
+    .process-step {
+        min-height: 60px;
+    }
+}
+
+/* Landscape Orientation Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    .booking-container {
+        margin: 15px auto;
+    }
+
+    .process-step {
+        padding: 10px;
+    }
+
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

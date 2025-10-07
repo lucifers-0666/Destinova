@@ -131,11 +131,38 @@
     transform: translateX(4px);
 }
 
-/* Responsive Adjustments */
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Tablets and Small Desktops (1200px and below) */
+@media (max-width: 1200px) {
+    .home-alt-content-container {
+        padding: 0 30px;
+    }
+
+    .home-class-slider-wrapper {
+        width: 55%;
+    }
+
+    .content-panel {
+        width: 45%;
+        padding: 35px;
+    }
+
+    .content-panel h2 {
+        font-size: 2rem;
+    }
+
+    .content-panel p {
+        font-size: 0.9375rem;
+    }
+}
+
+/* Tablets (992px and below) */
 @media (max-width: 992px) {
     .home-alt-content-container {
         flex-direction: column;
         margin-bottom: 80px;
+        padding: 0 25px;
     }
 
     .home-class-slider-wrapper {
@@ -147,6 +174,336 @@
     .content-panel {
         width: 90%;
         margin: 0 !important; /* Remove horizontal margins */
+        padding: 32px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.875rem;
+    }
+}
+
+/* Mobile Devices (768px and below) */
+@media (max-width: 768px) {
+    .home-alt-content-container {
+        margin-bottom: 60px;
+        padding: 0 20px;
+    }
+
+    .home-class-slider-wrapper {
+        height: 350px;
+        margin-bottom: -50px;
+    }
+
+    .content-panel {
+        width: 95%;
+        padding: 28px;
+        border-radius: 12px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.625rem;
+        margin-bottom: 1rem;
+    }
+
+    .content-panel p {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+
+    .content-panel .btn {
+        padding: 12px 28px;
+        font-size: 0.9375rem;
+    }
+
+    .home-slider-nav {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    .home-slider-nav.home-prev {
+        left: 15px;
+    }
+
+    .home-slider-nav.home-next {
+        right: 15px;
+    }
+
+    .home-slider-dots {
+        bottom: 15px;
+        gap: 10px;
+    }
+
+    .home-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .home-dot.active {
+        width: 26px;
+    }
+}
+
+/* Small Mobile Devices (576px and below) */
+@media (max-width: 576px) {
+    .home-alt-content-container {
+        margin-bottom: 50px;
+        padding: 0 15px;
+    }
+
+    .home-class-slider-wrapper {
+        height: 320px;
+        margin-bottom: -45px;
+        border-radius: 12px;
+    }
+
+    .content-panel {
+        width: 100%;
+        padding: 24px;
+        border-radius: 10px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .content-panel p {
+        font-size: 0.8125rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .content-panel ul {
+        margin-bottom: 1.25rem;
+    }
+
+    .content-panel ul li {
+        font-size: 0.8125rem;
+        margin-bottom: 8px;
+    }
+
+    .content-panel .btn {
+        width: 100%;
+        padding: 11px;
+        font-size: 0.875rem;
+    }
+
+    .home-slider-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9375rem;
+    }
+
+    .home-slider-nav.home-prev {
+        left: 12px;
+    }
+
+    .home-slider-nav.home-next {
+        right: 12px;
+    }
+
+    .home-slider-dots {
+        bottom: 12px;
+        gap: 8px;
+    }
+
+    .home-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .home-dot.active {
+        width: 24px;
+    }
+}
+
+/* Extra Small Devices (480px and below) */
+@media (max-width: 480px) {
+    .home-alt-content-container {
+        margin-bottom: 40px;
+        padding: 0 12px;
+    }
+
+    .home-class-slider-wrapper {
+        height: 280px;
+        margin-bottom: -40px;
+        border-radius: 10px;
+    }
+
+    .content-panel {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.375rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content-panel p {
+        font-size: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content-panel ul {
+        margin-bottom: 1rem;
+    }
+
+    .content-panel ul li {
+        font-size: 0.75rem;
+        margin-bottom: 6px;
+    }
+
+    .content-panel ul li i {
+        font-size: 0.8125rem;
+        margin-right: 8px;
+    }
+
+    .content-panel .btn {
+        padding: 10px;
+        font-size: 0.8125rem;
+    }
+
+    .home-slider-nav {
+        width: 34px;
+        height: 34px;
+        font-size: 0.875rem;
+    }
+
+    .home-slider-nav.home-prev {
+        left: 10px;
+    }
+
+    .home-slider-nav.home-next {
+        right: 10px;
+    }
+
+    .home-slider-dots {
+        bottom: 10px;
+        gap: 7px;
+    }
+
+    .home-dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    .home-dot.active {
+        width: 22px;
+    }
+}
+
+/* Very Small Devices (360px and below) */
+@media (max-width: 360px) {
+    .home-alt-content-container {
+        margin-bottom: 35px;
+        padding: 0 10px;
+    }
+
+    .home-class-slider-wrapper {
+        height: 250px;
+        margin-bottom: -35px;
+    }
+
+    .content-panel {
+        padding: 18px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .content-panel p {
+        font-size: 0.7rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .content-panel ul {
+        margin-bottom: 0.875rem;
+    }
+
+    .content-panel ul li {
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+    }
+
+    .content-panel .btn {
+        padding: 9px;
+        font-size: 0.75rem;
+    }
+
+    .home-slider-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8125rem;
+    }
+
+    .home-slider-nav.home-prev {
+        left: 8px;
+    }
+
+    .home-slider-nav.home-next {
+        right: 8px;
+    }
+
+    .home-slider-dots {
+        bottom: 8px;
+        gap: 6px;
+    }
+
+    .home-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .home-dot.active {
+        width: 20px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .content-panel .btn,
+    .home-slider-nav,
+    .home-dot {
+        min-height: 44px;
+        min-width: 44px;
+        touch-action: manipulation;
+    }
+
+    .home-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .home-dot.active {
+        width: 32px;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .home-class-slider-wrapper {
+        height: 280px;
+        margin-bottom: -40px;
+    }
+
+    .content-panel {
+        padding: 20px;
+    }
+
+    .content-panel h2 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .content-panel p {
+        margin-bottom: 0.5rem;
+    }
+
+    .content-panel ul {
+        margin-bottom: 0.75rem;
     }
 }
 

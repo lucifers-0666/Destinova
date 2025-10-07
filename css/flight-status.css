@@ -380,25 +380,426 @@
     100% { background-color: hsl(200, 20%, 95%); }
 }
 
-/* Responsive */
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large Tablets and Small Desktops (1200px and below) */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 1000px;
+        padding: 0 30px;
+    }
+
+    .status-hero h1 {
+        font-size: 38px;
+    }
+
+    #status-search-form {
+        max-width: 650px;
+    }
+}
+
+/* Tablets (992px and below) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 25px;
+    }
+
+    .status-hero {
+        padding: 90px 25px 110px;
+    }
+
+    .status-hero h1 {
+        font-size: 36px;
+    }
+
+    #status-search-form {
+        max-width: 600px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    #status-search-btn {
+        grid-column: 1 / -1;
+    }
+
+    .detailed-info {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .departure-details {
+        border-right: none;
+        border-bottom: 2px dashed var(--border-gray);
+        padding-bottom: 1.5rem;
+    }
+
+    .arrival-details {
+        padding-top: 1.5rem;
+    }
+}
+
+/* Mobile Devices (768px and below) */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
     .status-hero {
         padding: 80px 20px 100px;
     }
+
     .status-hero h1 {
         font-size: 32px;
+        margin-bottom: 0.75rem;
     }
+
+    .status-hero p {
+        font-size: 15px;
+    }
+
     #status-search-form {
+        max-width: 100%;
         grid-template-columns: 1fr;
+        gap: 10px;
     }
+
+    #status-search-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .status-result-card {
+        padding: 20px;
+    }
+
+    .flight-header h2 {
+        font-size: 20px;
+    }
+
     .detailed-info {
         grid-template-columns: 1fr;
     }
+
     .departure-details {
         border-right: none;
         border-bottom: 2px dashed var(--border-gray);
     }
+
+    .progress-bar {
+        margin: 1.5rem 0;
+    }
+
     .progress-point span {
         font-size: 12px;
+    }
+
+    .additional-info {
+        padding: 15px;
+    }
+}
+
+/* Small Mobile Devices (576px and below) */
+@media (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .status-hero {
+        padding: 70px 15px 90px;
+    }
+
+    .status-hero h1 {
+        font-size: 28px;
+        margin-bottom: 0.625rem;
+    }
+
+    .status-hero p {
+        font-size: 14px;
+        margin-bottom: 1.25rem;
+    }
+
+    #status-search-form {
+        gap: 8px;
+    }
+
+    #status-search-form input {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
+
+    #status-search-btn {
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .status-result-card {
+        padding: 18px;
+        border-radius: 10px;
+    }
+
+    .flight-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .flight-header h2 {
+        font-size: 18px;
+    }
+
+    .status-badge {
+        padding: 5px 12px;
+        font-size: 13px;
+    }
+
+    .route-display {
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .time-info {
+        font-size: 13px;
+    }
+
+    .departure-details,
+    .arrival-details {
+        padding: 1rem;
+    }
+
+    .info-label {
+        font-size: 12px;
+    }
+
+    .info-value {
+        font-size: 14px;
+    }
+
+    .progress-bar {
+        margin: 1.25rem 0;
+    }
+
+    .progress-point {
+        width: 30px;
+        height: 30px;
+    }
+
+    .progress-point span {
+        font-size: 11px;
+        margin-top: 6px;
+    }
+
+    .additional-info {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .info-item {
+        font-size: 13px;
+    }
+}
+
+/* Extra Small Devices (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .status-hero {
+        padding: 60px 12px 80px;
+    }
+
+    .status-hero h1 {
+        font-size: 26px;
+        margin-bottom: 0.5rem;
+    }
+
+    .status-hero p {
+        font-size: 13px;
+        margin-bottom: 1rem;
+    }
+
+    #status-search-form input {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    #status-search-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .status-result-card {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .flight-header h2 {
+        font-size: 17px;
+    }
+
+    .status-badge {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .route-display {
+        font-size: 13px;
+    }
+
+    .time-info {
+        font-size: 12px;
+    }
+
+    .departure-details,
+    .arrival-details {
+        padding: 0.875rem;
+    }
+
+    .info-label {
+        font-size: 11px;
+    }
+
+    .info-value {
+        font-size: 13px;
+    }
+
+    .progress-bar {
+        margin: 1rem 0;
+    }
+
+    .progress-point {
+        width: 28px;
+        height: 28px;
+    }
+
+    .progress-point span {
+        font-size: 10px;
+        margin-top: 5px;
+    }
+
+    .additional-info {
+        padding: 10px;
+        gap: 6px;
+    }
+
+    .info-item {
+        font-size: 12px;
+    }
+
+    .info-item i {
+        font-size: 14px;
+    }
+}
+
+/* Very Small Devices (360px and below) */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .status-hero {
+        padding: 55px 10px 75px;
+    }
+
+    .status-hero h1 {
+        font-size: 24px;
+    }
+
+    .status-hero p {
+        font-size: 12px;
+    }
+
+    #status-search-form input {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    #status-search-btn {
+        padding: 9px;
+        font-size: 12px;
+    }
+
+    .status-result-card {
+        padding: 12px;
+    }
+
+    .flight-header h2 {
+        font-size: 16px;
+    }
+
+    .status-badge {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .route-display {
+        font-size: 12px;
+    }
+
+    .time-info {
+        font-size: 11px;
+    }
+
+    .departure-details,
+    .arrival-details {
+        padding: 0.75rem;
+    }
+
+    .info-label {
+        font-size: 10px;
+    }
+
+    .info-value {
+        font-size: 12px;
+    }
+
+    .progress-point {
+        width: 26px;
+        height: 26px;
+    }
+
+    .progress-point span {
+        font-size: 9px;
+    }
+
+    .additional-info {
+        padding: 8px;
+    }
+
+    .info-item {
+        font-size: 11px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    #status-search-btn {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+
+    #status-search-form input {
+        min-height: 48px;
+        font-size: 16px;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .status-hero {
+        padding: 40px 20px 60px;
+    }
+
+    .status-hero h1 {
+        font-size: 24px;
+        margin-bottom: 0.5rem;
+    }
+
+    .status-hero p {
+        margin-bottom: 0.75rem;
+    }
+
+    .progress-bar {
+        margin: 1rem 0;
     }
 }
