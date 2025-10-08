@@ -1,11 +1,623 @@
-/* --- Custom Styles for Destinova Footer --- */
+/* ============================================= */
+/* REDESIGNED DESTINOVA FOOTER */
+/* ============================================= */
 
 /* Defining the core color palette */
 :root {
     --emerald-green: #1d5e33;
     --champagne-gold: #E5CBAF;
     --soft-white: #f8f8f8;
+    --footer-dark: #1F2937;
+    --footer-darker: #111827;
+    --accent-orange: #F97316;
+    --accent-blue: #3B82F6;
 }
+
+/* ========== MAIN FOOTER CONTAINER ========== */
+.destinova-footer-redesigned {
+    background: linear-gradient(180deg, #1F2937 0%, #111827 100%);
+    color: #F9FAFB;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.destinova-footer-redesigned::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== TRUST BADGES SECTION (TOP) ========== */
+.footer-trust-section {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(59, 130, 246, 0.08));
+    padding: 40px 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.trust-text {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.trust-icon {
+    font-size: 36px;
+    color: #10B981;
+}
+
+.trust-text h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #F9FAFB;
+    margin: 0;
+}
+
+.trust-badges {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.trust-badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.trust-badge-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.trust-badge-item i {
+    font-size: 24px;
+    color: var(--accent-orange);
+}
+
+.trust-badge-item span {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: #D1D5DB;
+}
+
+.payment-methods {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.payment-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9CA3AF;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.payment-icons i {
+    font-size: 32px;
+    color: #D1D5DB;
+    transition: all 0.3s ease;
+}
+
+.payment-icons i:hover {
+    color: #F9FAFB;
+    transform: scale(1.1);
+}
+
+/* ========== MAIN FOOTER COLUMNS ========== */
+.footer-main-columns {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 50px;
+    padding: 60px 60px 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-column {
+    position: relative;
+}
+
+/* Subtle divider lines between columns */
+.footer-column:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -25px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.1) 20%,
+        rgba(255, 255, 255, 0.1) 80%,
+        transparent
+    );
+}
+
+/* ========== COLUMN 1: ABOUT ========== */
+.about-column .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.about-column .footer-logo h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F9FAFB;
+    margin: 0;
+}
+
+.about-column .footer-logo .highlight {
+    color: var(--accent-orange);
+}
+
+.about-column .footer-logo i {
+    font-size: 28px;
+    color: var(--accent-orange);
+}
+
+.footer-tagline {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+.footer-description {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #9CA3AF;
+    margin-bottom: 32px;
+}
+
+.social-media-section {
+    margin-top: 24px;
+}
+
+.social-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #D1D5DB;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.social-icons-large {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon.facebook {
+    background: linear-gradient(135deg, #1877F2, #0C63D4);
+    color: white;
+}
+
+.social-icon.twitter {
+    background: linear-gradient(135deg, #1DA1F2, #0C85D0);
+    color: white;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(135deg, #E4405F, #C13584, #833AB4);
+    color: white;
+}
+
+.social-icon.linkedin {
+    background: linear-gradient(135deg, #0A66C2, #004182);
+    color: white;
+}
+
+.social-icon.youtube {
+    background: linear-gradient(135deg, #FF0000, #CC0000);
+    color: white;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.follower-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #9CA3AF;
+    font-weight: 600;
+}
+
+.follower-count i {
+    color: var(--accent-orange);
+}
+
+/* ========== COLUMN TITLES ========== */
+.footer-column-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-orange);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+.footer-column-title i {
+    font-size: 20px;
+}
+
+/* ========== FOOTER LINKS ========== */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 14px;
+}
+
+.footer-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #D1D5DB;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 6px 0;
+}
+
+.footer-links a:hover {
+    color: #F9FAFB;
+    padding-left: 8px;
+}
+
+.footer-links a i {
+    font-size: 14px;
+    color: #6B7280;
+    transition: all 0.3s ease;
+    width: 18px;
+}
+
+.footer-links a:hover i {
+    color: var(--accent-orange);
+}
+
+/* ========== COLUMN 2: POPULAR ROUTES ========== */
+.route-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.route-link:hover {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: var(--accent-orange);
+    transform: translateX(5px);
+}
+
+.route-cities {
+    font-size: 14px;
+    font-weight: 600;
+    color: #F9FAFB;
+}
+
+.route-price {
+    font-size: 12px;
+    color: #10B981;
+    font-weight: 700;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* ========== HIRING BADGE ========== */
+.hiring-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-left: 8px;
+    font-weight: 700;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========== FOOTER BOTTOM BAR ========== */
+.footer-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-left,
+.footer-bottom-center,
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #9CA3AF;
+    margin: 0;
+}
+
+/* Language and Currency Selectors */
+.language-selector,
+.currency-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-selector i,
+.currency-selector i {
+    color: var(--accent-orange);
+    font-size: 16px;
+}
+
+.language-selector select,
+.currency-selector select {
+    background: transparent;
+    border: none;
+    color: #F9FAFB;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+.language-selector select option,
+.currency-selector select option {
+    background: #1F2937;
+    color: #F9FAFB;
+}
+
+.accessibility-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #D1D5DB;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.accessibility-link:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #F9FAFB;
+}
+
+.accessibility-link i {
+    color: var(--accent-blue);
+}
+
+/* ========== BACK TO TOP BUTTON ========== */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--accent-orange), #FB923C);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(249, 115, 22, 0.6);
+}
+
+.back-to-top-btn i {
+    font-size: 20px;
+}
+
+.back-to-top-btn .btn-text {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+    .footer-main-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 50px 40px;
+    }
+
+    .footer-column:nth-child(2n)::after {
+        display: none;
+    }
+
+    .trust-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .trust-badges {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+    .footer-trust-section {
+        padding: 30px 24px;
+    }
+
+    .trust-badges {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+    }
+
+    .footer-main-columns {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 24px;
+    }
+
+    .footer-column::after {
+        display: none;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .footer-bottom-center {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .language-selector,
+    .currency-selector {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .back-to-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Small Mobile (576px and below) */
+@media (max-width: 576px) {
+    .footer-trust-section {
+        padding: 24px 16px;
+    }
+
+    .trust-text h3 {
+        font-size: 16px;
+    }
+
+    .trust-icon {
+        font-size: 28px;
+    }
+
+    .trust-badges {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-main-columns {
+        padding: 30px 16px;
+    }
+
+    .social-icons-large {
+        flex-wrap: wrap;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+/* ========== OLD FOOTER STYLES (KEEP FOR COMPATIBILITY) ========== */
 
 /* Main footer container */
 .destinova-footer {

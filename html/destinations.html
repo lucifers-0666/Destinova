@@ -44,6 +44,7 @@
 
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/destinations.css">
+    <link rel="stylesheet" href="../css/footer.css">
 
 </head>
 
@@ -608,105 +609,84 @@
 
         <!-- Advanced Search Hub removed - overly complex -->
 
-        <section class="content-section bg-light">
+        <!-- ============================================= -->
+        <!-- LAST-MINUTE FLIGHTS URGENCY BANNER -->
+        <!-- ============================================= -->
+        <section class="last-minute-urgency-banner">
             <div class="container">
-                <div class="section-header-center animate-on-scroll slide-up">
-                    <h2 class="section-title">🔥 FLASH SALE: Save Up to 60% on Dream Destinations</h2>
-                    <p class="section-subtitle">⏰ Limited Time: These Prices Disappear at Midnight!</p>
-                </div>
-                <div class="deals-grid animate-on-scroll fade-in">
-                    <!-- Featured Deal -->
-                    <div class="deal-card featured-deal">
-                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1565967521873-95c589098908?q=80&w=1974&auto=format&fit=crop');">
-                            <div class="deal-badge exclusive">MEMBERS ONLY - 48 Hours Left</div>
+                <div class="urgency-banner-wrapper">
+                    <!-- Left Content -->
+                    <div class="urgency-banner-left">
+                        <div class="urgency-badge-pulsing">
+                            <span class="discount-text">UP TO 40% OFF</span>
+                            <span class="pulse-ring"></span>
+                            <span class="pulse-ring pulse-ring-2"></span>
                         </div>
-                        <div class="deal-content">
-                            <h3 class="deal-title">Sydney Explorer</h3>
-                            <p class="deal-description">Fly to Sydney this summer and experience its iconic beauty. This exclusive price is for members only.</p>
-                            <div class="deal-countdown" id="featured-countdown">
-                                <div class="time-block"><span class="time-value" data-unit="days">01</span><span class="time-label">Days</span></div>
-                                <div class="time-block"><span class="time-value" data-unit="hours">14</span><span class="time-label">Hours</span></div>
-                                <div class="time-block"><span class="time-value" data-unit="minutes">29</span><span class="time-label">Mins</span></div>
-                                <div class="time-block"><span class="time-value" data-unit="seconds">55</span><span class="time-label">Secs</span></div>
-                            </div>
-                            <div class="deal-pricing">
-                                <div class="price-before">Before: <del>₹98,500</del></div>
-                                <div class="price-after">Now: ₹48,999</div>
-                                <div class="price-save">SAVE ₹49,501</div>
-                            </div>
-                            <div class="scarcity-bar">
-                                <div class="scarcity-text">
-                                    <span><i class="fas fa-fire"></i> 73% Claimed</span>
-                                    <span class="live-update">12 bookings in last hour</span>
+                        
+                        <h2 class="urgency-banner-title">Last-Minute Flights</h2>
+                        <p class="urgency-banner-subtitle">Book now for travel within 48 hours</p>
+                        
+                        <!-- Live Social Proof Ticker -->
+                        <div class="social-proof-ticker-banner">
+                            <span class="ticker-icon">🔥</span>
+                            <span class="ticker-count" id="last-minute-counter">127</span>
+                            <span class="ticker-text">travelers booked last-minute deals today</span>
+                        </div>
+
+                        <!-- Countdown Timer -->
+                        <div class="deals-refresh-countdown">
+                            <i class="fas fa-clock"></i>
+                            <span>Deals refresh in</span>
+                            <span class="countdown-time" id="refresh-countdown">2h 15m</span>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <a href="booking.html?filter=last-minute" class="btn-last-minute-cta">
+                            Find My Last-Minute Flight
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Right Content - 3 Compact Destination Cards -->
+                    <div class="urgency-banner-right">
+                        <div class="last-minute-deals-compact">
+                            <!-- Destination 1 -->
+                            <div class="compact-deal-card">
+                                <div class="compact-deal-image" style="background-image: url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=300&h=200&fit=crop');">
+                                    <div class="urgent-tag">⚡ URGENT</div>
                                 </div>
-                                <div class="progress-track">
-                                    <div class="progress-fill" style="width: 73%;"></div>
+                                <div class="compact-deal-info">
+                                    <h4 class="compact-destination">Dubai</h4>
+                                    <p class="compact-price">Available from <strong>₹8,999</strong></p>
+                                    <p class="compact-departure">🕒 Departs in 12 hours</p>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-primary btn-block">Claim This Deal</a>
-                        </div>
-                    </div>
 
-                    <!-- Small Deal 1: Weekend Flash -->
-                    <div class="deal-card small-deal">
-                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=800&auto=format&fit=crop');">
-                            <div class="deal-badge flash-sale">WEEKEND FLASH ⚡</div>
-                        </div>
-                        <div class="deal-content">
-                            <h3 class="deal-title">London Calling</h3>
-                            <p class="deal-description">A whirlwind weekend in the heart of London. Expires Sunday!</p>
-                            <div class="deal-countdown small" id="weekend-countdown">
-                                <span class="time-value" data-unit="hours">71</span>h <span class="time-value" data-unit="minutes">59</span>m <span class="time-value" data-unit="seconds">59</span>s
+                            <!-- Destination 2 -->
+                            <div class="compact-deal-card">
+                                <div class="compact-deal-image" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=300&h=200&fit=crop');">
+                                    <div class="urgent-tag">⚡ URGENT</div>
+                                </div>
+                                <div class="compact-deal-info">
+                                    <h4 class="compact-destination">Tokyo</h4>
+                                    <p class="compact-price">Available from <strong>₹32,999</strong></p>
+                                    <p class="compact-departure">🕒 Departs in 18 hours</p>
+                                </div>
                             </div>
-                            <div class="deal-pricing small">
-                                <span class="price-after">From ₹55,000</span>
-                                <span class="price-save small-save">Save ₹15,000+</span>
-                            </div>
-                            <a href="#" class="btn btn-secondary btn-block">Grab It</a>
-                        </div>
-                    </div>
 
-                    <!-- Small Deal 2: Last Minute -->
-                    <div class="deal-card small-deal">
-                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1591454728342-2621b6785834?q=80&w=800&auto=format&fit=crop');">
-                            <div class="deal-badge last-minute">LAST-MINUTE ESCAPE 🛫</div>
-                        </div>
-                        <div class="deal-content">
-                            <h3 class="deal-title">Kyoto Serenity</h3>
-                            <p class="deal-description">Discover Japan's ancient capital. Departures within 30 days.</p>
-                            <div class="urgency-info">
-                                <span class="fly-this-month">Fly This Month</span>
-                                <span class="discount-tag">40% OFF</span>
+                            <!-- Destination 3 -->
+                            <div class="compact-deal-card">
+                                <div class="compact-deal-image" style="background-image: url('https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=300&h=200&fit=crop');">
+                                    <div class="urgent-tag">⚡ URGENT</div>
+                                </div>
+                                <div class="compact-deal-info">
+                                    <h4 class="compact-destination">Paris</h4>
+                                    <p class="compact-price">Available from <strong>₹38,999</strong></p>
+                                    <p class="compact-departure">🕒 Departs in 24 hours</p>
+                                </div>
                             </div>
-                            <div class="scarcity-text small-scarcity">
-                                <i class="fas fa-ticket-alt"></i> Only 6 seats left
-                            </div>
-                            <a href="#" class="btn btn-secondary btn-block">Book Now</a>
                         </div>
                     </div>
-
-                    <!-- Small Deal 3: Group Special -->
-                    <div class="deal-card small-deal">
-                        <div class="deal-image" style="background-image: url('https://images.unsplash.com/photo-1543054111-b4a8a8a4362b?q=80&w=800&auto=format&fit=crop');">
-                            <div class="deal-badge group-special">GROUP SPECIAL 👥</div>
-                        </div>
-                        <div class="deal-content">
-                            <h3 class="deal-title">Roman Holiday</h3>
-                            <p class="deal-description">Bring 3+ friends, save an extra 25% on your Italian adventure!</p>
-                            <div class="group-incentive">
-                                <i class="fas fa-users"></i>
-                                <span>Perfect for: Friends, Families</span>
-                            </div>
-                            <div class="social-share-incentive">
-                                <a href="#"><i class="fab fa-whatsapp"></i> Share & Save</a>
-                            </div>
-                            <a href="#" class="btn btn-secondary btn-block">Plan Group Trip</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="deals-footer animate-on-scroll fade-in">
-                    <p class="social-proof-text"><i class="fas fa-users"></i> <strong>2,847 travelers</strong> booked deals today</p>
-                    <p class="fomo-text">Don't let your dream trip slip away!</p>
                 </div>
             </div>
         </section>
@@ -825,75 +805,276 @@
         </section>
 
         <!-- ============================================= -->
-        <!-- WHY BOOK WITH US SECTION (NEW - TRUST BUILDER) -->
+        <!-- WHY BOOK WITH US SECTION - ENHANCED CREDIBILITY -->
         <!-- ============================================= -->
-        <section class="content-section">
+        <section class="content-section why-book-section">
             <div class="container">
                 <div class="section-header-center animate-on-scroll slide-up">
                     <h2 class="section-title">Why Book Flights with Destinova?</h2>
-                    <p class="section-subtitle">Your trusted partner for hassle-free flight bookings</p>
+                    <p class="section-subtitle">Join 2 million+ travelers who trust us for their journeys</p>
+                    <div class="trust-badges-header">
+                        <div class="trust-badge-item">
+                            <i class="fas fa-star" style="color: #FFA500;"></i>
+                            <span><strong>4.8/5</strong> from 50,000+ reviews</span>
+                        </div>
+                        <div class="trust-badge-item">
+                            <i class="fas fa-shield-check" style="color: #0EA5E9;"></i>
+                            <span>Verified Secure Platform</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="why-book-grid animate-on-scroll fade-in">
-                    <div class="why-book-card">
-                        <div class="why-icon">
-                            <i class="fas fa-shield-alt"></i>
+                
+                <div class="why-book-grid-enhanced">
+                    <!-- Card 1: Best Price Guarantee -->
+                    <div class="why-book-card-enhanced" data-aos="fade-up" data-aos-delay="0">
+                        <div class="why-icon-enhanced">
+                            <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="28" fill="#FEF3C7" opacity="0.5"/>
+                                <path d="M32 8L36 20L48 24L36 28L32 40L28 28L16 24L28 20L32 8Z" fill="#F59E0B" stroke="#F59E0B" stroke-width="2"/>
+                                <path d="M44 44L46 48L50 50L46 52L44 56L42 52L38 50L42 48L44 44Z" fill="#FFA500"/>
+                                <circle cx="32" cy="32" r="12" stroke="#F59E0B" stroke-width="3" fill="none"/>
+                                <text x="32" y="37" text-anchor="middle" font-size="16" font-weight="bold" fill="#F59E0B">₹</text>
+                            </svg>
                         </div>
-                        <h3>100% Secure Payments</h3>
-                        <p>All transactions are encrypted with 256-bit SSL security. Your data is always safe with us.</p>
-                    </div>
-                    <div class="why-book-card">
-                        <div class="why-icon">
-                            <i class="fas fa-tags"></i>
+                        <h3 class="card-title-enhanced">Best Price Guarantee</h3>
+                        <p class="card-proof-enhanced">Beat any price by 5% or get ₹500 credit</p>
+                        <p class="card-description-enhanced">We continuously monitor prices to ensure you get the best deal. If you find a lower price within 24 hours, we'll refund the difference plus extra credit.</p>
+                        
+                        <div class="micro-testimonial">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya S." class="testimonial-avatar-small">
+                            <div class="testimonial-content-small">
+                                <p class="testimonial-quote-small">"Saved ₹3,200 on my last booking!"</p>
+                                <span class="testimonial-author-small">- Priya S.</span>
+                            </div>
                         </div>
-                        <h3>Best Price Guarantee</h3>
-                        <p>Found a better price elsewhere? We'll match it and give you an additional 5% off.</p>
                     </div>
-                    <div class="why-book-card">
-                        <div class="why-icon">
-                            <i class="fas fa-headset"></i>
+
+                    <!-- Card 2: 100% Secure Payments -->
+                    <div class="why-book-card-enhanced" data-aos="fade-up" data-aos-delay="100">
+                        <div class="why-icon-enhanced">
+                            <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="28" fill="#DBEAFE" opacity="0.5"/>
+                                <rect x="16" y="22" width="32" height="24" rx="3" fill="#0EA5E9" opacity="0.3"/>
+                                <path d="M32 18L38 24L32 30L26 24L32 18Z" fill="#0EA5E9"/>
+                                <rect x="18" y="26" width="28" height="18" rx="2" stroke="#0EA5E9" stroke-width="3" fill="white"/>
+                                <path d="M28 34L30 36L36 30" stroke="#0EA5E9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="32" cy="32" r="2" fill="#0EA5E9"/>
+                            </svg>
                         </div>
-                        <h3>24/7 Customer Support</h3>
-                        <p>Our expert travel team is available round the clock to assist you with any queries.</p>
-                    </div>
-                    <div class="why-book-card">
-                        <div class="why-icon">
-                            <i class="fas fa-undo"></i>
+                        <h3 class="card-title-enhanced">100% Secure Payments</h3>
+                        <p class="card-proof-enhanced">256-bit SSL encryption + PCI DSS certified</p>
+                        <p class="card-description-enhanced">Your payment information is protected with bank-level encryption. We never store your card details, ensuring complete security for every transaction.</p>
+                        
+                        <div class="payment-logos">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="payment-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="payment-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" class="payment-logo">
                         </div>
-                        <h3>Easy Cancellation</h3>
-                        <p>Change of plans? Cancel or modify your booking easily with our flexible policies.</p>
+                        
+                        <div class="micro-testimonial">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul K." class="testimonial-avatar-small">
+                            <div class="testimonial-content-small">
+                                <p class="testimonial-quote-small">"Never worried about payment security here!"</p>
+                                <span class="testimonial-author-small">- Rahul K.</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Card 3: 24/7 Customer Support -->
+                    <div class="why-book-card-enhanced" data-aos="fade-up" data-aos-delay="200">
+                        <div class="why-icon-enhanced">
+                            <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="28" fill="#D1FAE5" opacity="0.5"/>
+                                <circle cx="32" cy="28" r="10" fill="#10B981" opacity="0.3"/>
+                                <path d="M32 20C36.4 20 40 23.6 40 28C40 30 39 31.8 37.5 33L40 38H36L34.5 34.5C33.7 34.8 32.9 35 32 35C27.6 35 24 31.4 24 28C24 23.6 27.6 20 32 20Z" fill="#10B981"/>
+                                <rect x="22" y="36" width="6" height="10" rx="3" fill="#10B981"/>
+                                <rect x="36" y="36" width="6" height="10" rx="3" fill="#10B981"/>
+                                <path d="M26 42L28 48" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M38 42L36 48" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="29" cy="27" r="2" fill="white"/>
+                                <circle cx="35" cy="27" r="2" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title-enhanced">24/7 Customer Support</h3>
+                        <p class="card-proof-enhanced">Average response time: Under 2 minutes</p>
+                        <p class="card-description-enhanced">Our dedicated support team is always ready to help via chat, phone, or email. Get instant assistance with bookings, changes, or any travel queries.</p>
+                        
+                        <div class="micro-testimonial">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anjali M." class="testimonial-avatar-small">
+                            <div class="testimonial-content-small">
+                                <p class="testimonial-quote-small">"Got help at 3 AM before my flight!"</p>
+                                <span class="testimonial-author-small">- Anjali M.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Easy Cancellation -->
+                    <div class="why-book-card-enhanced" data-aos="fade-up" data-aos-delay="300">
+                        <div class="why-icon-enhanced">
+                            <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="28" fill="#FCE7F3" opacity="0.5"/>
+                                <circle cx="32" cy="32" r="16" stroke="#EC4899" stroke-width="3" fill="white"/>
+                                <path d="M28 24L32 28L36 24" stroke="#EC4899" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M32 28L32 38" stroke="#EC4899" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M28 38L32 42L36 38" stroke="#EC4899" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="32" cy="32" r="20" stroke="#EC4899" stroke-width="2" stroke-dasharray="4 4" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <h3 class="card-title-enhanced">Easy Cancellation & Changes</h3>
+                        <p class="card-proof-enhanced">Zero cancellation fee on select bookings</p>
+                        <p class="card-description-enhanced">Life happens, plans change. Modify or cancel your booking with our flexible policies. Get full or partial refunds based on airline terms and conditions.</p>
+                        
+                        <div class="micro-testimonial">
+                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Vikram P." class="testimonial-avatar-small">
+                            <div class="testimonial-content-small">
+                                <p class="testimonial-quote-small">"Cancelled last minute, got instant refund!"</p>
+                                <span class="testimonial-author-small">- Vikram P.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom CTA -->
+                <div class="why-book-cta-container" data-aos="fade-up" data-aos-delay="400">
+                    <a href="reviews.html" class="btn-join-travelers">
+                        Join 2M+ Happy Travelers <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <p class="cta-subtext">Read more success stories and reviews</p>
                 </div>
             </div>
         </section>
 
         <!-- ============================================= -->
-        <!-- AIRLINE PARTNERS SECTION (NEW - TRUST BUILDER) -->
+        <!-- AIRLINE PARTNERS SECTION - AUTO-SCROLLING CAROUSEL -->
         <!-- ============================================= -->
-        <section class="content-section bg-light">
+        <section class="content-section airline-partners-section">
             <div class="container">
                 <div class="section-header-center animate-on-scroll slide-up">
-                    <h2 class="section-title">Our Airline Partners</h2>
-                    <p class="section-subtitle">We partner with leading airlines worldwide to bring you the best deals</p>
+                    <h2 class="section-title">Trusted by 45+ Global Airlines</h2>
+                    <p class="section-subtitle">Access to exclusive fares and routes</p>
                 </div>
-                <div class="airline-partners-grid animate-on-scroll fade-in">
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png" alt="Emirates" loading="lazy">
+
+                <!-- Top Row: Scrolls Left to Right -->
+                <div class="airline-carousel-wrapper">
+                    <div class="airline-carousel airline-carousel-ltr">
+                        <!-- Original Set -->
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png" alt="Emirates" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Qatar_Airways_Logo.svg/1200px-Qatar_Airways_Logo.svg.png" alt="Qatar Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Singapore_Airlines_Logo_2.svg/1200px-Singapore_Airlines_Logo_2.svg.png" alt="Singapore Airlines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Lufthansa_Logo_2018.svg/1200px-Lufthansa_Logo_2018.svg.png" alt="Lufthansa" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/British_Airways_Logo.svg/1200px-British_Airways_Logo.svg.png" alt="British Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Air_France_Logo.svg/1200px-Air_France_Logo.svg.png" alt="Air France" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Etihad-airways-logo.svg/1200px-Etihad-airways-logo.svg.png" alt="Etihad Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/KLM_logo.svg/1200px-KLM_logo.svg.png" alt="KLM" loading="lazy">
+                        </div>
+                        <!-- Duplicate Set for Seamless Loop -->
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png" alt="Emirates" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Qatar_Airways_Logo.svg/1200px-Qatar_Airways_Logo.svg.png" alt="Qatar Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Singapore_Airlines_Logo_2.svg/1200px-Singapore_Airlines_Logo_2.svg.png" alt="Singapore Airlines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Lufthansa_Logo_2018.svg/1200px-Lufthansa_Logo_2018.svg.png" alt="Lufthansa" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/British_Airways_Logo.svg/1200px-British_Airways_Logo.svg.png" alt="British Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Air_France_Logo.svg/1200px-Air_France_Logo.svg.png" alt="Air France" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Etihad-airways-logo.svg/1200px-Etihad-airways-logo.svg.png" alt="Etihad Airways" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/KLM_logo.svg/1200px-KLM_logo.svg.png" alt="KLM" loading="lazy">
+                        </div>
                     </div>
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Qatar_Airways_Logo.svg/1200px-Qatar_Airways_Logo.svg.png" alt="Qatar Airways" loading="lazy">
+                </div>
+
+                <!-- Bottom Row: Scrolls Right to Left -->
+                <div class="airline-carousel-wrapper">
+                    <div class="airline-carousel airline-carousel-rtl">
+                        <!-- Original Set -->
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Turkish_Airlines_logo_2019_compact.svg/1200px-Turkish_Airlines_logo_2019_compact.svg.png" alt="Turkish Airlines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Air_India_Logo.svg/1200px-Air_India_Logo.svg.png" alt="Air India" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Cathay_Pacific_logo.svg/1200px-Cathay_Pacific_logo.svg.png" alt="Cathay Pacific" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Delta_Air_Lines_logo.svg/1200px-Delta_Air_Lines_logo.svg.png" alt="Delta Air Lines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/thumb/5/56/IndiGo_Airlines_logo.svg/1200px-IndiGo_Airlines_logo.svg.png" alt="IndiGo" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vistara_Logo.svg/1200px-Vistara_Logo.svg.png" alt="Vistara" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/ANA_logo_%28All_Nippon_Airways%29.svg/1200px-ANA_logo_%28All_Nippon_Airways%29.svg.png" alt="ANA" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Swiss_International_Air_Lines_Logo_2011.svg/1200px-Swiss_International_Air_Lines_Logo_2011.svg.png" alt="Swiss International" loading="lazy">
+                        </div>
+                        <!-- Duplicate Set for Seamless Loop -->
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Turkish_Airlines_logo_2019_compact.svg/1200px-Turkish_Airlines_logo_2019_compact.svg.png" alt="Turkish Airlines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Air_India_Logo.svg/1200px-Air_India_Logo.svg.png" alt="Air India" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Cathay_Pacific_logo.svg/1200px-Cathay_Pacific_logo.svg.png" alt="Cathay Pacific" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Delta_Air_Lines_logo.svg/1200px-Delta_Air_Lines_logo.svg.png" alt="Delta Air Lines" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/thumb/5/56/IndiGo_Airlines_logo.svg/1200px-IndiGo_Airlines_logo.svg.png" alt="IndiGo" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vistara_Logo.svg/1200px-Vistara_Logo.svg.png" alt="Vistara" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/ANA_logo_%28All_Nippon_Airways%29.svg/1200px-ANA_logo_%28All_Nippon_Airways%29.svg.png" alt="ANA" loading="lazy">
+                        </div>
+                        <div class="airline-logo-carousel">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Swiss_International_Air_Lines_Logo_2011.svg/1200px-Swiss_International_Air_Lines_Logo_2011.svg.png" alt="Swiss International" loading="lazy">
+                        </div>
                     </div>
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Singapore_Airlines_Logo_2.svg/1200px-Singapore_Airlines_Logo_2.svg.png" alt="Singapore Airlines" loading="lazy">
-                    </div>
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Lufthansa_Logo_2018.svg/1200px-Lufthansa_Logo_2018.svg.png" alt="Lufthansa" loading="lazy">
-                    </div>
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/British_Airways_Logo.svg/1200px-British_Airways_Logo.svg.png" alt="British Airways" loading="lazy">
-                    </div>
-                    <div class="airline-logo-item">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Air_France_Logo.svg/1200px-Air_France_Logo.svg.png" alt="Air France" loading="lazy">
-                    </div>
+                </div>
+
+                <!-- Trust Statement and View All Link -->
+                <div class="airline-partners-footer">
+                    <p class="trust-statement">
+                        <i class="fas fa-shield-check"></i>
+                        Official booking partner with direct airline connections
+                    </p>
+                    <a href="#" class="view-all-partners-link">
+                        View All Partners <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1003,122 +1184,169 @@
         <section class="content-section">
             <div class="container-fluid">
                 <div class="section-header-center animate-on-scroll slide-up">
-                    <h2 class="section-title">Real Stories from Our Travelers</h2>
-                    <p class="section-subtitle">Unfiltered experiences from the Destinova community.</p>
+                    <h2 class="section-title">Featured Collections</h2>
+                    <p class="section-subtitle">Curated travel experiences for every type of explorer.</p>
                 </div>
 
-                <!-- Social Proof & Filtering -->
-                <div class="testimonial-summary-container animate-on-scroll fade-in">
-                    <div class="rating-overview">
-                        <div class="total-rating">
-                            <span class="rating-value">4.9</span>
-                            <div class="stars">★★★★★</div>
-                            <p>Based on <strong>5,847 reviews</strong></p>
-                        </div>
-                        <div class="rating-breakdown">
-                            <div class="rating-bar-row"><span>5</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 92%;"></div></div><span>5,379</span></div>
-                            <div class="rating-bar-row"><span>4</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 6%;"></div></div><span>350</span></div>
-                            <div class="rating-bar-row"><span>3</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 1%;"></div></div><span>58</span></div>
-                            <div class="rating-bar-row"><span>2</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 0.5%;"></div></div><span>29</span></div>
-                            <div class="rating-bar-row"><span>1</span><i class="fas fa-star"></i><div class="bar"><div class="fill" style="width: 0.5%;"></div></div><span>31</span></div>
-                        </div>
-                    </div>
-                    <div class="testimonial-filters">
-                        <h4>Filter Stories By:</h4>
-                        <div class="filter-buttons">
-                            <button class="filter-btn active" data-filter="all">All</button>
-                            <button class="filter-btn" data-filter="maldives">Maldives</button>
-                            <button class="filter-btn" data-filter="japan">Japan</button>
-                            <button class="filter-btn" data-filter="kenya">Kenya</button>
-                            <button class="filter-btn" data-filter="video">Video</button>
-                        </div>
-                    </div>
+                <!-- Category Filter Tabs -->
+                <div class="featured-collections-filters animate-on-scroll fade-in">
+                    <button class="collection-filter-tab active" data-category="all">
+                        <i class="fas fa-globe"></i> All Destinations
+                    </button>
+                    <button class="collection-filter-tab" data-category="beach">
+                        <i class="fas fa-umbrella-beach"></i> Beach Getaways
+                    </button>
+                    <button class="collection-filter-tab" data-category="cultural">
+                        <i class="fas fa-landmark"></i> Cultural Experiences
+                    </button>
+                    <button class="collection-filter-tab" data-category="adventure">
+                        <i class="fas fa-mountain"></i> Adventure Destinations
+                    </button>
                 </div>
 
-                <div class="testimonial-grid animate-on-scroll fade-in" id="testimonial-grid">
-                        <!-- Card 1: Maldives -->
-                        <div class="testimonial-card-new" data-filter-tags="maldives">
-                            <div class="testimonial-badge helpful-badge"><i class="fas fa-medal"></i> Most Helpful</div>
-                            <div class="testimonial-header">
-                                <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Portrait of Mark & Chloe T." class="testimonial-avatar">
-                                <div class="testimonial-author">
-                                    <h4>Mark & Chloe T.</h4>
-                                    <p class="author-meta">Australia <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
-                                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <blockquote class="testimonial-quote expandable">"Found an incredible deal to the Maldives through their offers section. It was the honeymoon of our dreams. The overwater bungalow was breathtaking, and the service was impeccable from the moment we landed. Destinova handled all the transfers seamlessly. Highly recommended for any couple looking for a truly special getaway."</blockquote>
-                            <div class="testimonial-trip-details">
-                                <p><strong>Trip:</strong> Maldives Honeymoon, May 2024</p>
-                                <p class="review-timestamp">Reviewed 2 weeks ago</p>
-                            </div>
-                            <div class="testimonial-gallery">
-                                <img src="https://images.unsplash.com/photo-1516589178581-6ba3a4413a23?q=80&w=200" alt="Maldives beach">
-                                <img src="https://images.unsplash.com/photo-1573952219926-0519a2a82e38?q=80&w=200" alt="Overwater bungalow">
-                                <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=200" alt="Couple on beach">
-                            </div>
-                            <div class="agent-response">
-                                <p><strong>Destinova Agent Reply:</strong> "Thanks Mark & Chloe! So glad you loved it! It was a pleasure helping you plan your dream honeymoon."</p>
-                            </div>
-                            <div class="testimonial-actions">
-                                <button class="testimonial-read-more">Read Full Story <i class="fas fa-arrow-down"></i></button>
-                                <div class="social-share-testimonial">
-                                    <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                                </div>
-                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
+                <!-- Masonry Grid of Destinations -->
+                <div class="featured-collections-grid animate-on-scroll fade-in" id="featured-collections-grid">
+                    
+                    <!-- Beach Getaways Collection -->
+                    <div class="collection-card" data-category="beach" data-lazy-load>
+                        <img src="../site-images/des_pg_crd7.jpg" alt="Maldives pristine beaches" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Maldives</h3>
+                                <p class="collection-price">from ₹45,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>
-                        <!-- Card 2: Japan -->
-                        <div class="testimonial-card-new" data-filter-tags="japan">
-                            <div class="testimonial-header">
-                                <img src="https://randomuser.me/api/portraits/women/75.jpg" alt="Portrait of Maria Rodriguez" class="testimonial-avatar">
-                                <div class="testimonial-author">
-                                    <h4>Maria Rodriguez</h4>
-                                    <p class="author-meta">Spain <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
-                                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <blockquote class="testimonial-quote">"The Japan cherry blossom tour exceeded every expectation. Our guide knew all the hidden spots away from the crowds!"</blockquote>
-                            <div class="testimonial-trip-details">
-                                <p><strong>Trip:</strong> Japan Cultural Tour, April 2024</p>
-                                <p class="review-timestamp">Reviewed 1 month ago</p>
-                            </div>
-                            <div class="testimonial-gallery">
-                                <img src="https://images.unsplash.com/photo-1553614223-5a0a1c672237?q=80&w=200" alt="Cherry blossoms">
-                                <img src="https://images.unsplash.com/photo-1526481280643-3b9462cd7a25?q=80&w=200" alt="Japanese temple">
-                                <img src="https://images.unsplash.com/photo-1559756472-390969c86183?q=80&w=200" alt="Japanese food">
-                            </div>
-                            <div class="testimonial-actions">
-                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
+                    </div>
+
+                    <div class="collection-card collection-card-tall" data-category="beach" data-lazy-load>
+                        <img src="../site-images/BC-P1.webp" alt="Bali tropical paradise" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Bali</h3>
+                                <p class="collection-price">from ₹32,499</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>
-                        <!-- Card 3: Kenya (Video) -->
-                        <div class="testimonial-card-new video-testimonial" data-filter-tags="kenya,video">
-                            <div class="testimonial-video-container">
-                                <img src="https://images.unsplash.com/photo-1534437431034-0a6a4a131575?q=80&w=800" alt="Elephant on safari" class="video-thumbnail">
-                                <button class="play-video-btn"><i class="fas fa-play"></i></button>
-                            </div>
-                            <div class="testimonial-header">
-                                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Portrait of David & Lisa Chen" class="testimonial-avatar">
-                                <div class="testimonial-author">
-                                    <h4>David & Lisa Chen</h4>
-                                    <p class="author-meta">Canada <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Traveler</span></p>
-                                    <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                                </div>
-                            </div>
-                            <blockquote class="testimonial-quote">"Best family vacation ever! Kids are still talking about the African safari six months later."</blockquote>
-                            <div class="testimonial-trip-details">
-                                <p><strong>Trip:</strong> Kenya Safari Adventure, August 2024</p>
-                                <p class="review-timestamp">Reviewed 3 weeks ago</p>
-                            </div>
-                            <div class="testimonial-actions">
-                                <a href="#" class="btn btn-secondary btn-book-similar">Book Similar Trip</a>
+                    </div>
+
+                    <div class="collection-card" data-category="beach" data-lazy-load>
+                        <img src="../site-images/BC-P2.jpg" alt="Phuket beaches" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Phuket</h3>
+                                <p class="collection-price">from ₹28,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="collection-card" data-category="beach" data-lazy-load>
+                        <img src="../site-images/BC-P3.jpg" alt="Seychelles turquoise waters" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Seychelles</h3>
+                                <p class="collection-price">from ₹58,499</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cultural Experiences Collection -->
+                    <div class="collection-card collection-card-tall" data-category="cultural" data-lazy-load>
+                        <img src="../site-images/des_pg_crd4.jpg" alt="Kyoto temples" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Kyoto, Japan</h3>
+                                <p class="collection-price">from ₹52,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card" data-category="cultural" data-lazy-load>
+                        <img src="../site-images/EC-P1.jpg" alt="Rome Colosseum" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Rome, Italy</h3>
+                                <p class="collection-price">from ₹48,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card" data-category="cultural" data-lazy-load>
+                        <img src="../site-images/EC-P2.webp" alt="Cairo pyramids" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Cairo, Egypt</h3>
+                                <p class="collection-price">from ₹38,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card collection-card-tall" data-category="cultural" data-lazy-load>
+                        <img src="../site-images/EC-P3.jpg" alt="Marrakech markets" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Marrakech, Morocco</h3>
+                                <p class="collection-price">from ₹42,499</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adventure Destinations Collection -->
+                    <div class="collection-card" data-category="adventure" data-lazy-load>
+                        <img src="../site-images/BC-P4.jpg" alt="Swiss Alps" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Swiss Alps</h3>
+                                <p class="collection-price">from ₹68,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card collection-card-tall" data-category="adventure" data-lazy-load>
+                        <img src="../site-images/des_pg_crd8.jpg" alt="Iceland landscapes" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Iceland</h3>
+                                <p class="collection-price">from ₹75,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card" data-category="adventure" data-lazy-load>
+                        <img src="../site-images/card1_ps.jpg" alt="New Zealand adventure" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">New Zealand</h3>
+                                <p class="collection-price">from ₹82,499</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card" data-category="adventure" data-lazy-load>
+                        <img src="../site-images/card_2_ps.jpg" alt="Peru Machu Picchu" class="collection-image">
+                        <div class="collection-overlay">
+                            <div class="collection-content">
+                                <h3 class="collection-destination">Peru</h3>
+                                <p class="collection-price">from ₹92,999</p>
+                                <button class="collection-cta-btn">Plan Your Trip <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="testimonial-cta-container">
-                    <a href="#" class="btn btn-primary">Share Your Story</a>
+
+                <!-- Explore More CTA -->
+                <div class="featured-collections-cta-container animate-on-scroll fade-in">
+                    <a href="#" class="btn btn-primary-large">Explore All Collections <i class="fas fa-compass"></i></a>
                     <p>Read more reviews on <a href="#" class="review-platform-link">TripAdvisor</a></p>
                 </div>
             </div>
@@ -1182,137 +1410,692 @@
                 </div>
             </div>
         </section>
+
+        <!-- ============================================= -->
+        <!-- CUSTOMER REVIEWS SECTION - ENHANCED -->
+        <!-- ============================================= -->
+        <section class="content-section customer-reviews-section">
+            <div class="container">
+                <div class="section-header-center animate-on-scroll slide-up">
+                    <h2 class="section-title">What Our Travelers Say</h2>
+                    <p class="section-subtitle">Real experiences from real travelers</p>
+                </div>
+
+                <!-- Rating Summary Widget -->
+                <div class="rating-summary-widget" data-aos="fade-up">
+                    <div class="rating-overview-large">
+                        <div class="rating-score-display">
+                            <span class="rating-number">4.8</span>
+                            <div class="rating-stars-large">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="rating-count">Based on 15,234 reviews</p>
+                        </div>
+                        <div class="rating-distribution">
+                            <div class="rating-bar-row">
+                                <span class="star-label">5 <i class="fas fa-star"></i></span>
+                                <div class="rating-bar">
+                                    <div class="rating-bar-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="percentage">78%</span>
+
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="star-label">4 <i class="fas fa-star"></i></span>
+                                <div class="rating-bar">
+                                    <div class="rating-bar-fill" style="width: 15%"></div>
+                                </div>
+                                <span class="percentage">15%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="star-label">3 <i class="fas fa-star"></i></span>
+                                <div class="rating-bar">
+                                    <div class="rating-bar-fill" style="width: 5%"></div>
+                                </div>
+                                <span class="percentage">5%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="star-label">2 <i class="fas fa-star"></i></span>
+                                <div class="rating-bar">
+                                    <div class="rating-bar-fill" style="width: 1%"></div>
+                                </div>
+                                <span class="percentage">1%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="star-label">1 <i class="fas fa-star"></i></span>
+                                <div class="rating-bar">
+                                    <div class="rating-bar-fill" style="width: 1%"></div>
+                                </div>
+                                <span class="percentage">1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Highlights -->
+                    <div class="review-highlights">
+                        <h4>Most Mentioned</h4>
+                        <div class="highlight-tags">
+                            <span class="highlight-tag">Great prices <span class="tag-count">1,247</span></span>
+                            <span class="highlight-tag">Easy booking <span class="tag-count">2,103</span></span>
+                            <span class="highlight-tag">Quick support <span class="tag-count">1,892</span></span>
+                            <span class="highlight-tag">Best deals <span class="tag-count">1,654</span></span>
+                            <span class="highlight-tag">Reliable <span class="tag-count">1,432</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter System -->
+                <div class="reviews-filter-bar" data-aos="fade-up" data-aos-delay="100">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="recent">
+                            <i class="fas fa-clock"></i> Most Recent
+                        </button>
+                        <button class="filter-btn" data-filter="highest">
+                            <i class="fas fa-star"></i> Highest Rated
+                        </button>
+                        <button class="filter-btn" data-filter="photos">
+                            <i class="fas fa-camera"></i> With Photos
+                        </button>
+                        <button class="filter-btn" data-filter="verified">
+                            <i class="fas fa-check-circle"></i> Verified Only
+                        </button>
+                    </div>
+                    <div class="star-filter-group">
+                        <button class="star-filter-btn active" data-stars="all">All</button>
+                        <button class="star-filter-btn" data-stars="5">5★</button>
+                        <button class="star-filter-btn" data-stars="4">4★+</button>
+                        <button class="star-filter-btn" data-stars="3">3★+</button>
+                    </div>
+                </div>
+
+                <!-- Reviews Carousel/Slider -->
+                <div class="reviews-carousel-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="reviews-carousel" id="reviewsCarousel">
+                        
+                        <!-- Review Card 1 -->
+                        <div class="review-card" data-rating="5" data-verified="true" data-has-photos="true">
+                            <div class="review-header">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma" class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Priya Sharma</h4>
+                                    <div class="review-meta">
+                                        <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Booking</span>
+                                        <span class="booking-details">Delhi → Mumbai | Feb 2025</span>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="review-date">3 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text">"Absolutely fantastic experience! Found the best price for my business trip. The booking process was incredibly smooth and customer support answered all my questions within minutes. Highly recommend Destinova for hassle-free travel booking!"</p>
+                            </div>
+                            <div class="review-photos">
+                                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=300" alt="Flight view">
+                                <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=300" alt="Airport lounge">
+                                <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=300" alt="Flight interior">
+                            </div>
+                            <div class="review-footer">
+                                <button class="helpful-btn">
+                                    <i class="fas fa-thumbs-up"></i> Helpful (245)
+                                </button>
+                                <button class="share-review-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                            <div class="company-response">
+                                <div class="response-header">
+                                    <i class="fas fa-reply"></i>
+                                    <strong>Response from Destinova:</strong>
+                                </div>
+                                <p>Thank you so much, Priya! We're thrilled to hear about your positive experience. Safe travels and we look forward to serving you again!</p>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 2 -->
+                        <div class="review-card" data-rating="5" data-verified="true" data-has-photos="false">
+                            <div class="review-header">
+                                <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul Verma" class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Rahul Verma</h4>
+                                    <div class="review-meta">
+                                        <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Booking</span>
+                                        <span class="booking-details">Bangalore → Dubai | Jan 2025</span>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="review-date">1 week ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text">"Best flight booking platform I've used! Saved ₹4,500 compared to other sites. The price guarantee really works. Had to make a last-minute change and the support team handled it professionally. Will definitely book again!"</p>
+                            </div>
+                            <div class="review-footer">
+                                <button class="helpful-btn">
+                                    <i class="fas fa-thumbs-up"></i> Helpful (182)
+                                </button>
+                                <button class="share-review-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 3 -->
+                        <div class="review-card" data-rating="5" data-verified="true" data-has-photos="true">
+                            <div class="review-header">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anjali Mehta" class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Anjali Mehta</h4>
+                                    <div class="review-meta">
+                                        <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Booking</span>
+                                        <span class="booking-details">Mumbai → London | Dec 2024</span>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="review-date">2 weeks ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text">"Booked our family vacation and everything was perfect! The website is user-friendly, prices are transparent, and we got instant confirmation. Customer service is outstanding - they helped us with seat selection at 2 AM! Thank you Destinova!"</p>
+                            </div>
+                            <div class="review-photos">
+                                <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=300" alt="Flight">
+                                <img src="https://images.unsplash.com/photo-1606768666853-403c90a981ad?w=300" alt="Happy family">
+                            </div>
+                            <div class="review-footer">
+                                <button class="helpful-btn">
+                                    <i class="fas fa-thumbs-up"></i> Helpful (156)
+                                </button>
+                                <button class="share-review-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                            <div class="company-response">
+                                <div class="response-header">
+                                    <i class="fas fa-reply"></i>
+                                    <strong>Response from Destinova:</strong>
+                                </div>
+                                <p>We're delighted your family had a wonderful experience, Anjali! Our 24/7 support team is always here to help. Enjoy your London trip!</p>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 4 -->
+                        <div class="review-card" data-rating="4" data-verified="true" data-has-photos="false">
+                            <div class="review-header">
+                                <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Vikram Singh" class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Vikram Singh</h4>
+                                    <div class="review-meta">
+                                        <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Booking</span>
+                                        <span class="booking-details">Chennai → Singapore | Jan 2025</span>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="review-date">5 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text">"Great service overall. Found competitive prices and the booking was straightforward. Only minor issue was the email confirmation took about 30 minutes to arrive, but once received, everything was accurate. Would use again!"</p>
+                            </div>
+                            <div class="review-footer">
+                                <button class="helpful-btn">
+                                    <i class="fas fa-thumbs-up"></i> Helpful (98)
+                                </button>
+                                <button class="share-review-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Review Card 5 -->
+                        <div class="review-card" data-rating="5" data-verified="true" data-has-photos="true">
+                            <div class="review-header">
+                                <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Neha Kapoor" class="reviewer-avatar">
+                                <div class="reviewer-info">
+                                    <h4 class="reviewer-name">Neha Kapoor</h4>
+                                    <div class="review-meta">
+                                        <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Booking</span>
+                                        <span class="booking-details">Hyderabad → Bangkok | Feb 2025</span>
+                                    </div>
+                                    <div class="review-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="review-date">4 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text">"Exceeded expectations! Got an amazing deal on business class tickets. The comparison feature helped me choose the best flight timing. Payment process was secure and seamless. Highly professional service from start to finish!"</p>
+                            </div>
+                            <div class="review-photos">
+                                <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=300" alt="Business class">
+                            </div>
+                            <div class="review-footer">
+                                <button class="helpful-btn">
+                                    <i class="fas fa-thumbs-up"></i> Helpful (134)
+                                </button>
+                                <button class="share-review-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Carousel Navigation -->
+                    <button class="carousel-nav-btn carousel-prev" aria-label="Previous reviews">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav-btn carousel-next" aria-label="Next reviews">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Navigation Dots -->
+                    <div class="carousel-dots" id="carouselDots"></div>
+                </div>
+
+                <!-- Write Review CTA -->
+                <div class="write-review-cta" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cta-content">
+                        <h3>Share Your Travel Experience</h3>
+                        <p>Help fellow travelers make informed decisions</p>
+                    </div>
+                    <button class="btn-write-review">
+                        <i class="fas fa-edit"></i>
+                        Write a Review & Get ₹200 Credit
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!-- NEWSLETTER & APP DOWNLOAD SECTION -->
+        <!-- ============================================= -->
+        <section class="newsletter-app-section">
+            <div class="container">
+                <div class="newsletter-app-container">
+                    
+                    <!-- LEFT SIDE - Newsletter (60%) -->
+                    <div class="newsletter-zone" data-aos="fade-right">
+                        <div class="newsletter-content">
+                            <div class="section-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <h2 class="newsletter-headline">Get Exclusive Deals in Your Inbox</h2>
+                            <p class="newsletter-subtext">Never miss out on incredible savings and special offers</p>
+                            
+                            <!-- Benefit Bullets -->
+                            <ul class="newsletter-benefits">
+                                <li>
+                                    <i class="fas fa-plane benefit-icon"></i>
+                                    <span>Up to 40% off subscriber-only deals</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-bolt benefit-icon"></i>
+                                    <span>Early access to flash sales</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-gift benefit-icon"></i>
+                                    <span>₹500 welcome bonus</span>
+                                </li>
+                            </ul>
+
+                            <!-- Email Subscription Form -->
+                            <form class="newsletter-form-inline" id="newsletterSubscribeForm">
+                                <div class="form-group-inline">
+                                    <input 
+                                        type="email" 
+                                        class="newsletter-email-input" 
+                                        placeholder="Enter your email address"
+                                        required
+                                        aria-label="Email address">
+                                    <button type="submit" class="newsletter-subscribe-btn">
+                                        Subscribe Now
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <!-- Trust Text -->
+                            <div class="newsletter-trust">
+                                <div class="subscriber-avatars">
+                                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Subscriber" class="avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Subscriber" class="avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Subscriber" class="avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Subscriber" class="avatar">
+                                    <span class="avatar-count">+500K</span>
+                                </div>
+                                <p class="trust-text">
+                                    <i class="fas fa-check-circle"></i>
+                                    Join 500K+ subscribers | No spam, unsubscribe anytime
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT SIDE - Mobile App (40%) -->
+                    <div class="app-zone" data-aos="fade-left" data-aos-delay="100">
+                        <div class="app-content">
+                            <h2 class="app-headline">Book Faster on Our App</h2>
+                            <p class="app-subtext">Download now and travel smarter</p>
+
+                            <!-- Phone Mockup -->
+                            <div class="phone-mockup">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=800&fit=crop" 
+                                     alt="Destinova Mobile App Interface" 
+                                     class="phone-screen">
+                                <div class="phone-frame"></div>
+                            </div>
+
+                            <!-- App Benefits -->
+                            <ul class="app-benefits">
+                                <li>
+                                    <i class="fas fa-mobile-alt benefit-icon"></i>
+                                    <span>Book in 60 seconds</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-bell benefit-icon"></i>
+                                    <span>Instant price alerts</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-credit-card benefit-icon"></i>
+                                    <span>Save payment methods</span>
+                                </li>
+                            </ul>
+
+                            <!-- App Store Buttons -->
+                            <div class="app-store-buttons">
+                                <a href="#" class="app-store-btn apple-btn" aria-label="Download on App Store">
+                                    <i class="fab fa-apple"></i>
+                                    <div class="btn-text">
+                                        <span class="btn-label">Download on the</span>
+                                        <span class="btn-store">App Store</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="app-store-btn google-btn" aria-label="Get it on Google Play">
+                                    <i class="fab fa-google-play"></i>
+                                    <div class="btn-text">
+                                        <span class="btn-label">GET IT ON</span>
+                                        <span class="btn-store">Google Play</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- App Rating -->
+                            <div class="app-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-text">4.7 | 50K+ downloads</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Incentive Badge -->
+                    <div class="incentive-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="badge-text">
+                            <span class="badge-title">Special Offer!</span>
+                            <span class="badge-subtitle">Get ₹200 off your first app booking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- FOOTER START -->
-  <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-    <div class="footer-content max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-        <!-- Company Info -->
-        <div class="footer-col">
-          <div class="footer-logo mb-4">
-            <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                aria-hidden="true"></i></h2>
-          </div>
-          <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-            Discover a new standard in air travel.
-          </p>
-        </div>
+    <!-- ============================================= -->
+    <!-- REDESIGNED FOOTER -->
+    <!-- ============================================= -->
+    <footer class="destinova-footer-redesigned" id="destinova-footer" role="contentinfo">
+        <div class="footer-container">
+            
+            <!-- Trust Badges Section (Top) -->
+            <div class="footer-trust-section">
+                <div class="trust-content">
+                    <div class="trust-text">
+                        <i class="fas fa-shield-check trust-icon"></i>
+                        <h3>Trusted by 2M+ travelers since 2020</h3>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="trust-badge-item" data-aos="fade-up" data-aos-delay="0">
+                            <i class="fas fa-certificate"></i>
+                            <span>IATA Certified</span>
+                        </div>
+                        <div class="trust-badge-item" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-lock"></i>
+                            <span>SSL Secure</span>
+                        </div>
+                        <div class="trust-badge-item" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-award"></i>
+                            <span>Best Service 2024</span>
+                        </div>
+                        <div class="trust-badge-item" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-headset"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
 
-        <!-- Quick Links -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-compass" aria-hidden="true"></i>
-            Quick Links
-          </h3>
-          <nav aria-label="Footer navigation">
-            <ul class="space-y-3 text-gray-300">
-              <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                    aria-hidden="true"></i> Home</a></li>
-              <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"
-                    aria-hidden="true"></i> Book a Flight</a></li>
-              <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                    aria-hidden="true"></i> Special Offers</a></li>
-              <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"
-                    aria-hidden="true"></i> About Us</a></li>
-              <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                    aria-hidden="true"></i> Contact</a></li>
-              <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                    aria-hidden="true"></i> Flight Status</a></li>
-              <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                    aria-hidden="true"></i> Manage Booking</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <!-- Customer Support -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-headset" aria-hidden="true"></i>
-            Customer Support
-          </h3>
-          <div class="text-gray-300 space-y-3">
-            <p>
-              <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                support@destinova.com
-              </a>
-            </p>
-            <p>
-              <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                +91 1234567891
-              </a>
-            </p>
-            <div class="support-badge">
-              <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-              24/7 Assistance
+                    <div class="payment-methods">
+                        <span class="payment-label">We Accept:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Stay Connected -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-share-nodes" aria-hidden="true"></i>
-            Stay Connected
-          </h3>
-          <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-            <div class="newsletter-input-wrapper">
-              <input type="email" placeholder="Your email address" required
-                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                aria-label="Email address for newsletter">
-              <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-              </button>
+            <!-- Main Footer Columns -->
+            <div class="footer-main-columns">
+                
+                <!-- Column 1: About -->
+                <div class="footer-column about-column" data-aos="fade-up">
+                    <div class="footer-logo">
+                        <h2>Desti<span class="highlight">nova</span></h2>
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <p class="footer-tagline">Fly Beyond Ordinary</p>
+                    <p class="footer-description">
+                        Your trusted partner for seamless flight bookings. 
+                        Discover exclusive deals and experience travel like never before.
+                    </p>
+                    
+                    <div class="social-media-section">
+                        <h4 class="social-heading">Follow Our Journey</h4>
+                        <div class="social-icons-large">
+                            <a href="#" class="social-icon facebook" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon twitter" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <p class="follower-count">
+                            <i class="fas fa-users"></i>
+                            50K+ travelers in our community
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Popular Routes -->
+                <div class="footer-column routes-column" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="footer-column-title">
+                        <i class="fas fa-route"></i>
+                        Popular Routes
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="route-link" data-route="DEL-BOM">
+                            <span class="route-cities">Delhi → Mumbai</span>
+                            <span class="route-price">From ₹3,499</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="BOM-GOI">
+                            <span class="route-cities">Mumbai → Goa</span>
+                            <span class="route-price">From ₹2,899</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="DEL-BLR">
+                            <span class="route-cities">Delhi → Bangalore</span>
+                            <span class="route-price">From ₹4,199</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="BOM-DXB">
+                            <span class="route-cities">Mumbai → Dubai</span>
+                            <span class="route-price">From ₹12,999</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="DEL-LHR">
+                            <span class="route-cities">Delhi → London</span>
+                            <span class="route-price">From ₹35,499</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="BLR-SIN">
+                            <span class="route-cities">Bangalore → Singapore</span>
+                            <span class="route-price">From ₹15,899</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="DEL-BKK">
+                            <span class="route-cities">Delhi → Bangkok</span>
+                            <span class="route-price">From ₹14,299</span>
+                        </a></li>
+                        <li><a href="#" class="route-link" data-route="BOM-SYD">
+                            <span class="route-cities">Mumbai → Sydney</span>
+                            <span class="route-price">From ₹42,999</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Resources -->
+                <div class="footer-column resources-column" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="footer-column-title">
+                        <i class="fas fa-book"></i>
+                        Resources
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marked-alt"></i> Travel Guides</a></li>
+                        <li><a href="#"><i class="fas fa-blog"></i> Blog & Articles</a></li>
+                        <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                        <li><a href="#"><i class="fas fa-life-ring"></i> Help Center</a></li>
+                        <li><a href="#"><i class="fas fa-passport"></i> Visa Information</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i> Travel Insurance</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Safety Guidelines</a></li>
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Company -->
+                <div class="footer-column company-column" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="footer-column-title">
+                        <i class="fas fa-building"></i>
+                        Company
+                    </h3>
+                    <ul class="footer-links">
+                        <li><a href="about-us.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Careers <span class="hiring-badge">We're Hiring!</span></a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Press & Media</a></li>
+                        <li><a href="contact-us.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-handshake"></i> Partnerships</a></li>
+                        <li><a href="terms-conditions.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="#"><i class="fas fa-balance-scale"></i> Legal</a></li>
+                    </ul>
+                </div>
             </div>
-          </form>
-          <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Facebook" role="listitem">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Twitter" role="listitem">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Instagram" role="listitem">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on LinkedIn" role="listitem">
-              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Subscribe to our YouTube channel" role="listitem">
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Footer Bottom -->
-      <div
-        class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-        <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-        <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-          <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-          <span aria-hidden="true">|</span>
-          <a href="#" class="legal-link transition-colors">Terms of Service</a>
-        </nav>
-        <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-          <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-          <span>Trusted by 1M+ Travelers</span>
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <div class="footer-bottom-left">
+                    <p class="copyright">
+                        &copy; 2025 Destinova. All Rights Reserved.
+                    </p>
+                </div>
+
+                <div class="footer-bottom-center">
+                    <div class="language-selector">
+                        <i class="fas fa-globe"></i>
+                        <select id="languageSelect" aria-label="Select Language">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                            <option value="zh">中文</option>
+                            <option value="ar">العربية</option>
+                        </select>
+                    </div>
+
+                    <div class="currency-selector">
+                        <i class="fas fa-dollar-sign"></i>
+                        <select id="currencySelect" aria-label="Select Currency">
+                            <option value="INR">INR (₹)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="GBP">GBP (£)</option>
+                            <option value="AED">AED (د.إ)</option>
+                            <option value="SGD">SGD (S$)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="footer-bottom-right">
+                    <a href="#" class="accessibility-link">
+                        <i class="fas fa-universal-access"></i>
+                        Accessibility
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
-    <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
-      <i class="fas fa-plane-up"></i>
-    </a>
+    </footer>
+
+    <!-- Back to Top Floating Button -->
+    <button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+        <span class="btn-text">Top</span>
+    </button>
+    
     <!-- FOOTER END -->
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

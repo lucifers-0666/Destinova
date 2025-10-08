@@ -739,6 +739,1197 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     initializeFlightDealsFilters();
 
+    // =============================================
+    // LAST-MINUTE BANNER: ANIMATED COUNTER & COUNTDOWN
+    // =============================================
+    function initializeLastMinuteBanner() {
+        // Animated Counter
+        const counterElement = document.getElementById('last-minute-counter');
+        if (counterElement) {
+            let currentCount = 127;
+            setInterval(() => {
+                // Randomly increment counter (simulate real bookings)
+                if (Math.random() > 0.7) {
+                    currentCount += 1;
+                    counterElement.textContent = currentCount;
+                }
+            }, 5000); // Update every 5 seconds
+        }
+
+        // Countdown Timer
+        const countdownElement = document.getElementById('refresh-countdown');
+        if (countdownElement) {
+            // Set end time to 2h 15m from now
+            let endTime = new Date().getTime() + (2 * 60 * 60 + 15 * 60) * 1000;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance < 0) {
+                    // Reset countdown when it reaches 0
+                    endTime = new Date().getTime() + (2 * 60 * 60 + 15 * 60) * 1000;
+                    return;
+                }
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                countdownElement.textContent = `${hours}h ${minutes}m`;
+            };
+
+            updateCountdown();
+            setInterval(updateCountdown, 60000); // Update every minute
+        }
+    }
+    initializeLastMinuteBanner();
+
+    // ============================================
+    // FEATURED COLLECTIONS - CATEGORY FILTERING & LAZY LOADING
+    // ============================================
+    
+    function initializeFeaturedCollections() {
+        const filterTabs = document.querySelectorAll('.collection-filter-tab');
+        const collectionCards = document.querySelectorAll('.collection-card');
+        
+        // Category Filtering
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active tab with underline animation
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter cards with smooth transition
+                collectionCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (category === 'all' || cardCategory === category) {
+                        card.classList.remove('hidden');
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.classList.add('hidden');
+                        }, 400);
+                    }
+                });
+            });
+        });
+        
+        // Lazy Loading with Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        };
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const img = card.querySelector('.collection-image');
+                    
+                    // Trigger lazy load animation
+                    if (img && img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    
+                    // Add staggered entrance animation
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(card);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all collection cards for lazy loading
+        collectionCards.forEach((card, index) => {
+            // Initial state for staggered entrance
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            
+            imageObserver.observe(card);
+        });
+        
+        // CTA Button Click Handlers
+        const ctaButtons = document.querySelectorAll('.collection-cta-btn');
+        ctaButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const destination = this.closest('.collection-card').querySelector('.collection-destination').textContent;
+                console.log(`Planning trip to: ${destination}`);
+                // Add your booking logic here
+            });
+        });
+        
+        // Card Click Handler (navigate to destination details)
+        collectionCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const destination = this.querySelector('.collection-destination').textContent;
+                console.log(`Viewing details for: ${destination}`);
+                // Add your navigation logic here
+            });
+        });
+    }
+    
+    // Initialize Featured Collections on page load
+    if (document.querySelector('.featured-collections-grid')) {
+        initializeFeaturedCollections();
+    }
+
+    // ============================================
+    // WHY BOOK WITH US - SCROLL ANIMATIONS & INTERACTIONS
+    // ============================================
+    
+    function initializeWhyBookSection() {
+        const whyBookCards = document.querySelectorAll('.why-book-card-enhanced');
+        
+        if (whyBookCards.length === 0) return;
+
+        // Scroll-triggered animations with 100ms stagger
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const delay = parseInt(card.getAttribute('data-aos-delay') || 0);
+                    
+                    // Set initial state
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(40px)';
+                    
+                    // Trigger animation with stagger
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, delay);
+                    
+                    cardObserver.unobserve(card);
+                }
+            });
+        }, observerOptions);
+
+        whyBookCards.forEach(card => {
+            cardObserver.observe(card);
+        });
+
+        // Icon animation on hover
+        whyBookCards.forEach(card => {
+            const icon = card.querySelector('.why-icon-enhanced');
+            
+            card.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Payment logo hover effects
+        const paymentLogos = document.querySelectorAll('.payment-logo');
+        paymentLogos.forEach(logo => {
+            logo.addEventListener('mouseenter', () => {
+                paymentLogos.forEach(otherLogo => {
+                    if (otherLogo !== logo) {
+                        otherLogo.style.opacity = '0.4';
+                    }
+                });
+            });
+            
+            logo.addEventListener('mouseleave', () => {
+                paymentLogos.forEach(otherLogo => {
+                    otherLogo.style.opacity = '0.8';
+                });
+            });
+        });
+
+        // CTA button ripple effect
+        const ctaButton = document.querySelector('.btn-join-travelers');
+        if (ctaButton) {
+            ctaButton.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple-effect');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        }
+
+        // Animate CTA container
+        const ctaContainer = document.querySelector('.why-book-cta-container');
+        if (ctaContainer) {
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            ctaContainer.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                            ctaContainer.style.opacity = '1';
+                            ctaContainer.style.transform = 'translateY(0)';
+                        }, 400);
+                        ctaObserver.unobserve(ctaContainer);
+                    }
+                });
+            }, observerOptions);
+
+            ctaContainer.style.opacity = '0';
+            ctaContainer.style.transform = 'translateY(30px)';
+            ctaObserver.observe(ctaContainer);
+        }
+    }
+
+    // Initialize Why Book section
+    if (document.querySelector('.why-book-section')) {
+        initializeWhyBookSection();
+    }
+
+    // ============================================
+    // AIRLINE PARTNERS - CAROUSEL INTERACTIONS
+    // ============================================
+    
+    function initializeAirlinePartnersCarousel() {
+        const carouselWrappers = document.querySelectorAll('.airline-carousel-wrapper');
+        const logoItems = document.querySelectorAll('.airline-logo-carousel');
+        
+        if (carouselWrappers.length === 0) return;
+
+        // Add individual hover pause for each logo
+        logoItems.forEach(logo => {
+            logo.addEventListener('mouseenter', function() {
+                const carousel = this.closest('.airline-carousel');
+                if (carousel) {
+                    carousel.style.animationPlayState = 'paused';
+                }
+            });
+
+            logo.addEventListener('mouseleave', function() {
+                const carousel = this.closest('.airline-carousel');
+                if (carousel) {
+                    carousel.style.animationPlayState = 'running';
+                }
+            });
+
+            // Add click handler for potential airline details
+            logo.addEventListener('click', function() {
+                const airlineName = this.querySelector('img').alt;
+                console.log(`Viewing flights from: ${airlineName}`);
+                // Add your navigation logic here
+                // e.g., window.location.href = `/airlines/${airlineName.toLowerCase().replace(/\s+/g, '-')}`;
+            });
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselWrappers.forEach(wrapper => {
+            wrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                const carousel = wrapper.querySelector('.airline-carousel');
+                carousel.style.animationPlayState = 'paused';
+            });
+
+            wrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const carousel = wrapper.querySelector('.airline-carousel');
+                carousel.style.animationPlayState = 'running';
+                
+                // Optional: Detect swipe direction for potential interactions
+                if (touchEndX < touchStartX - 50) {
+                    console.log('Swiped left');
+                } else if (touchEndX > touchStartX + 50) {
+                    console.log('Swiped right');
+                }
+            });
+
+            // Pause on touch/hold
+            wrapper.addEventListener('touchmove', () => {
+                const carousel = wrapper.querySelector('.airline-carousel');
+                carousel.style.animationPlayState = 'paused';
+            });
+        });
+
+        // Add accessibility: keyboard navigation
+        logoItems.forEach((logo, index) => {
+            logo.setAttribute('tabindex', '0');
+            logo.setAttribute('role', 'button');
+            logo.setAttribute('aria-label', `View flights from ${logo.querySelector('img').alt}`);
+
+            logo.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    logo.click();
+                }
+
+                // Arrow key navigation
+                if (e.key === 'ArrowRight' && index < logoItems.length - 1) {
+                    logoItems[index + 1].focus();
+                } else if (e.key === 'ArrowLeft' && index > 0) {
+                    logoItems[index - 1].focus();
+                }
+            });
+        });
+
+        // Reduced motion support
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            const carousels = document.querySelectorAll('.airline-carousel');
+            carousels.forEach(carousel => {
+                carousel.style.animation = 'none';
+            });
+        }
+
+        // View All Partners link interaction
+        const viewAllLink = document.querySelector('.view-all-partners-link');
+        if (viewAllLink) {
+            viewAllLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Viewing all airline partners');
+                // Add your navigation logic here
+                // e.g., window.location.href = '/airlines';
+            });
+        }
+
+        // Log analytics when carousel is viewed
+        const carouselSection = document.querySelector('.airline-partners-section');
+        if (carouselSection) {
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        console.log('Airline Partners section viewed');
+                        // Add your analytics tracking here
+                        sectionObserver.unobserve(carouselSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            sectionObserver.observe(carouselSection);
+        }
+    }
+
+    // Initialize Airline Partners Carousel
+    if (document.querySelector('.airline-partners-section')) {
+        initializeAirlinePartnersCarousel();
+    }
+
+    // ============================================
+    // CUSTOMER REVIEWS - CAROUSEL & FILTERING
+    // ============================================
+    
+    function initializeCustomerReviews() {
+        const carousel = document.getElementById('reviewsCarousel');
+        const dotsContainer = document.getElementById('carouselDots');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const reviewCards = document.querySelectorAll('.review-card');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const starFilterBtns = document.querySelectorAll('.star-filter-btn');
+        const helpfulBtns = document.querySelectorAll('.helpful-btn');
+        const shareReviewBtns = document.querySelectorAll('.share-review-btn');
+        const writeReviewBtn = document.querySelector('.btn-write-review');
+
+        if (!carousel || reviewCards.length === 0) return;
+
+        let currentIndex = 0;
+        let autoPlayInterval;
+        const cardsPerView = getCardsPerView();
+
+        // Get cards per view based on screen size
+        function getCardsPerView() {
+            if (window.innerWidth >= 1200) return 3;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        // Create navigation dots
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            const totalDots = Math.ceil(reviewCards.length / cardsPerView);
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot';
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update dots
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            const maxIndex = Math.ceil(reviewCards.length / cardsPerView) - 1;
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+            
+            const cardWidth = reviewCards[0].offsetWidth;
+            const gap = 24;
+            const offset = currentIndex * (cardWidth + gap) * cardsPerView;
+            
+            carousel.style.transform = `translateX(-${offset}px)`;
+            updateDots();
+        }
+
+        // Next slide
+        function nextSlide() {
+            const maxIndex = Math.ceil(reviewCards.length / cardsPerView) - 1;
+            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+            goToSlide(currentIndex);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            const maxIndex = Math.ceil(reviewCards.length / cardsPerView) - 1;
+            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+            goToSlide(currentIndex);
+        }
+
+        // Auto-advance every 5 seconds
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', stopAutoPlay);
+        carousel.addEventListener('mouseleave', startAutoPlay);
+
+        // Navigation buttons
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+        // Filtering System
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active from all
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                applyFilter(filter);
+            });
+        });
+
+        starFilterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                starFilterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const stars = this.getAttribute('data-stars');
+                applyStarFilter(stars);
+            });
+        });
+
+        function applyFilter(filter) {
+            let visibleCards = [];
+            
+            reviewCards.forEach(card => {
+                let shouldShow = true;
+                
+                switch(filter) {
+                    case 'recent':
+                        shouldShow = true;
+                        break;
+                    case 'highest':
+                        shouldShow = card.getAttribute('data-rating') === '5';
+                        break;
+                    case 'photos':
+                        shouldShow = card.getAttribute('data-has-photos') === 'true';
+                        break;
+                    case 'verified':
+                        shouldShow = card.getAttribute('data-verified') === 'true';
+                        break;
+                }
+                
+                if (shouldShow) {
+                    card.style.display = 'flex';
+                    visibleCards.push(card);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            currentIndex = 0;
+            goToSlide(0);
+            createDots();
+        }
+
+        function applyStarFilter(stars) {
+            reviewCards.forEach(card => {
+                const rating = parseInt(card.getAttribute('data-rating'));
+                let shouldShow = true;
+                
+                switch(stars) {
+                    case 'all':
+                        shouldShow = true;
+                        break;
+                    case '5':
+                        shouldShow = rating === 5;
+                        break;
+                    case '4':
+                        shouldShow = rating >= 4;
+                        break;
+                    case '3':
+                        shouldShow = rating >= 3;
+                        break;
+                }
+                
+                card.style.display = shouldShow ? 'flex' : 'none';
+            });
+            
+            currentIndex = 0;
+            goToSlide(0);
+            createDots();
+        }
+
+        // Helpful button interactions
+        helpfulBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const text = this.innerHTML;
+                const match = text.match(/\((\d+)\)/);
+                
+                if (match) {
+                    const count = parseInt(match[1]) + 1;
+                    this.innerHTML = text.replace(/\d+/, count);
+                    this.style.color = '#0EA5E9';
+                    this.style.borderColor = '#0EA5E9';
+                    
+                    // Add animation
+                    this.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                }
+            });
+        });
+
+        // Share review buttons
+        shareReviewBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Implement share functionality
+                const card = this.closest('.review-card');
+                const reviewerName = card.querySelector('.reviewer-name').textContent;
+                console.log(`Sharing review from ${reviewerName}`);
+                
+                // Example: Copy link to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-share-alt"></i> Share';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Write Review CTA
+        if (writeReviewBtn) {
+            writeReviewBtn.addEventListener('click', function() {
+                console.log('Opening review form...');
+                // Implement review form modal/redirect
+                // Example: window.location.href = '/write-review';
+                alert('Thank you for your interest! The review form will open here.');
+            });
+        }
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay();
+        });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            } else if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Window resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                createDots();
+                goToSlide(0);
+            }, 250);
+        });
+
+        // Animate rating bars on scroll
+        const ratingBars = document.querySelectorAll('.rating-bar-fill');
+        const ratingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                    ratingObserver.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        ratingBars.forEach(bar => ratingObserver.observe(bar));
+
+        // Initialize
+        createDots();
+        startAutoPlay();
+    }
+
+    // Initialize Customer Reviews
+    if (document.querySelector('.customer-reviews-section')) {
+        initializeCustomerReviews();
+    }
+
+    // ============================================
+    // NEWSLETTER & APP DOWNLOAD FUNCTIONALITY
+    // ============================================
+    function initializeNewsletterApp() {
+        const newsletterForm = document.getElementById('newsletterSubscribeForm');
+        const emailInput = newsletterForm?.querySelector('.newsletter-email-input');
+        const subscribeBtn = newsletterForm?.querySelector('.newsletter-subscribe-btn');
+        const appStoreButtons = document.querySelectorAll('.app-store-btn');
+        const incentiveBadge = document.querySelector('.incentive-badge');
+
+        // Newsletter Form Submission
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                
+                // Email Validation
+                if (!email) {
+                    showNotification('Please enter your email address', 'error');
+                    emailInput.focus();
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showNotification('Please enter a valid email address', 'error');
+                    emailInput.focus();
+                    return;
+                }
+
+                // Disable button and show loading state
+                subscribeBtn.disabled = true;
+                const originalText = subscribeBtn.innerHTML;
+                subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subscribing...';
+
+                // Simulate API call (replace with actual API endpoint)
+                setTimeout(() => {
+                    // Success
+                    showNotification('🎉 Successfully subscribed! Check your email for your ₹500 bonus.', 'success');
+                    emailInput.value = '';
+                    subscribeBtn.disabled = false;
+                    subscribeBtn.innerHTML = originalText;
+                    
+                    // Add celebratory animation
+                    newsletterForm.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        newsletterForm.style.transform = 'scale(1)';
+                    }, 200);
+
+                    // Track conversion (Google Analytics, etc.)
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'newsletter_subscribe', {
+                            'event_category': 'engagement',
+                            'event_label': 'destinations_page'
+                        });
+                    }
+                }, 1500);
+            });
+        }
+
+        // Email Validation Helper
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotif = document.querySelector('.notification-popup');
+            if (existingNotif) {
+                existingNotif.remove();
+            }
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification-popup notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #10B981, #34D399)' : 'linear-gradient(135deg, #EF4444, #F87171)'};
+                color: white;
+                padding: 16px 24px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideInRight 0.4s ease;
+                max-width: 400px;
+                font-size: 15px;
+                font-weight: 600;
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(400px);
+                        opacity: 0;
+                    }
+                }
+                .notification-content {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .notification-content i {
+                    font-size: 20px;
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(notification);
+
+            // Auto remove after 4 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.4s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 400);
+            }, 4000);
+        }
+
+        // App Store Button Tracking
+        appStoreButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const store = button.classList.contains('apple-btn') ? 'App Store' : 'Google Play';
+                
+                showNotification(`🚀 Redirecting to ${store}...`, 'success');
+                
+                // Track app download click
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'app_download_click', {
+                        'event_category': 'engagement',
+                        'event_label': store,
+                        'value': 1
+                    });
+                }
+
+                // Simulate redirect (replace with actual app store URLs)
+                setTimeout(() => {
+                    if (store === 'App Store') {
+                        // window.location.href = 'https://apps.apple.com/your-app';
+                        console.log('Redirect to App Store');
+                    } else {
+                        // window.location.href = 'https://play.google.com/store/apps/details?id=your.app';
+                        console.log('Redirect to Google Play');
+                    }
+                }, 1000);
+            });
+        });
+
+        // Incentive Badge Interaction
+        if (incentiveBadge) {
+            incentiveBadge.addEventListener('click', () => {
+                // Scroll to app section or show more details
+                incentiveBadge.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    incentiveBadge.style.transform = 'scale(1)';
+                }, 200);
+
+                showNotification('📱 Download our app to claim your ₹200 discount!', 'success');
+            });
+
+            // Make badge interactive with cursor
+            incentiveBadge.style.cursor = 'pointer';
+        }
+
+        // Subscriber Avatars Animation
+        const avatars = document.querySelectorAll('.subscriber-avatars .avatar');
+        avatars.forEach((avatar, index) => {
+            avatar.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
+        });
+
+        // Add floating animation for avatars
+        const floatStyle = document.createElement('style');
+        floatStyle.textContent = `
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-5px);
+                }
+            }
+        `;
+        document.head.appendChild(floatStyle);
+
+        // Input Focus Animation
+        if (emailInput) {
+            emailInput.addEventListener('focus', () => {
+                emailInput.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            emailInput.addEventListener('blur', () => {
+                emailInput.parentElement.style.transform = 'scale(1)';
+            });
+        }
+
+        // Phone Mockup Tilt Effect (on hover for desktop)
+        const phoneMockup = document.querySelector('.phone-mockup');
+        if (phoneMockup && window.innerWidth > 768) {
+            phoneMockup.addEventListener('mousemove', (e) => {
+                const rect = phoneMockup.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                phoneMockup.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            phoneMockup.addEventListener('mouseleave', () => {
+                phoneMockup.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        }
+    }
+
+    // Initialize Newsletter & App Section
+    if (document.querySelector('.newsletter-app-section')) {
+        initializeNewsletterApp();
+    }
+
+    // ============================================
+    // REDESIGNED FOOTER FUNCTIONALITY
+    // ============================================
+    function initializeFooter() {
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        
+        if (backToTopBtn) {
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            // Smooth scroll to top
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Add animation feedback
+                backToTopBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    backToTopBtn.style.transform = '';
+                }, 200);
+            });
+        }
+
+        // Language Selector
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const selectedLanguage = e.target.value;
+                console.log('Language changed to:', selectedLanguage);
+                
+                // Show notification
+                showFooterNotification(`Language changed to ${e.target.options[e.target.selectedIndex].text}`);
+                
+                // Store preference
+                localStorage.setItem('preferredLanguage', selectedLanguage);
+                
+                // In a real app, trigger language change
+                // window.location.href = `?lang=${selectedLanguage}`;
+            });
+
+            // Load saved preference
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+                languageSelect.value = savedLanguage;
+            }
+        }
+
+        // Currency Selector
+        const currencySelect = document.getElementById('currencySelect');
+        if (currencySelect) {
+            currencySelect.addEventListener('change', (e) => {
+                const selectedCurrency = e.target.value;
+                console.log('Currency changed to:', selectedCurrency);
+                
+                // Show notification
+                showFooterNotification(`Currency changed to ${selectedCurrency}`);
+                
+                // Store preference
+                localStorage.setItem('preferredCurrency', selectedCurrency);
+                
+                // In a real app, update all prices
+                // updatePricesOnPage(selectedCurrency);
+            });
+
+            // Load saved preference
+            const savedCurrency = localStorage.getItem('preferredCurrency');
+            if (savedCurrency) {
+                currencySelect.value = savedCurrency;
+            }
+        }
+
+        // Popular Routes Quick Book
+        const routeLinks = document.querySelectorAll('.route-link');
+        routeLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const route = link.getAttribute('data-route');
+                
+                showFooterNotification(`Searching flights for ${route}...`);
+                
+                // In a real app, navigate to booking page with route
+                setTimeout(() => {
+                    console.log('Navigate to booking with route:', route);
+                    // window.location.href = `booking.html?route=${route}`;
+                }, 1000);
+            });
+        });
+
+        // Social Media Tracking
+        const socialIcons = document.querySelectorAll('.social-icon');
+        socialIcons.forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const platform = icon.getAttribute('aria-label');
+                console.log('Social media click:', platform);
+                
+                // Track with analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'social_click', {
+                        'event_category': 'engagement',
+                        'event_label': platform
+                    });
+                }
+                
+                // Show notification
+                showFooterNotification(`Opening ${platform}...`);
+            });
+        });
+
+        // Trust Badge Interactions
+        const trustBadges = document.querySelectorAll('.trust-badge-item');
+        trustBadges.forEach((badge, index) => {
+            // Staggered animation on scroll
+            badge.style.opacity = '0';
+            badge.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                badge.style.transition = 'all 0.5s ease';
+                badge.style.opacity = '1';
+                badge.style.transform = 'translateY(0)';
+            }, index * 100);
+
+            // Hover effect with tooltip (optional)
+            badge.addEventListener('mouseenter', () => {
+                badge.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+
+            badge.addEventListener('mouseleave', () => {
+                badge.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Footer Links Smooth Scroll (for anchor links)
+        const footerLinks = document.querySelectorAll('.footer-links a');
+        footerLinks.forEach(link => {
+            if (link.getAttribute('href').startsWith('#')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Notification Helper for Footer
+        function showFooterNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 30px;
+                background: linear-gradient(135deg, #1F2937, #374151);
+                color: white;
+                padding: 16px 24px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                animation: slideInUp 0.4s ease;
+                font-size: 14px;
+                font-weight: 600;
+                border: 1px solid rgba(249, 115, 22, 0.3);
+            `;
+            notification.textContent = message;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInUp {
+                    from {
+                        transform: translateY(100px);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutDown 0.4s ease';
+                notification.style.animationFillMode = 'forwards';
+                
+                const slideOutStyle = document.createElement('style');
+                slideOutStyle.textContent = `
+                    @keyframes slideOutDown {
+                        from {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                        to {
+                            transform: translateY(100px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(slideOutStyle);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 400);
+            }, 3000);
+        }
+
+        // Accessibility: Keyboard navigation for selectors
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open selectors
+                if (document.activeElement.tagName === 'SELECT') {
+                    document.activeElement.blur();
+                }
+            }
+        });
+
+        // Payment icons animation on hover
+        const paymentIcons = document.querySelectorAll('.payment-icons i');
+        paymentIcons.forEach((icon, index) => {
+            icon.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
+        });
+    }
+
+    // Initialize Footer
+    if (document.querySelector('.destinova-footer-redesigned')) {
+        initializeFooter();
+    }
 
     // ... (rest of the existing code)
 });
