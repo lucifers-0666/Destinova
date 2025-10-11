@@ -98,9 +98,9 @@
     --font-body: 'Poppins', sans-serif;
     
     /* ━━━ Password Strength Colors ━━━ */
-    --weak: #B8866F;
-    --medium: #C9A66B;
-    --strong: #7A9B76;
+    --weak: #D93025;
+    --medium: #f59e0b;
+    --strong: #2a7d4a;
 }
 
 * {
@@ -126,11 +126,9 @@ body {
 /* Hero Background - Emerald Gradient with Gold Glow */
 .hero-bg {
     background: 
-        var(--gradient-overlay),
-        radial-gradient(circle at 25% 70%, rgba(229, 203, 175, 0.18) 0%, transparent 45%),
+        linear-gradient(135deg, #2d5f3f 0%, #1f4430 100%),
         url('../site-images/FC-P1.webp') center/cover no-repeat;
-    background-size: 200% 200%, 100%, cover;
-    animation: gradientShift 15s ease infinite;
+    background-size: cover;
     position: relative;
     overflow: hidden;
 }
@@ -154,20 +152,20 @@ body {
 
 /* Airplane Graphics - Enhanced with Glow and Dynamic Movement */
 .airplane-icon {
-    filter: blur(4px) drop-shadow(0 0 25px rgba(193, 170, 128, 0.3));
+    filter: blur(4px) drop-shadow(0 0 25px rgba(229, 203, 175, 0.3));
     opacity: 0.22;
     will-change: transform;
 }
 
 .airplane-foreground {
     opacity: 0.35;
-    filter: blur(2px) drop-shadow(0 0 30px rgba(193, 170, 128, 0.35));
+    filter: blur(2px) drop-shadow(0 0 30px rgba(229, 203, 175, 0.35));
     animation: floatDiagonal 25s ease-in-out infinite;
 }
 
 .airplane-midground {
     opacity: 0.25;
-    filter: blur(4px) drop-shadow(0 0 25px rgba(193, 170, 128, 0.25));
+    filter: blur(4px) drop-shadow(0 0 25px rgba(229, 203, 175, 0.25));
     animation: floatCircular 35s ease-in-out infinite;
 }
 
@@ -264,7 +262,7 @@ body {
     /* Soft Shadow for Depth */
     box-shadow: 
         0 4px 16px rgba(0, 0, 0, 0.1),
-        0 2px 8px rgba(193, 170, 128, 0.15),
+        0 2px 8px rgba(229, 203, 175, 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     
     /* Smooth Transitions */
@@ -311,7 +309,7 @@ body {
     /* Enhanced Shadow on Hover */
     box-shadow: 
         0 12px 40px rgba(0, 0, 0, 0.15),
-        0 6px 20px rgba(193, 170, 128, 0.3),
+        0 6px 20px rgba(229, 203, 175, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3),
         0 0 0 1px rgba(229, 203, 175, 0.1);
 }
@@ -326,7 +324,7 @@ body {
     color: #E5CBAF;
     font-size: 28px;
     min-width: 28px;
-    filter: drop-shadow(0 2px 8px rgba(193, 170, 128, 0.5));
+    filter: drop-shadow(0 2px 8px rgba(229, 203, 175, 0.5));
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     will-change: transform;
 }
@@ -335,7 +333,7 @@ body {
 .trust-badge:hover i {
     transform: scale(1.2) rotate(5deg);
     color: #F5E8D8;
-    filter: drop-shadow(0 4px 12px rgba(229, 203, 175, 0.7));
+    filter: drop-shadow(0 4px 12px rgba(240, 221, 199, 0.7));
     animation: iconBounce 0.6s ease;
 }
 
@@ -364,7 +362,7 @@ body {
     border-color: rgba(229, 203, 175, 0.6);
     box-shadow: 
         0 12px 40px rgba(0, 0, 0, 0.15),
-        0 6px 20px rgba(193, 170, 128, 0.3),
+        0 6px 20px rgba(229, 203, 175, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3),
         0 0 0 1px rgba(229, 203, 175, 0.1);
 }
@@ -373,7 +371,7 @@ body {
 .trust-badge:focus i {
     transform: scale(1.2) rotate(5deg);
     color: #F5E8D8;
-    filter: drop-shadow(0 4px 12px rgba(229, 203, 175, 0.7));
+    filter: drop-shadow(0 4px 12px rgba(240, 221, 199, 0.7));
 }
 
 /* Logo Styling */
@@ -387,7 +385,7 @@ body {
 
 .logo-nova {
     background: linear-gradient(135deg, #E5CBAF 0%, #C1AA80 100%);
-    -webkit-background-clip: text;
+    -webkit-background-clip: text; /* This seems to be a duplicate from a merge, but let's keep the correct one */
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
@@ -423,7 +421,7 @@ body {
     pointer-events: none;
     background: var(--white);
     font-family: 'Segoe UI', 'Inter', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     color: var(--text-charcoal);
 }
@@ -438,14 +436,14 @@ body {
 
 .floating-input:focus {
     transform: scale(1.01);
-    border-color: var(--champagne-gold);
+    border-color: var(--primary-emerald);
     box-shadow: 0 0 0 4px var(--shadow-light);
     background: var(--white);
 }
 
 .floating-input {
     height: 56px;
-    border: 2px solid var(--champagne-gold);
+    border: 2px solid var(--emerald-light);
     background: var(--white);
     font-family: 'Plus Jakarta Sans', 'Segoe UI', 'Inter', sans-serif;
     font-size: 16px;
@@ -454,7 +452,7 @@ body {
 
 /* Input Icon Transitions */
 .input-icon {
-    color: var(--gold-rich);
+    color: var(--text-muted);
     font-size: 20px;
     transition: var(--transition-fast);
 }
@@ -468,7 +466,7 @@ body {
     appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid var(--champagne-gold);
+    border: 2px solid var(--emerald-light);
     border-radius: var(--radius-sm);
     cursor: pointer;
     position: relative;
@@ -506,7 +504,7 @@ body {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--gradient-gold);
+    background: var(--gradient-emerald);
     transition: width 0.3s ease;
 }
 
@@ -518,24 +516,24 @@ body {
     width: 100%;
 }
 
-/* Primary CTA Button - Luxury Gold Gradient */
+/* Primary CTA Button - Emerald Gradient */
 .cta-button {
     position: relative;
-    background: var(--gradient-gold);
-    box-shadow: 0 6px 20px var(--shadow-gold);
+    background: var(--gradient-emerald);
+    box-shadow: 0 6px 20px var(--shadow-light);
     overflow: hidden;
     transition: var(--transition);
     height: 56px;
     font-family: 'Plus Jakarta Sans', 'Segoe UI', 'Inter', sans-serif;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--text-charcoal);
+    color: var(--white);
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px var(--shadow-gold), var(--crystal-glow-gold);
-    background: linear-gradient(135deg, var(--gold-light) 0%, var(--champagne-gold) 50%, var(--gold-shimmer) 100%);
+    box-shadow: 0 12px 32px var(--shadow-medium), var(--crystal-glow);
+    background: linear-gradient(135deg, var(--emerald-light) 0%, var(--primary-emerald) 50%, var(--emerald-dark) 100%);
 }
 
 .cta-button:active {
@@ -564,24 +562,23 @@ body {
 
 /* Social Button Hover Effect */
 .social-btn {
-    border: 2px solid #E8DEC6;
+    border: 2px solid var(--emerald-light);
     border-radius: var(--radius);
-    background: #FFFFFF;
+    background: var(--white);
     transition: all 0.3s ease;
     height: 56px;
 }
 
 .social-btn:hover {
     transform: translateY(-3px);
-    border-color: #C1AA80;
-    background: rgba(193, 170, 128, 0.04);
-    box-shadow: 0 6px 20px rgba(193, 170, 128, 0.4);
+    border-color: var(--primary-emerald);
+    background: var(--emerald-pale);
+    box-shadow: 0 6px 20px var(--shadow-light);
 }
 
-/* Form Panel - Cream Background with Subtle Pattern */
+/* Form Panel - Emerald Background with Subtle Pattern */
 .form-panel {
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
-    background: linear-gradient(135deg, #FFFBF2 0%, #FFF8ED 100%);
+    background: #f8f9f5;
     position: relative;
 }
 
@@ -597,8 +594,8 @@ body {
             45deg,
             transparent,
             transparent 35px,
-            rgba(193, 170, 128, 0.02) 35px,
-            rgba(193, 170, 128, 0.02) 70px
+            rgba(229, 203, 175, 0.04) 35px,
+            rgba(229, 203, 175, 0.04) 70px
         );
     pointer-events: none;
     z-index: 0;
@@ -611,12 +608,12 @@ body {
 
 /* Error State */
 .error-input {
-    border-color: #E53E3E !important;
+    border-color: var(--error-red) !important;
     animation: shake 0.5s ease-in-out;
 }
 
 .error-message {
-    color: #E53E3E;
+    color: var(--error-red);
     font-size: 14px;
     margin-top: 4px;
     display: flex;
@@ -627,14 +624,14 @@ body {
 
 /* Success State */
 .success-input {
-    border-color: var(--strong) !important;
+    border-color: var(--accent-success) !important;
 }
 
 /* Password Strength Indicator */
 .password-strength {
     height: 4px;
     width: 100%;
-    background: #E8DEC6;
+    background: var(--emerald-light);
     border-radius: 2px;
     margin-top: 8px;
     overflow: hidden;
@@ -650,17 +647,17 @@ body {
 
 .password-strength-bar.weak {
     width: 33%;
-    background: var(--weak);
+    background: #dc2626;
 }
 
 .password-strength-bar.medium {
     width: 66%;
-    background: var(--medium);
+    background: #f59e0b;
 }
 
 .password-strength-bar.strong {
     width: 100%;
-    background: var(--strong);
+    background: #16a34a;
 }
 
 .password-strength-text {
@@ -716,8 +713,8 @@ body {
     background: linear-gradient(135deg, var(--champagne-gold), var(--gold-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 10px rgba(193, 170, 128, 0.3));
+    background-clip: text; /* This is a duplicate from a merge, but let's keep the correct one */
+    filter: drop-shadow(0 0 10px rgba(229, 203, 175, 0.3));
 }
 
 /* Welcome Back Title */
@@ -768,11 +765,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(
-        circle at 30% 50%, 
-        transparent 0%, 
-        rgba(43, 42, 37, 0.4) 100%
-    );
+    background: radial-gradient(circle at 30% 50%, transparent 0%, rgba(22, 68, 38, 0.4) 100%);
     pointer-events: none;
     z-index: 2;
 }
@@ -782,8 +775,8 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: rgba(193, 170, 128, 0.08);
-    border: 1px solid rgba(193, 170, 128, 0.2);
+    background: var(--emerald-pale);
+    border: 1px solid var(--crystal-emerald);
     border-radius: var(--radius);
     padding: 14px 20px;
     font-size: 14px;
@@ -794,7 +787,7 @@ body {
 }
 
 .social-proof-badge i {
-    color: var(--strong);
+    color: var(--primary-emerald);
     font-size: 20px;
 }
 
@@ -803,21 +796,21 @@ body {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(193, 170, 128, 0.3);
+    border: 1px solid rgba(229, 203, 175, 0.3);
     border-radius: 16px;
     padding: 16px 24px;
     animation: pulse 3s ease-in-out infinite;
-    box-shadow: 0 8px 24px rgba(193, 170, 128, 0.25);
+    box-shadow: 0 8px 24px rgba(229, 203, 175, 0.25);
 }
 
 @keyframes pulse {
     0%, 100% { 
         transform: scale(1); 
-        box-shadow: 0 8px 24px rgba(193, 170, 128, 0.25);
+        box-shadow: 0 8px 24px rgba(229, 203, 175, 0.25);
     }
     50% { 
         transform: scale(1.05); 
-        box-shadow: 0 12px 32px rgba(193, 170, 128, 0.35);
+        box-shadow: 0 12px 32px rgba(229, 203, 175, 0.35);
     }
 }
 
@@ -895,6 +888,70 @@ body {
         font-size: 26px;
     }
     
+/* New Modern Login Styles */
+.auth-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    padding: 48px 40px;
+    max-width: 480px;
+    animation: slideInRight 0.6s ease-out 0.1s both;
+}
+
+/* Input Error Animation */
+.shake-error {
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Success Animation */
+.success-flash {
+    animation: successFlash 0.3s ease-out;
+}
+
+@keyframes successFlash {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(34, 197, 94, 0.1); }
+    100% { background-color: transparent; }
+}
+
+/* Loading Button State */
+.btn-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Parallax Background Elements */
+.parallax-element {
+    transition: transform 0.1s ease-out;
+}
+
+/* Focus Visible for Better Accessibility */
+.focus-visible {
+    outline: 2px solid #2d5f3f;
+    outline-offset: 2px;
+}
     .trust-badge span {
         font-size: 14px;
     }
@@ -938,7 +995,7 @@ body {
         border: 1.5px solid rgba(229, 203, 175, 0.35);
         box-shadow: 
             0 3px 12px rgba(0, 0, 0, 0.1),
-            0 1px 6px rgba(193, 170, 128, 0.15);
+            0 1px 6px rgba(229, 203, 175, 0.15);
     }
     
     .trust-badge i {

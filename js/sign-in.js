@@ -1,53 +1,72 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // =============================================
-    // PASSWORD VISIBILITY TOGGLE WITH ANIMATION
-    // =============================================
-    const togglePasswordBtn = document.getElementById('toggle-password');
+    // Form elements
+    const form = document.getElementById('signin-form');
+    const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const togglePasswordBtn = document.getElementById('toggle-password');
     const passwordIcon = document.getElementById('password-icon');
+    const emailError = document.getElementById('email-error');
+    const passwordError = document.getElementById('password-error');
+    const passwordStrengthBar = document.getElementById('password-strength-bar');
+    const passwordStrengthText = document.getElementById('password-strength-text');
 
+    // Password visibility toggle
     if (togglePasswordBtn && passwordInput && passwordIcon) {
         togglePasswordBtn.addEventListener('click', function() {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            // Update ARIA label
-            togglePasswordBtn.setAttribute('aria-label', type === 'text' ? 'Hide password' : 'Show password');
-            
-            // Smooth icon transition
-            passwordIcon.style.transform = 'rotate(360deg)';
-            passwordIcon.style.transition = 'transform 0.5s ease';
-            
-            setTimeout(() => {
-                if (type === 'text') {
-                    passwordIcon.classList.remove('fa-eye');
-                    passwordIcon.classList.add('fa-eye-slash');
-                } else {
-                    passwordIcon.classList.remove('fa-eye-slash');
-                    passwordIcon.classList.add('fa-eye');
-                }
-                passwordIcon.style.transform = 'rotate(0deg)';
-            }, 250);
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            passwordIcon.className = isPassword ? 'fas fa-eye-slash text-xl' : 'fas fa-eye text-xl';
+            togglePasswordBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
         });
     }
 
-    // =============================================
-    // PASSWORD STRENGTH INDICATOR
-    // =============================================
-    const passwordStrengthBar = document.getElementById('password-strength-bar');
-    const passwordStrengthText = document.getElementById('password-strength-text');
-    
+    // Email validation
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Password strength checker
     function checkPasswordStrength(password) {
         if (!password) {
-            passwordStrengthBar.className = 'password-strength-bar';
+            passwordStrengthBar.style.width = '0%';
+            passwordStrengthBar.className = 'password-strength-bar h-full transition-all duration-300';
             passwordStrengthText.classList.add('hidden');
             return;
         }
-        
+
         let strength = 0;
+        let strengthClass = '';
+        let strengthText = '';
+
+        // Check length
         if (password.length >= 8) strength++;
-        if (password.length >= 12) strength++;
+        // Check for letters and numbers
+        if (/[a-zA-Z]/.test(password) && /[0-9]/.test(password)) strength++;
+        // Check for special characters
+        if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+        if (strength === 1) {
+            strengthClass = 'bg-red-500';
+            strengthText = 'Weak';
+            passwordStrengthBar.style.width = '33%';
+        } else if (strength === 2) {
+            strengthClass = 'bg-yellow-500';
+            strengthText = 'Medium';
+            passwordStrengthBar.style.width = '66%';
+        } else if (strength >= 3) {
+            strengthClass = 'bg-green-500';
+            strengthText = 'Strong';
+            passwordStrengthBar.style.width = '100%';
+        }
+
+        passwordStrengthBar.className = `password-strength-bar h-full transition-all duration-300 ${strengthClass}`;
+        passwordStrengthText.textContent = strengthText;
+        passwordStrengthText.className = `text-xs mt-1 font-medium ${strengthClass.replace('bg-', 'text-')}`;
+        passwordStrengthText.classList.remove('hidden');
+    }
         if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
         if (/\d/.test(password)) strength++;
         if (/[^a-zA-Z0-9]/.test(password)) strength++;
@@ -113,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 emailInput.classList.remove('error-input');
                 emailInput.classList.add('success-input');
-                emailInput.style.borderColor = 'var(--emerald-light)';
+                emailInput.style.borderColor = 'var(--accent-success)';
                 emailInput.setAttribute('aria-invalid', 'false');
                 if (emailError) emailError.classList.add('hidden');
             }
