@@ -33,6 +33,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // =============================================
+    // PASSWORD STRENGTH INDICATOR
+    // =============================================
+    const passwordStrengthBar = document.getElementById('password-strength-bar');
+    const passwordStrengthText = document.getElementById('password-strength-text');
+    
+    function checkPasswordStrength(password) {
+        if (!password) {
+            passwordStrengthBar.className = 'password-strength-bar';
+            passwordStrengthText.classList.add('hidden');
+            return;
+        }
+        
+        let strength = 0;
+        if (password.length >= 8) strength++;
+        if (password.length >= 12) strength++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+        if (/\d/.test(password)) strength++;
+        if (/[^a-zA-Z0-9]/.test(password)) strength++;
+        
+        passwordStrengthText.classList.remove('hidden');
+        
+        if (strength <= 2) {
+            passwordStrengthBar.className = 'password-strength-bar weak';
+            passwordStrengthText.className = 'password-strength-text weak';
+            passwordStrengthText.textContent = 'Weak Password';
+        } else if (strength <= 4) {
+            passwordStrengthBar.className = 'password-strength-bar medium';
+            passwordStrengthText.className = 'password-strength-text medium';
+            passwordStrengthText.textContent = 'Medium Password';
+        } else {
+            passwordStrengthBar.className = 'password-strength-bar strong';
+            passwordStrengthText.className = 'password-strength-text strong';
+            passwordStrengthText.textContent = 'Strong Password';
+        }
+    }
+    
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            checkPasswordStrength(this.value);
+        });
+    }
+
+    // =============================================
     // FORM VALIDATION & SUBMISSION
     // =============================================
     const signInForm = document.getElementById('signin-form');

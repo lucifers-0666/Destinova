@@ -9,10 +9,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../site-images/logo/Destinova-svg.svg">
     
-    <!-- Fonts - Inter Variable -->
+    <!-- Fonts - Inter Variable + Plus Jakarta Sans (Modern 2025 Trending) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -24,23 +24,16 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary': '#1d5e33',
-                        'primary-light': '#2d7e4a',
-                        'secondary': '#154225',
-                        'champagne': {
-                            50: '#FFF9F0',
-                            100: '#F3E5D5',
-                            200: '#E5CBAF',
-                            300: '#D4B89A',
-                            400: '#C4A685',
-                            500: '#B49470',
-                            600: '#A4825B',
-                            700: '#947046',
-                            800: '#845E31',
-                            900: '#744C1C',
-                        },
+                        'charcoal': '#383731',
+                        'charcoal-dark': '#2B2A25',
+                        'charcoal-light': '#3D3C35',
+                        'gold': '#C1AA80',
+                        'bronze': '#A88F6A',
+                        'gold-border': '#E8DEC6',
                     },
                     fontFamily: {
+                        'sans': ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'system-ui', 'sans-serif'],
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
                         'inter': ['Inter', 'sans-serif'],
                     },
                     spacing: {
@@ -161,13 +154,13 @@
                    aria-hidden="true"></i>
             </div>
             
-            <!-- Value Proposition Floating Badge -->
-            <div class="absolute top-8 right-8 z-20 hidden lg:block animate-fade-in" style="animation-delay: 1s;">
-                <div class="bg-white rounded-base shadow-2xl px-6 py-4 border-l-4 border-primary-light flex items-center gap-3">
-                    <i class="fas fa-tag text-primary text-2xl"></i>
+            <!-- Value Proposition Floating Badge - Bottom Right -->
+            <div class="absolute bottom-8 right-8 z-20 hidden lg:block promo-badge">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-tag text-2xl" style="color: #E5CBAF;"></i>
                     <div>
-                        <p class="text-sm font-semibold text-gray-800">Save up to $400</p>
-                        <p class="text-xs text-gray-600">on your next flight</p>
+                        <p class="text-base font-bold text-white">Save up to ₹30,000</p>
+                        <p class="text-sm text-white" style="opacity: 0.92;">on your next flight</p>
                     </div>
                 </div>
             </div>
@@ -175,58 +168,54 @@
             <!-- Hero Content -->
             <div class="relative z-20 flex flex-col justify-center h-full px-6 lg:px-16 text-white">
                 <!-- Logo -->
-                <div class="mb-4 lg:mb-8 animate-fade-in" style="animation-delay: 0.2s;">
-                    <div class="flex items-center gap-3 mb-3">
-                        <i class="fas fa-plane-departure text-3xl lg:text-5xl" style="color: var(--champagne-gold);"></i>
-                        <h1 class="text-3xl lg:text-6xl font-bold tracking-tight">
-                            Desti<span style="color: var(--champagne-gold);">nova</span>
+                <div class="mb-6 lg:mb-8 cascade-item-1">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-plane-departure text-3xl lg:text-5xl" style="color: #E5CBAF;"></i>
+                        <h1 class="logo-text">
+                            Desti<span class="logo-nova">nova</span>
                         </h1>
                     </div>
-                    <div class="h-1 w-20 lg:w-28 rounded-full" style="background: var(--champagne-gold);"></div>
                 </div>
                 
                 <!-- Headlines -->
-                <h2 class="headline hidden lg:block mb-0 animate-fade-in" style="animation-delay: 0.3s;">
+                <h2 class="headline hidden lg:block mb-1 cascade-item-2">
                     Fly Beyond Limits.
                 </h2>
                 
-                <h2 class="subheadline hidden lg:block -mt-2 mb-6 animate-fade-in" style="animation-delay: 0.4s;">
+                <h2 class="subheadline hidden lg:block mb-6 cascade-item-3">
                     Travel with Confidence.
                 </h2>
                 
                 <!-- Mobile Simplified Headline -->
-                <h2 class="lg:hidden text-2xl font-bold mb-3 animate-fade-in" style="animation-delay: 0.3s;">
+                <h2 class="lg:hidden text-2xl font-bold mb-3 cascade-item-2">
                     Fly Beyond Limits
                 </h2>
                 
                 <!-- Updated Body Copy -->
-                <p class="hidden lg:block text-lg text-white/88 mb-8 max-w-[480px] leading-relaxed animate-fade-in" style="animation-delay: 0.5s;">
+                <p class="hero-body hidden lg:block mb-10 cascade-item-4">
                     Book smarter with AI-powered price predictions, instant refunds, and 24/7 concierge support. Your next adventure starts here.
                 </p>
                 
-                <!-- Trust Badges with Glassmorphism -->
-                <div class="hidden lg:flex items-center gap-4 mb-6 animate-fade-in" style="animation-delay: 0.6s;">
-                                    <!-- Trust Badges -->
-                <div class="flex flex-wrap justify-center gap-4 badge-container" style="animation-delay: 0.4s;">
-                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
-                        <i class="fas fa-lock text-3xl text-white"></i>
-                        <span class="text-white font-medium text-base">256-bit Encryption</span>
+                <!-- Trust Badges with Enhanced Card-Style Glassmorphism -->
+                <div class="hidden lg:flex items-center gap-4 mb-8 cascade-item-5" role="list" aria-label="Security and support features">
+                    <div class="trust-badge" role="listitem" tabindex="0" aria-label="Bank-grade 256-bit encryption security">
+                        <i class="fas fa-lock" aria-hidden="true"></i>
+                        <span>256-bit Encryption</span>
                     </div>
                     
-                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
-                        <i class="fas fa-headset text-3xl text-white"></i>
-                        <span class="text-white font-medium text-base">Live Support 24/7</span>
+                    <div class="trust-badge" role="listitem" tabindex="0" aria-label="Round the clock customer support available 24 hours a day, 7 days a week">
+                        <i class="fas fa-headset" aria-hidden="true"></i>
+                        <span>24/7 Support</span>
                     </div>
                     
-                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
-                        <i class="fas fa-badge-check text-3xl text-white"></i>
-                        <span class="text-white font-medium text-base">Price Match Promise</span>
+                    <div class="trust-badge" role="listitem" tabindex="0" aria-label="Best price guarantee with our price match promise">
+                        <i class="fas fa-tags" aria-hidden="true"></i>
+                        <span>Price Match</span>
                     </div>
-                </div>
                 </div>
 
                 <!-- Social Proof Stats -->
-                <div class="hidden lg:block text-sm text-white/75 animate-fade-in" style="animation-delay: 0.7s;">
+                <div class="hidden lg:block text-sm text-white/75 cascade-item-6">
                     <span class="inline-flex items-center gap-2">
                         <span class="text-yellow-400 text-base">★★★★★</span>
                         <span class="font-medium">4.8 on Trustpilot</span>
@@ -238,32 +227,32 @@
         </div>
         
         <!-- RIGHT SECTION: Form Panel (42% on desktop) -->
-        <div class="lg:w-[42%] flex items-center justify-center form-panel p-6 lg:px-12 lg:py-16 overflow-y-auto animate-fade-in-right" id="main-form" role="main" style="background: var(--background-cream);">
+        <div class="lg:w-[42%] flex items-center justify-center form-panel p-6 lg:px-12 lg:py-16 overflow-y-auto" id="main-form" role="main">
             <div class="w-full max-w-md">
                 
                 <!-- Auth Card -->
                 <div class="w-full">
                     
                     <!-- Header -->
-                    <div class="text-center mb-10">
+                    <div class="text-center mb-10 cascade-item-1">
                         <!-- User Icon Circle -->
-                        <div class="inline-flex items-center justify-center w-[72px] h-[72px] rounded-full mb-6 shadow-lg" style="background: linear-gradient(135deg, var(--emerald-dark), var(--primary-emerald));">
+                        <div class="inline-flex items-center justify-center w-[72px] h-[72px] rounded-full mb-6 shadow-lg" style="background: linear-gradient(135deg, #C1AA80, #A88F6A);">
                             <i class="fas fa-user text-white text-[32px]"></i>
                         </div>
                         
                         <!-- Title -->
-                        <h2 class="text-[32px] font-bold mb-2 tracking-tight" style="letter-spacing: -0.01em; color: var(--text-charcoal);">
+                        <h2 class="welcome-title mb-2">
                             Welcome Back
                         </h2>
                         
                         <!-- Subtitle -->
-                        <p class="text-base mb-4" style="color: var(--text-slate);">
+                        <p class="text-base mb-4 text-slate-600 font-segoe">
                             Sign in to continue your journey
                         </p>
 
-                        <!-- Social Proof Callout -->
-                        <div class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full animate-count-up" style="background: var(--champagne-light); color: var(--primary-emerald);">
-                            <i class="fas fa-check-circle" style="color: var(--emerald-light);"></i>
+                        <!-- Social Proof Badge -->
+                        <div class="social-proof-badge">
+                            <i class="fas fa-check-circle"></i>
                             <span>Join 2.4M travelers who saved 30% on average</span>
                         </div>
                     </div>
@@ -330,10 +319,15 @@
                                 <i class="fas fa-exclamation-circle"></i>
                                 <span>Password must be at least 8 characters</span>
                             </div>
+                            <!-- Password Strength Indicator -->
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="password-strength-bar"></div>
+                            </div>
+                            <div class="password-strength-text hidden" id="password-strength-text"></div>
                         </div>
 
                         <!-- Remember Me & Forgot Password -->
-                        <div class="flex items-center justify-between text-[15px] form-element">
+                        <div class="flex items-center justify-between text-[15px] cascade-item-2">
                             <label class="flex items-center cursor-pointer group">
                                 <input 
                                     type="checkbox" 
@@ -341,13 +335,13 @@
                                     aria-label="Remember me"
                                     class="custom-checkbox"
                                 />
-                                <span class="ml-3 select-none" style="color: var(--text-slate);">
+                                <span class="ml-3 select-none text-slate-600 font-segoe">
                                     Remember me
                                 </span>
                             </label>
                             <a 
                                 href="forgot-password.html" 
-                                class="font-medium hover-underline transition-colors" style="color: var(--emerald-light);"
+                                class="font-medium hover-underline transition-colors font-segoe"
                             >
                                 Forgot password?
                             </a>
@@ -357,8 +351,7 @@
                         <button 
                             type="submit"
                             aria-label="Sign in to your account"
-                            class="cta-button form-element w-full h-[56px] text-white font-semibold text-[17px] rounded-base shadow-lg relative z-10 flex items-center justify-center gap-2 group"
-                            style="letter-spacing: 0.02em;"
+                            class="cta-button cascade-item-3 w-full text-white font-semibold text-[17px] rounded-base relative z-10 flex items-center justify-center gap-2 group"
                         >
                             <span>Sign In</span>
                             <i class="fas fa-arrow-right text-xl group-hover:translate-x-1 transition-transform duration-200"></i>
@@ -367,21 +360,21 @@
                     </form>
 
                     <!-- Divider -->
-                    <div class="relative my-8 form-element">
+                    <div class="relative my-8 cascade-item-4">
                         <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t" style="border-color: var(--champagne-gold);"></div>
+                            <div class="w-full border-t" style="border-color: #E8DEC6;"></div>
                         </div>
                         <div class="relative flex justify-center text-sm">
-                            <span class="px-4" style="background: var(--background-cream); color: var(--text-slate);">Or continue with</span>
+                            <span class="px-4 text-slate-600 font-segoe" style="background: linear-gradient(135deg, #FFFBF2 0%, #FFF8ED 100%);">Or continue with</span>
                         </div>
                     </div>
 
                     <!-- Social Login Buttons -->
-                    <div class="grid grid-cols-3 gap-3 form-element">
-                                                <button 
+                    <div class="grid grid-cols-3 gap-3 cascade-item-5">
+                        <button 
                             type="button"
                             aria-label="Sign in with Google"
-                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                            class="social-btn flex items-center justify-center"
                         >
                             <i class="fab fa-google text-4xl text-red-500"></i>
                         </button>
@@ -389,7 +382,7 @@
                         <button 
                             type="button"
                             aria-label="Sign in with Facebook"
-                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                            class="social-btn flex items-center justify-center"
                         >
                             <i class="fab fa-facebook text-4xl text-blue-600"></i>
                         </button>
@@ -397,19 +390,19 @@
                         <button 
                             type="button"
                             aria-label="Sign in with Apple"
-                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                            class="social-btn flex items-center justify-center"
                         >
                             <i class="fab fa-apple text-4xl text-gray-800"></i>
                         </button>
                     </div>
 
                     <!-- Sign Up Link -->
-                    <div class="text-center mt-8 pt-8 border-t form-element" style="border-color: var(--champagne-gold);">
-                        <p class="text-[15px]" style="color: var(--text-slate);">
+                    <div class="text-center mt-8 pt-8 border-t border-gold-border cascade-item-6">
+                        <p class="text-[15px] text-slate-600 font-segoe">
                             Don't have an account? 
                             <a 
                                 href="sign-up.html" 
-                                class="font-semibold hover-underline ml-1" style="color: var(--emerald-light);"
+                                class="font-semibold hover-underline ml-1"
                             >
                                 Create Account
                             </a>
@@ -419,11 +412,11 @@
                 </div>
 
                 <!-- Footer Disclaimer -->
-                <p class="text-center text-[13px] text-gray-500 mt-8 px-4 max-w-[90%] mx-auto leading-relaxed">
+                <p class="text-center text-[13px] text-gray-500 mt-8 px-4 max-w-[90%] mx-auto leading-relaxed font-segoe cascade-item-7">
                     By signing in, you agree to our 
-                    <a href="terms-conditions.html" class="text-primary-light hover-underline">Terms of Service</a> 
+                    <a href="terms-conditions.html" class="hover-underline">Terms of Service</a> 
                     and 
-                    <a href="privacy-policy.html" class="text-primary-light hover-underline">Privacy Policy</a>
+                    <a href="privacy-policy.html" class="hover-underline">Privacy Policy</a>
                 </p>
 
             </div>
