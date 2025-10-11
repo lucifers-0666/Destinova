@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinova Airlines | Sign In</title>
-    <meta name="description"
-        content="Sign in to your Destinova account to manage bookings, check flight status, and access exclusive offers.">
-
+    <title>Sign In - Destinova | Premium Flight Booking Platform</title>
+    <meta name="description" content="Join 2.4M travelers who saved 30% on average. Sign in to access AI-powered price predictions and instant refunds.">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../site-images/logo/Destinova-svg.svg">
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-
+    
+    <!-- Fonts - Inter Variable -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -29,258 +24,414 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-emerald': '#1d5e33',
-                    }
+                        'primary': '#1d5e33',
+                        'primary-light': '#2d7e4a',
+                        'secondary': '#154225',
+                        'champagne': {
+                            50: '#FFF9F0',
+                            100: '#F3E5D5',
+                            200: '#E5CBAF',
+                            300: '#D4B89A',
+                            400: '#C4A685',
+                            500: '#B49470',
+                            600: '#A4825B',
+                            700: '#947046',
+                            800: '#845E31',
+                            900: '#744C1C',
+                        },
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    spacing: {
+                        'unit': '8px',
+                    },
+                    borderRadius: {
+                        'base': '10px',
+                    },
+                    animation: {
+                        'fade-in-left': 'fadeInLeft 0.6s ease-out',
+                        'fade-in-right': 'fadeInRight 0.6s ease-out 0.1s both',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'float': 'float 60s ease-in-out infinite',
+                        'float-slow': 'floatSlow 80s ease-in-out infinite',
+                        'drift': 'drift 60s linear infinite',
+                        'shake': 'shake 0.5s ease-in-out',
+                        'ripple': 'ripple 0.6s ease-out',
+                        'gradient-shift': 'gradientShift 120s ease infinite',
+                        'count-up': 'countUp 2s ease-out',
+                        'stagger': 'stagger 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translate(0, 0)' },
+                            '25%': { transform: 'translate(30px, -40px)' },
+                            '50%': { transform: 'translate(60px, 0)' },
+                            '75%': { transform: 'translate(30px, 40px)' },
+                        },
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '33%': { transform: 'translate(-50px, 30px) scale(1.1)' },
+                            '66%': { transform: 'translate(40px, -20px) scale(0.95)' },
+                        },
+                        drift: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100vw)' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-10px)' },
+                            '20%, 40%, 60%, 80%': { transform: 'translateX(10px)' },
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' },
+                        },
+                        gradientShift: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        countUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        stagger: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    },
                 }
             }
         }
     </script>
-
-    <link rel="stylesheet" href="../css/index.css">
+    
+    <!-- Custom Sign In Styles -->
     <link rel="stylesheet" href="../css/sign-in.css">
 </head>
-<body>
-
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
-
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-suitcase-rolling"></i><span>Travel</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
-                    </ul>
-                </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-tools"></i><span>Manage</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
-                    </ul>
-                </li>
-                <li><a href="about-us.html"><i class="fas fa-building"></i><span>About Us</span></a></li>
-                <li><a href="contact.html"><i class="fas fa-headset"></i><span>Contact</span></a></li>
-            </ul>
-
-            <div class="header-actions">
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
-                </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-            <li class="header-dropdown">
-                <a href="#"><i class="fas fa-suitcase-rolling"></i> Travel</a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Offers</a></li>
-                    <li><a href="loyalty.html"><i class="fas fa-star"></i> Loyalty Program</a></li>
-                </ul>
-            </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-                <a href="#"><i class="fas fa-tools"></i> Manage</a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="manage.html"><i class="fas fa-edit"></i> Manage Booking</a></li>
-                    <li><a href="checkin.html"><i class="fas fa-ticket-alt"></i> Check-in</a></li>
-                    <li><a href="status.html"><i class="fas fa-clock"></i> Flight Status</a></li>
-                </ul>
-            </li>
-            <li><a href="about-us.html"><i class="fas fa-building"></i> About Us</a></li>
-            <li><a href="contact.html"><i class="fas fa-headset"></i> Contact</a></li>
-        </ul>
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
+<body class="h-screen overflow-hidden font-inter antialiased">
     
-    <main class="auth-main">
-        <div class="auth-container">
-            <div class="auth-card">
-                <div class="form-header">
-                    <h2 class="form-title">Welcome Back</h2>
-                    <p class="form-subtitle">Sign in to access your account</p>
-                </div>
-
-                <form class="auth-form" id="signin-form">
-                    <div class="input-group">
-                        <i class="fas fa-envelope icon"></i>
-                        <input type="email" id="email" required placeholder=" ">
-                        <label for="email">Email Address</label>
-                    </div>
-                    <div class="input-group">
-                        <i class="fas fa-lock icon"></i>
-                        <input type="password" id="password" required placeholder=" ">
-                        <label for="password">Password</label>
-                        <i class="fas fa-eye password-toggle"></i>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="remember-me">
-                            <span class="checkmark"></span>
-                            Remember Me
-                        </label>
-                        <a href="#" class="forgot-link">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="submit-btn">Sign In</button>
-                </form>
-                <div class="separator"><span>OR</span></div>
-                <div class="social-login">
-                    <button class="social-btn google"><i class="fab fa-google"></i> Sign In with Google</button>
-                    <button class="social-btn apple"><i class="fab fa-apple"></i> Sign In with Apple</button>
-                </div>
-                <div class="auth-footer">
-                    <p>Don't have an account? <a href="sign-up.html" class="auth-link">Create Account</a></p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-                <div class="footer-col">
-                    <div class="footer-logo mb-4">
-                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2>
-                    </div>
-                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-                        Discover a new standard in air travel.
-                    </p>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-compass"></i>
-                        Quick Links
-                    </h3>
-                    <nav aria-label="Footer navigation">
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                                        aria-hidden="true"></i> Home</a></li>
-                            <li class="quick-link-item"><a href="booking.html"><i
-                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
-                                    Flight</a></li>
-                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                                        aria-hidden="true"></i> Special Offers</a></li>
-                            <li class="quick-link-item"><a href="about-us.html"><i
-                                        class="fas fa-info-circle link-icon w-5" aria-hidden="true"></i> About Us</a>
-                            </li>
-                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                                        aria-hidden="true"></i> Contact</a></li>
-                            <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                                        aria-hidden="true"></i> Flight Status</a></li>
-                            <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                                        aria-hidden="true"></i> Manage Booking</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-headset"></i>
-                        Customer Support
-                    </h3>
-                    <div class="text-gray-300 space-y-3">
-                        <p>
-                            <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                                support@destinova.com
-                            </a>
-                        </p>
-                        <p>
-                            <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                                +91 1234567891
-                            </a>
-                        </p>
-                        <div class="support-badge">
-                            <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-                            24/7 Assistance
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-share-nodes"></i>
-                        Stay Connected
-                    </h3>
-                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-                        <div class="newsletter-input-wrapper">
-                            <input type="email" placeholder="Your email address" required
-                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                                aria-label="Email address for newsletter">
-                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Facebook" role="listitem">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Twitter" role="listitem">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Instagram" role="listitem">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on LinkedIn" role="listitem">
-                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Subscribe to our YouTube channel" role="listitem">
-                            <i class="fab fa-youtube" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-                    <span aria-hidden="true">|</span>
-                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
-                </nav>
-                <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-                    <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-                    <span>Trusted by 1M+ Travelers</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-plane-up"></i>
+    <!-- Skip Navigation for Accessibility -->
+    <a href="#main-form" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-primary focus:rounded">
+        Skip to sign in form
     </a>
-    <!-- FOOTER END -->
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/index.js"></script>
+
+    <!-- Main Container -->
+    <div class="flex flex-col lg:flex-row h-screen">
+        
+        <!-- LEFT SECTION: Hero Panel (58% on desktop, 200px on mobile) -->
+        <div class="lg:w-[58%] h-[200px] lg:h-full relative overflow-hidden hero-bg animate-fade-in-left" role="banner">
+            
+            <!-- Cloud Elements -->
+            <div class="cloud" style="width: 200px; height: 60px; top: 10%; left: -200px; animation-delay: 0s;"></div>
+            <div class="cloud" style="width: 300px; height: 80px; top: 40%; left: -300px; animation-delay: 20s;"></div>
+            <div class="cloud" style="width: 250px; height: 70px; top: 70%; left: -250px; animation-delay: 40s;"></div>
+
+            <!-- Floating Airplane Graphics with Depth Layers -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none z-10">
+                <!-- Foreground Airplane (Bottom-Right) -->
+                <i class="fas fa-plane airplane-icon airplane-foreground absolute text-white text-6xl lg:text-8xl animate-float-slow" 
+                   style="bottom: 15%; right: 10%;" 
+                   aria-hidden="true"></i>
+                
+                <!-- Midground Airplane (Center) -->
+                <i class="fas fa-plane-departure airplane-icon airplane-midground absolute text-white text-5xl lg:text-7xl animate-float" 
+                   style="top: 35%; left: 20%;" 
+                   aria-hidden="true"></i>
+                
+                <!-- Background Airplane (Top-Left) -->
+                <i class="fas fa-paper-plane airplane-icon airplane-background absolute text-white text-4xl lg:text-6xl animate-float" 
+                   style="top: 15%; left: 5%; animation-delay: 30s;" 
+                   aria-hidden="true"></i>
+            </div>
+            
+            <!-- Value Proposition Floating Badge -->
+            <div class="absolute top-8 right-8 z-20 hidden lg:block animate-fade-in" style="animation-delay: 1s;">
+                <div class="bg-white rounded-base shadow-2xl px-6 py-4 border-l-4 border-primary-light flex items-center gap-3">
+                    <i class="fas fa-tag text-primary text-2xl"></i>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-800">Save up to $400</p>
+                        <p class="text-xs text-gray-600">on your next flight</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-20 flex flex-col justify-center h-full px-6 lg:px-16 text-white">
+                <!-- Logo -->
+                <div class="mb-4 lg:mb-8 animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-plane-departure text-3xl lg:text-5xl" style="color: var(--champagne-gold);"></i>
+                        <h1 class="text-3xl lg:text-6xl font-bold tracking-tight">
+                            Desti<span style="color: var(--champagne-gold);">nova</span>
+                        </h1>
+                    </div>
+                    <div class="h-1 w-20 lg:w-28 rounded-full" style="background: var(--champagne-gold);"></div>
+                </div>
+                
+                <!-- Headlines -->
+                <h2 class="headline hidden lg:block mb-0 animate-fade-in" style="animation-delay: 0.3s;">
+                    Fly Beyond Limits.
+                </h2>
+                
+                <h2 class="subheadline hidden lg:block -mt-2 mb-6 animate-fade-in" style="animation-delay: 0.4s;">
+                    Travel with Confidence.
+                </h2>
+                
+                <!-- Mobile Simplified Headline -->
+                <h2 class="lg:hidden text-2xl font-bold mb-3 animate-fade-in" style="animation-delay: 0.3s;">
+                    Fly Beyond Limits
+                </h2>
+                
+                <!-- Updated Body Copy -->
+                <p class="hidden lg:block text-lg text-white/88 mb-8 max-w-[480px] leading-relaxed animate-fade-in" style="animation-delay: 0.5s;">
+                    Book smarter with AI-powered price predictions, instant refunds, and 24/7 concierge support. Your next adventure starts here.
+                </p>
+                
+                <!-- Trust Badges with Glassmorphism -->
+                <div class="hidden lg:flex items-center gap-4 mb-6 animate-fade-in" style="animation-delay: 0.6s;">
+                                    <!-- Trust Badges -->
+                <div class="flex flex-wrap justify-center gap-4 badge-container" style="animation-delay: 0.4s;">
+                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
+                        <i class="fas fa-lock text-3xl text-white"></i>
+                        <span class="text-white font-medium text-base">256-bit Encryption</span>
+                    </div>
+                    
+                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
+                        <i class="fas fa-headset text-3xl text-white"></i>
+                        <span class="text-white font-medium text-base">Live Support 24/7</span>
+                    </div>
+                    
+                    <div class="trust-badge badge-item flex items-center gap-3 px-7 py-4 rounded-xl cursor-pointer">
+                        <i class="fas fa-badge-check text-3xl text-white"></i>
+                        <span class="text-white font-medium text-base">Price Match Promise</span>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Social Proof Stats -->
+                <div class="hidden lg:block text-sm text-white/75 animate-fade-in" style="animation-delay: 0.7s;">
+                    <span class="inline-flex items-center gap-2">
+                        <span class="text-yellow-400 text-base">★★★★★</span>
+                        <span class="font-medium">4.8 on Trustpilot</span>
+                        <span class="mx-2">•</span>
+                        <span class="font-medium">2M+ travelers</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RIGHT SECTION: Form Panel (42% on desktop) -->
+        <div class="lg:w-[42%] flex items-center justify-center form-panel p-6 lg:px-12 lg:py-16 overflow-y-auto animate-fade-in-right" id="main-form" role="main" style="background: var(--background-cream);">
+            <div class="w-full max-w-md">
+                
+                <!-- Auth Card -->
+                <div class="w-full">
+                    
+                    <!-- Header -->
+                    <div class="text-center mb-10">
+                        <!-- User Icon Circle -->
+                        <div class="inline-flex items-center justify-center w-[72px] h-[72px] rounded-full mb-6 shadow-lg" style="background: linear-gradient(135deg, var(--emerald-dark), var(--primary-emerald));">
+                            <i class="fas fa-user text-white text-[32px]"></i>
+                        </div>
+                        
+                        <!-- Title -->
+                        <h2 class="text-[32px] font-bold mb-2 tracking-tight" style="letter-spacing: -0.01em; color: var(--text-charcoal);">
+                            Welcome Back
+                        </h2>
+                        
+                        <!-- Subtitle -->
+                        <p class="text-base mb-4" style="color: var(--text-slate);">
+                            Sign in to continue your journey
+                        </p>
+
+                        <!-- Social Proof Callout -->
+                        <div class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full animate-count-up" style="background: var(--champagne-light); color: var(--primary-emerald);">
+                            <i class="fas fa-check-circle" style="color: var(--emerald-light);"></i>
+                            <span>Join 2.4M travelers who saved 30% on average</span>
+                        </div>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <form id="signin-form" class="space-y-8" novalidate>
+                        
+                        <!-- Email Field -->
+                        <div class="relative form-element">
+                            <div class="relative">
+                                <i class="fas fa-envelope input-icon absolute left-4 top-1/2 -translate-y-1/2 text-xl pointer-events-none z-10"></i>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email"
+                                    required
+                                    placeholder=" "
+                                    inputmode="email"
+                                    autocomplete="email"
+                                    aria-label="Email Address"
+                                    aria-required="true"
+                                    aria-describedby="email-error"
+                                    class="floating-input w-full h-[56px] pl-12 pr-4 text-base rounded-base border-2 transition-all duration-200 outline-none" style="border-color: var(--champagne-gold); background: transparent;"
+                                />
+                                <label for="email" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 px-2 rounded text-base" style="color: var(--text-light); background: transparent;">
+                                    your.email@example.com
+                                </label>
+                            </div>
+                            <div id="email-error" class="error-message hidden mt-2" role="alert" aria-live="polite">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Please enter a valid email address</span>
+                            </div>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="relative form-element">
+                            <div class="relative">
+                                <i class="fas fa-lock input-icon absolute left-4 top-1/2 -translate-y-1/2 text-xl pointer-events-none z-10"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password"
+                                    required
+                                    placeholder=" "
+                                    autocomplete="current-password"
+                                    aria-label="Password"
+                                    aria-required="true"
+                                    aria-describedby="password-error"
+                                    class="floating-input w-full h-[56px] pl-12 pr-14 text-base rounded-base border-2 transition-all duration-200 outline-none" style="border-color: var(--champagne-gold); background: transparent;"
+                                />
+                                <label for="password" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 px-2 rounded text-base" style="color: var(--text-light); background: transparent;">
+                                    Enter your password
+                                </label>
+                                <button 
+                                    type="button" 
+                                    id="toggle-password"
+                                    aria-label="Toggle password visibility"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary-light cursor-pointer transition-colors duration-200 w-11 h-11 flex items-center justify-center"
+                                >
+                                    <i class="fas fa-eye text-xl" id="password-icon"></i>
+                                </button>
+                            </div>
+                            <div id="password-error" class="error-message hidden mt-2" role="alert" aria-live="polite">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Password must be at least 8 characters</span>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between text-[15px] form-element">
+                            <label class="flex items-center cursor-pointer group">
+                                <input 
+                                    type="checkbox" 
+                                    id="remember-me"
+                                    aria-label="Remember me"
+                                    class="custom-checkbox"
+                                />
+                                <span class="ml-3 select-none" style="color: var(--text-slate);">
+                                    Remember me
+                                </span>
+                            </label>
+                            <a 
+                                href="forgot-password.html" 
+                                class="font-medium hover-underline transition-colors" style="color: var(--emerald-light);"
+                            >
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit"
+                            aria-label="Sign in to your account"
+                            class="cta-button form-element w-full h-[56px] text-white font-semibold text-[17px] rounded-base shadow-lg relative z-10 flex items-center justify-center gap-2 group"
+                            style="letter-spacing: 0.02em;"
+                        >
+                            <span>Sign In</span>
+                            <i class="fas fa-arrow-right text-xl group-hover:translate-x-1 transition-transform duration-200"></i>
+                        </button>
+
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative my-8 form-element">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t" style="border-color: var(--champagne-gold);"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4" style="background: var(--background-cream); color: var(--text-slate);">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Login Buttons -->
+                    <div class="grid grid-cols-3 gap-3 form-element">
+                                                <button 
+                            type="button"
+                            aria-label="Sign in with Google"
+                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                        >
+                            <i class="fab fa-google text-4xl text-red-500"></i>
+                        </button>
+                        
+                        <button 
+                            type="button"
+                            aria-label="Sign in with Facebook"
+                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                        >
+                            <i class="fab fa-facebook text-4xl text-blue-600"></i>
+                        </button>
+                        
+                        <button 
+                            type="button"
+                            aria-label="Sign in with Apple"
+                            class="social-btn h-[56px] flex items-center justify-center bg-transparent border-0"
+                        >
+                            <i class="fab fa-apple text-4xl text-gray-800"></i>
+                        </button>
+                    </div>
+
+                    <!-- Sign Up Link -->
+                    <div class="text-center mt-8 pt-8 border-t form-element" style="border-color: var(--champagne-gold);">
+                        <p class="text-[15px]" style="color: var(--text-slate);">
+                            Don't have an account? 
+                            <a 
+                                href="sign-up.html" 
+                                class="font-semibold hover-underline ml-1" style="color: var(--emerald-light);"
+                            >
+                                Create Account
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Footer Disclaimer -->
+                <p class="text-center text-[13px] text-gray-500 mt-8 px-4 max-w-[90%] mx-auto leading-relaxed">
+                    By signing in, you agree to our 
+                    <a href="terms-conditions.html" class="text-primary-light hover-underline">Terms of Service</a> 
+                    and 
+                    <a href="privacy-policy.html" class="text-primary-light hover-underline">Privacy Policy</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Custom Sign In JavaScript -->
     <script src="../js/sign-in.js"></script>
 </body>
-
 </html>

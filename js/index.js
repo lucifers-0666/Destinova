@@ -1188,4 +1188,564 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     initializeCookieBanner();
+
+    // ============================================= 
+    // TRUST INDICATORS: MODAL FUNCTIONALITY
+    // ============================================= 
+    
+    function initializeTrustModals() {
+        const modalTriggers = document.querySelectorAll('.trust-modal-trigger');
+        const modals = document.querySelectorAll('.trust-modal');
+        
+        // Open modal
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                const modalId = this.dataset.modal;
+                const modal = document.getElementById(`${modalId}-modal`);
+                
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animate in
+                    setTimeout(() => {
+                        modal.querySelector('.trust-modal-content').style.animation = 'slideUp 0.3s ease';
+                    }, 10);
+                }
+            });
+        });
+        
+        // Close modal handlers
+        modals.forEach(modal => {
+            // Close button
+            const closeButtons = modal.querySelectorAll('.trust-modal-close');
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', () => closeTrustModal(modal));
+            });
+            
+            // Overlay click
+            const overlay = modal.querySelector('.trust-modal-overlay');
+            if (overlay) {
+                overlay.addEventListener('click', () => closeTrustModal(modal));
+            }
+            
+            // Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    closeTrustModal(modal);
+                }
+            });
+        });
+    }
+    
+    function closeTrustModal(modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
+    // ============================================= 
+    // TRUST INDICATORS: CHAT NOW BUTTON
+    // ============================================= 
+    
+    function initializeTrustChatButtons() {
+        const chatButtons = document.querySelectorAll('.trust-cta-btn');
+        
+        chatButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Trigger the live chat widget
+                const liveChatBtn = document.getElementById('live-chat-btn');
+                if (liveChatBtn) {
+                    liveChatBtn.click();
+                } else {
+                    // Fallback: open contact page
+                    window.location.href = 'contact-us.html?subject=Chat%20Support';
+                }
+            });
+        });
+    }
+    
+    // ============================================= 
+    // TRUST INDICATORS: SMOOTH SCROLL TO FAQ
+    // ============================================= 
+    
+    function initializeTrustLearnMoreLinks() {
+        const learnMoreLinks = document.querySelectorAll('.trust-link[href^="#"]');
+        
+        learnMoreLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                
+                // Check if FAQ section exists
+                const faqSection = document.querySelector('.faq-section');
+                if (faqSection) {
+                    faqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // Scroll to offers or contact page
+                    window.location.href = 'faq.html';
+                }
+            });
+        });
+    }
+    
+    // ============================================= 
+    // TRUST INDICATORS: ANIMATION ON SCROLL
+    // ============================================= 
+    
+    function initializeTrustPillarAnimations() {
+        const trustPillars = document.querySelectorAll('.trust-pillar');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        trustPillars.forEach(pillar => {
+            observer.observe(pillar);
+        });
+    }
+    
+    // Initialize all trust indicator features
+    if (document.querySelector('.trust-indicators-section')) {
+        initializeTrustModals();
+        initializeTrustChatButtons();
+        initializeTrustLearnMoreLinks();
+        initializeTrustPillarAnimations();
+    }
+
+    // ============================================= 
+    // SOCIAL PROOF: ANIMATED STATISTICS COUNTERS
+    // ============================================= 
+    
+    function initializeStatisticsCounters() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        if (statNumbers.length === 0) return;
+
+        // Counter animation function
+        function animateCounter(element, start, target, duration, decimals = 0, suffix = '') {
+            const increment = (target - start) / (duration / 16); // 60fps
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                
+                if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                // Format number
+                let displayValue;
+                if (decimals > 0) {
+                    displayValue = current.toFixed(decimals);
+                } else {
+                    displayValue = Math.floor(current).toLocaleString();
+                }
+                
+                element.textContent = displayValue + suffix;
+            }, 16);
+        }
+
+        // Intersection Observer for scroll-triggered animation
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    const element = entry.target;
+                    const target = parseFloat(element.dataset.target);
+                    const decimals = parseInt(element.dataset.decimals) || 0;
+                    const suffix = element.dataset.suffix || '';
+                    
+                    // Mark as counted to prevent re-animation
+                    element.classList.add('counted');
+                    
+                    // Start animation
+                    animateCounter(element, 0, target, 2000, decimals, suffix);
+                    
+                    // Animate parent stat-item
+                    const statItem = element.closest('.stat-item');
+                    if (statItem) {
+                        setTimeout(() => {
+                            statItem.classList.add('animated');
+                        }, 100);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all stat numbers
+        statNumbers.forEach(statNumber => {
+            observer.observe(statNumber);
+        });
+    }
+
+    // ============================================= 
+    // SOCIAL PROOF: LIVE ACTIVITY COUNTER
+    // ============================================= 
+    
+    function initializeLiveActivityCounter() {
+        const liveCounter = document.getElementById('live-counter');
+        
+        if (!liveCounter) return;
+
+        const startValue = parseInt(liveCounter.dataset.start) || 127;
+        const maxValue = parseInt(liveCounter.dataset.max) || 350;
+        let currentValue = startValue;
+
+        // Update counter every 3-5 seconds with random increment
+        function updateLiveCounter() {
+            const randomIncrement = Math.floor(Math.random() * 10) + 3; // 3-12 increment
+            const newValue = currentValue + randomIncrement;
+            
+            // Reset if exceeds max
+            if (newValue > maxValue) {
+                currentValue = startValue + Math.floor(Math.random() * 50);
+            } else {
+                currentValue = newValue;
+            }
+            
+            // Animate number change
+            liveCounter.style.transform = 'scale(1.2)';
+            liveCounter.style.color = '#ff6b35';
+            
+            setTimeout(() => {
+                liveCounter.textContent = currentValue;
+                liveCounter.style.transform = 'scale(1)';
+                liveCounter.style.color = 'var(--primary-emerald)';
+            }, 150);
+            
+            // Random interval between 3-5 seconds
+            const nextUpdate = (Math.random() * 2000) + 3000;
+            setTimeout(updateLiveCounter, nextUpdate);
+        }
+
+        // Start after initial delay
+        setTimeout(updateLiveCounter, 4000);
+    }
+
+    // ============================================= 
+    // SOCIAL PROOF: STAT ITEM HOVER EFFECTS
+    // ============================================= 
+    
+    function initializeStatHoverEffects() {
+        const statItems = document.querySelectorAll('.stat-item');
+        
+        statItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                // Track engagement for analytics
+                if (typeof gtag !== 'undefined') {
+                    const label = this.querySelector('.stat-label')?.textContent;
+                    gtag('event', 'stat_hover', {
+                        'event_category': 'social_proof',
+                        'event_label': label
+                    });
+                }
+            });
+        });
+    }
+
+    // ============================================= 
+    // SOCIAL PROOF: REVIEWS LINK HANDLER
+    // ============================================= 
+    
+    function initializeReviewsLink() {
+        const reviewsLink = document.querySelector('.stat-link[href="#reviews"]');
+        
+        if (reviewsLink) {
+            reviewsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Check if reviews section exists
+                const reviewsSection = document.querySelector('.reviews-section, #reviews, .testimonials-section');
+                
+                if (reviewsSection) {
+                    reviewsSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                } else {
+                    // Fallback: navigate to reviews page
+                    window.location.href = 'reviews.html';
+                }
+            });
+        }
+    }
+
+    // Initialize all social proof features
+    if (document.querySelector('.social-proof-statistics')) {
+        initializeStatisticsCounters();
+        initializeLiveActivityCounter();
+        initializeStatHoverEffects();
+        initializeReviewsLink();
+    }
+
+    // ============================================= 
+    // POPULAR DESTINATIONS GALLERY
+    // ============================================= 
+    
+    function initializeDestinationsGallery() {
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const destinationCards = document.querySelectorAll('.destination-card');
+        const skeletonGrid = document.getElementById('destinations-skeleton');
+        const destinationsGrid = document.getElementById('destinations-grid');
+        const viewAllBtn = document.querySelector('.view-all-destinations-btn');
+        
+        // Show skeleton loading state initially (simulate loading)
+        if (skeletonGrid && destinationsGrid) {
+            skeletonGrid.style.display = 'grid';
+            destinationsGrid.style.opacity = '0';
+            
+            // Simulate data loading
+            setTimeout(() => {
+                skeletonGrid.style.display = 'none';
+                destinationsGrid.style.opacity = '1';
+            }, 800);
+        }
+        
+        // Filter tabs functionality
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Update active tab
+                filterTabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                
+                // Filter cards with animation
+                filterDestinations(category);
+                
+                // Track filter usage
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'destination_filter', {
+                        'event_category': 'destinations',
+                        'event_label': category
+                    });
+                }
+            });
+            
+            // Keyboard navigation
+            tab.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // Card click handlers
+        destinationCards.forEach(card => {
+            // Click to view destination
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking the CTA button
+                if (e.target.closest('.destination-cta-btn')) return;
+                
+                const destinationName = this.querySelector('.destination-name')?.textContent;
+                handleDestinationClick(destinationName);
+            });
+            
+            // CTA button click
+            const ctaBtn = card.querySelector('.destination-cta-btn');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const destinationName = card.querySelector('.destination-name')?.textContent;
+                    handleDestinationSearch(destinationName);
+                });
+            }
+            
+            // Keyboard navigation
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const destinationName = this.querySelector('.destination-name')?.textContent;
+                    handleDestinationClick(destinationName);
+                }
+            });
+        });
+        
+        // View All button
+        if (viewAllBtn) {
+            viewAllBtn.addEventListener('click', function() {
+                window.location.href = 'destinations.html';
+            });
+        }
+    }
+    
+    // Filter destinations by category
+    function filterDestinations(category) {
+        const cards = document.querySelectorAll('.destination-card');
+        
+        cards.forEach((card, index) => {
+            const cardCategory = card.dataset.category;
+            
+            if (category === 'all' || cardCategory === category) {
+                // Fade in matching cards with stagger
+                setTimeout(() => {
+                    card.style.display = 'flex';
+                    card.style.animation = 'fadeInUp 0.5s ease forwards';
+                }, index * 50);
+            } else {
+                // Fade out non-matching cards
+                card.style.animation = 'fadeOut 0.3s ease forwards';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
+    
+    // Handle destination card click
+    function handleDestinationClick(destinationName) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'destination_view', {
+                'event_category': 'destinations',
+                'event_label': destinationName
+            });
+        }
+        
+        // Navigate to search results or destination page
+        console.log('Viewing destination:', destinationName);
+        // window.location.href = `destination-details.html?destination=${encodeURIComponent(destinationName)}`;
+    }
+    
+    // Handle search flights for destination
+    function handleDestinationSearch(destinationName) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'destination_search', {
+                'event_category': 'destinations',
+                'event_label': destinationName
+            });
+        }
+        
+        // Pre-fill search form and navigate to results
+        console.log('Searching flights to:', destinationName);
+        
+        // Extract city name (before comma)
+        const cityName = destinationName.split(',')[0].trim();
+        
+        // Set destination in localStorage for search form
+        localStorage.setItem('searchDestination', cityName);
+        
+        // Navigate to booking page or scroll to search
+        window.location.href = `booking.html?to=${encodeURIComponent(cityName)}`;
+    }
+    
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // ============================================= 
+    // DESTINATIONS: LAZY LOADING IMAGES
+    // ============================================= 
+    
+    function initializeDestinationImagesLazyLoad() {
+        const images = document.querySelectorAll('.destination-card-image[loading="lazy"]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+    }
+    
+    // ============================================= 
+    // DESTINATIONS: ACCESSIBILITY ENHANCEMENTS
+    // ============================================= 
+    
+    function enhanceDestinationsAccessibility() {
+        const cards = document.querySelectorAll('.destination-card');
+        
+        cards.forEach(card => {
+            const destinationName = card.querySelector('.destination-name')?.textContent;
+            const price = card.querySelector('.price-value')?.textContent;
+            const rating = card.querySelector('.destination-rating span')?.textContent;
+            
+            // Add comprehensive aria-label
+            card.setAttribute('aria-label', 
+                `${destinationName}. Rating ${rating} out of 5 stars. Flights from ${price}. Press Enter to view details.`
+            );
+        });
+        
+        // Announce filter changes to screen readers
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const visibleCards = document.querySelectorAll('.destination-card[style*="display: flex"]').length;
+                
+                // Create live region for announcements
+                let liveRegion = document.getElementById('destinations-live-region');
+                if (!liveRegion) {
+                    liveRegion = document.createElement('div');
+                    liveRegion.id = 'destinations-live-region';
+                    liveRegion.setAttribute('aria-live', 'polite');
+                    liveRegion.setAttribute('aria-atomic', 'true');
+                    liveRegion.className = 'sr-only';
+                    document.body.appendChild(liveRegion);
+                }
+                
+                setTimeout(() => {
+                    liveRegion.textContent = `Showing ${visibleCards} ${category === 'all' ? '' : category} destinations`;
+                }, 300);
+            });
+        });
+    }
+    
+    // Initialize destinations gallery features
+    if (document.querySelector('.destinations-gallery-section')) {
+        initializeDestinationsGallery();
+        initializeDestinationImagesLazyLoad();
+        enhanceDestinationsAccessibility();
+    }
 });
