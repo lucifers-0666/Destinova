@@ -67,18 +67,47 @@ export default function DestinovaLogin() {
         {/* Hero */}
         <section
           ref={heroRef}
-          className="relative lg:w-[45%] h-[30vh] lg:h-auto overflow-hidden"
+          className="relative lg:w-[60%] h-[30vh] lg:h-auto overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, #2d5f3f 0%, #1f4430 100%)',
+            background: `
+              linear-gradient(135deg, rgba(45, 95, 63, 0.85) 0%, rgba(31, 68, 48, 0.9) 100%),
+              url('../site-images/FC-P1.webp') center/cover no-repeat,
+              url('../site-images/FC-P2.webp') center/cover no-repeat
+            `,
+            backgroundBlendMode: 'overlay, normal, overlay',
           }}
         >
+          {/* Enhanced Background Overlay */}
           <div className="absolute inset-0" style={{
-            backgroundImage: "url('../site-images/FC-P1.webp')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.12,
+            background: `
+              url('../site-images/BC-P1.webp') right center/30% no-repeat,
+              url('../site-images/PEC-P1.webp') left center/25% no-repeat,
+              radial-gradient(circle at 30% 40%, rgba(184, 212, 195, 0.1) 0%, transparent 60%)
+            `,
+            backgroundBlendMode: 'overlay, overlay, normal',
+            opacity: 0.6,
             transform: 'translate3d(var(--parallax-x,0), var(--parallax-y,0), 0)'
           }} />
+          
+          {/* Floating Background Elements */}
+          <div className="absolute inset-0 pointer-events-none opacity-10">
+            <div 
+              className="absolute top-10 right-1/3 w-20 h-20 rounded-full"
+              style={{
+                backgroundImage: "url('../site-images/BC-P2.jpg')",
+                backgroundSize: 'cover',
+                animation: 'float 60s ease-in-out infinite'
+              }}
+            />
+            <div 
+              className="absolute bottom-1/4 left-10 w-16 h-16 rounded-full"
+              style={{
+                backgroundImage: "url('../site-images/PEC-P2.jpg')",
+                backgroundSize: 'cover',
+                animation: 'float 45s ease-in-out infinite reverse'
+              }}
+            />
+          </div>
 
           <div className="relative z-10 h-full px-6 lg:px-16 py-10 flex flex-col justify-center text-white">
             <div className="flex items-center gap-3 mb-8">
@@ -128,8 +157,35 @@ export default function DestinovaLogin() {
         </section>
 
         {/* Login */}
-        <section className="lg:w-[55%] bg-[#f8f9f5] flex items-center justify-center py-10 px-6 lg:px-12">
-          <div className="w-full max-w-[480px] bg-white rounded-[20px] p-[48px_40px] shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+        <section className="lg:w-[40%] relative overflow-hidden flex items-center justify-center py-10 px-6 lg:px-12" style={{
+          background: `
+            linear-gradient(135deg, #f8f9f5 0%, #f3f4f0 100%),
+            url('../site-images/EC-P1.jpg')
+          `,
+          backgroundSize: 'cover, cover',
+          backgroundBlendMode: 'normal, overlay'
+        }}>
+          {/* Subtle Background Pattern */}
+          <div className="absolute inset-0 pointer-events-none opacity-5">
+            <div 
+              className="absolute top-10 right-10 w-32 h-32 rounded-full"
+              style={{
+                backgroundImage: "url('../site-images/card1_ps.jpg')",
+                backgroundSize: 'cover',
+                animation: 'float 70s ease-in-out infinite'
+              }}
+            />
+            <div 
+              className="absolute bottom-20 left-10 w-24 h-24 rounded-full"
+              style={{
+                backgroundImage: "url('../site-images/des_pg_crd4.jpg')",
+                backgroundSize: 'cover',
+                animation: 'float 90s ease-in-out infinite reverse'
+              }}
+            />
+          </div>
+          
+          <div className="w-full max-w-[420px] bg-white rounded-[20px] p-[40px_32px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] relative z-10">
             <header className="text-center mb-6">
               <h2 className="text-[36px] font-bold text-[#1a1a1a] mb-2">Welcome Back</h2>
               <p className="text-[16px] text-[#666]">Sign in to continue your journey</p>

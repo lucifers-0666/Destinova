@@ -323,20 +323,30 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeStatsCounter();
     initializeFAQ();
 
-    // Initialize AOS for other sections with enhanced settings
+    // Initialize AOS for other sections with optimized settings for smooth scrolling
     AOS.init({
-        duration: 800,
+        duration: 600,
         once: true,
-        offset: 100,
-        easing: 'ease-out-quad',
-        delay: 0
+        offset: 50, // Reduced offset so animations start earlier
+        easing: 'ease-out-cubic',
+        delay: 0,
+        mirror: false, // Don't animate out
+        anchorPlacement: 'top-bottom', // Start animation when top of element hits bottom of viewport
+        disable: false,
+        startEvent: 'DOMContentLoaded',
+        animatedClassName: 'aos-animate',
+        initClassName: 'aos-init',
+        useClassNames: false,
+        disableMutationObserver: false,
+        debounceDelay: 50,
+        throttleDelay: 99,
     });
 
     // --- ENHANCED SCROLL ANIMATIONS ---
     function addScrollAnimations() {
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.05, // Lower threshold for earlier trigger
+            rootMargin: '0px 0px -100px 0px' // Start earlier
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1748,4 +1758,353 @@ document.addEventListener('DOMContentLoaded', function () {
         initializeDestinationImagesLazyLoad();
         enhanceDestinationsAccessibility();
     }
+
+    // =============================================
+    // NEW SECTIONS: INTERACTIVE FUNCTIONALITY
+    // =============================================
+
+    // ============================================= 
+    // FLASH DEALS TICKER ANIMATION
+    // ============================================= 
+    function initializeFlashDealsTicker() {
+        const ticker = document.getElementById('deals-ticker');
+        if (!ticker) return;
+
+        // Clone deals for seamless loop
+        const tickerContent = ticker.innerHTML;
+        ticker.innerHTML = tickerContent + tickerContent;
+
+        // Pause animation on hover
+        ticker.addEventListener('mouseenter', () => {
+            ticker.style.animationPlayState = 'paused';
+        });
+
+        ticker.addEventListener('mouseleave', () => {
+            ticker.style.animationPlayState = 'running';
+        });
+    }
+
+    // ============================================= 
+    // POPULAR ROUTES: CLICK TO SEARCH
+    // ============================================= 
+    function initializePopularRoutes() {
+        const routeCards = document.querySelectorAll('.route-card');
+        const toInput = document.getElementById('to');
+        const fromInput = document.getElementById('from');
+        const searchSection = document.getElementById('search-section-anchor');
+
+        routeCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.route-cta-btn')) {
+                    const fromCode = this.dataset.from;
+                    const toCode = this.dataset.to;
+                    const cityFrom = this.querySelector('.city-from').textContent;
+                    const cityTo = this.querySelector('.city-to').textContent;
+
+                    // Populate search form
+                    if (fromInput && toInput) {
+                        fromInput.value = `${cityFrom} (${fromCode})`;
+                        toInput.value = `${cityTo} (${toCode})`;
+
+                        // Scroll to search section
+                        if (searchSection) {
+                            searchSection.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'start' 
+                            });
+
+                            // Highlight the search button
+                            setTimeout(() => {
+                                const searchBtn = document.querySelector('.search-flights-btn');
+                                if (searchBtn) {
+                                    searchBtn.style.animation = 'pulse 1s ease-in-out 3';
+                                }
+                            }, 800);
+                        }
+                    }
+                }
+            });
+
+            // Add hover sound effect (optional)
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+        });
+    }
+
+    // ============================================= 
+    // LAST-MINUTE DEALS CAROUSEL
+    // ============================================= 
+    function initializeLastMinuteCarousel() {
+        const carousel = document.querySelector('.last-minute-carousel');
+        const prevBtn = document.querySelector('.last-minute-carousel-container .prev-btn');
+        const nextBtn = document.querySelector('.last-minute-carousel-container .next-btn');
+        
+        if (!carousel || !prevBtn || !nextBtn) return;
+
+        let currentIndex = 0;
+        const cards = carousel.querySelectorAll('.lastminute-card');
+        const totalCards = cards.length;
+        let cardsToShow = getCardsToShow();
+
+        function getCardsToShow() {
+            if (window.innerWidth < 768) return 1;
+            if (window.innerWidth < 1024) return 2;
+            return 3;
+        }
+
+        function updateCarousel() {
+            const cardWidth = cards[0].offsetWidth;
+            const gap = 24; // 1.5rem = 24px
+            const offset = currentIndex * (cardWidth + gap);
+            carousel.style.transform = `translateX(-${offset}px)`;
+            carousel.style.transition = 'transform 0.5s ease-in-out';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = Math.max(0, currentIndex - 1);
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = totalCards - cardsToShow;
+            currentIndex = Math.min(maxIndex, currentIndex + 1);
+            updateCarousel();
+        });
+
+        // Update on window resize
+        window.addEventListener('resize', () => {
+            cardsToShow = getCardsToShow();
+            currentIndex = Math.min(currentIndex, totalCards - cardsToShow);
+            updateCarousel();
+        });
+
+        // Auto-scroll every 5 seconds
+        let autoScrollInterval = setInterval(() => {
+            const maxIndex = totalCards - cardsToShow;
+            if (currentIndex >= maxIndex) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            updateCarousel();
+        }, 5000);
+
+        // Pause auto-scroll on hover
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoScrollInterval);
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            autoScrollInterval = setInterval(() => {
+                const maxIndex = totalCards - cardsToShow;
+                if (currentIndex >= maxIndex) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex++;
+                }
+                updateCarousel();
+            }, 5000);
+        });
+
+        // Book now button functionality
+        const bookNowBtns = document.querySelectorAll('.lastminute-cta-btn');
+        bookNowBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.lastminute-card');
+                const destination = card.querySelector('.lastminute-route > span:first-child').textContent;
+                
+                // Show confirmation animation
+                this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+                this.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                
+                setTimeout(() => {
+                    this.innerHTML = 'Book Now <i class="fas fa-arrow-right"></i>';
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+    }
+
+    // ============================================= 
+    // AIRLINE PARTNERS: HOVER EFFECT
+    // ============================================= 
+    function initializeAirlinePartners() {
+        const partnerItems = document.querySelectorAll('.partner-logo-item');
+        
+        partnerItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const airlineName = this.querySelector('.partner-name').textContent;
+                
+                // Show tooltip or modal with airline info (optional)
+                console.log(`Showing flights from ${airlineName}`);
+                
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    }
+
+    // ============================================= 
+    // PRICE COMPARISON: ANIMATE ON SCROLL
+    // ============================================= 
+    function initializePriceComparison() {
+        const comparisonSection = document.querySelector('.price-comparison-section');
+        if (!comparisonSection) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const logos = entry.target.querySelectorAll('.airline-logo');
+                    logos.forEach((logo, index) => {
+                        setTimeout(() => {
+                            logo.style.animation = 'fadeInUp 0.5s ease forwards';
+                            logo.style.opacity = '1';
+                        }, index * 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(comparisonSection);
+    }
+
+    // ============================================= 
+    // URGENCY TIMER FOR LAST-MINUTE DEALS
+    // ============================================= 
+    function initializeUrgencyTimers() {
+        const urgencyBadges = document.querySelectorAll('.urgency-badge');
+        
+        urgencyBadges.forEach(badge => {
+            const text = badge.querySelector('span').textContent;
+            const days = parseInt(text.match(/\d+/));
+            
+            // Update color based on urgency
+            if (days <= 2) {
+                badge.classList.add('urgent');
+            }
+            
+            // Add pulsing animation for very urgent deals
+            if (days === 1) {
+                badge.style.animation = 'urgencyPulse 0.8s ease-in-out infinite';
+            }
+        });
+    }
+
+    // ============================================= 
+    // SMOOTH SCROLL FOR DEALS BUTTONS
+    // ============================================= 
+    function initializeDealsButtons() {
+        const viewAllDealsBtn = document.querySelector('.view-all-deals-btn');
+        
+        if (viewAllDealsBtn) {
+            viewAllDealsBtn.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(255,255,255,0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        }
+    }
+
+    // Initialize all new features
+    if (document.querySelector('.flash-deals-banner')) {
+        initializeFlashDealsTicker();
+    }
+
+    if (document.querySelector('.popular-routes-section')) {
+        initializePopularRoutes();
+    }
+
+    if (document.querySelector('.last-minute-deals-section')) {
+        initializeLastMinuteCarousel();
+        initializeUrgencyTimers();
+    }
+
+    if (document.querySelector('.airline-partners-section')) {
+        initializeAirlinePartners();
+    }
+
+    if (document.querySelector('.price-comparison-section')) {
+        initializePriceComparison();
+    }
+
+    initializeDealsButtons();
+
+    // ============================================= 
+    // SMOOTH SCROLL OPTIMIZATION
+    // ============================================= 
+    function optimizeSmoothScrolling() {
+        // Debounce scroll events for better performance
+        let scrollTimeout;
+        let isScrolling = false;
+
+        window.addEventListener('scroll', function() {
+            if (!isScrolling) {
+                isScrolling = true;
+                document.body.classList.add('is-scrolling');
+            }
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                isScrolling = false;
+                document.body.classList.remove('is-scrolling');
+            }, 150);
+        }, { passive: true });
+
+        // Preload sections on scroll (exclude footer)
+        const sections = document.querySelectorAll('section:not(.destinova-footer):not(.home-hero)');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.01,
+            rootMargin: '100px 0px'
+        });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+            sectionObserver.observe(section);
+        });
+
+        // Make hero and footer immediately visible
+        const hero = document.querySelector('.home-hero');
+        const footer = document.querySelector('.destinova-footer');
+        if (hero) {
+            hero.style.opacity = '1';
+            hero.style.transform = 'translateY(0)';
+        }
+        if (footer) {
+            footer.style.opacity = '1';
+            footer.style.transform = 'translateY(0)';
+        }
+    }
+
+    optimizeSmoothScrolling();
+
+    console.log('✈️ Destinova: All sections initialized with smooth scrolling!');
 });

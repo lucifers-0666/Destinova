@@ -157,6 +157,35 @@
       </div>
     </section>
 
+    <!-- ============================================= -->
+    <!-- FLASH DEALS BANNER -->
+    <!-- ============================================= -->
+    <section class="flash-deals-banner" role="region" aria-label="Flash deals">
+      <div class="deals-ticker-container">
+        <div class="deals-ticker-content">
+          <div class="ticker-icon">
+            <i class="fas fa-bolt"></i>
+            <span class="ticker-label">Flash Deals</span>
+          </div>
+          <div class="ticker-deals" id="deals-ticker">
+            <span class="deal-item">NYC → London $299</span>
+            <span class="deal-separator">•</span>
+            <span class="deal-item">LA → Tokyo $449</span>
+            <span class="deal-separator">•</span>
+            <span class="deal-item">Miami → Paris $359</span>
+            <span class="deal-separator">•</span>
+            <span class="deal-item">Chicago → Dubai $499</span>
+            <span class="deal-separator">•</span>
+            <span class="deal-item">Boston → Rome $379</span>
+          </div>
+          <a href="offers.html" class="view-all-deals-btn">
+            View All Deals
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section id="search-section-anchor" class="home-search-section" role="search" aria-label="Flight search">
       <div class="flight-search-widget-container" data-aos="fade-up" data-aos-duration="1000">
         <!-- Promotional Banner -->
@@ -330,6 +359,50 @@
           </div>
           <div class="trust-badge">
             <i class="fas fa-headset"></i><span>24/7 Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- PRICE COMPARISON TOOL SECTION -->
+    <!-- ============================================= -->
+    <section class="price-comparison-section" role="region" aria-labelledby="comparison-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="price-comparison-content" data-aos="fade-up">
+          <div class="comparison-header">
+            <div class="comparison-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="comparison-text">
+              <h3 id="comparison-heading">We Compare 900+ Airlines</h3>
+              <p>Find the best prices from all major airlines instantly</p>
+            </div>
+          </div>
+          
+          <div class="airline-logos-carousel">
+            <div class="airline-logos-track">
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AA.png" alt="American Airlines" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/LH.png" alt="Lufthansa" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AF.png" alt="Air France" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/QR.png" alt="Qatar Airways" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/SQ.png" alt="Singapore Airlines" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EY.png" alt="Etihad" loading="lazy"></div>
+              <!-- Duplicate for seamless loop -->
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" loading="lazy"></div>
+              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AA.png" alt="American Airlines" loading="lazy"></div>
+            </div>
+          </div>
+          
+          <div class="price-guarantee">
+            <i class="fas fa-shield-alt"></i>
+            <span>Guaranteed lowest prices or <strong>110% refund</strong></span>
           </div>
         </div>
       </div>
@@ -521,310 +594,428 @@
     </div>
 
     <!-- ============================================= -->
-    <!-- POPULAR DESTINATIONS GALLERY -->
+    <!-- POPULAR DESTINATIONS - MODERN REDESIGN -->
     <!-- ============================================= -->
-    <section id="home-destinations" class="destinations-gallery-section" role="region" aria-labelledby="destinations-heading">
-      <div class="destinations-container">
-        <!-- Section Header -->
-        <div class="destinations-header">
-          <h2 id="destinations-heading" class="destinations-main-heading" data-aos="fade-up">Popular Destinations</h2>
-          <p class="destinations-subheading" data-aos="fade-up" data-aos-delay="100">
-            Discover the most searched destinations this month
-          </p>
-
-          <!-- Filter/Tab Options -->
-          <div class="destinations-filter-tabs" data-aos="fade-up" data-aos-delay="200" role="tablist">
-            <button class="filter-tab active" role="tab" aria-selected="true" data-category="all">
-              <i class="fas fa-globe"></i> All
-            </button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="beaches">
-              <i class="fas fa-umbrella-beach"></i> Beaches
-            </button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="cities">
-              <i class="fas fa-city"></i> Cities
-            </button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="mountains">
-              <i class="fas fa-mountain"></i> Mountains
-            </button>
-            <button class="filter-tab" role="tab" aria-selected="false" data-category="cultural">
-              <i class="fas fa-landmark"></i> Cultural
-            </button>
-          </div>
-        </div>
-
-        <!-- Skeleton Loading State -->
-        <div class="destinations-skeleton-grid" id="destinations-skeleton" style="display: none;">
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
+    <section id="home-destinations" class="modern-destinations-section" role="region" aria-labelledby="destinations-heading">
+      <div class="destinations-modern-container">
+        <!-- Section Header with Modern Layout -->
+        <div class="modern-destinations-header" data-aos="fade-up">
+          <div class="header-content-wrapper">
+            <div class="header-title-group">
+              <span class="section-label">
+                <i class="fas fa-globe-americas"></i>
+                Trending Now
+              </span>
+              <h2 id="destinations-heading" class="modern-destinations-title">
+                Explore Dream
+                <span class="gradient-text">Destinations</span>
+              </h2>
+              <p class="modern-destinations-subtitle">
+                Handpicked locations loved by millions of travelers worldwide
+              </p>
             </div>
-          </div>
-          <!-- Repeat for 6 cards -->
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
-            </div>
-          </div>
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
-            </div>
-          </div>
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
-            </div>
-          </div>
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
-            </div>
-          </div>
-          <div class="destination-card-skeleton" aria-hidden="true">
-            <div class="skeleton-image shimmer"></div>
-            <div class="skeleton-content">
-              <div class="skeleton-title shimmer"></div>
-              <div class="skeleton-meta shimmer"></div>
-              <div class="skeleton-price shimmer"></div>
-              <div class="skeleton-button shimmer"></div>
+            
+            <!-- Modern Filter Pills -->
+            <div class="modern-filter-pills" role="tablist">
+              <button class="filter-pill active" role="tab" aria-selected="true" data-category="all">
+                <span class="pill-icon">🌍</span>
+                <span>All Places</span>
+              </button>
+              <button class="filter-pill" role="tab" aria-selected="false" data-category="beaches">
+                <span class="pill-icon">🏖️</span>
+                <span>Beaches</span>
+              </button>
+              <button class="filter-pill" role="tab" aria-selected="false" data-category="cities">
+                <span class="pill-icon">🏙️</span>
+                <span>Cities</span>
+              </button>
+              <button class="filter-pill" role="tab" aria-selected="false" data-category="mountains">
+                <span class="pill-icon">⛰️</span>
+                <span>Mountains</span>
+              </button>
+              <button class="filter-pill" role="tab" aria-selected="false" data-category="cultural">
+                <span class="pill-icon">🏛️</span>
+                <span>Cultural</span>
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Destination Cards Grid -->
-        <div class="destinations-grid" id="destinations-grid" role="list">
+        <!-- Modern Destination Cards Grid -->
+        <div class="modern-destinations-grid" id="destinations-grid" role="list">
           
-          <!-- Destination Card 1: Dubai -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="100">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 1: Dubai -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-image-wrapper">
               <img 
                 src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" 
                 alt="Affordable flights to Dubai, UAE" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
-              <span class="destination-badge badge-popular" aria-label="Popular destination">Popular</span>
+              <div class="image-overlay"></div>
+              <span class="modern-badge badge-trending">
+                <i class="fas fa-fire"></i>
+                Trending
+              </span>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">Dubai, UAE</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.8 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">Dubai</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    United Arab Emirates
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.8</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-plane" aria-hidden="true"></i>
-                234 flights available
-              </p>
-              <div class="destination-pricing">
-                <span class="price-label">From</span>
-                <span class="price-value">$299</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-plane-departure"></i>
+                  234 flights
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  7h 30m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to Dubai">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount">299</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to Dubai">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Destination Card 2: Paris -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="cultural" data-aos="fade-up" data-aos-delay="200">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 2: Paris -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cultural" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-image-wrapper">
               <img 
                 src="../site-images/card1_ps.jpg" 
                 alt="Affordable flights to Paris, France" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
-              <span class="destination-badge badge-sale" aria-label="On sale">Sale</span>
+              <div class="image-overlay"></div>
+              <span class="modern-badge badge-sale">
+                <i class="fas fa-tag"></i>
+                25% Off
+              </span>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">Paris, France</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.9 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">Paris</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    France
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.9</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-plane-departure" aria-hidden="true"></i>
-                Direct flights from NYC
-              </p>
-              <div class="destination-pricing">
-                <span class="price-original">$599</span>
-                <span class="price-label">From</span>
-                <span class="price-value">$449</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-plane-departure"></i>
+                  Direct flights
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  8h 15m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to Paris">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="price-original-small">$599</span>
+                    <span class="currency">$</span>
+                    <span class="amount">449</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to Paris">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Destination Card 3: Tokyo -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="300">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 3: Tokyo -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-image-wrapper">
               <img 
                 src="../site-images/card_2_ps.jpg" 
                 alt="Affordable flights to Tokyo, Japan" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
-              <span class="destination-badge badge-new" aria-label="New route">New Route</span>
+              <div class="image-overlay"></div>
+              <span class="modern-badge badge-new">
+                <i class="fas fa-sparkles"></i>
+                New Route
+              </span>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">Tokyo, Japan</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.7 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">Tokyo</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    Japan
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.7</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-clock" aria-hidden="true"></i>
-                13h 45m average flight time
-              </p>
-              <div class="destination-pricing">
-                <span class="price-label">From</span>
-                <span class="price-value">$689</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-plane"></i>
+                  156 flights
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  13h 45m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to Tokyo">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount">689</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to Tokyo">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Destination Card 4: Maldives -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="100">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 4: Maldives -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-image-wrapper">
               <img 
                 src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" 
                 alt="Affordable flights to Maldives" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
-              <span class="destination-badge badge-limited" aria-label="Limited availability">Limited</span>
+              <div class="image-overlay"></div>
+              <span class="modern-badge badge-limited">
+                <i class="fas fa-hourglass-half"></i>
+                Limited
+              </span>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">Maldives</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.9 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">Maldives</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    Indian Ocean
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.9</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-umbrella-beach" aria-hidden="true"></i>
-                89 resorts available
-              </p>
-              <div class="destination-pricing">
-                <span class="price-label">From</span>
-                <span class="price-value">$799</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-umbrella-beach"></i>
+                  89 resorts
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  11h 20m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to Maldives">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount">799</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to Maldives">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Destination Card 5: London -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="200">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 5: London -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-image-wrapper">
               <img 
                 src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" 
                 alt="Affordable flights to London, UK" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
+              <div class="image-overlay"></div>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">London, UK</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.6 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">London</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    United Kingdom
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.6</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-plane" aria-hidden="true"></i>
-                187 flights available
-              </p>
-              <div class="destination-pricing">
-                <span class="price-label">From</span>
-                <span class="price-value">$399</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-plane"></i>
+                  187 flights
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  7h 50m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to London">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount">399</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to London">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
-          <!-- Destination Card 6: Bali -->
-          <article class="destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="300">
-            <div class="destination-card-image-container">
+          <!-- Modern Destination Card 6: Bali -->
+          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-image-wrapper">
               <img 
                 src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" 
                 alt="Affordable flights to Bali, Indonesia" 
-                class="destination-card-image"
+                class="card-image"
                 loading="lazy">
-              <span class="destination-badge badge-popular" aria-label="Popular destination">Popular</span>
+              <div class="image-overlay"></div>
+              <span class="modern-badge badge-trending">
+                <i class="fas fa-fire"></i>
+                Trending
+              </span>
+              <button class="card-favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+              </button>
             </div>
-            <div class="destination-card-content">
-              <div class="destination-card-header">
-                <h3 class="destination-name">Bali, Indonesia</h3>
-                <div class="destination-rating" role="img" aria-label="Rating: 4.8 out of 5 stars">
-                  <i class="fas fa-star" aria-hidden="true"></i>
+            
+            <div class="card-content-wrapper">
+              <div class="card-top-row">
+                <div class="destination-info">
+                  <h3 class="destination-title">Bali</h3>
+                  <p class="destination-country">
+                    <i class="fas fa-location-dot"></i>
+                    Indonesia
+                  </p>
+                </div>
+                <div class="rating-badge">
+                  <i class="fas fa-star"></i>
                   <span>4.8</span>
                 </div>
               </div>
-              <p class="destination-meta">
-                <i class="fas fa-plane" aria-hidden="true"></i>
-                156 flights available
-              </p>
-              <div class="destination-pricing">
-                <span class="price-label">From</span>
-                <span class="price-value">$549</span>
-                <span class="price-type">· Round trip</span>
+              
+              <div class="card-features">
+                <span class="feature-item">
+                  <i class="fas fa-plane"></i>
+                  156 flights
+                </span>
+                <span class="feature-divider">•</span>
+                <span class="feature-item">
+                  <i class="fas fa-clock"></i>
+                  15h 30m
+                </span>
               </div>
-              <button class="destination-cta-btn" aria-label="View flights to Bali">
-                <i class="fas fa-search"></i>
-                <span>View Flights</span>
-                <i class="fas fa-arrow-right"></i>
-              </button>
+              
+              <div class="card-bottom-row">
+                <div class="price-section">
+                  <span class="price-from">From</span>
+                  <div class="price-main">
+                    <span class="currency">$</span>
+                    <span class="amount">549</span>
+                  </div>
+                  <span class="price-note">per person</span>
+                </div>
+                <button class="modern-explore-btn" aria-label="Explore flights to Bali">
+                  <span>Explore</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
             </div>
           </article>
 
         </div>
+      </div>
+    </section>
 
         <!-- View All Destinations CTA -->
         <div class="destinations-cta-container" data-aos="fade-up" data-aos-delay="400">
@@ -838,170 +1029,329 @@
       </div>
     </section>
 
-    <section class="home-section">
-      <!-- Old destination cards removed -->
-      <div class="home-destination-card card-large" data-aos="fade-up" data-destination-code="CDG" data-destination-name="Paris" style="display: none;">
-          <img src="../site-images/card1_ps.jpg" alt="Eiffel Tower in Paris" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>
-              <div class="weather-widget">
-                <i class="fas fa-cloud-sun"></i> 19°C
-              </div>
-            </div>
-            <div class="destination-info">
-              <h3>Paris, <span class="country">France</span></h3>
-              <p class="tagline">The City of Romance & Lights</p>
-              <div class="destination-meta">
-                <span><i class="fas fa-calendar-alt"></i> Best time: Apr-Jun</span>
-                <span><i class="fas fa-users"></i> 15,200+ travelers this month</span>
-              </div>
-            </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹45,999*</span>
-              </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
-              </div>
-            </div>
-            <div class="destination-hover-gallery">
-              <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=100&h=100&fit=crop" alt="Paris street">
-              <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=100&h=100&fit=crop" alt="Louvre Museum">
-              <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?w=100&h=100&fit=crop" alt="Sacre-Coeur">
-            </div>
-            <div class="destination-insider-tip">
-              <p><strong>Local Tip:</strong> Skip the Eiffel Tower lines by booking a restaurant reservation inside.</p>
-            </div>
-          </div>
+    <!-- ============================================= -->
+    <!-- POPULAR ROUTES SECTION -->
+    <!-- ============================================= -->
+    <section class="popular-routes-section home-section" role="region" aria-labelledby="routes-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 id="routes-heading" data-aos="fade-up">Most Searched Routes</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Quick access to the most popular flight routes</p>
         </div>
-        <!-- Card 2: Vertical -->
-        <div class="home-destination-card card-vertical" data-aos="fade-up" data-aos-delay="100" data-destination-code="NRT" data-destination-name="Tokyo">
-          <img src="/site-images/card_2_ps.jpg" alt="Shibuya Crossing in Tokyo at night" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <span class="trending-badge hot-deal"><i class="fas fa-tag"></i> Hot Deal</span>
-              <div class="weather-widget"><i class="fas fa-cloud-rain"></i> 22°C</div>
-            </div>
-            <div class="destination-info">
-              <h3>Tokyo, <span class="country">Japan</span></h3>
-              <p class="tagline">Where Tradition Meets Future</p>
-              <div class="destination-meta">
-                <span><i class="fas fa-calendar-alt"></i> Best time: Mar-May</span>
+        
+        <div class="routes-grid" data-aos="fade-up" data-aos-delay="200">
+          <!-- Route Card 1 -->
+          <div class="route-card" data-from="JFK" data-to="LHR">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">New York</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">London</span>
               </div>
+              <span class="route-badge">Popular</span>
             </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹52,500*</span>
-              </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
-              </div>
+            <div class="route-info">
+              <span class="route-code">JFK → LHR</span>
+              <span class="route-flights">12+ daily flights</span>
             </div>
-            <div class="destination-insider-tip">
-              <p><strong>Local Tip:</strong> Visit during cherry blossom season (late March to early April) for a magical experience.</p>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$299</span>
+              <span class="route-type">round trip</span>
             </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-        </div>
-        <!-- Card 3: Horizontal -->
-        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="200" data-destination-code="DXB" data-destination-name="Dubai">
-          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80" alt="Dubai skyline with Burj Khalifa" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <div class="weather-widget"><i class="fas fa-sun"></i> 35°C</div>
-            </div>
-            <div class="destination-info">
-              <h3>Dubai, <span class="country">United Arab Emirates</span></h3>
-              <p class="tagline">Oasis of Modern Luxury</p>
-            </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹18,999*</span>
+
+          <!-- Route Card 2 -->
+          <div class="route-card" data-from="LAX" data-to="NRT">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">Los Angeles</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">Tokyo</span>
               </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
-              </div>
+              <span class="route-badge hot-deal">Hot Deal</span>
             </div>
+            <div class="route-info">
+              <span class="route-code">LAX → NRT</span>
+              <span class="route-flights">8+ daily flights</span>
+            </div>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$449</span>
+              <span class="route-type">round trip</span>
+            </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-        </div>
-        <!-- Card 4: Square -->
-        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="300" data-destination-code="LHR" data-destination-name="London">
-          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" alt="Tower Bridge in London" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <div class="weather-widget"><i class="fas fa-cloud"></i> 15°C</div>
-            </div>
-            <div class="destination-info">
-              <h3>London, <span class="country">United Kingdom</span></h3>
-              <p class="tagline">Historic & Modern Majesty</p>
-            </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹48,200*</span>
-              </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+
+          <!-- Route Card 3 -->
+          <div class="route-card" data-from="MIA" data-to="CDG">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">Miami</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">Paris</span>
               </div>
             </div>
+            <div class="route-info">
+              <span class="route-code">MIA → CDG</span>
+              <span class="route-flights">6+ daily flights</span>
+            </div>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$359</span>
+              <span class="route-type">round trip</span>
+            </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-        </div>
-        <!-- Card 5: Square -->
-        <div class="home-destination-card card-square" data-aos="fade-up" data-aos-delay="400" data-destination-code="FCO" data-destination-name="Rome">
-          <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80" alt="The Colosseum in Rome, Italy" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <div class="weather-widget"><i class="fas fa-sun"></i> 24°C</div>
-            </div>
-            <div class="destination-info">
-              <h3>Florence, <span class="country">Italy</span></h3>
-              <p class="tagline">The Eternal City's Legacy</p>
-            </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹41,800*</span>
-              </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+
+          <!-- Route Card 4 -->
+          <div class="route-card" data-from="ORD" data-to="DXB">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">Chicago</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">Dubai</span>
               </div>
             </div>
+            <div class="route-info">
+              <span class="route-code">ORD → DXB</span>
+              <span class="route-flights">5+ daily flights</span>
+            </div>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$499</span>
+              <span class="route-type">round trip</span>
+            </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
-        </div>
-        <!-- Card 6: Horizontal -->
-        <div class="home-destination-card card-horizontal" data-aos="fade-up" data-aos-delay="500" data-destination-code="SYD" data-destination-name="Sydney">
-          <img src="/site-images/card6_ps.jpg" alt="Sydney Opera House and Harbour Bridge" class="home-destination-img" loading="lazy">
-          <div class="destination-overlay">
-            <div class="destination-header">
-              <div class="weather-widget"><i class="fas fa-wind"></i> 21°C</div>
-            </div>
-            <div class="destination-info">
-              <h3>Sydney, <span class="country">Australia</span></h3>
-              <p class="tagline">Iconic Views & Vibrant Culture</p>
-            </div>
-            <div class="destination-footer">
-              <div class="destination-pricing">
-                <span class="price-label">From Your City</span>
-                <span class="price-value">₹65,000*</span>
-              </div>
-              <div class="destination-actions">
-                <button class="action-btn alert-btn" aria-label="Get price alert"><i class="fas fa-bell"></i></button>
-                <button class="action-btn explore-btn">Explore <i class="fas fa-arrow-right"></i></button>
+
+          <!-- Route Card 5 -->
+          <div class="route-card" data-from="BOS" data-to="FCO">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">Boston</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">Rome</span>
               </div>
             </div>
+            <div class="route-info">
+              <span class="route-code">BOS → FCO</span>
+              <span class="route-flights">4+ daily flights</span>
+            </div>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$379</span>
+              <span class="route-type">round trip</span>
+            </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <!-- Route Card 6 -->
+          <div class="route-card" data-from="SFO" data-to="SYD">
+            <div class="route-header">
+              <div class="route-cities">
+                <span class="city-from">San Francisco</span>
+                <i class="fas fa-plane-departure route-icon"></i>
+                <span class="city-to">Sydney</span>
+              </div>
+              <span class="route-badge">Long Haul</span>
+            </div>
+            <div class="route-info">
+              <span class="route-code">SFO → SYD</span>
+              <span class="route-flights">3+ daily flights</span>
+            </div>
+            <div class="route-pricing">
+              <span class="route-label">from</span>
+              <span class="route-price">$799</span>
+              <span class="route-type">round trip</span>
+            </div>
+            <button class="route-cta-btn">
+              <span>Search Flights</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
           </div>
         </div>
       </div>
-      <div class="text-center mt-12" data-aos="fade-up">
-        <a href="destinations.html" class="btn btn-light">Explore All Destinations <i class="fas fa-arrow-right ml-2"></i></a>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- LAST-MINUTE DEALS SECTION -->
+    <!-- ============================================= -->
+    <section class="last-minute-deals-section home-section bg-gradient-to-br from-amber-50 to-orange-50" role="region" aria-labelledby="lastminute-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 id="lastminute-heading" data-aos="fade-up">
+            <i class="fas fa-fire text-orange-500"></i> Departing Within 7 Days
+          </h2>
+          <p data-aos="fade-up" data-aos-delay="100">Grab these incredible last-minute deals before they're gone!</p>
+        </div>
+        
+        <div class="last-minute-carousel-container" data-aos="fade-up" data-aos-delay="200">
+          <button class="carousel-nav-btn prev-btn" aria-label="Previous deals">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          
+          <div class="last-minute-carousel">
+            <!-- Deal Card 1 -->
+            <div class="lastminute-card">
+              <div class="urgency-badge">
+                <i class="fas fa-clock"></i>
+                <span>Departs in 3 days</span>
+              </div>
+              <div class="lastminute-destination">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=400&h=250&fit=crop" alt="Paris" loading="lazy">
+                <div class="destination-overlay-badge">Paris</div>
+              </div>
+              <div class="lastminute-content">
+                <div class="lastminute-route">
+                  <span>New York → Paris</span>
+                  <span class="route-code-small">JFK → CDG</span>
+                </div>
+                <div class="lastminute-dates">
+                  <i class="far fa-calendar"></i>
+                  <span>Oct 15 - Oct 22, 2025</span>
+                </div>
+                <div class="lastminute-pricing">
+                  <div class="price-strike">
+                    <span class="original-price">$599</span>
+                    <span class="discount-badge">-40%</span>
+                  </div>
+                  <div class="final-price">$359</div>
+                </div>
+                <button class="lastminute-cta-btn">
+                  Book Now
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Deal Card 2 -->
+            <div class="lastminute-card">
+              <div class="urgency-badge urgent">
+                <i class="fas fa-clock"></i>
+                <span>Departs in 2 days</span>
+              </div>
+              <div class="lastminute-destination">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=250&fit=crop" alt="Dubai" loading="lazy">
+                <div class="destination-overlay-badge">Dubai</div>
+              </div>
+              <div class="lastminute-content">
+                <div class="lastminute-route">
+                  <span>Los Angeles → Dubai</span>
+                  <span class="route-code-small">LAX → DXB</span>
+                </div>
+                <div class="lastminute-dates">
+                  <i class="far fa-calendar"></i>
+                  <span>Oct 14 - Oct 21, 2025</span>
+                </div>
+                <div class="lastminute-pricing">
+                  <div class="price-strike">
+                    <span class="original-price">$799</span>
+                    <span class="discount-badge">-35%</span>
+                  </div>
+                  <div class="final-price">$519</div>
+                </div>
+                <button class="lastminute-cta-btn">
+                  Book Now
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Deal Card 3 -->
+            <div class="lastminute-card">
+              <div class="urgency-badge">
+                <i class="fas fa-clock"></i>
+                <span>Departs in 5 days</span>
+              </div>
+              <div class="lastminute-destination">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=250&fit=crop" alt="London" loading="lazy">
+                <div class="destination-overlay-badge">London</div>
+              </div>
+              <div class="lastminute-content">
+                <div class="lastminute-route">
+                  <span>Boston → London</span>
+                  <span class="route-code-small">BOS → LHR</span>
+                </div>
+                <div class="lastminute-dates">
+                  <i class="far fa-calendar"></i>
+                  <span>Oct 17 - Oct 24, 2025</span>
+                </div>
+                <div class="lastminute-pricing">
+                  <div class="price-strike">
+                    <span class="original-price">$549</span>
+                    <span class="discount-badge">-30%</span>
+                  </div>
+                  <div class="final-price">$384</div>
+                </div>
+                <button class="lastminute-cta-btn">
+                  Book Now
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Deal Card 4 -->
+            <div class="lastminute-card">
+              <div class="urgency-badge">
+                <i class="fas fa-clock"></i>
+                <span>Departs in 4 days</span>
+              </div>
+              <div class="lastminute-destination">
+                <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=400&h=250&fit=crop" alt="Tokyo" loading="lazy">
+                <div class="destination-overlay-badge">Tokyo</div>
+              </div>
+              <div class="lastminute-content">
+                <div class="lastminute-route">
+                  <span>San Francisco → Tokyo</span>
+                  <span class="route-code-small">SFO → NRT</span>
+                </div>
+                <div class="lastminute-dates">
+                  <i class="far fa-calendar"></i>
+                  <span>Oct 16 - Oct 23, 2025</span>
+                </div>
+                <div class="lastminute-pricing">
+                  <div class="price-strike">
+                    <span class="original-price">$699</span>
+                    <span class="discount-badge">-38%</span>
+                  </div>
+                  <div class="final-price">$433</div>
+                </div>
+                <button class="lastminute-cta-btn">
+                  Book Now
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <button class="carousel-nav-btn next-btn" aria-label="Next deals">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="text-center mt-8" data-aos="fade-up">
+          <a href="offers.html" class="btn btn-primary">
+            View All Last-Minute Deals
+            <i class="fas fa-bolt ml-2"></i>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1226,6 +1576,99 @@
     </section>
 
     <!-- ============================================= -->
+    <!-- AIRLINE PARTNERS SECTION -->
+    <!-- ============================================= -->
+    <section class="airline-partners-section home-section bg-background-white" role="region" aria-labelledby="partners-heading">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="home-section-title">
+          <h2 id="partners-heading" data-aos="fade-up">Our Trusted Airline Partners</h2>
+          <p data-aos="fade-up" data-aos-delay="100">Partnering with the world's leading airlines to bring you the best travel experience</p>
+        </div>
+        
+        <div class="partners-grid" data-aos="fade-up" data-aos-delay="200">
+          <!-- Partner Logo 1 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/EK.png" alt="Emirates" loading="lazy">
+            <span class="partner-name">Emirates</span>
+          </div>
+          
+          <!-- Partner Logo 2 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/DL.png" alt="Delta Airlines" loading="lazy">
+            <span class="partner-name">Delta</span>
+          </div>
+          
+          <!-- Partner Logo 3 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/UA.png" alt="United Airlines" loading="lazy">
+            <span class="partner-name">United</span>
+          </div>
+          
+          <!-- Partner Logo 4 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/AA.png" alt="American Airlines" loading="lazy">
+            <span class="partner-name">American</span>
+          </div>
+          
+          <!-- Partner Logo 5 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/BA.png" alt="British Airways" loading="lazy">
+            <span class="partner-name">British Airways</span>
+          </div>
+          
+          <!-- Partner Logo 6 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/LH.png" alt="Lufthansa" loading="lazy">
+            <span class="partner-name">Lufthansa</span>
+          </div>
+          
+          <!-- Partner Logo 7 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/AF.png" alt="Air France" loading="lazy">
+            <span class="partner-name">Air France</span>
+          </div>
+          
+          <!-- Partner Logo 8 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/QR.png" alt="Qatar Airways" loading="lazy">
+            <span class="partner-name">Qatar Airways</span>
+          </div>
+          
+          <!-- Partner Logo 9 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/SQ.png" alt="Singapore Airlines" loading="lazy">
+            <span class="partner-name">Singapore</span>
+          </div>
+          
+          <!-- Partner Logo 10 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/EY.png" alt="Etihad Airways" loading="lazy">
+            <span class="partner-name">Etihad</span>
+          </div>
+          
+          <!-- Partner Logo 11 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/TK.png" alt="Turkish Airlines" loading="lazy">
+            <span class="partner-name">Turkish</span>
+          </div>
+          
+          <!-- Partner Logo 12 -->
+          <div class="partner-logo-item">
+            <img src="https://images.kiwi.com/airlines/128/CX.png" alt="Cathay Pacific" loading="lazy">
+            <span class="partner-name">Cathay Pacific</span>
+          </div>
+        </div>
+        
+        <div class="partners-cta" data-aos="fade-up" data-aos-delay="300">
+          <p class="text-text-slate text-center mb-4">
+            <i class="fas fa-shield-check text-primary-emerald"></i>
+            All partners are IATA certified and meet our strict quality standards
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
     <!-- NEW: HOW IT WORKS SECTION -->
     <!-- ============================================= -->
     <section class="how-it-works-section home-section bg-background-white">
@@ -1288,209 +1731,8 @@
     </section>
 
     <!-- ============================================= -->
-    <!-- NEW: MOBILE APP SECTION -->
+    <!-- BLOG SECTION MOVED TO SEPARATE PAGE -->
     <!-- ============================================= -->
-    <section class="mobile-app-section home-section bg-gradient-to-br from-primary-emerald to-green-700 text-white relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/3 translate-y-1/3"></div>
-      </div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Content -->
-          <div data-aos="fade-right">
-            <h2 class="text-4xl font-bold mb-6">Book On-The-Go with Our Mobile App</h2>
-            <p class="text-xl mb-8 opacity-90">Experience seamless booking with exclusive mobile-only deals, real-time updates, and hassle-free travel management.</p>
-            
-            <div class="features-list mb-8 space-y-4">
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-bolt text-primary-emerald"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold">Instant Booking</h4>
-                  <p class="text-sm opacity-80">Book flights in under 60 seconds</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-bell text-primary-emerald"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold">Real-Time Alerts</h4>
-                  <p class="text-sm opacity-80">Get notified about gate changes & delays</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-mobile-alt text-primary-emerald"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold">Mobile Boarding Pass</h4>
-                  <p class="text-sm opacity-80">Skip the queue with digital passes</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="app-download-buttons flex flex-wrap gap-4">
-              <a href="#" class="app-store-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" alt="Download on App Store" class="h-14">
-              </a>
-              <a href="#" class="play-store-btn">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Get it on Google Play" class="h-14">
-              </a>
-            </div>
-          </div>
-          
-          <!-- Phone Mockup -->
-          <div class="relative" data-aos="fade-left">
-            <div class="phone-mockup mx-auto">
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=800&fit=crop" alt="Destinova Mobile App" class="rounded-3xl shadow-2xl">
-              <div class="phone-overlay"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- NEW: FAQ SECTION -->
-    <!-- ============================================= -->
-    <section class="faq-section home-section bg-background-cream">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title">
-          <h2 data-aos="fade-up">Frequently Asked Questions</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Everything you need to know about booking with Destinova</p>
-        </div>
-        
-        <div class="faq-accordion" data-aos="fade-up" data-aos-delay="200">
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>How do I change or cancel my booking?</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>You can easily manage your booking through our "My Bookings" section. Simply log in, select your booking, and choose to modify or cancel. Cancellation policies vary by airline and fare type. Free cancellation is available up to 24 hours before departure for eligible bookings.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>What payment methods do you accept?</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>We accept all major credit cards (Visa, Mastercard, American Express), debit cards, PayPal, UPI, net banking, and digital wallets. All transactions are secured with 256-bit SSL encryption.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Do you offer travel insurance?</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Yes! We partner with leading insurance providers to offer comprehensive travel insurance covering trip cancellations, medical emergencies, lost baggage, and more. You can add insurance during the booking process.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>How early should I arrive at the airport?</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>We recommend arriving 2 hours before domestic flights and 3 hours before international flights. This allows time for check-in, security screening, and reaching your gate comfortably.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <button class="faq-question">
-              <span>Can I select my seat during booking?</span>
-              <i class="fas fa-chevron-down"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Absolutely! During the booking process, you'll see an interactive seat map where you can choose your preferred seat. Some airlines may charge for seat selection, while others offer it free.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="text-center mt-12" data-aos="fade-up">
-          <p class="text-text-slate mb-4">Still have questions?</p>
-          <a href="contact-us.html" class="btn btn-primary">Contact Our Support Team <i class="fas fa-headset ml-2"></i></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- NEW: TRAVEL BLOG/INSPIRATION SECTION -->
-    <!-- ============================================= -->
-    <section class="blog-section home-section bg-background-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title">
-          <h2 data-aos="fade-up">Travel Inspiration & Guides</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Discover insider tips and hidden gems from our travel experts</p>
-        </div>
-        
-        <div class="blog-grid grid md:grid-cols-3 gap-8">
-          <!-- Blog Post 1 -->
-          <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="blog-image">
-              <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=600&h=400&fit=crop" alt="Paris Travel Guide" loading="lazy">
-              <div class="blog-category">Travel Guide</div>
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> Oct 1, 2025</span>
-                <span><i class="far fa-clock"></i> 5 min read</span>
-              </div>
-              <h3>10 Hidden Gems in Paris You Must Visit</h3>
-              <p>Escape the tourist crowds and discover the authentic charm of Paris with these secret spots.</p>
-              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-          
-          <!-- Blog Post 2 -->
-          <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="blog-image">
-              <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&h=400&fit=crop" alt="Budget Travel Tips" loading="lazy">
-              <div class="blog-category">Tips & Tricks</div>
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> Sep 28, 2025</span>
-                <span><i class="far fa-clock"></i> 7 min read</span>
-              </div>
-              <h3>How to Score Cheap Flights: Expert Tips</h3>
-              <p>Save hundreds on your next flight with these proven strategies from seasoned travelers.</p>
-              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-          
-          <!-- Blog Post 3 -->
-          <article class="blog-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="blog-image">
-              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" alt="Mountain Travel" loading="lazy">
-              <div class="blog-category">Destination</div>
-            </div>
-            <div class="blog-content">
-              <div class="blog-meta">
-                <span><i class="far fa-calendar"></i> Sep 25, 2025</span>
-                <span><i class="far fa-clock"></i> 6 min read</span>
-              </div>
-              <h3>Top 5 Mountain Getaways for Winter 2025</h3>
-              <p>From ski resorts to cozy cabins, explore the best mountain destinations for winter.</p>
-              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-        </div>
-        
-        <div class="text-center mt-12" data-aos="fade-up">
-          <a href="#" class="btn btn-light">View All Articles <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-      </div>
-    </section>
 
     <section class="home-section home-testimonials">
       <div class="home-section-title">
@@ -1773,6 +2015,14 @@
         </div>
       </div>
     </div>
+
+  <!-- Back to Home Button -->
+  <div class="back-to-home-container" data-aos="fade-up">
+    <a href="index.html" class="back-to-home-btn" aria-label="Back to Home">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Home</span>
+    </a>
+  </div>
   </footer>
 
   <!-- Live Chat Widget -->

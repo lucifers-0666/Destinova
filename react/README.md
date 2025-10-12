@@ -3,7 +3,7 @@
 This folder contains a standalone React component (`DestinovaLogin.jsx`) implementing the Destinova login page experience per the provided design specification.
 
 ## Highlights
-- Split-screen layout (45% hero / 55% form)
+- Split-screen layout (60% hero / 40% form)
 - Deep green hero with subtle parallax overlay and trust indicators
 - Elevated white form card with complete validation and interactions
 - Accessible (labels, ARIA, focus outlines)
