@@ -170,56 +170,233 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeSlider('home-slider-business');
     initializeSlider('home-slider-first');
 
-    // --- TRAVEL CLASS TABS ---
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // PREMIUM 3D TRAVEL CLASS TABS - Enhanced with Parallax & Ken Burns Effect
+    // ═══════════════════════════════════════════════════════════════════════════════
     function initializeTravelClassTabs() {
-        const tabContainer = document.querySelector('.travel-class-tabs-container');
-        if (!tabContainer) return;
+        const tabsSection = document.querySelector('.travel-classes-3d-section');
+        if (!tabsSection) return;
 
-        const tabButtons = Array.from(tabContainer.querySelectorAll('.tab-button'));
-        const tabPanels = Array.from(tabContainer.querySelectorAll('.tab-panel'));
+        const tabButtons = Array.from(tabsSection.querySelectorAll('.travel-tab-btn'));
+        const tabPanels = Array.from(tabsSection.querySelectorAll('.travel-class-panel'));
+        
+        if (tabButtons.length === 0 || tabPanels.length === 0) return;
+
         let currentIndex = 0;
-        let autoPlayInterval;
+        let isAnimating = false;
 
-        if (tabButtons.length === 0) return;
+        // ━━━ Tab Switching Function with Animation Sequence ━━━
+        function switchTab(targetIndex) {
+            if (isAnimating || targetIndex === currentIndex) return;
+            
+            isAnimating = true;
+            const previousPanel = tabPanels[currentIndex];
+            const nextPanel = tabPanels[targetIndex];
 
-        function showTab(index) {
-            currentIndex = index;
-            const tabId = tabButtons[currentIndex].dataset.tab;
+            // Remove active from all
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
 
-            tabButtons.forEach((btn, i) => btn.classList.toggle('active', i === currentIndex));
-            tabPanels.forEach(panel => panel.classList.toggle('active', panel.id === `tab-${tabId}`));
+            // Activate new tab button
+            tabButtons[targetIndex].classList.add('active');
+
+            // Animate content transition
+            setTimeout(() => {
+                nextPanel.classList.add('active');
+                
+                // Trigger feature animations when panel becomes active
+                triggerFeatureAnimations(nextPanel);
+                
+                currentIndex = targetIndex;
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 800);
+            }, 100);
+
+            // Add ripple effect to clicked tab
+            const clickedBtn = tabButtons[targetIndex];
+            createRippleEffect(clickedBtn);
         }
 
-        function nextTab() {
-            const nextIndex = (currentIndex + 1) % tabButtons.length;
-            showTab(nextIndex);
+        // ━━━ Feature Reveal Animation ━━━
+        function triggerFeatureAnimations(panel) {
+            const features = panel.querySelectorAll('.feature-item');
+            features.forEach((feature, index) => {
+                feature.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Trigger SVG checkmark animations
+            const checkmarks = panel.querySelectorAll('.checkmark-svg');
+            checkmarks.forEach(svg => {
+                const circle = svg.querySelector('.checkmark-circle');
+                const check = svg.querySelector('.checkmark-check');
+                
+                // Reset animations
+                circle.style.animation = 'none';
+                check.style.animation = 'none';
+                
+                // Trigger reflow
+                void circle.offsetWidth;
+                void check.offsetWidth;
+                
+                // Restart animations
+                circle.style.animation = 'checkmarkCircle 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards';
+                check.style.animation = 'checkmarkCheck 0.5s 0.4s cubic-bezier(0.65, 0, 0.45, 1) forwards';
+            });
         }
 
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(nextTab, 5000); // Change tab every 5 seconds
+        // ━━━ Ripple Effect on Tab Click ━━━
+        function createRippleEffect(button) {
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(29, 94, 51, 0.3);
+                width: 20px;
+                height: 20px;
+                animation: rippleAnimation 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            const rect = button.getBoundingClientRect();
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            
+            button.style.position = 'relative';
+            button.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
         }
 
-        tabButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                showTab(index);
-                resetAutoPlay(); // Reset and restart auto-play on manual interaction
+        // ━━━ 3D Parallax Effect on Card Hover ━━━
+        tabPanels.forEach(panel => {
+            const card3D = panel.querySelector('.panel-3d-card');
+            if (!card3D) return;
+
+            card3D.addEventListener('mousemove', (e) => {
+                const rect = card3D.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg
+                const rotateY = ((x - centerX) / centerX) * 5;   // Max 5deg
+                
+                card3D.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg) 
+                    translateY(-12px) 
+                    scale(1.02)
+                `;
+            });
+
+            card3D.addEventListener('mouseleave', () => {
+                card3D.style.transform = '';
             });
         });
 
-        // Pause on hover
-        tabContainer.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        tabContainer.addEventListener('mouseleave', resetAutoPlay);
+        // ━━━ Tab Button Click Handlers ━━━
+        tabButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                switchTab(index);
+            });
 
-        // Initial setup
-        const initialActiveIndex = tabButtons.findIndex(btn => btn.classList.contains('active'));
-        if (initialActiveIndex !== -1) {
-            currentIndex = initialActiveIndex;
+            // Keyboard accessibility
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    switchTab(index);
+                }
+            });
+        });
+
+        // ━━━ Keyboard Navigation (Arrow Keys) ━━━
+        tabsSection.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prevIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+                switchTab(prevIndex);
+                tabButtons[prevIndex].focus();
+            } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                const nextIndex = (currentIndex + 1) % tabButtons.length;
+                switchTab(nextIndex);
+                tabButtons[nextIndex].focus();
+            }
+        });
+
+        // ━━━ Intersection Observer for Scroll Animations ━━━
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe amenity chips for stagger animation
+        tabPanels.forEach(panel => {
+            const chips = panel.querySelectorAll('.amenity-chip');
+            chips.forEach((chip, index) => {
+                chip.style.opacity = '0';
+                chip.style.transform = 'translateY(20px)';
+                chip.style.transition = `all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.1}s`;
+                observer.observe(chip);
+            });
+        });
+
+        // ━━━ Initialize First Tab ━━━
+        switchTab(0);
+
+        // ━━━ Add Ripple Animation Keyframes ━━━
+        if (!document.getElementById('ripple-styles')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-styles';
+            style.textContent = `
+                @keyframes rippleAnimation {
+                    to {
+                        width: 200px;
+                        height: 200px;
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
-        
-        showTab(currentIndex);
-        resetAutoPlay();
+
+        // ━━━ Performance: Lazy Load Images ━━━
+        const images = tabsSection.querySelectorAll('.panel-hero-image img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        console.log('✈️ Premium 3D Travel Class Tabs initialized with', tabButtons.length, 'classes');
     }
+    
     initializeTravelClassTabs();
 
     function initializeActivityFeed() {
@@ -2106,5 +2283,1895 @@ document.addEventListener('DOMContentLoaded', function () {
 
     optimizeSmoothScrolling();
 
-    console.log('✈️ Destinova: All sections initialized with smooth scrolling!');
+    // ============================================= 
+    // MODERN HERO SECTION: VANTA.JS BACKGROUND
+    // ============================================= 
+    function initializeHeroBackground() {
+        const vantaBg = document.getElementById('vanta-bg');
+        if (vantaBg && typeof VANTA !== 'undefined') {
+            try {
+                VANTA.WAVES({
+                    el: vantaBg,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x0a5f46,
+                    shininess: 40.00,
+                    waveHeight: 15.00,
+                    waveSpeed: 0.60,
+                    zoom: 0.80
+                });
+            } catch (e) {
+                console.log('Vanta.js initialization skipped:', e.message);
+            }
+        }
+    }
+
+    // ============================================= 
+    // HERO SECTION: ANIMATED COUNTERS
+    // ============================================= 
+    function initializeHeroCounters() {
+        const counters = document.querySelectorAll('.stat-number-hero');
+        const options = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const target = parseFloat(entry.target.getAttribute('data-count'));
+                    animateHeroCounter(entry.target, 0, target, 2000);
+                }
+            });
+        }, options);
+
+        counters.forEach(counter => observer.observe(counter));
+    }
+
+    function animateHeroCounter(element, start, end, duration) {
+        let startTime = null;
+        const isDecimal = end % 1 !== 0;
+
+        const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            
+            const value = progress * (end - start) + start;
+            
+            if (isDecimal) {
+                element.textContent = value.toFixed(1);
+            } else {
+                element.textContent = Math.floor(value).toLocaleString();
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                element.textContent = isDecimal ? end.toFixed(1) : end.toLocaleString();
+            }
+        };
+
+        requestAnimationFrame(step);
+    }
+
+    // ============================================= 
+    // HERO SEARCH WIDGET: TAB SWITCHING
+    // ============================================= 
+    function initializeHeroSearchWidget() {
+        const tabButtons = document.querySelectorAll('.widget-tabs .tab-btn');
+        const returnDateField = document.querySelector('.return-date');
+        
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all tabs
+                tabButtons.forEach(b => b.classList.remove('active'));
+                
+                // Add active to clicked tab
+                btn.classList.add('active');
+                
+                const tabType = btn.getAttribute('data-tab');
+                
+                // Show/hide return date based on trip type
+                if (tabType === 'one-way') {
+                    returnDateField?.classList.add('hidden');
+                } else {
+                    returnDateField?.classList.remove('hidden');
+                }
+
+                // Add smooth transition
+                if (returnDateField) {
+                    returnDateField.style.transition = 'all 0.3s ease';
+                }
+            });
+        });
+    }
+
+    // ============================================= 
+    // HERO SEARCH: SWAP LOCATIONS
+    // ============================================= 
+    function initializeHeroSwapButton() {
+        const swapBtn = document.getElementById('swap-btn-hero');
+        const fromInput = document.getElementById('hero-from');
+        const toInput = document.getElementById('hero-to');
+        
+        if (swapBtn && fromInput && toInput) {
+            swapBtn.addEventListener('click', () => {
+                const temp = fromInput.value;
+                fromInput.value = toInput.value;
+                toInput.value = temp;
+                
+                // Add animation
+                fromInput.style.transform = 'scale(1.05)';
+                toInput.style.transform = 'scale(1.05)';
+                
+                setTimeout(() => {
+                    fromInput.style.transform = 'scale(1)';
+                    toInput.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
+    }
+
+    // ============================================= 
+    // HERO SEARCH: PASSENGERS DROPDOWN
+    // ============================================= 
+    function initializeHeroPassengersDropdown() {
+        const passengersBtn = document.getElementById('passengers-toggle-hero');
+        const passengersDropdown = document.getElementById('passengers-dropdown-hero');
+        const doneBtn = document.getElementById('passengers-done-hero');
+        const displayText = document.getElementById('passengers-display-hero');
+        
+        let adults = 1;
+        let children = 0;
+        let infants = 0;
+        let flightClass = 'Economy';
+        
+        // Toggle dropdown
+        if (passengersBtn && passengersDropdown) {
+            passengersBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                passengersDropdown.classList.toggle('active');
+            });
+            
+            // Close when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!passengersDropdown.contains(e.target) && e.target !== passengersBtn) {
+                    passengersDropdown.classList.remove('active');
+                }
+            });
+        }
+        
+        // Counter buttons
+        const counterButtons = passengersDropdown?.querySelectorAll('.counter-btn');
+        counterButtons?.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                const type = btn.getAttribute('data-type');
+                const counterValue = document.getElementById(`${type}-count-hero`);
+                
+                let currentValue = parseInt(counterValue.textContent);
+                
+                if (action === 'increase') {
+                    if (type === 'adults' && currentValue < 9) {
+                        currentValue++;
+                        adults = currentValue;
+                    } else if (type === 'children' && currentValue < 8) {
+                        currentValue++;
+                        children = currentValue;
+                    } else if (type === 'infants' && currentValue < adults) {
+                        currentValue++;
+                        infants = currentValue;
+                    }
+                } else if (action === 'decrease') {
+                    if (type === 'adults' && currentValue > 1) {
+                        currentValue--;
+                        adults = currentValue;
+                        // Ensure infants don't exceed adults
+                        if (infants > adults) {
+                            infants = adults;
+                            document.getElementById('infants-count-hero').textContent = infants;
+                        }
+                    } else if ((type === 'children' || type === 'infants') && currentValue > 0) {
+                        currentValue--;
+                        if (type === 'children') children = currentValue;
+                        if (type === 'infants') infants = currentValue;
+                    }
+                }
+                
+                counterValue.textContent = currentValue;
+                updatePassengersDisplay();
+                updateCounterStates();
+            });
+        });
+        
+        // Class selector
+        const classButtons = passengersDropdown?.querySelectorAll('.class-btn');
+        classButtons?.forEach(btn => {
+            btn.addEventListener('click', () => {
+                classButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                flightClass = btn.getAttribute('data-class');
+                updatePassengersDisplay();
+            });
+        });
+        
+        // Done button
+        if (doneBtn) {
+            doneBtn.addEventListener('click', () => {
+                passengersDropdown.classList.remove('active');
+            });
+        }
+        
+        function updatePassengersDisplay() {
+            const totalPassengers = adults + children + infants;
+            const passengerText = totalPassengers === 1 ? '1 Passenger' : `${totalPassengers} Passengers`;
+            displayText.textContent = `${passengerText}, ${flightClass}`;
+        }
+        
+        function updateCounterStates() {
+            // Update button states
+            const adultsCountBtn = passengersDropdown?.querySelectorAll('[data-type="adults"]');
+            const infantsCountBtn = passengersDropdown?.querySelectorAll('[data-type="infants"]');
+            
+            adultsCountBtn?.forEach(btn => {
+                if (btn.getAttribute('data-action') === 'decrease') {
+                    btn.disabled = adults <= 1;
+                } else {
+                    btn.disabled = adults >= 9;
+                }
+            });
+            
+            infantsCountBtn?.forEach(btn => {
+                if (btn.getAttribute('data-action') === 'increase') {
+                    btn.disabled = infants >= adults;
+                }
+            });
+        }
+    }
+
+    // ============================================= 
+    // HERO SEARCH: FORM SUBMISSION
+    // ============================================= 
+    function initializeHeroSearchForm() {
+        const form = document.getElementById('hero-search-form');
+        
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    from: document.getElementById('hero-from')?.value,
+                    to: document.getElementById('hero-to')?.value,
+                    departure: document.getElementById('hero-departure')?.value,
+                    return: document.getElementById('hero-return')?.value,
+                    passengers: document.getElementById('passengers-display-hero')?.textContent
+                };
+                
+                // Validate
+                if (!formData.from || !formData.to) {
+                    alert('Please enter departure and arrival cities');
+                    return;
+                }
+                
+                if (!formData.departure) {
+                    alert('Please select a departure date');
+                    return;
+                }
+                
+                // Redirect to booking page with data
+                const params = new URLSearchParams(formData);
+                window.location.href = `booking.html?${params.toString()}`;
+            });
+        }
+    }
+
+    // ============================================= 
+    // HERO: GSAP ANIMATIONS
+    // ============================================= 
+    function initializeHeroAnimations() {
+        if (typeof gsap !== 'undefined') {
+            // Animate hero title
+            gsap.from('.hero-title-gradient', {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                delay: 0.3,
+                ease: 'power3.out'
+            });
+            
+            // Animate subtitle
+            gsap.from('.hero-subtitle', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 0.6,
+                ease: 'power2.out'
+            });
+            
+            // Animate stats
+            gsap.from('.hero-trust-stats', {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 0.9,
+                ease: 'power2.out'
+            });
+            
+            // Animate search widget
+            gsap.from('.search-widget-glass', {
+                opacity: 0,
+                x: 100,
+                duration: 1,
+                delay: 0.5,
+                ease: 'power3.out'
+            });
+        }
+    }
+
+    // ============================================= 
+    // POPULAR ROUTES: QUICK SELECT
+    // ============================================= 
+    function initializePopularRoutesQuickSelect() {
+        const routeCards = document.querySelectorAll('.route-quick-card');
+        const scrollContainer = document.getElementById('routes-scroll-container');
+        const scrollHintBtn = document.getElementById('scroll-hint-routes');
+        
+        // Auto-scroll hint
+        if (scrollHintBtn && scrollContainer) {
+            scrollHintBtn.addEventListener('click', () => {
+                scrollContainer.scrollBy({
+                    left: 200,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Route card click handler
+        routeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const from = card.getAttribute('data-from');
+                const to = card.getAttribute('data-to');
+                const price = card.getAttribute('data-price');
+                
+                // Auto-fill search form
+                const fromInput = document.getElementById('hero-from');
+                const toInput = document.getElementById('hero-to');
+                
+                if (fromInput && toInput) {
+                    fromInput.value = from;
+                    toInput.value = to;
+                    
+                    // Add animation
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 200);
+                    
+                    // Pulse animation on inputs
+                    [fromInput, toInput].forEach(input => {
+                        input.style.animation = 'pulse 0.5s ease';
+                        setTimeout(() => {
+                            input.style.animation = '';
+                        }, 500);
+                    });
+                    
+                    // Show flexible date grid
+                    showFlexibleDateGrid();
+                }
+            });
+        });
+    }
+
+    // ============================================= 
+    // FLEXIBLE DATE GRID
+    // ============================================= 
+    function showFlexibleDateGrid() {
+        const dateGrid = document.getElementById('flexible-date-grid');
+        const dateContainer = document.getElementById('date-grid-container');
+        
+        if (dateGrid && dateContainer) {
+            dateGrid.style.display = 'block';
+            
+            // Generate date grid
+            setTimeout(() => {
+                generateDateGrid(dateContainer);
+            }, 300);
+        }
+    }
+
+    function generateDateGrid(container) {
+        const today = new Date();
+        const dates = [];
+        
+        // Generate next 14 days
+        for (let i = 0; i < 14; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+            
+            // Random price simulation
+            const basePrice = 300 + Math.floor(Math.random() * 400);
+            const priceCategory = basePrice < 400 ? 'cheap' : 
+                                 basePrice < 550 ? 'moderate' : 'expensive';
+            
+            dates.push({
+                date: date,
+                day: date.toLocaleDateString('en-US', { weekday: 'short' }),
+                number: date.getDate(),
+                month: date.toLocaleDateString('en-US', { month: 'short' }),
+                price: basePrice,
+                category: priceCategory
+            });
+        }
+        
+        // Clear skeleton
+        container.innerHTML = '';
+        
+        // Render date cells
+        dates.forEach((dateInfo, index) => {
+            const cell = document.createElement('div');
+            cell.className = `date-cell price-${dateInfo.category}`;
+            cell.innerHTML = `
+                <div class="date-day">${dateInfo.day}</div>
+                <div class="date-number">${dateInfo.number}</div>
+                <div class="date-price">$${dateInfo.price}</div>
+                <div class="date-tooltip">
+                    <strong>${dateInfo.day}, ${dateInfo.month} ${dateInfo.number}</strong><br>
+                    Best price: $${dateInfo.price}<br>
+                    ${dateInfo.category === 'cheap' ? '🔥 Great deal!' : 
+                      dateInfo.category === 'moderate' ? '💼 Fair price' : 
+                      '💎 Premium'}
+                </div>
+            `;
+            
+            // Add click handler
+            cell.addEventListener('click', () => {
+                // Remove previous selection
+                container.querySelectorAll('.date-cell').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                
+                // Select this cell
+                cell.classList.add('selected');
+                
+                // Update departure input
+                const departureInput = document.getElementById('hero-departure');
+                if (departureInput) {
+                    const formattedDate = dateInfo.date.toISOString().split('T')[0];
+                    departureInput.value = formattedDate;
+                }
+                
+                // Trigger price update animation
+                cell.style.animation = 'chipPop 0.4s ease';
+                setTimeout(() => {
+                    cell.style.animation = '';
+                }, 400);
+            });
+            
+            container.appendChild(cell);
+            
+            // Stagger animation
+            setTimeout(() => {
+                cell.style.animation = 'fadeInUp 0.3s ease';
+            }, index * 30);
+        });
+    }
+
+    function initializeFlexibleDateGrid() {
+        const closeDateBtn = document.getElementById('close-date-grid');
+        const dateGrid = document.getElementById('flexible-date-grid');
+        
+        if (closeDateBtn && dateGrid) {
+            closeDateBtn.addEventListener('click', () => {
+                dateGrid.style.display = 'none';
+            });
+        }
+    }
+
+    // ============================================= 
+    // AIRLINE FILTER CHIPS
+    // ============================================= 
+    function initializeAirlineFilters() {
+        const airlineChips = document.querySelectorAll('.airline-chip');
+        const clearFiltersBtn = document.getElementById('clear-airline-filters');
+        const selectedAirlines = new Set();
+        
+        airlineChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const airline = chip.getAttribute('data-airline');
+                
+                if (chip.classList.contains('active')) {
+                    chip.classList.remove('active');
+                    selectedAirlines.delete(airline);
+                } else {
+                    chip.classList.add('active');
+                    selectedAirlines.add(airline);
+                }
+                
+                // Update search results (simulated)
+                console.log('Selected airlines:', Array.from(selectedAirlines));
+            });
+        });
+        
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                airlineChips.forEach(chip => {
+                    chip.classList.remove('active');
+                });
+                selectedAirlines.clear();
+                
+                // Add feedback animation
+                clearFiltersBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    clearFiltersBtn.style.transform = '';
+                }, 200);
+            });
+        }
+    }
+
+    // ============================================= 
+    // PRICE ALERT TOGGLE
+    // ============================================= 
+    function initializePriceAlert() {
+        const priceAlertToggle = document.getElementById('price-alert-toggle');
+        
+        if (priceAlertToggle) {
+            priceAlertToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    // Show notification
+                    showPriceAlertNotification('✓ Price alerts enabled! We\'ll notify you of drops.');
+                    
+                    // Save to localStorage
+                    localStorage.setItem('priceAlertsEnabled', 'true');
+                } else {
+                    showPriceAlertNotification('Price alerts disabled.');
+                    localStorage.removeItem('priceAlertsEnabled');
+                }
+            });
+            
+            // Load saved state
+            if (localStorage.getItem('priceAlertsEnabled') === 'true') {
+                priceAlertToggle.checked = true;
+            }
+        }
+    }
+
+    function showPriceAlertNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 500;
+        `;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+
+    // ============================================= 
+    // SEARCH RESULTS SKELETON
+    // ============================================= 
+    function showSearchSkeleton() {
+        const skeleton = document.getElementById('search-skeleton');
+        if (skeleton) {
+            skeleton.style.display = 'block';
+            
+            // Auto-hide after simulated load time
+            setTimeout(() => {
+                hideSearchSkeleton();
+            }, 2500);
+        }
+    }
+
+    function hideSearchSkeleton() {
+        const skeleton = document.getElementById('search-skeleton');
+        if (skeleton) {
+            skeleton.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+                skeleton.style.animation = '';
+            }, 300);
+        }
+    }
+
+    // ============================================= 
+    // REAL-TIME PRICE UPDATES
+    // ============================================= 
+    function initializeRealTimePriceUpdates() {
+        const priceElements = document.querySelectorAll('.price-amount, .date-price');
+        
+        // Simulate price updates every 30 seconds
+        setInterval(() => {
+            priceElements.forEach(priceEl => {
+                const currentPrice = parseInt(priceEl.textContent.replace(/\D/g, ''));
+                
+                // Random price change (-5% to +5%)
+                const change = Math.floor(currentPrice * (Math.random() * 0.1 - 0.05));
+                const newPrice = currentPrice + change;
+                
+                if (change !== 0) {
+                    // Pulse animation
+                    priceEl.style.animation = 'pulse 0.5s ease';
+                    
+                    setTimeout(() => {
+                        priceEl.textContent = priceEl.textContent.includes('$') ? 
+                            `$${newPrice}` : newPrice.toString();
+                        
+                        // Color flash based on change
+                        if (change < 0) {
+                            priceEl.style.color = '#10B981';
+                        } else if (change > 0) {
+                            priceEl.style.color = '#EF4444';
+                        }
+                        
+                        setTimeout(() => {
+                            priceEl.style.animation = '';
+                            priceEl.style.color = '';
+                        }, 500);
+                    }, 250);
+                }
+            });
+        }, 30000);
+    }
+
+    // ============================================= 
+    // ENHANCED HERO SEARCH FORM WITH SKELETON
+    // ============================================= 
+    function enhanceHeroSearchForm() {
+        const form = document.getElementById('hero-search-form');
+        
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    from: document.getElementById('hero-from')?.value,
+                    to: document.getElementById('hero-to')?.value,
+                    departure: document.getElementById('hero-departure')?.value,
+                    return: document.getElementById('hero-return')?.value,
+                    passengers: document.getElementById('passengers-display-hero')?.textContent
+                };
+                
+                // Validate
+                if (!formData.from || !formData.to) {
+                    alert('Please enter departure and arrival cities');
+                    return;
+                }
+                
+                if (!formData.departure) {
+                    alert('Please select a departure date');
+                    return;
+                }
+                
+                // Show skeleton loading
+                showSearchSkeleton();
+                
+                // Simulate search delay
+                setTimeout(() => {
+                    // Redirect to booking page with data
+                    const params = new URLSearchParams(formData);
+                    window.location.href = `booking.html?${params.toString()}`;
+                }, 2500);
+            });
+        }
+    }
+
+    // Add pulse animation to CSS dynamically
+    const pulseStyle = document.createElement('style');
+    pulseStyle.textContent = `
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    `;
+    document.head.appendChild(pulseStyle);
+
+    // =============================================
+    // MASONRY GALLERY INITIALIZATION
+    // =============================================
+    function initializeMasonryGallery() {
+        // Lazy Loading with Blur-Up Effect
+        initializeLazyLoading();
+        
+        // Favorite Hearts Functionality
+        initializeFavoriteHearts();
+        
+        // Countdown Timers
+        initializeCountdownTimers();
+        
+        // Video Background Hover
+        initializeVideoBackgrounds();
+        
+        console.log('🖼️ Masonry gallery initialized with lazy loading, favorites, and countdown timers');
+    }
+
+    // ============================================= 
+    // LAZY LOADING WITH INTERSECTION OBSERVER
+    // ============================================= 
+    function initializeLazyLoading() {
+        const lazyImages = document.querySelectorAll('.masonry-card-image.lazy-load');
+        
+        if (!lazyImages.length) return;
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        // Create temporary image to preload
+                        const tempImg = new Image();
+                        tempImg.src = src;
+                        
+                        tempImg.onload = () => {
+                            img.src = src;
+                            img.classList.remove('lazy-load');
+                            img.classList.add('lazy-loaded');
+                        };
+                        
+                        tempImg.onerror = () => {
+                            console.error('Failed to load image:', src);
+                            img.classList.remove('lazy-load');
+                        };
+                    }
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px' // Start loading 50px before entering viewport
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    }
+
+    // ============================================= 
+    // FAVORITE HEARTS WITH LOCAL STORAGE
+    // ============================================= 
+    function initializeFavoriteHearts() {
+        const favoriteButtons = document.querySelectorAll('.favorite-heart');
+        
+        if (!favoriteButtons.length) return;
+        
+        // Load saved favorites from localStorage
+        const savedFavorites = JSON.parse(localStorage.getItem('favoriteDestinations') || '[]');
+        
+        favoriteButtons.forEach(button => {
+            const destination = button.getAttribute('data-destination');
+            
+            // Set initial state
+            if (savedFavorites.includes(destination)) {
+                button.classList.add('active');
+            }
+            
+            // Click handler
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent card click
+                
+                const isActive = button.classList.contains('active');
+                button.classList.toggle('active');
+                
+                // Update localStorage
+                let favorites = JSON.parse(localStorage.getItem('favoriteDestinations') || '[]');
+                
+                if (isActive) {
+                    // Remove from favorites
+                    favorites = favorites.filter(fav => fav !== destination);
+                    showMasonryNotification(`Removed ${destination} from favorites`, 'info');
+                } else {
+                    // Add to favorites
+                    if (!favorites.includes(destination)) {
+                        favorites.push(destination);
+                        showMasonryNotification(`Added ${destination} to favorites ❤️`, 'success');
+                    }
+                }
+                
+                localStorage.setItem('favoriteDestinations', JSON.stringify(favorites));
+            });
+        });
+    }
+
+    function showMasonryNotification(message, type) {
+        const colors = {
+            success: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+            info: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'
+        };
+        
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${colors[type] || colors.success};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 500;
+        `;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // ============================================= 
+    // COUNTDOWN TIMERS FOR LIMITED TIME DEALS
+    // ============================================= 
+    function initializeCountdownTimers() {
+        const countdownElements = document.querySelectorAll('.countdown-timer');
+        
+        if (!countdownElements.length) return;
+        
+        countdownElements.forEach(element => {
+            const endTime = element.getAttribute('data-endtime');
+            
+            if (!endTime) return;
+            
+            const countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const end = new Date(endTime).getTime();
+                const distance = end - now;
+                
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    element.textContent = 'EXPIRED';
+                    return;
+                }
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                element.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        });
+    }
+
+    // ============================================= 
+    // VIDEO BACKGROUNDS ON HOVER (IF IMPLEMENTED)
+    // ============================================= 
+    function initializeVideoBackgrounds() {
+        const videoCards = document.querySelectorAll('.masonry-card[data-video]');
+        
+        if (!videoCards.length) return;
+        
+        videoCards.forEach(card => {
+            const videoUrl = card.getAttribute('data-video');
+            
+            if (!videoUrl) return;
+            
+            // Create video element (hidden initially)
+            const video = document.createElement('video');
+            video.src = videoUrl;
+            video.loop = true;
+            video.muted = true;
+            video.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                z-index: 1;
+            `;
+            
+            const imageWrapper = card.querySelector('.masonry-card-image-wrapper');
+            imageWrapper.insertBefore(video, imageWrapper.firstChild);
+            
+            // Hover events
+            card.addEventListener('mouseenter', () => {
+                video.play();
+                setTimeout(() => {
+                    video.style.opacity = '1';
+                }, 100);
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                video.style.opacity = '0';
+                setTimeout(() => {
+                    video.pause();
+                    video.currentTime = 0;
+                }, 500);
+            });
+        });
+    }
+
+    // ============================================= 
+    // MASONRY FILTER PILLS (IF IMPLEMENTED)
+    // ============================================= 
+    function initializeMasonryFilters() {
+        const filterPills = document.querySelectorAll('.masonry-filter-pill');
+        const masonryCards = document.querySelectorAll('.masonry-card');
+        
+        if (!filterPills.length) return;
+        
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Update active state
+                filterPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                
+                const category = pill.getAttribute('data-category');
+                
+                // Filter cards
+                masonryCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+
+    // Initialize all hero features
+    if (document.getElementById('hero-section')) {
+        initializeHeroBackground();
+        initializeHeroCounters();
+        initializeHeroSearchWidget();
+        initializeHeroSwapButton();
+        initializeHeroPassengersDropdown();
+        initializeHeroSearchForm();
+        enhanceHeroSearchForm();
+        
+        // Initialize new features
+        initializePopularRoutesQuickSelect();
+        initializeFlexibleDateGrid();
+        initializeAirlineFilters();
+        initializePriceAlert();
+        initializeRealTimePriceUpdates();
+        
+        // Initialize GSAP animations after a short delay
+        setTimeout(() => {
+            initializeHeroAnimations();
+        }, 100);
+    }
+
+    // Initialize masonry gallery if present
+    if (document.getElementById('masonry-grid')) {
+        initializeMasonryGallery();
+    }
+
+    // =============================================
+    // DEALS CAROUSEL WITH SWIPER.JS
+    // =============================================
+    function initializeDealsCarousel() {
+        const dealsSwiper = document.getElementById('dealsSwiper');
+        
+        if (!dealsSwiper) return;
+        
+        console.log('🎠 Initializing deals carousel with Swiper.js...');
+        
+        // Initialize Swiper with advanced config
+        const swiper = new Swiper('.deals-swiper', {
+            // Slides configuration
+            slidesPerView: 1.2,
+            spaceBetween: 24,
+            centeredSlides: false,
+            loop: true,
+            
+            // Responsive breakpoints
+            breakpoints: {
+                640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 24
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                },
+                1024: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 32
+                },
+                1280: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 32
+                }
+            },
+            
+            // Auto-play configuration
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            },
+            
+            // Speed and effects
+            speed: 800,
+            effect: 'slide',
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.deals-next-btn',
+                prevEl: '.deals-prev-btn',
+            },
+            
+            // Pagination dots
+            pagination: {
+                el: '.deals-pagination',
+                clickable: true,
+                dynamicBullets: true
+            },
+            
+            // Keyboard control
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            },
+            
+            // Accessibility
+            a11y: {
+                prevSlideMessage: 'Previous deal',
+                nextSlideMessage: 'Next deal',
+            },
+            
+            // Events
+            on: {
+                init: function() {
+                    console.log('✅ Swiper initialized with ' + this.slides.length + ' slides');
+                    initializeProgressBar(this);
+                },
+                slideChange: function() {
+                    resetAllFlippedCards();
+                },
+                autoplayTimeLeft: function(swiper, time, percentage) {
+                    updateProgressBar(percentage);
+                }
+            }
+        });
+        
+        // Initialize 3D flip functionality
+        initializeCardFlips();
+        
+        // Initialize copy code buttons
+        initializeCopyCodeButtons();
+        
+        // Pause autoplay on card flip
+        document.querySelectorAll('.deal-flip-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.copy-code-btn') && !e.target.closest('.deal-flip-back-btn')) {
+                    swiper.autoplay.stop();
+                    setTimeout(() => {
+                        if (!card.classList.contains('flipped')) {
+                            swiper.autoplay.start();
+                        }
+                    }, 500);
+                }
+            });
+        });
+        
+        return swiper;
+    }
+
+    // ============================================= 
+    // PROGRESS BAR INDICATOR
+    // ============================================= 
+    function initializeProgressBar(swiper) {
+        const progressBar = document.getElementById('dealsProgressBar');
+        if (!progressBar) return;
+        
+        // Set initial width
+        progressBar.style.width = '0%';
+    }
+
+    function updateProgressBar(percentage) {
+        const progressBar = document.getElementById('dealsProgressBar');
+        if (!progressBar) return;
+        
+        // Convert percentage (1 = 100%, 0 = 0%)
+        const width = (1 - percentage) * 100;
+        progressBar.style.width = width + '%';
+    }
+
+    // ============================================= 
+    // 3D FLIP CARD FUNCTIONALITY
+    // ============================================= 
+    function initializeCardFlips() {
+        const flipCards = document.querySelectorAll('.deal-flip-card');
+        
+        flipCards.forEach(card => {
+            // Flip on click (excluding buttons)
+            card.addEventListener('click', (e) => {
+                // Don't flip if clicking buttons
+                if (e.target.closest('.deal-book-btn') || 
+                    e.target.closest('.copy-code-btn') || 
+                    e.target.closest('.deal-flip-back-btn')) {
+                    return;
+                }
+                
+                card.classList.toggle('flipped');
+            });
+            
+            // Flip back button
+            const flipBackBtn = card.querySelector('.deal-flip-back-btn');
+            if (flipBackBtn) {
+                flipBackBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.remove('flipped');
+                });
+            }
+            
+            // Book button click handler
+            const bookBtn = card.querySelector('.deal-book-btn');
+            if (bookBtn) {
+                bookBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showDealsNotification('Redirecting to booking page...', 'success');
+                    // Add your booking logic here
+                    setTimeout(() => {
+                        // window.location.href = 'booking.html';
+                    }, 1000);
+                });
+            }
+        });
+    }
+
+    function resetAllFlippedCards() {
+        document.querySelectorAll('.deal-flip-card.flipped').forEach(card => {
+            card.classList.remove('flipped');
+        });
+    }
+
+    // ============================================= 
+    // COPY PROMO CODE FUNCTIONALITY
+    // ============================================= 
+    function initializeCopyCodeButtons() {
+        const copyButtons = document.querySelectorAll('.copy-code-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                const code = button.getAttribute('data-code');
+                
+                // Copy to clipboard
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(code).then(() => {
+                        showCopySuccess(button, code);
+                    }).catch(err => {
+                        console.error('Failed to copy:', err);
+                        fallbackCopyTextToClipboard(code, button);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(code, button);
+                }
+            });
+        });
+    }
+
+    function showCopySuccess(button, code) {
+        const originalHTML = button.innerHTML;
+        
+        // Change button appearance
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        
+        // Show notification
+        showDealsNotification(`Code "${code}" copied to clipboard!`, 'success');
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            button.classList.remove('copied');
+            button.innerHTML = originalHTML;
+        }, 3000);
+    }
+
+    function fallbackCopyTextToClipboard(text, button) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showCopySuccess(button, text);
+            }
+        } catch (err) {
+            console.error('Fallback copy failed:', err);
+        }
+        
+        document.body.removeChild(textArea);
+    }
+
+    // ============================================= 
+    // NOTIFICATION SYSTEM FOR DEALS
+    // ============================================= 
+    function showDealsNotification(message, type) {
+        const colors = {
+            success: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+            error: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+            info: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'
+        };
+        
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${colors[type] || colors.success};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 500;
+            min-width: 250px;
+            text-align: center;
+        `;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // ============================================= 
+    // KEYBOARD NAVIGATION ENHANCEMENT
+    // ============================================= 
+    function enhanceDealsKeyboardNav() {
+        document.addEventListener('keydown', (e) => {
+            const activeCard = document.querySelector('.deal-flip-card:focus');
+            
+            if (activeCard) {
+                // Space or Enter to flip card
+                if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    activeCard.classList.toggle('flipped');
+                }
+                
+                // Escape to flip back
+                if (e.key === 'Escape') {
+                    activeCard.classList.remove('flipped');
+                }
+            }
+        });
+    }
+
+    // ============================================= 
+    // INITIALIZE DEALS CAROUSEL
+    // ============================================= 
+    if (document.getElementById('dealsSwiper')) {
+        // Wait for Swiper library to load
+        if (typeof Swiper !== 'undefined') {
+            initializeDealsCarousel();
+            enhanceDealsKeyboardNav();
+        } else {
+            console.warn('⚠️ Swiper.js not loaded. Deals carousel disabled.');
+        }
+    }
+
+    // ============================================
+    // BENTO BOX SOCIAL PROOF SECTION
+    // ============================================
+
+    /**
+     * Animated Counter - Counts up to target value when scrolled into view
+     */
+    function initBentoCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        if (counters.length === 0) return;
+
+        const animateCounter = (element) => {
+            const target = parseFloat(element.dataset.target);
+            const decimals = parseInt(element.dataset.decimals) || 0;
+            const suffix = element.dataset.suffix || '';
+            const duration = 2000; // 2 seconds
+            const frameDuration = 1000 / 60; // 60fps
+            const totalFrames = Math.round(duration / frameDuration);
+            let frame = 0;
+
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4); // Easing function
+                const currentValue = target * easeOutQuart;
+
+                if (decimals > 0) {
+                    element.textContent = currentValue.toFixed(decimals) + suffix;
+                } else {
+                    element.textContent = Math.floor(currentValue).toLocaleString() + suffix;
+                }
+
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                    if (decimals > 0) {
+                        element.textContent = target.toFixed(decimals) + suffix;
+                    } else {
+                        element.textContent = Math.floor(target).toLocaleString() + suffix;
+                    }
+                }
+            }, frameDuration);
+        };
+
+        // Intersection Observer for scroll-triggered animation
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    animateCounter(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => observer.observe(counter));
+        console.log('✅ Bento Box: Animated counters initialized (' + counters.length + ' counters)');
+    }
+
+    /**
+     * Video Modal - Opens/closes video testimonial in modal
+     */
+    function initBentoVideoModal() {
+        const videoPlayBtns = document.querySelectorAll('.video-play-btn');
+        const videoModal = document.getElementById('videoModal');
+        const videoModalClose = document.querySelector('.video-modal-close');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        if (!videoModal || videoPlayBtns.length === 0) return;
+
+        // Open modal on play button click
+        videoPlayBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const videoCard = btn.closest('.bento-video-card');
+                
+                // Use data-video-id if available, otherwise default video
+                const videoId = btn.dataset.videoId || 'dQw4w9WgXcQ';
+                const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                
+                videoPlayer.src = videoSrc;
+                videoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+        });
+
+        // Close modal
+        const closeModal = () => {
+            videoModal.style.display = 'none';
+            videoPlayer.src = ''; // Stop video
+            document.body.style.overflow = ''; // Restore scroll
+        };
+
+        if (videoModalClose) {
+            videoModalClose.addEventListener('click', closeModal);
+        }
+
+        // Close on overlay click
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+
+        console.log('✅ Bento Box: Video modal initialized');
+    }
+
+    /**
+     * Star Rating Fill Animation - Fills stars from left to right
+     */
+    function initBentoStarRatings() {
+        const reviewCards = document.querySelectorAll('.bento-review-card');
+        if (reviewCards.length === 0) return;
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stars = entry.target.querySelector('.review-stars');
+                    if (stars && !stars.classList.contains('animated')) {
+                        stars.classList.add('animated');
+                        
+                        // Animate each star individually
+                        const starText = stars.textContent;
+                        stars.textContent = '';
+                        
+                        starText.split('').forEach((star, index) => {
+                            setTimeout(() => {
+                                const span = document.createElement('span');
+                                span.textContent = star;
+                                span.style.opacity = '0';
+                                span.style.animation = 'starFadeIn 0.3s ease forwards';
+                                stars.appendChild(span);
+                            }, index * 100);
+                        });
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        reviewCards.forEach(card => observer.observe(card));
+        console.log('✅ Bento Box: Star rating animations initialized (' + reviewCards.length + ' cards)');
+    }
+
+    /**
+     * Floating Cards Animation - Adds gentle floating effect
+     */
+    function initBentoFloatingCards() {
+        const floatingCards = document.querySelectorAll('.bento-card[data-float-speed]');
+        if (floatingCards.length === 0) return;
+
+        floatingCards.forEach((card, index) => {
+            const speed = parseFloat(card.dataset.floatSpeed) || 3;
+            const delay = index * 0.2; // Stagger the animations
+            
+            card.style.animationDuration = `${speed}s`;
+            card.style.animationDelay = `${delay}s`;
+        });
+
+        console.log('✅ Bento Box: Floating card animations initialized (' + floatingCards.length + ' cards)');
+    }
+
+    /**
+     * Card Hover Tilt Effect - 3D tilt on mouse move
+     */
+    function initBentoCardTilt() {
+        const reviewCards = document.querySelectorAll('.bento-review-card');
+        if (reviewCards.length === 0) return;
+
+        reviewCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20; // Subtle rotation
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        console.log('✅ Bento Box: Card tilt effects initialized (' + reviewCards.length + ' cards)');
+    }
+
+    /**
+     * Add star fill animation CSS dynamically
+     */
+    function addBentoAnimationStyles() {
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes starFadeIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0) rotate(-180deg);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) rotate(0deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    /**
+     * Initialize all Bento Box features
+     */
+    function initBentoBoxSection() {
+        const bentoSection = document.querySelector('.bento-social-proof-section');
+        if (!bentoSection) {
+            console.log('ℹ️ Bento Box section not found on this page');
+            return;
+        }
+
+        addBentoAnimationStyles();
+        initBentoCounters();
+        initBentoVideoModal();
+        initBentoStarRatings();
+        initBentoFloatingCards();
+        initBentoCardTilt();
+
+        console.log('🎨 Bento Box Social Proof: All features initialized successfully!');
+    }
+
+    // Initialize Bento Box
+    initBentoBoxSection();
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // FLIGHT BOOKING HERO - CONVERSION FOCUSED FUNCTIONALITY
+    // ═══════════════════════════════════════════════════════════════════════════════
+    
+    function initFlightBookingHero() {
+        // Parallax Effect on Scroll
+        const heroBackground = document.querySelector('.hero-bg-image');
+        if (heroBackground) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxSpeed = 0.5;
+                heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+            });
+        }
+
+        // Tab Navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const returnDateGroup = document.getElementById('returnDateGroup');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabBtns.forEach(tab => tab.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                const tripType = this.getAttribute('data-trip-type');
+                
+                // Hide/show return date based on trip type
+                if (tripType === 'one-way') {
+                    if (returnDateGroup) returnDateGroup.style.display = 'none';
+                } else {
+                    if (returnDateGroup) returnDateGroup.style.display = 'flex';
+                }
+            });
+        });
+
+        // Swap Locations Button
+        const swapBtn = document.getElementById('swapLocations');
+        const fromInput = document.getElementById('fromLocation');
+        const toInput = document.getElementById('toLocation');
+        
+        if (swapBtn && fromInput && toInput) {
+            swapBtn.addEventListener('click', function() {
+                const temp = fromInput.value;
+                fromInput.value = toInput.value;
+                toInput.value = temp;
+                
+                // Add animation class
+                this.style.transform = 'rotate(180deg)';
+                setTimeout(() => {
+                    this.style.transform = 'rotate(0deg)';
+                }, 300);
+            });
+        }
+
+        // Autocomplete Functionality
+        const fromLocationInput = document.getElementById('fromLocation');
+        const toLocationInput = document.getElementById('toLocation');
+        const fromDropdown = document.getElementById('fromDropdown');
+        const toDropdown = document.getElementById('toDropdown');
+        
+        function setupAutocomplete(input, dropdown) {
+            if (!input || !dropdown) return;
+            
+            input.addEventListener('focus', function() {
+                dropdown.classList.add('active');
+            });
+            
+            input.addEventListener('input', function() {
+                const value = this.value.toLowerCase();
+                const items = dropdown.querySelectorAll('.autocomplete-item');
+                
+                items.forEach(item => {
+                    const city = item.getAttribute('data-city').toLowerCase();
+                    const code = item.getAttribute('data-code').toLowerCase();
+                    
+                    if (city.includes(value) || code.includes(value) || value === '') {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+            
+            const items = dropdown.querySelectorAll('.autocomplete-item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const city = this.getAttribute('data-city');
+                    const code = this.getAttribute('data-code');
+                    input.value = `${city} (${code})`;
+                    dropdown.classList.remove('active');
+                });
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+        
+        setupAutocomplete(fromLocationInput, fromDropdown);
+        setupAutocomplete(toLocationInput, toDropdown);
+
+        // Date Picker (Simple implementation - can be enhanced with a library)
+        const departDate = document.getElementById('departDate');
+        const returnDate = document.getElementById('returnDate');
+        const departDay = document.getElementById('departDay');
+        const returnDay = document.getElementById('returnDay');
+        
+        function setupDateInput(input, dayLabel) {
+            if (!input) return;
+            
+            input.addEventListener('click', function() {
+                // In a real implementation, this would open a calendar picker
+                const today = new Date();
+                const formatted = today.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                this.value = formatted;
+                
+                if (dayLabel) {
+                    const dayName = today.toLocaleDateString('en-US', { weekday: 'short' });
+                    dayLabel.textContent = dayName;
+                }
+            });
+        }
+        
+        setupDateInput(departDate, departDay);
+        setupDateInput(returnDate, returnDay);
+
+        // Travelers & Class Dropdown
+        const travelersTrigger = document.getElementById('travelersTrigger');
+        const travelersDropdown = document.getElementById('travelersDropdown');
+        const travelersDisplay = document.querySelector('.travelers-display');
+        const travelersDoneBtn = document.getElementById('travelersDoneBtn');
+        
+        let adultsCount = 1;
+        let childrenCount = 0;
+        let infantsCount = 0;
+        let selectedClass = 'economy';
+        
+        if (travelersTrigger) {
+            travelersTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                travelersDropdown.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+        
+        // Counter buttons
+        const counterBtns = document.querySelectorAll('.counter-btn');
+        counterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                const isPlus = this.classList.contains('plus');
+                const counterValue = document.getElementById(`${target}Count`);
+                
+                let currentValue = parseInt(counterValue.textContent);
+                
+                if (isPlus) {
+                    currentValue++;
+                    // Animate
+                    counterValue.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        counterValue.style.transform = 'scale(1)';
+                    }, 200);
+                } else if (currentValue > 0) {
+                    if (target === 'adults' && currentValue === 1) return; // Minimum 1 adult
+                    currentValue--;
+                    counterValue.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        counterValue.style.transform = 'scale(1)';
+                    }, 200);
+                }
+                
+                counterValue.textContent = currentValue;
+                
+                // Update counts
+                if (target === 'adults') adultsCount = currentValue;
+                if (target === 'children') childrenCount = currentValue;
+                if (target === 'infants') infantsCount = currentValue;
+                
+                updateTravelersDisplay();
+            });
+        });
+        
+        // Class buttons
+        const classBtns = document.querySelectorAll('.class-btn');
+        classBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                classBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedClass = this.getAttribute('data-class');
+                updateTravelersDisplay();
+            });
+        });
+        
+        function updateTravelersDisplay() {
+            const totalTravelers = adultsCount + childrenCount + infantsCount;
+            const travelerText = totalTravelers === 1 ? 'Adult' : `${adultsCount} Adult${adultsCount > 1 ? 's' : ''}${childrenCount > 0 ? `, ${childrenCount} Child${childrenCount > 1 ? 'ren' : ''}` : ''}${infantsCount > 0 ? `, ${infantsCount} Infant${infantsCount > 1 ? 's' : ''}` : ''}`;
+            
+            const classNames = {
+                'economy': 'Economy',
+                'premium': 'Premium Economy',
+                'business': 'Business',
+                'first': 'First Class'
+            };
+            
+            if (travelersDisplay) {
+                travelersDisplay.textContent = `${travelerText}, ${classNames[selectedClass]}`;
+            }
+        }
+        
+        if (travelersDoneBtn) {
+            travelersDoneBtn.addEventListener('click', function() {
+                travelersDropdown.classList.remove('active');
+                travelersTrigger.classList.remove('active');
+            });
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (travelersDropdown && !travelersDropdown.contains(e.target) && !travelersTrigger.contains(e.target)) {
+                travelersDropdown.classList.remove('active');
+                travelersTrigger.classList.remove('active');
+            }
+        });
+
+        // Advanced Search Toggle
+        const advancedToggle = document.getElementById('advancedToggle');
+        const advancedOptions = document.getElementById('advancedOptions');
+        
+        if (advancedToggle) {
+            advancedToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                advancedOptions.classList.toggle('active');
+            });
+        }
+        
+        // Close advanced options when clicking outside
+        document.addEventListener('click', function(e) {
+            if (advancedOptions && !advancedOptions.contains(e.target) && !advancedToggle.contains(e.target)) {
+                advancedOptions.classList.remove('active');
+                advancedToggle.classList.remove('active');
+            }
+        });
+
+        // Search Button with Loading State
+        const searchForm = document.getElementById('flightSearchForm');
+        const searchBtn = document.getElementById('searchFlightsBtn');
+        
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Add loading state
+                searchBtn.classList.add('loading');
+                
+                // Simulate search (in real app, this would make an API call)
+                setTimeout(() => {
+                    searchBtn.classList.remove('loading');
+                    
+                    // Get form values
+                    const from = fromInput.value;
+                    const to = toInput.value;
+                    const depart = departDate.value;
+                    const returnVal = returnDate.value;
+                    
+                    console.log('Searching flights:', {
+                        from,
+                        to,
+                        departDate: depart,
+                        returnDate: returnVal,
+                        adults: adultsCount,
+                        children: childrenCount,
+                        infants: infantsCount,
+                        class: selectedClass
+                    });
+                    
+                    // Redirect to booking page or show results
+                    // window.location.href = 'booking.html';
+                    alert('Flight search submitted! In a real app, this would show flight results.');
+                }, 2000);
+            });
+        }
+
+        // Popular Destinations Quick Select
+        const destinationPills = document.querySelectorAll('.destination-pill');
+        destinationPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                const destination = this.getAttribute('data-destination');
+                const code = this.getAttribute('data-code');
+                
+                if (toInput) {
+                    toInput.value = `${destination} (${code})`;
+                    toInput.focus();
+                    
+                    // Add pulse animation
+                    toInput.style.animation = 'pulse 0.5s ease';
+                    setTimeout(() => {
+                        toInput.style.animation = '';
+                    }, 500);
+                }
+            });
+        });
+    }
+    
+    // Initialize Flight Booking Hero if present
+    if (document.querySelector('.flight-booking-hero')) {
+        initFlightBookingHero();
+        console.log('✈️ Flight Booking Hero: Initialized with conversion-focused features!');
+    }
+
+    console.log('✈️ Destinova: All sections initialized with smooth scrolling, modern hero, advanced search features, masonry gallery, deals carousel, and Bento Box social proof!');
 });

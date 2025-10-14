@@ -24,9 +24,26 @@
 
   <!-- Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Swiper Carousel -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Three.js for 3D Background -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <!-- Vanta.js for Animated Background -->
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+  
+  <!-- Swiper Carousel -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -136,27 +153,223 @@
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
 
   <main>
-    <section class="home-hero" role="banner">
-      <div class="home-hero-bg-animation" aria-hidden="true"></div>
-      <div class="home-hero-overlay" aria-hidden="true" data-i18n-key="heroOverlay"></div>
-      <div class="home-hero-content">
-        <h1 data-aos="fade-down" data-aos-duration="800" data-i18n-key="heroTitle">Your Journey Starts Here</h1>
-        <p data-aos="fade-down" data-aos-duration="800" data-aos-delay="200" data-i18n-key="heroSubtitle">Experience premium travel with Destinova.
-          Discover exclusive destinations and book flights with world-class service.</p>
-        <p class="text-lg mt-4 text-amber-100/80" data-aos="fade-down" data-aos-duration="800" data-aos-delay="300">Start your journey with exclusive offers and unparalleled service.</p>
-        <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
-          <a href="#search-section-anchor" class="btn btn-primary hero-cta">
-            <i class="fas fa-plane-departure" aria-hidden="true"></i>
-            Book Your Flight
-          </a>
-          <a href="#home-destinations" class="btn btn-light hero-secondary" data-i18n-key="exploreDestinations">
-            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
-            Explore Destinations
-          </a>
+    <!-- ═══════════════════════════════════════════════════════════════════════════════
+         PROFESSIONAL HERO SECTION - TOP NOTCH DESIGN
+         ═══════════════════════════════════════════════════════════════════════════════ -->
+    <section class="hero-section-modern" role="banner" id="hero-section">
+      <div class="hero-wrapper">
+        <!-- Background Elements -->
+        <div class="hero-background">
+          <div class="hero-image-layer"></div>
+          <div class="hero-overlay-gradient"></div>
+          <div class="hero-pattern-subtle"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content-wrapper">
+          <div class="hero-content-inner">
+            <!-- Main Headline with Effects -->
+            <div class="hero-headline-wrapper" data-aos="fade-up" data-aos-duration="1000">
+              <h1 class="hero-main-headline">
+                <span class="headline-line-1">Travel</span>
+                <span class="headline-line-2">
+                  <span class="word-adventure">Adventure</span>
+                </span>
+              </h1>
+              <p class="hero-tagline">
+                <span class="tagline-icon">✈️</span>
+                Fly to 500+ destinations worldwide with unbeatable prices
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+<br>
+<br>
+      <!-- Flight Search Widget - Positioned at Bottom with Overlap -->
+      <div class="flight-search-overlay-wrapper">
+        <div class="flight-search-widget-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+              <!-- Promotional Banner -->
+              <div class="promo-banner">
+                <i class="fas fa-tags"></i>
+                <span>Use code <strong class="promo-code">FLY15</strong> for 15% off on your next booking!</span>
+                <a href="offers.html">View All Offers</a>
+              </div>
+
+              <form id="booking-form" class="flight-search-card">
+                <div id="form-error-message" class="form-error" style="display: none;"></div>
+                <div class="search-form-header">
+                  <!-- Trip Type Selector -->
+                  <div class="trip-type-selector">
+                    <label><input type="radio" name="trip-type" value="one-way"><span><i class="fas fa-arrow-right"></i> One
+                        Way</span></label>
+                    <label><input type="radio" name="trip-type" value="round-trip" checked><span><i
+                          class="fas fa-retweet"></i> Round Trip</span></label>
+                    <label><input type="radio" name="trip-type" value="multi-city"><span><i class="fas fa-random"></i>
+                        Multi-City</span></label>
+                  </div>
+                  <!-- Recent Searches -->
+                  <div class="recent-searches-container">
+                    <button type="button" class="recent-searches-btn" aria-label="View recent searches">
+                      <i class="fas fa-history"></i> Recent Searches
+                    </button>
+                    <div class="recent-searches-dropdown" id="recent-searches-dropdown">
+                      <div class="dropdown-header">Recent Searches</div>
+                      <div class="dropdown-content" id="recent-searches-list">
+                        <div class="no-searches">No recent searches</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Main Inputs -->
+                <div class="main-inputs-grid">
+                  <div class="input-field from-field">
+                    <label for="from">From</label>
+                    <input type="text" id="from" name="from" placeholder="e.g., Delhi" value="" required
+                      aria-describedby="from-airport" aria-label="Origin city or airport">
+                    <span class="airport-code" id="from-airport">Enter origin city or airport</span>
+                  </div>
+                  <button type="button" class="swap-btn" aria-label="Swap origin and destination"><i
+                      class="fas fa-exchange-alt"></i></button>
+                  <div class="input-field to-field">
+                    <label for="to">To</label>
+                    <input type="text" id="to" name="to" placeholder="Mumbai" value="Mumbai" required>
+                    <span class="airport-code">BOM, Chhatrapati Shivaji International Airport</span>
+                  </div>
+                  <div class="input-field date-field">
+                    <label for="departure"><i class="fas fa-calendar-alt"></i> Departure</label>
+                    <input type="date" id="departure" name="departure" required>
+                    <div id="flexible-dates-options" class="flexible-dates-options" style="display: none;">
+                      <label>Flexible ±3 days:</label>
+                      <input type="date" id="departure-start" name="departure-start" placeholder="Start date">
+                      <span>to</span>
+                      <input type="date" id="departure-end" name="departure-end" placeholder="End date">
+                    </div>
+                  </div>
+                  <div class="input-field date-field" id="return-date-wrapper">
+                    <label for="return"><i class="fas fa-calendar-alt"></i> Return</label>
+                    <input type="date" id="return" name="return">
+                    <div id="flexible-return-options" class="flexible-dates-options" style="display: none;">
+                      <label>Flexible ±3 days:</label>
+                      <input type="date" id="return-start" name="return-start" placeholder="Start date">
+                      <span>to</span>
+                      <input type="date" id="return-end" name="return-end" placeholder="End date">
+                    </div>
+                  </div>
+                  <div class="input-field traveller-field">
+                    <label for="flight-options-toggle"><i class="fas fa-user"></i> Travellers & Class</label>
+                    <button type="button" id="flight-options-toggle" class="flight-options-summary">1 Adult, Economy</button>
+                    <!-- Popover -->
+                    <div class="flight-options-popover" id="flight-options-popover">
+                      <div class="option-section">
+                        <h5><i class="fas fa-users"></i> Passengers</h5>
+                        <div class="passenger-counter">
+                          <span>Adults <small>(12+ yrs)</small></span>
+                          <div class="counter-controls">
+                            <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
+                            <span class="counter-value" data-type="adult">1</span>
+                            <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
+                          </div>
+                        </div>
+                        <div class="passenger-counter">
+                          <span>Children <small>(2-12 yrs)</small></span>
+                          <div class="counter-controls">
+                            <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
+                            <span class="counter-value" data-type="child">0</span>
+                            <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
+                          </div>
+                        </div>
+                        <div class="passenger-counter">
+                          <span>Infants <small>(Below 2 yrs)</small></span>
+                          <div class="counter-controls">
+                            <button type="button" class="counter-btn" data-type="infant" data-action="decrease">-</button>
+                            <span class="counter-value" data-type="infant">0</span>
+                            <button type="button" class="counter-btn" data-type="infant" data-action="increase">+</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="option-section">
+                        <h5><i class="fas fa-couch"></i> Cabin Class</h5>
+                        <div class="option-controls">
+                          <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
+                          <button type="button" class="option-btn-class" data-value="Premium Economy">Premium Economy</button>
+                          <button type="button" class="option-btn-class" data-value="Business">Business</button>
+                          <button type="button" class="option-btn-class" data-value="First">First</button>
+                        </div>
+                      </div>
+                      <button type="button" id="close-popover-btn" class="close-popover-btn">Apply</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Fare Type Selector -->
+                <div class="fare-type-container">
+                  <span class="fare-title">Select a fare type:</span>
+                  <div class="fare-options">
+                    <label><input type="radio" name="fare-type" value="regular" checked><span><i class="fas fa-tag"></i>
+                        Regular</span></label>
+                    <label><input type="radio" name="fare-type" value="student"><span><i class="fas fa-user-graduate"></i>
+                        Student <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Save up to
+                            10% with a valid student ID.</span></span></span></label>
+                    <label><input type="radio" name="fare-type" value="senior"><span><i class="fas fa-user-friends"></i>
+                        Senior Citizen <span class="tooltip"><i class="fas fa-info-circle"></i><span
+                            class="tooltip-text">Special fares for travelers aged 60 and above.</span></span></span></label>
+                    <label><input type="radio" name="fare-type" value="forces"><span><i class="fas fa-shield-alt"></i> Armed
+                        Forces <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Exclusive
+                            fares for armed forces personnel and their families.</span></span></span></label>
+                    <label><input type="radio" name="fare-type" value="corporate"><span><i class="fas fa-briefcase"></i>
+                        Corporate <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Benefits
+                            for business travelers, including easier changes.</span></span></span></label>
+                  </div>
+                  <div class="currency-selector">
+                    <select id="currency" name="currency" aria-label="Select currency">
+                      <option value="INR" selected>INR</option>
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Extra Options -->
+                <div class="extra-options">
+                  <div class="flex flex-wrap gap-x-6 gap-y-2" id="additional-options">
+                    <label class="form-checkbox-label"><input type="checkbox" id="direct-flights"> Direct flights only</label>
+                    <label class="form-checkbox-label"><input type="checkbox" id="nearby-airports"> Search nearby
+                      airports</label>
+                    <label class="form-checkbox-label"><input type="checkbox" id="flexible-dates"> Flexible Dates (±3
+                      days)</label>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Search Button -->
+              <div class="search-button-container">
+                <button type="submit" form="booking-form" class="search-flights-btn">
+                  <i class="fas fa-search"></i> Search
+                </button>
+              </div>
+
+              <!-- Trust Badges -->
+              <div class="trust-badges-container">
+                <div class="trust-badge">
+                  <i class="fas fa-lock"></i><span>SSL Secured</span>
+                </div>
+                <div class="trust-badge">
+                  <i class="fas fa-check-circle"></i><span>IATA Certified</span>
+                </div>
+                <div class="trust-badge">
+                  <i class="fas fa-headset"></i><span>24/7 Support</span>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </section>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- ============================================= -->
     <!-- FLASH DEALS BANNER -->
     <!-- ============================================= -->
@@ -168,15 +381,15 @@
             <span class="ticker-label">Flash Deals</span>
           </div>
           <div class="ticker-deals" id="deals-ticker">
-            <span class="deal-item">NYC → London $299</span>
+            <span class="deal-item">NYC → London ₹24,817</span>
             <span class="deal-separator">•</span>
-            <span class="deal-item">LA → Tokyo $449</span>
+            <span class="deal-item">LA → Tokyo ₹37,267</span>
             <span class="deal-separator">•</span>
-            <span class="deal-item">Miami → Paris $359</span>
+            <span class="deal-item">Miami → Paris ₹29,797</span>
             <span class="deal-separator">•</span>
-            <span class="deal-item">Chicago → Dubai $499</span>
+            <span class="deal-item">Chicago → Dubai ₹41,417</span>
             <span class="deal-separator">•</span>
-            <span class="deal-item">Boston → Rome $379</span>
+            <span class="deal-item">Boston → Rome ₹31,457</span>
           </div>
           <a href="offers.html" class="view-all-deals-btn">
             View All Deals
@@ -186,183 +399,6 @@
       </div>
     </section>
 
-    <section id="search-section-anchor" class="home-search-section" role="search" aria-label="Flight search">
-      <div class="flight-search-widget-container" data-aos="fade-up" data-aos-duration="1000">
-        <!-- Promotional Banner -->
-        <div class="promo-banner">
-          <i class="fas fa-tags"></i>
-          <span>Use code <strong class="promo-code">FLY15</strong> for 15% off on your next booking!</span>
-          <a href="offers.html">View All Offers</a>
-        </div>
-
-        <form id="booking-form" class="flight-search-card">
-          <div id="form-error-message" class="form-error" style="display: none;"></div>
-          <div class="search-form-header">
-            <!-- Trip Type Selector -->
-            <div class="trip-type-selector">
-              <label><input type="radio" name="trip-type" value="one-way"><span><i class="fas fa-arrow-right"></i> One
-                  Way</span></label>
-              <label><input type="radio" name="trip-type" value="round-trip" checked><span><i
-                    class="fas fa-retweet"></i> Round Trip</span></label>
-              <label><input type="radio" name="trip-type" value="multi-city"><span><i class="fas fa-random"></i>
-                  Multi-City</span></label>
-            </div>
-            <!-- Recent Searches -->
-            <div class="recent-searches-container">
-              <button type="button" class="recent-searches-btn" aria-label="View recent searches">
-                <i class="fas fa-history"></i> Recent Searches
-              </button>
-              <div class="recent-searches-dropdown" id="recent-searches-dropdown">
-                <div class="dropdown-header">Recent Searches</div>
-                <div class="dropdown-content" id="recent-searches-list">
-                  <div class="no-searches">No recent searches</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Main Inputs -->
-          <div class="main-inputs-grid">
-            <div class="input-field from-field">
-              <label for="from">From</label>
-              <input type="text" id="from" name="from" placeholder="e.g., Delhi" value="" required
-                aria-describedby="from-airport" aria-label="Origin city or airport">
-              <span class="airport-code" id="from-airport">Enter origin city or airport</span>
-            </div>
-            <button type="button" class="swap-btn" aria-label="Swap origin and destination"><i
-                class="fas fa-exchange-alt"></i></button>
-            <div class="input-field to-field">
-              <label for="to">To</label>
-              <input type="text" id="to" name="to" placeholder="Mumbai" value="Mumbai" required>
-              <span class="airport-code">BOM, Chhatrapati Shivaji International Airport</span>
-            </div>
-            <div class="input-field date-field">
-              <label for="departure"><i class="fas fa-calendar-alt"></i> Departure</label>
-              <input type="date" id="departure" name="departure" required>
-              <div id="flexible-dates-options" class="flexible-dates-options" style="display: none;">
-                <label>Flexible ±3 days:</label>
-                <input type="date" id="departure-start" name="departure-start" placeholder="Start date">
-                <span>to</span>
-                <input type="date" id="departure-end" name="departure-end" placeholder="End date">
-              </div>
-            </div>
-            <div class="input-field date-field" id="return-date-wrapper">
-              <label for="return"><i class="fas fa-calendar-alt"></i> Return</label>
-              <input type="date" id="return" name="return">
-              <div id="flexible-return-options" class="flexible-dates-options" style="display: none;">
-                <label>Flexible ±3 days:</label>
-                <input type="date" id="return-start" name="return-start" placeholder="Start date">
-                <span>to</span>
-                <input type="date" id="return-end" name="return-end" placeholder="End date">
-              </div>
-            </div>
-            <div class="input-field traveller-field">
-              <label for="flight-options-toggle"><i class="fas fa-user"></i> Travellers & Class</label>
-              <button type="button" id="flight-options-toggle" class="flight-options-summary">1 Adult, Economy</button>
-              <!-- Popover -->
-              <div class="flight-options-popover" id="flight-options-popover">
-                <div class="option-section">
-                  <h5><i class="fas fa-users"></i> Passengers</h5>
-                  <div class="passenger-counter">
-                    <span>Adults <small>(12+ yrs)</small></span>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
-                      <span class="counter-value" data-type="adult">1</span>
-                      <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
-                    </div>
-                  </div>
-                  <div class="passenger-counter">
-                    <span>Children <small>(2-12 yrs)</small></span>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
-                      <span class="counter-value" data-type="child">0</span>
-                      <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
-                    </div>
-                  </div>
-                  <div class="passenger-counter">
-                    <span>Infants <small>(Below 2 yrs)</small></span>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-type="infant" data-action="decrease">-</button>
-                      <span class="counter-value" data-type="infant">0</span>
-                      <button type="button" class="counter-btn" data-type="infant" data-action="increase">+</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="option-section">
-                  <h5><i class="fas fa-couch"></i> Cabin Class</h5>
-                  <div class="option-controls">
-                    <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
-                    <button type="button" class="option-btn-class" data-value="Premium Economy">Premium Economy</button>
-                    <button type="button" class="option-btn-class" data-value="Business">Business</button>
-                    <button type="button" class="option-btn-class" data-value="First">First</button>
-                  </div>
-                </div>
-                <button type="button" id="close-popover-btn" class="close-popover-btn">Apply</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Fare Type Selector -->
-          <div class="fare-type-container">
-            <span class="fare-title">Select a fare type:</span>
-            <div class="fare-options">
-              <label><input type="radio" name="fare-type" value="regular" checked><span><i class="fas fa-tag"></i>
-                  Regular</span></label>
-              <label><input type="radio" name="fare-type" value="student"><span><i class="fas fa-user-graduate"></i>
-                  Student <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Save up to
-                      10% with a valid student ID.</span></span></span></label>
-              <label><input type="radio" name="fare-type" value="senior"><span><i class="fas fa-user-friends"></i>
-                  Senior Citizen <span class="tooltip"><i class="fas fa-info-circle"></i><span
-                      class="tooltip-text">Special fares for travelers aged 60 and above.</span></span></span></label>
-              <label><input type="radio" name="fare-type" value="forces"><span><i class="fas fa-shield-alt"></i> Armed
-                  Forces <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Exclusive
-                      fares for armed forces personnel and their families.</span></span></span></label>
-              <label><input type="radio" name="fare-type" value="corporate"><span><i class="fas fa-briefcase"></i>
-                  Corporate <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Benefits
-                      for business travelers, including easier changes.</span></span></span></label>
-            </div>
-            <div class="currency-selector">
-              <select id="currency" name="currency" aria-label="Select currency">
-                <option value="INR">INR</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Extra Options -->
-          <div class="extra-options">
-            <div class="flex flex-wrap gap-x-6 gap-y-2" id="additional-options">
-              <label class="form-checkbox-label"><input type="checkbox" id="direct-flights"> Direct flights only</label>
-              <label class="form-checkbox-label"><input type="checkbox" id="nearby-airports"> Search nearby
-                airports</label>
-              <label class="form-checkbox-label"><input type="checkbox" id="flexible-dates"> Flexible Dates (±3
-                days)</label>
-            </div>
-          </div>
-        </form>
-
-        <!-- Search Button -->
-        <div class="search-button-container">
-          <button type="submit" form="booking-form" class="search-flights-btn">
-            <i class="fas fa-search"></i> Search
-          </button>
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="trust-badges-container">
-          <div class="trust-badge">
-            <i class="fas fa-lock"></i><span>SSL Secured</span>
-          </div>
-          <div class="trust-badge">
-            <i class="fas fa-check-circle"></i><span>IATA Certified</span>
-          </div>
-          <div class="trust-badge">
-            <i class="fas fa-headset"></i><span>24/7 Support</span>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ============================================= -->
     <!-- PRICE COMPARISON TOOL SECTION -->
@@ -407,6 +443,7 @@
         </div>
       </div>
     </section>
+    
 
     <!-- ============================================= -->
     <!-- TRUST & CONFIDENCE INDICATORS SECTION -->
@@ -594,29 +631,29 @@
     </div>
 
     <!-- ============================================= -->
-    <!-- POPULAR DESTINATIONS - MODERN REDESIGN -->
+    <!-- MASONRY DESTINATIONS GALLERY - PREMIUM DESIGN -->
     <!-- ============================================= -->
-    <section id="home-destinations" class="modern-destinations-section" role="region" aria-labelledby="destinations-heading">
-      <div class="destinations-modern-container">
+    <section id="home-destinations" class="masonry-destinations-section" role="region" aria-labelledby="destinations-heading">
+      <div class="destinations-masonry-container">
         <!-- Section Header with Modern Layout -->
-        <div class="modern-destinations-header" data-aos="fade-up">
+        <div class="masonry-destinations-header" data-aos="fade-up">
           <div class="header-content-wrapper">
             <div class="header-title-group">
               <span class="section-label">
                 <i class="fas fa-globe-americas"></i>
                 Trending Now
               </span>
-              <h2 id="destinations-heading" class="modern-destinations-title">
+              <h2 id="destinations-heading" class="masonry-destinations-title">
                 Explore Dream
                 <span class="gradient-text">Destinations</span>
               </h2>
-              <p class="modern-destinations-subtitle">
+              <p class="masonry-destinations-subtitle">
                 Handpicked locations loved by millions of travelers worldwide
               </p>
             </div>
             
             <!-- Modern Filter Pills -->
-            <div class="modern-filter-pills" role="tablist">
+            <div class="masonry-filter-pills" role="tablist">
               <button class="filter-pill active" role="tab" aria-selected="true" data-category="all">
                 <span class="pill-icon">🌍</span>
                 <span>All Places</span>
@@ -641,136 +678,170 @@
           </div>
         </div>
 
-        <!-- Modern Destination Cards Grid -->
-        <div class="modern-destinations-grid" id="destinations-grid" role="list">
+        <!-- Masonry Grid Layout -->
+        <div class="masonry-grid" id="masonry-destinations-grid" role="list">
           
-          <!-- Modern Destination Card 1: Dubai -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-image-wrapper">
+          <!-- Masonry Card 1: Dubai - Large Featured Card -->
+          <article class="masonry-card card-large card-featured" data-category="cities" data-height="large">
+            <div class="masonry-card-image-wrapper">
               <img 
                 src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" 
-                alt="Affordable flights to Dubai, UAE" 
-                class="card-image"
+                alt="Dubai, UAE" 
+                class="masonry-card-image lazy-load"
+                data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80"
                 loading="lazy">
-              <div class="image-overlay"></div>
-              <span class="modern-badge badge-trending">
-                <i class="fas fa-fire"></i>
-                Trending
-              </span>
-              <button class="card-favorite-btn" aria-label="Add to favorites">
+              <div class="masonry-image-overlay"></div>
+              
+              <!-- Floating Price Badge -->
+              <div class="price-badge price-badge-pulse" data-deal="true">
+                <div class="price-value">₹24,817</div>
+                <div class="price-label">Hot Deal</div>
+              </div>
+              
+              <!-- Featured Tag with Shine -->
+              <div class="featured-tag">
+                <i class="fas fa-crown"></i>
+                <span>Featured</span>
+              </div>
+              
+              <!-- Favorite Heart -->
+              <button class="favorite-heart" aria-label="Add to favorites" data-destination="Dubai">
                 <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
               </button>
+              
+              <!-- Video Background Indicator -->
+              <div class="video-indicator">
+                <i class="fas fa-play-circle"></i>
+              </div>
             </div>
             
-            <div class="card-content-wrapper">
-              <div class="card-top-row">
-                <div class="destination-info">
-                  <h3 class="destination-title">Dubai</h3>
-                  <p class="destination-country">
-                    <i class="fas fa-location-dot"></i>
-                    United Arab Emirates
-                  </p>
-                </div>
-                <div class="rating-badge">
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>Dubai</h3>
+                <p class="country-name">United Arab Emirates</p>
+              </div>
+              
+              <!-- Quick Info Chips -->
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
+                  <i class="fas fa-sun"></i>
+                  28°C
+                </span>
+                <span class="info-chip rating-chip">
                   <i class="fas fa-star"></i>
-                  <span>4.8</span>
-                </div>
-              </div>
-              
-              <div class="card-features">
-                <span class="feature-item">
-                  <i class="fas fa-plane-departure"></i>
-                  234 flights
-                </span>
-                <span class="feature-divider">•</span>
-                <span class="feature-item">
-                  <i class="fas fa-clock"></i>
-                  7h 30m
+                  4.8
                 </span>
               </div>
               
-              <div class="card-bottom-row">
-                <div class="price-section">
-                  <span class="price-from">From</span>
-                  <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="amount">299</span>
-                  </div>
-                  <span class="price-note">per person</span>
-                </div>
-                <button class="modern-explore-btn" aria-label="Explore flights to Dubai">
-                  <span>Explore</span>
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
+              <!-- Explore Button (appears on hover) -->
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
             </div>
           </article>
 
-          <!-- Modern Destination Card 2: Paris -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cultural" data-aos="fade-up" data-aos-delay="200">
-            <div class="card-image-wrapper">
+          <!-- Masonry Card 2: Paris - Medium Card -->
+          <article class="masonry-card card-medium" data-category="cultural" data-height="medium">
+            <div class="masonry-card-image-wrapper">
               <img 
                 src="../site-images/card1_ps.jpg" 
-                alt="Affordable flights to Paris, France" 
-                class="card-image"
+                alt="Paris, France" 
+                class="masonry-card-image lazy-load"
+                data-src="../site-images/card1_ps.jpg"
                 loading="lazy">
-              <div class="image-overlay"></div>
-              <span class="modern-badge badge-sale">
-                <i class="fas fa-tag"></i>
-                25% Off
-              </span>
-              <button class="card-favorite-btn" aria-label="Add to favorites">
+              <div class="masonry-image-overlay"></div>
+              
+              <div class="price-badge">
+                <div class="price-value">₹37,267</div>
+                <div class="price-label">From</div>
+              </div>
+              
+              <button class="favorite-heart" aria-label="Add to favorites" data-destination="Paris">
                 <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
               </button>
             </div>
             
-            <div class="card-content-wrapper">
-              <div class="card-top-row">
-                <div class="destination-info">
-                  <h3 class="destination-title">Paris</h3>
-                  <p class="destination-country">
-                    <i class="fas fa-location-dot"></i>
-                    France
-                  </p>
-                </div>
-                <div class="rating-badge">
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>Paris</h3>
+                <p class="country-name">France</p>
+              </div>
+              
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
+                  <i class="fas fa-cloud-sun"></i>
+                  18°C
+                </span>
+                <span class="info-chip rating-chip">
                   <i class="fas fa-star"></i>
-                  <span>4.9</span>
-                </div>
-              </div>
-              
-              <div class="card-features">
-                <span class="feature-item">
-                  <i class="fas fa-plane-departure"></i>
-                  Direct flights
-                </span>
-                <span class="feature-divider">•</span>
-                <span class="feature-item">
-                  <i class="fas fa-clock"></i>
-                  8h 15m
+                  4.9
                 </span>
               </div>
               
-              <div class="card-bottom-row">
-                <div class="price-section">
-                  <span class="price-from">From</span>
-                  <div class="price-main">
-                    <span class="price-original-small">$599</span>
-                    <span class="currency">$</span>
-                    <span class="amount">449</span>
-                  </div>
-                  <span class="price-note">per person</span>
-                </div>
-                <button class="modern-explore-btn" aria-label="Explore flights to Paris">
-                  <span>Explore</span>
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
             </div>
           </article>
 
-          <!-- Modern Destination Card 3: Tokyo -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="300">
+          <!-- Masonry Card 3: Tokyo - Small Card with Limited Time -->
+          <article class="masonry-card card-small" data-category="cities" data-height="small">
+            <div class="masonry-card-image-wrapper">
+              <img 
+                src="../site-images/card_2_ps.jpg" 
+                alt="Tokyo, Japan" 
+                class="masonry-card-image lazy-load"
+                data-src="../site-images/card_2_ps.jpg"
+                loading="lazy">
+              <div class="masonry-image-overlay"></div>
+              
+              <div class="price-badge price-badge-pulse" data-deal="true">
+                <div class="price-value">₹57,187</div>
+                <div class="price-label">Deal</div>
+              </div>
+              
+              <!-- Limited Time Countdown -->
+              <div class="limited-time-tag">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-timer" data-endtime="2025-10-20T23:59:59">24h 15m</span>
+              </div>
+              
+              <button class="favorite-heart" aria-label="Add to favorites" data-destination="Tokyo">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+            
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>Tokyo</h3>
+                <p class="country-name">Japan</p>
+              </div>
+              
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
+                  <i class="fas fa-cloud-rain"></i>
+                  22°C
+                </span>
+                <span class="info-chip rating-chip">
+                  <i class="fas fa-star"></i>
+                  4.7
+                </span>
+              </div>
+              
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Masonry Card 4: Maldives - Large Card -->
+          <article class="masonry-card card-large" data-category="beaches" data-height="large">
             <div class="card-image-wrapper">
               <img 
                 src="../site-images/card_2_ps.jpg" 
@@ -818,8 +889,8 @@
                 <div class="price-section">
                   <span class="price-from">From</span>
                   <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="amount">689</span>
+                    <span class="currency">₹</span>
+                    <span class="amount">57,187</span>
                   </div>
                   <span class="price-note">per person</span>
                 </div>
@@ -831,185 +902,144 @@
             </div>
           </article>
 
-          <!-- Modern Destination Card 4: Maldives -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="100">
-            <div class="card-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" 
-                alt="Affordable flights to Maldives" 
-                class="card-image"
-                loading="lazy">
-              <div class="image-overlay"></div>
-              <span class="modern-badge badge-limited">
-                <i class="fas fa-hourglass-half"></i>
-                Limited
-              </span>
-              <button class="card-favorite-btn" aria-label="Add to favorites">
+          <!-- Masonry Card 4: Maldives - MEDIUM -->
+          <article class="masonry-card card-medium" data-category="beaches" data-height="medium">
+            <div class="masonry-card-image-wrapper">
+              <img class="masonry-card-image lazy-load" 
+                   data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" 
+                   alt="Maldives Beach Resorts" 
+                   loading="lazy">
+              <div class="masonry-image-overlay"></div>
+              
+              <div class="price-badge" data-deal="false">
+                <div class="price-value">₹66,317</div>
+                <div class="price-label">From</div>
+              </div>
+              
+              <button class="favorite-heart" data-destination="Maldives" aria-label="Add to favorites">
                 <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
               </button>
             </div>
             
-            <div class="card-content-wrapper">
-              <div class="card-top-row">
-                <div class="destination-info">
-                  <h3 class="destination-title">Maldives</h3>
-                  <p class="destination-country">
-                    <i class="fas fa-location-dot"></i>
-                    Indian Ocean
-                  </p>
-                </div>
-                <div class="rating-badge">
-                  <i class="fas fa-star"></i>
-                  <span>4.9</span>
-                </div>
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>Maldives</h3>
+                <p class="country-name">Indian Ocean</p>
               </div>
               
-              <div class="card-features">
-                <span class="feature-item">
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
                   <i class="fas fa-umbrella-beach"></i>
-                  89 resorts
+                  30°C
                 </span>
-                <span class="feature-divider">•</span>
-                <span class="feature-item">
-                  <i class="fas fa-clock"></i>
-                  11h 20m
+                <span class="info-chip rating-chip">
+                  <i class="fas fa-star"></i>
+                  4.9
                 </span>
               </div>
               
-              <div class="card-bottom-row">
-                <div class="price-section">
-                  <span class="price-from">From</span>
-                  <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="amount">799</span>
-                  </div>
-                  <span class="price-note">per person</span>
-                </div>
-                <button class="modern-explore-btn" aria-label="Explore flights to Maldives">
-                  <span>Explore</span>
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
             </div>
           </article>
 
-          <!-- Modern Destination Card 5: London -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="cities" data-aos="fade-up" data-aos-delay="200">
-            <div class="card-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" 
-                alt="Affordable flights to London, UK" 
-                class="card-image"
-                loading="lazy">
-              <div class="image-overlay"></div>
-              <button class="card-favorite-btn" aria-label="Add to favorites">
+          <!-- Masonry Card 5: London - SMALL -->
+          <article class="masonry-card card-small" data-category="cities" data-height="small">
+            <div class="masonry-card-image-wrapper">
+              <img class="masonry-card-image lazy-load" 
+                   data-src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" 
+                   alt="London England" 
+                   loading="lazy">
+              <div class="masonry-image-overlay"></div>
+              
+              <div class="price-badge" data-deal="false">
+                <div class="price-value">₹33,117</div>
+                <div class="price-label">From</div>
+              </div>
+              
+              <button class="favorite-heart" data-destination="London" aria-label="Add to favorites">
                 <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
               </button>
             </div>
             
-            <div class="card-content-wrapper">
-              <div class="card-top-row">
-                <div class="destination-info">
-                  <h3 class="destination-title">London</h3>
-                  <p class="destination-country">
-                    <i class="fas fa-location-dot"></i>
-                    United Kingdom
-                  </p>
-                </div>
-                <div class="rating-badge">
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>London</h3>
+                <p class="country-name">United Kingdom</p>
+              </div>
+              
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
+                  <i class="fas fa-cloud"></i>
+                  15°C
+                </span>
+                <span class="info-chip rating-chip">
                   <i class="fas fa-star"></i>
-                  <span>4.6</span>
-                </div>
-              </div>
-              
-              <div class="card-features">
-                <span class="feature-item">
-                  <i class="fas fa-plane"></i>
-                  187 flights
-                </span>
-                <span class="feature-divider">•</span>
-                <span class="feature-item">
-                  <i class="fas fa-clock"></i>
-                  7h 50m
+                  4.6
                 </span>
               </div>
               
-              <div class="card-bottom-row">
-                <div class="price-section">
-                  <span class="price-from">From</span>
-                  <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="amount">399</span>
-                  </div>
-                  <span class="price-note">per person</span>
-                </div>
-                <button class="modern-explore-btn" aria-label="Explore flights to London">
-                  <span>Explore</span>
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
             </div>
           </article>
 
-          <!-- Modern Destination Card 6: Bali -->
-          <article class="modern-destination-card" role="listitem" tabindex="0" data-category="beaches" data-aos="fade-up" data-aos-delay="300">
-            <div class="card-image-wrapper">
-              <img 
-                src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" 
-                alt="Affordable flights to Bali, Indonesia" 
-                class="card-image"
-                loading="lazy">
-              <div class="image-overlay"></div>
-              <span class="modern-badge badge-trending">
-                <i class="fas fa-fire"></i>
-                Trending
-              </span>
-              <button class="card-favorite-btn" aria-label="Add to favorites">
+          <!-- Masonry Card 6: Bali - LARGE FEATURED -->
+          <article class="masonry-card card-large card-featured" data-category="beaches" data-height="large" data-video="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4">
+            <div class="masonry-card-image-wrapper">
+              <img class="masonry-card-image lazy-load" 
+                   data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" 
+                   alt="Bali Indonesia" 
+                   loading="lazy">
+              <div class="masonry-image-overlay"></div>
+              
+              <div class="price-badge price-badge-pulse" data-deal="true">
+                <div class="price-value">₹45,567</div>
+                <div class="price-label">Hot Deal</div>
+              </div>
+              
+              <div class="featured-tag">
+                <i class="fas fa-crown"></i>
+                <span>Featured</span>
+              </div>
+              
+              <div class="video-indicator">
+                <i class="fas fa-play"></i>
+              </div>
+              
+              <button class="favorite-heart" data-destination="Bali" aria-label="Add to favorites">
                 <i class="far fa-heart"></i>
+                <i class="fas fa-heart"></i>
               </button>
             </div>
             
-            <div class="card-content-wrapper">
-              <div class="card-top-row">
-                <div class="destination-info">
-                  <h3 class="destination-title">Bali</h3>
-                  <p class="destination-country">
-                    <i class="fas fa-location-dot"></i>
-                    Indonesia
-                  </p>
-                </div>
-                <div class="rating-badge">
+            <div class="masonry-card-content">
+              <div class="destination-name">
+                <h3>Bali</h3>
+                <p class="country-name">Indonesia</p>
+              </div>
+              
+              <div class="quick-info-chips">
+                <span class="info-chip weather-chip">
+                  <i class="fas fa-sun"></i>
+                  32°C
+                </span>
+                <span class="info-chip rating-chip">
                   <i class="fas fa-star"></i>
-                  <span>4.8</span>
-                </div>
-              </div>
-              
-              <div class="card-features">
-                <span class="feature-item">
-                  <i class="fas fa-plane"></i>
-                  156 flights
-                </span>
-                <span class="feature-divider">•</span>
-                <span class="feature-item">
-                  <i class="fas fa-clock"></i>
-                  15h 30m
+                  4.8
                 </span>
               </div>
               
-              <div class="card-bottom-row">
-                <div class="price-section">
-                  <span class="price-from">From</span>
-                  <div class="price-main">
-                    <span class="currency">$</span>
-                    <span class="amount">549</span>
-                  </div>
-                  <span class="price-note">per person</span>
-                </div>
-                <button class="modern-explore-btn" aria-label="Explore flights to Bali">
-                  <span>Explore</span>
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
+              <button class="explore-btn-hover">
+                <i class="fas fa-plane-departure"></i>
+                <span>Explore Flights</span>
+              </button>
             </div>
           </article>
 
@@ -1029,437 +1059,1130 @@
       </div>
     </section>
 
+    
     <!-- ============================================= -->
-    <!-- POPULAR ROUTES SECTION -->
+    <!-- HOT DEALS CAROUSEL (Swiper.js with 3D Flip Cards) -->
     <!-- ============================================= -->
-    <section class="popular-routes-section home-section" role="region" aria-labelledby="routes-heading">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title">
-          <h2 id="routes-heading" data-aos="fade-up">Most Searched Routes</h2>
-          <p data-aos="fade-up" data-aos-delay="100">Quick access to the most popular flight routes</p>
-        </div>
-        
-        <div class="routes-grid" data-aos="fade-up" data-aos-delay="200">
-          <!-- Route Card 1 -->
-          <div class="route-card" data-from="JFK" data-to="LHR">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">New York</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">London</span>
-              </div>
-              <span class="route-badge">Popular</span>
-            </div>
-            <div class="route-info">
-              <span class="route-code">JFK → LHR</span>
-              <span class="route-flights">12+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$299</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Route Card 2 -->
-          <div class="route-card" data-from="LAX" data-to="NRT">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">Los Angeles</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">Tokyo</span>
-              </div>
-              <span class="route-badge hot-deal">Hot Deal</span>
-            </div>
-            <div class="route-info">
-              <span class="route-code">LAX → NRT</span>
-              <span class="route-flights">8+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$449</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Route Card 3 -->
-          <div class="route-card" data-from="MIA" data-to="CDG">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">Miami</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">Paris</span>
-              </div>
-            </div>
-            <div class="route-info">
-              <span class="route-code">MIA → CDG</span>
-              <span class="route-flights">6+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$359</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Route Card 4 -->
-          <div class="route-card" data-from="ORD" data-to="DXB">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">Chicago</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">Dubai</span>
-              </div>
-            </div>
-            <div class="route-info">
-              <span class="route-code">ORD → DXB</span>
-              <span class="route-flights">5+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$499</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Route Card 5 -->
-          <div class="route-card" data-from="BOS" data-to="FCO">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">Boston</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">Rome</span>
-              </div>
-            </div>
-            <div class="route-info">
-              <span class="route-code">BOS → FCO</span>
-              <span class="route-flights">4+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$379</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-
-          <!-- Route Card 6 -->
-          <div class="route-card" data-from="SFO" data-to="SYD">
-            <div class="route-header">
-              <div class="route-cities">
-                <span class="city-from">San Francisco</span>
-                <i class="fas fa-plane-departure route-icon"></i>
-                <span class="city-to">Sydney</span>
-              </div>
-              <span class="route-badge">Long Haul</span>
-            </div>
-            <div class="route-info">
-              <span class="route-code">SFO → SYD</span>
-              <span class="route-flights">3+ daily flights</span>
-            </div>
-            <div class="route-pricing">
-              <span class="route-label">from</span>
-              <span class="route-price">$799</span>
-              <span class="route-type">round trip</span>
-            </div>
-            <button class="route-cta-btn">
-              <span>Search Flights</span>
-              <i class="fas fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- LAST-MINUTE DEALS SECTION -->
-    <!-- ============================================= -->
-    <section class="last-minute-deals-section home-section bg-gradient-to-br from-amber-50 to-orange-50" role="region" aria-labelledby="lastminute-heading">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title">
-          <h2 id="lastminute-heading" data-aos="fade-up">
-            <i class="fas fa-fire text-orange-500"></i> Departing Within 7 Days
+    <section class="deals-carousel-section home-section" role="region" aria-labelledby="deals-heading">
+      <div class="deals-section-container">
+        <div class="deals-section-header" data-aos="fade-up">
+          <h2 id="deals-heading" class="deals-main-title">
+            <i class="fas fa-fire"></i> Hot Deals Departing Soon
           </h2>
-          <p data-aos="fade-up" data-aos-delay="100">Grab these incredible last-minute deals before they're gone!</p>
+          <p class="deals-subtitle">Limited time offers with incredible discounts – grab them before they're gone!</p>
         </div>
         
-        <div class="last-minute-carousel-container" data-aos="fade-up" data-aos-delay="200">
-          <button class="carousel-nav-btn prev-btn" aria-label="Previous deals">
+        <!-- Progress Bar Indicator -->
+        <div class="deals-progress-container" data-aos="fade-up" data-aos-delay="100">
+          <div class="deals-progress-bar" id="dealsProgressBar"></div>
+        </div>
+        
+        <!-- Swiper Carousel Container -->
+        <div class="deals-swiper-wrapper" data-aos="fade-up" data-aos-delay="200">
+          <!-- Custom Navigation Arrows -->
+          <button class="deals-arrow-btn deals-prev-btn" aria-label="Previous deals">
             <i class="fas fa-chevron-left"></i>
           </button>
           
-          <div class="last-minute-carousel">
-            <!-- Deal Card 1 -->
-            <div class="lastminute-card">
-              <div class="urgency-badge">
-                <i class="fas fa-clock"></i>
-                <span>Departs in 3 days</span>
-              </div>
-              <div class="lastminute-destination">
-                <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=400&h=250&fit=crop" alt="Paris" loading="lazy">
-                <div class="destination-overlay-badge">Paris</div>
-              </div>
-              <div class="lastminute-content">
-                <div class="lastminute-route">
-                  <span>New York → Paris</span>
-                  <span class="route-code-small">JFK → CDG</span>
-                </div>
-                <div class="lastminute-dates">
-                  <i class="far fa-calendar"></i>
-                  <span>Oct 15 - Oct 22, 2025</span>
-                </div>
-                <div class="lastminute-pricing">
-                  <div class="price-strike">
-                    <span class="original-price">$599</span>
-                    <span class="discount-badge">-40%</span>
+          <div class="swiper deals-swiper" id="dealsSwiper">
+            <div class="swiper-wrapper">
+              
+              <!-- Deal Card 1: Paris -->
+              <div class="swiper-slide">
+                <div class="deal-flip-card">
+                  <!-- Front Side -->
+                  <div class="deal-card-front">
+                    <div class="deal-gradient-bg"></div>
+                    <div class="deal-pattern-overlay"></div>
+                    
+                    <div class="deal-badge-rotating" data-discount="50">
+                      <div class="badge-inner">
+                        <span class="badge-percent">50%</span>
+                        <span class="badge-off">OFF</span>
+                      </div>
+                    </div>
+                    
+                    <div class="deal-card-content">
+                      <div class="deal-destination-header">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?w=600&h=300&fit=crop" 
+                             alt="Paris" class="deal-bg-image" loading="lazy">
+                        <div class="deal-destination-name">
+                          <i class="fas fa-location-dot"></i>
+                          <span>Paris</span>
+                        </div>
+                      </div>
+                      
+                      <div class="deal-route-info">
+                        <div class="route-cities">
+                          <span class="city-from">New York</span>
+                          <i class="fas fa-plane-departure route-plane-icon"></i>
+                          <span class="city-to">Paris</span>
+                        </div>
+                        <div class="route-codes">JFK → CDG</div>
+                      </div>
+                      
+                      <div class="deal-urgency-timer">
+                        <i class="fas fa-clock urgency-icon"></i>
+                        <span>Departs in 3 days</span>
+                      </div>
+                      
+                      <div class="deal-pricing">
+                        <div class="price-original">
+                          <span class="strike-price">₹49,717</span>
+                        </div>
+                        <div class="price-final">₹24,817</div>
+                        <div class="price-label">per person</div>
+                      </div>
+                      
+                      <button class="deal-book-btn">
+                        <span>Book Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="final-price">$359</div>
+                  
+                  <!-- Back Side (Terms & Conditions) -->
+                  <div class="deal-card-back">
+                    <div class="deal-back-content">
+                      <h4 class="deal-back-title">
+                        <i class="fas fa-info-circle"></i>
+                        Deal Details
+                      </h4>
+                      
+                      <div class="deal-terms">
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Valid: Oct 15-22, 2025</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Economy class included</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>1 checked bag free</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Non-refundable</span>
+                        </div>
+                      </div>
+                      
+                      <div class="booking-code-section">
+                        <div class="code-label">Promo Code</div>
+                        <div class="code-value" id="code-paris">PARIS50</div>
+                        <button class="copy-code-btn" data-code="PARIS50">
+                          <i class="fas fa-copy"></i>
+                          Copy Code
+                        </button>
+                      </div>
+                      
+                      <button class="deal-flip-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Deal
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <button class="lastminute-cta-btn">
-                  Book Now
-                  <i class="fas fa-arrow-right"></i>
-                </button>
               </div>
-            </div>
 
-            <!-- Deal Card 2 -->
-            <div class="lastminute-card">
-              <div class="urgency-badge urgent">
-                <i class="fas fa-clock"></i>
-                <span>Departs in 2 days</span>
-              </div>
-              <div class="lastminute-destination">
-                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=250&fit=crop" alt="Dubai" loading="lazy">
-                <div class="destination-overlay-badge">Dubai</div>
-              </div>
-              <div class="lastminute-content">
-                <div class="lastminute-route">
-                  <span>Los Angeles → Dubai</span>
-                  <span class="route-code-small">LAX → DXB</span>
-                </div>
-                <div class="lastminute-dates">
-                  <i class="far fa-calendar"></i>
-                  <span>Oct 14 - Oct 21, 2025</span>
-                </div>
-                <div class="lastminute-pricing">
-                  <div class="price-strike">
-                    <span class="original-price">$799</span>
-                    <span class="discount-badge">-35%</span>
+              <!-- Deal Card 2: Dubai -->
+              <div class="swiper-slide">
+                <div class="deal-flip-card">
+                  <div class="deal-card-front">
+                    <div class="deal-gradient-bg gradient-orange"></div>
+                    <div class="deal-pattern-overlay"></div>
+                    
+                    <div class="deal-badge-rotating urgent-badge" data-discount="45">
+                      <div class="badge-inner">
+                        <span class="badge-percent">45%</span>
+                        <span class="badge-off">OFF</span>
+                      </div>
+                    </div>
+                    
+                    <div class="deal-card-content">
+                      <div class="deal-destination-header">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=300&fit=crop" 
+                             alt="Dubai" class="deal-bg-image" loading="lazy">
+                        <div class="deal-destination-name">
+                          <i class="fas fa-location-dot"></i>
+                          <span>Dubai</span>
+                        </div>
+                      </div>
+                      
+                      <div class="deal-route-info">
+                        <div class="route-cities">
+                          <span class="city-from">Los Angeles</span>
+                          <i class="fas fa-plane-departure route-plane-icon"></i>
+                          <span class="city-to">Dubai</span>
+                        </div>
+                        <div class="route-codes">LAX → DXB</div>
+                      </div>
+                      
+                      <div class="deal-urgency-timer urgent">
+                        <i class="fas fa-clock urgency-icon"></i>
+                        <span>Departs in 2 days</span>
+                      </div>
+                      
+                      <div class="deal-pricing">
+                        <div class="price-original">
+                          <span class="strike-price">₹66,317</span>
+                        </div>
+                        <div class="price-final">₹36,437</div>
+                        <div class="price-label">per person</div>
+                      </div>
+                      
+                      <button class="deal-book-btn">
+                        <span>Book Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="final-price">$519</div>
+                  
+                  <div class="deal-card-back">
+                    <div class="deal-back-content">
+                      <h4 class="deal-back-title">
+                        <i class="fas fa-info-circle"></i>
+                        Deal Details
+                      </h4>
+                      
+                      <div class="deal-terms">
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Valid: Oct 14-21, 2025</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Business class upgrade available</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>2 checked bags free</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Cancellable within 24h</span>
+                        </div>
+                      </div>
+                      
+                      <div class="booking-code-section">
+                        <div class="code-label">Promo Code</div>
+                        <div class="code-value" id="code-dubai">DUBAI45</div>
+                        <button class="copy-code-btn" data-code="DUBAI45">
+                          <i class="fas fa-copy"></i>
+                          Copy Code
+                        </button>
+                      </div>
+                      
+                      <button class="deal-flip-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Deal
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <button class="lastminute-cta-btn">
-                  Book Now
-                  <i class="fas fa-arrow-right"></i>
-                </button>
               </div>
-            </div>
 
-            <!-- Deal Card 3 -->
-            <div class="lastminute-card">
-              <div class="urgency-badge">
-                <i class="fas fa-clock"></i>
-                <span>Departs in 5 days</span>
-              </div>
-              <div class="lastminute-destination">
-                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=250&fit=crop" alt="London" loading="lazy">
-                <div class="destination-overlay-badge">London</div>
-              </div>
-              <div class="lastminute-content">
-                <div class="lastminute-route">
-                  <span>Boston → London</span>
-                  <span class="route-code-small">BOS → LHR</span>
-                </div>
-                <div class="lastminute-dates">
-                  <i class="far fa-calendar"></i>
-                  <span>Oct 17 - Oct 24, 2025</span>
-                </div>
-                <div class="lastminute-pricing">
-                  <div class="price-strike">
-                    <span class="original-price">$549</span>
-                    <span class="discount-badge">-30%</span>
+              <!-- Deal Card 3: London -->
+              <div class="swiper-slide">
+                <div class="deal-flip-card">
+                  <div class="deal-card-front">
+                    <div class="deal-gradient-bg gradient-blue"></div>
+                    <div class="deal-pattern-overlay"></div>
+                    
+                    <div class="deal-badge-rotating" data-discount="35">
+                      <div class="badge-inner">
+                        <span class="badge-percent">35%</span>
+                        <span class="badge-off">OFF</span>
+                      </div>
+                    </div>
+                    
+                    <div class="deal-card-content">
+                      <div class="deal-destination-header">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=300&fit=crop" 
+                             alt="London" class="deal-bg-image" loading="lazy">
+                        <div class="deal-destination-name">
+                          <i class="fas fa-location-dot"></i>
+                          <span>London</span>
+                        </div>
+                      </div>
+                      
+                      <div class="deal-route-info">
+                        <div class="route-cities">
+                          <span class="city-from">Boston</span>
+                          <i class="fas fa-plane-departure route-plane-icon"></i>
+                          <span class="city-to">London</span>
+                        </div>
+                        <div class="route-codes">BOS → LHR</div>
+                      </div>
+                      
+                      <div class="deal-urgency-timer">
+                        <i class="fas fa-clock urgency-icon"></i>
+                        <span>Departs in 5 days</span>
+                      </div>
+                      
+                      <div class="deal-pricing">
+                        <div class="price-original">
+                          <span class="strike-price">₹45,567</span>
+                        </div>
+                        <div class="price-final">₹29,631</div>
+                        <div class="price-label">per person</div>
+                      </div>
+                      
+                      <button class="deal-book-btn">
+                        <span>Book Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="final-price">$384</div>
+                  
+                  <div class="deal-card-back">
+                    <div class="deal-back-content">
+                      <h4 class="deal-back-title">
+                        <i class="fas fa-info-circle"></i>
+                        Deal Details
+                      </h4>
+                      
+                      <div class="deal-terms">
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Valid: Oct 17-24, 2025</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Premium Economy class</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Priority boarding included</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Flexible dates ±2 days</span>
+                        </div>
+                      </div>
+                      
+                      <div class="booking-code-section">
+                        <div class="code-label">Promo Code</div>
+                        <div class="code-value" id="code-london">LONDON35</div>
+                        <button class="copy-code-btn" data-code="LONDON35">
+                          <i class="fas fa-copy"></i>
+                          Copy Code
+                        </button>
+                      </div>
+                      
+                      <button class="deal-flip-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Deal
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <button class="lastminute-cta-btn">
-                  Book Now
-                  <i class="fas fa-arrow-right"></i>
-                </button>
               </div>
-            </div>
 
-            <!-- Deal Card 4 -->
-            <div class="lastminute-card">
-              <div class="urgency-badge">
-                <i class="fas fa-clock"></i>
-                <span>Departs in 4 days</span>
-              </div>
-              <div class="lastminute-destination">
-                <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=400&h=250&fit=crop" alt="Tokyo" loading="lazy">
-                <div class="destination-overlay-badge">Tokyo</div>
-              </div>
-              <div class="lastminute-content">
-                <div class="lastminute-route">
-                  <span>San Francisco → Tokyo</span>
-                  <span class="route-code-small">SFO → NRT</span>
-                </div>
-                <div class="lastminute-dates">
-                  <i class="far fa-calendar"></i>
-                  <span>Oct 16 - Oct 23, 2025</span>
-                </div>
-                <div class="lastminute-pricing">
-                  <div class="price-strike">
-                    <span class="original-price">$699</span>
-                    <span class="discount-badge">-38%</span>
+              <!-- Deal Card 4: Tokyo -->
+              <div class="swiper-slide">
+                <div class="deal-flip-card">
+                  <div class="deal-card-front">
+                    <div class="deal-gradient-bg gradient-purple"></div>
+                    <div class="deal-pattern-overlay"></div>
+                    
+                    <div class="deal-badge-rotating" data-discount="40">
+                      <div class="badge-inner">
+                        <span class="badge-percent">40%</span>
+                        <span class="badge-off">OFF</span>
+                      </div>
+                    </div>
+                    
+                    <div class="deal-card-content">
+                      <div class="deal-destination-header">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?w=600&h=300&fit=crop" 
+                             alt="Tokyo" class="deal-bg-image" loading="lazy">
+                        <div class="deal-destination-name">
+                          <i class="fas fa-location-dot"></i>
+                          <span>Tokyo</span>
+                        </div>
+                      </div>
+                      
+                      <div class="deal-route-info">
+                        <div class="route-cities">
+                          <span class="city-from">San Francisco</span>
+                          <i class="fas fa-plane-departure route-plane-icon"></i>
+                          <span class="city-to">Tokyo</span>
+                        </div>
+                        <div class="route-codes">SFO → NRT</div>
+                      </div>
+                      
+                      <div class="deal-urgency-timer">
+                        <i class="fas fa-clock urgency-icon"></i>
+                        <span>Departs in 4 days</span>
+                      </div>
+                      
+                      <div class="deal-pricing">
+                        <div class="price-original">
+                          <span class="strike-price">₹58,017</span>
+                        </div>
+                        <div class="price-final">₹34,777</div>
+                        <div class="price-label">per person</div>
+                      </div>
+                      
+                      <button class="deal-book-btn">
+                        <span>Book Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                      </button>
+                    </div>
                   </div>
-                  <div class="final-price">$433</div>
+                  
+                  <div class="deal-card-back">
+                    <div class="deal-back-content">
+                      <h4 class="deal-back-title">
+                        <i class="fas fa-info-circle"></i>
+                        Deal Details
+                      </h4>
+                      
+                      <div class="deal-terms">
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Valid: Oct 16-23, 2025</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Economy Plus class</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Extra legroom seats</span>
+                        </div>
+                        <div class="term-item">
+                          <i class="fas fa-check-circle"></i>
+                          <span>Free date change</span>
+                        </div>
+                      </div>
+                      
+                      <div class="booking-code-section">
+                        <div class="code-label">Promo Code</div>
+                        <div class="code-value" id="code-tokyo">TOKYO40</div>
+                        <button class="copy-code-btn" data-code="TOKYO40">
+                          <i class="fas fa-copy"></i>
+                          Copy Code
+                        </button>
+                      </div>
+                      
+                      <button class="deal-flip-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Deal
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <button class="lastminute-cta-btn">
-                  Book Now
-                  <i class="fas fa-arrow-right"></i>
-                </button>
               </div>
-            </div>
+              
+            </div><!-- End swiper-wrapper -->
+            
+            <!-- Pagination Dots -->
+            <div class="swiper-pagination deals-pagination"></div>
           </div>
           
-          <button class="carousel-nav-btn next-btn" aria-label="Next deals">
+          <button class="deals-arrow-btn deals-next-btn" aria-label="Next deals">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
         
-        <div class="text-center mt-8" data-aos="fade-up">
-          <a href="offers.html" class="btn btn-primary">
-            View All Last-Minute Deals
-            <i class="fas fa-bolt ml-2"></i>
+        <!-- View All CTA -->
+        <div class="deals-view-all-cta" data-aos="fade-up">
+          <a href="offers.html" class="deals-view-all-btn">
+            <i class="fas fa-bolt"></i>
+            <span>View All Flash Deals</span>
+            <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="home-section home-flight-classes-section bg-secondary-cream py-20 sm:py-24" aria-labelledby="travel-classes-heading">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title text-left">
-          <h2 id="travel-classes-heading" data-aos="fade-up" class="text-3xl font-bold tracking-tight text-primary-emerald sm:text-4xl">Travel in Your Comfort</h2>
-          <p data-aos="fade-up" data-aos-delay="100" class="mt-4 text-lg leading-8 text-text-slate max-w-2xl">A glimpse into our world-class travel experiences, tailored for every journey.</p>
+    <!-- ============================================= -->
+    <!-- PREMIUM TRAVEL CLASSES SECTION (3D Perspective Tabs) -->
+    <!-- ============================================= -->
+    <section class="travel-classes-3d-section" aria-labelledby="travel-classes-heading">
+      <div class="travel-classes-container">
+        
+        <!-- Section Header -->
+        <div class="travel-classes-header" data-aos="fade-up">
+          <div class="header-badge">
+            <i class="fas fa-gem"></i>
+            <span>Travel Experiences</span>
+          </div>
+          <h2 id="travel-classes-heading" class="section-title">
+            Choose Your Comfort Level
+          </h2>
+          <p class="section-subtitle">
+            From affordable economy to luxurious first class suites, experience travel tailored to your preferences
+          </p>
         </div>
-        <div class="travel-class-tabs-container mt-12" data-aos="fade-up" data-aos-delay="200">
-          <div class="tab-buttons mb-8 flex justify-start border-b border-gray-200">
-          <button class="tab-button active" data-tab="first">
-            <i class="fas fa-gem mr-2"></i>First Class
-          </button>
-          <button class="tab-button" data-tab="business">
-            <i class="fas fa-briefcase mr-2"></i>Business
-          </button>
-          <button class="tab-button" data-tab="premium">
-            <i class="fas fa-star mr-2"></i>Premium Economy
-          </button>
-          <button class="tab-button" data-tab="economy">
-            <i class="fas fa-couch mr-2"></i>Economy
-          </button>
-          </div>
-          <div class="tab-content-panels mt-8">
-          <!-- First Class Panel -->
-          <div class="tab-panel active" id="tab-first">
-              <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <img src="/site-images/FC-P1.webp" alt="Luxurious First Class suite interior" class="rounded-xl shadow-lg w-full h-full object-cover">
-                <div>
-                  <h3 class="text-accent-gold text-sm font-bold uppercase tracking-wider">First Class</h3>
-                  <h4 class="text-3xl font-bold text-text-charcoal mt-2">The Pinnacle of Luxury</h4>
-                  <p class="mt-4 text-text-slate">Experience the ultimate in air travel with unparalleled privacy, comfort, and personalized service. Your journey becomes a destination in itself.</p>
-                  <ul class="panel-features mt-6 space-y-3">
-                    <li class="flex items-center"><i class="fas fa-door-closed text-primary-emerald w-5 mr-3"></i> Private, enclosed suites</li>
-                    <li class="flex items-center"><i class="fas fa-utensil-spoon text-primary-emerald w-5 mr-3"></i> A la carte fine dining on demand</li>
-                    <li class="flex items-center"><i class="fas fa-user-tie text-primary-emerald w-5 mr-3"></i> Dedicated personal service</li>
-                  </ul>
-                  <div class="mt-8 text-right">
-                    <a href="booking.html?class=First" class="btn btn-primary">Book First Class <i class="fas fa-arrow-right ml-2"></i></a>
-                  </div>
+
+        <!-- 3D Tabs Layout: Left Tabs (40%) + Right Content (60%) -->
+        <div class="travel-classes-wrapper" data-aos="fade-up" data-aos-delay="200">
+          
+          <!-- LEFT: Vertical Tab Navigation -->
+          <div class="travel-tabs-nav">
+            <div class="tabs-nav-inner">
+              <button class="travel-tab-btn active" data-class="economy">
+                <div class="tab-icon">
+                  <i class="fas fa-couch"></i>
                 </div>
-              </div>
-            </div>
-            <!-- Business Panel -->
-            <div class="tab-panel" id="tab-business">
-              <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <img src="/site-images/BC-P4.jpg" alt="Spacious Business Class seat" class="rounded-xl shadow-lg w-full h-full object-cover">
-                <div>
-                  <h3 class="text-accent-gold text-sm font-bold uppercase tracking-wider">Business Class</h3>
-                  <h4 class="text-3xl font-bold text-text-charcoal mt-2">Relax or Work in Style</h4>
-                  <p class="mt-4 text-text-slate">A seamless blend of productivity and relaxation, designed for the modern traveler to arrive refreshed and prepared.</p>
-                  <ul class="panel-features mt-6 space-y-3">
-                    <li class="flex items-center"><i class="fas fa-bed text-primary-emerald w-5 mr-3"></i> Fully lie-flat beds for ultimate rest</li>
-                    <li class="flex items-center"><i class="fas fa-glass-martini-alt text-primary-emerald w-5 mr-3"></i> Exclusive airport lounge access</li>
-                    <li class="flex items-center"><i class="fas fa-wifi text-primary-emerald w-5 mr-3"></i> Complimentary Wi-Fi to stay connected</li>
-                  </ul>
-                  <div class="mt-8 text-right">
-                    <a href="booking.html?class=Business" class="btn btn-primary">Book Business <i class="fas fa-arrow-right ml-2"></i></a>
-                  </div>
+                <div class="tab-content">
+                  <span class="tab-title">Economy Class</span>
+                  <span class="tab-subtitle">Best Value</span>
                 </div>
-              </div>
-            </div>
-            <!-- Premium Economy Panel -->
-            <div class="tab-panel" id="tab-premium">
-              <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <img src="/site-images/PEC-P1.webp" alt="Comfortable Premium Economy seats with extra legroom" class="rounded-xl shadow-lg w-full h-full object-cover">
-                <div>
-                  <h3 class="text-accent-gold text-sm font-bold uppercase tracking-wider">Premium Economy</h3>
-                  <h4 class="text-3xl font-bold text-text-charcoal mt-2">An Elevated Experience</h4>
-                  <p class="mt-4 text-text-slate">Enjoy an enhanced level of comfort with more space, premium amenities, and priority services, all at an exceptional value.</p>
-                  <ul class="panel-features mt-6 space-y-3">
-                    <li class="flex items-center"><i class="fas fa-ruler-combined text-primary-emerald w-5 mr-3"></i> Extra legroom and wider seats</li>
-                    <li class="flex items-center"><i class="fas fa-concierge-bell text-primary-emerald w-5 mr-3"></i> Priority check-in and boarding</li>
-                    <li class="flex items-center"><i class="fas fa-gift text-primary-emerald w-5 mr-3"></i> Welcome drinks and amenity kits</li>
-                  </ul>
-                  <div class="mt-8 text-right">
-                    <a href="booking.html?class=Premium" class="btn btn-primary">Book Premium <i class="fas fa-arrow-right ml-2"></i></a>
-                  </div>
+                <div class="tab-indicator"></div>
+              </button>
+
+              <button class="travel-tab-btn" data-class="business">
+                <div class="tab-icon">
+                  <i class="fas fa-briefcase"></i>
                 </div>
-              </div>
-            </div>
-            <!-- Economy Panel -->
-            <div class="tab-panel" id="tab-economy">
-              <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <img src="/site-images/EC-P1.jpg" alt="Modern and clean Economy Class cabin" class="rounded-xl shadow-lg w-full h-full object-cover">
-                <div>
-                  <h3 class="text-accent-gold text-sm font-bold uppercase tracking-wider">Economy Class</h3>
-                  <h4 class="text-3xl font-bold text-text-charcoal mt-2">Affordable Comfort</h4>
-                  <p class="mt-4 text-text-slate">Fly smart with our Economy Class, offering all the essentials for a pleasant and comfortable journey without breaking the bank.</p>
-                  <ul class="panel-features mt-6 space-y-3">
-                    <li class="flex items-center"><i class="fas fa-chair text-primary-emerald w-5 mr-3"></i> Ergonomic seating for a relaxed flight</li>
-                    <li class="flex items-center"><i class="fas fa-utensils text-primary-emerald w-5 mr-3"></i> Complimentary meals and beverages</li>
-                    <li class="flex items-center"><i class="fas fa-tv text-primary-emerald w-5 mr-3"></i> Personal on-demand entertainment</li>
-                  </ul>
-                  <div class="mt-8 text-right">
-                    <a href="booking.html?class=Economy" class="btn btn-primary">Book Economy <i class="fas fa-arrow-right ml-2"></i></a>
-                  </div>
+                <div class="tab-content">
+                  <span class="tab-title">Business Class</span>
+                  <span class="tab-subtitle">Work & Relax</span>
                 </div>
-              </div>
+                <div class="tab-indicator"></div>
+              </button>
+
+              <button class="travel-tab-btn" data-class="first">
+                <div class="tab-icon">
+                  <i class="fas fa-gem"></i>
+                </div>
+                <div class="tab-content">
+                  <span class="tab-title">First Class</span>
+                  <span class="tab-subtitle">Ultimate Luxury</span>
+                </div>
+                <div class="tab-indicator"></div>
+              </button>
             </div>
           </div>
-          <div class="compare-classes-cta mt-12 text-center">
-            <a href="travel-classes.html" class="btn btn-light">Compare All Classes <i class="fas fa-arrow-right ml-2"></i></a>
+
+          <!-- RIGHT: Content Showcase Panels -->
+          <div class="travel-content-showcase">
+            
+            <!-- ECONOMY CLASS PANEL -->
+            <div class="travel-class-panel active" data-panel="economy">
+              <div class="panel-3d-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                
+                <!-- Hero Image with Parallax -->
+                <div class="panel-hero-image">
+                  <img src="/site-images/EC-P1.jpg" alt="Modern Economy Class cabin" loading="lazy">
+                  <div class="image-overlay"></div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="panel-content-area">
+                  <div class="panel-header">
+                    <div class="class-badge economy-badge">
+                      <i class="fas fa-couch"></i>
+                      <span>Economy</span>
+                    </div>
+                    <h3 class="panel-title">Smart Travel, Great Value</h3>
+                    <p class="panel-description">
+                      Experience comfortable flying with all essentials included at an unbeatable price point
+                    </p>
+                  </div>
+
+                  <!-- Feature List with Animated Icons -->
+                  <div class="panel-features">
+                    <div class="feature-item" style="animation-delay: 0.1s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Ergonomic Seating</strong>
+                        <span>Comfortable seats with adjustable headrests</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.2s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Meals & Beverages</strong>
+                        <span>Complimentary food and drinks on all flights</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.3s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>In-Flight Entertainment</strong>
+                        <span>Personal screen with movies, shows & games</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.4s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Carry-On Included</strong>
+                        <span>Free cabin baggage up to 7kg</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Amenities Grid -->
+                  <div class="panel-amenities">
+                    <div class="amenity-chip">
+                      <i class="fas fa-suitcase-rolling"></i>
+                      <span>1 Bag</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-wifi"></i>
+                      <span>WiFi (₹)</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-utensils"></i>
+                      <span>Meal</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-tv"></i>
+                      <span>IFE</span>
+                    </div>
+                  </div>
+
+                  <!-- CTA Button -->
+                  <div class="panel-cta">
+                    <a href="booking.html?class=Economy" class="learn-more-btn">
+                      <span>Book Economy Class</span>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BUSINESS CLASS PANEL -->
+            <div class="travel-class-panel" data-panel="business">
+              <div class="panel-3d-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                
+                <div class="panel-hero-image">
+                  <img src="/site-images/BC-P4.jpg" alt="Spacious Business Class seat" loading="lazy">
+                  <div class="image-overlay"></div>
+                </div>
+
+                <div class="panel-content-area">
+                  <div class="panel-header">
+                    <div class="class-badge business-badge">
+                      <i class="fas fa-briefcase"></i>
+                      <span>Business</span>
+                    </div>
+                    <h3 class="panel-title">Productivity Meets Luxury</h3>
+                    <p class="panel-description">
+                      Fully flat beds, gourmet dining, and premium lounges for the discerning traveler
+                    </p>
+                  </div>
+
+                  <div class="panel-features">
+                    <div class="feature-item" style="animation-delay: 0.1s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Lie-Flat Seats</strong>
+                        <span>Transform into a 180° full bed for deep sleep</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.2s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Lounge Access</strong>
+                        <span>Exclusive airport lounges with dining & showers</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.3s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Gourmet Meals</strong>
+                        <span>Multi-course dining with wine pairings</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.4s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Priority Everything</strong>
+                        <span>Fast-track check-in, security & boarding</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel-amenities">
+                    <div class="amenity-chip">
+                      <i class="fas fa-suitcase"></i>
+                      <span>2 Bags</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-wifi"></i>
+                      <span>Free WiFi</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-bed"></i>
+                      <span>Lie-Flat</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-glass-martini-alt"></i>
+                      <span>Lounge</span>
+                    </div>
+                  </div>
+
+                  <div class="panel-cta">
+                    <a href="booking.html?class=Business" class="learn-more-btn">
+                      <span>Book Business Class</span>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FIRST CLASS PANEL -->
+            <div class="travel-class-panel" data-panel="first">
+              <div class="panel-3d-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                
+                <div class="panel-hero-image">
+                  <img src="/site-images/FC-P1.webp" alt="Luxurious First Class suite" loading="lazy">
+                  <div class="image-overlay"></div>
+                </div>
+
+                <div class="panel-content-area">
+                  <div class="panel-header">
+                    <div class="class-badge first-badge">
+                      <i class="fas fa-gem"></i>
+                      <span>First Class</span>
+                    </div>
+                    <h3 class="panel-title">The Pinnacle of Aviation</h3>
+                    <p class="panel-description">
+                      Private suites, Michelin-star dining, and personalized service beyond compare
+                    </p>
+                  </div>
+
+                  <div class="panel-features">
+                    <div class="feature-item" style="animation-delay: 0.1s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Private Suites</strong>
+                        <span>Fully enclosed cabin with closing door</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.2s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>A La Carte Dining</strong>
+                        <span>Order chef-prepared meals anytime</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.3s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Personal Butler</strong>
+                        <span>Dedicated concierge service throughout</span>
+                      </div>
+                    </div>
+
+                    <div class="feature-item" style="animation-delay: 0.4s">
+                      <div class="feature-icon">
+                        <svg class="checkmark-svg" viewBox="0 0 52 52">
+                          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                      </div>
+                      <div class="feature-text">
+                        <strong>Chauffeur Service</strong>
+                        <span>Complimentary airport transfers included</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel-amenities">
+                    <div class="amenity-chip">
+                      <i class="fas fa-luggage-cart"></i>
+                      <span>3 Bags</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-shower"></i>
+                      <span>Shower</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-door-closed"></i>
+                      <span>Suite</span>
+                    </div>
+                    <div class="amenity-chip">
+                      <i class="fas fa-concierge-bell"></i>
+                      <span>Butler</span>
+                    </div>
+                  </div>
+
+                  <div class="panel-cta">
+                    <a href="booking.html?class=First" class="learn-more-btn">
+                      <span>Book First Class</span>
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        <!-- Compare All Classes CTA -->
+        <div class="compare-all-cta" data-aos="fade-up" data-aos-delay="400">
+          <a href="travel-classes.html" class="compare-btn">
+            <i class="fas fa-list-check"></i>
+            <span>Compare All Classes</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
       </div>
     </section>
+
+    <!-- ============================================= -->
+    <!-- BENTO BOX SOCIAL PROOF SECTION -->
+    <!-- ============================================= -->
+    <section class="bento-social-proof-section">
+      <div class="bento-container">
+        
+        <!-- Section Header -->
+        <div class="bento-header" data-aos="fade-up">
+          <div class="header-badge">
+            <i class="fas fa-heart"></i>
+            <span>Loved by Travelers</span>
+          </div>
+          <h2 class="bento-title">Don't Just Take Our Word For It</h2>
+          <p class="bento-subtitle">Join thousands of satisfied travelers who trust Destinova for their journeys</p>
+        </div>
+
+        <!-- Bento Grid Layout -->
+        <div class="bento-grid" data-aos="fade-up" data-aos-delay="200">
+          
+          <!-- LARGE: Stats Card with Animated Counters -->
+          <div class="bento-card bento-stats-card" data-float-speed="3">
+            <div class="stats-card-inner">
+              <div class="stats-header">
+                <i class="fas fa-chart-line stats-icon"></i>
+                <span class="stats-badge">Live Stats</span>
+              </div>
+              
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <div class="stat-number" data-target="150000" data-suffix="+" data-duration="2000">0</div>
+                  <div class="stat-label">Happy Travelers</div>
+                  <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 95%"></div>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-number" data-target="4.8" data-decimals="1" data-duration="2000">0</div>
+                  <div class="stat-label">Average Rating</div>
+                  <div class="star-rating-animated">
+                    <div class="stars-bg">★★★★★</div>
+                    <div class="stars-fill" style="--rating: 4.8">★★★★★</div>
+                  </div>
+                </div>
+
+                <div class="stat-item">
+                  <div class="stat-number" data-target="98" data-suffix="%" data-duration="2000">0</div>
+                  <div class="stat-label">Satisfaction Rate</div>
+                  <div class="stat-donut">
+                    <svg viewBox="0 0 36 36">
+                      <path class="donut-hole" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                      <path class="donut-ring" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                      <path class="donut-segment" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="--percentage: 98"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stats-footer">
+                <i class="fas fa-check-circle"></i>
+                <span>Updated in real-time</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SMALL: Review Card 1 -->
+          <div class="bento-card bento-review-card" data-float-speed="2.5">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img src="https://i.pravatar.cc/100?img=1" alt="Sarah Johnson" loading="lazy">
+                <div class="verified-badge" title="Verified Booking">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Sarah Johnson</div>
+                <div class="review-stars">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                </div>
+              </div>
+            </div>
+            <p class="review-text">
+              "Absolutely seamless booking experience! Got the best deal on my flight to Paris. The customer support was incredibly helpful when I needed to change my dates."
+            </p>
+            <div class="review-footer">
+              <span class="review-date">
+                <i class="far fa-clock"></i>
+                2 weeks ago
+              </span>
+              <span class="review-route">NYC → Paris</span>
+            </div>
+          </div>
+
+          <!-- SMALL: Review Card 2 -->
+          <div class="bento-card bento-review-card" data-float-speed="3.2">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img src="https://i.pravatar.cc/100?img=12" alt="Michael Chen" loading="lazy">
+                <div class="verified-badge" title="Verified Booking">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Michael Chen</div>
+                <div class="review-stars">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                </div>
+              </div>
+            </div>
+            <p class="review-text">
+              "I've booked 5 trips through Destinova this year. Every time, they find me amazing deals and the process is super smooth. Highly recommend!"
+            </p>
+            <div class="review-footer">
+              <span class="review-date">
+                <i class="far fa-clock"></i>
+                1 month ago
+              </span>
+              <span class="review-route">Business Class</span>
+            </div>
+          </div>
+
+          <!-- MEDIUM: Trust Badges Strip -->
+          <div class="bento-card bento-trust-badges" data-float-speed="2.8">
+            <div class="trust-badges-header">
+              <i class="fas fa-shield-check"></i>
+              <span>Trusted & Secure</span>
+            </div>
+            
+            <div class="badges-grid">
+              <div class="badge-item" title="256-bit SSL Encryption">
+                <i class="fas fa-lock"></i>
+                <span>SSL Secure</span>
+              </div>
+              <div class="badge-item" title="Best Flight Booking Platform 2024">
+                <i class="fas fa-trophy"></i>
+                <span>Award Winner 2024</span>
+              </div>
+              <div class="badge-item" title="IATA Accredited Agency">
+                <i class="fas fa-certificate"></i>
+                <span>IATA Certified</span>
+              </div>
+              <div class="badge-item" title="24/7 Customer Support">
+                <i class="fas fa-headset"></i>
+                <span>24/7 Support</span>
+              </div>
+            </div>
+
+            <div class="payment-partners">
+              <span class="partners-label">Secure Payments</span>
+              <div class="partners-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" loading="lazy">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- SMALL: Review Card 3 -->
+          <div class="bento-card bento-review-card" data-float-speed="3.5">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img src="https://i.pravatar.cc/100?img=32" alt="Emma Wilson" loading="lazy">
+                <div class="verified-badge" title="Verified Booking">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Emma Wilson</div>
+                <div class="review-stars">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                </div>
+              </div>
+            </div>
+            <p class="review-text">
+              "The price match guarantee is real! They found me a better deal and matched it instantly. Saved ₹16,600 on my family vacation to Bali."
+            </p>
+            <div class="review-footer">
+              <span class="review-date">
+                <i class="far fa-clock"></i>
+                3 days ago
+              </span>
+              <span class="review-route">Family Trip</span>
+            </div>
+          </div>
+
+          <!-- MEDIUM: Video Testimonial Card -->
+          <div class="bento-card bento-video-card" data-float-speed="2.6">
+            <div class="video-thumbnail">
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop" alt="Customer testimonial video" loading="lazy">
+              <div class="video-overlay">
+                <button class="video-play-btn" aria-label="Play testimonial video" data-video-id="testimonial-1">
+                  <i class="fas fa-play"></i>
+                </button>
+                <div class="video-duration">2:15</div>
+              </div>
+            </div>
+            <div class="video-info">
+              <div class="video-reviewer">
+                <img src="https://i.pravatar.cc/60?img=65" alt="David Martinez" loading="lazy">
+                <div class="video-reviewer-info">
+                  <div class="video-reviewer-name">David Martinez</div>
+                  <div class="video-review-stars">
+                    ★★★★★
+                  </div>
+                </div>
+              </div>
+              <p class="video-caption">"Why I book all my business trips with Destinova"</p>
+            </div>
+            <div class="video-badge">
+              <i class="fas fa-video"></i>
+              <span>Video Review</span>
+            </div>
+          </div>
+
+          <!-- SMALL: Review Card 4 -->
+          <div class="bento-card bento-review-card" data-float-speed="3.1">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img src="https://i.pravatar.cc/100?img=47" alt="Priya Sharma" loading="lazy">
+                <div class="verified-badge" title="Verified Booking">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Priya Sharma</div>
+                <div class="review-stars">
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="fas fa-star filled"></i>
+                  <i class="far fa-star"></i>
+                </div>
+              </div>
+            </div>
+            <p class="review-text">
+              "Great platform with competitive prices. The mobile app makes it easy to manage bookings on the go. Would recommend to friends!"
+            </p>
+            <div class="review-footer">
+              <span class="review-date">
+                <i class="far fa-clock"></i>
+                1 week ago
+              </span>
+              <span class="review-route">Delhi → Dubai</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Call to Action -->
+        <div class="bento-cta" data-aos="fade-up" data-aos-delay="400">
+          <a href="reviews.html" class="bento-cta-btn">
+            <span>Read All Reviews</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="trustpilot-link">
+            <img src="https://cdn.trustpilot.net/brand-assets/4.1.0/logo-white.svg" alt="Trustpilot" style="height: 20px; opacity: 0.7;">
+            <span>4.8 out of 5 on Trustpilot</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
+      <div class="video-modal-overlay"></div>
+      <div class="video-modal-content">
+        <button class="video-modal-close" aria-label="Close video">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="video-player-wrapper">
+          <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
 
     <!-- ============================================= -->
     <!-- NEW: TRUST & COMFORT SECTION (REPLACES OLD SECTIONS) -->
@@ -1787,7 +2510,7 @@
               </div>
             </div>
             <div class="testimonial-footer">
-              <div class="trip-details">Business trip to London, saved $340</div>
+              <div class="trip-details">Business trip to London, saved ₹28,220</div>
               <div class="helpful-vote">
                 <span>Was this helpful?</span>
                 <button class="vote-btn"><i class="fas fa-thumbs-up"></i> Yes</button>
@@ -2044,6 +2767,7 @@
   </a>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="../js/hero-enhancements.js"></script>
   <script src="../js/index.js"></script>
   <script>
     // PWA Service Worker Registration
