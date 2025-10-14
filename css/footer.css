@@ -1,16 +1,17 @@
-/* ============================================= */
-/* REDESIGNED DESTINOVA FOOTER */
-/* ============================================= */
+/* ===================================================================
+   PREMIUM FOOTER - DESTINOVA
+   Information-rich footer with comprehensive navigation
+   =================================================================== */
 
-/* Defining the core color palette */
+/* Root Variables */
 :root {
     --emerald-green: #1d5e33;
+    --emerald-dark: #164426;
+    --emerald-light: #2a7d4a;
     --champagne-gold: #E5CBAF;
-    --soft-white: #f8f8f8;
-    --footer-dark: #1F2937;
-    --footer-darker: #111827;
-    --accent-orange: #F97316;
-    --accent-blue: #3B82F6;
+    --gold-dark: #c9a877;
+    --text-primary: #1C2526;
+    --text-white: #ffffff;
 }
 
 /* ========== MAIN FOOTER CONTAINER ========== */

@@ -1,0 +1,755 @@
+/* ===================================================================
+   PAYMENT PARTNERS & SECURITY SECTION - DESTINOVA
+   Sophisticated payment trust and security visualization
+   =================================================================== */
+
+/* ===================================================================
+   SECTION CONTAINER
+   =================================================================== */
+
+.payment-security-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  background: #ffffff;
+  border-top: 1px solid rgba(229, 203, 175, 0.2);
+  border-bottom: 1px solid rgba(229, 203, 175, 0.2);
+  overflow: hidden;
+}
+
+.payment-security-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================================================================
+   BACKGROUND DECORATIVE ELEMENTS
+   =================================================================== */
+
+/* Grid Pattern Background */
+.payment-security-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(29, 94, 51, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 94, 51, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating Lock Icon */
+.floating-lock-decoration {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 120px;
+  height: 120px;
+  color: rgba(229, 203, 175, 0.08);
+  transform: rotate(-15deg);
+  z-index: 0;
+  pointer-events: none;
+  animation: floatLock 20s ease-in-out infinite;
+}
+
+@keyframes floatLock {
+  0%, 100% {
+    transform: rotate(-15deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-15deg) translateY(-20px);
+  }
+}
+
+/* Security Badge Watermark */
+.security-badge-watermark {
+  position: absolute;
+  bottom: 80px;
+  left: 60px;
+  width: 140px;
+  height: 140px;
+  color: rgba(29, 94, 51, 0.05);
+  transform: rotate(15deg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===================================================================
+   PAYMENT PARTNERS SUBSECTION
+   =================================================================== */
+
+.payment-partners-subsection {
+  margin-bottom: 64px;
+}
+
+/* Header */
+.payment-partners-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8B9BA5;
+  text-align: center;
+  margin-bottom: 32px;
+  display: block;
+}
+
+/* Logo Container */
+.payment-logos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px 60px;
+  padding: 0 60px;
+}
+
+/* Individual Logo Wrapper */
+.payment-logo-wrapper {
+  padding: 20px 32px;
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: logoFadeIn 0.5s ease-out forwards;
+}
+
+/* Stagger logo animations */
+.payment-logo-wrapper:nth-child(1) { animation-delay: 0.05s; }
+.payment-logo-wrapper:nth-child(2) { animation-delay: 0.10s; }
+.payment-logo-wrapper:nth-child(3) { animation-delay: 0.15s; }
+.payment-logo-wrapper:nth-child(4) { animation-delay: 0.20s; }
+.payment-logo-wrapper:nth-child(5) { animation-delay: 0.25s; }
+.payment-logo-wrapper:nth-child(6) { animation-delay: 0.30s; }
+.payment-logo-wrapper:nth-child(7) { animation-delay: 0.35s; }
+.payment-logo-wrapper:nth-child(8) { animation-delay: 0.40s; }
+.payment-logo-wrapper:nth-child(9) { animation-delay: 0.45s; }
+.payment-logo-wrapper:nth-child(10) { animation-delay: 0.50s; }
+.payment-logo-wrapper:nth-child(11) { animation-delay: 0.55s; }
+.payment-logo-wrapper:nth-child(12) { animation-delay: 0.60s; }
+
+@keyframes logoFadeIn {
+  to {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+.payment-logo-wrapper img,
+.payment-logo-wrapper svg {
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover State */
+.payment-logo-wrapper:hover {
+  background: rgba(229, 203, 175, 0.08);
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.1);
+}
+
+.payment-logo-wrapper:hover img,
+.payment-logo-wrapper:hover svg {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Logo Sizes */
+.payment-logo-wrapper.card-logo img,
+.payment-logo-wrapper.card-logo svg {
+  height: 32px;
+  width: auto;
+}
+
+.payment-logo-wrapper.wallet-logo img,
+.payment-logo-wrapper.wallet-logo svg {
+  height: 36px;
+  width: auto;
+}
+
+.payment-logo-wrapper.upi-logo img,
+.payment-logo-wrapper.upi-logo svg {
+  height: 40px;
+  width: auto;
+}
+
+/* Shimmer Effect */
+.payment-logo-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(229, 203, 175, 0.3),
+    transparent
+  );
+  animation: shimmer 3s ease-in-out 5s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Tooltip */
+.payment-logo-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: #1C2526;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.payment-logo-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #1C2526;
+}
+
+.payment-logo-wrapper:hover .payment-logo-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================================================
+   DIVIDER
+   =================================================================== */
+
+.section-divider {
+  margin: 64px auto;
+  width: 80%;
+  max-width: 900px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(229, 203, 175, 0.3),
+    transparent
+  );
+}
+
+/* ===================================================================
+   SECURITY FEATURES SUBSECTION
+   =================================================================== */
+
+.security-features-subsection {
+  margin-top: 64px;
+}
+
+/* Header */
+.security-features-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1C2526;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* Features Grid */
+.security-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 0 60px;
+}
+
+/* Security Feature Card */
+.security-feature-card {
+  background: transparent;
+  text-align: center;
+  padding: 24px 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: cardFadeIn 0.6s ease-out forwards;
+}
+
+/* Stagger card animations */
+.security-feature-card:nth-child(1) { animation-delay: 0.1s; }
+.security-feature-card:nth-child(2) { animation-delay: 0.2s; }
+.security-feature-card:nth-child(3) { animation-delay: 0.3s; }
+.security-feature-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.security-feature-card:hover {
+  background: rgba(229, 203, 175, 0.05);
+  transform: translateY(-4px);
+}
+
+/* Icon Container */
+.security-icon-container {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(
+    135deg,
+    rgba(29, 94, 51, 0.1),
+    rgba(42, 125, 74, 0.12)
+  );
+  border: 2px solid rgba(229, 203, 175, 0.3);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.security-icon-container svg {
+  width: 28px;
+  height: 28px;
+  color: #1d5e33;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.security-feature-card:hover .security-icon-container {
+  transform: rotate(360deg);
+}
+
+/* Card Text */
+.security-feature-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1C2526;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.security-feature-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #5C6B73;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===================================================================
+   TRUST BADGES ROW
+   =================================================================== */
+
+.trust-badges-row {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  background: rgba(229, 203, 175, 0.1);
+  border: 1px solid rgba(229, 203, 175, 0.3);
+  border-radius: 12px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d5e33;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.trust-badge svg {
+  width: 18px;
+  height: 18px;
+  color: #1d5e33;
+}
+
+.trust-badge:hover {
+  border-color: #E5CBAF;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(229, 203, 175, 0.2);
+}
+
+/* Badge Tooltip */
+.trust-badge-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: #1C2526;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.trust-badge-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1C2526;
+}
+
+.trust-badge:hover .trust-badge-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================================================
+   MONEY-BACK GUARANTEE BANNER
+   =================================================================== */
+
+.money-back-guarantee-banner {
+  margin-top: 48px;
+  background: linear-gradient(
+    135deg,
+    rgba(29, 94, 51, 0.05),
+    rgba(42, 125, 74, 0.05)
+  );
+  border: 2px dashed rgba(229, 203, 175, 0.4);
+  border-radius: 20px;
+  padding: 28px 40px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guarantee-icon {
+  width: 32px;
+  height: 32px;
+  color: #2a7d4a;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.guarantee-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1C2526;
+  margin-bottom: 8px;
+}
+
+.guarantee-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #5C6B73;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===================================================================
+   LEGAL LINKS
+   =================================================================== */
+
+.legal-links-container {
+  margin-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.legal-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #1d5e33;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.legal-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #1d5e33;
+  transition: width 0.3s ease;
+}
+
+.legal-link:hover {
+  color: #164426;
+}
+
+.legal-link:hover::after {
+  width: 100%;
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN
+   =================================================================== */
+
+/* Tablet (768px - 1199px) */
+@media (max-width: 1199px) {
+  .payment-security-container {
+    padding: 0 40px;
+  }
+
+  .security-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 40px;
+    gap: 28px;
+  }
+
+  .payment-logos-container {
+    gap: 32px 48px;
+    padding: 0 40px;
+  }
+
+  .payment-logo-wrapper {
+    padding: 16px 28px;
+  }
+
+  .floating-lock-decoration {
+    right: 40px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .security-badge-watermark {
+    left: 40px;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Mobile (<768px) */
+@media (max-width: 767px) {
+  .payment-security-section {
+    padding: 60px 0;
+  }
+
+  .payment-security-container {
+    padding: 0 24px;
+  }
+
+  .security-features-grid {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 24px;
+  }
+
+  .payment-logos-container {
+    gap: 24px 32px;
+    padding: 0 24px;
+    justify-content: space-around;
+  }
+
+  .payment-logo-wrapper {
+    padding: 12px 20px;
+  }
+
+  .payment-logo-wrapper.card-logo img,
+  .payment-logo-wrapper.card-logo svg {
+    height: 24px;
+  }
+
+  .payment-logo-wrapper.wallet-logo img,
+  .payment-logo-wrapper.wallet-logo svg {
+    height: 28px;
+  }
+
+  .payment-logo-wrapper.upi-logo img,
+  .payment-logo-wrapper.upi-logo svg {
+    height: 32px;
+  }
+
+  .security-features-heading {
+    font-size: 24px;
+    margin-bottom: 36px;
+  }
+
+  .trust-badges-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .trust-badge {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .money-back-guarantee-banner {
+    padding: 24px 28px;
+    margin-top: 40px;
+  }
+
+  .guarantee-heading {
+    font-size: 18px;
+  }
+
+  .guarantee-text {
+    font-size: 13px;
+  }
+
+  .floating-lock-decoration {
+    display: none;
+  }
+
+  .security-badge-watermark {
+    display: none;
+  }
+
+  .section-divider {
+    width: 90%;
+    margin: 48px auto;
+  }
+
+  .legal-links-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* ===================================================================
+   ACCESSIBILITY
+   =================================================================== */
+
+/* Focus States */
+.payment-logo-wrapper:focus,
+.security-feature-card:focus,
+.trust-badge:focus,
+.legal-link:focus {
+  outline: 2px solid #1d5e33;
+  outline-offset: 4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .payment-logo-wrapper,
+  .security-feature-card {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .payment-logo-wrapper {
+    border: 2px solid currentColor;
+  }
+
+  .security-icon-container {
+    border-width: 3px;
+  }
+
+  .trust-badge {
+    border-width: 2px;
+  }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+
+@media print {
+  .payment-security-section {
+    border: none;
+    page-break-inside: avoid;
+  }
+
+  .floating-lock-decoration,
+  .security-badge-watermark,
+  .payment-logo-wrapper::after {
+    display: none;
+  }
+
+  .payment-logo-wrapper img,
+  .payment-logo-wrapper svg {
+    filter: none;
+    opacity: 1;
+  }
+}

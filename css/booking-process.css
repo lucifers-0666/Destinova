@@ -1,0 +1,806 @@
+/* ===================================
+   BOOKING PROCESS SECTION - DESTINOVA
+   3-step journey visualization
+   =================================== */
+
+/* =========================
+   1. SECTION CONTAINER
+   ========================= */
+
+.booking-process-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 60px;
+  background: linear-gradient(180deg, #ffffff 0%, #FFF8ED 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   2. SECTION HEADER
+   ========================= */
+
+.booking-process-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.booking-process-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #c9a877;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.booking-process-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  color: #1C2526;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.booking-process-subheading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #5C6B73;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* =========================
+   3. JOURNEY PATH CONTAINER
+   ========================= */
+
+.journey-path-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   4. CONNECTING PATH LINE
+   ========================= */
+
+.connecting-path {
+  position: absolute;
+  top: 80px;
+  left: 10%;
+  right: 10%;
+  height: 4px;
+  background: linear-gradient(90deg, #E5CBAF 0%, #1d5e33 50%, #E5CBAF 100%);
+  border-radius: 2px;
+  z-index: 0;
+}
+
+/* Animated progress indicator */
+.progress-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #1d5e33, #2a7d4a, #E5CBAF);
+  border-radius: 2px;
+  transition: width 2.5s cubic-bezier(0.65, 0, 0.35, 1);
+  overflow: hidden;
+}
+
+.progress-indicator.animate {
+  width: 100%;
+}
+
+/* Shimmer effect on progress */
+.progress-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  animation: shimmer 2.5s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* =========================
+   5. AIRPLANE TRAVELER
+   ========================= */
+
+.airplane-traveler {
+  position: absolute;
+  top: 80px;
+  left: 10%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #1d5e33, #2a7d4a);
+  border-radius: 50%;
+  border: 3px solid #E5CBAF;
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: left 2.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.airplane-traveler.animate {
+  left: 90%;
+}
+
+.airplane-icon {
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+  transform: rotate(-45deg);
+}
+
+/* =========================
+   6. STEP CARD DESIGN
+   ========================= */
+
+.step-card {
+  width: 32%;
+  z-index: 1;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.step-card.animate-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.step-card:nth-child(1) {
+  transition-delay: 0.3s;
+}
+
+.step-card:nth-child(2) {
+  transition-delay: 0.6s;
+}
+
+.step-card:nth-child(3) {
+  transition-delay: 0.9s;
+}
+
+/* =========================
+   7. STEP NUMBER BADGE
+   ========================= */
+
+.step-number-badge {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 32px;
+  background: #ffffff;
+  border: 8px solid rgba(229, 203, 175, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 12px 40px rgba(29, 94, 51, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.step-card:hover .step-number-badge {
+  transform: scale(1.1);
+}
+
+/* Inner circle (icon container) */
+.icon-container {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(29, 94, 51, 0.1), rgba(42, 125, 74, 0.15));
+  border: 2px solid rgba(229, 203, 175, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.step-card:hover .icon-container {
+  transform: rotate(360deg);
+}
+
+.step-icon {
+  width: 36px;
+  height: 36px;
+  color: #1d5e33;
+  animation: iconBreath 2s ease-in-out infinite;
+}
+
+@keyframes iconBreath {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.step-card:hover .step-icon {
+  animation: iconPulse 0.6s ease;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Step number overlay */
+.step-number-overlay {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #E5CBAF, #c9a877);
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1C2526;
+  box-shadow: 0 4px 12px rgba(229, 203, 175, 0.4);
+  transition: transform 0.4s ease;
+}
+
+.step-card:hover .step-number-overlay {
+  transform: scale(1.1);
+}
+
+/* =========================
+   8. CARD CONTENT
+   ========================= */
+
+.step-card-content {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 36px 32px;
+  border: 1px solid rgba(229, 203, 175, 0.2);
+  box-shadow: 0 8px 32px rgba(29, 94, 51, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.step-card:hover .step-card-content {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(29, 94, 51, 0.15);
+  border: 2px solid rgba(229, 203, 175, 0.5);
+}
+
+.step-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1C2526;
+  margin-bottom: 16px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.step-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #5C6B73;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   9. FEATURES LIST
+   ========================= */
+
+.step-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  background: rgba(42, 125, 74, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-icon {
+  width: 16px;
+  height: 16px;
+  color: #2a7d4a;
+}
+
+.feature-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #5C6B73;
+  line-height: 1.5;
+}
+
+/* =========================
+   10. TIME INDICATOR BADGE
+   ========================= */
+
+.time-indicator {
+  background: rgba(229, 203, 175, 0.15);
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.time-icon {
+  width: 14px;
+  height: 14px;
+  color: #1d5e33;
+}
+
+.time-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d5e33;
+}
+
+/* =========================
+   11. BOTTOM CTA SECTION
+   ========================= */
+
+.booking-process-cta {
+  margin-top: 80px;
+  text-align: center;
+  background: rgba(229, 203, 175, 0.1);
+  padding: 48px;
+  border-radius: 24px;
+}
+
+.cta-heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: #1C2526;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.cta-subtext {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #5C6B73;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #164426, #1d5e33, #2a7d4a);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 20px 48px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.3);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 36px rgba(29, 94, 51, 0.4);
+}
+
+.cta-button-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .cta-button-icon {
+  transform: translateX(4px);
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.trust-microcopy {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #8B9BA5;
+}
+
+.trust-icon {
+  width: 14px;
+  height: 14px;
+  color: #2a7d4a;
+}
+
+/* =========================
+   12. DECORATIVE ELEMENTS
+   ========================= */
+
+.floating-shape {
+  position: absolute;
+  background: rgba(229, 203, 175, 0.05);
+  filter: blur(60px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-shape-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  animation: float1 25s ease-in-out infinite;
+}
+
+.floating-shape-2 {
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  right: 5%;
+  animation: float2 30s ease-in-out infinite;
+}
+
+.floating-shape-3 {
+  width: 350px;
+  height: 350px;
+  bottom: 10%;
+  left: 10%;
+  animation: float3 28s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-40px, 40px) scale(1.15);
+  }
+}
+
+@keyframes float3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(35px, -25px) scale(1.08);
+  }
+}
+
+/* Dotted pattern overlay */
+.booking-process-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, rgba(29, 94, 51, 0.02) 3px, transparent 3px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================
+   13. RESPONSIVE DESIGN
+   ========================= */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .booking-process-section {
+    padding: 80px 40px;
+  }
+
+  .booking-process-heading {
+    font-size: 42px;
+  }
+
+  .journey-path-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .step-card {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* Vertical connecting line */
+  .connecting-path {
+    top: 80px;
+    bottom: 80px;
+    left: 50px;
+    right: auto;
+    width: 4px;
+    height: auto;
+    background: linear-gradient(180deg, #E5CBAF 0%, #1d5e33 50%, #E5CBAF 100%);
+  }
+
+  .progress-indicator {
+    width: 100%;
+    height: 0%;
+    transition: height 2.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .progress-indicator.animate {
+    width: 100%;
+    height: 100%;
+  }
+
+  .progress-indicator::after {
+    background: linear-gradient(180deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.4) 50%, 
+      transparent 100%);
+  }
+
+  /* Vertical airplane movement */
+  .airplane-traveler {
+    left: 50px;
+    top: 80px;
+    transform: translate(-50%, -50%) rotate(135deg);
+    transition: top 2.5s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .airplane-traveler.animate {
+    left: 50px;
+    top: calc(100% - 80px);
+  }
+
+  .step-number-badge {
+    margin-left: 80px;
+  }
+
+  .booking-process-cta {
+    padding: 40px 32px;
+  }
+}
+
+/* Mobile (<768px) */
+@media (max-width: 767px) {
+  .booking-process-section {
+    padding: 60px 24px;
+  }
+
+  .booking-process-header {
+    margin-bottom: 60px;
+  }
+
+  .booking-process-heading {
+    font-size: 36px;
+  }
+
+  .booking-process-subheading {
+    font-size: 16px;
+  }
+
+  .journey-path-container {
+    gap: 50px;
+  }
+
+  .step-number-badge {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 24px;
+    margin-left: 60px;
+  }
+
+  .icon-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .step-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .step-number-overlay {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .step-card-content {
+    padding: 28px 24px;
+  }
+
+  .step-heading {
+    font-size: 21px;
+  }
+
+  .step-description {
+    font-size: 14px;
+  }
+
+  .feature-text {
+    font-size: 13px;
+  }
+
+  .connecting-path {
+    left: 40px;
+  }
+
+  .airplane-traveler {
+    left: 40px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .airplane-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .booking-process-cta {
+    margin-top: 60px;
+    padding: 32px 24px;
+  }
+
+  .cta-heading {
+    font-size: 22px;
+  }
+
+  .cta-subtext {
+    font-size: 15px;
+  }
+
+  .cta-button {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 36px;
+    font-size: 16px;
+  }
+
+  .trust-microcopy {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* =========================
+   14. ACCESSIBILITY
+   ========================= */
+
+/* Focus states */
+.cta-button:focus {
+  outline: 3px solid #E5CBAF;
+  outline-offset: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .step-card,
+  .progress-indicator,
+  .airplane-traveler,
+  .step-icon,
+  .floating-shape,
+  .cta-button {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .step-card:hover .icon-container {
+    transform: none;
+  }
+
+  .step-card:hover .step-card-content {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .step-card-content,
+  .step-number-badge {
+    border-width: 3px;
+  }
+
+  .connecting-path {
+    height: 6px;
+  }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

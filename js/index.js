@@ -1138,136 +1138,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     initializeTicketSearchForm();
 
-    // --- SWIPE SUPPORT FOR MOBILE (Testimonials) ---
-    function addSwipeSupport() {
-        // Add swipe support to testimonials
-        const testimonialsSlider = document.querySelector('.home-testimonial-slider');
-        if (testimonialsSlider) {
-            let startX = 0;
-            let isDragging = false;
-
-            testimonialsSlider.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-            });
-
-            testimonialsSlider.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const currentX = e.touches[0].clientX;
-                const diffX = startX - currentX;
-
-                if (Math.abs(diffX) > 50) {
-                    const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
-                    const activeIndex = Array.from(indicators).findIndex(ind => ind.classList.contains('active'));
-
-                    if (diffX > 0 && activeIndex < indicators.length - 1) {
-                        indicators[activeIndex + 1].click();
-                    } else if (diffX < 0 && activeIndex > 0) {
-                        indicators[activeIndex - 1].click();
-                    }
-                    isDragging = false;
-                }
-            });
-
-            testimonialsSlider.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-        }
-    }
-
-    addSwipeSupport();
-
-    // --- TESTIMONIALS SLIDER FUNCTIONALITY ---
-    function initializeTestimonialsSlider() {
-        const slider = document.querySelector('.home-testimonial-slider');
-        const cards = document.querySelectorAll('.home-testimonial-card');
-        const indicatorsContainer = document.querySelector('.testimonial-indicators');
-        const filterButtons = document.querySelectorAll('.testimonial-filters .filter-btn');
-
-        if (!slider || cards.length === 0 || !indicatorsContainer) return;
-
-        let currentSlide = 0;
-        let autoSlideInterval;
-        let visibleCards = Array.from(cards);
-
-        function generateIndicators() {
-            indicatorsContainer.innerHTML = '';
-            visibleCards.forEach((_, index) => {
-                const button = document.createElement('button');
-                button.classList.add('indicator');
-                if (index === 0) button.classList.add('active');
-                button.dataset.slide = index;
-                indicatorsContainer.appendChild(button);
-            });
-            // Add click handlers to new indicators
-            indicatorsContainer.querySelectorAll('.indicator').forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    showSlide(index);
-                    stopAutoSlide();
-                    startAutoSlide();
-                });
-            });
-        }
-
-        function showSlide(index) {
-            if (index >= visibleCards.length) index = 0;
-            if (index < 0) index = visibleCards.length - 1;
-
-            visibleCards.forEach((card, i) => card.style.display = i === index ? 'flex' : 'none');
-            indicatorsContainer.querySelectorAll('.indicator').forEach((ind, i) => ind.classList.toggle('active', i === index));
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const next = (currentSlide + 1) % visibleCards.length;
-            showSlide(next);
-        }
-
-        function startAutoSlide() {
-            stopAutoSlide();
-            autoSlideInterval = setInterval(nextSlide, 6000); // Change slide every 6 seconds
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
-        }
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filter = button.dataset.filter;
-
-                if (filter === 'all') {
-                    visibleCards = Array.from(cards);
-                } else {
-                    visibleCards = Array.from(cards).filter(card => card.dataset.category === filter);
-                }
-
-                generateIndicators();
-                showSlide(0);
-                stopAutoSlide();
-                startAutoSlide();
-            });
-        });
-
-        slider.addEventListener('click', (e) => {
-            if (e.target.closest('.vote-btn')) {
-                const parent = e.target.closest('.helpful-vote');
-                parent.innerHTML = '<p style="color: var(--primary-emerald); font-weight: 600;">Thank you for your feedback!</p>';
-            }
-        });
-
-        // Pause auto-slide on hover
-        slider.addEventListener('mouseenter', stopAutoSlide);
-        slider.addEventListener('mouseleave', startAutoSlide);
-
-        // Initial setup
-        generateIndicators();
-        showSlide(0);
-        startAutoSlide();
-    }
-    initializeTestimonialsSlider();
+    // --- TESTIMONIALS SECTION REMOVED ---
 
     // --- FOOTER: RECENTLY VIEWED FLIGHTS ---
     function initializeFooterFeatures() {
@@ -1679,263 +1550,6 @@ document.addEventListener('DOMContentLoaded', function () {
         initializeReviewsLink();
     }
 
-    // ============================================= 
-    // POPULAR DESTINATIONS GALLERY
-    // ============================================= 
-    
-    function initializeDestinationsGallery() {
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        const destinationCards = document.querySelectorAll('.destination-card');
-        const skeletonGrid = document.getElementById('destinations-skeleton');
-        const destinationsGrid = document.getElementById('destinations-grid');
-        const viewAllBtn = document.querySelector('.view-all-destinations-btn');
-        
-        // Show skeleton loading state initially (simulate loading)
-        if (skeletonGrid && destinationsGrid) {
-            skeletonGrid.style.display = 'grid';
-            destinationsGrid.style.opacity = '0';
-            
-            // Simulate data loading
-            setTimeout(() => {
-                skeletonGrid.style.display = 'none';
-                destinationsGrid.style.opacity = '1';
-            }, 800);
-        }
-        
-        // Filter tabs functionality
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const category = this.dataset.category;
-                
-                // Update active tab
-                filterTabs.forEach(t => {
-                    t.classList.remove('active');
-                    t.setAttribute('aria-selected', 'false');
-                });
-                this.classList.add('active');
-                this.setAttribute('aria-selected', 'true');
-                
-                // Filter cards with animation
-                filterDestinations(category);
-                
-                // Track filter usage
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'destination_filter', {
-                        'event_category': 'destinations',
-                        'event_label': category
-                    });
-                }
-            });
-            
-            // Keyboard navigation
-            tab.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        });
-        
-        // Card click handlers
-        destinationCards.forEach(card => {
-            // Click to view destination
-            card.addEventListener('click', function(e) {
-                // Don't trigger if clicking the CTA button
-                if (e.target.closest('.destination-cta-btn')) return;
-                
-                const destinationName = this.querySelector('.destination-name')?.textContent;
-                handleDestinationClick(destinationName);
-            });
-            
-            // CTA button click
-            const ctaBtn = card.querySelector('.destination-cta-btn');
-            if (ctaBtn) {
-                ctaBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const destinationName = card.querySelector('.destination-name')?.textContent;
-                    handleDestinationSearch(destinationName);
-                });
-            }
-            
-            // Keyboard navigation
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const destinationName = this.querySelector('.destination-name')?.textContent;
-                    handleDestinationClick(destinationName);
-                }
-            });
-        });
-        
-        // View All button
-        if (viewAllBtn) {
-            viewAllBtn.addEventListener('click', function() {
-                window.location.href = 'destinations.html';
-            });
-        }
-    }
-    
-    // Filter destinations by category
-    function filterDestinations(category) {
-        const cards = document.querySelectorAll('.destination-card');
-        
-        cards.forEach((card, index) => {
-            const cardCategory = card.dataset.category;
-            
-            if (category === 'all' || cardCategory === category) {
-                // Fade in matching cards with stagger
-                setTimeout(() => {
-                    card.style.display = 'flex';
-                    card.style.animation = 'fadeInUp 0.5s ease forwards';
-                }, index * 50);
-            } else {
-                // Fade out non-matching cards
-                card.style.animation = 'fadeOut 0.3s ease forwards';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
-    }
-    
-    // Handle destination card click
-    function handleDestinationClick(destinationName) {
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'destination_view', {
-                'event_category': 'destinations',
-                'event_label': destinationName
-            });
-        }
-        
-        // Navigate to search results or destination page
-        console.log('Viewing destination:', destinationName);
-        // window.location.href = `destination-details.html?destination=${encodeURIComponent(destinationName)}`;
-    }
-    
-    // Handle search flights for destination
-    function handleDestinationSearch(destinationName) {
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'destination_search', {
-                'event_category': 'destinations',
-                'event_label': destinationName
-            });
-        }
-        
-        // Pre-fill search form and navigate to results
-        console.log('Searching flights to:', destinationName);
-        
-        // Extract city name (before comma)
-        const cityName = destinationName.split(',')[0].trim();
-        
-        // Set destination in localStorage for search form
-        localStorage.setItem('searchDestination', cityName);
-        
-        // Navigate to booking page or scroll to search
-        window.location.href = `booking.html?to=${encodeURIComponent(cityName)}`;
-    }
-    
-    // Add CSS animations
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-                transform: scale(1);
-            }
-            to {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // ============================================= 
-    // DESTINATIONS: LAZY LOADING IMAGES
-    // ============================================= 
-    
-    function initializeDestinationImagesLazyLoad() {
-        const images = document.querySelectorAll('.destination-card-image[loading="lazy"]');
-        
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.src;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '50px'
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-        }
-    }
-    
-    // ============================================= 
-    // DESTINATIONS: ACCESSIBILITY ENHANCEMENTS
-    // ============================================= 
-    
-    function enhanceDestinationsAccessibility() {
-        const cards = document.querySelectorAll('.destination-card');
-        
-        cards.forEach(card => {
-            const destinationName = card.querySelector('.destination-name')?.textContent;
-            const price = card.querySelector('.price-value')?.textContent;
-            const rating = card.querySelector('.destination-rating span')?.textContent;
-            
-            // Add comprehensive aria-label
-            card.setAttribute('aria-label', 
-                `${destinationName}. Rating ${rating} out of 5 stars. Flights from ${price}. Press Enter to view details.`
-            );
-        });
-        
-        // Announce filter changes to screen readers
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const category = this.dataset.category;
-                const visibleCards = document.querySelectorAll('.destination-card[style*="display: flex"]').length;
-                
-                // Create live region for announcements
-                let liveRegion = document.getElementById('destinations-live-region');
-                if (!liveRegion) {
-                    liveRegion = document.createElement('div');
-                    liveRegion.id = 'destinations-live-region';
-                    liveRegion.setAttribute('aria-live', 'polite');
-                    liveRegion.setAttribute('aria-atomic', 'true');
-                    liveRegion.className = 'sr-only';
-                    document.body.appendChild(liveRegion);
-                }
-                
-                setTimeout(() => {
-                    liveRegion.textContent = `Showing ${visibleCards} ${category === 'all' ? '' : category} destinations`;
-                }, 300);
-            });
-        });
-    }
-    
-    // Initialize destinations gallery features
-    if (document.querySelector('.destinations-gallery-section')) {
-        initializeDestinationsGallery();
-        initializeDestinationImagesLazyLoad();
-        enhanceDestinationsAccessibility();
-    }
-
     // =============================================
     // NEW SECTIONS: INTERACTIVE FUNCTIONALITY
     // =============================================
@@ -2289,9 +1903,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function initializeHeroBackground() {
         const vantaBg = document.getElementById('vanta-bg');
         if (vantaBg && typeof VANTA !== 'undefined') {
+        if (vantaBg && typeof VANTA !== 'undefined' && typeof THREE !== 'undefined') {
             try {
                 VANTA.WAVES({
                     el: vantaBg,
+                    THREE: THREE, // Pass THREE.js object
                     mouseControls: true,
                     touchControls: true,
                     gyroControls: false,
@@ -2300,6 +1916,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     scale: 1.00,
                     scaleMobile: 1.00,
                     color: 0x0a5f46,
+                    color: 0x0a5f46, // A dark emerald color
                     shininess: 40.00,
                     waveHeight: 15.00,
                     waveSpeed: 0.60,
@@ -2307,7 +1924,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } catch (e) {
                 console.log('Vanta.js initialization skipped:', e.message);
+                console.warn('Vanta.js initialization failed. It might be blocked or not loaded correctly.', e);
+                // Fallback solid color
+                vantaBg.style.backgroundColor = '#0f2027';
             }
+        } else {
+            console.warn('Vanta.js, THREE.js, or the #vanta-bg element is not available.');
         }
     }
 
@@ -2354,6 +1976,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 requestAnimationFrame(step);
             } else {
                 element.textContent = isDecimal ? end.toFixed(1) : end.toLocaleString();
+                // Ensure final value is exact
+                if (isDecimal) {
+                    element.textContent = end.toFixed(1);
+                } else {
+                    // Add M for million
+                    element.textContent = end.toLocaleString() + 'M';
+                }
             }
         };
 
@@ -2367,6 +1996,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const tabButtons = document.querySelectorAll('.widget-tabs .tab-btn');
         const returnDateField = document.querySelector('.return-date');
         
+        if (!tabButtons.length || !returnDateField) return;
+
         tabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 // Remove active from all tabs
@@ -2380,8 +2011,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Show/hide return date based on trip type
                 if (tabType === 'one-way') {
                     returnDateField?.classList.add('hidden');
+                    returnDateField.classList.add('hidden');
                 } else {
                     returnDateField?.classList.remove('hidden');
+                    returnDateField.classList.remove('hidden');
                 }
 
                 // Add smooth transition
@@ -2405,6 +2038,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const temp = fromInput.value;
                 fromInput.value = toInput.value;
                 toInput.value = temp;
+                [fromInput.value, toInput.value] = [toInput.value, fromInput.value];
                 
                 // Add animation
                 fromInput.style.transform = 'scale(1.05)';
@@ -2415,6 +2049,137 @@ document.addEventListener('DOMContentLoaded', function () {
                     toInput.style.transform = 'scale(1)';
                 }, 200);
             });
+        }
+    }
+
+    // ============================================= 
+    // HERO SEARCH: PASSENGERS DROPDOWN
+    // ============================================= 
+    function initializeHeroPassengersDropdown() {
+        const passengersBtn = document.getElementById('passengers-toggle-hero');
+        const passengersDropdown = document.getElementById('passengers-dropdown-hero');
+        const doneBtn = document.getElementById('passengers-done-hero');
+        const displayText = document.getElementById('passengers-display-hero');
+        
+        if (!passengersBtn || !passengersDropdown || !doneBtn || !displayText) return;
+
+        let adults = 1, children = 0, infants = 0;
+        let flightClass = 'Economy';
+        
+        passengersBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            passengersDropdown.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!passengersDropdown.contains(e.target) && e.target !== passengersBtn) {
+                passengersDropdown.classList.remove('active');
+            }
+        });
+        
+        passengersDropdown.querySelectorAll('.counter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                const type = btn.getAttribute('data-type');
+                const counterValueEl = document.getElementById(`${type}-count-hero`);
+                let count = parseInt(counterValueEl.textContent);
+
+                if (action === 'increase') {
+                    if (type === 'adults' && count < 9) adults = ++count;
+                    else if (type === 'children' && count < 8) children = ++count;
+                    else if (type === 'infants' && count < adults) infants = ++count;
+                } else if (action === 'decrease') {
+                    if (type === 'adults' && count > 1) {
+                        adults = --count;
+                        if (infants > adults) infants = adults;
+                    } else if ((type === 'children' || type === 'infants') && count > 0) {
+                        if (type === 'children') children = --count;
+                        if (type === 'infants') infants = --count;
+                    }
+                }
+                updatePassengersDisplay();
+            });
+        });
+        
+        passengersDropdown.querySelectorAll('.class-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                passengersDropdown.querySelectorAll('.class-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                flightClass = btn.getAttribute('data-class');
+                updatePassengersDisplay();
+            });
+        });
+        
+        doneBtn.addEventListener('click', () => {
+            passengersDropdown.classList.remove('active');
+        });
+        
+        function updatePassengersDisplay() {
+            document.getElementById('adults-count-hero').textContent = adults;
+            document.getElementById('children-count-hero').textContent = children;
+            document.getElementById('infants-count-hero').textContent = infants;
+
+            const totalPassengers = adults + children + infants;
+            displayText.textContent = `${totalPassengers} Passenger${totalPassengers > 1 ? 's' : ''}, ${flightClass}`;
+
+            // Update button states
+            passengersDropdown.querySelector('[data-type="adults"][data-action="decrease"]').disabled = adults <= 1;
+            passengersDropdown.querySelector('[data-type="infants"][data-action="increase"]').disabled = infants >= adults;
+        }
+    }
+
+    // ============================================= 
+    // HERO SEARCH: FORM SUBMISSION
+    // ============================================= 
+    function initializeHeroSearchForm() {
+        const form = document.getElementById('hero-search-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = {
+                    from: document.getElementById('hero-from')?.value,
+                    to: document.getElementById('hero-to')?.value,
+                    departure: document.getElementById('hero-departure')?.value,
+                    return: document.getElementById('hero-return')?.value,
+                    passengers: document.getElementById('passengers-display-hero')?.textContent
+                };
+                
+                if (!formData.from || !formData.to || !formData.departure) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                const params = new URLSearchParams(formData);
+                window.location.href = `results.html?${params.toString()}`;
+            });
+        }
+    }
+
+    // ============================================= 
+    // MODERN HERO SECTION: VANTA.JS BACKGROUND
+    // ============================================= 
+    function initializeHeroBackground() {
+        const vantaBg = document.getElementById('vanta-bg');
+        if (vantaBg && typeof VANTA !== 'undefined') {
+            try {
+                VANTA.WAVES({
+                    el: vantaBg,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x0a5f46,
+                    shininess: 40.00,
+                    waveHeight: 15.00,
+                    waveSpeed: 0.60,
+                    zoom: 0.80
+                });
+            } catch (e) {
+                console.log('Vanta.js initialization skipped:', e.message);
+            }
         }
     }
 
@@ -3258,6 +3023,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize all hero features
     if (document.getElementById('hero-section')) {
+    if (document.querySelector('.home-hero')) {
         initializeHeroBackground();
         initializeHeroCounters();
         initializeHeroSearchWidget();
@@ -3283,577 +3049,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('masonry-grid')) {
         initializeMasonryGallery();
     }
-
-    // =============================================
-    // DEALS CAROUSEL WITH SWIPER.JS
-    // =============================================
-    function initializeDealsCarousel() {
-        const dealsSwiper = document.getElementById('dealsSwiper');
-        
-        if (!dealsSwiper) return;
-        
-        console.log('🎠 Initializing deals carousel with Swiper.js...');
-        
-        // Initialize Swiper with advanced config
-        const swiper = new Swiper('.deals-swiper', {
-            // Slides configuration
-            slidesPerView: 1.2,
-            spaceBetween: 24,
-            centeredSlides: false,
-            loop: true,
-            
-            // Responsive breakpoints
-            breakpoints: {
-                640: {
-                    slidesPerView: 1.5,
-                    spaceBetween: 24
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30
-                },
-                1024: {
-                    slidesPerView: 2.5,
-                    spaceBetween: 32
-                },
-                1280: {
-                    slidesPerView: 3.5,
-                    spaceBetween: 32
-                }
-            },
-            
-            // Auto-play configuration
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true
-            },
-            
-            // Speed and effects
-            speed: 800,
-            effect: 'slide',
-            
-            // Navigation arrows
-            navigation: {
-                nextEl: '.deals-next-btn',
-                prevEl: '.deals-prev-btn',
-            },
-            
-            // Pagination dots
-            pagination: {
-                el: '.deals-pagination',
-                clickable: true,
-                dynamicBullets: true
-            },
-            
-            // Keyboard control
-            keyboard: {
-                enabled: true,
-                onlyInViewport: true
-            },
-            
-            // Accessibility
-            a11y: {
-                prevSlideMessage: 'Previous deal',
-                nextSlideMessage: 'Next deal',
-            },
-            
-            // Events
-            on: {
-                init: function() {
-                    console.log('✅ Swiper initialized with ' + this.slides.length + ' slides');
-                    initializeProgressBar(this);
-                },
-                slideChange: function() {
-                    resetAllFlippedCards();
-                },
-                autoplayTimeLeft: function(swiper, time, percentage) {
-                    updateProgressBar(percentage);
-                }
-            }
-        });
-        
-        // Initialize 3D flip functionality
-        initializeCardFlips();
-        
-        // Initialize copy code buttons
-        initializeCopyCodeButtons();
-        
-        // Pause autoplay on card flip
-        document.querySelectorAll('.deal-flip-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (!e.target.closest('.copy-code-btn') && !e.target.closest('.deal-flip-back-btn')) {
-                    swiper.autoplay.stop();
-                    setTimeout(() => {
-                        if (!card.classList.contains('flipped')) {
-                            swiper.autoplay.start();
-                        }
-                    }, 500);
-                }
-            });
-        });
-        
-        return swiper;
-    }
-
-    // ============================================= 
-    // PROGRESS BAR INDICATOR
-    // ============================================= 
-    function initializeProgressBar(swiper) {
-        const progressBar = document.getElementById('dealsProgressBar');
-        if (!progressBar) return;
-        
-        // Set initial width
-        progressBar.style.width = '0%';
-    }
-
-    function updateProgressBar(percentage) {
-        const progressBar = document.getElementById('dealsProgressBar');
-        if (!progressBar) return;
-        
-        // Convert percentage (1 = 100%, 0 = 0%)
-        const width = (1 - percentage) * 100;
-        progressBar.style.width = width + '%';
-    }
-
-    // ============================================= 
-    // 3D FLIP CARD FUNCTIONALITY
-    // ============================================= 
-    function initializeCardFlips() {
-        const flipCards = document.querySelectorAll('.deal-flip-card');
-        
-        flipCards.forEach(card => {
-            // Flip on click (excluding buttons)
-            card.addEventListener('click', (e) => {
-                // Don't flip if clicking buttons
-                if (e.target.closest('.deal-book-btn') || 
-                    e.target.closest('.copy-code-btn') || 
-                    e.target.closest('.deal-flip-back-btn')) {
-                    return;
-                }
-                
-                card.classList.toggle('flipped');
-            });
-            
-            // Flip back button
-            const flipBackBtn = card.querySelector('.deal-flip-back-btn');
-            if (flipBackBtn) {
-                flipBackBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    card.classList.remove('flipped');
-                });
-            }
-            
-            // Book button click handler
-            const bookBtn = card.querySelector('.deal-book-btn');
-            if (bookBtn) {
-                bookBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    showDealsNotification('Redirecting to booking page...', 'success');
-                    // Add your booking logic here
-                    setTimeout(() => {
-                        // window.location.href = 'booking.html';
-                    }, 1000);
-                });
-            }
-        });
-    }
-
-    function resetAllFlippedCards() {
-        document.querySelectorAll('.deal-flip-card.flipped').forEach(card => {
-            card.classList.remove('flipped');
-        });
-    }
-
-    // ============================================= 
-    // COPY PROMO CODE FUNCTIONALITY
-    // ============================================= 
-    function initializeCopyCodeButtons() {
-        const copyButtons = document.querySelectorAll('.copy-code-btn');
-        
-        copyButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                
-                const code = button.getAttribute('data-code');
-                
-                // Copy to clipboard
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(code).then(() => {
-                        showCopySuccess(button, code);
-                    }).catch(err => {
-                        console.error('Failed to copy:', err);
-                        fallbackCopyTextToClipboard(code, button);
-                    });
-                } else {
-                    // Fallback for older browsers
-                    fallbackCopyTextToClipboard(code, button);
-                }
-            });
-        });
-    }
-
-    function showCopySuccess(button, code) {
-        const originalHTML = button.innerHTML;
-        
-        // Change button appearance
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        
-        // Show notification
-        showDealsNotification(`Code "${code}" copied to clipboard!`, 'success');
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            button.classList.remove('copied');
-            button.innerHTML = originalHTML;
-        }, 3000);
-    }
-
-    function fallbackCopyTextToClipboard(text, button) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.top = '0';
-        textArea.style.left = '0';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-            const successful = document.execCommand('copy');
-            if (successful) {
-                showCopySuccess(button, text);
-            }
-        } catch (err) {
-            console.error('Fallback copy failed:', err);
-        }
-        
-        document.body.removeChild(textArea);
-    }
-
-    // ============================================= 
-    // NOTIFICATION SYSTEM FOR DEALS
-    // ============================================= 
-    function showDealsNotification(message, type) {
-        const colors = {
-            success: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-            error: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
-            info: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)'
-        };
-        
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: ${colors[type] || colors.success};
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            z-index: 10000;
-            animation: slideInRight 0.3s ease;
-            font-weight: 500;
-            min-width: 250px;
-            text-align: center;
-        `;
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-
-    // ============================================= 
-    // KEYBOARD NAVIGATION ENHANCEMENT
-    // ============================================= 
-    function enhanceDealsKeyboardNav() {
-        document.addEventListener('keydown', (e) => {
-            const activeCard = document.querySelector('.deal-flip-card:focus');
-            
-            if (activeCard) {
-                // Space or Enter to flip card
-                if (e.key === ' ' || e.key === 'Enter') {
-                    e.preventDefault();
-                    activeCard.classList.toggle('flipped');
-                }
-                
-                // Escape to flip back
-                if (e.key === 'Escape') {
-                    activeCard.classList.remove('flipped');
-                }
-            }
-        });
-    }
-
-    // ============================================= 
-    // INITIALIZE DEALS CAROUSEL
-    // ============================================= 
-    if (document.getElementById('dealsSwiper')) {
-        // Wait for Swiper library to load
-        if (typeof Swiper !== 'undefined') {
-            initializeDealsCarousel();
-            enhanceDealsKeyboardNav();
-        } else {
-            console.warn('⚠️ Swiper.js not loaded. Deals carousel disabled.');
-        }
-    }
-
-    // ============================================
-    // BENTO BOX SOCIAL PROOF SECTION
-    // ============================================
-
-    /**
-     * Animated Counter - Counts up to target value when scrolled into view
-     */
-    function initBentoCounters() {
-        const counters = document.querySelectorAll('.stat-number');
-        if (counters.length === 0) return;
-
-        const animateCounter = (element) => {
-            const target = parseFloat(element.dataset.target);
-            const decimals = parseInt(element.dataset.decimals) || 0;
-            const suffix = element.dataset.suffix || '';
-            const duration = 2000; // 2 seconds
-            const frameDuration = 1000 / 60; // 60fps
-            const totalFrames = Math.round(duration / frameDuration);
-            let frame = 0;
-
-            const counter = setInterval(() => {
-                frame++;
-                const progress = frame / totalFrames;
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4); // Easing function
-                const currentValue = target * easeOutQuart;
-
-                if (decimals > 0) {
-                    element.textContent = currentValue.toFixed(decimals) + suffix;
-                } else {
-                    element.textContent = Math.floor(currentValue).toLocaleString() + suffix;
-                }
-
-                if (frame === totalFrames) {
-                    clearInterval(counter);
-                    if (decimals > 0) {
-                        element.textContent = target.toFixed(decimals) + suffix;
-                    } else {
-                        element.textContent = Math.floor(target).toLocaleString() + suffix;
-                    }
-                }
-            }, frameDuration);
-        };
-
-        // Intersection Observer for scroll-triggered animation
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                    entry.target.classList.add('counted');
-                    animateCounter(entry.target);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        counters.forEach(counter => observer.observe(counter));
-        console.log('✅ Bento Box: Animated counters initialized (' + counters.length + ' counters)');
-    }
-
-    /**
-     * Video Modal - Opens/closes video testimonial in modal
-     */
-    function initBentoVideoModal() {
-        const videoPlayBtns = document.querySelectorAll('.video-play-btn');
-        const videoModal = document.getElementById('videoModal');
-        const videoModalClose = document.querySelector('.video-modal-close');
-        const videoPlayer = document.getElementById('videoPlayer');
-
-        if (!videoModal || videoPlayBtns.length === 0) return;
-
-        // Open modal on play button click
-        videoPlayBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const videoCard = btn.closest('.bento-video-card');
-                
-                // Use data-video-id if available, otherwise default video
-                const videoId = btn.dataset.videoId || 'dQw4w9WgXcQ';
-                const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                
-                videoPlayer.src = videoSrc;
-                videoModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scroll
-            });
-        });
-
-        // Close modal
-        const closeModal = () => {
-            videoModal.style.display = 'none';
-            videoPlayer.src = ''; // Stop video
-            document.body.style.overflow = ''; // Restore scroll
-        };
-
-        if (videoModalClose) {
-            videoModalClose.addEventListener('click', closeModal);
-        }
-
-        // Close on overlay click
-        videoModal.addEventListener('click', (e) => {
-            if (e.target === videoModal) {
-                closeModal();
-            }
-        });
-
-        // Close on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && videoModal.style.display === 'flex') {
-                closeModal();
-            }
-        });
-
-        console.log('✅ Bento Box: Video modal initialized');
-    }
-
-    /**
-     * Star Rating Fill Animation - Fills stars from left to right
-     */
-    function initBentoStarRatings() {
-        const reviewCards = document.querySelectorAll('.bento-review-card');
-        if (reviewCards.length === 0) return;
-
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const stars = entry.target.querySelector('.review-stars');
-                    if (stars && !stars.classList.contains('animated')) {
-                        stars.classList.add('animated');
-                        
-                        // Animate each star individually
-                        const starText = stars.textContent;
-                        stars.textContent = '';
-                        
-                        starText.split('').forEach((star, index) => {
-                            setTimeout(() => {
-                                const span = document.createElement('span');
-                                span.textContent = star;
-                                span.style.opacity = '0';
-                                span.style.animation = 'starFadeIn 0.3s ease forwards';
-                                stars.appendChild(span);
-                            }, index * 100);
-                        });
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        reviewCards.forEach(card => observer.observe(card));
-        console.log('✅ Bento Box: Star rating animations initialized (' + reviewCards.length + ' cards)');
-    }
-
-    /**
-     * Floating Cards Animation - Adds gentle floating effect
-     */
-    function initBentoFloatingCards() {
-        const floatingCards = document.querySelectorAll('.bento-card[data-float-speed]');
-        if (floatingCards.length === 0) return;
-
-        floatingCards.forEach((card, index) => {
-            const speed = parseFloat(card.dataset.floatSpeed) || 3;
-            const delay = index * 0.2; // Stagger the animations
-            
-            card.style.animationDuration = `${speed}s`;
-            card.style.animationDelay = `${delay}s`;
-        });
-
-        console.log('✅ Bento Box: Floating card animations initialized (' + floatingCards.length + ' cards)');
-    }
-
-    /**
-     * Card Hover Tilt Effect - 3D tilt on mouse move
-     */
-    function initBentoCardTilt() {
-        const reviewCards = document.querySelectorAll('.bento-review-card');
-        if (reviewCards.length === 0) return;
-
-        reviewCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20; // Subtle rotation
-                const rotateY = (centerX - x) / 20;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-
-        console.log('✅ Bento Box: Card tilt effects initialized (' + reviewCards.length + ' cards)');
-    }
-
-    /**
-     * Add star fill animation CSS dynamically
-     */
-    function addBentoAnimationStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes starFadeIn {
-                from {
-                    opacity: 0;
-                    transform: scale(0) rotate(-180deg);
-                }
-                to {
-                    opacity: 1;
-                    transform: scale(1) rotate(0deg);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    /**
-     * Initialize all Bento Box features
-     */
-    function initBentoBoxSection() {
-        const bentoSection = document.querySelector('.bento-social-proof-section');
-        if (!bentoSection) {
-            console.log('ℹ️ Bento Box section not found on this page');
-            return;
-        }
-
-        addBentoAnimationStyles();
-        initBentoCounters();
-        initBentoVideoModal();
-        initBentoStarRatings();
-        initBentoFloatingCards();
-        initBentoCardTilt();
-
-        console.log('🎨 Bento Box Social Proof: All features initialized successfully!');
-    }
-
-    // Initialize Bento Box
-    initBentoBoxSection();
 
     // ═══════════════════════════════════════════════════════════════════════════════
     // FLIGHT BOOKING HERO - CONVERSION FOCUSED FUNCTIONALITY
@@ -4174,4 +3369,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     console.log('✈️ Destinova: All sections initialized with smooth scrolling, modern hero, advanced search features, masonry gallery, deals carousel, and Bento Box social proof!');
+    }
+}
 });
