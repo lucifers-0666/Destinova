@@ -75,9 +75,10 @@
 
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/index-fixes.css">
-  <link rel="stylesheet" href="../css/luxury-hero.css">
-  <link rel="stylesheet" href="../css/hero-premium.css">
-  <link rel="stylesheet" href="../css/premium-features.css">
+  <link rel="stylesheet" href="../css/immersive-hero.css">
+  <link rel="stylesheet" href="../css/section-dividers.css">
+  <link rel="stylesheet" href="../css/premium-search.css">
+  <link rel="stylesheet" href="../css/premium-features-enhanced.css">
   <link rel="stylesheet" href="../css/popular-destinations.css">
   <link rel="stylesheet" href="../css/deals-section.css">
   <link rel="stylesheet" href="../css/why-choose-us.css">
@@ -170,186 +171,214 @@
          LUXURY HERO SECTION - MODERN MINIMALIST DESIGN
          Modern • Simple • Luxurious • Clean
          ═══════════════════════════════════════════════════════════════════════════════ -->
-    <section class="luxury-hero" id="hero-luxury">
+    <!-- ═══════════════════════════════════════════════════════════════════════════════
+         IMMERSIVE HERO SECTION - Emotion-Driven with Wanderlust
+         ═══════════════════════════════════════════════════════════════════════════════ -->
+    <section class="immersive-hero" id="hero-immersive">
       
-      <!-- Full-Screen Background Video/Image -->
-      <div class="luxury-hero-bg">
-        <div class="luxury-hero-bg-overlay"></div>
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&h=1080&fit=crop&q=90" 
-             alt="Luxury flight experience" 
-             class="luxury-hero-bg-image">
+      <!-- Background Layer (Layer 1 - Deepest) -->
+      <div class="hero-background">
+        <!-- Image Slideshow (dynamically populated by JS) -->
+        <div class="hero-background-slideshow"></div>
+        
+        <!-- Gradient Overlay -->
+        <div class="hero-gradient-overlay"></div>
       </div>
       
-      <!-- Minimal Floating Particles -->
-      <div class="luxury-particles" aria-hidden="true"></div>
+      <!-- Particle System -->
+      <div class="hero-particles" aria-hidden="true"></div>
       
-      <!-- Hero Content Container -->
-      <div class="luxury-hero-container">
+      <!-- Middle Layer (Layer 2 - Content Container) -->
+      <div class="hero-content-wrapper">
         
-        <!-- Centered Content Card -->
-        <div class="luxury-hero-content">
-          
-          <!-- Elegant Badge -->
-          <div class="luxury-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span>Premium Travel Experience</span>
-          </div>
-          
-          <!-- Main Headline -->
-          <h1 class="luxury-hero-title">
-            Where Your Journey<br>
-            <span class="luxury-hero-title-gradient">Begins in Luxury</span>
-          </h1>
-          
-          <!-- Subtitle -->
-          <p class="luxury-hero-subtitle">
-            Discover extraordinary destinations with unparalleled comfort.<br class="desktop-only"> 
-            Book exclusive flights to 500+ destinations worldwide.
-          </p>
-          
-          <!-- Search Widget Card -->
-          <div class="luxury-search-card">
-            
-            <!-- Tab Pills -->
-            <div class="luxury-tabs">
-              <button class="luxury-tab luxury-tab-active" data-tab="roundtrip">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 2v6h-6M3 12a9 9 0 0 1 15-6.7L21 8M3 22v-6h6M21 12a9 9 0 0 1-15 6.7L3 16"/>
-                </svg>
-                Round-trip
-              </button>
-              <button class="luxury-tab" data-tab="oneway">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-                One-way
-              </button>
-              <button class="luxury-tab" data-tab="multi">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                </svg>
-                Multi-city
-              </button>
-            </div>
-            
-            <!-- Search Form -->
-            <form class="luxury-search-form" id="luxurySearchForm">
-              
-              <!-- Input Row -->
-              <div class="luxury-input-row">
-                
-                <!-- From Input -->
-                <div class="luxury-input-group">
-                  <label class="luxury-label">From</label>
-                  <div class="luxury-input-wrapper">
-                    <svg class="luxury-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                      <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    <input type="text" class="luxury-input" placeholder="New York (JFK)" id="luxuryFrom">
-                  </div>
-                </div>
-                
-                <!-- Swap Button -->
-                <button type="button" class="luxury-swap-btn" aria-label="Swap locations">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 16V4M7 4L3 8M7 4l4 4M17 8v12M17 20l4-4M17 20l-4-4"/>
-                  </svg>
-                </button>
-                
-                <!-- To Input -->
-                <div class="luxury-input-group">
-                  <label class="luxury-label">To</label>
-                  <div class="luxury-input-wrapper">
-                    <svg class="luxury-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                      <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                    <input type="text" class="luxury-input" placeholder="Los Angeles (LAX)" id="luxuryTo">
-                  </div>
-                </div>
-                
-                <!-- Date Input -->
-                <div class="luxury-input-group">
-                  <label class="luxury-label">Departure</label>
-                  <div class="luxury-input-wrapper">
-                    <svg class="luxury-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                      <line x1="16" y1="2" x2="16" y2="6"/>
-                      <line x1="8" y1="2" x2="8" y2="6"/>
-                      <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    <input type="text" class="luxury-input" placeholder="Select date" id="luxuryDate" readonly>
-                  </div>
-                </div>
-                
-                <!-- Travelers Input -->
-                <div class="luxury-input-group">
-                  <label class="luxury-label">Travelers</label>
-                  <div class="luxury-input-wrapper">
-                    <svg class="luxury-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                      <circle cx="9" cy="7" r="4"/>
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                    <input type="text" class="luxury-input" placeholder="1 Adult" id="luxuryTravelers" readonly>
-                  </div>
-                </div>
-                
-                <!-- Search Button -->
-                <button type="submit" class="luxury-search-btn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.35-4.35"/>
-                  </svg>
-                  <span>Search Flights</span>
-                </button>
-                
-              </div>
-              
-            </form>
-            
-          </div>
-          
-          <!-- Trust Badges -->
-          <div class="luxury-trust-badges">
-            <div class="luxury-trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
-              <span>4.9/5 Rating</span>
-            </div>
-            <div class="luxury-divider"></div>
-            <div class="luxury-trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
-              </svg>
-              <span>Secure Booking</span>
-            </div>
-            <div class="luxury-divider"></div>
-            <div class="luxury-trust-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Eyebrow Text Animation -->
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-word">DISCOVER</span>
+          <span class="hero-eyebrow-separator">•</span>
+          <span class="hero-eyebrow-word">EXPLORE</span>
+          <span class="hero-eyebrow-separator">•</span>
+          <span class="hero-eyebrow-word">EXPERIENCE</span>
+        </div>
+        
+        <!-- Main Headline with Typing Animation -->
+        <h1 class="hero-headline">
+          <span class="hero-headline-line"></span><span class="typing-cursor"></span><br>
+          <span class="hero-headline-line"></span>
+        </h1>
+        
+        <!-- Subheadline -->
+        <p class="hero-subheadline">
+          Book flights to 500+ destinations worldwide. Best prices guaranteed.
+        </p>
+        
+        <!-- Trust Micro-Indicators -->
+        <div class="hero-trust-indicators">
+          <div class="trust-indicator">
+            <div class="trust-indicator-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                 <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
-              <span>2M+ Travelers</span>
             </div>
+            <div class="trust-indicator-number">2M+</div>
+            <div class="trust-indicator-label">Travelers</div>
+          </div>
+          
+          <div class="trust-indicator">
+            <div class="trust-indicator-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+            <div class="trust-indicator-number">500+</div>
+            <div class="trust-indicator-label">Destinations</div>
+          </div>
+          
+          <div class="trust-indicator">
+            <div class="trust-indicator-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div class="trust-indicator-number">98%</div>
+            <div class="trust-indicator-label">Satisfaction</div>
+          </div>
+        </div>
+        
+        <!-- Glassmorphic Search Card -->
+        <div class="hero-search-card">
+          
+          <!-- Trip Type Tabs -->
+          <div class="trip-type-tabs">
+            <button class="trip-tab" data-trip="oneway">One-way</button>
+            <button class="trip-tab active" data-trip="roundtrip">Round-trip</button>
+            <button class="trip-tab" data-trip="multicity">Multi-city</button>
+          </div>
+          
+          <!-- Search Form -->
+          <form class="hero-search-form" id="heroSearchForm">
+            
+            <!-- From Input -->
+            <div class="search-input-group">
+              <div class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                </svg>
+              </div>
+              <label class="input-label">FROM</label>
+              <input type="text" class="search-input" id="hero-from-input" placeholder="New Delhi (DEL)" autocomplete="off">
+            </div>
+            
+            <!-- To Input -->
+            <div class="search-input-group">
+              <div class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 22h20"/>
+                  <path d="m6 18 4-4 4 4 4-4 4 4"/>
+                  <path d="M2 8 6 4l4 4 4-4 4 4 4-4"/>
+                </svg>
+              </div>
+              <label class="input-label">TO</label>
+              <input type="text" class="search-input" id="hero-to-input" placeholder="Dubai (DXB)" autocomplete="off">
+            </div>
+            
+            <!-- Dates Input -->
+            <div class="search-input-group">
+              <div class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <path d="M8 14h.01"/>
+                  <path d="M12 14h.01"/>
+                  <path d="M16 14h.01"/>
+                  <path d="M8 18h.01"/>
+                  <path d="M12 18h.01"/>
+                  <path d="M16 18h.01"/>
+                </svg>
+              </div>
+              <label class="input-label">TRAVEL DATES</label>
+              <input type="text" class="search-input" id="hero-dates-input" placeholder="Select dates" readonly>
+            </div>
+            
+            <!-- Travelers Input -->
+            <div class="search-input-group">
+              <div class="input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <label class="input-label">TRAVELERS</label>
+              <input type="text" class="search-input" id="hero-travelers-input" placeholder="1 Adult" readonly>
+            </div>
+            
+            <!-- Search Button -->
+            <button type="button" class="search-button">
+              <div class="search-button-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="m21 21-4.35-4.35"/>
+                </svg>
+              </div>
+              <span class="search-button-text">Search Flights</span>
+            </button>
+            
+          </form>
+          
+          <!-- Advanced Options Toggle -->
+          <div class="advanced-options-toggle">
+            <button class="advanced-toggle-btn">
+              <span>Advanced Search Options</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Advanced Options Panel (collapsed by default) -->
+          <div class="advanced-options-panel">
+            <div class="advanced-options-content">
+              <!-- Advanced filters will be added here dynamically -->
+              <div style="text-align: center; padding: 20px; color: rgba(255,255,255,0.7);">
+                Advanced options coming soon
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick Search Shortcuts -->
+          <div class="quick-shortcuts">
+            <span class="shortcuts-label">Popular:</span>
+            <button class="shortcut-pill">Mumbai → Dubai</button>
+            <button class="shortcut-pill">Delhi → London</button>
+            <button class="shortcut-pill">Bangalore → Singapore</button>
+            <button class="shortcut-pill">Chennai → Bangkok</button>
+            <button class="shortcut-pill">Hyderabad → Dubai</button>
           </div>
           
         </div>
         
       </div>
       
-      <!-- Scroll Down Indicator -->
-      <a href="#search-section" class="luxury-scroll-down" aria-label="Scroll to search section">
-        <span>Explore More</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
-      </a>
+      <!-- Foreground Layer (Layer 3 - Decorative Airplanes) -->
+      <div class="hero-decorative-layer" aria-hidden="true">
+        <!-- Decorative airplane elements (optional) -->
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator" role="button" tabindex="0" aria-label="Scroll down to explore">
+        <div class="scroll-pill">
+          <div class="scroll-dot"></div>
+        </div>
+        <div class="scroll-text">Scroll to Explore</div>
+      </div>
       
     </section>
 
@@ -574,221 +603,201 @@
       </div>
     </section>
 
+    <!-- Elegant Divider: Hero → Search -->
+    <div class="section-divider wave-divider">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path class="wave-path" d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z"></path>
+      </svg>
+    </div>
+
     <!-- ============================================= -->
-    <!-- FLIGHT SEARCH SECTION -->
+    <!-- PREMIUM FLIGHT SEARCH SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
-    <section id="search-section" class="search-section-modern">
-      <div class="search-section-container">
-        <div class="flight-search-widget-container" data-aos="fade-up" data-aos-duration="1000">
-              <!-- Promotional Banner -->
-              <div class="promo-banner">
-                <i class="fas fa-tags"></i>
-                <span>Use code <strong class="promo-code">FLY15</strong> for 15% off on your next booking!</span>
-                <a href="offers.html">View All Offers</a>
+    <section class="premium-search-section" id="premium-search">
+      <div class="premium-search-container">
+        
+        <!-- Promo Banner -->
+        <div class="promo-banner-top">
+          <i class="fas fa-tags"></i>
+          <span>Use code <span class="promo-code-highlight">FLY15</span> for 15% off on your next booking!</span>
+          <a href="offers.html" class="promo-link">View All Offers</a>
+        </div>
+
+        <!-- Main Search Card -->
+        <div class="premium-search-card">
+          
+          <!-- Trip Type Tabs Row -->
+          <div class="trip-type-tabs-row">
+            <div class="trip-type-tabs">
+              <button class="trip-tab-button" data-trip-type="one-way">
+                <i class="fas fa-arrow-right"></i>
+                One Way
+              </button>
+              <button class="trip-tab-button active" data-trip-type="round-trip">
+                <i class="fas fa-retweet"></i>
+                Round Trip
+              </button>
+              <button class="trip-tab-button" data-trip-type="multi-city">
+                <i class="fas fa-random"></i>
+                Multi-City
+              </button>
+            </div>
+            <button class="recent-searches-btn">
+              <i class="fas fa-history"></i>
+              Recent Searches
+            </button>
+          </div>
+
+          <form id="premium-search-form">
+            <!-- Main Search Inputs Grid -->
+            <div class="search-inputs-grid">
+              <!-- From -->
+              <div class="search-input-group">
+                <label class="search-input-label">
+                  <i class="fas fa-plane-departure"></i>
+                  From
+                </label>
+                <input type="text" class="search-input-field" placeholder="e.g., Delhi" id="from-input" required>
+                <span class="airport-code-hint">Enter origin city or airport</span>
               </div>
 
-              <form id="booking-form" class="flight-search-card">
-                <div id="form-error-message" class="form-error" style="display: none;"></div>
-                <div class="search-form-header">
-                  <!-- Trip Type Selector -->
-                  <div class="trip-type-selector">
-                    <label><input type="radio" name="trip-type" value="one-way"><span><i class="fas fa-arrow-right"></i> One
-                        Way</span></label>
-                    <label><input type="radio" name="trip-type" value="round-trip" checked><span><i
-                          class="fas fa-retweet"></i> Round Trip</span></label>
-                    <label><input type="radio" name="trip-type" value="multi-city"><span><i class="fas fa-random"></i>
-                        Multi-City</span></label>
-                  </div>
-                  <!-- Recent Searches -->
-                  <div class="recent-searches-container">
-                    <button type="button" class="recent-searches-btn" aria-label="View recent searches">
-                      <i class="fas fa-history"></i> Recent Searches
-                    </button>
-                    <div class="recent-searches-dropdown" id="recent-searches-dropdown">
-                      <div class="dropdown-header">Recent Searches</div>
-                      <div class="dropdown-content" id="recent-searches-list">
-                        <div class="no-searches">No recent searches</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <!-- Swap Button -->
+              <button type="button" class="swap-locations-btn" aria-label="Swap locations">
+                <i class="fas fa-exchange-alt"></i>
+              </button>
 
-                <!-- Main Inputs -->
-                <div class="main-inputs-grid">
-                  <div class="input-field from-field">
-                    <label for="from">From</label>
-                    <input type="text" id="from" name="from" placeholder="e.g., Delhi" value="" required
-                      aria-describedby="from-airport" aria-label="Origin city or airport">
-                    <span class="airport-code" id="from-airport">Enter origin city or airport</span>
-                  </div>
-                  <button type="button" class="swap-btn" aria-label="Swap origin and destination"><i
-                      class="fas fa-exchange-alt"></i></button>
-                  <div class="input-field to-field">
-                    <label for="to">To</label>
-                    <input type="text" id="to" name="to" placeholder="Mumbai" value="Mumbai" required>
-                    <span class="airport-code">BOM, Chhatrapati Shivaji International Airport</span>
-                  </div>
-                  <div class="input-field date-field">
-                    <label for="departure"><i class="fas fa-calendar-alt"></i> Departure</label>
-                    <input type="date" id="departure" name="departure" required>
-                    <div id="flexible-dates-options" class="flexible-dates-options" style="display: none;">
-                      <label>Flexible ±3 days:</label>
-                      <input type="date" id="departure-start" name="departure-start" placeholder="Start date">
-                      <span>to</span>
-                      <input type="date" id="departure-end" name="departure-end" placeholder="End date">
-                    </div>
-                  </div>
-                  <div class="input-field date-field" id="return-date-wrapper">
-                    <label for="return"><i class="fas fa-calendar-alt"></i> Return</label>
-                    <input type="date" id="return" name="return">
-                    <div id="flexible-return-options" class="flexible-dates-options" style="display: none;">
-                      <label>Flexible ±3 days:</label>
-                      <input type="date" id="return-start" name="return-start" placeholder="Start date">
-                      <span>to</span>
-                      <input type="date" id="return-end" name="return-end" placeholder="End date">
-                    </div>
-                  </div>
-                  <div class="input-field traveller-field">
-                    <label for="flight-options-toggle"><i class="fas fa-user"></i> Travellers & Class</label>
-                    <button type="button" id="flight-options-toggle" class="flight-options-summary">1 Adult, Economy</button>
-                    <!-- Popover -->
-                    <div class="flight-options-popover" id="flight-options-popover">
-                      <div class="option-section">
-                        <h5><i class="fas fa-users"></i> Passengers</h5>
-                        <div class="passenger-counter">
-                          <span>Adults <small>(12+ yrs)</small></span>
-                          <div class="counter-controls">
-                            <button type="button" class="counter-btn" data-type="adult" data-action="decrease">-</button>
-                            <span class="counter-value" data-type="adult">1</span>
-                            <button type="button" class="counter-btn" data-type="adult" data-action="increase">+</button>
-                          </div>
-                        </div>
-                        <div class="passenger-counter">
-                          <span>Children <small>(2-12 yrs)</small></span>
-                          <div class="counter-controls">
-                            <button type="button" class="counter-btn" data-type="child" data-action="decrease">-</button>
-                            <span class="counter-value" data-type="child">0</span>
-                            <button type="button" class="counter-btn" data-type="child" data-action="increase">+</button>
-                          </div>
-                        </div>
-                        <div class="passenger-counter">
-                          <span>Infants <small>(Below 2 yrs)</small></span>
-                          <div class="counter-controls">
-                            <button type="button" class="counter-btn" data-type="infant" data-action="decrease">-</button>
-                            <span class="counter-value" data-type="infant">0</span>
-                            <button type="button" class="counter-btn" data-type="infant" data-action="increase">+</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="option-section">
-                        <h5><i class="fas fa-couch"></i> Cabin Class</h5>
-                        <div class="option-controls">
-                          <button type="button" class="option-btn-class active" data-value="Economy">Economy</button>
-                          <button type="button" class="option-btn-class" data-value="Premium Economy">Premium Economy</button>
-                          <button type="button" class="option-btn-class" data-value="Business">Business</button>
-                          <button type="button" class="option-btn-class" data-value="First">First</button>
-                        </div>
-                      </div>
-                      <button type="button" id="close-popover-btn" class="close-popover-btn">Apply</button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Fare Type Selector -->
-                <div class="fare-type-container">
-                  <span class="fare-title">Select a fare type:</span>
-                  <div class="fare-options">
-                    <label><input type="radio" name="fare-type" value="regular" checked><span><i class="fas fa-tag"></i>
-                        Regular</span></label>
-                    <label><input type="radio" name="fare-type" value="student"><span><i class="fas fa-user-graduate"></i>
-                        Student <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Save up to
-                            10% with a valid student ID.</span></span></span></label>
-                    <label><input type="radio" name="fare-type" value="senior"><span><i class="fas fa-user-friends"></i>
-                        Senior Citizen <span class="tooltip"><i class="fas fa-info-circle"></i><span
-                            class="tooltip-text">Special fares for travelers aged 60 and above.</span></span></span></label>
-                    <label><input type="radio" name="fare-type" value="forces"><span><i class="fas fa-shield-alt"></i> Armed
-                        Forces <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Exclusive
-                            fares for armed forces personnel and their families.</span></span></span></label>
-                    <label><input type="radio" name="fare-type" value="corporate"><span><i class="fas fa-briefcase"></i>
-                        Corporate <span class="tooltip"><i class="fas fa-info-circle"></i><span class="tooltip-text">Benefits
-                            for business travelers, including easier changes.</span></span></span></label>
-                  </div>
-                  <div class="currency-selector">
-                    <select id="currency" name="currency" aria-label="Select currency">
-                      <option value="INR" selected>INR</option>
-                      <option value="USD">USD</option>
-                      <option value="EUR">EUR</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Extra Options -->
-                <div class="extra-options">
-                  <div class="flex flex-wrap gap-x-6 gap-y-2" id="additional-options">
-                    <label class="form-checkbox-label"><input type="checkbox" id="direct-flights"> Direct flights only</label>
-                    <label class="form-checkbox-label"><input type="checkbox" id="nearby-airports"> Search nearby
-                      airports</label>
-                    <label class="form-checkbox-label"><input type="checkbox" id="flexible-dates"> Flexible Dates (±3
-                      days)</label>
-                  </div>
-                </div>
-              </form>
-
-              <!-- Search Button -->
-              <div class="search-button-container">
-                <button type="submit" form="booking-form" class="search-flights-btn">
-                  <i class="fas fa-search"></i> Search
-                </button>
+              <!-- To -->
+              <div class="search-input-group">
+                <label class="search-input-label">
+                  <i class="fas fa-plane-arrival"></i>
+                  To
+                </label>
+                <input type="text" class="search-input-field" placeholder="Mumbai" value="Mumbai" id="to-input" required>
+                <span class="airport-code-hint">BOM, Chhatrapati Shivaji International Airport</span>
               </div>
 
-              <!-- Trust Badges -->
-              <div class="trust-badges-container">
-                <div class="trust-badge">
-                  <i class="fas fa-lock"></i><span>SSL Secured</span>
-                </div>
-                <div class="trust-badge">
-                  <i class="fas fa-check-circle"></i><span>IATA Certified</span>
-                </div>
-                <div class="trust-badge">
-                  <i class="fas fa-headset"></i><span>24/7 Support</span>
-                </div>
+              <!-- Departure -->
+              <div class="search-input-group">
+                <label class="search-input-label">
+                  <i class="fas fa-calendar-alt"></i>
+                  Departure
+                </label>
+                <input type="date" class="search-input-field" id="departure-input" required>
+              </div>
+
+              <!-- Return -->
+              <div class="search-input-group" id="return-input-wrapper">
+                <label class="search-input-label">
+                  <i class="fas fa-calendar-alt"></i>
+                  Return
+                </label>
+                <input type="date" class="search-input-field" id="return-input">
+              </div>
+
+              <!-- Travelers & Class -->
+              <div class="search-input-group">
+                <label class="search-input-label">
+                  <i class="fas fa-user"></i>
+                  Travellers & Class
+                </label>
+                <input type="text" class="search-input-field" value="1 Adult, Economy" id="travelers-input" readonly style="cursor: pointer;">
               </div>
             </div>
-        </div>
-      </div>
-    </section>
-   
-    <!-- ============================================= -->
-    <!-- FLASH DEALS BANNER -->
-    <!-- ============================================= -->
-    <section class="flash-deals-banner" role="region" aria-label="Flash deals">
-      <div class="deals-ticker-container">
-        <div class="deals-ticker-content">
-          <div class="ticker-icon">
-            <i class="fas fa-bolt"></i>
-            <span class="ticker-label">Flash Deals</span>
+
+            <!-- Fare Type Row -->
+            <div class="fare-type-row">
+              <span class="fare-type-label">Select a fare type:</span>
+              <div class="fare-type-options">
+                <label class="fare-type-radio">
+                  <input type="radio" name="fare-type" value="regular" checked>
+                  <i class="fas fa-tag"></i>
+                  <span>Regular</span>
+                </label>
+                <label class="fare-type-radio">
+                  <input type="radio" name="fare-type" value="student">
+                  <i class="fas fa-user-graduate"></i>
+                  <span>Student</span>
+                </label>
+                <label class="fare-type-radio">
+                  <input type="radio" name="fare-type" value="senior">
+                  <i class="fas fa-user-friends"></i>
+                  <span>Senior Citizen</span>
+                </label>
+                <label class="fare-type-radio">
+                  <input type="radio" name="fare-type" value="forces">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Armed Forces</span>
+                </label>
+                <label class="fare-type-radio">
+                  <input type="radio" name="fare-type" value="corporate">
+                  <i class="fas fa-briefcase"></i>
+                  <span>Corporate</span>
+                </label>
+              </div>
+              <div class="currency-selector-wrapper">
+                <select class="currency-select" id="currency-select">
+                  <option value="INR" selected>INR</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Extra Options Row -->
+            <div class="extra-options-row">
+              <label class="extra-option-checkbox">
+                <input type="checkbox" id="direct-flights">
+                <span>Direct flights only</span>
+              </label>
+              <label class="extra-option-checkbox">
+                <input type="checkbox" id="nearby-airports">
+                <span>Search nearby airports</span>
+              </label>
+              <label class="extra-option-checkbox">
+                <input type="checkbox" id="flexible-dates">
+                <span>Flexible Dates (±3 days)</span>
+              </label>
+            </div>
+
+            <!-- Search Button -->
+            <button type="submit" class="search-submit-button">
+              <i class="fas fa-search"></i>
+              <span>SEARCH</span>
+            </button>
+          </form>
+
+          <!-- Trust Badges Bottom -->
+          <div class="trust-badges-bottom">
+            <div class="trust-badge-item">
+              <i class="fas fa-shield-check"></i>
+              <span>SSL Secured</span>
+            </div>
+            <div class="trust-badge-item">
+              <i class="fas fa-certificate"></i>
+              <span>IATA Certified</span>
+            </div>
+            <div class="trust-badge-item">
+              <i class="fas fa-headset"></i>
+              <span>24/7 Support</span>
+            </div>
           </div>
-          <div class="ticker-deals" id="deals-ticker">
-            <span class="deal-item">NYC → London ₹24,817</span>
-            <span class="deal-separator">•</span>
-            <span class="deal-item">LA → Tokyo ₹37,267</span>
-            <span class="deal-separator">•</span>
-            <span class="deal-item">Miami → Paris ₹29,797</span>
-            <span class="deal-separator">•</span>
-            <span class="deal-item">Chicago → Dubai ₹41,417</span>
-            <span class="deal-separator">•</span>
-            <span class="deal-item">Boston → Rome ₹31,457</span>
-          </div>
-          <a href="offers.html" class="view-all-deals-btn">
-            View All Deals
-            <i class="fas fa-arrow-right"></i>
-          </a>
+
         </div>
       </div>
     </section>
 
+    <!-- Elegant Divider: Search → Premium Features -->
+    <div class="section-divider decorative-line">
+      <div class="decorative-line-content">
+        <div class="decorative-line-icon">
+          <i class="fas fa-plane"></i>
+        </div>
+      </div>
+    </div>
+
     <!-- ============================================= -->
-    <!-- PREMIUM FEATURES SECTION -->
+    <!-- PREMIUM FEATURES SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="premium-features-section" id="premium-features" role="region" aria-labelledby="features-heading">
       
@@ -884,52 +893,15 @@
       
     </section>
 
-    <!-- ============================================= -->
-    <!-- PRICE COMPARISON TOOL SECTION -->
-    <!-- ============================================= -->
-    <section class="price-comparison-section" role="region" aria-labelledby="comparison-heading">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="price-comparison-content" data-aos="fade-up">
-          <div class="comparison-header">
-            <div class="comparison-icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="comparison-text">
-              <h3 id="comparison-heading">We Compare 900+ Airlines</h3>
-              <p>Find the best prices from all major airlines instantly</p>
-            </div>
-          </div>
-          
-          <div class="airline-logos-carousel">
-            <div class="airline-logos-track">
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AA.png" alt="American Airlines" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/LH.png" alt="Lufthansa" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AF.png" alt="Air France" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/QR.png" alt="Qatar Airways" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/SQ.png" alt="Singapore Airlines" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EY.png" alt="Etihad" loading="lazy"></div>
-              <!-- Duplicate for seamless loop -->
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" loading="lazy"></div>
-              <div class="airline-logo"><img src="https://images.kiwi.com/airlines/64/AA.png" alt="American Airlines" loading="lazy"></div>
-            </div>
-          </div>
-          
-          <div class="price-guarantee">
-            <i class="fas fa-shield-alt"></i>
-            <span>Guaranteed lowest prices or <strong>110% refund</strong></span>
-          </div>
-        </div>
+    <!-- Elegant Divider: Premium Features → Destinations -->
+    <div class="section-divider sparkle">
+      <div class="sparkle-icon">
+        <i class="fas fa-sparkles"></i>
       </div>
-    </section>
+    </div>
 
     <!-- ============================================= -->
-    <!-- POPULAR DESTINATIONS SECTION -->
+    <!-- POPULAR DESTINATIONS SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="popular-destinations-section" id="popular-destinations" role="region" aria-labelledby="destinations-heading">
       
@@ -1323,8 +1295,13 @@
       
     </section>
 
+    <!-- Elegant Divider: Destinations → Deals -->
+    <div class="section-divider gradient-bar">
+      <div class="gradient-bar-line"></div>
+    </div>
+
     <!-- ============================================= -->
-    <!-- LIMITED-TIME DEALS SECTION -->
+    <!-- LIMITED-TIME DEALS SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="deals-section" id="deals-section" role="region" aria-labelledby="deals-heading">
       
@@ -1912,11 +1889,20 @@
     </section>
     
 
+    <!-- Elegant Divider: Deals → Why Choose Us -->
+    <div class="section-divider geometric">
+      <div class="geometric-shapes">
+        <div class="geometric-shape"></div>
+        <div class="geometric-shape"></div>
+        <div class="geometric-shape"></div>
+        <div class="geometric-shape"></div>
+        <div class="geometric-shape"></div>
+      </div>
+    </div>
+
     <!-- ============================================= -->
-    <!-- ===================================
-         WHY CHOOSE US SECTION - DESTINOVA
-         Statistics and testimonials section
-         =================================== -->
+    <!-- WHY CHOOSE US SECTION - 10/10 DESIGN -->
+    <!-- ============================================= -->
     
     <section class="why-choose-us-section" id="why-choose-us">
       <!-- Decorative floating elements -->
@@ -2132,10 +2118,16 @@
       </div>
     </section>
 
-    <!-- ===================================
-         BOOKING PROCESS SECTION - DESTINOVA
-         3-step journey visualization
-         =================================== -->
+    <!-- Elegant Divider: Why Choose Us → Booking Process -->
+    <div class="section-divider wave-divider">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path class="wave-path" d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z"></path>
+      </svg>
+    </div>
+
+    <!-- ============================================= -->
+    <!-- BOOKING PROCESS SECTION - 10/10 DESIGN -->
+    <!-- ============================================= -->
     
     <section class="booking-process-section" id="booking-process">
       <!-- Decorative floating shapes -->
@@ -2366,10 +2358,12 @@
       </div>
     </section>
 
-    <!-- ===================================================================
-         PAYMENT PARTNERS & SECURITY SECTION - DESTINOVA
-         Sophisticated payment trust and security visualization
-         =================================================================== -->
+    <!-- Elegant Divider: Booking Process → Payment Security -->
+    <div class="section-divider dots-pattern"></div>
+
+    <!-- ============================================= -->
+    <!-- PAYMENT SECURITY SECTION - 10/10 DESIGN -->
+    <!-- ============================================= -->
 
     <section class="payment-security-section">
       <!-- Decorative Background Elements -->
@@ -3445,8 +3439,17 @@
     <!-- TESTIMONIALS SECTION REMOVED -->
     <!-- ============================================= -->
 
+    <!-- Elegant Divider: Payment → Travel Blog -->
+    <div class="section-divider decorative-line">
+      <div class="decorative-line-content">
+        <div class="decorative-line-icon">
+          <i class="fas fa-compass"></i>
+        </div>
+      </div>
+    </div>
+
     <!-- ============================================= -->
-    <!-- TRAVEL INSPIRATION & BLOG SECTION -->
+    <!-- TRAVEL INSPIRATION & BLOG SECTION - 10/10 -->
     <!-- ============================================= -->
     <section class="travel-blog-section" id="travel-blog">
       <!-- Decorative Background Elements -->
@@ -4261,6 +4264,9 @@
 
   </main>
 
+  <!-- Elegant Divider: Blog → Footer -->
+  <div class="section-divider triangle"></div>
+
   <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
     <div class="footer-content max-w-screen-2xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
@@ -4451,20 +4457,20 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   
-  <!-- Flatpickr JS for Premium Hero -->
+  <!-- Flatpickr JS for Date Picker -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   
-  <!-- Premium Hero JS -->
-  <script src="../js/hero-premium.js"></script>
+  <!-- Immersive Hero Section JS -->
+  <script src="../js/immersive-hero.js"></script>
+  
+  <!-- Premium Search Section JS -->
+  <script src="../js/premium-search.js"></script>
   
   <!-- Premium Features JS -->
   <script src="../js/premium-features.js"></script>
   
   <!-- Popular Destinations JS -->
   <script src="../js/popular-destinations.js"></script>
-  
-  <!-- Luxury Hero Section JS -->
-  <script src="../js/luxury-hero.js"></script>
   
   <!-- Deals Section JS -->
   <script src="../js/deals-section.js"></script>
