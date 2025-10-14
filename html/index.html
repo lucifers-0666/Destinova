@@ -75,6 +75,7 @@
 
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/index-fixes.css">
+  <link rel="stylesheet" href="../css/header-enhancements.css">
   <link rel="stylesheet" href="../css/immersive-hero.css">
   <link rel="stylesheet" href="../css/section-dividers.css">
   <link rel="stylesheet" href="../css/premium-search.css">
@@ -115,9 +116,29 @@
             <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
           </ul>
         </li>
-        <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
       </ul>
       <div class="header-actions">
+        <!-- Quick Search Button -->
+        <button class="header-search-trigger" id="header-search-trigger" aria-label="Quick search flights">
+          <i class="fas fa-search"></i>
+          <span class="search-label">Search</span>
+        </button>
+
+        <!-- Currency Switcher -->
+        <div class="currency-switcher">
+          <button class="currency-switcher-btn" aria-label="Select currency">
+            <i class="fas fa-dollar-sign"></i>
+            <span id="selected-currency">USD</span>
+          </button>
+          <ul class="currency-switcher-menu">
+            <li><a href="#" data-currency="usd"><i class="fas fa-dollar-sign"></i> USD ($)</a></li>
+            <li><a href="#" data-currency="eur"><i class="fas fa-euro-sign"></i> EUR (€)</a></li>
+            <li><a href="#" data-currency="gbp"><i class="fas fa-sterling-sign"></i> GBP (£)</a></li>
+            <li><a href="#" data-currency="inr"><i class="fas fa-indian-rupee-sign"></i> INR (₹)</a></li>
+            <li><a href="#" data-currency="aud"><i class="fas fa-dollar-sign"></i> AUD (A$)</a></li>
+          </ul>
+        </div>
+
         <!-- Language Switcher -->
         <div class="language-switcher">
           <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
@@ -127,10 +148,50 @@
             <li><a href="#" data-lang="fr">Français (FR)</a></li>
           </ul>
         </div>
-        <a href="signin.html" class="btn header-btn-signin">
+
+        <!-- Notifications (Hidden by default, shown when logged in) -->
+        <div class="header-notifications hidden" id="header-notifications">
+          <button class="notification-btn" aria-label="View notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge" id="notification-badge">0</span>
+          </button>
+          <div class="notification-dropdown">
+            <div class="notification-header">
+              <h4>Notifications</h4>
+              <button class="mark-all-read" id="mark-all-read">Mark all as read</button>
+            </div>
+            <div class="notification-list" id="notification-list">
+              <div class="notification-empty">
+                <i class="fas fa-bell-slash"></i>
+                <p>No new notifications</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign In Button (Hidden when logged in) -->
+        <a href="signin.html" class="btn header-btn-signin" id="header-signin-btn">
           <i class="fas fa-right-to-bracket"></i>
           <span>Sign In</span>
         </a>
+
+        <!-- User Profile (Hidden by default, shown when logged in) -->
+        <div class="header-user-profile hidden" id="header-user-profile">
+          <button class="user-profile-btn" aria-label="User menu">
+            <img src="https://i.pravatar.cc/40?u=default" alt="User avatar" class="user-avatar" id="user-avatar">
+            <span class="user-name" id="user-name">User</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul class="user-profile-menu">
+            <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
+            <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
+            <li><a href="profile.html#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+          </ul>
+        </div>
+
         <button class="header-mobile-menu-btn" id="header-menuToggle">
           <span></span><span></span><span></span>
         </button>
@@ -161,7 +222,6 @@
           <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
         </ul>
       </li>
-      <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
     </ul>
   </nav>
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
@@ -4437,6 +4497,70 @@
   </div>
   </footer>
 
+  <!-- Quick Search Modal -->
+  <div class="quick-search-modal" id="quick-search-modal">
+    <div class="quick-search-overlay"></div>
+    <div class="quick-search-content">
+      <button class="quick-search-close" id="quick-search-close" aria-label="Close search">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="quick-search-header">
+        <i class="fas fa-search"></i>
+        <h2>Quick Flight Search</h2>
+      </div>
+      <form class="quick-search-form" id="quick-search-form">
+        <div class="quick-search-row">
+          <div class="quick-search-field">
+            <label for="quick-from"><i class="fas fa-plane-departure"></i> From</label>
+            <input type="text" id="quick-from" placeholder="Departure city" autocomplete="off">
+          </div>
+          <button type="button" class="quick-swap-btn" id="quick-swap-btn">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <div class="quick-search-field">
+            <label for="quick-to"><i class="fas fa-plane-arrival"></i> To</label>
+            <input type="text" id="quick-to" placeholder="Destination city" autocomplete="off">
+          </div>
+        </div>
+        <div class="quick-search-row">
+          <div class="quick-search-field">
+            <label for="quick-departure"><i class="fas fa-calendar"></i> Departure</label>
+            <input type="date" id="quick-departure">
+          </div>
+          <div class="quick-search-field">
+            <label for="quick-return"><i class="fas fa-calendar-alt"></i> Return</label>
+            <input type="date" id="quick-return">
+          </div>
+        </div>
+        <div class="quick-search-row">
+          <div class="quick-search-field">
+            <label for="quick-travelers"><i class="fas fa-users"></i> Travelers</label>
+            <select id="quick-travelers">
+              <option value="1">1 Adult</option>
+              <option value="2">2 Adults</option>
+              <option value="3">3 Adults</option>
+              <option value="4">4 Adults</option>
+              <option value="5">5+ Adults</option>
+            </select>
+          </div>
+          <div class="quick-search-field">
+            <label for="quick-class"><i class="fas fa-couch"></i> Class</label>
+            <select id="quick-class">
+              <option value="economy">Economy</option>
+              <option value="premium">Premium Economy</option>
+              <option value="business">Business</option>
+              <option value="first">First Class</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="quick-search-submit">
+          <i class="fas fa-search"></i>
+          <span>Search Flights</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Live Chat Widget -->
   <button id="live-chat-btn" class="live-chat-widget" aria-label="Open live chat">
     <i class="fas fa-comment-dots"></i>
@@ -4488,6 +4612,9 @@
   <script src="../js/travel-blog.js"></script>
   
   <script src="../js/hero-enhancements.js"></script>
+
+  <!-- Header Enhancements JS -->
+  <script src="../js/header-enhancements.js"></script>
 
   <script src="../js/index.js"></script>
   <script src="../js/index-enhancements.js"></script>
