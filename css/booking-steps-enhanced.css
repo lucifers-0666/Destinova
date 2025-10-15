@@ -1,0 +1,1022 @@
+/**
+ * ═══════════════════════════════════════════════════════════════
+ * DESTINOVA - ENHANCED BOOKING STEPS SECTION
+ * ═══════════════════════════════════════════════════════════════
+ * 
+ * Purpose: Transform booking steps into an engaging visual journey
+ * Features: Decorative backgrounds, animated path, enhanced cards,
+ *           milestone markers, airplane animation, trust indicators
+ * 
+ * Section Height: ~900px (desktop)
+ * Animation Timeline: 5.5s total on scroll into view
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED SECTION BACKGROUND
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps-section {
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #FFF8ED 100%);
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+
+/* Radial gradient overlay */
+.booking-steps-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 50%, rgba(229, 203, 175, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DECORATIVE BACKGROUND ELEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__bg-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.booking-steps__bg-shape {
+  position: absolute;
+  background: rgba(229, 203, 175, 0.06);
+  backdrop-filter: blur(60px);
+  border-radius: 40px;
+}
+
+/* Shape 1: Top-left */
+.booking-steps__bg-shape--1 {
+  top: 10%;
+  left: 15%;
+  width: 300px;
+  height: 300px;
+  transform: rotate(-15deg);
+  animation: floatShape1 30s ease-in-out infinite;
+}
+
+/* Shape 2: Top-right */
+.booking-steps__bg-shape--2 {
+  top: 15%;
+  right: 15%;
+  width: 250px;
+  height: 250px;
+  transform: rotate(25deg);
+  animation: floatShape2 35s ease-in-out infinite;
+}
+
+/* Shape 3: Mid-left */
+.booking-steps__bg-shape--3 {
+  top: 60%;
+  left: 10%;
+  width: 280px;
+  height: 280px;
+  transform: rotate(10deg);
+  animation: floatShape3 40s ease-in-out infinite;
+}
+
+/* Shape 4: Bottom-right */
+.booking-steps__bg-shape--4 {
+  bottom: 15%;
+  right: 10%;
+  width: 320px;
+  height: 320px;
+  transform: rotate(-20deg);
+  animation: floatShape4 32s ease-in-out infinite;
+}
+
+/* Float animations (each different direction) */
+@keyframes floatShape1 {
+  0%, 100% { transform: translate(0, 0) rotate(-15deg); }
+  50% { transform: translate(-30px, -20px) rotate(-10deg); }
+}
+
+@keyframes floatShape2 {
+  0%, 100% { transform: translate(0, 0) rotate(25deg); }
+  50% { transform: translate(20px, 30px) rotate(20deg); }
+}
+
+@keyframes floatShape3 {
+  0%, 100% { transform: translate(0, 0) rotate(10deg); }
+  50% { transform: translate(-20px, 20px) rotate(15deg); }
+}
+
+@keyframes floatShape4 {
+  0%, 100% { transform: translate(0, 0) rotate(-20deg); }
+  50% { transform: translate(30px, -25px) rotate(-25deg); }
+}
+
+/* Dotted pattern overlay */
+.booking-steps__dot-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.02;
+  background-image: radial-gradient(circle, #1d5e33 3px, transparent 3px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED JOURNEY PATH LINE
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__path-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1000px;
+  height: 6px;
+  z-index: 1;
+}
+
+.booking-steps__path-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg,
+    rgba(229, 203, 175, 0.3) 0%,
+    #E5CBAF 20%,
+    #1d5e33 50%,
+    #E5CBAF 80%,
+    rgba(229, 203, 175, 0.3) 100%
+  );
+  box-shadow: 0 2px 8px rgba(29, 94, 51, 0.15);
+  border-radius: 3px;
+}
+
+/* Animated progress overlay */
+.booking-steps__path-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    #E5CBAF 0%,
+    #c9a877 20%,
+    #2a7d4a 50%,
+    #c9a877 80%,
+    #E5CBAF 100%
+  );
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(229, 203, 175, 0.6);
+  transition: width 2.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.booking-steps__path-progress.active {
+  width: 100%;
+}
+
+/* Shimmer effect on path */
+@keyframes pathShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.booking-steps__path-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 3px;
+  animation: pathShimmer 3s linear 1s infinite;
+  opacity: 0;
+}
+
+.booking-steps__path-shimmer.active {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MILESTONE MARKERS ON PATH
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__milestone {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border: 3px solid #E5CBAF;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(229, 203, 175, 0.3);
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.booking-steps__milestone.active {
+  transform: translateY(-50%) scale(1);
+}
+
+.booking-steps__milestone--start {
+  left: 0;
+  transition-delay: 2.5s;
+}
+
+.booking-steps__milestone--middle {
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition-delay: 2.7s;
+}
+
+.booking-steps__milestone--middle.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.booking-steps__milestone--end {
+  right: 0;
+  transition-delay: 2.9s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED AIRPLANE ICON WITH EXHAUST TRAIL
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__airplane {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #1d5e33, #2a7d4a);
+  border: 4px solid #E5CBAF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 32px rgba(29, 94, 51, 0.4),
+    0 0 0 8px rgba(229, 203, 175, 0.15);
+  z-index: 3;
+  transition: left 3s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.booking-steps__airplane.flying {
+  left: 100%;
+}
+
+.booking-steps__airplane svg,
+.booking-steps__airplane i {
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+/* Exhaust trail */
+.booking-steps__exhaust-trail {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.booking-steps__airplane.flying .booking-steps__exhaust-trail {
+  opacity: 1;
+}
+
+.booking-steps__exhaust-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(229, 203, 175, 0.6);
+  border-radius: 50%;
+  animation: exhaustFade 1.5s ease-out infinite;
+}
+
+.booking-steps__exhaust-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.booking-steps__exhaust-dot:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.7;
+  animation-delay: 0.15s;
+}
+
+.booking-steps__exhaust-dot:nth-child(3) {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+  animation-delay: 0.3s;
+}
+
+@keyframes exhaustFade {
+  0% {
+    transform: translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(-20px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED STEP CARDS
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__container {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  z-index: 2;
+}
+
+.booking-steps__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 80px;
+  position: relative;
+}
+
+.booking-step-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(229, 203, 175, 0.2);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.booking-step-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animation delays */
+.booking-step-card:nth-child(1) {
+  transition-delay: 1.0s;
+}
+
+.booking-step-card:nth-child(2) {
+  transition-delay: 1.3s;
+}
+
+.booking-step-card:nth-child(3) {
+  transition-delay: 1.6s;
+}
+
+/* Hover effect */
+.booking-step-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(229, 203, 175, 0.4);
+  box-shadow: 
+    0 20px 60px rgba(29, 94, 51, 0.15),
+    0 0 0 1px rgba(229, 203, 175, 0.3),
+    0 0 40px rgba(229, 203, 175, 0.2);
+}
+
+/* Background pattern (visible on hover) */
+.booking-step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, rgba(229, 203, 175, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.booking-step-card:hover::before {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED STEP NUMBER BADGE
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-step-card__number-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 32px;
+}
+
+.booking-step-card__number-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  background: linear-gradient(135deg, rgba(29, 94, 51, 0.08), rgba(42, 125, 74, 0.12));
+  border: 3px solid rgba(229, 203, 175, 0.3);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.4s ease;
+}
+
+.booking-step-card:hover .booking-step-card__number-badge {
+  transform: translate(-50%, -50%) rotate(5deg);
+}
+
+.booking-step-card__number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+  color: #1d5e33;
+  letter-spacing: -2px;
+}
+
+.booking-step-card__percentage {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 11px;
+  color: rgba(29, 94, 51, 0.6);
+  letter-spacing: 1px;
+}
+
+/* Animated progress ring around badge */
+.booking-step-card__progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.booking-step-card__progress-circle {
+  fill: none;
+  stroke: #E5CBAF;
+  stroke-width: 3;
+  stroke-dasharray: 565.48; /* 2 * PI * 90 */
+  stroke-dashoffset: 565.48;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s ease-out;
+}
+
+.booking-step-card.visible .booking-step-card__progress-circle {
+  stroke-dashoffset: 0;
+}
+
+/* Stagger ring animations */
+.booking-step-card:nth-child(1).visible .booking-step-card__progress-circle {
+  transition-delay: 2.0s;
+}
+
+.booking-step-card:nth-child(2).visible .booking-step-card__progress-circle {
+  transition-delay: 2.3s;
+}
+
+.booking-step-card:nth-child(3).visible .booking-step-card__progress-circle {
+  transition-delay: 2.6s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STEP CARD CONTENT
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-step-card__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  background: linear-gradient(135deg, rgba(229, 203, 175, 0.15), rgba(201, 168, 119, 0.2));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.booking-step-card:hover .booking-step-card__icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.booking-step-card__icon svg,
+.booking-step-card__icon i {
+  width: 28px;
+  height: 28px;
+  color: #1d5e33;
+}
+
+.booking-step-card__title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  color: #1C2526;
+  margin-bottom: 16px;
+}
+
+.booking-step-card__description {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #5C6B73;
+  margin-bottom: 24px;
+}
+
+.booking-step-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(229, 203, 175, 0.1);
+  border: 1px solid rgba(229, 203, 175, 0.3);
+  border-radius: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 13px;
+  color: #1d5e33;
+  transition: transform 0.3s ease;
+}
+
+.booking-step-card:hover .booking-step-card__time {
+  transform: scale(1.05);
+}
+
+.booking-step-card__time svg,
+.booking-step-card__time i {
+  width: 14px;
+  height: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED BOTTOM CTA - "READY CARD"
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__ready-card {
+  position: relative;
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 56px;
+  background: linear-gradient(135deg,
+    rgba(29, 94, 51, 0.08) 0%,
+    rgba(42, 125, 74, 0.12) 100%
+  );
+  border: 2px solid rgba(229, 203, 175, 0.3);
+  border-radius: 28px;
+  box-shadow: 0 16px 48px rgba(29, 94, 51, 0.12);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease 5.0s, transform 0.8s ease 5.0s;
+}
+
+.booking-steps__ready-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Countdown/Social proof */
+.booking-steps__social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  margin-bottom: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #1d5e33;
+}
+
+.booking-steps__social-proof svg,
+.booking-steps__social-proof i {
+  width: 20px;
+  height: 20px;
+  color: #2a7d4a;
+}
+
+.booking-steps__ready-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1.2;
+  color: #1C2526;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.booking-steps__ready-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #5C6B73;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA buttons */
+.booking-steps__cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.booking-steps__cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 56px;
+  background: linear-gradient(135deg, #164426, #1d5e33, #2a7d4a);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.3);
+}
+
+.booking-steps__cta-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(29, 94, 51, 0.4);
+}
+
+.booking-steps__cta-primary svg,
+.booking-steps__cta-primary i {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.booking-steps__cta-primary:hover svg,
+.booking-steps__cta-primary:hover i {
+  transform: translateX(4px);
+}
+
+.booking-steps__cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 22px 40px;
+  background: transparent;
+  color: #1d5e33;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  border: 2px solid #1d5e33;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.booking-steps__cta-secondary:hover {
+  background: #1d5e33;
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+/* Trust indicators row */
+.booking-steps__trust-indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.booking-steps__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: #5C6B73;
+}
+
+.booking-steps__trust-item svg,
+.booking-steps__trust-item i {
+  width: 18px;
+  height: 18px;
+  color: #1d5e33;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Tablet (768px - 1199px) */
+@media (max-width: 1199px) {
+  .booking-steps-section {
+    padding: 80px 0 100px;
+  }
+  
+  .booking-steps__container {
+    padding: 0 40px;
+  }
+  
+  .booking-steps__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+  
+  .booking-step-card:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  /* Vertical path for 2-column layout */
+  .booking-steps__path-container {
+    width: 6px;
+    height: 60%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  
+  .booking-steps__path-line,
+  .booking-steps__path-progress,
+  .booking-steps__path-shimmer {
+    width: 6px;
+    height: 100%;
+  }
+  
+  .booking-steps__milestone {
+    left: 50%;
+    transform: translate(-50%, 0) scale(0);
+  }
+  
+  .booking-steps__milestone--start {
+    top: 0;
+    left: 50%;
+  }
+  
+  .booking-steps__milestone--middle {
+    top: 50%;
+  }
+  
+  .booking-steps__milestone--end {
+    bottom: 0;
+    top: auto;
+  }
+  
+  .booking-steps__airplane {
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  .booking-steps__airplane.flying {
+    top: 100%;
+    left: 50%;
+  }
+  
+  .booking-step-card__number-container {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .booking-step-card__number-badge {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .booking-step-card__number {
+    font-size: 56px;
+  }
+  
+  .booking-steps__ready-card {
+    padding: 40px;
+    margin-top: 60px;
+  }
+  
+  .booking-steps__ready-heading {
+    font-size: 36px;
+  }
+  
+  /* Reduce background shapes */
+  .booking-steps__bg-shape--2,
+  .booking-steps__bg-shape--4 {
+    display: none;
+  }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+  .booking-steps-section {
+    padding: 60px 0 80px;
+  }
+  
+  .booking-steps__container {
+    padding: 0 24px;
+  }
+  
+  .booking-steps__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  
+  .booking-step-card {
+    padding: 32px 24px;
+  }
+  
+  .booking-step-card:nth-child(3) {
+    grid-column: auto;
+    max-width: 100%;
+  }
+  
+  /* Vertical path on left side */
+  .booking-steps__path-container {
+    width: 4px;
+    height: 70%;
+    left: 24px;
+    transform: none;
+  }
+  
+  .booking-steps__path-line,
+  .booking-steps__path-progress,
+  .booking-steps__path-shimmer {
+    width: 4px;
+  }
+  
+  .booking-step-card__number-container {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .booking-step-card__number-badge {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .booking-step-card__number {
+    font-size: 40px;
+  }
+  
+  .booking-step-card__percentage {
+    font-size: 9px;
+  }
+  
+  .booking-step-card__title {
+    font-size: 20px;
+  }
+  
+  .booking-step-card__description {
+    font-size: 14px;
+  }
+  
+  .booking-steps__ready-card {
+    padding: 32px 24px;
+    margin-top: 40px;
+  }
+  
+  .booking-steps__ready-heading {
+    font-size: 28px;
+  }
+  
+  .booking-steps__ready-text {
+    font-size: 15px;
+  }
+  
+  .booking-steps__cta-buttons {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .booking-steps__cta-primary,
+  .booking-steps__cta-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 32px;
+  }
+  
+  .booking-steps__trust-indicators {
+    gap: 20px;
+  }
+  
+  .booking-steps__trust-item {
+    font-size: 12px;
+  }
+  
+  /* Remove complex decorations on mobile */
+  .booking-steps__bg-shapes {
+    display: none;
+  }
+  
+  .booking-steps__dot-pattern {
+    opacity: 0.01;
+  }
+  
+  /* Simplify animations */
+  .booking-step-card {
+    transition-duration: 0.3s;
+  }
+  
+  .booking-steps__path-progress {
+    transition-duration: 1.5s;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .booking-steps__bg-shape,
+  .booking-steps__path-shimmer,
+  .booking-steps__airplane,
+  .booking-steps__exhaust-dot {
+    animation: none !important;
+  }
+  
+  .booking-steps__path-progress,
+  .booking-step-card,
+  .booking-steps__ready-card {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus indicators */
+.booking-steps__cta-primary:focus,
+.booking-steps__cta-secondary:focus {
+  outline: 3px solid #E5CBAF;
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE
+   ═══════════════════════════════════════════════════════════════ */
+
+.booking-steps__bg-shape,
+.booking-steps__airplane,
+.booking-step-card {
+  will-change: transform;
+}
+
+.booking-steps__path-progress {
+  will-change: width;
+}
+
+/* GPU acceleration */
+.booking-steps__bg-shape,
+.booking-steps__airplane,
+.booking-step-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   END OF ENHANCED BOOKING STEPS
+   ═══════════════════════════════════════════════════════════════ */

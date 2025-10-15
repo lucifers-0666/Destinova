@@ -564,3 +564,141 @@ toastStyles.textContent = `
     }
 `;
 document.head.appendChild(toastStyles);
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CART / SAVED FLIGHTS FUNCTIONALITY
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const cartBtn = document.querySelector('.cart-btn');
+const cartDropdown = document.querySelector('.cart-dropdown');
+const cartBadge = document.getElementById('cart-badge');
+const cartCount = document.getElementById('cart-count');
+const cartItemsList = document.getElementById('cart-items-list');
+const cartFooter = document.getElementById('cart-footer');
+const cartTotalPrice = document.getElementById('cart-total-price');
+const clearCartBtn = document.getElementById('clear-cart');
+
+// Initialize cart from localStorage
+let savedFlights = JSON.parse(localStorage.getItem('savedFlights')) || [];
+
+// Cart functionality
+if (cartBtn && cartDropdown) {
+    // Toggle cart dropdown
+    cartBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cartBtn.classList.toggle('active');
+        // Close other dropdowns
+        if (currencyMenu) currencyMenu.classList.remove('active');
+        if (langMenu) langMenu.classList.remove('active');
+        if (notificationDropdown) notificationDropdown.classList.remove('active');
+        if (document.querySelector('.user-profile-menu')) {
+            document.querySelector('.user-profile-menu').classList.remove('active');
+        }
+    });
+    
+    // Update cart display
+    updateCartDisplay();
+    
+    // Clear all cart items
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to remove all saved flights?')) {
+                savedFlights = [];
+                localStorage.setItem('savedFlights', JSON.stringify(savedFlights));
+                updateCartDisplay();
+                showToast('All saved flights cleared', 'info');
+            }
+        });
+    }
+}
+
+function updateCartDisplay() {
+    const count = savedFlights.length;
+    
+    // Update badge
+    if (cartBadge) {
+        cartBadge.textContent = count;
+        if (count > 0) {
+            cartBadge.classList.add('show');
+        } else {
+            cartBadge.classList.remove('show');
+        }
+    }
+    
+    // Update count in header
+    if (cartCount) {
+        cartCount.textContent = count;
+    }
+    
+    // Update cart items list
+    if (cartItemsList) {
+        if (count === 0) {
+            cartItemsList.innerHTML = `
+                <div class="cart-empty">
+                    <i class="fas fa-heart-broken"></i>
+                    <p>No saved flights yet</p>
+                    <small>Save flights to compare and book later</small>
+                </div>
+            `;
+            if (cartFooter) cartFooter.classList.add('hidden');
+        } else {
+            cartItemsList.innerHTML = savedFlights.map((flight, index) => `
+                <div class="cart-item" data-index="${index}">
+                    <div class="flight-info">
+                        <strong>${flight.from} → ${flight.to}</strong>
+                        <span>${flight.date}</span>
+                    </div>
+                    <div class="price">${flight.price}</div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+            
+            // Calculate total
+            const total = savedFlights.reduce((sum, flight) => {
+                const price = parseFloat(flight.price.replace(/[^0-9.]/g, ''));
+                return sum + (isNaN(price) ? 0 : price);
+            }, 0);
+            
+            if (cartTotalPrice) {
+                cartTotalPrice.textContent = `$${total.toFixed(0)}`;
+            }
+            
+            if (cartFooter) cartFooter.classList.remove('hidden');
+        }
+    }
+}
+
+// Add flight to cart (call this from flight cards)
+window.addToCart = function(flightData) {
+    // Check if already saved
+    const exists = savedFlights.some(f => 
+        f.from === flightData.from && 
+        f.to === flightData.to && 
+        f.date === flightData.date
+    );
+    
+    if (exists) {
+        showToast('Flight already in saved list', 'info');
+        return;
+    }
+    
+    savedFlights.push(flightData);
+    localStorage.setItem('savedFlights', JSON.stringify(savedFlights));
+    updateCartDisplay();
+    showToast(`Flight saved: ${flightData.from} → ${flightData.to}`, 'success');
+};
+
+// Remove flight from cart
+window.removeFromCart = function(index) {
+    const removed = savedFlights.splice(index, 1)[0];
+    localStorage.setItem('savedFlights', JSON.stringify(savedFlights));
+    updateCartDisplay();
+    showToast(`Removed: ${removed.from} → ${removed.to}`, 'info');
+};
+
+// Example usage - Add this button to flight cards:
+// <button onclick="addToCart({from: 'NYC', to: 'LON', date: 'Dec 15', price: '$850'})">
+//     <i class="fas fa-heart"></i> Save
+// </button>

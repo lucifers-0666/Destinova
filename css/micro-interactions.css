@@ -1,0 +1,867 @@
+/**
+ * ═══════════════════════════════════════════════════════════════
+ * DESTINOVA - PREMIUM MICRO-INTERACTIONS CSS
+ * ═══════════════════════════════════════════════════════════════
+ * 
+ * Purpose: Add premium UI interactions throughout the site
+ * Features: Cursor effects, scroll progress, animations, buttons,
+ *           cards, forms, counters, loading states, toasts, effects
+ * 
+ * Performance: GPU-accelerated, throttled, optimized
+ * Accessibility: Reduced motion support, focus indicators
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   1. CUSTOM CURSOR (Desktop Only)
+   ═══════════════════════════════════════════════════════════════ */
+
+.custom-cursor {
+  width: 8px;
+  height: 8px;
+  background: #1d5e33;
+  opacity: 0.6;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hover {
+  transform: translate(-50%, -50%) scale(2);
+  background: #E5CBAF;
+  opacity: 0.8;
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. SCROLL PROGRESS INDICATOR
+   ═══════════════════════════════════════════════════════════════ */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1d5e33, #2a7d4a, #E5CBAF);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 9999;
+  transition: transform 0.1s ease-out;
+}
+
+/* Section markers on progress bar */
+.scroll-progress-marker {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 2px solid #1d5e33;
+  border-radius: 50%;
+  transform: translateY(-2px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 10000;
+}
+
+.scroll-progress-marker:hover {
+  transform: translateY(-2px) scale(1.3);
+}
+
+/* Tooltip for markers */
+.scroll-progress-marker::after {
+  content: attr(data-section);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: #1d5e33;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  margin-top: 8px;
+  transition: opacity 0.2s ease, margin-top 0.2s ease;
+}
+
+.scroll-progress-marker:hover::after {
+  opacity: 1;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. ENHANCED SECTION ENTRANCE ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stagger-children.visible > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.stagger-children.visible > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.stagger-children.visible > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.stagger-children.visible > *:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.stagger-children.visible > *:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+/* After 5 items, show all at once */
+.stagger-children.visible > *:nth-child(n+6) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. BUTTON INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Ripple effect container */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Magnetic effect (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  .btn-magnetic {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+/* Hover shimmer effect */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 1.5s ease;
+}
+
+.btn-shimmer:hover::before {
+  left: 100%;
+}
+
+/* Success state animation */
+@keyframes buttonSuccess {
+  0% { transform: scale(1); }
+  25% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn-success-state {
+  animation: buttonSuccess 0.6s ease;
+}
+
+.btn-success-state .btn-checkmark {
+  display: inline-block;
+  animation: checkmarkSlide 0.4s ease;
+}
+
+@keyframes checkmarkSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. CARD HOVER EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Parallax image effect */
+.card-parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-parallax__image {
+  transition: transform 0.5s ease;
+  transform-origin: center;
+}
+
+/* Content slide-up */
+.card-slide-content {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              opacity 0.4s ease;
+}
+
+.card-parallax:hover .card-slide-content {
+  transform: translateY(-12px);
+  opacity: 1;
+}
+
+/* Price pulse */
+.card-price {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card-parallax:hover .card-price {
+  animation: pricePulse 0.6s ease;
+  color: #1d5e33;
+}
+
+@keyframes pricePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Bookmark animation */
+.card-bookmark {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.card-bookmark.active {
+  animation: bookmarkFill 0.4s ease;
+}
+
+@keyframes bookmarkFill {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Heart particles */
+.heart-particle {
+  position: absolute;
+  font-size: 12px;
+  color: #E5CBAF;
+  pointer-events: none;
+  animation: heartFloat 1.5s ease-out forwards;
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-30px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.5);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. FORM INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Enhanced focus state */
+.form-input {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-width: 2px;
+  border-color: #E5CBAF;
+  box-shadow: 0 0 0 4px rgba(229, 203, 175, 0.2);
+  outline: none;
+}
+
+/* Floating label */
+.form-group {
+  position: relative;
+}
+
+.form-label-floating {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: #8B9BA5;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus + .form-label-floating,
+.form-input:not(:placeholder-shown) + .form-label-floating {
+  top: 0;
+  font-size: 11px;
+  color: #1d5e33;
+  background: #ffffff;
+  padding: 0 4px;
+}
+
+/* Icon color shift */
+.form-icon {
+  transition: color 0.3s ease;
+}
+
+.form-input:focus ~ .form-icon {
+  color: #E5CBAF;
+}
+
+/* Success state */
+.form-input-success {
+  border-color: #2a7d4a;
+  box-shadow: 0 0 12px rgba(42, 125, 74, 0.3);
+}
+
+.form-success-icon {
+  animation: successSlide 0.4s ease;
+}
+
+@keyframes successSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Error shake */
+.form-input-error {
+  border-color: #D93025;
+  animation: inputShake 0.4s ease;
+}
+
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.form-error-message {
+  animation: errorSlideDown 0.3s ease;
+}
+
+@keyframes errorSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Autocomplete dropdown */
+.form-autocomplete {
+  animation: dropdownSlide 0.3s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-autocomplete-item {
+  transition: background-color 0.2s ease;
+}
+
+.form-autocomplete-item:hover,
+.form-autocomplete-item.keyboard-focus {
+  background-color: rgba(229, 203, 175, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. NUMBER COUNTER ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.counter-number {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Odometer effect */
+.counter-odometer {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1em;
+}
+
+.counter-odometer-digit {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. LOADING STATES
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Skeleton screen */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(229, 203, 175, 0.1),
+    rgba(229, 203, 175, 0.2),
+    rgba(229, 203, 175, 0.1)
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+}
+
+.skeleton-card {
+  height: 300px;
+}
+
+/* Button spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 4px;
+  background: rgba(229, 203, 175, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1d5e33, #2a7d4a, #E5CBAF);
+  border-radius: 2px;
+  transform-origin: left;
+  transition: width 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. TOAST NOTIFICATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.toast-container {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 400px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  pointer-events: all;
+  animation: toastSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast.toast-exit {
+  animation: toastSlideOut 0.4s ease forwards;
+}
+
+@keyframes toastSlideOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Toast types */
+.toast--success {
+  border-left: 4px solid #2a7d4a;
+}
+
+.toast--error {
+  border-left: 4px solid #D93025;
+}
+
+.toast--info {
+  border-left: 4px solid #1d5e33;
+}
+
+.toast--warning {
+  border-left: 4px solid #FF9500;
+}
+
+/* Toast progress bar */
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.3;
+  animation: toastProgress 5s linear forwards;
+}
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.toast-content {
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #1C2526;
+}
+
+.toast-close {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   10. SPECIAL EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Sparkle effect */
+.sparkle-container {
+  position: relative;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #E5CBAF;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #E5CBAF;
+  pointer-events: none;
+  animation: sparkleFloat 1s ease-in-out;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+/* Floating particles */
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #E5CBAF;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: particleFloat 12s linear infinite;
+}
+
+.particle:nth-child(2n) {
+  width: 3px;
+  height: 3px;
+  animation-duration: 15s;
+}
+
+.particle:nth-child(3n) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.4;
+  animation-duration: 10s;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   11. ACCESSIBILITY ENHANCEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Enhanced focus indicators */
+.focus-visible:focus {
+  outline: 3px solid #E5CBAF;
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background: #1d5e33;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  z-index: 10001;
+  transition: top 0.3s ease;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Keyboard navigation hints */
+.keyboard-hint {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: rgba(29, 94, 51, 0.95);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.focus-visible:focus .keyboard-hint {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION SUPPORT
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  /* Keep essential animations */
+  .btn-spinner {
+    animation-duration: 0.8s !important;
+  }
+  
+  .scroll-progress-bar {
+    transition-duration: 0.1s !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Will-change for animated elements */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-contents {
+  will-change: contents;
+}
+
+/* GPU acceleration */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+
+.no-pointer-events {
+  pointer-events: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.select-none {
+  user-select: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   END OF PREMIUM MICRO-INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */

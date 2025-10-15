@@ -83,9 +83,15 @@
   <link rel="stylesheet" href="../css/popular-destinations.css">
   <link rel="stylesheet" href="../css/deals-section.css">
   <link rel="stylesheet" href="../css/why-choose-us.css">
+  <link rel="stylesheet" href="../css/premium-footer.css">
   <link rel="stylesheet" href="../css/booking-process.css">
   <link rel="stylesheet" href="../css/payment-security.css">
   <link rel="stylesheet" href="../css/travel-blog.css">
+  
+  <!-- Premium Features: Dividers, Enhanced Booking Steps, Micro-Interactions -->
+  <link rel="stylesheet" href="../css/premium-dividers.css">
+  <link rel="stylesheet" href="../css/booking-steps-enhanced.css">
+  <link rel="stylesheet" href="../css/micro-interactions.css">
 </head>
 
 <body>
@@ -123,6 +129,34 @@
           <i class="fas fa-search"></i>
           <span class="search-label">Search</span>
         </button>
+
+        <!-- Cart/Saved Flights (Hidden by default, shown when logged in) -->
+        <div class="header-cart hidden" id="header-cart">
+          <button class="cart-btn" aria-label="Saved flights">
+            <i class="fas fa-heart"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </button>
+          <div class="cart-dropdown">
+            <div class="cart-header">
+              <h4>Saved Flights (<span id="cart-count">0</span>)</h4>
+              <button class="clear-all-btn" id="clear-cart">Clear all</button>
+            </div>
+            <div class="cart-items-list" id="cart-items-list">
+              <div class="cart-empty">
+                <i class="fas fa-heart-broken"></i>
+                <p>No saved flights yet</p>
+                <small>Save flights to compare and book later</small>
+              </div>
+            </div>
+            <div class="cart-footer hidden" id="cart-footer">
+              <div class="cart-total">
+                <span>Total:</span>
+                <strong id="cart-total-price">$0</strong>
+              </div>
+              <a href="saved-flights.html" class="btn btn-primary btn-block">View All Saved</a>
+            </div>
+          </div>
+        </div>
 
         <!-- Currency Switcher -->
         <div class="currency-switcher">
@@ -182,14 +216,31 @@
             <span class="user-name" id="user-name">User</span>
             <i class="fas fa-chevron-down"></i>
           </button>
-          <ul class="user-profile-menu">
-            <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-            <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-            <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-            <li><a href="profile.html#settings"><i class="fas fa-cog"></i> Settings</a></li>
-            <li class="divider"></li>
-            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-          </ul>
+          <div class="user-profile-menu">
+            <!-- User Info Card -->
+            <div class="user-info-card">
+              <img src="https://i.pravatar.cc/60?u=default" alt="User avatar" class="user-avatar-large" id="user-avatar-large">
+              <div class="user-details">
+                <strong class="user-fullname" id="user-fullname">John Doe</strong>
+                <span class="user-email" id="user-email">john@example.com</span>
+              </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <ul>
+              <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+              <li><a href="my-bookings.html"><i class="fas fa-ticket-alt"></i> My Bookings</a></li>
+              <li><a href="my-trips.html"><i class="fas fa-suitcase"></i> My Trips</a></li>
+              <li><a href="wallet.html"><i class="fas fa-wallet"></i> My Wallet <span class="user-balance">$0</span></a></li>
+              <li><a href="rewards.html"><i class="fas fa-star"></i> Rewards <span class="user-points">0 pts</span></a></li>
+              <li><a href="saved-flights.html"><i class="fas fa-heart"></i> Saved Flights</a></li>
+              <li class="divider"></li>
+              <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+              <li><a href="help.html"><i class="fas fa-question-circle"></i> Help Center</a></li>
+              <li class="divider"></li>
+              <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+          </div>
         </div>
 
         <button class="header-mobile-menu-btn" id="header-menuToggle">
@@ -2573,9 +2624,6 @@
           </div>
         </div>
 
-        <!-- Divider -->
-        <div class="section-divider" aria-hidden="true"></div>
-
         <!-- ===============================================
              SECURITY FEATURES SUBSECTION
              =============================================== -->
@@ -2707,7 +2755,11 @@
       </div>
     </section>
 
-    <!-- TRUST & CONFIDENCE INDICATORS SECTION -->
+    <!-- Elegant Divider: Payment Security → Trust Indicators -->
+    <div class="section-divider gradient-fade"></div>
+
+    <!-- ============================================= -->
+    <!-- TRUST & CONFIDENCE INDICATORS - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="trust-indicators-section" role="complementary" aria-labelledby="trust-heading">
       <div class="trust-container">
@@ -3288,8 +3340,11 @@
       </div>
     </section>
 
+    <!-- Elegant Divider: Trust Indicators → Trust & Comfort -->
+    <div class="section-divider diagonal-stripe"></div>
+
     <!-- ============================================= -->
-    <!-- NEW: TRUST & COMFORT SECTION (REPLACES OLD SECTIONS) -->
+    <!-- TRUST & COMFORT SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section id="trust-comfort-section" class="home-section bg-secondary-cream">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -3364,8 +3419,15 @@
       </div>
     </section>
 
+    <!-- Elegant Divider: Trust & Comfort → Statistics -->
+    <div class="section-divider elegant-text">
+      <div class="elegant-text-content">
+        <span class="divider-text">Our Impact</span>
+      </div>
+    </div>
+
     <!-- ============================================= -->
-    <!-- NEW: STATISTICS COUNTER SECTION -->
+    <!-- STATISTICS COUNTER SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="stats-section bg-primary-emerald text-white py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -3402,8 +3464,11 @@
       </div>
     </section>
 
+    <!-- Elegant Divider: Statistics → Airline Partners -->
+    <div class="section-divider gradient-fade"></div>
+
     <!-- ============================================= -->
-    <!-- AIRLINE PARTNERS SECTION -->
+    <!-- AIRLINE PARTNERS SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
     <section class="airline-partners-section home-section bg-background-white" role="region" aria-labelledby="partners-heading">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -4327,175 +4392,188 @@
   <!-- Elegant Divider: Blog → Footer -->
   <div class="section-divider triangle"></div>
 
-  <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-    <div class="footer-content max-w-screen-2xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
-        <!-- Company Info -->
-        <div class="footer-col xl:col-span-2">
-          <div class="footer-logo mb-4">
-            <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                aria-hidden="true"></i></h2>
+  <!-- ═══════════════════════════════════════════════════════════════════════════════
+       PREMIUM FOOTER - 10/10 DESIGN
+       ═══════════════════════════════════════════════════════════════════════════════ -->
+
+  <footer role="contentinfo" aria-label="Site footer">
+    
+    <!-- ═══════════════════════════════════════════════════════════════════════════════
+         PART 1: NEWSLETTER HERO SECTION
+         ═══════════════════════════════════════════════════════════════════════════════ -->
+    
+    <section class="footer-newsletter-hero" aria-labelledby="newsletter-heading">
+      <!-- Decorative Background Elements -->
+      <div class="newsletter-bg-decoration newsletter-bg-decoration-1" aria-hidden="true"></div>
+      <div class="newsletter-bg-decoration newsletter-bg-decoration-2" aria-hidden="true"></div>
+      <div class="newsletter-bg-decoration newsletter-bg-decoration-3" aria-hidden="true"></div>
+      <div class="newsletter-pattern-overlay" aria-hidden="true"></div>
+
+      <!-- Content Container -->
+      <div class="newsletter-content-container">
+        
+        <!-- LEFT COLUMN - Visual Storytelling -->
+        <div class="newsletter-visual-column">
+          <!-- Decorative Icon Cluster -->
+          <div class="newsletter-icon-cluster" aria-hidden="true">
+            <div class="newsletter-floating-icon newsletter-icon-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+            </div>
+            <div class="newsletter-floating-icon newsletter-icon-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="newsletter-floating-icon newsletter-icon-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
           </div>
-          <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-            Discover a new standard in air travel.
+
+          <!-- Heading Stack -->
+          <div class="newsletter-eyebrow">JOIN THE COMMUNITY</div>
+          <h2 id="newsletter-heading" class="newsletter-main-heading">
+            Never Miss a<br>Travel Opportunity
+          </h2>
+          <p class="newsletter-description">
+            Get exclusive flight deals, destination guides, and travel inspiration delivered to your inbox every week. Join 50,000+ smart travelers who save big.
           </p>
-          <!-- Achievements Timeline -->
-          <div class="achievements-timeline mt-8">
-            <h3 class="footer-title">Our Journey</h3>
-            <div class="timeline-item">
-              <div class="timeline-year">2020</div>
-              <div class="timeline-desc">Destinova Founded</div>
+
+          <!-- Benefits List -->
+          <div class="newsletter-benefits-list">
+            <div class="newsletter-benefit-item">
+              <div class="benefit-icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="benefit-text">Weekly hand-picked deals up to 50% off</span>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2022</div>
-              <div class="timeline-desc">10,000+ Happy Travelers</div>
+            <div class="newsletter-benefit-item">
+              <div class="benefit-icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="benefit-text">Insider tips from travel experts</span>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <div class="timeline-desc">Awarded "Best Online Agency"</div>
+            <div class="newsletter-benefit-item">
+              <div class="benefit-icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="benefit-text">Unsubscribe anytime, no spam ever</span>
+            </div>
+          </div>
+
+          <!-- Social Proof Badge -->
+          <div class="newsletter-social-proof">
+            <div class="social-proof-avatars">
+              <div class="avatar-stack-item avatar-1"></div>
+              <div class="avatar-stack-item avatar-2"></div>
+              <div class="avatar-stack-item avatar-3"></div>
+            </div>
+            <div class="social-proof-text-column">
+              <div class="social-proof-count">50,000+ travelers</div>
+              <div class="social-proof-label">Already subscribed</div>
+            </div>
+            <div class="social-proof-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             </div>
           </div>
         </div>
 
-        <!-- Quick Links -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-compass" aria-hidden="true"></i>
-            Quick Links
-          </h3>
-          <nav aria-label="Footer navigation">
-            <ul class="space-y-3 text-gray-300">
-              <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                    aria-hidden="true"></i> Home</a></li>
-              <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a Flight</a></li>
-              <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5" aria-hidden="true"></i> Special Offers</a></li>
-              <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"
-                    aria-hidden="true"></i> About Us</a></li>
-              <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                    aria-hidden="true"></i> Contact</a></li>
-              <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                    aria-hidden="true"></i> Flight Status</a></li>
-              <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                    aria-hidden="true"></i> Manage Booking</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <!-- Customer Support -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-headset" aria-hidden="true"></i>
-            Customer Support
-          </h3>
-          <div class="text-gray-300 space-y-3">
-            <p>
-              <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                support@destinova.com
-              </a>
-            </p>
-            <p>
-              <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                +91 1234567891
-              </a>
-            </p>
-            <div class="support-badge">
-              <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-              24/7 Assistance
+        <!-- RIGHT COLUMN - Subscription Form -->
+        <div class="newsletter-form-column">
+          <form class="newsletter-form-container" aria-label="Newsletter subscription form">
+            
+            <!-- Email Input -->
+            <div class="newsletter-form-group">
+              <label for="newsletter-email" class="newsletter-form-label">Email Address</label>
+              <div class="newsletter-input-wrapper">
+                <div class="newsletter-input-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <input 
+                  type="email" 
+                  id="newsletter-email" 
+                  class="newsletter-email-input" 
+                  placeholder="Enter your email address"
+                  required
+                  aria-required="true"
+                >
+              </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Stay Connected -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-share-nodes" aria-hidden="true"></i>
-            Stay Connected
-          </h3>
-          <p class="text-xs text-gray-400 mb-4">Get exclusive travel tips & deals straight to your inbox.</p>
-          <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-            <div class="newsletter-input-wrapper">
-              <input type="email" placeholder="Your email address" required
-                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                aria-label="Email address for newsletter">
-              <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            <!-- Interests Checkboxes (Optional - Expandable) -->
+            <div class="newsletter-interests-section">
+              <button type="button" class="interests-toggle-button" aria-expanded="false">
+                <span>Customize your interests</span>
+                <span class="interests-toggle-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
               </button>
-            </div>
-          </form>
-          <div class="app-download-section">
-            <div class="app-badges">
-              <a href="#" aria-label="Download on the App Store"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png" alt="App Store Badge"></a>
-              <a href="#" aria-label="Get it on Google Play"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Google Play Badge"></a>
-            </div>
-            <div class="qr-code">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://example.com/app" alt="QR code for app download">
-            </div>
-          </div>
-          <h3 class="footer-title mt-8">
-            Follow Us
-          </form>
-          <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Facebook" role="listitem">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Twitter" role="listitem">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Instagram" role="listitem">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on LinkedIn" role="listitem">
-              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Subscribe to our YouTube channel" role="listitem">
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Recently Viewed Section -->
-      <div id="recently-viewed-container" class="recently-viewed-section" data-aos="fade-up">
-        <h3 class="footer-title">Recently Viewed Flights</h3>
-        <div id="recently-viewed-list" class="recently-viewed-list">
-          <!-- Items will be injected by JS -->
-          <p class="no-recent-views">You haven't viewed any flights yet. Start exploring!</p>
-        </div>
-      </div>
 
-      <!-- Footer Bottom -->
-      <div
-        class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-        <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-        <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-          <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-          <span aria-hidden="true">|</span>
-          <a href="#" class="legal-link transition-colors">Terms of Service</a>
-        </nav>
-        <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-          <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-          <span>Trusted by 1M+ Travelers</span>
-        </div>
-      </div>
-    </div>
+              <div class="interests-grid">
+                <label class="custom-checkbox">
+                  <input type="checkbox" class="checkbox-input" name="interest" value="beach">
+                  <div class="checkbox-box">
+                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span class="checkbox-label">Beach Destinations</span>
+                </label>
 
-  <!-- Back to Home Button -->
-  <div class="back-to-home-container" data-aos="fade-up">
-    <a href="index.html" class="back-to-home-btn" aria-label="Back to Home">
-      <i class="fas fa-arrow-left"></i>
-      <span>Back to Home</span>
-    </a>
-  </div>
-  </footer>
+                <label class="custom-checkbox">
+                  <input type="checkbox" class="checkbox-input" name="interest" value="adventure">
+                  <div class="checkbox-box">
+                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span class="checkbox-label">Adventure Travel</span>
+                </label>
+
+                <label class="custom-checkbox">
+                  <input type="checkbox" class="checkbox-input" name="interest" value="budget">
+                  <div class="checkbox-box">
+                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span class="checkbox-label">Budget Deals</span>
+                </label>
+
+                <label class="custom-checkbox">
+                  <input type="checkbox" class="checkbox-input" name="interest" value="luxury">
+                  <div class="checkbox-box">
+                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <span class="checkbox-label">Luxury Getaways</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="newsletter-submit-btn">
+              <span class="btn-text">Subscribe Now</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+
+            <!-- Privacy Note -->
+            <div class="newsletter-privacy-note">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>We respect your privacy. Read our <a href="#" class="privacy-link">Privacy Policy</a></span>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="newsletter-trust-badges">
+              <div class="trust-micro-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                <span>No Spam</span>
+              </div>
+              <div class="trust-micro-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Unsubscribe Anytime</span>
+              </div>
+              <div class="trust-micro-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>100% Secure</span>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
 
   <!-- Quick Search Modal -->
   <div class="quick-search-modal" id="quick-search-modal">
@@ -4618,6 +4696,12 @@
 
   <script src="../js/index.js"></script>
   <script src="../js/index-enhancements.js"></script>
+  
+  <!-- Premium Footer JS -->
+  <script src="../js/premium-footer.js"></script>
+  
+  <!-- Premium Micro-Interactions JS -->
+  <script src="../js/micro-interactions.js"></script>
   <script>
     // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
