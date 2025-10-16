@@ -3,22 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Destinova | Your Journey Begins Here</title>
+    <title>Sign In - Destinova | Premium Flight Booking Experience</title>
     <meta name="description" content="Welcome back! Sign in to explore amazing flight deals and manage your bookings.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../site-images/logo/Destinova-svg.svg">
+    <link rel="icon" type="image/png" href="../site-images/favicon.png">
     
-    <!-- Google Fonts - Modern Typography -->
+    <!-- Fonts - Matching Index Page -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Modern Sign In Styles -->
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-emerald': '#1d5e33',
+                        'secondary-cream': '#FFFBF2',
+                        'accent-gold': '#E5CBAF',
+                        'text-charcoal': '#1C2526',
+                        'text-slate': '#5C6B73',
+                        'background-white': '#FAFAFA',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header-enhancements.css">
     <link rel="stylesheet" href="../css/signin.css">
+    <link rel="stylesheet" href="../css/signin-premium-animations.css">
 </head>
 <body>
     
@@ -68,7 +104,7 @@
             <div class="hero-content">
                 
                 <!-- Logo -->
-                <div class="logo-section animate-slide-in">
+                <div class="logo-section" data-aos="fade-right" data-aos-duration="1000">
                     <div class="logo-icon">
                         <i class="fas fa-plane-departure"></i>
                     </div>
@@ -79,15 +115,15 @@
                 </div>
 
                 <!-- Main Hero Text -->
-                <div class="hero-text animate-slide-in delay-1">
-                    <h2>Welcome to the website</h2>
+                <div class="hero-text" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                    <h2 class="gradient-text-hero">Welcome to the website</h2>
                     <p class="hero-description">
                         Travel is the only purchase that enriches you in ways money never could. Embark on unforgettable adventures.
                     </p>
                 </div>
 
                 <!-- Hero Image/Illustration -->
-                <div class="hero-image-container animate-fade-in delay-2">
+                <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1200">
                     <div class="hero-scene">
                         <div class="scene-layer layer-mountains">
                             <svg viewBox="0 0 800 400" class="mountain-svg">
@@ -133,16 +169,16 @@
                 </div>
 
                 <!-- Trust Badges -->
-                <div class="trust-badges animate-slide-in delay-3">
-                    <div class="badge">
+                <div class="trust-badges" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                    <div class="badge" data-aos="flip-left" data-aos-delay="700">
                         <i class="fas fa-shield-alt"></i>
                         <span>Secure Booking</span>
                     </div>
-                    <div class="badge">
+                    <div class="badge" data-aos="flip-left" data-aos-delay="800">
                         <i class="fas fa-star"></i>
                         <span>4.9/5 Rating</span>
                     </div>
-                    <div class="badge">
+                    <div class="badge" data-aos="flip-left" data-aos-delay="900">
                         <i class="fas fa-users"></i>
                         <span>2.4M+ Users</span>
                     </div>
@@ -156,14 +192,14 @@
             <div class="form-container">
                 
                 <!-- Back to Home -->
-                <a href="../index.html" class="back-btn animate-fade-in">
+                <a href="index.html" class="back-btn" data-aos="fade-down" data-aos-duration="800">
                     <i class="fas fa-arrow-left"></i>
                     <span>Back to Home</span>
                 </a>
 
                 <!-- Form Header -->
-                <div class="form-header animate-slide-up">
-                    <h2>USER LOGIN</h2>
+                <div class="form-header" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <h2 class="gradient-text-form">USER LOGIN</h2>
                     <p>Sign in to continue your journey</p>
                 </div>
 
@@ -171,7 +207,7 @@
                 <form id="signin-form" class="signin-form" novalidate>
                     
                     <!-- Email Input -->
-                    <div class="form-group animate-slide-up delay-1">
+                    <div class="form-group" data-aos="fade-left" data-aos-delay="200" data-aos-duration="700">
                         <label for="email">
                             <i class="fas fa-envelope"></i>
                             Email Address
@@ -194,7 +230,7 @@
                     </div>
 
                     <!-- Password Input -->
-                    <div class="form-group animate-slide-up delay-2">
+                    <div class="form-group" data-aos="fade-left" data-aos-delay="300" data-aos-duration="700">
                         <label for="password">
                             <i class="fas fa-lock"></i>
                             Password
@@ -220,7 +256,7 @@
                     </div>
 
                     <!-- Remember & Forgot -->
-                    <div class="form-options animate-slide-up delay-3">
+                    <div class="form-options" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
                         <label class="remember-me">
                             <input type="checkbox" id="remember" name="remember">
                             <span class="checkbox-custom"></span>
@@ -230,7 +266,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="submit-btn animate-slide-up delay-4">
+                    <button type="submit" class="submit-btn" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="700">
                         <span class="btn-text">Login</span>
                         <span class="btn-icon">
                             <i class="fas fa-arrow-right"></i>
@@ -241,12 +277,12 @@
                     </button>
 
                     <!-- Divider -->
-                    <div class="divider animate-slide-up delay-5">
+                    <div class="divider" data-aos="fade-up" data-aos-delay="600" data-aos-duration="600">
                         <span>or continue with</span>
                     </div>
 
                     <!-- Social Login -->
-                    <div class="social-login animate-slide-up delay-6">
+                    <div class="social-login" data-aos="fade-up" data-aos-delay="700" data-aos-duration="700">
                         <button type="button" class="social-btn google-btn">
                             <i class="fab fa-google"></i>
                             <span>Google</span>
@@ -262,7 +298,7 @@
                     </div>
 
                     <!-- Sign Up Link -->
-                    <div class="signup-link animate-fade-in delay-7">
+                    <div class="signup-link" data-aos="fade-up" data-aos-delay="800" data-aos-duration="700">
                         <p>Don't have an account? <a href="sign-up.html">sign up</a></p>
                     </div>
 
@@ -285,6 +321,8 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/index.js"></script>
     <script src="../js/signin.js"></script>
 </body>
 </html>

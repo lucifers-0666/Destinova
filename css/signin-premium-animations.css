@@ -1,0 +1,736 @@
+/* ═══════════════════════════════════════════════════════════════
+   SIGNIN PAGE - PREMIUM ANIMATIONS & EFFECTS
+   Matching Index Page Animation Quality
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ============================================= */
+/* GRADIENT TEXT ANIMATIONS                    */
+/* ============================================= */
+
+.gradient-text-hero {
+    background: linear-gradient(135deg, #1d5e33, #2a7d4a, #E5CBAF, #3a9c60);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 4s ease infinite;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.gradient-text-form {
+    background: linear-gradient(135deg, #1d5e33, #E5CBAF, #2a7d4a);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ============================================= */
+/* FLOATING & PULSE ANIMATIONS                 */
+/* ============================================= */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        box-shadow: 0 8px 32px rgba(229, 203, 175, 0.3);
+    }
+    50% { 
+        box-shadow: 0 12px 48px rgba(229, 203, 175, 0.5), 
+                    0 0 40px rgba(29, 94, 51, 0.3);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ============================================= */
+/* SHIMMER & SHINE EFFECTS                     */
+/* ============================================= */
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes shimmerSweep {
+    0%, 100% { background-position: -200% 0; }
+    50% { background-position: 200% 0; }
+}
+
+/* ============================================= */
+/* BOUNCE & SCALE ANIMATIONS                   */
+/* ============================================= */
+
+@keyframes bounceIn {
+    0% { 
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.1);
+    }
+    70% { 
+        transform: scale(0.95);
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+/* ============================================= */
+/* SLIDE ANIMATIONS                            */
+/* ============================================= */
+
+@keyframes slideInRight {
+    0% { 
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% { 
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ============================================= */
+/* EXPAND & FADE ANIMATIONS                    */
+/* ============================================= */
+
+@keyframes expandLine {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================= */
+/* LOADING & SPIN ANIMATIONS                   */
+/* ============================================= */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateGlow {
+    0% { 
+        transform: rotate(0deg);
+        filter: brightness(1);
+    }
+    50% { 
+        filter: brightness(1.3);
+    }
+    100% { 
+        transform: rotate(360deg);
+        filter: brightness(1);
+    }
+}
+
+/* ============================================= */
+/* INPUT GLOW EFFECT                           */
+/* ============================================= */
+
+@keyframes inputGlow {
+    0%, 100% { 
+        box-shadow: 0 0 0 4px rgba(29, 94, 51, 0.1);
+    }
+    50% { 
+        box-shadow: 0 0 0 6px rgba(29, 94, 51, 0.2), 
+                    0 0 30px rgba(229, 203, 175, 0.3);
+    }
+}
+
+/* ============================================= */
+/* ENHANCED HERO PANEL                         */
+/* ============================================= */
+
+.hero-panel {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(229, 203, 175, 0.08) 50%, 
+        transparent 70%);
+    background-size: 200% 200%;
+    animation: shimmerSweep 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.logo-icon {
+    animation: pulseGlow 4s ease-in-out infinite, float 5s ease-in-out infinite;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.logo-icon:hover {
+    transform: scale(1.15) rotate(8deg);
+    animation: none;
+}
+
+.logo-icon i {
+    transition: all 0.3s ease;
+}
+
+.logo-icon:hover i {
+    animation: scaleBounce 0.6s ease;
+}
+
+/* ============================================= */
+/* HERO TEXT ENHANCEMENTS                      */
+/* ============================================= */
+
+.hero-text h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #E5CBAF, #1d5e33, #E5CBAF);
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: expandLine 1.5s ease-out 0.8s forwards, shimmerSweep 3s ease-in-out 2.3s infinite;
+    border-radius: 2px;
+}
+
+.hero-description {
+    animation: fadeIn 1s ease-out 0.5s backwards;
+}
+
+/* ============================================= */
+/* TRUST BADGES ENHANCEMENTS                   */
+/* ============================================= */
+
+.badge {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.badge::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(229, 203, 175, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.badge:hover::before {
+    width: 300%;
+    height: 300%;
+}
+
+.badge:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 15px 40px rgba(29, 94, 51, 0.3), 
+                0 5px 15px rgba(229, 203, 175, 0.2);
+}
+
+.badge i {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.badge:hover i {
+    transform: scale(1.2) rotate(10deg);
+    filter: brightness(1.2);
+}
+
+/* ============================================= */
+/* FORM PANEL ENHANCEMENTS                     */
+/* ============================================= */
+
+.form-panel {
+    position: relative;
+}
+
+.form-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(229, 203, 175, 0.1), transparent 70%);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ============================================= */
+/* BACK BUTTON ENHANCEMENTS                    */
+/* ============================================= */
+
+.back-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(29, 94, 51, 0.15), transparent);
+    transition: left 0.6s ease;
+}
+
+.back-btn:hover::before {
+    left: 100%;
+}
+
+.back-btn i {
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.back-btn:hover i {
+    transform: translateX(-4px) scale(1.1);
+    animation: pulse 1s ease infinite;
+}
+
+/* ============================================= */
+/* FORM INPUT ENHANCEMENTS                     */
+/* ============================================= */
+
+.form-input {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
+}
+
+.form-input:focus {
+    transform: translateY(-2px);
+    animation: inputGlow 2s ease-in-out infinite;
+}
+
+.form-input::placeholder {
+    transition: all 0.3s ease;
+}
+
+.form-input:focus::placeholder {
+    transform: translateX(8px);
+    opacity: 0.5;
+}
+
+.input-icon {
+    transition: all 0.3s ease;
+}
+
+.form-input:focus ~ .input-icon {
+    transform: scale(1.1);
+    color: var(--primary-emerald);
+    animation: pulse 1.5s ease infinite;
+}
+
+/* ============================================= */
+/* SUBMIT BUTTON RIPPLE EFFECT                 */
+/* ============================================= */
+
+.submit-btn {
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.submit-btn:active::before {
+    width: 400%;
+    height: 400%;
+}
+
+.submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transform: translateX(-100%);
+}
+
+.submit-btn:hover::after {
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.submit-btn:hover {
+    animation: scaleBounce 0.6s ease-in-out;
+}
+
+/* Loading State */
+.btn-loader {
+    animation: spin 0.8s linear infinite;
+}
+
+.submit-btn.loading {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* ============================================= */
+/* SOCIAL BUTTONS ENHANCEMENTS                 */
+/* ============================================= */
+
+.social-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.6s ease;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.social-btn i {
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-btn:hover i {
+    transform: scale(1.3) rotate(8deg);
+    animation: scaleBounce 0.6s ease;
+}
+
+/* ============================================= */
+/* CHECKBOX ANIMATION                          */
+/* ============================================= */
+
+.remember-me input[type="checkbox"]:checked ~ .checkbox-custom {
+    animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.checkbox-custom {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkbox-custom:hover {
+    transform: scale(1.1);
+}
+
+/* ============================================= */
+/* LINK HOVER UNDERLINE ANIMATIONS             */
+/* ============================================= */
+
+.forgot-password {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.forgot-password::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1d5e33, #E5CBAF);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.forgot-password:hover::after {
+    width: 100%;
+}
+
+.signup-link a {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.signup-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #1d5e33, #E5CBAF);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signup-link a:hover::after {
+    width: 100%;
+}
+
+.signup-link a:hover {
+    transform: translateX(3px);
+}
+
+/* ============================================= */
+/* DIVIDER ANIMATION                           */
+/* ============================================= */
+
+.divider {
+    position: relative;
+    overflow: hidden;
+}
+
+.divider::before,
+.divider::after {
+    background: linear-gradient(90deg, transparent, #E5CBAF, transparent);
+    animation: shimmerSweep 3s ease-in-out infinite;
+}
+
+.divider span {
+    animation: fadeIn 0.8s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================= */
+/* TOAST NOTIFICATION ANIMATION                */
+/* ============================================= */
+
+.toast {
+    animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show {
+    animation: slideInRight 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+               pulse 0.6s 0.5s ease;
+}
+
+.toast-icon {
+    animation: rotateGlow 2s ease-in-out infinite;
+}
+
+/* ============================================= */
+/* FORM LABEL ENHANCEMENTS                     */
+/* ============================================= */
+
+.form-group label {
+    transition: all 0.3s ease;
+}
+
+.form-input:focus ~ label,
+.form-group:hover label {
+    transform: translateY(-2px);
+    color: var(--primary-emerald);
+}
+
+.form-group label i {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-group:hover label i,
+.form-input:focus ~ label i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* ============================================= */
+/* SCENE LAYERS ANIMATION                      */
+/* ============================================= */
+
+.scene-layer {
+    animation: float 4s ease-in-out infinite;
+}
+
+.layer-mountains {
+    animation-delay: 0s;
+    animation-duration: 6s;
+}
+
+.layer-trees {
+    animation-delay: 0.5s;
+    animation-duration: 5s;
+}
+
+.layer-sun {
+    animation-delay: 1s;
+    animation-duration: 8s;
+}
+
+.sun {
+    animation: pulse 3s ease-in-out infinite, rotateGlow 10s linear infinite;
+}
+
+/* ============================================= */
+/* PASSWORD TOGGLE ENHANCEMENT                 */
+/* ============================================= */
+
+.toggle-password {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toggle-password:hover {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.toggle-password:active {
+    transform: scale(0.95);
+}
+
+/* ============================================= */
+/* ERROR STATE ANIMATIONS                      */
+/* ============================================= */
+
+.form-input.error {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error-message {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* ============================================= */
+/* SUCCESS STATE ENHANCEMENT                   */
+/* ============================================= */
+
+.form-input.success {
+    animation: successPulse 0.6s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); box-shadow: 0 0 20px rgba(42, 125, 74, 0.3); }
+    100% { transform: scale(1); }
+}
+
+/* ============================================= */
+/* RIPPLE EFFECT                               */
+/* ============================================= */
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* ============================================= */
+/* PERFORMANCE OPTIMIZATIONS                   */
+/* ============================================= */
+
+/* GPU Acceleration for animated elements */
+.logo-icon,
+.badge,
+.submit-btn,
+.social-btn,
+.back-btn,
+.form-input {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .logo-icon,
+    .badge,
+    .sun,
+    .scene-layer {
+        animation: none !important;
+    }
+}

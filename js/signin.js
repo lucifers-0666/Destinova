@@ -398,6 +398,195 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // =============================================
+    // AOS ANIMATIONS INITIALIZATION
+    // =============================================
+    
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: false, // Allow animations to repeat
+            offset: 50,
+            easing: 'ease-out-cubic',
+            delay: 0,
+            mirror: true, // Animate elements on scroll in both directions
+        });
+    }
+    
+    // =============================================
+    // PREMIUM INTERACTIONS & EFFECTS
+    // =============================================
+    
+    // Add ripple effect to buttons
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple-effect');
+        
+        button.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+    }
+    
+    // Apply ripple to buttons
+    document.querySelectorAll('.submit-btn, .social-btn').forEach(button => {
+        button.addEventListener('click', createRipple);
+    });
+    
+    // Smooth scroll for back button
+    const backBtn = document.querySelector('.back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('mouseenter', () => {
+            backBtn.style.transform = 'translateX(-4px) scale(1.02)';
+        });
+        backBtn.addEventListener('mouseleave', () => {
+            backBtn.style.transform = '';
+        });
+    }
+    
+    // Enhanced input focus effects
+    const formInputs = document.querySelectorAll('.form-input');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.01)';
+            this.parentElement.style.transition = 'transform 0.3s ease';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = '';
+        });
+        
+        // Add success class on valid input
+        input.addEventListener('input', function() {
+            if (this.value.length > 0 && !this.classList.contains('error')) {
+                this.classList.add('success');
+            } else {
+                this.classList.remove('success');
+            }
+        });
+    });
+    
+    // Parallax effect for hero panel
+    document.addEventListener('mousemove', (e) => {
+        const heroPanel = document.querySelector('.hero-panel');
+        if (heroPanel && window.innerWidth > 768) {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            heroPanel.style.transform = `translate(${x}px, ${y}px)`;
+            heroPanel.style.transition = 'transform 0.3s ease-out';
+        }
+    });
+    
+    // Floating animation for decorative elements
+    const decorativeElements = document.querySelectorAll('.decoration-circle, .decoration-blob');
+    decorativeElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.5}s`;
+        element.style.animationDuration = `${20 + index * 5}s`;
+    });
+    
+    // Animate scene layers with parallax
+    document.addEventListener('mousemove', (e) => {
+        const sceneLayers = document.querySelectorAll('.scene-layer');
+        if (sceneLayers.length > 0 && window.innerWidth > 768) {
+            const x = (e.clientX / window.innerWidth - 0.5);
+            const y = (e.clientY / window.innerHeight - 0.5);
+            
+            sceneLayers.forEach((layer, index) => {
+                const speed = (index + 1) * 10;
+                layer.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                layer.style.transition = 'transform 0.5s ease-out';
+            });
+        }
+    });
+    
+    // Add hover effect to trust badges
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.08) rotate(2deg)';
+        });
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+    
+    // Typing effect for form placeholders (optional)
+    function typingEffect(element, text, speed = 50) {
+        let i = 0;
+        element.placeholder = '';
+        const timer = setInterval(() => {
+            if (i < text.length) {
+                element.placeholder += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(timer);
+            }
+        }, speed);
+    }
+    
+    // Apply typing effect on page load (optional - can be commented out)
+    setTimeout(() => {
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        
+        if (emailInput && emailInput.placeholder) {
+            const originalEmail = emailInput.placeholder;
+            typingEffect(emailInput, originalEmail, 30);
+        }
+        
+        if (passwordInput && passwordInput.placeholder) {
+            setTimeout(() => {
+                const originalPassword = passwordInput.placeholder;
+                typingEffect(passwordInput, originalPassword, 30);
+            }, 800);
+        }
+    }, 1500);
+    
+    // Add shimmer effect to submit button on hover
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+        submitBtn.addEventListener('mouseenter', function() {
+            this.style.background = 'linear-gradient(135deg, #164426 0%, #1d5e33 50%, #2a7d4a 100%)';
+            this.style.backgroundSize = '200% 200%';
+            this.style.animation = 'gradientFlow 2s ease infinite';
+        });
+    }
+    
+    // Add 3D tilt effect to form panel (subtle)
+    const formPanel = document.querySelector('.form-panel');
+    if (formPanel && window.innerWidth > 768) {
+        formPanel.addEventListener('mousemove', (e) => {
+            const rect = formPanel.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            formPanel.style.transform = `perspective(1000px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg)`;
+        });
+        
+        formPanel.addEventListener('mouseleave', () => {
+            formPanel.style.transform = '';
+        });
+    }
+    
+    // Loading state animations
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            if (this.classList.contains('loading')) {
+                // Add pulsing effect while loading
+                this.style.animation = 'pulse 1s ease-in-out infinite';
+            }
+        });
+    }
+    
+    // =============================================
     // INITIALIZATION COMPLETE
     // =============================================
     

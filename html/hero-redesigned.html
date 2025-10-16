@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="Book cheap flights to 500+ destinations worldwide. Best prices guaranteed with Destinova.">
+  <title>Book Flights - Destinova | Best Prices Guaranteed</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../site-images/favicon.png">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" as="image" href="../site-images/hero-bg.jpg">
+  <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" crossorigin>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Flatpickr for Date Picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  
+  <!-- Hero Section Styles -->
+  <link rel="stylesheet" href="../css/hero-redesigned.css">
+  <link rel="stylesheet" href="../css/hero-fixes.css">
+</head>
+
+<body>
+  
+  <!-- Promo Banner (Optional) -->
+  <div class="promo-banner" id="promoBanner">
+    <div class="promo-content">
+      <i data-lucide="tag" class="promo-icon"></i>
+      <span>Use code <strong>FLY15</strong> for 15% off on your next booking!</span>
+      <a href="../html/offers.html" class="promo-link">View All Offers</a>
+    </div>
+    <button class="promo-close" aria-label="Close banner" id="promoClose">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="heroSection">
+    
+    <!-- LAYER 1: Background Image/Video -->
+    <div class="hero-background">
+      <picture>
+        <source srcset="../site-images/hero-bg.webp" type="image/webp">
+        <img src="../site-images/hero-bg.jpg" alt="" class="hero-image" loading="eager" fetchpriority="high">
+      </picture>
+    </div>
+
+    <!-- LAYER 2: Gradient Overlay -->
+    <div class="hero-gradient"></div>
+
+    <!-- LAYER 3: Animated Particles System -->
+    <div class="particles-container" aria-hidden="true" id="particlesContainer">
+      <!-- Particles generated via JavaScript for better performance -->
+    </div>
+
+    <!-- LAYER 4: Decorative Elements -->
+    <div class="decorative-circles" aria-hidden="true">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+      <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="hero-content">
+      
+      <!-- Eyebrow Text (Animated) -->
+      <div class="eyebrow-text" aria-hidden="true">
+        <span class="eyebrow-word">DISCOVER</span>
+        <span class="eyebrow-dot">•</span>
+        <span class="eyebrow-word">EXPLORE</span>
+        <span class="eyebrow-dot">•</span>
+        <span class="eyebrow-word">EXPERIENCE</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-headline">
+        <span class="headline-line">Find Your <span class="highlight">Perfect</span> Flight</span>
+        <span class="headline-line">At Unbeatable Prices</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="hero-subheadline">
+        Book flights to 500+ destinations worldwide. Best prices guaranteed, instant confirmation.
+      </p>
+
+      <!-- Trust Indicators Row -->
+      <div class="trust-indicators">
+        <div class="trust-indicator">
+          <div class="trust-icon-container">
+            <i data-lucide="users" class="trust-icon"></i>
+          </div>
+          <div class="trust-number" data-target="2000000">0</div>
+          <div class="trust-label">Happy Travelers</div>
+        </div>
+        
+        <div class="trust-indicator">
+          <div class="trust-icon-container">
+            <i data-lucide="globe" class="trust-icon"></i>
+          </div>
+          <div class="trust-number" data-target="500">0</div>
+          <div class="trust-label">Global Destinations</div>
+        </div>
+        
+        <div class="trust-indicator">
+          <div class="trust-icon-container">
+            <i data-lucide="star" class="trust-icon"></i>
+          </div>
+          <div class="trust-number" data-target="4.8">0</div>
+          <div class="trust-label">Customer Rating</div>
+        </div>
+      </div>
+
+      <!-- Search Form Container -->
+      <div class="search-form-container">
+        <form class="search-form" id="flightSearchForm" role="search" aria-label="Flight search">
+          
+          <!-- Trip Type Tabs -->
+          <div class="trip-type-tabs" role="tablist">
+            <button type="button" class="trip-tab" role="tab" data-trip="oneway" aria-selected="false">
+              <i data-lucide="arrow-right"></i>
+              <span>One Way</span>
+            </button>
+            <button type="button" class="trip-tab active" role="tab" data-trip="roundtrip" aria-selected="true">
+              <i data-lucide="arrow-left-right"></i>
+              <span>Round Trip</span>
+            </button>
+            <button type="button" class="trip-tab" role="tab" data-trip="multicity" aria-selected="false">
+              <i data-lucide="route"></i>
+              <span>Multi-City</span>
+            </button>
+          </div>
+
+          <!-- Error Summary (Hidden by default) -->
+          <div class="error-summary" id="errorSummary" hidden role="alert" aria-live="assertive">
+            <i data-lucide="alert-triangle" class="error-summary-icon"></i>
+            <div class="error-summary-content">
+              <h3>Please fix the following errors:</h3>
+              <ul id="errorSummaryList"></ul>
+            </div>
+            <button type="button" class="error-summary-close" aria-label="Dismiss errors">
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+
+          <!-- Form Grid -->
+          <div class="form-grid">
+            
+            <!-- FROM Input -->
+            <div class="input-wrapper">
+              <label for="from" class="input-label">FROM</label>
+              <div class="input-container" data-field="from">
+                <span class="input-icon">
+                  <i data-lucide="plane-takeoff"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="from" 
+                  name="from"
+                  placeholder="New Delhi (DEL)"
+                  autocomplete="off"
+                  aria-label="Departure city or airport"
+                  required
+                >
+                <span class="input-status-icon"></span>
+              </div>
+              <div class="error-message" role="alert"></div>
+            </div>
+
+            <!-- TO Input -->
+            <div class="input-wrapper">
+              <label for="to" class="input-label">TO</label>
+              <div class="input-container" data-field="to">
+                <span class="input-icon">
+                  <i data-lucide="plane-landing"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="to" 
+                  name="to"
+                  placeholder="Dubai (DXB)"
+                  autocomplete="off"
+                  aria-label="Destination city or airport"
+                  required
+                >
+                <span class="input-status-icon"></span>
+              </div>
+              <div class="error-message" role="alert"></div>
+            </div>
+
+            <!-- DATES Input -->
+            <div class="input-wrapper">
+              <label for="dates" class="input-label">TRAVEL DATES</label>
+              <div class="input-container" data-field="dates">
+                <span class="input-icon">
+                  <i data-lucide="calendar-days"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="dates" 
+                  name="dates"
+                  placeholder="Select dates"
+                  autocomplete="off"
+                  readonly
+                  aria-label="Select travel dates"
+                  required
+                >
+                <span class="input-status-icon"></span>
+              </div>
+              <div class="error-message" role="alert"></div>
+            </div>
+
+            <!-- TRAVELERS Input -->
+            <div class="input-wrapper">
+              <label for="travelers" class="input-label">TRAVELERS</label>
+              <div class="input-container" data-field="travelers">
+                <span class="input-icon">
+                  <i data-lucide="users"></i>
+                </span>
+                <input 
+                  type="text" 
+                  id="travelers" 
+                  name="travelers"
+                  placeholder="1 Adult, Economy"
+                  autocomplete="off"
+                  readonly
+                  aria-label="Select number of travelers and class"
+                  required
+                >
+                <span class="input-status-icon"></span>
+              </div>
+              <div class="error-message" role="alert"></div>
+            </div>
+
+            <!-- SEARCH Button -->
+            <button type="submit" class="search-button" id="searchButton">
+              <i data-lucide="search" class="search-icon"></i>
+              <span class="search-text">Search Flights</span>
+              <span class="button-shimmer"></span>
+            </button>
+          </div>
+
+          <!-- Swap Button (Between FROM and TO) -->
+          <button type="button" class="swap-button" aria-label="Swap departure and destination" id="swapButton">
+            <i data-lucide="repeat"></i>
+          </button>
+
+          <!-- Quick Filters -->
+          <div class="quick-filters">
+            <label class="filter-checkbox">
+              <input type="checkbox" name="direct" value="1" id="directFlights">
+              <span class="checkbox-custom"></span>
+              <i data-lucide="zap" class="filter-icon"></i>
+              <span>Direct flights only</span>
+            </label>
+            
+            <label class="filter-checkbox">
+              <input type="checkbox" name="nearby" value="1" id="nearbyAirports">
+              <span class="checkbox-custom"></span>
+              <i data-lucide="map-pin" class="filter-icon"></i>
+              <span>Search nearby airports</span>
+            </label>
+            
+            <label class="filter-checkbox">
+              <input type="checkbox" name="flexible" value="1" id="flexibleDates">
+              <span class="checkbox-custom"></span>
+              <i data-lucide="calendar" class="filter-icon"></i>
+              <span>Flexible dates (±3 days)</span>
+            </label>
+          </div>
+
+          <!-- Popular Routes -->
+          <div class="popular-routes">
+            <span class="routes-label">Popular Routes:</span>
+            <button type="button" class="route-pill" data-from="Mumbai" data-to="Dubai" data-from-code="BOM" data-to-code="DXB">
+              <i data-lucide="plane" class="route-icon"></i>
+              Mumbai → Dubai
+            </button>
+            <button type="button" class="route-pill" data-from="Delhi" data-to="London" data-from-code="DEL" data-to-code="LHR">
+              <i data-lucide="plane" class="route-icon"></i>
+              Delhi → London
+            </button>
+            <button type="button" class="route-pill" data-from="Bangalore" data-to="Singapore" data-from-code="BLR" data-to-code="SIN">
+              <i data-lucide="plane" class="route-icon"></i>
+              Bangalore → Singapore
+            </button>
+            <button type="button" class="route-pill" data-from="Chennai" data-to="Bangkok" data-from-code="MAA" data-to-code="BKK">
+              <i data-lucide="plane" class="route-icon"></i>
+              Chennai → Bangkok
+            </button>
+            <button type="button" class="route-pill" data-from="Hyderabad" data-to="Dubai" data-from-code="HYD" data-to-code="DXB">
+              <i data-lucide="plane" class="route-icon"></i>
+              Hyderabad → Dubai
+            </button>
+            <button type="button" class="route-pill" data-from="Mumbai" data-to="New York" data-from-code="BOM" data-to-code="JFK">
+              <i data-lucide="plane" class="route-icon"></i>
+              Mumbai → New York
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" role="button" tabindex="0" aria-label="Scroll down to explore">
+      <div class="scroll-pill">
+        <div class="scroll-dot"></div>
+      </div>
+      <span class="scroll-text">Scroll to Explore</span>
+    </div>
+
+  </section>
+
+  <!-- Autocomplete Dropdown -->
+  <div class="autocomplete-dropdown" id="autocompleteDropdown" hidden role="listbox">
+    <div class="autocomplete-content" id="autocompleteContent">
+      <!-- Dynamic content populated via JavaScript -->
+    </div>
+  </div>
+
+  <!-- Date Picker Modal -->
+  <div class="date-picker-modal" id="datePickerModal" hidden role="dialog" aria-modal="true" aria-labelledby="datePickerTitle">
+    <div class="date-picker-overlay"></div>
+    <div class="date-picker-content">
+      <div class="date-picker-header">
+        <h3 id="datePickerTitle" class="date-range-display">Select dates</h3>
+        <div class="month-navigation">
+          <button type="button" class="month-nav-btn" id="prevMonth" aria-label="Previous month">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button type="button" class="month-nav-btn" id="nextMonth" aria-label="Next month">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="calendars-container" id="calendarsContainer">
+        <!-- Calendar grids generated via JavaScript -->
+      </div>
+      <div class="quick-select-options">
+        <button type="button" class="quick-select-btn" data-days="2">This Weekend</button>
+        <button type="button" class="quick-select-btn" data-days="7">Next Week</button>
+        <button type="button" class="quick-select-btn" data-days="30">Next Month</button>
+        <button type="button" class="quick-select-btn" data-flexible="true">Flexible (±3 days)</button>
+      </div>
+      <div class="date-picker-actions">
+        <button type="button" class="date-action-btn clear-btn" id="clearDates">Clear</button>
+        <button type="button" class="date-action-btn apply-btn" id="applyDates" disabled>Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Travelers Dropdown -->
+  <div class="travelers-dropdown" id="travelersDropdown" hidden role="dialog" aria-modal="true">
+    <div class="travelers-content">
+      <!-- Passenger Counters -->
+      <div class="passenger-counters">
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <div class="passenger-label">Adults</div>
+            <div class="passenger-sublabel">12+ years</div>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn minus-btn" data-passenger="adults" data-action="minus">
+              <i data-lucide="minus"></i>
+            </button>
+            <span class="counter-value" id="adultsCount">1</span>
+            <button type="button" class="counter-btn plus-btn" data-passenger="adults" data-action="plus">
+              <i data-lucide="plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <div class="passenger-label">Children</div>
+            <div class="passenger-sublabel">2-12 years</div>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn minus-btn" data-passenger="children" data-action="minus">
+              <i data-lucide="minus"></i>
+            </button>
+            <span class="counter-value" id="childrenCount">0</span>
+            <button type="button" class="counter-btn plus-btn" data-passenger="children" data-action="plus">
+              <i data-lucide="plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <div class="passenger-label">Infants</div>
+            <div class="passenger-sublabel">Under 2 years</div>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn minus-btn" data-passenger="infants" data-action="minus">
+              <i data-lucide="minus"></i>
+            </button>
+            <span class="counter-value" id="infantsCount">0</span>
+            <button type="button" class="counter-btn plus-btn" data-passenger="infants" data-action="plus">
+              <i data-lucide="plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Selector -->
+      <div class="class-selector">
+        <div class="class-label">Cabin Class</div>
+        <div class="class-options">
+          <button type="button" class="class-option active" data-class="economy">
+            <i data-lucide="armchair"></i>
+            <span>Economy</span>
+          </button>
+          <button type="button" class="class-option" data-class="premium-economy">
+            <i data-lucide="sofa"></i>
+            <span>Premium Economy</span>
+          </button>
+          <button type="button" class="class-option" data-class="business">
+            <i data-lucide="briefcase"></i>
+            <span>Business</span>
+          </button>
+          <button type="button" class="class-option" data-class="first">
+            <i data-lucide="crown"></i>
+            <span>First Class</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Apply Button -->
+      <button type="button" class="travelers-apply-btn" id="applyTravelers">
+        Apply
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification" hidden role="status" aria-live="polite">
+    <i data-lucide="check-circle" class="toast-icon"></i>
+    <span class="toast-message"></span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="../js/hero-redesigned.js"></script>
+  
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

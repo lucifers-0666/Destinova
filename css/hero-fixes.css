@@ -1,0 +1,714 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   HERO SECTION DESIGN FIXES & IMPROVEMENTS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   FIX 0: PREVENT HEADER/HERO COLLISION - CRITICAL FIXES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Force body and html to handle fixed header properly */
+html {
+  scroll-padding-top: 80px !important;
+}
+
+body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Main content should start at top (header is fixed) */
+#main-content {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  position: relative;
+}
+
+/* CRITICAL: Adjust hero section height and padding */
+.hero-section {
+  position: relative !important;
+  width: 100% !important;
+  min-height: calc(100vh - 80px) !important; /* Full height minus header */
+  height: calc(100vh - 80px) !important;
+  margin-top: 80px !important; /* Push down by header height */
+  padding-top: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* When promo banner is visible, adjust further */
+body:not(.promo-hidden) .hero-section {
+  margin-top: 135px !important; /* Header (80px) + Promo (55px) */
+  min-height: calc(100vh - 135px) !important;
+  height: calc(100vh - 135px) !important;
+}
+
+/* Promo banner positioning */
+.promo-banner {
+  position: fixed !important;
+  top: 80px !important; /* Position below header */
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important; /* Below header (1000) but above hero content */
+  animation: slideDown 0.5s ease-out !important;
+}
+
+/* Header - Always on top with proper background */
+#header-main {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  background: rgba(22, 68, 38, 0.95) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Header when scrolled */
+#header-main.header-scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 10px 40px rgba(29, 94, 51, 0.08), 
+              0 0 0 1px rgba(229, 203, 175, 0.1) !important;
+}
+
+/* Ensure hero content container respects the spacing */
+.hero-content {
+  position: relative !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+}
+
+/* Fix 1: Hide error summary by default (better UX) */
+.error-summary {
+  display: none !important;
+}
+
+.error-summary:not([hidden]) {
+  display: flex !important;
+}
+
+/* Fix 2: Improve form grid spacing and alignment */
+.form-grid {
+  gap: 16px !important;
+  padding: 0 !important;
+}
+
+/* Fix 3: Better input field styling */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-label {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 8px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.input-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  height: 56px !important;
+}
+
+.input-container:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(229, 203, 175, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.input-container:focus-within {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: #E5CBAF !important;
+  box-shadow: 0 0 0 3px rgba(229, 203, 175, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+.input-container input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 48px 0 52px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #fff !important;
+}
+
+.input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.input-icon {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 22px !important;
+  height: 22px !important;
+  color: rgba(229, 203, 175, 0.8) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+/* Fix 4: Better search button styling */
+.search-button {
+  background: linear-gradient(135deg, #E5CBAF 0%, #C9A875 100%) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  height: 56px !important;
+  padding: 0 32px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  color: #164426 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 12px rgba(229, 203, 175, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.search-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(229, 203, 175, 0.4) !important;
+}
+
+.search-button:active {
+  transform: translateY(0) !important;
+}
+
+/* Fix 5: Better swap button positioning and styling */
+.swap-button {
+  position: absolute !important;
+  left: calc(1.3fr + 8px) !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: rgba(229, 203, 175, 0.95) !important;
+  border: 3px solid rgba(22, 68, 38, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.swap-button:hover {
+  background: #E5CBAF !important;
+  transform: translate(-50%, -50%) rotate(180deg) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.swap-button svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #164426 !important;
+}
+
+/* Fix 6: Improve quick filters layout */
+.quick-filters {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  margin-top: 20px !important;
+  padding: 0 !important;
+}
+
+.filter-checkbox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px 18px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.filter-checkbox:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(229, 203, 175, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.filter-checkbox input:checked + .checkbox-custom {
+  background: #E5CBAF !important;
+  border-color: #E5CBAF !important;
+}
+
+.filter-checkbox input:checked ~ .filter-icon {
+  color: #E5CBAF !important;
+}
+
+.checkbox-custom {
+  width: 18px !important;
+  height: 18px !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 4px !important;
+  background: transparent !important;
+  transition: all 0.3s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.filter-icon {
+  width: 16px !important;
+  height: 16px !important;
+  color: rgba(229, 203, 175, 0.8) !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Fix 7: Better popular routes styling */
+.popular-routes {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 20px !important;
+  padding: 0 !important;
+}
+
+.routes-label {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  letter-spacing: 0.5px !important;
+  margin-right: 8px !important;
+}
+
+.route-pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.route-pill:hover {
+  background: rgba(229, 203, 175, 0.15) !important;
+  border-color: rgba(229, 203, 175, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.route-pill:active {
+  transform: translateY(0) !important;
+}
+
+.route-icon {
+  width: 14px !important;
+  height: 14px !important;
+  color: rgba(229, 203, 175, 0.9) !important;
+}
+
+/* Fix 8: Improve trip type tabs */
+.trip-type-tabs {
+  display: flex !important;
+  gap: 8px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  padding: 6px !important;
+  border-radius: 12px !important;
+  margin-bottom: 24px !important;
+}
+
+.trip-tab {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 12px 20px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.trip-tab:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.trip-tab.active {
+  background: linear-gradient(135deg, #1d5e33 0%, #164426 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(22, 68, 38, 0.3) !important;
+}
+
+.trip-tab svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Fix 9: Better trust indicators spacing */
+.trust-indicators {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 48px !important;
+  margin: 32px 0 !important;
+}
+
+.trust-indicator {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.trust-icon-container {
+  width: 48px !important;
+  height: 48px !important;
+  background: rgba(229, 203, 175, 0.15) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 4px !important;
+}
+
+.trust-icon {
+  width: 24px !important;
+  height: 24px !important;
+  color: #E5CBAF !important;
+}
+
+.trust-number {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.trust-label {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Fix 10: Improve search form container */
+.search-form-container {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 32px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* Fix 11: Better responsive design */
+@media (max-width: 1199px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  
+  .search-button {
+    grid-column: span 3 !important;
+  }
+  
+  .swap-button {
+    left: 50% !important;
+    top: calc(100% + 21px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  .search-button {
+    grid-column: 1 !important;
+  }
+  
+  .swap-button {
+    left: 50% !important;
+    top: auto !important;
+    bottom: auto !important;
+    position: static !important;
+    transform: translate(0, 0) rotate(90deg) !important;
+    margin: -8px auto !important;
+    display: block !important;
+  }
+  
+  .trust-indicators {
+    gap: 32px !important;
+  }
+  
+  .popular-routes {
+    justify-content: center !important;
+  }
+  
+  .quick-filters {
+    justify-content: center !important;
+  }
+  
+  .search-form-container {
+    padding: 24px !important;
+  }
+}
+
+/* Fix 12: Better headline styling */
+.hero-headline {
+  font-size: 68px !important;
+  line-height: 1.1 !important;
+  margin-bottom: 20px !important;
+}
+
+.hero-headline .highlight {
+  background: linear-gradient(135deg, #E5CBAF 0%, #FFE5B4 50%, #E5CBAF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: shimmer 3s ease-in-out infinite !important;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Fix 13: Better subheadline */
+.hero-subheadline {
+  font-size: 20px !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  max-width: 700px !important;
+  margin: 0 auto 32px !important;
+}
+
+/* Fix 14: Better eyebrow text */
+.eyebrow-text {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  color: rgba(229, 203, 175, 0.9) !important;
+}
+
+.eyebrow-word {
+  animation: fadeInWord 0.6s ease-out backwards !important;
+}
+
+.eyebrow-word:nth-child(1) { animation-delay: 0.1s !important; }
+.eyebrow-word:nth-child(3) { animation-delay: 0.3s !important; }
+.eyebrow-word:nth-child(5) { animation-delay: 0.5s !important; }
+
+.eyebrow-dot {
+  color: rgba(229, 203, 175, 0.5) !important;
+  font-size: 8px !important;
+}
+
+@keyframes fadeInWord {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fix 15: Remove promo banner animation flicker */
+.promo-banner {
+  animation: slideDown 0.5s ease-out !important;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fix 16: Better scroll indicator */
+.scroll-indicator {
+  position: absolute !important;
+  bottom: 40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.scroll-indicator:hover {
+  transform: translateX(-50%) translateY(5px) !important;
+}
+
+.scroll-pill {
+  width: 32px !important;
+  height: 52px !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding-top: 8px !important;
+}
+
+.scroll-dot {
+  width: 6px !important;
+  height: 10px !important;
+  background: rgba(229, 203, 175, 0.9) !important;
+  border-radius: 3px !important;
+  animation: bounce 2s ease-in-out infinite !important;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.scroll-text {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-transform: uppercase !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE FIXES FOR HEADER/HERO SPACING
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Mobile adjustments (< 768px) */
+@media (max-width: 767px) {
+  #header-main {
+    padding: 10px 0 !important;
+  }
+  
+  .hero-section {
+    margin-top: 70px !important;
+    min-height: calc(100vh - 70px) !important;
+    height: calc(100vh - 70px) !important;
+    padding-top: 0 !important;
+  }
+  
+  body:not(.promo-hidden) .hero-section {
+    margin-top: 120px !important;
+    min-height: calc(100vh - 120px) !important;
+    height: calc(100vh - 120px) !important;
+  }
+  
+  .promo-banner {
+    top: 70px !important;
+    font-size: 13px !important;
+    padding: 10px 15px !important;
+  }
+  
+  .hero-headline {
+    font-size: 42px !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-subheadline {
+    font-size: 16px !important;
+  }
+}
+
+/* Tablet adjustments (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #header-main {
+    padding: 14px 0 !important;
+  }
+  
+  .hero-section {
+    margin-top: 75px !important;
+    min-height: calc(100vh - 75px) !important;
+    height: calc(100vh - 75px) !important;
+    padding-top: 0 !important;
+  }
+  
+  body:not(.promo-hidden) .hero-section {
+    margin-top: 130px !important;
+    min-height: calc(100vh - 130px) !important;
+    height: calc(100vh - 130px) !important;
+  }
+  
+  .promo-banner {
+    top: 75px !important;
+  }
+  
+  .hero-headline {
+    font-size: 56px !important;
+  }
+}
+
+/* Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .hero-section {
+    margin-top: 80px !important;
+    min-height: calc(100vh - 80px) !important;
+    height: calc(100vh - 80px) !important;
+    padding-top: 0 !important;
+  }
+  
+  body:not(.promo-hidden) .hero-section {
+    margin-top: 135px !important;
+    min-height: calc(100vh - 135px) !important;
+    height: calc(100vh - 135px) !important;
+  }
+}
+
+/* Extra fix: Ensure background layers fill the hero section */
+.hero-background,
+.hero-gradient,
+.particles-container {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}

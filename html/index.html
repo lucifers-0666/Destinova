@@ -21,6 +21,9 @@
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -76,6 +79,9 @@
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/index-fixes.css">
   <link rel="stylesheet" href="../css/header-enhancements.css">
+  <link rel="stylesheet" href="../css/hero-redesigned.css">
+  <link rel="stylesheet" href="../css/hero-fixes.css">
+  <link rel="stylesheet" href="../css/hero-breathtaking.css">
   <link rel="stylesheet" href="../css/immersive-hero.css">
   <link rel="stylesheet" href="../css/section-dividers.css">
   <link rel="stylesheet" href="../css/premium-search.css">
@@ -92,6 +98,9 @@
   <link rel="stylesheet" href="../css/premium-dividers.css">
   <link rel="stylesheet" href="../css/booking-steps-enhanced.css">
   <link rel="stylesheet" href="../css/micro-interactions.css">
+  
+  <!-- Airport Autocomplete -->
+  <link rel="stylesheet" href="../css/airport-autocomplete.css">
 </head>
 
 <body>
@@ -279,634 +288,433 @@
 
   <main id="main-content">
     <!-- ═══════════════════════════════════════════════════════════════════════════════
-         LUXURY HERO SECTION - MODERN MINIMALIST DESIGN
-         Modern • Simple • Luxurious • Clean
+         REDESIGNED HERO SECTION - Conversion-Focused & Premium
          ═══════════════════════════════════════════════════════════════════════════════ -->
-    <!-- ═══════════════════════════════════════════════════════════════════════════════
-         IMMERSIVE HERO SECTION - Emotion-Driven with Wanderlust
-         ═══════════════════════════════════════════════════════════════════════════════ -->
-    <section class="immersive-hero" id="hero-immersive">
+    
+  
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
       
-      <!-- Background Layer (Layer 1 - Deepest) -->
+      <!-- LAYER 1: Background Image/Video -->
       <div class="hero-background">
-        <!-- Image Slideshow (dynamically populated by JS) -->
-        <div class="hero-background-slideshow"></div>
-        
-        <!-- Gradient Overlay -->
-        <div class="hero-gradient-overlay"></div>
+        <picture>
+          <source srcset="../site-images/hero-bg.webp" type="image/webp">
+          <img src="../site-images/hero-bg.jpg" alt="" class="hero-image" loading="eager" fetchpriority="high">
+        </picture>
       </div>
-      
-      <!-- Particle System -->
-      <div class="hero-particles" aria-hidden="true"></div>
-      
-      <!-- Middle Layer (Layer 2 - Content Container) -->
-      <div class="hero-content-wrapper">
+
+      <!-- LAYER 2: Gradient Overlay -->
+      <div class="hero-gradient"></div>
+
+      <!-- LAYER 3: Animated Particles System -->
+      <div class="particles-container" aria-hidden="true" id="particlesContainer">
+        <!-- Particles generated via JavaScript for better performance -->
+      </div>
+
+      <!-- LAYER 4: Decorative Elements -->
+      <div class="decorative-circles" aria-hidden="true">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="hero-content">
         
-        <!-- Eyebrow Text Animation -->
-        <div class="hero-eyebrow">
-          <span class="hero-eyebrow-word">DISCOVER</span>
-          <span class="hero-eyebrow-separator">•</span>
-          <span class="hero-eyebrow-word">EXPLORE</span>
-          <span class="hero-eyebrow-separator">•</span>
-          <span class="hero-eyebrow-word">EXPERIENCE</span>
+        <!-- Eyebrow Text (Animated) -->
+        <div class="eyebrow-text" aria-hidden="true">
+          <span class="eyebrow-word">DISCOVER</span>
+          <span class="eyebrow-dot">•</span>
+          <span class="eyebrow-word">EXPLORE</span>
+          <span class="eyebrow-dot">•</span>
+          <span class="eyebrow-word">EXPERIENCE</span>
         </div>
-        
-        <!-- Main Headline with Typing Animation -->
+
+        <!-- Main Headline -->
         <h1 class="hero-headline">
-          <span class="hero-headline-line"></span><span class="typing-cursor"></span><br>
-          <span class="hero-headline-line"></span>
+          <span class="headline-line">Find Your <span class="highlight">Perfect</span> Flight</span>
+          <span class="headline-line">At Unbeatable Prices</span>
         </h1>
-        
+
         <!-- Subheadline -->
         <p class="hero-subheadline">
-          Book flights to 500+ destinations worldwide. Best prices guaranteed.
+          Book flights to 500+ destinations worldwide. Best prices guaranteed, instant confirmation.
         </p>
-        
-        <!-- Trust Micro-Indicators -->
-        <div class="hero-trust-indicators">
+
+        <!-- Trust Indicators Row -->
+        <div class="trust-indicators">
           <div class="trust-indicator">
-            <div class="trust-indicator-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+            <div class="trust-icon-container">
+              <i data-lucide="users" class="trust-icon"></i>
             </div>
-            <div class="trust-indicator-number">2M+</div>
-            <div class="trust-indicator-label">Travelers</div>
+            <div class="trust-number" data-target="2000000">0</div>
+            <div class="trust-label">Happy Travelers</div>
           </div>
           
           <div class="trust-indicator">
-            <div class="trust-indicator-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-                <path d="M2 12h20"/>
-              </svg>
+            <div class="trust-icon-container">
+              <i data-lucide="globe" class="trust-icon"></i>
             </div>
-            <div class="trust-indicator-number">500+</div>
-            <div class="trust-indicator-label">Destinations</div>
+            <div class="trust-number" data-target="500">0</div>
+            <div class="trust-label">Global Destinations</div>
           </div>
           
           <div class="trust-indicator">
-            <div class="trust-indicator-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
+            <div class="trust-icon-container">
+              <i data-lucide="star" class="trust-icon"></i>
             </div>
-            <div class="trust-indicator-number">98%</div>
-            <div class="trust-indicator-label">Satisfaction</div>
+            <div class="trust-number" data-target="4.8">0</div>
+            <div class="trust-label">Customer Rating</div>
           </div>
         </div>
-        
-        <!-- Glassmorphic Search Card -->
-        <div class="hero-search-card">
-          
-          <!-- Trip Type Tabs -->
-          <div class="trip-type-tabs">
-            <button class="trip-tab" data-trip="oneway">One-way</button>
-            <button class="trip-tab active" data-trip="roundtrip">Round-trip</button>
-            <button class="trip-tab" data-trip="multicity">Multi-city</button>
-          </div>
-          
-          <!-- Search Form -->
-          <form class="hero-search-form" id="heroSearchForm">
+
+        <!-- Search Form Container -->
+        <div class="search-form-container">
+          <form class="search-form" id="flightSearchForm" role="search" aria-label="Flight search">
             
-            <!-- From Input -->
-            <div class="search-input-group">
-              <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
-                </svg>
-              </div>
-              <label class="input-label">FROM</label>
-              <input type="text" class="search-input" id="hero-from-input" placeholder="New Delhi (DEL)" autocomplete="off">
+            <!-- Trip Type Tabs -->
+            <div class="trip-type-tabs" role="tablist">
+              <button type="button" class="trip-tab" role="tab" data-trip="oneway" aria-selected="false">
+                <i data-lucide="arrow-right"></i>
+                <span>One Way</span>
+              </button>
+              <button type="button" class="trip-tab active" role="tab" data-trip="roundtrip" aria-selected="true">
+                <i data-lucide="arrow-left-right"></i>
+                <span>Round Trip</span>
+              </button>
+              <button type="button" class="trip-tab" role="tab" data-trip="multicity" aria-selected="false">
+                <i data-lucide="route"></i>
+                <span>Multi-City</span>
+              </button>
             </div>
-            
-            <!-- To Input -->
-            <div class="search-input-group">
-              <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M2 22h20"/>
-                  <path d="m6 18 4-4 4 4 4-4 4 4"/>
-                  <path d="M2 8 6 4l4 4 4-4 4 4 4-4"/>
-                </svg>
+
+            <!-- Error Summary (Hidden by default) -->
+            <div class="error-summary" id="errorSummary" hidden role="alert" aria-live="assertive">
+              <i data-lucide="alert-triangle" class="error-summary-icon"></i>
+              <div class="error-summary-content">
+                <h3>Please fix the following errors:</h3>
+                <ul id="errorSummaryList"></ul>
               </div>
-              <label class="input-label">TO</label>
-              <input type="text" class="search-input" id="hero-to-input" placeholder="Dubai (DXB)" autocomplete="off">
+              <button type="button" class="error-summary-close" aria-label="Dismiss errors">
+                <i data-lucide="x"></i>
+              </button>
             </div>
-            
-            <!-- Dates Input -->
-            <div class="search-input-group">
-              <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                  <path d="M8 14h.01"/>
-                  <path d="M12 14h.01"/>
-                  <path d="M16 14h.01"/>
-                  <path d="M8 18h.01"/>
-                  <path d="M12 18h.01"/>
-                  <path d="M16 18h.01"/>
-                </svg>
+
+            <!-- Form Grid -->
+            <div class="form-grid">
+              
+              <!-- FROM Input -->
+              <div class="input-wrapper">
+                <label for="from" class="input-label">FROM</label>
+                <div class="input-container" data-field="from">
+                  <span class="input-icon">
+                    <i data-lucide="plane-takeoff"></i>
+                  </span>
+                  <input 
+                    type="text" 
+                    id="from" 
+                    name="from"
+                    placeholder="New Delhi (DEL)"
+                    autocomplete="off"
+                    aria-label="Departure city or airport"
+                    required
+                  >
+                  <span class="input-status-icon"></span>
+                </div>
+                <div class="error-message" role="alert"></div>
               </div>
-              <label class="input-label">TRAVEL DATES</label>
-              <input type="text" class="search-input" id="hero-dates-input" placeholder="Select dates" readonly>
+
+              <!-- TO Input -->
+              <div class="input-wrapper">
+                <label for="to" class="input-label">TO</label>
+                <div class="input-container" data-field="to">
+                  <span class="input-icon">
+                    <i data-lucide="plane-landing"></i>
+                  </span>
+                  <input 
+                    type="text" 
+                    id="to" 
+                    name="to"
+                    placeholder="Dubai (DXB)"
+                    autocomplete="off"
+                    aria-label="Destination city or airport"
+                    required
+                  >
+                  <span class="input-status-icon"></span>
+                </div>
+                <div class="error-message" role="alert"></div>
+              </div>
+
+              <!-- DATES Input -->
+              <div class="input-wrapper">
+                <label for="dates" class="input-label">TRAVEL DATES</label>
+                <div class="input-container" data-field="dates">
+                  <span class="input-icon">
+                    <i data-lucide="calendar-days"></i>
+                  </span>
+                  <input 
+                    type="text" 
+                    id="dates" 
+                    name="dates"
+                    placeholder="Select dates"
+                    autocomplete="off"
+                    readonly
+                    aria-label="Select travel dates"
+                    required
+                  >
+                  <span class="input-status-icon"></span>
+                </div>
+                <div class="error-message" role="alert"></div>
+              </div>
+
+              <!-- TRAVELERS Input -->
+              <div class="input-wrapper">
+                <label for="travelers" class="input-label">TRAVELERS</label>
+                <div class="input-container" data-field="travelers">
+                  <span class="input-icon">
+                    <i data-lucide="users"></i>
+                  </span>
+                  <input 
+                    type="text" 
+                    id="travelers" 
+                    name="travelers"
+                    placeholder="1 Adult, Economy"
+                    autocomplete="off"
+                    readonly
+                    aria-label="Select number of travelers and class"
+                    required
+                  >
+                  <span class="input-status-icon"></span>
+                </div>
+                <div class="error-message" role="alert"></div>
+              </div>
+
+              <!-- SEARCH Button -->
+              <button type="submit" class="search-button" id="searchButton">
+                <i data-lucide="search" class="search-icon"></i>
+                <span class="search-text">Search Flights</span>
+                <span class="button-shimmer"></span>
+              </button>
             </div>
-            
-            <!-- Travelers Input -->
-            <div class="search-input-group">
-              <div class="input-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-              </div>
-              <label class="input-label">TRAVELERS</label>
-              <input type="text" class="search-input" id="hero-travelers-input" placeholder="1 Adult" readonly>
-            </div>
-            
-            <!-- Search Button -->
-            <button type="button" class="search-button">
-              <div class="search-button-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="m21 21-4.35-4.35"/>
-                </svg>
-              </div>
-              <span class="search-button-text">Search Flights</span>
+
+            <!-- Swap Button (Between FROM and TO) -->
+            <button type="button" class="swap-button" aria-label="Swap departure and destination" id="swapButton">
+              <i data-lucide="repeat"></i>
             </button>
-            
+
+            <!-- Quick Filters -->
+            <div class="quick-filters">
+              <label class="filter-checkbox">
+                <input type="checkbox" name="direct" value="1" id="directFlights">
+                <span class="checkbox-custom"></span>
+                <i data-lucide="zap" class="filter-icon"></i>
+                <span>Direct flights only</span>
+              </label>
+              
+              <label class="filter-checkbox">
+                <input type="checkbox" name="nearby" value="1" id="nearbyAirports">
+                <span class="checkbox-custom"></span>
+                <i data-lucide="map-pin" class="filter-icon"></i>
+                <span>Search nearby airports</span>
+              </label>
+              
+              <label class="filter-checkbox">
+                <input type="checkbox" name="flexible" value="1" id="flexibleDates">
+                <span class="checkbox-custom"></span>
+                <i data-lucide="calendar" class="filter-icon"></i>
+                <span>Flexible dates (±3 days)</span>
+              </label>
+            </div>
+
+            <!-- Popular Routes -->
+            <div class="popular-routes">
+              <span class="routes-label">Popular Routes:</span>
+              <button type="button" class="route-pill" data-from="Mumbai" data-to="Dubai" data-from-code="BOM" data-to-code="DXB">
+                <i data-lucide="plane" class="route-icon"></i>
+                Mumbai → Dubai
+              </button>
+              <button type="button" class="route-pill" data-from="Delhi" data-to="London" data-from-code="DEL" data-to-code="LHR">
+                <i data-lucide="plane" class="route-icon"></i>
+                Delhi → London
+              </button>
+              <button type="button" class="route-pill" data-from="Bangalore" data-to="Singapore" data-from-code="BLR" data-to-code="SIN">
+                <i data-lucide="plane" class="route-icon"></i>
+                Bangalore → Singapore
+              </button>
+              <button type="button" class="route-pill" data-from="Chennai" data-to="Bangkok" data-from-code="MAA" data-to-code="BKK">
+                <i data-lucide="plane" class="route-icon"></i>
+                Chennai → Bangkok
+              </button>
+              <button type="button" class="route-pill" data-from="Hyderabad" data-to="Dubai" data-from-code="HYD" data-to-code="DXB">
+                <i data-lucide="plane" class="route-icon"></i>
+                Hyderabad → Dubai
+              </button>
+              <button type="button" class="route-pill" data-from="Mumbai" data-to="New York" data-from-code="BOM" data-to-code="JFK">
+                <i data-lucide="plane" class="route-icon"></i>
+                Mumbai → New York
+              </button>
+            </div>
           </form>
-          
-          <!-- Advanced Options Toggle -->
-          <div class="advanced-options-toggle">
-            <button class="advanced-toggle-btn">
-              <span>Advanced Search Options</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-          </div>
-          
-          <!-- Advanced Options Panel (collapsed by default) -->
-          <div class="advanced-options-panel">
-            <div class="advanced-options-content">
-              <!-- Advanced filters will be added here dynamically -->
-              <div style="text-align: center; padding: 20px; color: rgba(255,255,255,0.7);">
-                Advanced options coming soon
-              </div>
-            </div>
-          </div>
-          
-          <!-- Quick Search Shortcuts -->
-          <div class="quick-shortcuts">
-            <span class="shortcuts-label">Popular:</span>
-            <button class="shortcut-pill">Mumbai → Dubai</button>
-            <button class="shortcut-pill">Delhi → London</button>
-            <button class="shortcut-pill">Bangalore → Singapore</button>
-            <button class="shortcut-pill">Chennai → Bangkok</button>
-            <button class="shortcut-pill">Hyderabad → Dubai</button>
-          </div>
-          
         </div>
-        
+
       </div>
-      
-      <!-- Foreground Layer (Layer 3 - Decorative Airplanes) -->
-      <div class="hero-decorative-layer" aria-hidden="true">
-        <!-- Decorative airplane elements (optional) -->
-      </div>
-      
+
       <!-- Scroll Indicator -->
       <div class="scroll-indicator" role="button" tabindex="0" aria-label="Scroll down to explore">
         <div class="scroll-pill">
           <div class="scroll-dot"></div>
         </div>
-        <div class="scroll-text">Scroll to Explore</div>
+        <span class="scroll-text">Scroll to Explore</span>
       </div>
-      
+
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════════════════════
-         OLD HERO SECTION - KEPT FOR BACKUP (HIDDEN)
-         ═══════════════════════════════════════════════════════════════════════════════ -->
-    <section class="home-hero" id="hero-section" style="display: none;">
-      <!-- Vanta.js Animated Background -->
-      <div class="home-hero-vanta-bg" id="vanta-bg"></div>
-
-      <!-- Multi-Layer Gradient Overlay -->
-      <div class="home-hero-overlay-layers">
-        <div class="overlay-layer layer-1"></div>
-        <div class="overlay-layer layer-2"></div>
-        <div class="overlay-layer layer-3"></div>
+    <!-- Autocomplete Dropdown -->
+    <div class="autocomplete-dropdown" id="autocompleteDropdown" hidden role="listbox">
+      <div class="autocomplete-content" id="autocompleteContent">
+        <!-- Dynamic content populated via JavaScript -->
       </div>
+    </div>
 
-      <!-- Hero Content Wrapper (60/40 Split) -->
-      <div class="home-hero-content-wrapper">
-        <!-- Left Content (60%) -->
-        <div class="home-hero-content-left">
-          <span class="hero-label">
-            <i class="fas fa-star"></i>
-            Award-Winning Flight Booking Platform
-          </span>
-          <h1 class="hero-title-gradient">
-            Your Journey,
-            <span class="gradient-text-hero">Reimagined.</span>
-          </h1>
-          <p class="hero-subtitle">
-            Discover and book flights to over 500 destinations worldwide with unbeatable prices, instant confirmation, and 24/7 premium support.
-          </p>
-
-          <!-- Trust Stats (Animated Counters) -->
-          <div class="hero-trust-stats">
-            <div class="stat-item-hero">
-              <div class="stat-icon-hero"><i class="fas fa-users"></i></div>
-              <div class="stat-content-hero">
-                <span class="stat-number-hero" data-count="2.5">0</span>
-                <span class="stat-label-hero">Million Users</span>
-              </div>
-            </div>
-            <div class="stat-divider-hero"></div>
-            <div class="stat-item-hero">
-              <div class="stat-icon-hero"><i class="fas fa-star"></i></div>
-              <div class="stat-content-hero">
-                <span class="stat-number-hero" data-count="4.8">0</span>
-                <span class="stat-label-hero">Customer Rating</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Secondary Action Buttons -->
-          <div class="hero-secondary-actions">
-            <a href="#home-destinations" class="hero-btn-explore">
-              <i class="fas fa-compass"></i>
-              Explore Destinations
-            </a>
-            <a href="#" class="hero-btn-app">
-              <i class="fab fa-apple"></i>
-              Get the App
-              <div class="qr-tooltip">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com/app" alt="QR Code for App">
-                <p>Scan to Download</p>
-              </div>
-            </a>
+    <!-- Date Picker Modal -->
+    <div class="date-picker-modal" id="datePickerModal" hidden role="dialog" aria-modal="true" aria-labelledby="datePickerTitle">
+      <div class="date-picker-overlay"></div>
+      <div class="date-picker-content">
+        <div class="date-picker-header">
+          <h3 id="datePickerTitle" class="date-range-display">Select dates</h3>
+          <div class="month-navigation">
+            <button type="button" class="month-nav-btn" id="prevMonth" aria-label="Previous month">
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <button type="button" class="month-nav-btn" id="nextMonth" aria-label="Next month">
+              <i data-lucide="chevron-right"></i>
+            </button>
           </div>
         </div>
+        <div class="calendars-container" id="calendarsContainer">
+          <!-- Calendar grids generated via JavaScript -->
+        </div>
+        <div class="quick-select-options">
+          <button type="button" class="quick-select-btn" data-days="2">This Weekend</button>
+          <button type="button" class="quick-select-btn" data-days="7">Next Week</button>
+          <button type="button" class="quick-select-btn" data-days="30">Next Month</button>
+          <button type="button" class="quick-select-btn" data-flexible="true">Flexible (±3 days)</button>
+        </div>
+        <div class="date-picker-actions">
+          <button type="button" class="date-action-btn clear-btn" id="clearDates">Clear</button>
+          <button type="button" class="date-action-btn apply-btn" id="applyDates" disabled>Apply</button>
+        </div>
+      </div>
+    </div>
 
-        <!-- Right Content: Glassmorphism Search Widget (40%) -->
-        <div class="home-hero-search-widget">
-          <div class="search-widget-glass">
-            <div class="widget-header">
-              <h2 class="widget-title"><i class="fas fa-plane-departure"></i> Find Your Flight</h2>
-              <div class="widget-tabs">
-                <button class="tab-btn active" data-tab="round-trip"><i class="fas fa-retweet"></i> Round Trip</button>
-                <button class="tab-btn" data-tab="one-way"><i class="fas fa-arrow-right"></i> One-way</button>
-              </div>
+    <!-- Travelers Dropdown -->
+    <div class="travelers-dropdown" id="travelersDropdown" hidden role="dialog" aria-modal="true">
+      <div class="travelers-content">
+        <!-- Passenger Counters -->
+        <div class="passenger-counters">
+          <div class="passenger-row">
+            <div class="passenger-info">
+              <div class="passenger-label">Adults</div>
+              <div class="passenger-sublabel">12+ years</div>
             </div>
-
-            <form class="widget-form" id="hero-search-form">
-              <div class="form-row from-to-row">
-                <div class="form-field">
-                  <label for="hero-from"><i class="fas fa-plane-departure"></i> From</label>
-                  <input type="text" id="hero-from" placeholder="e.g., New York">
-                </div>
-                <button type="button" class="swap-locations-btn" id="swap-btn-hero" aria-label="Swap locations">
-                  <i class="fas fa-exchange-alt"></i>
-                </button>
-                <div class="form-field">
-                  <label for="hero-to"><i class="fas fa-plane-arrival"></i> To</label>
-                  <input type="text" id="hero-to" placeholder="e.g., London">
-                </div>
-              </div>
-
-              <div class="form-row date-row">
-                <div class="form-field">
-                  <label for="hero-departure"><i class="fas fa-calendar-alt"></i> Depart</label>
-                  <input type="date" id="hero-departure">
-                </div>
-                <div class="form-field return-date">
-                  <label for="hero-return"><i class="fas fa-calendar-alt"></i> Return</label>
-                  <input type="date" id="hero-return">
-                </div>
-              </div>
-
-              <div class="form-field">
-                <label for="passengers-toggle-hero"><i class="fas fa-users"></i> Passengers & Class</label>
-                <button type="button" class="passengers-btn" id="passengers-toggle-hero">
-                  <span id="passengers-display-hero">1 Passenger, Economy</span>
-                  <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="passengers-dropdown" id="passengers-dropdown-hero">
-                  <div class="passenger-counter">
-                    <label>Adults (12+)</label>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-action="decrease" data-type="adults" disabled>-</button>
-                      <span class="counter-value" id="adults-count-hero">1</span>
-                      <button type="button" class="counter-btn" data-action="increase" data-type="adults">+</button>
-                    </div>
-                  </div>
-                  <div class="passenger-counter">
-                    <label>Children (2-11)</label>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-action="decrease" data-type="children" disabled>-</button>
-                      <span class="counter-value" id="children-count-hero">0</span>
-                      <button type="button" class="counter-btn" data-action="increase" data-type="children">+</button>
-                    </div>
-                  </div>
-                  <div class="passenger-counter">
-                    <label>Infants (under 2)</label>
-                    <div class="counter-controls">
-                      <button type="button" class="counter-btn" data-action="decrease" data-type="infants" disabled>-</button>
-                      <span class="counter-value" id="infants-count-hero">0</span>
-                      <button type="button" class="counter-btn" data-action="increase" data-type="infants">+</button>
-                    </div>
-                  </div>
-                  <div class="class-selector">
-                    <button type="button" class="class-btn active" data-class="Economy">Economy</button>
-                    <button type="button" class="class-btn" data-class="Premium">Premium</button>
-                    <button type="button" class="class-btn" data-class="Business">Business</button>
-                    <button type="button" class="class-btn" data-class="First">First</button>
-                  </div>
-                  <button type="button" class="done-btn" id="passengers-done-hero">Done</button>
-                </div>
-              </div>
-
-              <button type="submit" class="hero-search-btn">
-                <div class="btn-glow"></div>
-                <i class="fas fa-search"></i>
-                <span>Search Flights</span>
+            <div class="counter-controls">
+              <button type="button" class="counter-btn minus-btn" data-passenger="adults" data-action="minus">
+                <i data-lucide="minus"></i>
               </button>
-            </form>
-
-            <!-- Popular Routes Quick Select -->
-            <div class="popular-routes-quick-select" id="popular-routes-quick-select">
-              <div class="quick-select-header">
-                <h4><i class="fas fa-fire"></i> Popular Routes</h4>
-                <button class="scroll-hint-btn" id="scroll-hint-routes" aria-label="Scroll routes">
-                  <i class="fas fa-arrow-right"></i>
-                </button>
-              </div>
-              <div class="routes-scroll-container" id="routes-scroll-container">
-                <div class="route-quick-card" data-from="New York" data-to="London" data-price="299">
-                  <div class="route-info">
-                    <div class="route-cities">
-                      <span class="city-from">NYC</span> <i class="fas fa-plane"></i> <span class="city-to">LON</span>
-                    </div>
-                    <div class="route-airlines">
-                      <img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways">
-                      <img src="https://images.kiwi.com/airlines/64/VS.png" alt="Virgin Atlantic">
-                    </div>
-                  </div>
-                  <div class="route-price">
-                    <span class="price-label">From</span>
-                    <span class="price-amount">$299</span>
-                  </div>
-                </div>
-                <div class="route-quick-card" data-from="Los Angeles" data-to="Tokyo" data-price="449">
-                  <div class="route-info">
-                    <div class="route-cities">
-                      <span class="city-from">LAX</span> <i class="fas fa-plane"></i> <span class="city-to">NRT</span>
-                    </div>
-                    <div class="route-airlines">
-                      <img src="https://images.kiwi.com/airlines/64/JL.png" alt="Japan Airlines">
-                      <img src="https://images.kiwi.com/airlines/64/NH.png" alt="ANA">
-                    </div>
-                  </div>
-                  <div class="route-price">
-                    <span class="price-label">From</span>
-                    <span class="price-amount">$449</span>
-                  </div>
-                </div>
-                <div class="route-quick-card" data-from="Dubai" data-to="Paris" data-price="250">
-                  <div class="route-info">
-                    <div class="route-cities">
-                      <span class="city-from">DXB</span> <i class="fas fa-plane"></i> <span class="city-to">CDG</span>
-                    </div>
-                    <div class="route-airlines">
-                      <img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates">
-                      <img src="https://images.kiwi.com/airlines/64/AF.png" alt="Air France">
-                    </div>
-                  </div>
-                  <div class="route-price">
-                    <span class="price-label">From</span>
-                    <span class="price-amount">$250</span>
-                  </div>
-                </div>
-              </div>
+              <span class="counter-value" id="adultsCount">1</span>
+              <button type="button" class="counter-btn plus-btn" data-passenger="adults" data-action="plus">
+                <i data-lucide="plus"></i>
+              </button>
             </div>
+          </div>
 
+          <div class="passenger-row">
+            <div class="passenger-info">
+              <div class="passenger-label">Children</div>
+              <div class="passenger-sublabel">2-12 years</div>
+            </div>
+            <div class="counter-controls">
+              <button type="button" class="counter-btn minus-btn" data-passenger="children" data-action="minus">
+                <i data-lucide="minus"></i>
+              </button>
+              <span class="counter-value" id="childrenCount">0</span>
+              <button type="button" class="counter-btn plus-btn" data-passenger="children" data-action="plus">
+                <i data-lucide="plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="passenger-row">
+            <div class="passenger-info">
+              <div class="passenger-label">Infants</div>
+              <div class="passenger-sublabel">Under 2 years</div>
+            </div>
+            <div class="counter-controls">
+              <button type="button" class="counter-btn minus-btn" data-passenger="infants" data-action="minus">
+                <i data-lucide="minus"></i>
+              </button>
+              <span class="counter-value" id="infantsCount">0</span>
+              <button type="button" class="counter-btn plus-btn" data-passenger="infants" data-action="plus">
+                <i data-lucide="plus"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Scroll Down Indicator -->
-      <div class="scroll-indicator">
-        <div class="scroll-mouse">
-          <div class="scroll-wheel"></div>
+        <!-- Class Selector -->
+        <div class="class-selector">
+          <div class="class-label">Cabin Class</div>
+          <div class="class-options">
+            <button type="button" class="class-option active" data-class="economy">
+              <i data-lucide="armchair"></i>
+              <span>Economy</span>
+            </button>
+            <button type="button" class="class-option" data-class="premium-economy">
+              <i data-lucide="sofa"></i>
+              <span>Premium Economy</span>
+            </button>
+            <button type="button" class="class-option" data-class="business">
+              <i data-lucide="briefcase"></i>
+              <span>Business</span>
+            </button>
+            <button type="button" class="class-option" data-class="first">
+              <i data-lucide="crown"></i>
+              <span>First Class</span>
+            </button>
+          </div>
         </div>
-        <p>Scroll Down</p>
-      </div>
-    </section>
 
-    <!-- Elegant Divider: Hero → Search -->
+        <!-- Apply Button -->
+        <button type="button" class="travelers-apply-btn" id="applyTravelers">
+          Apply
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification" hidden role="status" aria-live="polite">
+      <i data-lucide="check-circle" class="toast-icon"></i>
+      <span class="toast-message"></span>
+    </div>
+
+    <!-- Elegant Divider: Hero → Premium Features -->
     <div class="section-divider wave-divider">
       <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
         <path class="wave-path" d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z"></path>
       </svg>
     </div>
-
-    <!-- ============================================= -->
-    <!-- PREMIUM FLIGHT SEARCH SECTION - 10/10 DESIGN -->
-    <!-- ============================================= -->
-    <section class="premium-search-section" id="premium-search">
-      <div class="premium-search-container">
-        
-        <!-- Promo Banner -->
-        <div class="promo-banner-top">
-          <i class="fas fa-tags"></i>
-          <span>Use code <span class="promo-code-highlight">FLY15</span> for 15% off on your next booking!</span>
-          <a href="offers.html" class="promo-link">View All Offers</a>
-        </div>
-
-        <!-- Main Search Card -->
-        <div class="premium-search-card">
-          
-          <!-- Trip Type Tabs Row -->
-          <div class="trip-type-tabs-row">
-            <div class="trip-type-tabs">
-              <button class="trip-tab-button" data-trip-type="one-way">
-                <i class="fas fa-arrow-right"></i>
-                One Way
-              </button>
-              <button class="trip-tab-button active" data-trip-type="round-trip">
-                <i class="fas fa-retweet"></i>
-                Round Trip
-              </button>
-              <button class="trip-tab-button" data-trip-type="multi-city">
-                <i class="fas fa-random"></i>
-                Multi-City
-              </button>
-            </div>
-            <button class="recent-searches-btn">
-              <i class="fas fa-history"></i>
-              Recent Searches
-            </button>
-          </div>
-
-          <form id="premium-search-form">
-            <!-- Main Search Inputs Grid -->
-            <div class="search-inputs-grid">
-              <!-- From -->
-              <div class="search-input-group">
-                <label class="search-input-label">
-                  <i class="fas fa-plane-departure"></i>
-                  From
-                </label>
-                <input type="text" class="search-input-field" placeholder="e.g., Delhi" id="from-input" required>
-                <span class="airport-code-hint">Enter origin city or airport</span>
-              </div>
-
-              <!-- Swap Button -->
-              <button type="button" class="swap-locations-btn" aria-label="Swap locations">
-                <i class="fas fa-exchange-alt"></i>
-              </button>
-
-              <!-- To -->
-              <div class="search-input-group">
-                <label class="search-input-label">
-                  <i class="fas fa-plane-arrival"></i>
-                  To
-                </label>
-                <input type="text" class="search-input-field" placeholder="Mumbai" value="Mumbai" id="to-input" required>
-                <span class="airport-code-hint">BOM, Chhatrapati Shivaji International Airport</span>
-              </div>
-
-              <!-- Departure -->
-              <div class="search-input-group">
-                <label class="search-input-label">
-                  <i class="fas fa-calendar-alt"></i>
-                  Departure
-                </label>
-                <input type="date" class="search-input-field" id="departure-input" required>
-              </div>
-
-              <!-- Return -->
-              <div class="search-input-group" id="return-input-wrapper">
-                <label class="search-input-label">
-                  <i class="fas fa-calendar-alt"></i>
-                  Return
-                </label>
-                <input type="date" class="search-input-field" id="return-input">
-              </div>
-
-              <!-- Travelers & Class -->
-              <div class="search-input-group">
-                <label class="search-input-label">
-                  <i class="fas fa-user"></i>
-                  Travellers & Class
-                </label>
-                <input type="text" class="search-input-field" value="1 Adult, Economy" id="travelers-input" readonly style="cursor: pointer;">
-              </div>
-            </div>
-
-            <!-- Fare Type Row -->
-            <div class="fare-type-row">
-              <span class="fare-type-label">Select a fare type:</span>
-              <div class="fare-type-options">
-                <label class="fare-type-radio">
-                  <input type="radio" name="fare-type" value="regular" checked>
-                  <i class="fas fa-tag"></i>
-                  <span>Regular</span>
-                </label>
-                <label class="fare-type-radio">
-                  <input type="radio" name="fare-type" value="student">
-                  <i class="fas fa-user-graduate"></i>
-                  <span>Student</span>
-                </label>
-                <label class="fare-type-radio">
-                  <input type="radio" name="fare-type" value="senior">
-                  <i class="fas fa-user-friends"></i>
-                  <span>Senior Citizen</span>
-                </label>
-                <label class="fare-type-radio">
-                  <input type="radio" name="fare-type" value="forces">
-                  <i class="fas fa-shield-alt"></i>
-                  <span>Armed Forces</span>
-                </label>
-                <label class="fare-type-radio">
-                  <input type="radio" name="fare-type" value="corporate">
-                  <i class="fas fa-briefcase"></i>
-                  <span>Corporate</span>
-                </label>
-              </div>
-              <div class="currency-selector-wrapper">
-                <select class="currency-select" id="currency-select">
-                  <option value="INR" selected>INR</option>
-                  <option value="USD">USD</option>
-                  <option value="EUR">EUR</option>
-                  <option value="GBP">GBP</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Extra Options Row -->
-            <div class="extra-options-row">
-              <label class="extra-option-checkbox">
-                <input type="checkbox" id="direct-flights">
-                <span>Direct flights only</span>
-              </label>
-              <label class="extra-option-checkbox">
-                <input type="checkbox" id="nearby-airports">
-                <span>Search nearby airports</span>
-              </label>
-              <label class="extra-option-checkbox">
-                <input type="checkbox" id="flexible-dates">
-                <span>Flexible Dates (±3 days)</span>
-              </label>
-            </div>
-
-            <!-- Search Button -->
-            <button type="submit" class="search-submit-button">
-              <i class="fas fa-search"></i>
-              <span>SEARCH</span>
-            </button>
-          </form>
-
-          <!-- Trust Badges Bottom -->
-          <div class="trust-badges-bottom">
-            <div class="trust-badge-item">
-              <i class="fas fa-shield-check"></i>
-              <span>SSL Secured</span>
-            </div>
-            <div class="trust-badge-item">
-              <i class="fas fa-certificate"></i>
-              <span>IATA Certified</span>
-            </div>
-            <div class="trust-badge-item">
-              <i class="fas fa-headset"></i>
-              <span>24/7 Support</span>
-            </div>
-          </div>
-
-        </div>
+  <!-- Promo Banner (Optional) -->
+    <div class="promo-banner" id="promoBanner">
+      <div class="promo-content">
+        <i data-lucide="tag" class="promo-icon"></i>
+        <span>Use code <strong>FLY15</strong> for 15% off on your next booking!</span>
+        <a href="../html/offers.html" class="promo-link">View All Offers</a>
       </div>
-    </section>
-
-    <!-- Elegant Divider: Search → Premium Features -->
-    <div class="section-divider decorative-line">
-      <div class="decorative-line-content">
-        <div class="decorative-line-icon">
-          <i class="fas fa-plane"></i>
-        </div>
-      </div>
+      <button class="promo-close" aria-label="Close banner" id="promoClose">
+        <i data-lucide="x"></i>
+      </button>
     </div>
-
     <!-- ============================================= -->
     <!-- PREMIUM FEATURES SECTION - 10/10 DESIGN -->
     <!-- ============================================= -->
@@ -4662,8 +4470,16 @@
   <!-- Flatpickr JS for Date Picker -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   
-  <!-- Immersive Hero Section JS -->
-  <script src="../js/immersive-hero.js"></script>
+  <!-- Redesigned Hero Section JS -->
+  <script src="../js/hero-redesigned.js"></script>
+  
+  <!-- Breathtaking Hero Section JS (Enhanced) -->
+  <script src="../js/hero-breathtaking.js"></script>
+  
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
   
   <!-- Premium Search Section JS -->
   <script src="../js/premium-search.js"></script>
@@ -4693,6 +4509,10 @@
 
   <!-- Header Enhancements JS -->
   <script src="../js/header-enhancements.js"></script>
+
+  <!-- Flight API & Airport Autocomplete -->
+  <script src="../js/flight-api.js"></script>
+  <script src="../js/airport-autocomplete.js"></script>
 
   <script src="../js/index.js"></script>
   <script src="../js/index-enhancements.js"></script>
