@@ -2,25 +2,7 @@
 
 # ✈️ Destinova - Premium Flight Booking Platform
 
-[![HTML5](https://img.shields.io/badg### 👤 User Features
-- **Authentication**: Sign in, sign up, password recovery with email validation + **Premium Animations** (New!)
-- **My Bookings**: View, modify, cancel bookings with real-time updates
-- **Profile**: Manage personal info, security settings (password, 2FA), preferences, activity log
-- **Payment History**: Track all transactions with downloadable receipts
-- **Search History**: LocalStorage persistence with recent searches
-- **Airport Autocomplete**: Smart search across **9000+ airports worldwide** with real-time suggestions (New!)
-- **Flight API Integration**: Live airport data with country, state, city information (New!)
-
-### 🔧 Complete Admin Panel (9 Pages)
-- **Dashboard**: Live statistics, interactive charts (Chart.js), quick actions, activity feed
-- **Bookings Management**: Advanced filters, search, export to CSV, view/edit/cancel operations
-- **Flight Management**: Add/edit/delete flights, pricing, seat availability, route management
-- **User Management**: Complete CRUD operations on user accounts with role assignments
-- **Revenue Reports**: Financial analytics with charts and detailed breakdowns
-- **Refund Management**: Process refund requests with approval workflow and history
-- **Notification Management**: Send system-wide alerts and notifications to users
-- **Settings (10 Tabs)**: General, Payment (PayPal/Stripe/Razorpay), Email (SMTP), SMS, Flight, User, Security (2FA/Audit), Backup, API, Appearance (Dark Mode/Custom CSS)
-- **Admin Profile**: Personal info, password change, 2FA setup, preferences, activity trackingF26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -50,6 +32,28 @@
 | **Animations** | Premium CSS Animations & Micro-interactions (New!) |
 
 </div>
+
+---
+
+## 👤 User Features
+- **Authentication**: Sign in, sign up, password recovery with email validation + **Premium Animations** (New!)
+- **My Bookings**: View, modify, cancel bookings with real-time updates
+- **Profile**: Manage personal info, security settings (password, 2FA), preferences, activity log
+- **Payment History**: Track all transactions with downloadable receipts
+- **Search History**: LocalStorage persistence with recent searches
+- **Airport Autocomplete**: Smart search across **9000+ airports worldwide** with real-time suggestions (New!)
+- **Flight API Integration**: Live airport data with country, state, city information (New!)
+
+## 🔧 Complete Admin Panel (9 Pages)
+- **Dashboard**: Live statistics, interactive charts (Chart.js), quick actions, activity feed
+- **Bookings Management**: Advanced filters, search, export to CSV, view/edit/cancel operations
+- **Flight Management**: Add/edit/delete flights, pricing, seat availability, route management
+- **User Management**: Complete CRUD operations on user accounts with role assignments
+- **Revenue Reports**: Financial analytics with charts and detailed breakdowns
+- **Refund Management**: Process refund requests with approval workflow and history
+- **Notification Management**: Send system-wide alerts and notifications to users
+- **Settings (10 Tabs)**: General, Payment (PayPal/Stripe/Razorpay), Email (SMTP), SMS, Flight, User, Security (2FA/Audit), Backup, API, Appearance (Dark Mode/Custom CSS)
+- **Admin Profile**: Personal info, password change, 2FA setup, preferences, activity tracking
 
 ---
 
