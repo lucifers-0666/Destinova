@@ -16,6 +16,7 @@ const HeroApp = {
     to: '',
     departureDate: null,
     returnDate: null,
+    currentMonth: new Date(), // Track current month being displayed
     adults: 1,
     children: 0,
     infants: 0,
@@ -403,9 +404,19 @@ function openDatePicker() {
   const modal = document.getElementById('datePickerModal');
   if (!modal) return;
   
+  // Reset to current month when opening
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  HeroApp.state.currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  
   modal.removeAttribute('hidden');
   renderCalendars();
   setupDatePickerEvents();
+  
+  // Re-initialize Lucide icons for the modal
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 }
 
 function closeDatePicker() {
@@ -419,12 +430,12 @@ function renderCalendars() {
   const container = document.getElementById('calendarsContainer');
   if (!container) return;
   
-  const today = new Date();
-  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  const currentMonth = HeroApp.state.currentMonth;
+  const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
   
   container.innerHTML = `
     <div class="calendar-month">
-      ${renderMonth(today)}
+      ${renderMonth(currentMonth)}
     </div>
     <div class="calendar-month">
       ${renderMonth(nextMonth)}
@@ -553,6 +564,9 @@ function setupDatePickerEvents() {
   const clearBtn = document.getElementById('clearDates');
   const applyBtn = document.getElementById('applyDates');
   const overlay = document.querySelector('.date-picker-overlay');
+  const closeBtn = document.getElementById('closeDatePicker');
+  const prevMonthBtn = document.getElementById('prevMonth');
+  const nextMonthBtn = document.getElementById('nextMonth');
   
   if (clearBtn) {
     clearBtn.onclick = () => {
@@ -575,6 +589,59 @@ function setupDatePickerEvents() {
   if (overlay) {
     overlay.onclick = closeDatePicker;
   }
+  
+  if (closeBtn) {
+    closeBtn.onclick = closeDatePicker;
+  }
+  
+  if (prevMonthBtn) {
+    prevMonthBtn.onclick = () => {
+      const currentMonth = HeroApp.state.currentMonth;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      // Don't allow going to months before current month
+      const prevMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+      if (prevMonth >= new Date(today.getFullYear(), today.getMonth(), 1)) {
+        HeroApp.state.currentMonth = prevMonth;
+        renderCalendars();
+      }
+    };
+  }
+  
+  if (nextMonthBtn) {
+    nextMonthBtn.onclick = () => {
+      const currentMonth = HeroApp.state.currentMonth;
+      HeroApp.state.currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+      renderCalendars();
+    };
+  }
+  
+  // Quick select buttons
+  const quickSelectBtns = document.querySelectorAll('.quick-select-btn');
+  quickSelectBtns.forEach(btn => {
+    btn.onclick = () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (btn.dataset.days) {
+        const days = parseInt(btn.dataset.days);
+        HeroApp.state.departureDate = new Date(today);
+        HeroApp.state.returnDate = new Date(today);
+        HeroApp.state.returnDate.setDate(today.getDate() + days);
+        renderCalendars();
+        updateDateDisplay();
+      } else if (btn.dataset.flexible) {
+        // For flexible dates, just set a date range for next week
+        HeroApp.state.departureDate = new Date(today);
+        HeroApp.state.departureDate.setDate(today.getDate() + 7);
+        HeroApp.state.returnDate = new Date(HeroApp.state.departureDate);
+        HeroApp.state.returnDate.setDate(HeroApp.state.departureDate.getDate() + 3);
+        renderCalendars();
+        updateDateDisplay();
+      }
+    };
+  });
 }
 
 function formatDate(date) {

@@ -176,28 +176,30 @@ body, html {
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 24px 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 28px 0;
   background: transparent;
+  border-bottom: 1px solid transparent;
 }
 
 #header-main.header-scrolled {
-  background: var(--glass-white);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 10px 40px rgba(29, 94, 51, 0.08), 
-              0 0 0 1px rgba(229, 203, 175, 0.1);
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(229, 203, 175, 0.2);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .header-nav-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
+  position: relative;
 }
 
 .header-logo h1 {
@@ -207,7 +209,7 @@ body, html {
   color: #ffffff;
   letter-spacing: 2px;
   transition: all 0.4s ease;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   position: relative;
 }
 
@@ -235,12 +237,12 @@ body, html {
 
 #header-main.header-scrolled .header-logo span {
   color: var(--gold-rich);
-  text-shadow: 0 1px 3px rgba(201, 168, 119, 0.5);
+  text-shadow: none;
 }
 
 .header-logo span {
   color: var(--champagne-gold);
-  text-shadow: 0 2px 8px rgba(229, 203, 175, 0.8);
+  text-shadow: 0 2px 12px rgba(229, 203, 175, 0.9);
   font-weight: 800;
 }
 
@@ -249,8 +251,10 @@ body, html {
   list-style: none;
   align-items: center;
   justify-content: center;
-  flex-grow: 1; /* Allow this element to grow and fill space */
-  gap: 1rem; /* Add space between nav items */
+  gap: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header-desktop-nav li {
@@ -263,57 +267,58 @@ body, html {
   gap: 8px;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 10px 16px;
-  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10px 20px;
+  font-size: 15px;
   position: relative;
-  color: var(--white);
-  border-radius: 50px;
+  color: #ffffff;
+  border-radius: 30px;
   border: 1px solid transparent;
 }
 
 /* --- NEW: Active Page & Modern Hover Effects --- */
 
-/* ━━━ Active Link Style (Top of page) ━━━ */
+/* ━━━ Active Link Style (Top of page - Transparent Header) ━━━ */
 .header-desktop-nav li a.nav-active {
-  padding: 10px 28px;
-  background: var(--gradient-gold);
-  color: var(--primary-emerald);
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 4px 20px rgba(229, 203, 175, 0.4),
-              0 0 0 1px rgba(229, 203, 175, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
-/* ━━━ Hover Style for Non-active Links (Top of page) ━━━ */
+/* ━━━ Hover Style for Non-active Links (Top of page - Transparent Header) ━━━ */
 .header-desktop-nav li a:hover,
 .header-desktop-nav li a:focus {
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--white);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
 #header-main.header-scrolled .header-desktop-nav li a {
-  color: var(--text-charcoal);
+  color: #2d3748;
   font-weight: 500;
 }
 
-/* ━━━ Active Link Style (Scrolled) ━━━ */
+/* ━━━ Active Link Style (Scrolled - White Header) ━━━ */
 #header-main.header-scrolled .header-desktop-nav li a.nav-active {
-  background: var(--gradient-emerald);
-  color: var(--white);
-  box-shadow: 0 4px 20px rgba(29, 94, 51, 0.3),
-              0 0 0 1px rgba(29, 94, 51, 0.2);
+  background: var(--primary-emerald);
+  color: #ffffff;
+  border: 1px solid var(--primary-emerald);
+  box-shadow: 0 4px 16px rgba(29, 94, 51, 0.25);
+  transform: translateY(-2px);
 }
 
-/* ━━━ Hover Style for Non-active Links (Scrolled) ━━━ */
+/* ━━━ Hover Style for Non-active Links (Scrolled - White Header) ━━━ */
 #header-main.header-scrolled .header-desktop-nav li a:hover,
 #header-main.header-scrolled .header-desktop-nav li a:focus {
   color: var(--primary-emerald);
   background: rgba(29, 94, 51, 0.08);
-  box-shadow: 0 2px 12px rgba(29, 94, 51, 0.1);
+  border: 1px solid rgba(29, 94, 51, 0.15);
   transform: translateY(-2px);
 }
 
@@ -342,6 +347,7 @@ body, html {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-shrink: 0;
 }
 
 /* --- NEW: Language Switcher --- */
@@ -390,19 +396,19 @@ body, html {
   align-items: center;
   gap: 10px;
   padding: 12px 32px;
-  background: var(--gradient-gold);
-  color: var(--primary-emerald);
-  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 30px;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.5px;
-  box-shadow: 0 6px 25px rgba(229, 203, 175, 0.5),
-              0 0 0 1px rgba(229, 203, 175, 0.3);
-  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  border: 2px solid rgba(229, 203, 175, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
 }
 
 .header-btn-signin::before {
@@ -413,9 +419,9 @@ body, html {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition: width 0.4s ease, height 0.4s ease;
 }
 
 .header-btn-signin:hover::before {
@@ -424,11 +430,10 @@ body, html {
 }
 
 .header-btn-signin:hover {
-  background: linear-gradient(135deg, #f0ddc7 0%, #E5CBAF 50%, #c9a877 100%);
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 35px rgba(229, 203, 175, 0.6),
-              0 0 60px rgba(229, 203, 175, 0.3);
-  border-color: rgba(229, 203, 175, 0.6);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .header-btn-signin i {
@@ -438,48 +443,32 @@ body, html {
 }
 
 .header-btn-signin:hover i {
-  transform: translateX(4px);
+  transform: translateX(2px);
 }
 
-/* ━━━ Scrolled "Emerald Glass" Button Style ━━━ */
+/* ━━━ Scrolled Sign In Button Style ━━━ */
 #header-main.header-scrolled .header-btn-signin {
-  background: var(--gradient-emerald);
-  color: var(--white);
-  box-shadow: 0 6px 25px rgba(29, 94, 51, 0.35),
-              0 0 0 1px rgba(29, 94, 51, 0.2);
-  border: 2px solid rgba(229, 203, 175, 0.3);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: var(--primary-emerald);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(29, 94, 51, 0.25);
+  border: 2px solid var(--primary-emerald);
+  backdrop-filter: none;
+  text-shadow: none;
 }
 
 #header-main.header-scrolled .header-btn-signin::before {
-  background: rgba(229, 203, 175, 0.3);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 #header-main.header-scrolled .header-btn-signin::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 80%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(229, 203, 175, 0.4), 
-    transparent
-  );
-  transform: skewX(-25deg);
-  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-  z-index: 1;
+  display: none;
 }
 
 #header-main.header-scrolled .header-btn-signin:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 40px rgba(29, 94, 51, 0.4),
-              0 0 60px rgba(229, 203, 175, 0.3),
-              0 0 0 2px rgba(229, 203, 175, 0.4);
-  border-color: rgba(229, 203, 175, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29, 94, 51, 0.35);
+  border-color: #1d7a3a;
+  background: #1d7a3a;
 }
 
 #header-main.header-scrolled .header-btn-signin:hover::after {
@@ -530,17 +519,18 @@ body, html {
   display: none;
   background: none;
   border: none;
-  color: var(--white);
+  color: #ffffff;
   font-size: 28px;
   cursor: pointer;
   z-index: 1001;
   position: relative;
   width: 40px;
   height: 40px;
+  transition: all 0.3s ease;
 }
 
 #header-main.header-scrolled .header-mobile-menu-btn {
-  color: var(--primary-emerald);
+  color: var(--text-charcoal);
 }
 
 .header-mobile-menu-btn span {

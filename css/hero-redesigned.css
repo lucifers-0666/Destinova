@@ -1316,6 +1316,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  gap: 16px;
+  position: relative;
 }
 
 .date-range-display {
@@ -1350,6 +1352,31 @@ body {
 
 .month-nav-btn:hover {
   background: rgba(229, 203, 175, 0.2);
+  transform: scale(1.05);
+}
+
+.date-picker-close-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: auto;
+}
+
+.date-picker-close-btn i {
+  width: 20px;
+  height: 20px;
+  color: #dc2626;
+}
+
+.date-picker-close-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
   transform: scale(1.05);
 }
 
