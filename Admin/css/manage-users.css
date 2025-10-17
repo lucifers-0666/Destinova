@@ -31,61 +31,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Sidebar --- */
-.admin-sidebar {
-    width: 260px;
-    background-color: var(--primary-emerald);
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-}
-
-.sidebar-header {
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.sidebar-header h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    color: var(--white);
-}
-.sidebar-header h1 span { color: #E5CBAF; }
-.sidebar-header .admin-tag {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.sidebar-nav { flex-grow: 1; margin-top: 20px; }
-.sidebar-nav ul { list-style: none; padding: 0; }
-.sidebar-nav li a {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 25px;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-.sidebar-nav li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-}
-.sidebar-nav li.active a {
-    background-color: var(--white);
-    color: var(--primary-emerald);
-    font-weight: 600;
-    border-left: 4px solid #E5CBAF;
-}
-.sidebar-nav li a i { width: 20px; text-align: center; }
-
-.sidebar-footer { padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
-.sidebar-footer a { color: rgba(255, 255, 255, 0.8); text-decoration: none; display: flex; align-items: center; gap: 15px; }
+/* --- Sidebar styles removed - using admin-dashboard.css --- */
 
 /* --- Main Content --- */
 .admin-main-content {
@@ -401,8 +347,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 @media (max-width: 768px) {
     .admin-panel-container { flex-direction: column; }
-    .admin-sidebar { width: 100%; height: auto; flex-direction: row; justify-content: space-between; align-items: center; }
-    .sidebar-nav, .sidebar-footer { display: none; } /* Simplified for mobile */
+    /* Sidebar responsive styles handled by admin-dashboard.css */
     .main-header { flex-direction: column; align-items: flex-start; gap: 15px; }
     .statistics-cards { grid-template-columns: 1fr; }
     .filter-section { flex-direction: column; align-items: stretch; }

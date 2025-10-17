@@ -8,29 +8,34 @@ let searchTimeout;
 // Initialize Dashboard
 function initializeDashboard() {
     console.log('Initializing Admin Dashboard...');
-    
-    // Load dashboard data
-    loadDashboardStats();
-    createRevenueChart();
-    createClassChart();
-    loadRecentActivity();
-    loadSystemAlerts();
-    updatePerformanceMetrics();
-    
-    // Update date/time
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-    
-    // Setup event listeners
+    // Always setup event listeners first so UI controls work even if other init fails
     setupEventListeners();
-    
-    // Start auto-refresh
-    startAutoRefresh();
-    
-    // Load quick actions
-    loadQuickActions();
-    
-    console.log('Dashboard initialized successfully!');
+
+    try {
+        // Load dashboard data and widgets (may rely on optional libs like Chart.js)
+        loadDashboardStats();
+        if (typeof Chart !== 'undefined') {
+            createRevenueChart();
+            createClassChart();
+        }
+        loadRecentActivity();
+        loadSystemAlerts();
+        updatePerformanceMetrics();
+
+        // Update date/time
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Start auto-refresh
+        startAutoRefresh();
+
+        // Load quick actions
+        loadQuickActions();
+
+        console.log('Dashboard initialized successfully!');
+    } catch (err) {
+        console.warn('Dashboard partial initialization failed, continuing with core features:', err);
+    }
 }
 
 // Setup Event Listeners
@@ -685,13 +690,48 @@ function profileDropdownToggle() {
     }
 }
 
-// Toggle Sidebar (Mobile)
+// Toggle Sidebar
 function toggleSidebar() {
     const sidebar = document.getElementById('admin-sidebar');
+    const dashboardContent = document.getElementById('dashboard-content');
+    const mainContent = document.querySelector('.main-content');
+    const body = document.body;
+    
     if (sidebar) {
+        sidebar.classList.toggle('collapsed');
         sidebar.classList.toggle('active');
+        
+        // Toggle content margin
+        if (dashboardContent) {
+            dashboardContent.classList.toggle('sidebar-collapsed');
+        }
+        if (mainContent) {
+            mainContent.classList.toggle('sidebar-collapsed');
+        }
+        
+        // Add/remove body class for mobile backdrop
+        if (window.innerWidth < 600) {
+            body.classList.toggle('sidebar-open');
+        }
     }
 }
+
+// Make toggleSidebar globally available for the init script
+window.toggleSidebar = toggleSidebar;
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('admin-sidebar');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    
+    if (window.innerWidth < 600 && 
+        sidebar && 
+        sidebar.classList.contains('active') && 
+        !sidebar.contains(e.target) && 
+        !sidebarToggle.contains(e.target)) {
+        toggleSidebar();
+    }
+});
 
 // Refresh Dashboard
 function refreshDashboard() {
@@ -754,7 +794,57 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', initializeDashboard);
+// Universal sidebar toggle for all admin pages
+if (typeof initializeDashboard === 'function') {
+    document.addEventListener('DOMContentLoaded', initializeDashboard);
+} else {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle
+        var sidebarToggle = document.getElementById('sidebar-toggle');
+        if (sidebarToggle && typeof toggleSidebar === 'function') {
+            sidebarToggle.addEventListener('click', toggleSidebar);
+        }
+        // Profile dropdown
+        var adminProfile = document.getElementById('admin-profile');
+        if (adminProfile && typeof profileDropdownToggle === 'function') {
+            adminProfile.addEventListener('click', profileDropdownToggle);
+        }
+        // Close profile dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.admin-profile')) {
+                var pd = document.getElementById('profile-dropdown');
+                if (pd) pd.classList.remove('active');
+            }
+        });
+        // Delegated handler: ensure any .sidebar-toggle click calls toggleSidebar()
+        document.addEventListener('click', function(e) {
+            var toggleBtn = e.target.closest('.sidebar-toggle');
+            if (!toggleBtn) return;
+            // prevent double firing if another handler also attached
+            if (e.__sidebarHandled) return;
+            e.__sidebarHandled = true;
+            try {
+                if (typeof toggleSidebar === 'function') {
+                    toggleSidebar();
+                }
+            } catch (err) {
+                console.warn('toggleSidebar error (delegated):', err);
+            }
+        });
+        // Sidebar click-outside for mobile
+        document.addEventListener('click', function(e) {
+            var sidebar = document.getElementById('admin-sidebar');
+            var sidebarToggle = document.getElementById('sidebar-toggle');
+            if (window.innerWidth < 600 && 
+                sidebar && 
+                sidebar.classList.contains('active') && 
+                !sidebar.contains(e.target) && 
+                !sidebarToggle.contains(e.target)) {
+                if (typeof toggleSidebar === 'function') toggleSidebar();
+            }
+        });
+    });
+}
 
 // Handle page visibility change
 document.addEventListener('visibilitychange', () => {
@@ -771,3 +861,127 @@ window.addEventListener('beforeunload', () => {
 });
 
 console.log('Admin Dashboard script loaded successfully!');
+
+/* Defensive fallback: ensure sidebar toggle works even if other initializers fail.
+   This attaches a minimal toggle handler to the #sidebar-toggle button on every admin page.
+*/
+(function() {
+    function fallbackInit() {
+        try {
+            var st = document.getElementById('sidebar-toggle');
+            if (!st) return;
+
+            // Avoid attaching duplicate handlers
+            if (st.dataset.fallbackAttached === '1') return;
+            st.dataset.fallbackAttached = '1';
+
+            st.addEventListener('click', function(e) {
+                e.preventDefault();
+                var sidebar = document.getElementById('admin-sidebar');
+                var dashboardContent = document.getElementById('dashboard-content');
+                var mainContent = document.querySelector('.main-content') || document.querySelector('.settings-content');
+                var body = document.body;
+
+                if (sidebar) {
+                    sidebar.classList.toggle('collapsed');
+                    sidebar.classList.toggle('active');
+                }
+                if (dashboardContent) dashboardContent.classList.toggle('sidebar-collapsed');
+                if (mainContent) mainContent.classList.toggle('sidebar-collapsed');
+                if (body && window.innerWidth < 600) body.classList.toggle('sidebar-open');
+
+                // Toggle aria-expanded for accessibility
+                var expanded = st.getAttribute('aria-expanded') === 'true';
+                st.setAttribute('aria-expanded', (!expanded).toString());
+            });
+        } catch (err) {
+            // swallow errors - this is just a fallback
+            console.warn('Sidebar fallback init error:', err);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fallbackInit);
+    } else {
+        fallbackInit();
+    }
+})();
+
+// Robust capturing delegated handler
+// This runs in the capture phase so it triggers even if other handlers stop propagation.
+try {
+    // Helper to perform the toggle (central or fallback)
+    function performSidebarToggle(btn) {
+        try {
+            // Prefer central implementation
+            if (typeof toggleSidebar === 'function') {
+                toggleSidebar();
+                return;
+            }
+
+            var sidebar = document.getElementById('admin-sidebar');
+            var dashboardContent = document.getElementById('dashboard-content');
+            var mainContent = document.querySelector('.main-content') || document.querySelector('.settings-content');
+            var body = document.body;
+
+            if (sidebar) {
+                sidebar.classList.toggle('collapsed');
+                sidebar.classList.toggle('active');
+            }
+            if (dashboardContent) dashboardContent.classList.toggle('sidebar-collapsed');
+            if (mainContent) mainContent.classList.toggle('sidebar-collapsed');
+            if (body && window.innerWidth < 600) body.classList.toggle('sidebar-open');
+
+            // Update aria-expanded for accessibility
+            try {
+                if (btn) {
+                    var expanded = btn.getAttribute('aria-expanded') === 'true';
+                    btn.setAttribute('aria-expanded', (!expanded).toString());
+                }
+            } catch (err) { /* ignore */ }
+        } catch (err) {
+            console.warn('performSidebarToggle error:', err);
+        }
+    }
+
+    // Click (capture) handler
+    document.addEventListener('click', function (e) {
+        try {
+            var btn = e.target && e.target.closest && e.target.closest('.sidebar-toggle');
+            if (!btn) return;
+            console.debug('Robust sidebar click handler triggered for', btn);
+            performSidebarToggle(btn);
+        } catch (err) {
+            console.warn('Error in robust sidebar click handler:', err);
+        }
+    }, true);
+
+    // Pointerdown (capture) for touch/pen devices where click may be prevented
+    document.addEventListener('pointerdown', function (e) {
+        try {
+            var btn = e.target && e.target.closest && e.target.closest('.sidebar-toggle');
+            if (!btn) return;
+            console.debug('Robust sidebar pointerdown handler triggered for', btn);
+            performSidebarToggle(btn);
+        } catch (err) {
+            console.warn('Error in robust sidebar pointerdown handler:', err);
+        }
+    }, true);
+
+    // Keyboard accessibility: Enter / Space should toggle when focus is on the button
+    document.addEventListener('keydown', function (e) {
+        try {
+            var active = document.activeElement;
+            if (!active) return;
+            if (!active.classList || !active.classList.contains('sidebar-toggle')) return;
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                performSidebarToggle(active);
+            }
+        } catch (err) {
+            console.warn('Error in robust sidebar keydown handler:', err);
+        }
+    }, true);
+} catch (err) {
+    console.warn('Failed to attach robust sidebar handler:', err);
+}

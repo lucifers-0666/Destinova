@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
-                </ul>
-            </nav>
-            <div class="admin-footer">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,50 +10,125 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/manage-users.css"> <!-- Reusing admin styles -->
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
     <link rel="stylesheet" href="../css/revenue-reports.css">
+    <link rel="stylesheet" href="../css/admin-responsive.css">
 </head>
 
 <body>
-    <div class="admin-panel-container">
-        <!-- Admin Sidebar -->
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
                 <h1>Destin<span>ova</span></h1>
-                <span class="admin-tag">Admin</span>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li><a href="manage-users.html"><i class="fas fa-users"></i><span>Users</span></a></li>
-                    <li><a href="manage-bookings.html"><i class="fas fa-suitcase"></i><span>Bookings</span></a></li> <!-- Assuming manage-bookings.html will be in admin folder -->
-                    <li><a href="refund-management.html"><i class="fas fa-undo-alt"></i><span>Refunds</span></a></li> <!-- Correct relative path -->
-                    <li class="active"><a href="#"><i class="fas fa-chart-line"></i><span>Reports</span></a></li>
-                    <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li> <!-- Assuming settings.html will be in admin folder -->
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
-            </div>
-        </aside>
+        </div>
 
-        <!-- Main Content -->
-        <main class="admin-main-content">
-            <header class="main-header">
-                <div class="header-left">
-                    <h1>Revenue & Analytics</h1>
-                    <p>Track your business performance and key metrics.</p>
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search reports..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-bell" id="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge" id="notification-count">3</span>
+            </div>
+
+            <div class="admin-profile" id="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <div class="profile-info">
+                    <span class="profile-name">Admin User</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
                 </div>
-                <div class="header-right">
-                    <button id="print-report-btn" class="btn-action print"><i class="fas fa-print"></i> Print Report</button>
-                    <button id="export-report-btn" class="btn-action export"><i class="fas fa-file-excel"></i> Export</button>
-                    <div class="admin-profile">
-                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin">
-                        <span>Admin User</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
-            </header>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="admin-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-bookings.html">
+                        <i class="fas fa-suitcase"></i>
+                        <span>Bookings Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="flight-management.html">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>Flight Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="revenue-reports.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Revenue Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="refund-management.html">
+                        <i class="fas fa-undo-alt"></i>
+                        <span>Refund Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notification-management.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notification Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-signout">
+            <a href="../../html/index.html" onclick="return confirm('Are you sure you want to sign out?')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Revenue & Analytics</h1>
+                <p>Track your business performance and key metrics</p>
+            </div>
+            <div class="header-actions">
+                <button id="print-report-btn" class="btn-action print"><i class="fas fa-print"></i> Print Report</button>
+                <button id="export-report-btn" class="btn-action export"><i class="fas fa-file-excel"></i> Export</button>
+            </div>
+        </div>
 
             <section id="reports-management">
                 <!-- Date Range Filter -->
@@ -200,7 +273,11 @@
         </aside>
     </div>
 
+    </main>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin-sidebar-init.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
     <script src="../js/revenue-reports.js"></script>
 </body>
 

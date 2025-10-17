@@ -18,12 +18,7 @@
     --type-push: #f97316;
 }
 
-/* Base Admin Styles (assumed from admin-base.css) */
-.admin-body { background-color: var(--background-light-gray); display: flex; }
-.admin-sidebar { width: 250px; background: var(--text-charcoal); color: white; flex-shrink: 0; }
-.admin-main-content { flex-grow: 1; }
-.admin-header { background: white; padding: 15px 30px; box-shadow: var(--shadow-md); }
-/* End of assumed base styles */
+/* Base Admin Styles - removed (using admin-dashboard.css) */
 
 #notification-container {
     padding: 30px;

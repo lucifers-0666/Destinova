@@ -996,13 +996,43 @@ function setupKeyboardShortcuts() {
 
 // Initialize Sidebar
 function initializeSidebar() {
-    const sidebarToggle = document.querySelector('.sidebar-toggle');
-    const sidebar = document.querySelector('.admin-sidebar');
-    
-    if (sidebarToggle && sidebar) {
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-        });
+    // Use a capturing listener and prefer the centralized toggleSidebar() from admin-dashboard.js
+    try {
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.admin-sidebar');
+
+        // Attach a capture-phase listener so it triggers before other non-capture listeners
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', function (e) {
+                // Prefer central implementation if available
+                if (typeof window.toggleSidebar === 'function') {
+                    try { window.toggleSidebar(); return; } catch (err) { console.warn('central toggleSidebar error:', err); }
+                }
+
+                // Fallback manual toggle to keep behavior consistent
+                try {
+                    if (sidebar) {
+                        sidebar.classList.toggle('collapsed');
+                        sidebar.classList.toggle('active');
+                    }
+                    const dashboardContent = document.getElementById('dashboard-content');
+                    const mainContent = document.querySelector('.main-content') || document.querySelector('.settings-content');
+                    if (dashboardContent) dashboardContent.classList.toggle('sidebar-collapsed');
+                    if (mainContent) mainContent.classList.toggle('sidebar-collapsed');
+                    if (window.innerWidth < 600) document.body.classList.toggle('sidebar-open');
+
+                    // Update aria-expanded for accessibility
+                    try {
+                        const expanded = sidebarToggle.getAttribute('aria-expanded') === 'true';
+                        sidebarToggle.setAttribute('aria-expanded', (!expanded).toString());
+                    } catch (err) { /* noop */ }
+                } catch (err) {
+                    console.warn('admin-settings sidebar fallback error:', err);
+                }
+            }, true);
+        }
+    } catch (err) {
+        console.warn('initializeSidebar error:', err);
     }
 }
 

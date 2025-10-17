@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Demo - Destinova Admin</title>
+    <link rel="icon" type="image/png" href="../../site-images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <link rel="stylesheet" href="../css/admin-responsive.css">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3d 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 12px;
+        }
+        .demo-banner h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .demo-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .device-info {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .device-info h3 {
+            color: var(--admin-primary);
+            margin-bottom: 15px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--admin-secondary);
+        }
+        .info-item .label {
+            font-size: 12px;
+            color: #6c757d;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--admin-primary);
+        }
+        .breakpoint-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--admin-secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10000;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .feature-card i {
+            font-size: 48px;
+            color: var(--admin-secondary);
+            margin-bottom: 15px;
+        }
+        .feature-card h4 {
+            color: var(--admin-primary);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .test-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .test-section h3 {
+            color: var(--admin-primary);
+            margin-bottom: 20px;
+        }
+        .resize-instruction {
+            background: #fff3cd;
+            border: 2px dashed #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .resize-instruction i {
+            font-size: 36px;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+        .resize-instruction p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <h1>Destin<span>ova</span></h1>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="notification-bell" id="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">5</span>
+            </div>
+
+            <div class="admin-profile" id="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <div class="profile-info">
+                    <span class="profile-name">Admin User</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active">
+                    <a href="responsive-demo.html">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Responsive Demo</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-bookings.html">
+                        <i class="fas fa-suitcase"></i>
+                        <span>Bookings Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="flight-management.html">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>Flight Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="revenue-reports.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Revenue Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="refund-management.html">
+                        <i class="fas fa-undo-alt"></i>
+                        <span>Refund Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notification-management.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notification Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-signout">
+            <a href="../../html/index.html" onclick="return confirm('Are you sure you want to sign out?')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="dashboard-content">
+        <!-- Demo Banner -->
+        <div class="demo-banner">
+            <h1><i class="fas fa-mobile-alt"></i> Responsive Design Demo</h1>
+            <p>Resize your browser window or use DevTools to see the admin panel adapt to different screen sizes!</p>
+        </div>
+
+        <!-- Current Device Info -->
+        <div class="device-info">
+            <h3><i class="fas fa-info-circle"></i> Current Device Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">Screen Width</div>
+                    <div class="value" id="screen-width">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Screen Height</div>
+                    <div class="value" id="screen-height">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Device Type</div>
+                    <div class="value" id="device-type">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Orientation</div>
+                    <div class="value" id="orientation">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resize Instructions -->
+        <div class="resize-instruction">
+            <i class="fas fa-arrows-alt"></i>
+            <p><strong>Try This:</strong></p>
+            <p>Resize your browser window to see responsive breakpoints in action!</p>
+            <p>Or press <kbd>Ctrl+Shift+M</kbd> (Windows) / <kbd>Cmd+Shift+M</kbd> (Mac) to open DevTools device mode</p>
+        </div>
+
+        <!-- Features Grid -->
+        <section class="test-section">
+            <h3><i class="fas fa-star"></i> Responsive Features</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Mobile First</h4>
+                    <p>Designed for mobile devices first, then enhanced for larger screens</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                    <h4>Fluid Layouts</h4>
+                    <p>Content adapts seamlessly to any screen size from 280px to 4K+</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-hand-pointer"></i>
+                    <h4>Touch Optimized</h4>
+                    <p>44px minimum touch targets for easy tapping on mobile devices</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>Smart Grids</h4>
+                    <p>Grids transform from 4 columns to 2 to 1 based on screen size</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bars"></i>
+                    <h4>Adaptive Sidebar</h4>
+                    <p>Fixed on desktop, overlay on tablet, full-screen on mobile</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Performance</h4>
+                    <p>GPU-accelerated animations for smooth 60fps transitions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Demo -->
+        <section class="test-section">
+            <h3><i class="fas fa-chart-bar"></i> Responsive Stats Grid</h3>
+            <p style="margin-bottom: 20px;">Watch these cards reorganize as you resize the window!</p>
+            <div class="stats-grid">
+                <div class="stat-card stat-bookings">
+                    <div class="stat-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number">147</div>
+                        <div class="stat-label">Total Bookings</div>
+                        <div class="stat-trend trend-up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-revenue">
+                    <div class="stat-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number">₹2.84M</div>
+                        <div class="stat-label">Total Revenue</div>
+                        <div class="stat-trend trend-up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8.5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-flights">
+                    <div class="stat-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">Active Flights</div>
+                        <div class="stat-trend trend-neutral">
+                            <i class="fas fa-minus"></i>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-users">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-number">8,542</div>
+                        <div class="stat-label">Registered Users</div>
+                        <div class="stat-indicator">
+                            <span>+23 new today</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breakpoint Guide -->
+        <section class="test-section">
+            <h3><i class="fas fa-ruler-horizontal"></i> Breakpoint Guide</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">Large Desktop</div>
+                    <div class="value" style="font-size: 14px;">1920px+</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Desktop</div>
+                    <div class="value" style="font-size: 14px;">1440-1919px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Laptop</div>
+                    <div class="value" style="font-size: 14px;">1024-1439px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Tablet Landscape</div>
+                    <div class="value" style="font-size: 14px;">768-1023px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Tablet Portrait</div>
+                    <div class="value" style="font-size: 14px;">600-767px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Mobile Landscape</div>
+                    <div class="value" style="font-size: 14px;">480-599px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Mobile Portrait</div>
+                    <div class="value" style="font-size: 14px;">320-479px</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">Extra Small</div>
+                    <div class="value" style="font-size: 14px;">&lt;320px</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Breakpoint Indicator -->
+    <div class="breakpoint-indicator" id="breakpoint-indicator">
+        <i class="fas fa-desktop"></i> Desktop
+    </div>
+
+    <script src="../js/admin-sidebar-init.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+    <script>
+        // Update device info
+        function updateDeviceInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const orientation = width > height ? 'Landscape' : 'Portrait';
+            
+            let deviceType = 'Desktop';
+            let breakpoint = 'Desktop';
+            let icon = 'fa-desktop';
+            
+            if (width >= 1920) {
+                deviceType = 'Large Desktop';
+                breakpoint = 'Large Desktop (1920px+)';
+                icon = 'fa-tv';
+            } else if (width >= 1440) {
+                deviceType = 'Desktop';
+                breakpoint = 'Desktop (1440-1919px)';
+                icon = 'fa-desktop';
+            } else if (width >= 1024) {
+                deviceType = 'Laptop';
+                breakpoint = 'Laptop (1024-1439px)';
+                icon = 'fa-laptop';
+            } else if (width >= 768) {
+                deviceType = 'Tablet Landscape';
+                breakpoint = 'Tablet Landscape (768-1023px)';
+                icon = 'fa-tablet-alt';
+            } else if (width >= 600) {
+                deviceType = 'Tablet Portrait';
+                breakpoint = 'Tablet Portrait (600-767px)';
+                icon = 'fa-tablet-alt';
+            } else if (width >= 480) {
+                deviceType = 'Mobile Landscape';
+                breakpoint = 'Mobile Landscape (480-599px)';
+                icon = 'fa-mobile-alt';
+            } else if (width >= 320) {
+                deviceType = 'Mobile Portrait';
+                breakpoint = 'Mobile Portrait (320-479px)';
+                icon = 'fa-mobile-alt';
+            } else {
+                deviceType = 'Extra Small';
+                breakpoint = 'Extra Small (<320px)';
+                icon = 'fa-mobile-alt';
+            }
+            
+            document.getElementById('screen-width').textContent = width + 'px';
+            document.getElementById('screen-height').textContent = height + 'px';
+            document.getElementById('device-type').textContent = deviceType;
+            document.getElementById('orientation').textContent = orientation;
+            
+            const indicator = document.getElementById('breakpoint-indicator');
+            indicator.innerHTML = `<i class="fas ${icon}"></i> ${breakpoint}`;
+        }
+        
+        // Update on load and resize
+        updateDeviceInfo();
+        window.addEventListener('resize', updateDeviceInfo);
+        window.addEventListener('orientationchange', updateDeviceInfo);
+    </script>
+</body>
+</html>

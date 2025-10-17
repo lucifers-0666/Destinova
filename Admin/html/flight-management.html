@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <link rel="stylesheet" href="../css/admin-responsive.css">
     <style>
         .flight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px; }
         .flight-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
@@ -67,6 +68,12 @@
                 <li><a href="admin-settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
             </ul>
         </nav>
+        <div class="sidebar-signout">
+            <a href="../../html/index.html" onclick="return confirm('Are you sure you want to sign out?')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
     </aside>
 
     <!-- Main Content -->
@@ -232,6 +239,7 @@
         </div>
     </main>
 
+    <script src="../js/admin-sidebar-init.js"></script>
     <script src="../js/admin-dashboard.js"></script>
 </body>
 </html>
