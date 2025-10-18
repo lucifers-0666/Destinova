@@ -419,65 +419,23 @@
     </div>
 
     <script src="../js/admin-sidebar-init.js"></script>
-    <script src="../js/admin-dashboard.js"></script>
     <script>
-        // Update device info
-        function updateDeviceInfo() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const orientation = width > height ? 'Landscape' : 'Portrait';
-            
-            let deviceType = 'Desktop';
-            let breakpoint = 'Desktop';
-            let icon = 'fa-desktop';
-            
-            if (width >= 1920) {
-                deviceType = 'Large Desktop';
-                breakpoint = 'Large Desktop (1920px+)';
-                icon = 'fa-tv';
-            } else if (width >= 1440) {
-                deviceType = 'Desktop';
-                breakpoint = 'Desktop (1440-1919px)';
-                icon = 'fa-desktop';
-            } else if (width >= 1024) {
-                deviceType = 'Laptop';
-                breakpoint = 'Laptop (1024-1439px)';
-                icon = 'fa-laptop';
-            } else if (width >= 768) {
-                deviceType = 'Tablet Landscape';
-                breakpoint = 'Tablet Landscape (768-1023px)';
-                icon = 'fa-tablet-alt';
-            } else if (width >= 600) {
-                deviceType = 'Tablet Portrait';
-                breakpoint = 'Tablet Portrait (600-767px)';
-                icon = 'fa-tablet-alt';
-            } else if (width >= 480) {
-                deviceType = 'Mobile Landscape';
-                breakpoint = 'Mobile Landscape (480-599px)';
-                icon = 'fa-mobile-alt';
-            } else if (width >= 320) {
-                deviceType = 'Mobile Portrait';
-                breakpoint = 'Mobile Portrait (320-479px)';
-                icon = 'fa-mobile-alt';
-            } else {
-                deviceType = 'Extra Small';
-                breakpoint = 'Extra Small (<320px)';
-                icon = 'fa-mobile-alt';
-            }
-            
-            document.getElementById('screen-width').textContent = width + 'px';
-            document.getElementById('screen-height').textContent = height + 'px';
-            document.getElementById('device-type').textContent = deviceType;
-            document.getElementById('orientation').textContent = orientation;
-            
-            const indicator = document.getElementById('breakpoint-indicator');
-            indicator.innerHTML = `<i class="fas ${icon}"></i> ${breakpoint}`;
-        }
-        
-        // Update on load and resize
-        updateDeviceInfo();
-        window.addEventListener('resize', updateDeviceInfo);
-        window.addEventListener('orientationchange', updateDeviceInfo);
+        document.addEventListener('DOMContentLoaded', () => {
+            const iframe = document.getElementById('demo-iframe');
+            const buttons = document.querySelectorAll('.viewport-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Set iframe width
+                    const newWidth = button.getAttribute('data-width');
+                    iframe.style.maxWidth = newWidth;
+
+                    // Update active button
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+        });
     </script>
 </body>
 </html>

@@ -693,22 +693,22 @@ function profileDropdownToggle() {
 // Toggle Sidebar
 function toggleSidebar() {
     const sidebar = document.getElementById('admin-sidebar');
-    const dashboardContent = document.getElementById('dashboard-content');
-    const mainContent = document.querySelector('.main-content');
     const body = document.body;
     
     if (sidebar) {
         sidebar.classList.toggle('collapsed');
         sidebar.classList.toggle('active');
-        
-        // Toggle content margin
+
+        const dashboardContent = document.getElementById('dashboard-content');
         if (dashboardContent) {
             dashboardContent.classList.toggle('sidebar-collapsed');
         }
+
+        const mainContent = document.querySelector('.main-content') || document.querySelector('.settings-content');
         if (mainContent) {
             mainContent.classList.toggle('sidebar-collapsed');
         }
-        
+
         // Add/remove body class for mobile backdrop
         if (window.innerWidth < 600) {
             body.classList.toggle('sidebar-open');

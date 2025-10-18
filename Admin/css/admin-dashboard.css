@@ -419,7 +419,8 @@ body {
 }
 
 /* Main Content (for other admin pages) */
-.main-content {
+.main-content,
+.settings-content {
     margin-left: 280px;
     margin-top: 70px;
     padding: 30px;
@@ -428,7 +429,8 @@ body {
     transition: margin-left 0.3s ease;
 }
 
-.main-content.sidebar-collapsed {
+.main-content.sidebar-collapsed,
+.settings-content.sidebar-collapsed {
     margin-left: 0;
 }
 

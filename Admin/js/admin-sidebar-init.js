@@ -41,12 +41,6 @@
             performSidebarToggle(btn);
         }, true);
 
-        document.addEventListener('pointerdown', function(e) {
-            var btn = e.target && e.target.closest && e.target.closest('.sidebar-toggle');
-            if (!btn) return;
-            performSidebarToggle(btn);
-        }, true);
-
         document.addEventListener('keydown', function(e) {
             var active = document.activeElement;
             if (!active) return;
