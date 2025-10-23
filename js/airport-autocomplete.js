@@ -283,8 +283,8 @@ class AirportAutocomplete {
 // Initialize autocomplete on page load
 function initializeAirportAutocomplete() {
     // Find all airport input fields
-    const fromInput = document.getElementById('from');
-    const toInput = document.getElementById('to');
+    const fromInput = document.getElementById('fromInput');
+    const toInput = document.getElementById('toInput');
 
     if (fromInput) {
         window.fromAutocomplete = new AirportAutocomplete(fromInput, {
@@ -302,10 +302,10 @@ function initializeAirportAutocomplete() {
         });
     }
 
-    // Swap functionality
-    const swapButton = document.getElementById('swapButton');
-    if (swapButton && fromInput && toInput) {
-        swapButton.addEventListener('click', () => {
+    // Swap functionality for inline swap icon
+    const swapIcon = document.querySelector('.swap-icon-inline');
+    if (swapIcon && fromInput && toInput) {
+        swapIcon.addEventListener('click', () => {
             const fromValue = fromInput.value;
             const toValue = toInput.value;
             const fromCode = fromInput.dataset.airportCode;
@@ -326,9 +326,9 @@ function initializeAirportAutocomplete() {
             }
 
             // Animation
-            swapButton.style.transform = 'rotate(180deg)';
+            swapIcon.style.transform = 'rotate(180deg)';
             setTimeout(() => {
-                swapButton.style.transform = 'rotate(0deg)';
+                swapIcon.style.transform = 'rotate(0deg)';
             }, 300);
         });
     }

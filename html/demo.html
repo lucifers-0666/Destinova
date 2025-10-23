@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinova - Complete Final</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-emerald: #1d5e33;
+      --emerald-dark: #164426;
+      --emerald-light: #2a7d4a;
+      --emerald-lighter: #3a9c60;
+      --emerald-pale: #e8f4ed;
+      
+      --champagne-gold: #E5CBAF;
+      --gold-dark: #d4b591;
+      --gold-light: #f0ddc7;
+      --gold-shimmer: #f5e8d8;
+      --gold-rich: #c9a877;
+      
+      --white: #ffffff;
+      --background-cream: #FFFBF2;
+      
+      --text-charcoal: #1C2526;
+      --text-slate: #5C6B73;
+      --text-muted: #8B9BA5;
+      
+      --gradient-emerald: linear-gradient(135deg, #164426 0%, #1d5e33 50%, #2a7d4a 100%);
+      --gradient-gold: linear-gradient(135deg, #c9a877 0%, #E5CBAF 50%, #f0ddc7 100%);
+      
+      --crystal-glass: rgba(255, 255, 255, 0.15);
+      --crystal-border: rgba(229, 203, 175, 0.4);
+      --crystal-glow: 0 0 40px rgba(229, 203, 175, 0.6), 0 0 80px rgba(29, 94, 51, 0.3);
+      --blur-heavy: blur(40px);
+      
+      --shadow-emerald: 0 20px 60px rgba(29, 94, 51, 0.35);
+      --shadow-gold: 0 20px 60px rgba(229, 203, 175, 0.4);
+      --shadow-mixed: 0 30px 90px rgba(29, 94, 51, 0.3), 0 30px 90px rgba(229, 203, 175, 0.4);
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--background-cream);
+      color: var(--text-charcoal);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       HERO SECTION
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    
+    .hero-section {
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+    
+    .bg-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    
+    .bg-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    
+    .bg-slide.active {
+      opacity: 1;
+      animation: zoomSlide 8s ease-in-out;
+    }
+    
+    @keyframes zoomSlide {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    
+    .bg-slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80'); }
+    .bg-slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920&q=80'); }
+    .bg-slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80'); }
+    
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(135deg, 
+        rgba(22, 68, 38, 0.88) 0%, 
+        rgba(29, 94, 51, 0.85) 50%, 
+        rgba(42, 125, 74, 0.80) 100%);
+    }
+    
+    .gold-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+    
+    .gold-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--champagne-gold);
+      border-radius: 50%;
+      box-shadow: 0 0 30px var(--champagne-gold);
+      animation: particleRise 25s ease-in-out infinite;
+    }
+    
+    .gold-particle:nth-child(1) { left: 10%; top: 80%; animation-delay: 0s; animation-duration: 20s; }
+    .gold-particle:nth-child(2) { left: 25%; top: 75%; animation-delay: 3s; animation-duration: 22s; }
+    .gold-particle:nth-child(3) { left: 40%; top: 85%; animation-delay: 6s; animation-duration: 24s; }
+    .gold-particle:nth-child(4) { left: 60%; top: 78%; animation-delay: 9s; animation-duration: 26s; }
+    .gold-particle:nth-child(5) { left: 75%; top: 82%; animation-delay: 12s; animation-duration: 23s; }
+    .gold-particle:nth-child(6) { left: 90%; top: 76%; animation-delay: 15s; animation-duration: 21s; }
+    
+    @keyframes particleRise {
+      0% { transform: translateY(0) scale(1); opacity: 0.2; }
+      50% { transform: translateY(-400px) scale(1.8); opacity: 1; }
+      100% { transform: translateY(-800px) scale(0.5); opacity: 0; }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      max-width: 850px;
+      margin: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.5rem;
+      background: var(--crystal-glass);
+      backdrop-filter: var(--blur-heavy);
+      -webkit-backdrop-filter: var(--blur-heavy);
+      border: 2px solid var(--crystal-border);
+      border-radius: 50px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin: 0 auto 1.25rem;
+      animation: fadeSlideUp 1s ease 0.2s backwards;
+    }
+    
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-badge i {
+      color: var(--champagne-gold);
+      font-size: 1rem;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 0.875rem;
+      letter-spacing: -0.5px;
+      animation: fadeSlideUp 1s ease 0.4s backwards;
+    }
+    
+    .hero-title-accent {
+      color: var(--champagne-gold);
+      display: block;
+      font-weight: 700;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      font-weight: 400;
+      color: var(--emerald-pale);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.6;
+      animation: fadeSlideUp 1s ease 0.6s backwards;
+    }
+    
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SEARCH CONTAINER WITH ATTACHED PROMO
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    
+    .search-container {
+      position: relative;
+      z-index: 100;
+      max-width: 1300px;
+      margin: -6rem auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+    
+    /* PROMO BANNER - ATTACHED TO TOP OF CARD */
+    .promo-banner-separate {
+      position: relative;
+      z-index: 101;
+      margin: 0;
+      padding: 0;
+      transition: var(--transition);
+    }
+    
+    .promo-banner-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.75rem;
+      background: var(--gradient-emerald);
+      border-radius: 14px 14px 0 0;
+      color: var(--white);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      box-shadow: none;
+      flex-wrap: wrap;
+      animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s backwards;
+      margin-bottom: -2px;
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .promo-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+    }
+    
+    .promo-content i {
+      color: var(--champagne-gold);
+      font-size: 1.25rem;
+    }
+    
+    .promo-code-highlight {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+    
+    .promo-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .view-offers-link {
+      color: var(--champagne-gold);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .view-offers-link:hover {
+      color: var(--gold-shimmer);
+    }
+    
+    .close-banner-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .close-banner-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+    
+    .promo-banner-separate.hidden {
+      display: none;
+    }
+    
+    /* FLOATING CARD - JOINED TO PROMO */
+    .neomorphic-search-card {
+      position: relative;
+      padding: 2rem;
+      
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(50px) saturate(180%);
+      -webkit-backdrop-filter: blur(50px) saturate(180%);
+      
+      border: 3px solid rgba(229, 203, 175, 0.4);
+      border-radius: 0 0 32px 32px;
+      box-shadow: 0 25px 80px rgba(29, 94, 51, 0.25),
+                  0 25px 80px rgba(229, 203, 175, 0.3),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      
+      animation: cardFloat 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s backwards;
+      transition: var(--transition);
+    }
+    
+    @keyframes cardFloat {
+      from { opacity: 0; transform: translateY(60px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    .neomorphic-search-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 90px rgba(29, 94, 51, 0.3),
+                  0 30px 90px rgba(229, 203, 175, 0.35),
+                  inset 0 2px 0 rgba(255, 255, 255, 0.6);
+    }
+    
+    .neomorphic-search-card::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(45deg, 
+        var(--champagne-gold), 
+        var(--emerald-light), 
+        var(--gold-shimmer), 
+        var(--emerald-lighter));
+      background-size: 400% 400%;
+      border-radius: 0 0 32px 32px;
+      z-index: -1;
+      opacity: 0;
+      transition: var(--transition);
+      animation: borderFlow 6s ease infinite;
+    }
+    
+    @keyframes borderFlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .neomorphic-search-card:hover::before {
+      opacity: 0.3;
+    }
+    
+    /* FIX CORNERS WHEN PROMO IS CLOSED */
+    .neomorphic-search-card.promo-closed {
+      border-radius: 32px !important;
+      transition: border-radius 0.3s ease;
+    }
+    
+    .neomorphic-search-card.promo-closed::before {
+      border-radius: 32px !important;
+    }
+    
+    /* Trip Tabs */
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    
+    .trip-tabs-inline {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.03);
+      padding: 0.3125rem;
+      border-radius: 12px;
+      border: 2px solid rgba(229, 203, 175, 0.25);
+      position: relative;
+    }
+    
+    .trip-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-slate);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .trip-tab.active {
+      color: var(--white);
+    }
+    
+    .trip-indicator {
+      position: absolute;
+      background: var(--gradient-emerald);
+      border-radius: 9px;
+      box-shadow: var(--shadow-emerald);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 0;
+    }
+    
+    .trip-tab i {
+      font-size: 0.9375rem;
+    }
+    
+    .trip-tab.active i {
+      color: var(--champagne-gold);
+    }
+    
+    .recent-btn-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid rgba(229, 203, 175, 0.3);
+      background: var(--white);
+      color: var(--text-charcoal);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .recent-btn-inline:hover {
+      border-color: var(--champagne-gold);
+      background: rgba(229, 203, 175, 0.1);
+    }
+    
+    .recent-btn-inline i {
+      font-size: 0.9375rem;
+      color: var(--gold-rich);
+    }
+    
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       INLINE INPUTS - DARKER OUTLINE, LIGHTER INSIDE
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    
+    .inline-inputs-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr 1fr 1fr 1.3fr;
+      gap: 0;
+      margin-bottom: 1rem;
+      background: rgba(250, 248, 245, 0.8);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid rgba(29, 94, 51, 0.25);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+    
+    .inline-input-box {
+      position: relative;
+      padding: 1rem 1.25rem;
+      border-right: 2px solid rgba(29, 94, 51, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: var(--transition);
+      cursor: pointer;
+      min-height: 70px;
+      background: transparent;
+    }
+    
+    .inline-input-box:last-child {
+      border-right: none;
+    }
+    
+    .inline-input-box:hover {
+      background: rgba(229, 203, 175, 0.08);
+    }
+    
+    .inline-input-box:focus-within {
+      background: rgba(29, 94, 51, 0.05);
+      outline: 2px solid var(--emerald-light);
+      outline-offset: -2px;
+      z-index: 1;
+    }
+    
+    .inline-input-header {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      margin-bottom: 0.375rem;
+    }
+    
+    .inline-input-icon {
+      font-size: 0.875rem;
+      color: var(--champagne-gold);
+    }
+    
+    .inline-input-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--text-slate);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    .inline-input-field {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--text-charcoal);
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      padding: 0;
+    }
+    
+    .inline-input-field::placeholder {
+      color: var(--text-muted);
+      opacity: 0.6;
+      font-size: 0.8125rem;
+    }
+    
+    .field-subtext-inline {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      margin-top: 0.125rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .field-value-inline {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-charcoal);
+    }
+    
+    .inline-passengers-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-charcoal);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .inline-passengers-btn i {
+      color: var(--champagne-gold);
+      font-size: 0.8125rem;
+    }
+    
+    .swap-icon-inline {
+      position: absolute;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: var(--white);
+      border: 2px solid var(--champagne-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--emerald-light);
+      font-size: 0.875rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .swap-icon-inline:hover {
+      background: var(--gradient-emerald);
+      border-color: var(--emerald-light);
+      color: var(--white);
+      transform: translateY(-50%) rotate(180deg);
+    }
+    
+    /* Fare Type */
+    .fare-type-row {
+      margin-bottom: 1rem;
+    }
+    
+    .fare-type-label-inline {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-slate);
+      margin-bottom: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .fare-chips-inline {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .fare-chip-inline {
+      position: relative;
+    }
+    
+    .fare-chip-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.4375rem 0.875rem;
+      border: 2px solid rgba(229, 203, 175, 0.3);
+      background: var(--white);
+      color: var(--text-charcoal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .fare-chip-btn:hover {
+      border-color: var(--emerald-light);
+      transform: translateY(-2px);
+    }
+    
+    .fare-chip-btn.active {
+      border-color: var(--emerald-light);
+      background: var(--gradient-emerald);
+      color: var(--white);
+      box-shadow: var(--shadow-emerald);
+    }
+    
+    .fare-chip-btn i {
+      font-size: 0.875rem;
+    }
+    
+    .fare-chip-btn.active i {
+      color: var(--champagne-gold);
+    }
+    
+    .info-icon-small {
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.15);
+      color: var(--text-slate);
+      border-radius: 50%;
+      font-size: 0.5625rem;
+      cursor: help;
+      margin-left: 0.125rem;
+    }
+    
+    .fare-chip-btn.active .info-icon-small {
+      background: rgba(255, 255, 255, 0.3);
+      color: var(--white);
+    }
+    
+    .fare-tooltip-inline {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      width: 240px;
+      padding: 0.875rem;
+      background: rgba(29, 94, 51, 0.98);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--champagne-gold);
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 1000;
+      pointer-events: none;
+    }
+    
+    .fare-chip-inline:hover .fare-tooltip-inline {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) scale(1);
+    }
+    
+    .fare-tooltip-inline::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--champagne-gold);
+    }
+    
+    .tooltip-title-inline {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--champagne-gold);
+      margin-bottom: 0.4375rem;
+    }
+    
+    .tooltip-benefits-inline {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .tooltip-benefits-inline li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4375rem;
+      font-size: 0.6875rem;
+      color: var(--emerald-pale);
+      margin-bottom: 0.3125rem;
+      line-height: 1.3;
+    }
+    
+    .tooltip-benefits-inline li i {
+      color: var(--champagne-gold);
+      font-size: 0.5625rem;
+      margin-top: 0.125rem;
+      flex-shrink: 0;
+    }
+    
+    /* Bottom Options */
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .options-inline {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .checkbox-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.4375rem;
+      cursor: pointer;
+      color: var(--text-charcoal);
+      font-weight: 500;
+      font-size: 0.8125rem;
+    }
+    
+    .checkbox-box-inline {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--champagne-gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+    }
+    
+    .checkbox-inline input[type="checkbox"] {
+      display: none;
+    }
+    
+    .checkbox-inline input[type="checkbox"]:checked + .checkbox-box-inline {
+      background: var(--gradient-emerald);
+      border-color: var(--emerald-light);
+    }
+    
+    .checkbox-inline input[type="checkbox"]:checked + .checkbox-box-inline::after {
+      content: '✓';
+      color: var(--white);
+      font-size: 0.6875rem;
+      font-weight: 900;
+    }
+    
+    .currency-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.4375rem;
+    }
+    
+    .currency-label-inline {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-charcoal);
+    }
+    
+    .currency-select-inline {
+      padding: 0.4375rem 0.875rem;
+      border: 2px solid rgba(229, 203, 175, 0.3);
+      background: var(--white);
+      color: var(--text-charcoal);
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+    }
+    
+    .search-btn-inline {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 2.5rem;
+      border: none;
+      background: var(--gradient-emerald);
+      color: var(--white);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-emerald);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .search-btn-inline:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 20px 70px rgba(29, 94, 51, 0.45);
+    }
+    
+    .search-btn-inline i {
+      font-size: 1rem;
+    }
+    
+    /* Modal */
+    .modal-passengers {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-passengers[hidden] {
+      display: none;
+    }
+    
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(22, 68, 38, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    
+    .modal-box {
+      position: relative;
+      z-index: 3001;
+      max-width: 480px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      background: rgba(42, 125, 74, 0.96);
+      backdrop-filter: blur(30px);
+      border: 2px solid rgba(229, 203, 175, 0.3);
+      border-radius: 20px;
+      padding: 2.25rem;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+      animation: modalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.9) translateY(30px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+    
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.375rem;
+    }
+    
+    .modal-subtitle {
+      font-size: 0.875rem;
+      color: var(--emerald-pale);
+      margin-bottom: 1.75rem;
+    }
+    
+    .modal-section {
+      margin-bottom: 1.75rem;
+    }
+    
+    .section-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+    }
+    
+    .passenger-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+    }
+    
+    .passenger-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .passenger-name {
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.9375rem;
+    }
+    
+    .passenger-age {
+      font-size: 0.75rem;
+      color: var(--emerald-pale);
+    }
+    
+    .counter-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .counter-btn {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--white);
+      background: transparent;
+      color: var(--white);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.875rem;
+    }
+    
+    .counter-btn:hover {
+      background: var(--white);
+      color: var(--primary-emerald);
+    }
+    
+    .counter-value {
+      font-size: 1.125rem;
+      font-weight: 900;
+      color: var(--white);
+      min-width: 24px;
+      text-align: center;
+    }
+    
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .class-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 1.125rem 0.75rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .class-card:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .class-card.active {
+      background: var(--white);
+      color: var(--primary-emerald);
+      border-color: var(--white);
+    }
+    
+    .class-card i {
+      font-size: 1.625rem;
+    }
+    
+    .class-card span {
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+    
+    .modal-done {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      background: var(--white);
+      color: var(--primary-emerald);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .modal-done:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.75rem;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, 
+        rgba(29, 94, 51, 0.08), 
+        rgba(229, 203, 175, 0.08));
+      border-radius: 20px;
+      margin-top: 3.5rem;
+    }
+    
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.875rem;
+      padding: 1.75rem 1.25rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(229, 203, 175, 0.3);
+      border-radius: 14px;
+      transition: var(--transition);
+    }
+    
+    .feature-item:hover {
+      border-color: var(--champagne-gold);
+      transform: translateY(-6px);
+    }
+    
+    .feature-icon {
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-emerald);
+      border-radius: 50%;
+      font-size: 1.75rem;
+      color: var(--white);
+    }
+    
+    .feature-label {
+      font-weight: 700;
+      color: var(--text-charcoal);
+      font-size: 0.9375rem;
+    }
+    
+    @media (max-width: 1200px) {
+      .inline-inputs-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .search-container {
+        margin: -4rem 1rem 3rem;
+      }
+      
+      .neomorphic-search-card {
+        padding: 1.5rem;
+      }
+      
+      .inline-inputs-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .inline-input-box {
+        border-right: none;
+        border-bottom: 2px solid rgba(29, 94, 51, 0.12);
+      }
+      
+      .inline-input-box:last-child {
+        border-bottom: none;
+      }
+      
+      .swap-icon-inline {
+        display: none;
+      }
+      
+      .bottom-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .search-btn-inline {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .class-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--emerald-pale);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-gold);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="bg-slider">
+      <div class="bg-slide active"></div>
+      <div class="bg-slide"></div>
+      <div class="bg-slide"></div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="gold-particles">
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        <span>Premium Travel Excellence</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Your Journey Starts Here
+        <span class="hero-title-accent">Book with Destinova</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Experience premium travel with Destinova. Discover exclusive destinations 
+        and book flights with world-class service.
+      </p>
+    </div>
+  </div>
+
+  <!-- Search Container with Promo Attached -->
+  <div class="search-container">
+    
+    <!-- Promo Banner - ATTACHED TO TOP OF CARD -->
+    <div class="promo-banner-separate" id="promoBanner">
+      <div class="promo-banner-card">
+        <div class="promo-content">
+          <i class="fas fa-tags"></i>
+          <span>Use code</span>
+          <span class="promo-code-highlight">FLY15</span>
+          <span>for 15% off on your next booking!</span>
+        </div>
+        <div class="promo-actions">
+          <a href="#" class="view-offers-link">View All Offers</a>
+          <button type="button" class="close-banner-btn" id="closeBanner">
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Floating Search Card (JOINED with promo) -->
+    <div class="neomorphic-search-card" id="searchCard">
+      
+      <div class="top-controls">
+        <div class="trip-tabs-inline" id="tripTabs">
+          <button type="button" class="trip-tab active" data-type="round">
+            <i class="fas fa-repeat"></i>
+            <span>Round Trip</span>
+          </button>
+          <button type="button" class="trip-tab" data-type="oneway">
+            <i class="fas fa-arrow-right"></i>
+            <span>One Way</span>
+          </button>
+          <button type="button" class="trip-tab" data-type="multi">
+            <i class="fas fa-route"></i>
+            <span>Multi-City</span>
+          </button>
+          <div class="trip-indicator"></div>
+        </div>
+        
+        <button type="button" class="recent-btn-inline">
+          <i class="fas fa-clock-rotate-left"></i>
+          <span>Recent Searches</span>
+        </button>
+      </div>
+      
+      <form id="searchForm">
+        
+        <div class="inline-inputs-row">
+          
+          <div class="inline-input-box" style="position: relative;">
+            <div class="inline-input-header">
+              <i class="fas fa-plane-departure inline-input-icon"></i>
+              <span class="inline-input-label">From</span>
+            </div>
+            <input 
+              type="text" 
+              class="inline-input-field" 
+              placeholder="e.g., Delhi"
+              required
+            >
+            <div class="field-subtext-inline">Enter origin city or airport</div>
+            
+            <div class="swap-icon-inline">
+              <i class="fas fa-right-left"></i>
+            </div>
+          </div>
+          
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-plane-arrival inline-input-icon"></i>
+              <span class="inline-input-label">To</span>
+            </div>
+            <div class="field-value-inline">Mumbai</div>
+            <div class="field-subtext-inline">BOM, Chhatrapati Shivaji International Airport</div>
+          </div>
+          
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-calendar-days inline-input-icon"></i>
+              <span class="inline-input-label">Departure</span>
+            </div>
+            <input 
+              type="date" 
+              class="inline-input-field"
+              id="departInput"
+              required
+            >
+          </div>
+          
+          <div class="inline-input-box" id="returnBox">
+            <div class="inline-input-header">
+              <i class="fas fa-calendar-check inline-input-icon"></i>
+              <span class="inline-input-label">Return</span>
+            </div>
+            <input 
+              type="date" 
+              class="inline-input-field"
+              id="returnInput"
+            >
+          </div>
+          
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-user-group inline-input-icon"></i>
+              <span class="inline-input-label">Travellers & Class</span>
+            </div>
+            <button 
+              type="button" 
+              class="inline-passengers-btn"
+              id="passengersTrigger"
+            >
+              <span id="passengersText">1 Adult, Economy</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+          
+        </div>
+        
+        <div class="fare-type-row">
+          <div class="fare-type-label-inline">Select a fare type:</div>
+          <div class="fare-chips-inline">
+            
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn active" data-fare="regular">
+                <i class="fas fa-ticket"></i>
+                <span>Regular</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Regular Fare</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Standard booking</li>
+                  <li><i class="fas fa-circle-check"></i> All age groups</li>
+                  <li><i class="fas fa-circle-check"></i> Flexible cancellation</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="student">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Student</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Student Discount</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Up to 10% off</li>
+                  <li><i class="fas fa-circle-check"></i> Extra baggage</li>
+                  <li><i class="fas fa-circle-check"></i> Valid ID required</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="senior">
+                <i class="fas fa-person-cane"></i>
+                <span>Senior</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Senior Citizen</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> 6-15% discount</li>
+                  <li><i class="fas fa-circle-check"></i> Priority boarding</li>
+                  <li><i class="fas fa-circle-check"></i> Wheelchair assistance</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="armed">
+                <i class="fas fa-shield-halved"></i>
+                <span>Armed Forces</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Armed Forces</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Up to 50% off</li>
+                  <li><i class="fas fa-circle-check"></i> Free seat selection</li>
+                  <li><i class="fas fa-circle-check"></i> Extra baggage</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="corporate">
+                <i class="fas fa-building"></i>
+                <span>Corporate</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Corporate Travel</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Volume discounts</li>
+                  <li><i class="fas fa-circle-check"></i> GST invoice</li>
+                  <li><i class="fas fa-circle-check"></i> Dedicated support</li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="bottom-row">
+          <div class="options-inline">
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Direct flights only</span>
+            </label>
+            
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Search nearby airports</span>
+            </label>
+            
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Flexible Dates (±3 days)</span>
+            </label>
+            
+            <div class="currency-inline">
+              <span class="currency-label-inline">INR</span>
+              <select class="currency-select-inline">
+                <option value="INR">🇮🇳 INR</option>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="GBP">🇬🇧 GBP</option>
+              </select>
+            </div>
+          </div>
+          
+          <button type="submit" class="search-btn-inline">
+            <i class="fas fa-magnifying-glass"></i>
+            <span>Search</span>
+          </button>
+        </div>
+        
+      </form>
+      
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-shield-check"></i>
+        </div>
+        <span class="feature-label">Best Price Guarantee</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-headset"></i>
+        </div>
+        <span class="feature-label">24/7 Premium Support</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-circle-check"></i>
+        </div>
+        <span class="feature-label">Instant Confirmation</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <span class="feature-label">Secure Booking</span>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-passengers" id="passengersModal" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="modalClose">
+        <i class="fas fa-xmark"></i>
+      </button>
+      
+      <h3 class="modal-title">Select Passengers</h3>
+      <p class="modal-subtitle">Choose travelers and cabin class</p>
+      
+      <div class="modal-section">
+        <h4 class="section-label">Passengers</h4>
+        
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Infants</span>
+            <span class="passenger-age">Under 2 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="infants">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="infantsCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="infants">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Children</span>
+            <span class="passenger-age">2 – 11 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="children">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="childrenCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="children">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Adults</span>
+            <span class="passenger-age">18 – 59 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="adults">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="adultsCount">1</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="adults">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Seniors</span>
+            <span class="passenger-age">60+ years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="seniors">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="seniorsCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="seniors">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-section">
+        <h4 class="section-label">Cabin Class</h4>
+        <div class="class-grid">
+          <button type="button" class="class-card active" data-class="economy">
+            <i class="fas fa-couch"></i>
+            <span>Economy</span>
+          </button>
+          <button type="button" class="class-card" data-class="premium">
+            <i class="fas fa-loveseat"></i>
+            <span>Premium</span>
+          </button>
+          <button type="button" class="class-card" data-class="business">
+            <i class="fas fa-briefcase"></i>
+            <span>Business</span>
+          </button>
+          <button type="button" class="class-card" data-class="first">
+            <i class="fas fa-crown"></i>
+            <span>First Class</span>
+          </button>
+        </div>
+      </div>
+      
+      <button type="button" class="modal-done" id="modalDone">
+        <i class="fas fa-circle-check"></i>
+        Done
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Background Slider
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.bg-slide');
+    
+    function changeSlide() {
+      slides[slideIndex].classList.remove('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add('active');
+    }
+    
+    setInterval(changeSlide, 6000);
+    
+    // Close Promo Banner - FIX CORNERS
+    document.getElementById('closeBanner').addEventListener('click', function() {
+      const promoBanner = document.getElementById('promoBanner');
+      const searchCard = document.getElementById('searchCard');
+      
+      promoBanner.classList.add('hidden');
+      searchCard.classList.add('promo-closed'); // Add class to round all corners
+    });
+    
+    // Trip Tabs
+    const tabs = document.querySelectorAll('.trip-tab');
+    const indicator = document.querySelector('.trip-indicator');
+    const returnBox = document.getElementById('returnBox');
+    
+    function updateIndicator(active) {
+      indicator.style.width = `${active.offsetWidth}px`;
+      indicator.style.height = `${active.offsetHeight}px`;
+      indicator.style.left = `${active.offsetLeft}px`;
+      indicator.style.top = `${active.offsetTop}px`;
+    }
+    
+    updateIndicator(tabs[0]);
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        updateIndicator(this);
+        
+        if (this.getAttribute('data-type') === 'oneway') {
+          returnBox.style.display = 'none';
+        } else {
+          returnBox.style.display = 'flex';
+        }
+      });
+    });
+    
+    // Fare Chips
+    document.querySelectorAll('.fare-chip-btn').forEach(chip => {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.fare-chip-btn').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // Dates
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('departInput').setAttribute('min', today);
+    document.getElementById('returnInput').setAttribute('min', today);
+    
+    // Modal
+    const modal = document.getElementById('passengersModal');
+    const trigger = document.getElementById('passengersTrigger');
+    const closeBtn = document.getElementById('modalClose');
+    const doneBtn = document.getElementById('modalDone');
+    
+    let counts = { infants: 0, children: 0, adults: 1, seniors: 0 };
+    let selectedClass = 'economy';
+    
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.removeAttribute('hidden');
+    });
+    
+    closeBtn.addEventListener('click', () => modal.setAttribute('hidden', 'hidden'));
+    modal.querySelector('.modal-backdrop').addEventListener('click', () => modal.setAttribute('hidden', 'hidden'));
+    
+    document.querySelectorAll('.counter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const action = this.getAttribute('data-action');
+        const cat = this.getAttribute('data-cat');
+        const display = document.getElementById(`${cat}Count`);
+        let val = parseInt(display.textContent);
+        
+        if (action === 'inc') {
+          val++;
+        } else if (action === 'dec' && val > 0) {
+          if (cat === 'adults' && val === 1) return;
+          val--;
+        }
+        
+        display.textContent = val;
+        counts[cat] = val;
+      });
+    });
+    
+    document.querySelectorAll('.class-card').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        selectedClass = this.getAttribute('data-class');
+      });
+    });
+    
+    doneBtn.addEventListener('click', () => {
+      const total = counts.infants + counts.children + counts.adults + counts.seniors;
+      let text = '';
+      
+      if (total === 1 && counts.adults === 1) {
+        text = '1 Adult';
+      } else {
+        const parts = [];
+        if (counts.infants > 0) parts.push(`${counts.infants} Infant${counts.infants > 1 ? 's' : ''}`);
+        if (counts.children > 0) parts.push(`${counts.children} Child${counts.children > 1 ? 'ren' : ''}`);
+        if (counts.adults > 0) parts.push(`${counts.adults} Adult${counts.adults > 1 ? 's' : ''}`);
+        if (counts.seniors > 0) parts.push(`${counts.seniors} Senior${counts.seniors > 1 ? 's' : ''}`);
+        text = parts.join(', ');
+      }
+      
+      const classes = {
+        'economy': 'Economy',
+        'premium': 'Premium',
+        'business': 'Business',
+        'first': 'First Class'
+      };
+      
+      text += `, ${classes[selectedClass]}`;
+      document.getElementById('passengersText').textContent = text;
+      
+      modal.setAttribute('hidden', 'hidden');
+    });
+    
+    // Form
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('✈️ Searching flights...');
+    });
+  </script>
+
+</body>
+</html>
