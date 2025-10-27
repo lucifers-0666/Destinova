@@ -452,8 +452,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Enhanced input focus effects
-    const formInputs = document.querySelectorAll('.form-input');
-    formInputs.forEach(input => {
+    const formInputsEnhanced = document.querySelectorAll('.form-input');
+    formInputsEnhanced.forEach(input => {
         input.addEventListener('focus', function() {
             this.parentElement.style.transform = 'scale(1.01)';
             this.parentElement.style.transition = 'transform 0.3s ease';

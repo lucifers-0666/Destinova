@@ -44,9 +44,15 @@
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, #164426 0%, #1d5e33 50%, #2a7d4a 100%);
+}
+    /* ═══════════════════════════════════════════════════════════════
     --gradient-hero: linear-gradient(135deg, #1d5e33 0%, #2a7d4a 40%, #3a9c60 100%);
     --gradient-gold: linear-gradient(135deg, #c9a877 0%, #E5CBAF 50%, #f0ddc7 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    /* ============================================= */
+    /* GRADIENT TEXT ANIMATIONS                    */
+    /* ============================================= */
+    .gradient-text-hero {
     
     /* Shadows - Emerald Themed */
     --shadow-sm: 0 1px 2px 0 rgba(29, 94, 51, 0.05);
@@ -56,6 +62,8 @@
     --shadow-2xl: 0 25px 50px -12px rgba(29, 94, 51, 0.25);
     --shadow-glass: 0 8px 32px 0 rgba(29, 94, 51, 0.15);
     --shadow-gold: 0 20px 40px -10px rgba(229, 203, 175, 0.4);
+    }
+    .gradient-text-form {
     
     /* Border Radius */
     --radius-sm: 0.5rem;
@@ -63,12 +71,23 @@
     --radius-lg: 1.5rem;
     --radius-xl: 2rem;
     --radius-xl: 1rem;
+    }
+    @keyframes gradientFlow {
     --radius-2xl: 1.5rem;
     --radius-3xl: 2rem;
     --radius-full: 9999px;
-    
-    /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* ============================================= */
+    /* FLOATING & PULSE ANIMATIONS                 */
+    /* ============================================= */
+    @keyframes float {
+        
+    
+    }
+    /* Transitions */
+    
+    @keyframes pulseGlow {
     --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -77,15 +96,30 @@
     /* Typography */
     --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+   
+     }
+      @keyframes pulse {
     --font-display: 'Montserrat', sans-serif;
 }
 
+    /* ============================================= */
+    /* SHIMMER & SHINE EFFECTS                     */
+    /* ============================================= */
+    @keyframes shimmer {
+    }
 /* ============================================= */
 /* BASE RESET & DEFAULTS                       */
 /* ============================================= */
+    @keyframes shimmerSweep {
+    }
 
 * {
     margin: 0;
+}
+    /* ============================================= */
+    /* BOUNCE & SCALE ANIMATIONS                   */
+    /* ============================================= */
+    @keyframes bounceIn {
     padding: 0;
     box-sizing: border-box;
 }
@@ -101,9 +135,16 @@ body {
     background: var(--background-cream);
     background: linear-gradient(135deg, #e8f4ed 0%, #FFFBF2 50%, #FFF8ED 100%);
     color: var(--text-charcoal);
+}
+    @keyframes scaleBounce {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    }
+    /* ============================================= */
+    /* SLIDE ANIMATIONS                            */
+    /* ============================================= */
+    @keyframes slideInRight {
     position: relative;
 }
 
@@ -113,6 +154,7 @@ body {
 
 .background-decoration {
     position: fixed;
+    @keyframes slideInLeft {
     top: 0;
     left: 0;
     width: 100%;
@@ -122,9 +164,14 @@ body {
     pointer-events: none;
 }
 
+    /* ============================================= */
+    /* EXPAND & FADE ANIMATIONS                    */
+    /* ============================================= */
+    @keyframes expandLine {
 .decoration-circle {
     position: absolute;
     border-radius: 50%;
+    @keyframes fadeIn {
     background: radial-gradient(circle, rgba(29, 94, 51, 0.08) 0%, transparent 70%);
     animation: float-decoration 20s ease-in-out infinite;
 }
@@ -134,8 +181,13 @@ body {
     height: 400px;
     top: -100px;
     left: -100px;
+    /* ============================================= */
+    /* LOADING & SPIN ANIMATIONS                   */
+    /* ============================================= */
+    @keyframes spin {
     animation-delay: 0s;
 }
+    @keyframes rotateGlow {
 
 .circle-2 {
     width: 300px;
@@ -148,6 +200,10 @@ body {
 .circle-3 {
     width: 250px;
     height: 250px;
+    /* ============================================= */
+    /* INPUT GLOW EFFECT                           */
+    /* ============================================= */
+    @keyframes inputGlow {
     top: 50%;
     left: 50%;
     animation-delay: 14s;
@@ -156,9 +212,14 @@ body {
 .decoration-blob {
     position: absolute;
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    /* ============================================= */
+    /* ENHANCED HERO PANEL                         */
+    /* ============================================= */
+    .hero-panel {
     background: linear-gradient(135deg, rgba(229, 203, 175, 0.12) 0%, rgba(29, 94, 51, 0.08) 100%);
     animation: morph 15s ease-in-out infinite;
 }
+    .hero-panel::after {
 
 .blob-1 {
     width: 500px;
@@ -174,23 +235,33 @@ body {
     bottom: 10%;
     left: 5%;
     animation-delay: 7s;
+    .hero-content {
 }
 
 @keyframes float-decoration {
+    .logo-icon {
     0%, 100% {
         transform: translate(0, 0) scale(1);
     }
     33% {
+    .logo-icon:hover {
         transform: translate(30px, -30px) scale(1.1);
     }
     66% {
+    .logo-icon i {
         transform: translate(-20px, 20px) scale(0.9);
     }
+    .logo-icon:hover i {
 }
 
+    /* ============================================= */
+    /* HERO TEXT ENHANCEMENTS                      */
+    /* ============================================= */
+    .hero-text h2 {
 @keyframes morph {
     0%, 100% {
         border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    .hero-text h2::after {
         transform: rotate(0deg);
     }
     50% {
@@ -204,13 +275,19 @@ body {
 /* ============================================= */
 
 .airplane-scene {
+    .hero-description {
     position: fixed;
     top: 0;
+    /* ============================================= */
+    /* TRUST BADGES ENHANCEMENTS                   */
+    /* ============================================= */
+    .badge {
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
     z-index: 1;
+    .badge::before {
     overflow: hidden;
 }
 
@@ -222,20 +299,29 @@ body {
 }
 
 .airplane svg {
+    .badge:hover::before {
     width: 100%;
     height: 100%;
     fill: var(--primary-emerald);
+    .badge:hover {
     opacity: 0.4;
     filter: drop-shadow(0 4px 8px rgba(29, 94, 51, 0.2));
 }
 
+    .badge i {
 .plane-1 {
     top: 15%;
+    .badge:hover i {
     animation: fly-across 25s linear infinite;
     animation-delay: 0s;
 }
+    /* ============================================= */
+    /* FORM PANEL ENHANCEMENTS                     */
+    /* ============================================= */
+    .form-panel {
 
 .plane-2 {
+    .form-panel::before {
     top: 45%;
     animation: fly-across 30s linear infinite;
     animation-delay: 10s;
@@ -247,9 +333,14 @@ body {
     animation-delay: 18s;
 }
 
+    /* ============================================= */
+    /* BACK BUTTON ENHANCEMENTS                    */
+    /* ============================================= */
+    .back-btn {
 @keyframes fly-across {
     0% {
         transform: translateX(-100px) translateY(0) rotate(-5deg);
+    .back-btn::before {
         opacity: 0;
     }
     5% {
@@ -259,35 +350,52 @@ body {
         opacity: 0.6;
     }
     100% {
+    .back-btn:hover::before {
         transform: translateX(calc(100vw + 100px)) translateY(-30px) rotate(5deg);
         opacity: 0;
+    .back-btn i {
     }
 }
+    .back-btn:hover i {
 
 /* ============================================= */
 /* FLOATING STARS                              */
+    /* ============================================= */
+    /* FORM INPUT ENHANCEMENTS                     */
+    /* ============================================= */
+    .form-input {
 /* ============================================= */
 
 .stars-container {
     position: fixed;
+    .form-input:focus {
     top: 0;
     left: 0;
     width: 100%;
+    .form-input::placeholder {
     height: 100%;
     pointer-events: none;
+    .form-input:focus::placeholder {
     z-index: 1;
 }
 
+    .input-icon {
 .star {
     position: absolute;
+    .form-input:focus ~ .input-icon {
     color: var(--champagne-gold);
     opacity: 0.5;
     font-size: 16px;
     animation: twinkle 3s ease-in-out infinite;
+    /* ============================================= */
+    /* SUBMIT BUTTON RIPPLE EFFECT                 */
+    /* ============================================= */
+    .submit-btn {
 }
 
 .star-1 { top: 10%; left: 15%; animation-delay: 0s; }
 .star-2 { top: 20%; right: 20%; animation-delay: 0.5s; }
+    .submit-btn::before {
 .star-3 { top: 60%; left: 10%; animation-delay: 1s; }
 .star-4 { top: 70%; right: 15%; animation-delay: 1.5s; }
 .star-5 { top: 40%; left: 25%; animation-delay: 2s; }
@@ -299,28 +407,40 @@ body {
         transform: scale(1);
     }
     50% {
+    .submit-btn:active::before {
         opacity: 1;
         transform: scale(1.2);
     }
+    .submit-btn::after {
 }
 
 /* ============================================= */
 /* MAIN CONTAINER                              */
 /* ============================================= */
 
+    .submit-btn:hover::after {
 .main-container {
     position: relative;
+    .submit-btn:hover {
     z-index: 10;
     display: flex;
+    /* Loading State */
+    .btn-loader {
     min-height: 100vh;
     max-width: 1600px;
+    .submit-btn.loading {
     margin: 0 auto;
 }
+    /* ============================================= */
+    /* SOCIAL BUTTONS ENHANCEMENTS                 */
+    /* ============================================= */
+    .social-btn {
 
 /* ============================================= */
 /* HERO PANEL                                  */
 /* ============================================= */
 
+    .social-btn::before {
 .hero-panel {
     flex: 1;
     background: var(--gradient-hero);
@@ -330,25 +450,40 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    .social-btn:hover::before {
 }
 
+    .social-btn:hover {
 .hero-panel::before {
     content: '';
     position: absolute;
+    .social-btn i {
     top: 0;
     left: 0;
+    .social-btn:hover i {
     right: 0;
     bottom: 0;
     background: 
+    /* ============================================= */
+    /* CHECKBOX ANIMATION                          */
+    /* ============================================= */
+    .remember-me input[type="checkbox"]:checked ~ .checkbox-custom {
         radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    .checkbox-custom {
     pointer-events: none;
 }
+    .checkbox-custom:hover {
 
 .hero-content {
+    /* ============================================= */
+    /* LINK HOVER UNDERLINE ANIMATIONS             */
+    /* ============================================= */
+    .forgot-password {
     position: relative;
     z-index: 2;
     max-width: 600px;
+    .forgot-password::after {
     width: 100%;
 }
 
@@ -358,11 +493,14 @@ body {
     align-items: center;
     gap: 1rem;
     margin-bottom: 3rem;
+    .forgot-password:hover::after {
 }
 
+    .signup-link a {
 .logo-icon {
     width: 60px;
     height: 60px;
+    .signup-link a::after {
     background: linear-gradient(135deg, var(--champagne-gold), var(--gold-light));
     backdrop-filter: blur(10px);
     border-radius: var(--radius-xl);
@@ -372,72 +510,122 @@ body {
     font-size: 28px;
     color: var(--primary-emerald);
     box-shadow: 0 8px 32px rgba(229, 203, 175, 0.3);
+    .signup-link a:hover::after {
 }
 
+    .signup-link a:hover {
 .logo-text h1 {
     font-family: var(--font-primary);
+    /* ============================================= */
+    /* DIVIDER ANIMATION                           */
+    /* ============================================= */
+    .divider {
     font-size: 2rem;
     font-weight: 700;
     color: var(--white);
+    .divider::before,
     line-height: 1.2;
     margin: 0;
 }
 
+    .divider span {
 .logo-text p {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+    /* ============================================= */
+    /* TOAST NOTIFICATION ANIMATION                */
+    /* ============================================= */
+    .toast {
 }
 
+    .toast.show {
 /* Hero Text */
 .hero-text {
     margin-bottom: 2.5rem;
+    .toast-icon {
 }
 
+    /* ============================================= */
+    /* FORM LABEL ENHANCEMENTS                     */
+    /* ============================================= */
+    .form-group label {
 .hero-text h2 {
     font-family: var(--font-primary);
+    .form-input:focus ~ label,
     font-size: 3.5rem;
     font-weight: 700;
     color: var(--white);
     line-height: 1.2;
+    .form-group label i {
     margin-bottom: 1rem;
 }
+    .form-group:hover label i,
 
 .hero-description {
     font-size: 1.125rem;
+    /* ============================================= */
+    /* SCENE LAYERS ANIMATION                      */
+    /* ============================================= */
+    .scene-layer {
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
+    .layer-mountains {
     max-width: 500px;
 }
 
+    .layer-trees {
 /* Hero Scene */
 .hero-image-container {
     margin-bottom: 2.5rem;
+    .layer-sun {
     position: relative;
     height: 300px;
 }
+    .sun {
 
 .hero-scene {
+    /* ============================================= */
+    /* PASSWORD TOGGLE ENHANCEMENT                 */
+    /* ============================================= */
+    .toggle-password {
     position: relative;
     width: 100%;
+    .toggle-password:hover {
     height: 100%;
 }
+    .toggle-password:active {
 
 .scene-layer {
+    /* ============================================= */
+    /* ERROR STATE ANIMATIONS                      */
+    /* ============================================= */
+    .form-input.error {
     position: absolute;
     width: 100%;
+    @keyframes shake {
     height: 100%;
 }
 
 .layer-mountains {
+    .error-message {
     z-index: 1;
 }
+    /* ============================================= */
+    /* SUCCESS STATE ENHANCEMENT                   */
+    /* ============================================= */
+    .form-input.success {
 
 .mountain-svg {
+    @keyframes successPulse {
     width: 100%;
     height: 100%;
 }
 
+    /* ============================================= */
+    /* RIPPLE EFFECT                               */
+    /* ============================================= */
+    .ripple-effect {
 .layer-trees {
     z-index: 2;
     display: flex;
@@ -445,11 +633,17 @@ body {
     justify-content: space-around;
     padding-bottom: 20px;
 }
+    @keyframes ripple-animation {
 
 .tree {
     width: 80px;
     height: 100px;
     animation: sway 4s ease-in-out infinite;
+    /* ============================================= */
+    /* PERFORMANCE OPTIMIZATIONS                   */
+    /* ============================================= */
+    /* GPU Acceleration for animated elements */
+    .logo-icon,
 }
 
 .tree-1 {
@@ -459,6 +653,8 @@ body {
 .tree-2 {
     animation-delay: 2s;
 }
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
 
 @keyframes sway {
     0%, 100% {
@@ -1145,3 +1341,20 @@ a:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
 }
+
+}
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+    background: linear-gradient(270deg, #a8e6cf, #dcedc1, #ffd3b6, #ffaaa5);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite;
+}
+    
