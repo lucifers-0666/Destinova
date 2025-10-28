@@ -1,11 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════════
-   DESTINOVA SPECIAL OFFERS - ULTRA-PREMIUM GLASSMORPHISM EDITION
-   Crystal Wave Animations | 3D Tilt Effects | Heavy Backdrop Blur
-   Professional 25+ Years UI/UX Design
+   DESTINOVA SPECIAL OFFERS - COMPLETE CSS WITH NEW SECTIONS
+   Emerald Green #1d5e33 | Champagne Gold #E5CBAF
+   Heavy Backdrop Blur (30px) | Crystal Effects | Gold Shimmer
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
-    /* Brand Colors */
     --emerald-primary: #1d5e33;
     --emerald-dark: #164426;
     --emerald-light: #2a7d4a;
@@ -17,41 +16,28 @@
     --gold-shimmer: #fdf6ec;
     --gold-glow: rgba(229, 203, 175, 0.4);
     
-    /* Neutrals */
     --white: #ffffff;
     --cream-bg: #FFFBF2;
     --ivory: #FEFCF8;
     --charcoal: #1C2526;
     --slate: #5C6B73;
     
-    /* Glass Effects */
     --glass-white: rgba(255, 255, 255, 0.08);
     --glass-white-light: rgba(255, 255, 255, 0.12);
     --glass-white-strong: rgba(255, 255, 255, 0.18);
     
-    /* Crystal Shadows */
-    --shadow-crystal-sm: 0 4px 16px rgba(29, 94, 51, 0.08),
-                         0 2px 8px rgba(229, 203, 175, 0.12),
-                         inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    --shadow-crystal-sm: 0 4px 16px rgba(29, 94, 51, 0.08), 0 2px 8px rgba(229, 203, 175, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    --shadow-crystal-md: 0 8px 32px rgba(29, 94, 51, 0.12), 0 4px 16px rgba(229, 203, 175, 0.16), inset 0 1px 3px rgba(255, 255, 255, 0.25);
+    --shadow-crystal-lg: 0 16px 48px rgba(29, 94, 51, 0.16), 0 8px 24px rgba(229, 203, 175, 0.2), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    --shadow-crystal-xl: 0 24px 64px rgba(29, 94, 51, 0.2), 0 12px 32px rgba(229, 203, 175, 0.24), inset 0 3px 6px rgba(255, 255, 255, 0.35);
     
-    --shadow-crystal-md: 0 8px 32px rgba(29, 94, 51, 0.12),
-                         0 4px 16px rgba(229, 203, 175, 0.16),
-                         inset 0 1px 3px rgba(255, 255, 255, 0.25);
-    
-    --shadow-crystal-lg: 0 16px 48px rgba(29, 94, 51, 0.16),
-                         0 8px 24px rgba(229, 203, 175, 0.2),
-                         inset 0 2px 4px rgba(255, 255, 255, 0.3);
-    
-    /* Transitions */
     --transition-premium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
-    /* Typography */
     --font-luxury: 'Playfair Display', serif;
     --font-display: 'Montserrat', sans-serif;
     --font-body: 'Inter', 'Poppins', sans-serif;
     
-    /* Spacing */
     --space-xs: 8px;
     --space-sm: 16px;
     --space-md: 24px;
@@ -60,7 +46,6 @@
     --space-2xl: 64px;
     --space-3xl: 96px;
     
-    /* Radii */
     --radius-sm: 12px;
     --radius-md: 20px;
     --radius-lg: 28px;
@@ -94,10 +79,10 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CRYSTAL WAVE AMBIENT (UNIQUE TO OFFERS PAGE)
+   AMBIENT ORBS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-.crystal-wave-ambient {
+.ambient-orbs-offers {
     position: fixed;
     inset: 0;
     z-index: 0;
@@ -105,71 +90,59 @@ body {
     pointer-events: none;
 }
 
-.wave-layer {
+.orb {
     position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse, var(--gold-glow) 0%, transparent 50%);
+    border-radius: 50%;
     filter: blur(80px);
-    opacity: 0.2;
+    opacity: 0.15;
 }
 
-.wave-1 {
-    top: -50%;
-    left: -25%;
-    animation: waveFloat1 20s ease-in-out infinite;
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation: orbFloat1 25s ease-in-out infinite;
 }
 
-.wave-2 {
-    top: -30%;
-    right: -25%;
-    background: radial-gradient(ellipse, var(--emerald-glow) 0%, transparent 50%);
-    animation: waveFloat2 25s ease-in-out infinite;
-    animation-delay: 5s;
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--emerald-glow) 0%, transparent 70%);
+    top: 40%;
+    right: -10%;
+    animation: orbFloat2 30s ease-in-out infinite;
 }
 
-.wave-3 {
-    bottom: -50%;
-    left: 10%;
-    animation: waveFloat3 30s ease-in-out infinite;
-    animation-delay: 10s;
+.orb-3 {
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+    bottom: -10%;
+    left: 30%;
+    animation: orbFloat3 35s ease-in-out infinite;
 }
 
-@keyframes waveFloat1 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-    33% {
-        transform: translate(10%, -5%) scale(1.1) rotate(5deg);
-    }
-    66% {
-        transform: translate(-5%, 8%) scale(0.9) rotate(-5deg);
-    }
+@keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, 50px) scale(1.1); }
+    66% { transform: translate(-50px, 100px) scale(0.9); }
 }
 
-@keyframes waveFloat2 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-    33% {
-        transform: translate(-8%, 10%) scale(1.15) rotate(-10deg);
-    }
-    66% {
-        transform: translate(12%, -8%) scale(0.85) rotate(10deg);
-    }
+@keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-80px, 80px) scale(1.15); }
+    66% { transform: translate(100px, -50px) scale(0.85); }
 }
 
-@keyframes waveFloat3 {
-    0%, 100% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-    50% {
-        transform: translate(15%, 10%) scale(1.2) rotate(15deg);
-    }
+@keyframes orbFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(120px, -80px) scale(1.2); }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GLASSMORPHIC HEADER
+   HEADER (Same as before)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .glass-header-offers {
@@ -421,13 +394,16 @@ body {
 
 .hero-stats-crystal {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: var(--space-lg);
     flex-wrap: wrap;
 }
 
 .stat-item-glass {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
     padding: var(--space-lg) var(--space-xl);
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(30px);
@@ -442,13 +418,27 @@ body {
     box-shadow: var(--shadow-crystal-lg);
 }
 
+.stat-icon-crystal {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: var(--shadow-crystal-sm);
+}
+
 .stat-number-crystal {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 900;
     background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1;
     margin-bottom: 4px;
 }
 
@@ -464,6 +454,110 @@ body {
     width: 1px;
     height: 60px;
     background: linear-gradient(to bottom, transparent, var(--champagne-gold), transparent);
+}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COUNTDOWN SECTION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.countdown-section-crystal {
+    position: relative;
+    padding: var(--space-2xl) 0;
+    z-index: 1;
+}
+
+.countdown-card-glass {
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(229, 203, 175, 0.3);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-crystal-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.countdown-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.countdown-icon-crystal {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: var(--shadow-crystal-md);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.countdown-header h2 {
+    font-family: var(--font-luxury);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--emerald-primary);
+    margin-bottom: 4px;
+}
+
+.countdown-header p {
+    color: var(--slate);
+    font-size: 1.1rem;
+}
+
+.countdown-timer-modern {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(229, 203, 175, 0.3);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-crystal-sm);
+    min-width: 90px;
+}
+
+.countdown-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--emerald-primary);
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.85rem;
+    color: var(--slate);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: var(--space-xs);
+}
+
+.countdown-separator {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--champagne-gold);
+    display: flex;
+    align-items: center;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -516,44 +610,42 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FLASH DEALS SECTION WITH 3D TILT
+   DEAL CATEGORIES SECTION (NEW)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-.flash-deals-section {
+.deal-categories-section {
     position: relative;
     padding: var(--space-3xl) 0;
     z-index: 1;
 }
 
-.countdown-timer-inline {
-    color: var(--emerald-primary);
-    font-family: var(--font-display);
-    font-weight: 900;
-}
-
-.flash-deals-grid {
+.categories-grid-crystal {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
 }
 
-.flash-deal-card {
+.category-card-glass {
     position: relative;
-    background: rgba(255, 255, 255, 0.65);
+    padding: var(--space-2xl);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(30px);
     border: 1px solid rgba(229, 203, 175, 0.3);
     border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-crystal-lg);
+    box-shadow: var(--shadow-crystal-md);
+    text-align: center;
+    cursor: pointer;
     transition: var(--transition-smooth);
+    overflow: hidden;
 }
 
-.flash-deal-card:hover {
+.category-card-glass:hover {
     transform: translateY(-12px);
-    box-shadow: 0 24px 64px rgba(29, 94, 51, 0.2);
+    box-shadow: var(--shadow-crystal-xl);
+    border-color: var(--champagne-gold);
 }
 
-.flash-card-shimmer {
+.category-shimmer {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, transparent, rgba(229, 203, 175, 0.15), transparent);
@@ -565,20 +657,111 @@ body {
     to { transform: translateX(100%) translateY(100%); }
 }
 
-.flash-deal-image-wrapper {
+.category-icon-crystal {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--space-lg);
+    background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    box-shadow: var(--shadow-crystal-md);
+    transition: var(--transition-premium);
+}
+
+.category-card-glass:hover .category-icon-crystal {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.category-card-glass h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--emerald-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.category-card-glass p {
+    color: var(--slate);
+    margin-bottom: var(--space-md);
+}
+
+.category-badge-count {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(229, 203, 175, 0.2);
+    border: 1px solid rgba(229, 203, 175, 0.4);
+    border-radius: var(--radius-full);
+    color: var(--emerald-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DEALS GRID SECTION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.deals-grid-section {
     position: relative;
-    height: 250px;
+    padding: var(--space-3xl) 0;
+    z-index: 1;
+}
+
+.deals-grid-crystal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+}
+
+.deal-large {
+    grid-column: span 2;
+}
+
+.deal-card-glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(229, 203, 175, 0.3);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-crystal-lg);
+    transition: var(--transition-smooth);
+}
+
+.deal-card-glass:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-crystal-xl);
+}
+
+.deal-card-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(229, 203, 175, 0.15), transparent);
+    transform: translateX(-100%) translateY(-100%);
+    animation: cardShimmer 6s infinite;
+    z-index: 1;
+}
+
+.deal-image-wrapper {
+    position: relative;
+    height: 280px;
     overflow: hidden;
 }
 
-.flash-deal-image-wrapper img {
+.deal-large .deal-image-wrapper {
+    height: 400px;
+}
+
+.deal-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
 }
 
-.flash-deal-card:hover .flash-deal-image-wrapper img {
+.deal-card-glass:hover .deal-image-wrapper img {
     transform: scale(1.1);
 }
 
@@ -590,428 +773,105 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.flash-deal-card:hover .image-glow-layer {
+.deal-card-glass:hover .image-glow-layer {
     opacity: 1;
 }
 
-.flash-badge-crystal {
+.deal-badge-premium {
     position: absolute;
     top: var(--space-md);
-    right: var(--space-md);
+    left: var(--space-md);
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #ef4444, #dc2626);
+    background: rgba(229, 203, 175, 0.95);
+    backdrop-filter: blur(10px);
     border-radius: var(--radius-full);
-    color: white;
+    color: var(--emerald-dark);
     font-weight: 800;
-    font-size: 0.9rem;
-    box-shadow: var(--shadow-crystal-md);
-    animation: flashBadgePulse 1.5s ease-in-out infinite;
-}
-
-@keyframes flashBadgePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-.flash-deal-content {
-    padding: var(--space-xl);
-}
-
-.flash-deal-content h3 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--emerald-primary);
-    margin-bottom: var(--space-md);
-}
-
-.flash-route-glass {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: var(--space-lg);
-    color: var(--slate);
-    font-weight: 600;
-}
-
-.flash-pricing-crystal {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-lg);
-}
-
-.price-original {
-    font-size: 1.1rem;
-    color: var(--slate);
-    text-decoration: line-through;
-}
-
-.price-discounted {
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--emerald-primary);
-}
-
-.btn-flash-book {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
-    border: none;
-    border-radius: var(--radius-lg);
-    color: white;
-    font-weight: 700;
-    font-size: 1.05rem;
-    cursor: pointer;
-    box-shadow: var(--shadow-crystal-md);
-    transition: var(--transition-premium);
-    overflow: hidden;
-}
-
-.btn-flash-book:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-crystal-lg);
-}
-
-.btn-shimmer-layer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transform: translateX(-100%);
-}
-
-.btn-flash-book:hover .btn-shimmer-layer {
-    animation: shimmerOffers 1s ease-out;
-}
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   DESTINATIONS MASONRY SECTION
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.destinations-section-premium {
-    position: relative;
-    padding: var(--space-3xl) 0;
-    z-index: 1;
-    background: linear-gradient(135deg, rgba(229, 203, 175, 0.03), rgba(29, 94, 51, 0.02));
-}
-
-.destinations-masonry-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: var(--space-lg);
-}
-
-.destination-card-large,
-.destination-card-small {
-    position: relative;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-crystal-lg);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.destination-card-large:hover,
-.destination-card-small:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 64px rgba(29, 94, 51, 0.25);
-}
-
-.destination-card-large {
-    height: 600px;
-}
-
-.destination-cards-small {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-}
-
-.destination-card-small {
-    height: 285px;
-}
-
-.destination-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.destination-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.destination-card-large:hover .destination-image-wrapper img,
-.destination-card-small:hover .destination-image-wrapper img {
-    transform: scale(1.1);
-}
-
-.destination-overlay-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(28, 37, 38, 0.8) 0%, transparent 60%);
-}
-
-.destination-content-glass {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--space-xl);
-    color: white;
-}
-
-.destination-card-large .destination-content-glass h3 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: var(--space-sm);
-}
-
-.destination-card-small .destination-content-glass h4 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-
-.destination-content-glass p {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.destination-badge-crystal {
-    position: absolute;
-    top: var(--space-md);
-    right: var(--space-md);
-    padding: 8px 20px;
-    background: rgba(229, 203, 175, 0.3);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(229, 203, 175, 0.5);
-    border-radius: var(--radius-full);
-    color: white;
-    font-weight: 700;
     font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FILTER TABS
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.all-offers-carousel-section {
-    position: relative;
-    padding: var(--space-3xl) 0;
-    z-index: 1;
-}
-
-.filter-tabs-glass {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-    flex-wrap: wrap;
-}
-
-.filter-tab-crystal {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 28px;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(229, 203, 175, 0.3);
-    border-radius: var(--radius-full);
-    color: var(--slate);
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-premium);
-}
-
-.filter-tab-crystal:hover,
-.filter-tab-crystal.active {
-    background: rgba(255, 255, 255, 0.7);
-    border-color: var(--emerald-primary);
-    color: var(--emerald-primary);
-    transform: translateY(-2px);
     box-shadow: var(--shadow-crystal-sm);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   OFFERS CAROUSEL
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.offers-carousel-wrapper {
-    position: relative;
-    padding: 0 70px;
-}
-
-.carousel-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(229, 203, 175, 0.3);
-    border-radius: 50%;
-    color: var(--emerald-primary);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: var(--transition-premium);
-    z-index: 10;
-}
-
-.carousel-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: var(--shadow-crystal-md);
-}
-
-.prev-btn {
-    left: 0;
-}
-
-.next-btn {
-    right: 0;
-}
-
-.offers-carousel-track {
-    display: flex;
-    gap: var(--space-lg);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.offers-carousel-track::-webkit-scrollbar {
-    display: none;
-}
-
-.offer-card-crystal {
-    position: relative;
-    flex: 0 0 380px;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(30px);
-    border: 1px solid rgba(229, 203, 175, 0.3);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-crystal-lg);
-    transition: var(--transition-smooth);
-}
-
-.offer-card-crystal:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 24px 64px rgba(29, 94, 51, 0.2);
-}
-
-.offer-card-shimmer {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(229, 203, 175, 0.15), transparent);
-    transform: translateX(-100%) translateY(-100%);
-    animation: cardShimmer 6s infinite;
-}
-
-.offer-image-wrapper {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-}
-
-.offer-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.offer-card-crystal:hover .offer-image-wrapper img {
-    transform: scale(1.1);
 }
 
 .discount-badge-luxury {
     position: absolute;
     top: var(--space-md);
     right: var(--space-md);
-    padding: 8px 18px;
+    padding: 10px 20px;
     background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
     border-radius: var(--radius-full);
     color: white;
     font-weight: 800;
     font-size: 0.9rem;
-    box-shadow: var(--shadow-crystal-sm);
+    box-shadow: var(--shadow-crystal-md);
+    animation: discountPulse 2s ease-in-out infinite;
 }
 
-.luxury-badge-crystal {
-    position: absolute;
-    top: var(--space-md);
-    left: var(--space-md);
+@keyframes discountPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.deal-content-glass {
+    padding: var(--space-xl);
+}
+
+.deal-location {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    background: rgba(229, 203, 175, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-full);
-    color: var(--emerald-dark);
+    gap: 8px;
+    color: var(--slate);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+}
+
+.deal-content-glass h3 {
+    font-size: 1.8rem;
     font-weight: 800;
-    font-size: 0.85rem;
-}
-
-.offer-content-glass {
-    padding: var(--space-lg);
-}
-
-.offer-content-glass h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
     color: var(--emerald-primary);
     margin-bottom: var(--space-sm);
 }
 
-.offer-route {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: var(--space-md);
+.deal-description {
     color: var(--slate);
-    font-weight: 600;
-}
-
-.offer-features-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    line-height: 1.7;
     margin-bottom: var(--space-lg);
 }
 
-.offer-features-list span {
+.deal-features-crystal {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--slate);
-    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
 }
 
-.offer-features-list i {
+.deal-features-crystal span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(229, 203, 175, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 203, 175, 0.3);
+    border-radius: var(--radius-full);
+    color: var(--slate);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.deal-features-crystal i {
     color: var(--emerald-primary);
 }
 
-.offer-pricing {
+.deal-footer-crystal {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(229, 203, 175, 0.2);
 }
 
 .price-wrapper {
@@ -1026,57 +886,229 @@ body {
 }
 
 .price-current {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 900;
     color: var(--emerald-primary);
+    line-height: 1;
+    margin: 4px 0;
+}
+
+.price-savings {
+    font-size: 0.85rem;
+    color: #10b981;
+    font-weight: 600;
 }
 
 .btn-book-crystal {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
+    gap: 12px;
+    padding: 16px 32px;
     background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
     border: none;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     color: white;
     font-weight: 700;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: var(--shadow-crystal-sm);
+    box-shadow: var(--shadow-crystal-md);
     transition: var(--transition-premium);
     overflow: hidden;
 }
 
 .btn-book-crystal:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-crystal-md);
+    box-shadow: var(--shadow-crystal-lg);
+}
+
+.btn-shimmer-layer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
 }
 
 .btn-book-crystal:hover .btn-shimmer-layer {
     animation: shimmerOffers 1s ease-out;
 }
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LAST MINUTE DEALS CAROUSEL (NEW)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* Carousel Indicators */
-.carousel-indicators-crystal {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: var(--space-xl);
+.last-minute-section {
+    position: relative;
+    padding: var(--space-3xl) 0;
+    z-index: 1;
 }
 
-.carousel-indicators-crystal span {
-    width: 12px;
-    height: 12px;
-    background: rgba(229, 203, 175, 0.3);
+.carousel-wrapper-crystal {
+    position: relative;
+    padding: 0 var(--space-2xl);
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(229, 203, 175, 0.4);
     border-radius: 50%;
+    color: var(--emerald-primary);
+    font-size: 1.2rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: var(--shadow-crystal-md);
     transition: var(--transition-premium);
 }
 
-.carousel-indicators-crystal span.active {
+.carousel-nav-btn:hover {
     background: var(--emerald-primary);
-    transform: scale(1.3);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
+
+.last-minute-carousel {
+    display: flex;
+    gap: var(--space-lg);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: var(--space-md) 0;
+}
+
+.last-minute-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-card-glass {
+    position: relative;
+    flex: 0 0 320px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(229, 203, 175, 0.3);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-crystal-md);
+    transition: var(--transition-premium);
+    cursor: pointer;
+}
+
+.carousel-card-glass:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-crystal-lg);
+}
+
+.carousel-card-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(229, 203, 175, 0.12), transparent);
+    transform: translateX(-100%);
+    animation: shimmerOffers 4s infinite;
+    z-index: 1;
+}
+
+.carousel-image-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.carousel-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.carousel-card-glass:hover .carousel-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.urgency-badge-crystal {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(239, 68, 68, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-full);
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+    box-shadow: var(--shadow-crystal-sm);
+    animation: urgencyPulse 2s ease-in-out infinite;
+}
+
+@keyframes urgencyPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.carousel-content-glass {
+    padding: var(--space-lg);
+}
+
+.carousel-content-glass h4 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--emerald-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.carousel-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--slate);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-md);
+}
+
+.carousel-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carousel-price-original {
+    font-size: 0.85rem;
+    color: var(--slate);
+    text-decoration: line-through;
+    display: block;
+}
+
+.carousel-price-current {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--emerald-primary);
+    display: block;
+}
+
+.carousel-discount {
+    padding: 6px 14px;
+    background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
+    color: white;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 0.8rem;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1161,7 +1193,7 @@ body {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(229, 203, 175, 0.3);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     font-size: 1rem;
     color: var(--charcoal);
     transition: var(--transition-premium);
@@ -1182,7 +1214,7 @@ body {
     padding: 18px 32px;
     background: linear-gradient(135deg, var(--emerald-primary), var(--emerald-light));
     border: none;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     color: white;
     font-weight: 700;
     font-size: 1rem;
@@ -1246,46 +1278,6 @@ body {
 
 .success-message-glass i {
     font-size: 1.5rem;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   REVEAL ANIMATIONS
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-.reveal-scale {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-scale.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.reveal-fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.reveal-tilt {
-    opacity: 0;
-    transform: translateY(40px) rotateX(10deg);
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal-tilt.visible {
-    opacity: 1;
-    transform: translateY(0) rotateX(0deg);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1391,24 +1383,79 @@ body {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   REVEAL ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.reveal-fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.reveal-tilt {
+    opacity: 0;
+    transform: translateY(40px) rotateX(10deg);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-tilt.visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 1200px) {
+    .deals-grid-crystal {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .deal-large {
+        grid-column: span 1;
+    }
+    
+    .categories-grid-crystal {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
 
 @media (max-width: 1024px) {
     .nav-links-glass-offers {
         display: none;
     }
     
-    .destinations-masonry-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .destination-card-large {
-        height: 400px;
-    }
-    
     .footer-content-glass-offers {
         grid-template-columns: 1fr;
+    }
+    
+    .countdown-card-glass {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .carousel-wrapper-crystal {
+        padding: 0 var(--space-lg);
     }
 }
 
@@ -1417,16 +1464,16 @@ body {
         font-size: 3rem;
     }
     
-    .flash-deals-grid {
-        grid-template-columns: 1fr;
+    .hero-stats-crystal {
+        flex-direction: column;
     }
     
-    .destination-cards-small {
-        grid-template-columns: 1fr;
+    .stat-divider-crystal {
+        display: none;
     }
     
-    .offers-carousel-wrapper {
-        padding: 0 20px;
+    .deals-grid-crystal {
+        grid-template-columns: 1fr;
     }
     
     .form-input-wrapper {
@@ -1436,10 +1483,51 @@ body {
     .footer-links-crystal-offers {
         grid-template-columns: 1fr;
     }
+    
+    .footer-bottom-glass-offers {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .categories-grid-crystal {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
     .newsletter-card-glass {
         padding: var(--space-xl);
     }
+    
+    .countdown-timer-modern {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .carousel-nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ACCESSIBILITY
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--emerald-primary);
+    outline-offset: 4px;
 }
