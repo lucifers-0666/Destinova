@@ -1,221 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Offers - Destinova</title>
-    <meta name="description" content="Explore exclusive deals and seasonal promotions on flights with Destinova.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
+    <title>Exclusive Offers | Destinova - Luxury Travel Redefined</title>
+    
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/offers.css">
 </head>
-
 <body>
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
 
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
+    <!-- Diagonal Morphing Background (Unique) -->
+    <div class="morphing-ambient">
+        <div class="morph-shape morph-1"></div>
+        <div class="morph-shape morph-2"></div>
+        <div class="morph-shape morph-3"></div>
+        <div class="gradient-mesh"></div>
+    </div>
 
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
-
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
+    <!-- Ultra-Premium Minimal Header -->
+    <header class="ultra-minimal-header">
+        <div class="container-fluid">
+            <nav class="header-nav-modern">
+                <a href="/" class="logo-minimal">
+                    <div class="logo-icon-crystal">
+                        <i class="fas fa-plane-departure"></i>
+                        <div class="logo-pulse"></div>
+                    </div>
+                    <span class="logo-text-modern">Destinova</span>
                 </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+                
+                <div class="nav-center-modern">
+                    <a href="/" class="nav-item-minimal">Home</a>
+                    <a href="/flights" class="nav-item-minimal">Flights</a>
+                    <a href="/offers" class="nav-item-minimal active">Offers</a>
+                    <a href="/about" class="nav-item-minimal">About</a>
+                </div>
+                
+                <div class="header-actions-modern">
+                    <button class="btn-minimal-icon">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn-minimal-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <div class="user-avatar-modern">
+                        <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
-    <!-- HEADER END -->
 
-    <main>
-        <section class="home-section" style="min-height: 60vh; display: flex; align-items: center; justify-content: center;">
-            <div class="home-section-title">
-                <h2>Special Offers</h2>
-                <p>More exclusive deals coming soon. Check back later!</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-7xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-            <!-- Company Info -->
-            <div class="footer-col">
-              <div class="footer-logo mb-4">
-                <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                    aria-hidden="true"></i></h2>
-              </div>
-              <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-              <p class="text-xs text-gray-400 leading-relaxed">
-                Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-                Discover a new standard in air travel.
-              </p>
-            </div>
-    
-            <!-- Quick Links -->
-            <div class="footer-col">
-              <h3 class="footer-title">
-                <i class="fas fa-compass" aria-hidden="true"></i>
-                Quick Links
-              </h3>
-              <nav aria-label="Footer navigation">
-                <ul class="space-y-3 text-gray-300">
-                  <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                        aria-hidden="true"></i> Home</a></li>
-                  <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"
-                        aria-hidden="true"></i> Book a Flight</a></li>
-                  <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                        aria-hidden="true"></i> Special Offers</a></li>
-                  <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"
-                        aria-hidden="true"></i> About Us</a></li>
-                  <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                        aria-hidden="true"></i> Contact</a></li>
-                  <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                        aria-hidden="true"></i> Flight Status</a></li>
-                  <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                        aria-hidden="true"></i> Manage Booking</a></li>
-                </ul>
-              </nav>
-            </div>
-    
-            <!-- Customer Support -->
-            <div class="footer-col">
-              <h3 class="footer-title">
-                <i class="fas fa-headset" aria-hidden="true"></i>
-                Customer Support
-              </h3>
-              <div class="text-gray-300 space-y-3">
-                <p>
-                  <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                    <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                    support@destinova.com
-                  </a>
-                </p>
-                <p>
-                  <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                    <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                    +91 1234567891
-                  </a>
-                </p>
-                <div class="support-badge">
-                  <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-                  24/7 Assistance
+    <!-- Split-Screen Hero with Animated Gradient -->
+    <section class="split-hero-modern">
+        <div class="container-fluid">
+            <div class="split-hero-content">
+                <div class="hero-left reveal-slide-left">
+                    <div class="limited-badge-float">
+                        <div class="badge-glow-ring"></div>
+                        <i class="fas fa-bolt"></i>
+                        <span>Limited Time</span>
+                    </div>
+                    
+                    <h1 class="hero-title-ultra">
+                        <span class="title-word">Exclusive</span>
+                        <span class="title-word gradient-text">Travel Deals</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle-modern">
+                        Save up to <span class="highlight-percent">60%</span> on premium destinations worldwide
+                    </p>
+                    
+                    <!-- Live Countdown -->
+                    <div class="countdown-modern">
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="hours">23</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="minutes">45</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-separator">:</div>
+                        <div class="countdown-item">
+                            <div class="countdown-number" id="seconds">12</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Stats -->
+                    <div class="floating-stats-modern">
+                        <div class="stat-bubble">
+                            <div class="stat-number-modern" data-count="156">0</div>
+                            <div class="stat-label-modern">Active Deals</div>
+                        </div>
+                        <div class="stat-bubble">
+                            <div class="stat-number-modern" data-count="85">0</div>
+                            <div class="stat-label-modern">Destinations</div>
+                        </div>
+                        <div class="stat-bubble">
+                            <div class="stat-number-modern" data-count="12000">0</div>
+                            <div class="stat-label-modern">Happy Travelers</div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-    
-            <!-- Stay Connected -->
-            <div class="footer-col">
-              <h3 class="footer-title">
-                <i class="fas fa-share-nodes" aria-hidden="true"></i>
-                Stay Connected
-              </h3>
-              <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-                <div class="newsletter-input-wrapper">
-                  <input type="email" placeholder="Your email address" required
-                    class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                    aria-label="Email address for newsletter">
-                  <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                  </button>
+                
+                <div class="hero-right reveal-scale-rotate">
+                    <div class="hero-visual-stack">
+                        <div class="visual-card visual-primary">
+                            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600" alt="Featured">
+                            <div class="visual-overlay"></div>
+                            <div class="visual-badge-luxury">
+                                <span class="badge-icon"><i class="fas fa-star"></i></span>
+                                <span>Featured</span>
+                            </div>
+                        </div>
+                        <div class="visual-card visual-secondary">
+                            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400" alt="Trending">
+                            <div class="visual-overlay"></div>
+                            <div class="price-tag-float">
+                                <span class="price-from">From</span>
+                                <span class="price-amount">₹18,999</span>
+                            </div>
+                        </div>
+                        <div class="visual-card visual-tertiary">
+                            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400" alt="Hot">
+                            <div class="visual-overlay"></div>
+                            <div class="discount-bubble">60% OFF</div>
+                        </div>
+                    </div>
                 </div>
-              </form>
-              <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-                <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                  aria-label="Follow us on Facebook" role="listitem">
-                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                  aria-label="Follow us on Twitter" role="listitem">
-                  <i class="fab fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                  aria-label="Follow us on Instagram" role="listitem">
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                  aria-label="Follow us on LinkedIn" role="listitem">
-                  <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                </a>
-                <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                  aria-label="Subscribe to our YouTube channel" role="listitem">
-                  <i class="fab fa-youtube" aria-hidden="true"></i>
-                </a>
-              </div>
             </div>
-          </div>
-    
-          <!-- Footer Bottom -->
-          <div
-            class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-            <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-              <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-              <span aria-hidden="true">|</span>
-              <a href="#" class="legal-link transition-colors">Terms of Service</a>
-            </nav>
-            <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-              <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-              <span>Trusted by 1M+ Travelers</span>
-            </div>
-          </div>
         </div>
-      </footer>
-    <!-- FOOTER END -->
+    </section>
 
-    <script src="../js/index.js"></script>
+    <!-- Bento Grid Deals Section (Modern Layout) -->
+    <section class="bento-deals-section">
+        <div class="container-fluid">
+            <div class="section-header-minimal reveal-fade">
+                <div class="section-badge-modern">
+                    <i class="fas fa-fire"></i>
+                    <span>Flash Deals</span>
+                </div>
+                <h2 class="section-title-minimal">Hottest Offers Right Now</h2>
+            </div>
+            
+            <div class="bento-grid-modern">
+                <!-- Large Featured Deal -->
+                <div class="bento-item bento-large reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800" alt="Santorini">
+                            <div class="image-gradient-overlay"></div>
+                            <div class="deal-badge-premium">
+                                <i class="fas fa-crown"></i>
+                                <span>Premium</span>
+                            </div>
+                        </div>
+                        <div class="deal-content-glass">
+                            <div class="deal-header-modern">
+                                <div class="deal-category">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Santorini, Greece</span>
+                                </div>
+                                <div class="deal-discount-badge">55% OFF</div>
+                            </div>
+                            <h3 class="deal-title-modern">Greek Island Paradise</h3>
+                            <p class="deal-description">7 days luxury stay with private villa</p>
+                            
+                            <div class="deal-features-minimal">
+                                <span><i class="fas fa-check"></i> Free Cancellation</span>
+                                <span><i class="fas fa-check"></i> Airport Transfer</span>
+                                <span><i class="fas fa-check"></i> Daily Breakfast</span>
+                            </div>
+                            
+                            <div class="deal-footer-modern">
+                                <div class="price-reveal-wrapper">
+                                    <div class="price-original">₹95,999</div>
+                                    <div class="price-current">₹42,999</div>
+                                    <div class="price-savings">Save ₹53,000</div>
+                                </div>
+                                <button class="btn-book-modern">
+                                    <span>Book Now</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="btn-shine"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Deal 1 -->
+                <div class="bento-item bento-medium reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600" alt="Bali">
+                            <div class="image-gradient-overlay"></div>
+                            <div class="deal-badge-hot">
+                                <i class="fas fa-fire"></i>
+                                <span>Hot Deal</span>
+                            </div>
+                        </div>
+                        <div class="deal-content-glass">
+                            <div class="deal-header-modern">
+                                <div class="deal-category">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Bali, Indonesia</span>
+                                </div>
+                                <div class="deal-discount-badge">60% OFF</div>
+                            </div>
+                            <h3 class="deal-title-modern">Tropical Paradise</h3>
+                            
+                            <div class="deal-footer-modern">
+                                <div class="price-reveal-wrapper">
+                                    <div class="price-original">₹45,999</div>
+                                    <div class="price-current">₹18,399</div>
+                                </div>
+                                <button class="btn-book-modern">
+                                    <span>Book</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="btn-shine"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Deal 2 -->
+                <div class="bento-item bento-medium reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600" alt="Paris">
+                            <div class="image-gradient-overlay"></div>
+                            <div class="deal-timer-badge">
+                                <i class="fas fa-clock"></i>
+                                <span id="deal-timer-1">12:45:30</span>
+                            </div>
+                        </div>
+                        <div class="deal-content-glass">
+                            <div class="deal-header-modern">
+                                <div class="deal-category">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Paris, France</span>
+                                </div>
+                                <div class="deal-discount-badge">50% OFF</div>
+                            </div>
+                            <h3 class="deal-title-modern">City of Lights</h3>
+                            
+                            <div class="deal-footer-modern">
+                                <div class="price-reveal-wrapper">
+                                    <div class="price-original">₹65,999</div>
+                                    <div class="price-current">₹32,999</div>
+                                </div>
+                                <button class="btn-book-modern">
+                                    <span>Book</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                    <div class="btn-shine"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Deal 1 -->
+                <div class="bento-item bento-small reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern deal-compact">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400" alt="Dubai">
+                            <div class="image-gradient-overlay"></div>
+                        </div>
+                        <div class="deal-content-compact">
+                            <h4>Dubai Luxury</h4>
+                            <div class="price-compact">
+                                <span class="price-from">From</span>
+                                <span class="price-amount">₹19,499</span>
+                            </div>
+                            <div class="discount-tag-small">50% OFF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Deal 2 -->
+                <div class="bento-item bento-small reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern deal-compact">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?w=400" alt="Maldives">
+                            <div class="image-gradient-overlay"></div>
+                        </div>
+                        <div class="deal-content-compact">
+                            <h4>Maldives Resort</h4>
+                            <div class="price-compact">
+                                <span class="price-from">From</span>
+                                <span class="price-amount">₹55,899</span>
+                            </div>
+                            <div class="discount-tag-small">35% OFF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Deal 3 -->
+                <div class="bento-item bento-small reveal-tilt-3d" data-tilt>
+                    <div class="deal-card-modern deal-compact">
+                        <div class="deal-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=400" alt="Thailand">
+                            <div class="image-gradient-overlay"></div>
+                        </div>
+                        <div class="deal-content-compact">
+                            <h4>Bangkok Explorer</h4>
+                            <div class="price-compact">
+                                <span class="price-from">From</span>
+                                <span class="price-amount">₹22,999</span>
+                            </div>
+                            <div class="discount-tag-small">45% OFF</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Scroll Destinations (Premium) -->
+    <section class="scroll-destinations-section">
+        <div class="container-fluid">
+            <div class="section-header-minimal reveal-fade">
+                <div class="section-badge-modern">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Destinations</span>
+                </div>
+                <h2 class="section-title-minimal">Trending Worldwide</h2>
+            </div>
+            
+            <div class="horizontal-scroll-wrapper">
+                <div class="scroll-track" id="destinations-scroll">
+                    <!-- Destination Card 1 -->
+                    <div class="destination-card-premium">
+                        <div class="destination-image-modern">
+                            <img src="https://images.unsplash.com/photo-1513415756503-ecdffb1583d7?w=500" alt="Switzerland">
+                            <div class="destination-overlay-gradient"></div>
+                        </div>
+                        <div class="destination-info-glass">
+                            <h3>Switzerland</h3>
+                            <p>From ₹52,999</p>
+                            <div class="destination-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <button class="btn-explore-minimal">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Destination Card 2 -->
+                    <div class="destination-card-premium">
+                        <div class="destination-image-modern">
+                            <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?w=500" alt="Iceland">
+                            <div class="destination-overlay-gradient"></div>
+                        </div>
+                        <div class="destination-info-glass">
+                            <h3>Iceland</h3>
+                            <p>From ₹58,999</p>
+                            <div class="destination-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <button class="btn-explore-minimal">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Add more destination cards as needed -->
+                    <div class="destination-card-premium">
+                        <div class="destination-image-modern">
+                            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500" alt="Goa">
+                            <div class="destination-overlay-gradient"></div>
+                        </div>
+                        <div class="destination-info-glass">
+                            <h3>Goa, India</h3>
+                            <p>From ₹7,799</p>
+                            <div class="destination-rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <button class="btn-explore-minimal">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="destination-card-premium">
+                        <div class="destination-image-modern">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" alt="Maldives">
+                            <div class="destination-overlay-gradient"></div>
+                        </div>
+                        <div class="destination-info-glass">
+                            <h3>Maldives</h3>
+                            <p>From ₹38,999</p>
+                            <div class="destination-rating">
+                                <i class="fas fa-star"></i>
+                                <span>5.0</span>
+                            </div>
+                        </div>
+                        <button class="btn-explore-minimal">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter (Ultra-Modern) -->
+    <section class="newsletter-ultra-modern">
+        <div class="container-fluid">
+            <div class="newsletter-wrapper-glass reveal-scale">
+                <div class="newsletter-visual">
+                    <div class="newsletter-icon-orbit">
+                        <div class="orbit-ring"></div>
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+                <div class="newsletter-content-modern">
+                    <h2>Never Miss a Deal</h2>
+                    <p>Get exclusive offers delivered to your inbox</p>
+                    <form class="newsletter-form-minimal" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">
+                            <span>Subscribe</span>
+                            <div class="btn-shine"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="footer-minimal-modern">
+        <div class="container-fluid">
+            <div class="footer-content-minimal">
+                <div class="footer-brand-minimal">
+                    <div class="logo-minimal">
+                        <div class="logo-icon-crystal">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <span class="logo-text-modern">Destinova</span>
+                    </div>
+                    <p>Elevating travel experiences</p>
+                </div>
+                
+                <div class="footer-links-modern">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="/about">About</a>
+                        <a href="/careers">Careers</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <a href="/help">Help</a>
+                        <a href="/contact">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <a href="/privacy">Privacy</a>
+                        <a href="/terms">Terms</a>
+                    </div>
+                </div>
+                
+                <div class="footer-social-minimal">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-minimal">
+                <p>&copy; 2025 Destinova. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/offers.js"></script>
 </body>
 </html>

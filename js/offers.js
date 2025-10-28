@@ -1,495 +1,654 @@
-/* ============================================= */
-/* DEALS SECTION - INTERACTIVE FUNCTIONALITY */
-/* ============================================= */
+/* ═══════════════════════════════════════════════════════════════════
+   DESTINOVA SPECIAL OFFERS - ULTRA-PREMIUM JAVASCRIPT
+   3D Tilt Effects | Carousel | Counter Animations | Flash Timer
+   Professional 25+ Years UI/UX Design
+   ═══════════════════════════════════════════════════════════════════ */
 
-(function() {
-  'use strict';
+'use strict';
 
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDealsSection);
-  } else {
-    initDealsSection();
-  }
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// STATE MANAGEMENT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  function initDealsSection() {
-    console.log('🎯 Initializing Deals Section...');
-
-    // Initialize all features
-    initCarouselNavigation();
-    initCarouselIndicators();
-    initAutoScroll();
-    initScrollSnapping();
-    initCardInteractions();
-    initBookingButtons();
-    initLazyLoading();
-    initAccessibility();
-
-    console.log('✅ Deals Section initialized successfully');
-  }
-
-  /* ============================================= */
-  /* 1. CAROUSEL NAVIGATION */
-  /* ============================================= */
-  function initCarouselNavigation() {
-    const carousel = document.querySelector('.deals-carousel');
-    const prevButton = document.querySelector('.deals-nav-button.prev');
-    const nextButton = document.querySelector('.deals-nav-button.next');
-
-    if (!carousel || !prevButton || !nextButton) return;
-
-    // Calculate scroll amount (one card width + gap)
-    const scrollAmount = 412; // 380px card + 32px gap
-
-    // Previous button
-    prevButton.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-      });
-    });
-
-    // Next button
-    nextButton.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    });
-
-    // Update button states on scroll
-    function updateNavButtons() {
-      const scrollLeft = carousel.scrollLeft;
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-
-      // Disable prev button at start
-      if (scrollLeft <= 10) {
-        prevButton.classList.add('disabled');
-      } else {
-        prevButton.classList.remove('disabled');
-      }
-
-      // Disable next button at end
-      if (scrollLeft >= maxScroll - 10) {
-        nextButton.classList.add('disabled');
-      } else {
-        nextButton.classList.remove('disabled');
-      }
+const APP_STATE = {
+    currentCarouselIndex: 0,
+    totalCarouselItems: 0,
+    flashCountdownInterval: null,
+    observers: {
+        reveal: null
     }
+};
 
-    // Initial state
-    updateNavButtons();
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INITIALIZATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    // Update on scroll
-    carousel.addEventListener('scroll', updateNavButtons);
-
-    // Keyboard navigation (Arrow keys)
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        prevButton.click();
-      } else if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        nextButton.click();
-      }
-    });
-
-    console.log('✓ Carousel navigation initialized');
-  }
-
-  /* ============================================= */
-  /* 2. SCROLL SNAPPING & SMOOTH BEHAVIOR */
-  /* ============================================= */
-  function initScrollSnapping() {
-    const carousel = document.querySelector('.deals-carousel');
-    if (!carousel) return;
-
-    // Smooth scroll polyfill for older browsers
-    if (!('scrollBehavior' in document.documentElement.style)) {
-      carousel.addEventListener('wheel', (e) => {
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-          e.preventDefault();
-          carousel.scrollLeft += e.deltaX;
-        }
-      });
-    }
-
-    // Touch swipe support
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    carousel.addEventListener('mousedown', (e) => {
-      isDown = true;
-      carousel.style.cursor = 'grabbing';
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
-    });
-
-    carousel.addEventListener('mouseleave', () => {
-      isDown = false;
-      carousel.style.cursor = 'grab';
-    });
-
-    carousel.addEventListener('mouseup', () => {
-      isDown = false;
-      carousel.style.cursor = 'grab';
-    });
-
-    carousel.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2;
-      carousel.scrollLeft = scrollLeft - walk;
-    });
-
-    console.log('✓ Scroll snapping initialized');
-  }
-
-  /* ============================================= */
-  /* 3. CARD INTERACTIONS */
-  /* ============================================= */
-  function initCardInteractions() {
-    const cards = document.querySelectorAll('.deal-card');
-
-    cards.forEach((card) => {
-      // Click handler - navigate to details
-      card.addEventListener('click', (e) => {
-        // Don't navigate if clicking book button
-        if (e.target.closest('.deal-book-button')) return;
-
-        const dealId = card.dataset.dealId;
-        console.log(`🎫 Viewing deal: ${dealId}`);
-        
-        // Add ripple effect at click position
-        createRipple(e, card);
-
-        // Navigate after short delay
-        setTimeout(() => {
-          // window.location.href = `deal-details.html?id=${dealId}`;
-          console.log(`Would navigate to: deal-details.html?id=${dealId}`);
-        }, 300);
-      });
-
-      // Keyboard navigation
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          card.click();
-        }
-      });
-
-      // Hover effect enhancement
-      card.addEventListener('mouseenter', () => {
-        card.style.cursor = 'pointer';
-      });
-    });
-
-    console.log(`✓ Card interactions initialized (${cards.length} cards)`);
-  }
-
-  /* ============================================= */
-  /* 4. CAROUSEL INDICATORS */
-  /* ============================================= */
-  function initCarouselIndicators() {
-    const carousel = document.querySelector('.deals-carousel');
-    const indicatorsContainer = document.querySelector('.deals-carousel-indicators');
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('✨ Destinova Special Offers - Ultra-Premium Edition Initialized');
     
-    if (!carousel || !indicatorsContainer) return;
-
-    const cards = carousel.querySelectorAll('.deal-card');
+    initializeGlassHeader();
+    initializeScrollReveal();
+    initializeCounterAnimations();
+    initializeFlashCountdown();
+    initialize3DTilt();
+    initializeFilterTabs();
+    initializeCarousel();
+    initializeNewsletterForm();
+    initializeWaveMouseTracking();
     
-    // Create indicator dots
-    cards.forEach((card, index) => {
-      const dot = document.createElement('button');
-      dot.className = 'deals-indicator-dot';
-      if (index === 0) dot.classList.add('active');
-      dot.setAttribute('aria-label', `Go to deal ${index + 1}`);
-      
-      // Click to scroll to card
-      dot.addEventListener('click', () => {
-        const cardWidth = card.offsetWidth + 32; // card width + gap
-        carousel.scrollTo({
-          left: cardWidth * index,
-          behavior: 'smooth'
-        });
-      });
-      
-      indicatorsContainer.appendChild(dot);
-    });
+    console.log('🎨 All premium features loaded successfully');
+});
 
-    // Update active indicator on scroll
-    carousel.addEventListener('scroll', () => {
-      const scrollPosition = carousel.scrollLeft;
-      const cardWidth = cards[0].offsetWidth + 32;
-      const activeIndex = Math.round(scrollPosition / cardWidth);
-      
-      document.querySelectorAll('.deals-indicator-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === activeIndex);
-      });
-    });
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// GLASSMORPHIC HEADER SCROLL EFFECT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    console.log(`✓ Carousel indicators initialized (${cards.length} indicators)`);
-  }
-
-  /* ============================================= */
-  /* 5. AUTO-SCROLL CAROUSEL */
-  /* ============================================= */
-  function initAutoScroll() {
-    const carousel = document.querySelector('.deals-carousel');
-    if (!carousel) return;
-
-    let autoScrollInterval;
-    let isPaused = false;
-
-    const startAutoScroll = () => {
-      autoScrollInterval = setInterval(() => {
-        if (isPaused) return;
-
-        const scrollAmount = 412; // card width + gap
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+function initializeGlassHeader() {
+    const header = document.querySelector('.glass-header-offers');
+    if (!header) return;
+    
+    let ticking = false;
+    
+    const updateHeader = () => {
+        const scrolled = window.pageYOffset;
         
-        // Scroll to next card or loop back to start
-        if (carousel.scrollLeft >= maxScroll - 10) {
-          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        if (scrolled > 100) {
+            header.classList.add('scrolled');
         } else {
-          carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            header.classList.remove('scrolled');
         }
-      }, 5000); // Every 5 seconds
+        
+        ticking = false;
     };
-
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => {
-      isPaused = true;
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
     });
+}
 
-    carousel.addEventListener('mouseleave', () => {
-      isPaused = false;
-    });
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SCROLL REVEAL ANIMATIONS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    // Pause on interaction
-    carousel.addEventListener('touchstart', () => {
-      isPaused = true;
-      setTimeout(() => { isPaused = false; }, 10000); // Resume after 10s
-    });
-
-    startAutoScroll();
-
-    console.log('✓ Auto-scroll initialized (5s interval)');
-  }
-
-  /* ============================================= */
-  /* 6. BOOKING BUTTONS */
-  /* ============================================= */
-  function initBookingButtons() {
-    const bookButtons = document.querySelectorAll('.deal-book-button');
-
-    bookButtons.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent card click
-
-        const card = button.closest('.deal-card');
-        const dealId = card.dataset.dealId;
-        const fromCity = card.querySelector('.deal-city:first-child').textContent;
-        const toCity = card.querySelector('.deal-city:last-child').textContent;
-        const price = card.querySelector('.deal-current-price').textContent;
-
-        console.log(`🎫 Booking deal: ${fromCity} → ${toCity} | ${price}`);
-
-        // Create ripple effect
-        createRipple(e, button);
-
-        // Add loading state
-        button.classList.add('loading');
-        button.disabled = true;
-        const originalText = button.querySelector('span').textContent;
-        button.querySelector('span').textContent = 'Processing...';
-
-        // Simulate booking process
-        setTimeout(() => {
-          button.classList.remove('loading');
-          button.disabled = false;
-          button.querySelector('span').textContent = originalText;
-
-          // Navigate to booking page
-          // window.location.href = `booking.html?deal=${dealId}`;
-          console.log(`Would navigate to: booking.html?deal=${dealId}`);
-        }, 1500);
-      });
-
-      // Prevent button focus on card click
-      button.addEventListener('mousedown', (e) => {
-        e.stopPropagation();
-      });
-    });
-
-    console.log(`✓ Booking buttons initialized (${bookButtons.length} buttons)`);
-  }
-
-  /* ============================================= */
-  /* 7. LAZY LOADING IMAGES */
-  /* ============================================= */
-  function initLazyLoading() {
-    const images = document.querySelectorAll('.deal-card-image[data-src]');
-
-    // Intersection Observer for lazy loading
-    const imageObserver = new IntersectionObserver(
-      (entries, observer) => {
+function initializeScrollReveal() {
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
+    };
+    
+    APP_STATE.observers.reveal = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            const wrapper = img.closest('.deal-card-image-wrapper');
-
-            // Load image
-            img.src = img.dataset.src;
-            
-            // Handle srcset if available
-            if (img.dataset.srcset) {
-              img.srcset = img.dataset.srcset;
+            if (entry.isIntersecting) {
+                const delay = entry.target.getAttribute('data-delay') || 0;
+                
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, parseInt(delay));
+                
+                APP_STATE.observers.reveal.unobserve(entry.target);
             }
-
-            // Remove loading state when loaded
-            img.addEventListener('load', () => {
-              img.classList.add('loaded');
-              if (wrapper) {
-                wrapper.classList.remove('loading');
-              }
-              img.removeAttribute('data-src');
-              img.removeAttribute('data-srcset');
-            });
-
-            // Handle error
-            img.addEventListener('error', () => {
-              console.warn('Failed to load image:', img.dataset.src);
-              if (wrapper) {
-                wrapper.classList.remove('loading');
-              }
-            });
-
-            observer.unobserve(img);
-          }
         });
-      },
-      {
-        rootMargin: '100px',
-        threshold: 0.01
-      }
-    );
-
-    images.forEach((img) => imageObserver.observe(img));
-
-    console.log(`✓ Lazy loading initialized (${images.length} images)`);
-  }
-
-  /* ============================================= */
-  /* 8. ACCESSIBILITY FEATURES */
-  /* ============================================= */
-  function initAccessibility() {
-    const cards = document.querySelectorAll('.deal-card');
-    const carousel = document.querySelector('.deals-carousel');
-
-    // Add ARIA labels
-    cards.forEach((card, index) => {
-      const fromCity = card.querySelector('.deal-city:first-child')?.textContent || 'Unknown';
-      const toCity = card.querySelector('.deal-city:last-child')?.textContent || 'Unknown';
-      const price = card.querySelector('.deal-current-price')?.textContent || 'N/A';
-      const discount = card.querySelector('.deal-discount-badge')?.textContent || '';
-
-      card.setAttribute('role', 'article');
-      card.setAttribute('aria-label', `Deal ${index + 1}: Flight from ${fromCity} to ${toCity} for ${price}. ${discount}`);
-      card.setAttribute('tabindex', '0');
+    }, observerOptions);
+    
+    // Observe all reveal elements
+    document.querySelectorAll('.reveal-scale, .reveal-fade-up, .reveal-tilt').forEach(el => {
+        APP_STATE.observers.reveal.observe(el);
     });
+}
 
-    // Announce carousel navigation to screen readers
-    if (carousel) {
-      carousel.setAttribute('role', 'region');
-      carousel.setAttribute('aria-label', 'Flight deals carousel');
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// COUNTER ANIMATIONS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function initializeCounterAnimations() {
+    const counters = document.querySelectorAll('.stat-number-crystal[data-count]');
+    
+    if (counters.length === 0) return;
+    
+    const observerOptions = {
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+}
+
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-count'));
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
+    
+    const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        const currentValue = Math.floor(easedProgress * target);
+        element.textContent = currentValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    };
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FLASH COUNTDOWN TIMER
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function initializeFlashCountdown() {
+    const countdownElement = document.getElementById('flash-countdown');
+    if (!countdownElement) return;
+    
+    // Set end time (24 hours from now)
+    const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+    
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+        
+        if (distance < 0) {
+            countdownElement.textContent = '00:00:00';
+            clearInterval(APP_STATE.flashCountdownInterval);
+            return;
+        }
+        
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        countdownElement.textContent = 
+            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    };
+    
+    updateCountdown();
+    APP_STATE.flashCountdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// 3D TILT EFFECT ON CARDS (UNIQUE TO OFFERS PAGE)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function initialize3DTilt() {
+    const tiltCards = document.querySelectorAll('[data-tilt]');
+    
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `
+                perspective(1000px) 
+                rotateX(${-rotateX}deg) 
+                rotateY(${rotateY}deg)
+                translateY(-12px)
+                scale(1.02)
+            `;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// FILTER TABS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function initializeFilterTabs() {
+    const filterTabs = document.querySelectorAll('.filter-tab-crystal');
+    const offerCards = document.querySelectorAll('.offer-card-crystal');
+    
+    if (filterTabs.length === 0) return;
+    
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const filter = tab.getAttribute('data-filter');
+            
+            // Update active tab
+            filterTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Filter cards
+            offerCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CAROUSEL WITH INDICATORS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function initializeCarousel() {
+    const carouselTrack = document.getElementById('offers-carousel');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+    
+    if (!carouselTrack) return;
+    
+    const cards = carouselTrack.querySelectorAll('.offer-card-crystal');
+    APP_STATE.totalCarouselItems = cards.length;
+    
+    // Create indicators
+    if (indicatorsContainer) {
+        for (let i = 0; i < Math.ceil(APP_STATE.totalCarouselItems / 3); i++) {
+            const indicator = document.createElement('span');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
     }
+    
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            scrollCarousel(-1);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            scrollCarousel(1);
+        });
+    }
+    
+    function scrollCarousel(direction) {
+        const cardWidth = 380 + 32; // card width + gap
+        const scrollAmount = cardWidth * 3 * direction;
+        
+        carouselTrack.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+        
+        updateIndicators();
+    }
+    
+    function goToSlide(index) {
+        const cardWidth = 380 + 32;
+        const scrollAmount = cardWidth * 3 * index;
+        
+        carouselTrack.scrollTo({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+        
+        updateIndicators();
+    }
+    
+    function updateIndicators() {
+        if (!indicatorsContainer) return;
+        
+        const scrollLeft = carouselTrack.scrollLeft;
+        const cardWidth = 380 + 32;
+        const currentSlide = Math.round(scrollLeft / (cardWidth * 3));
+        
+        const indicators = indicatorsContainer.querySelectorAll('span');
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    // Update indicators on scroll
+    carouselTrack.addEventListener('scroll', () => {
+        updateIndicators();
+    });
+}
 
-    console.log('✓ Accessibility features initialized');
-  }
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// NEWSLETTER FORM SUBMISSION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  /* ============================================= */
-  /* UTILITY FUNCTIONS */
-  /* ============================================= */
+function initializeNewsletterForm() {
+    const form = document.getElementById('newsletter-form');
+    const successMessage = document.getElementById('newsletter-success');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const emailInput = form.querySelector('input[type="email"]');
+        const submitBtn = form.querySelector('.btn-subscribe-crystal');
+        
+        if (!emailInput || !emailInput.value) {
+            alert('Please enter a valid email address');
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        const originalText = submitBtn.querySelector('span:nth-child(2)').textContent;
+        submitBtn.querySelector('span:nth-child(2)').textContent = 'Subscribing...';
+        
+        // Simulate API call
+        setTimeout(() => {
+            // Success
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span:nth-child(2)').textContent = originalText;
+            
+            // Show success message
+            if (successMessage) {
+                successMessage.style.display = 'flex';
+                
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Reset form
+            form.reset();
+            
+        }, 1500);
+    });
+}
 
-  /**
-   * Create ripple effect on click
-   */
-  function createRipple(event, element) {
-    const ripple = document.createElement('span');
-    const rect = element.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// WAVE MOUSE TRACKING (UNIQUE TO OFFERS PAGE)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    ripple.style.cssText = `
-      position: absolute;
-      width: ${size}px;
-      height: ${size}px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      top: ${y}px;
-      left: ${x}px;
-      transform: scale(0);
-      pointer-events: none;
-      z-index: 9999;
-      animation: ripple-animation 0.6s ease-out;
-    `;
+function initializeWaveMouseTracking() {
+    const waves = document.querySelectorAll('.wave-layer');
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let ticking = false;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                waves.forEach((wave, index) => {
+                    const speed = (index + 1) * 0.015;
+                    const x = (mouseX - window.innerWidth / 2) * speed;
+                    const y = (mouseY - window.innerHeight / 2) * speed;
+                    
+                    wave.style.transform = `translate(${x}px, ${y}px)`;
+                });
+                
+                ticking = false;
+            });
+            
+            ticking = true;
+        }
+    });
+}
 
-    // Add ripple styles to document if not exists
-    if (!document.getElementById('ripple-styles')) {
-      const style = document.createElement('style');
-      style.id = 'ripple-styles';
-      style.textContent = `
-        @keyframes ripple-animation {
-          to {
-            transform: scale(4);
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// BOOKING BUTTON INTERACTIONS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+document.querySelectorAll('.btn-flash-book, .btn-book-crystal').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Create ripple effect
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            width: 100px;
+            height: 100px;
+            left: ${e.offsetX - 50}px;
+            top: ${e.offsetY - 50}px;
+            animation: rippleExpand 0.6s ease-out;
+            pointer-events: none;
+        `;
+        
+        this.style.position = 'relative';
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+        
+        // Navigate to booking page
+        setTimeout(() => {
+            window.location.href = '/booking.html';
+        }, 300);
+    });
+});
+
+// Add ripple animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes rippleExpand {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
             opacity: 0;
-          }
         }
-      `;
-      document.head.appendChild(style);
     }
+`;
+document.head.appendChild(style);
 
-    element.style.position = 'relative';
-    element.style.overflow = 'hidden';
-    element.appendChild(ripple);
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CARD HOVER EFFECTS WITH GLOW
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    setTimeout(() => ripple.remove(), 600);
-  }
-
-  /**
-   * Format currency
-   */
-  function formatCurrency(amount, currency = '₹') {
-    return `${currency}${amount.toLocaleString('en-IN')}`;
-  }
-
-  /**
-   * Calculate discount percentage
-   */
-  function calculateDiscount(original, current) {
-    return Math.round(((original - current) / original) * 100);
-  }
-
-  /* ============================================= */
-  /* PERFORMANCE MONITORING */
-  /* ============================================= */
-  if (window.PerformanceObserver) {
-    try {
-      const observer = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.entryType === 'measure' && entry.name.includes('deals-section')) {
-            console.log(`⚡ ${entry.name}: ${entry.duration.toFixed(2)}ms`);
-          }
+document.querySelectorAll('.flash-deal-card, .offer-card-crystal').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        const glowLayer = this.querySelector('.image-glow-layer');
+        if (glowLayer) {
+            glowLayer.style.opacity = '1';
         }
-      });
-      observer.observe({ entryTypes: ['measure'] });
-    } catch (e) {
-      console.warn('Performance monitoring not supported');
-    }
-  }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        const glowLayer = this.querySelector('.image-glow-layer');
+        if (glowLayer) {
+            glowLayer.style.opacity = '0';
+        }
+    });
+});
 
-})();
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DESTINATION CARDS CLICK HANDLERS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+document.querySelectorAll('.destination-card-large, .destination-card-small').forEach(card => {
+    card.addEventListener('click', function() {
+        // Add pulse animation
+        this.style.animation = 'destinationPulse 0.4s ease';
+        
+        setTimeout(() => {
+            this.style.animation = '';
+            // Navigate to destination page
+            console.log('Navigate to destination details');
+        }, 400);
+    });
+});
+
+// Add destination pulse animation
+const destStyle = document.createElement('style');
+destStyle.textContent = `
+    @keyframes destinationPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(0.98); }
+    }
+`;
+document.head.appendChild(destStyle);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SMOOTH SCROLLING FOR ANCHOR LINKS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        if (href === '#' || href === '') return;
+        
+        e.preventDefault();
+        
+        const target = document.querySelector(href);
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// KEYBOARD SHORTCUTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+document.addEventListener('keydown', (e) => {
+    // Left arrow - previous carousel
+    if (e.key === 'ArrowLeft') {
+        const prevBtn = document.getElementById('carousel-prev');
+        if (prevBtn) prevBtn.click();
+    }
+    
+    // Right arrow - next carousel
+    if (e.key === 'ArrowRight') {
+        const nextBtn = document.getElementById('carousel-next');
+        if (nextBtn) nextBtn.click();
+    }
+    
+    // 'T' - scroll to top
+    if (e.key === 't' || e.key === 'T') {
+        if (!e.ctrlKey && !e.metaKey) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+});
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PERFORMANCE OPTIMIZATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Reduce animations when user prefers reduced motion
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.style.scrollBehavior = 'auto';
+    document.querySelectorAll('.wave-layer').forEach(wave => {
+        wave.style.animation = 'none';
+    });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PAGE VISIBILITY API - PAUSE ANIMATIONS WHEN TAB HIDDEN
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+document.addEventListener('visibilitychange', () => {
+    const waves = document.querySelectorAll('.wave-layer');
+    
+    if (document.hidden) {
+        waves.forEach(wave => {
+            wave.style.animationPlayState = 'paused';
+        });
+    } else {
+        waves.forEach(wave => {
+            wave.style.animationPlayState = 'running';
+        });
+    }
+});
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// LAZY LOADING FOR IMAGES
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CONSOLE EASTER EGG
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+console.log(
+    '%c✨ DESTINOVA SPECIAL OFFERS',
+    'color: #1d5e33; font-size: 24px; font-weight: 900; padding: 20px; background: linear-gradient(135deg, #E5CBAF 0%, #1d5e33 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'
+);
+
+console.log(
+    '%c🎨 Ultra-Premium Glassmorphism Edition\n3D Tilt Effects | Crystal Wave Animations | Flash Deals',
+    'color: #5C6B73; font-size: 14px; padding: 10px; line-height: 1.6;'
+);
+
+console.log(
+    '%cDiscover exclusive travel deals at destinova.com',
+    'color: #E5CBAF; font-size: 13px; padding: 8px; font-weight: 600;'
+);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CLEANUP ON PAGE UNLOAD
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+window.addEventListener('beforeunload', () => {
+    if (APP_STATE.observers.reveal) {
+        APP_STATE.observers.reveal.disconnect();
+    }
+    
+    if (APP_STATE.flashCountdownInterval) {
+        clearInterval(APP_STATE.flashCountdownInterval);
+    }
+});
+
+console.log('✨ Destinova Special Offers - All Premium Systems Active');

@@ -356,27 +356,29 @@ Air_ticket_booking_mini_project/
 │   │   ├── refund-management.html    # Refund processing & approval
 │   │   ├── notification-management.html # System notifications
 │   │   ├── admin-settings.html       # 10-tab settings (General, Payment, Email, SMS, Flight, User, Security, Backup, API, Appearance)
+│   │   ├── responsive-demo.html      # Responsive design showcase
 │   │   └── profile.html              # Admin profile & preferences
 │   │
 │   ├── 📂 css/                       # Admin stylesheets (9 files)
 │   │   ├── admin-dashboard.css       # Dashboard styles with emerald theme
 │   │   ├── manage-bookings.css       # Bookings management styles
 │   │   ├── admin-settings.css        # Settings page styles (10 tabs)
+│   │   ├── admin-responsive.css      # Responsive demo styles
 │   │   └── ...                       # Other admin page styles
 │   │
 │   ├── 📂 js/                        # Admin JavaScript (9 files)
 │   │   ├── admin-dashboard.js        # Dashboard logic & Chart.js integration
 │   │   ├── manage-bookings.js        # Bookings CRUD & filtering
 │   │   ├── admin-settings.js         # Settings management & validation
+│   │   ├── admin-sidebar-init.js     # Sidebar and navigation logic
 │   │   └── ...                       # Other admin page scripts
 │   │
-│   └── 📂 Documentation/             # Admin panel docs (6 files)
-│       ├── README.md                 # Admin overview
-│       ├── DASHBOARD_SUMMARY.md      # Dashboard features
-│       ├── QUICK_START.md            # Quick start guide
-│       ├── ADMIN_NAVIGATION_SUMMARY.md # Navigation structure
-│       ├── QUICK_REFERENCE.md        # Feature reference
-│       └── FINAL_COMPLETION_REPORT.md # Complete implementation report
+│   ├── README.md                     # Admin overview and docs (Documentation folder not present)
+│   ├── RESPONSIVE_DESIGN_GUIDE.md    # Responsive design guide
+│   └── RESPONSIVE_QUICK_REFERENCE.md # Responsive quick reference
+├── 📂 react/                         # React components (experimental, for future mobile/PWA)
+│   ├── DestinovaLogin.jsx            # Example React login component
+│   └── README.md                     # React folder documentation
 │
 ├── 📂 css/                           # User-facing stylesheets (50+ files)
 │   ├── index.css                     # Main styles (3500+ lines)
@@ -435,9 +437,10 @@ Air_ticket_booking_mini_project/
 **🎫 Booking Flow**: 3-step process, live preview sidebar, interactive seat map, real-time pricing, **smart autocomplete (NEW!)**  
 **🎉 Confirmation**: Confetti animation, dynamic QR codes, PDF export, email integration  
 **🔐 Security**: Form validation, Luhn algorithm, XSS prevention, input sanitization, CSRF protection  
-**👔 Admin Panel**: 9 complete pages, 10-tab settings, Chart.js analytics, user/booking/flight management  
+**👔 Admin Panel**: 9 complete pages, 10-tab settings, Chart.js analytics, user/booking/flight management, responsive demo page  
+**⚛️ React Components**: Experimental React folder for future mobile/PWA features  
 **⚙️ Settings System**: Multi-gateway payments, email/SMS config, API management, appearance customization  
-**📱 Responsive**: Mobile-first design, 4 breakpoints (mobile/tablet/desktop/large), touch-optimized  
+**📱 Responsive**: Mobile-first design, 4 breakpoints (mobile/tablet/desktop/large), touch-optimized, dedicated responsive demo and guides  
 **⚡ Performance**: Event delegation, debouncing, lazy loading, 60fps animations, optimized images  
 **✨ Premium UI**: Particle system, premium animations, micro-interactions, breathtaking hero section **(NEW!)**  
 **🛫 Flight API**: Complete airport data system with country/state/city search capabilities **(NEW!)**
@@ -478,41 +481,47 @@ Air_ticket_booking_mini_project/
 ```bash
 # Clone the repository
 git clone https://github.com/lucifers-0666/Destinova.git
-cd Destinova
-
-# Open directly in browser
-# User Site: html/index.html
-# Admin Panel: Admin/html/admin-dashboard.html
-
-# OR use VS Code Live Server (recommended)
-# OR run: python -m http.server 8000
+```mermaid
+graph TB
+    Start([👤 User/Admin Entry]) --> UserPath{User Type?}
+    %% User Flow
+    UserPath -->|Customer| Home[🏠 Homepage]
+    Home --> Search[🔍 Search Flights]
+    Search --> Results[✈️ Results - Filter & Sort]
+    Results --> Select[📋 Select Flight]
+    Select --> Auth{🔐 Logged In?}
+    Auth -->|No| SignFlow[Sign In/Sign Up]
+    Auth -->|Yes| BookingFlow
+    SignFlow --> BookingFlow
+    BookingFlow[🎫 Multi-Step Booking] --> Step1[Step 1: Passenger Details]
+    Step1 --> Step2[Step 2: Seat Selection]
+    Step2 --> Step3[Step 3: Payment]
+    Step3 --> Confirm[🎉 Confirmation\nQR Code & PDF]
+    Home --> UserDash[👤 User Dashboard]
+    UserDash --> MyBookings[📖 My Bookings]
+    UserDash --> Profile[👤 Profile - 4 Tabs]
+    UserDash --> PayHistory[💳 Payment History]
+    %% Admin Flow
+    UserPath -->|Admin| AdminDash[🛡️ Admin Dashboard\nStats & Charts]
+    AdminDash --> ManageBook[📊 Bookings Management]
+    AdminDash --> ManageFlight[✈️ Flight Management]
+    AdminDash --> ManageUser[👥 User Management]
+    AdminDash --> Revenue[📈 Revenue Reports]
+    AdminDash --> Refund[💸 Refund Management]
+    AdminDash --> Notify[🔔 Notifications]
+    AdminDash --> Settings[⚙️ Settings - 10 Tabs]
+    AdminDash --> AdminProfile[👔 Admin Profile]
+    AdminDash --> ResponsiveDemo[📱 Responsive Demo]
+    %% React & Docs
+    Start --> ReactFolder[⚛️ React Components]
+    Start --> Docs[📚 Documentation]
+    style Start fill:#e1f5e1
+    style Confirm fill:#ffe1e1
+    style AdminDash fill:#e1e5ff
+    style Settings fill:#fff3e1
+    style ReactFolder fill:#e1f5ff
+    style Docs fill:#fffbe1
 ```
-
-**Requirements**: Modern browser (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+) - No build tools needed!
-
----
-
-## 🌐 Browser Support
-
-| Browser | Version | Support |
-|---------|---------|---------|
-| Chrome | 90+ | ✅ Full |
-| Firefox | 88+ | ✅ Full |
-| Safari | 14+ | ✅ Full |
-| Edge | 90+ | ✅ Full |
-
-**APIs Used**: ES6+, CSS Grid/Flexbox, LocalStorage, Geolocation, Canvas, Clipboard
-
-
-
-
-
----
-
-## 🆕 Latest Updates & Enhancements
-
-### Recent Major Additions (Latest Release)
-
 #### ✈️ **Flight API Integration System**
 - **9000+ Airports Database**: Comprehensive worldwide airport data
 - **Smart Search**: Search by city, airport name, code, or country
