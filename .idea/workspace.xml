@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4493deb-6dd3-4cec-a093-2cb2c30b31a0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/final-polish.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/new-sections.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/section-optimization.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/final-polish.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/new-sections.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/section-optimization.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/index.html" afterDir="false" />
     </list>
@@ -45,6 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -73,7 +79,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
       </set>
     </attachedChunks>
   </component>
@@ -93,6 +99,8 @@
       <workItem from="1761211617162" duration="1513000" />
       <workItem from="1761214206083" duration="5270000" />
       <workItem from="1761271730569" duration="609000" />
+      <workItem from="1761617807957" duration="2317000" />
+      <workItem from="1761620400199" duration="4970000" />
     </task>
     <servers />
   </component>

@@ -95,6 +95,15 @@
   <link rel="stylesheet" href="../css/payment-security.css">
   <link rel="stylesheet" href="../css/travel-blog.css">
 
+  <!-- NEW SECTIONS CSS -->
+  <link rel="stylesheet" href="../css/new-sections.css">
+
+  <!-- SECTION OPTIMIZATION CSS (Phase 3) -->
+  <link rel="stylesheet" href="../css/section-optimization.css">
+
+  <!-- FINAL POLISH CSS (Phase 4) -->
+  <link rel="stylesheet" href="../css/final-polish.css">
+
   <!-- Premium Features: Dividers, Enhanced Booking Steps, Micro-Interactions -->
   <link rel="stylesheet" href="../css/premium-dividers.css">
   <link rel="stylesheet" href="../css/booking-steps-enhanced.css">
@@ -680,6 +689,95 @@
       </div>
     </div>
 
+    <!-- ========== TRUST INDICATORS BAR START ========== -->
+    <section class="trust-indicators-bar" role="complementary" aria-label="Trust indicators">
+      <div class="trust-bar-container">
+        <!-- Partner Airlines Logos -->
+        <div class="trust-bar-item partner-logos">
+          <img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/QR.png" alt="Qatar Airways" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/SQ.png" alt="Singapore Airlines" class="airline-logo">
+        </div>
+
+        <!-- Trust Stats -->
+        <div class="trust-bar-stats">
+          <div class="trust-stat">
+            <i class="fas fa-users"></i>
+            <strong>2M+</strong>
+            <span>Happy Travelers</span>
+          </div>
+          <div class="trust-stat">
+            <i class="fas fa-plane-departure"></i>
+            <strong>500+</strong>
+            <span>Airlines</span>
+          </div>
+          <div class="trust-stat">
+            <i class="fas fa-globe"></i>
+            <strong>150+</strong>
+            <span>Countries</span>
+          </div>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="trust-bar-item trust-badge-item">
+          <i class="fas fa-shield-check"></i>
+          <span>Secure Booking</span>
+        </div>
+      </div>
+    </section>
+    <!-- ========== TRUST INDICATORS BAR END ========== -->
+
+    <!-- ========== LIVE DEAL TICKER START ========== -->
+    <section class="live-deal-ticker" role="marquee" aria-label="Live flight deals">
+      <div class="deal-ticker-wrapper">
+        <div class="deal-ticker-content">
+          <div class="deal-item">
+            <i class="fas fa-fire"></i>
+            <span class="deal-route">NYC → London</span>
+            <span class="deal-price">$299</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-plane"></i>
+            <span class="deal-route">LA → Tokyo</span>
+            <span class="deal-price">$450</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-tag"></i>
+            <span class="deal-route">Miami → Paris</span>
+            <span class="deal-price">$380</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-fire"></i>
+            <span class="deal-route">Chicago → Dubai</span>
+            <span class="deal-price">$520</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-plane"></i>
+            <span class="deal-route">Seattle → Barcelona</span>
+            <span class="deal-price">$420</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-tag"></i>
+            <span class="deal-route">Boston → Rome</span>
+            <span class="deal-price">$390</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-fire"></i>
+            <span class="deal-route">SF → Singapore</span>
+            <span class="deal-price">$580</span>
+          </div>
+          <div class="deal-item">
+            <i class="fas fa-plane"></i>
+            <span class="deal-route">Dallas → Sydney</span>
+            <span class="deal-price">$750</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== LIVE DEAL TICKER END ========== -->
 
     <!-- ========== PREMIUM FEATURES SECTION START ========== -->
     <section class="premium-features-section" id="premium-features" role="region" aria-labelledby="features-heading">
@@ -1197,626 +1295,353 @@
     </section>
     <!-- ========== POPULAR DESTINATIONS SECTION END ========== -->
 
-    <!-- ========== DIVIDER: Destinations → Deals ========== -->
-    <div class="section-divider gradient-bar">
-      <div class="gradient-bar-line"></div>
+    <!-- ========== TRIP INSPIRATION BY CATEGORY START ========== -->
+    <section class="trip-inspiration-section" id="trip-inspiration" role="region" aria-labelledby="inspiration-heading">
+      <div class="inspiration-container">
+        <!-- Section Header -->
+        <div class="inspiration-header">
+          <h2 id="inspiration-heading" class="inspiration-title">Find Your Perfect Getaway</h2>
+          <p class="inspiration-subtitle">Curated collections for every traveler</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="inspiration-tabs" role="tablist">
+          <button class="inspiration-tab active" role="tab" aria-selected="true" data-category="beach">
+            <i class="fas fa-umbrella-beach"></i>
+            <span>Beach Escapes</span>
+          </button>
+          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="city">
+            <i class="fas fa-city"></i>
+            <span>City Adventures</span>
+          </button>
+          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="mountain">
+            <i class="fas fa-mountain"></i>
+            <span>Mountain Retreats</span>
+          </button>
+          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="romantic">
+            <i class="fas fa-heart"></i>
+            <span>Romantic Getaways</span>
+          </button>
+        </div>
+
+        <!-- Content Panels -->
+        <div class="inspiration-content">
+          <!-- Beach Panel -->
+          <div class="inspiration-panel active" data-panel="beach">
+            <div class="inspiration-grid">
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Maldives</h3>
+                  <p>Sun, sand & serenity</p>
+                  <span class="inspiration-price">From $899</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Phuket" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Phuket</h3>
+                  <p>Tropical paradise awaits</p>
+                  <span class="inspiration-price">From $450</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Bora Bora</h3>
+                  <p>Overwater bungalow luxury</p>
+                  <span class="inspiration-price">From $1,299</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80" alt="Cancun" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Cancun</h3>
+                  <p>Caribbean dreams</p>
+                  <span class="inspiration-price">From $380</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80" alt="Seychelles" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Seychelles</h3>
+                  <p>Pristine island beauty</p>
+                  <span class="inspiration-price">From $950</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Santorini</h3>
+                  <p>Greek island magic</p>
+                  <span class="inspiration-price">From $650</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- City Panel -->
+          <div class="inspiration-panel" data-panel="city">
+            <div class="inspiration-grid">
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Paris</h3>
+                  <p>City of lights & love</p>
+                  <span class="inspiration-price">From $460</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" alt="London" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>London</h3>
+                  <p>History meets modernity</p>
+                  <span class="inspiration-price">From $420</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80" alt="New York" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>New York</h3>
+                  <p>The city that never sleeps</p>
+                  <span class="inspiration-price">From $280</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=800&q=80" alt="Tokyo" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Tokyo</h3>
+                  <p>Tradition meets innovation</p>
+                  <span class="inspiration-price">From $550</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Dubai" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Dubai</h3>
+                  <p>Luxury & adventure</p>
+                  <span class="inspiration-price">From $330</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" alt="Barcelona" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Barcelona</h3>
+                  <p>Art, culture & beaches</p>
+                  <span class="inspiration-price">From$390</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Mountain Panel -->
+          <div class="inspiration-panel" data-panel="mountain">
+            <div class="inspiration-grid">
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80" alt="Swiss Alps" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Swiss Alps</h3>
+                  <p>Majestic peaks & valleys</p>
+                  <span class="inspiration-price">From $680</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Nepal Himalayas" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Nepal</h3>
+                  <p>Himalayan adventures</p>
+                  <span class="inspiration-price">From $520</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Colorado Rockies" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Colorado</h3>
+                  <p>Rocky Mountain high</p>
+                  <span class="inspiration-price">From $240</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="New Zealand Alps" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>New Zealand</h3>
+                  <p>Southern Alps beauty</p>
+                  <span class="inspiration-price">From $890</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Patagonia" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Patagonia</h3>
+                  <p>Wild frontier</p>
+                  <span class="inspiration-price">From $780</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Austrian Alps" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Austria</h3>
+                  <p>Alpine charm</p>
+                  <span class="inspiration-price">From $590</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Romantic Panel -->
+          <div class="inspiration-panel" data-panel="romantic">
+            <div class="inspiration-grid">
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Paris</h3>
+                  <p>Romance at every corner</p>
+                  <span class="inspiration-price">From $460</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80" alt="Venice" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Venice</h3>
+                  <p>Gondola rides & gelato</p>
+                  <span class="inspiration-price">From $510</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Maldives</h3>
+                  <p>Private island escapes</p>
+                  <span class="inspiration-price">From $899</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Santorini</h3>
+                  <p>Sunset & white villages</p>
+                  <span class="inspiration-price">From $650</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Bora Bora</h3>
+                  <p>Overwater paradise</p>
+                  <span class="inspiration-price">From $1,299</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+              <article class="inspiration-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Bali" loading="lazy">
+                <div class="inspiration-overlay">
+                  <h3>Bali</h3>
+                  <p>Tropical romance</p>
+                  <span class="inspiration-price">From $490</span>
+                  <button class="inspiration-cta">Explore Flights</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== TRIP INSPIRATION BY CATEGORY END ========== -->
+
+    <!-- ========== DIVIDER: Inspiration → Price Alerts ========== -->
+    <div class="section-divider sparkle">
+      <div class="sparkle-icon">
+        <i class="fas fa-sparkles"></i>
+      </div>
     </div>
 
-    <!-- ========== DEALS SECTION START ========== -->
-    <section class="deals-section" id="deals-section" role="region" aria-labelledby="deals-heading">
-
-      <!-- Decorative Background Shapes -->
-      <div class="deals-bg-shape shape-1" aria-hidden="true"></div>
-      <div class="deals-bg-shape shape-2" aria-hidden="true"></div>
-      <div class="deals-bg-shape shape-3" aria-hidden="true"></div>
-
-      <!-- Section Header -->
-      <div class="deals-section-header">
-        <div class="deals-eyebrow">EXCLUSIVE OFFERS</div>
-        <h2 class="deals-main-heading" id="deals-heading">Limited-Time Flight Deals</h2>
-        <p class="deals-subheading">Curated offers with unbeatable prices. Book now before they're gone.</p>
-      </div>
-
-      <!-- Deals Carousel Wrapper -->
-      <div class="deals-carousel-wrapper">
-
-        <!-- Carousel Navigation (Absolute Positioned) -->
-        <div class="deals-carousel-nav">
-          <button class="deals-nav-button prev" aria-label="View previous deals">
-            <svg class="deals-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
+    <!-- ========== PRICE ALERTS CTA START ========== -->
+    <section class="price-alerts-section" role="region" aria-labelledby="price-alerts-heading">
+      <div class="price-alerts-container">
+        <!-- Left: Visual/Illustration -->
+        <div class="price-alerts-visual">
+          <div class="alert-bell-illustration">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              <circle cx="18" cy="8" r="3" fill="#1a4d2e"/>
             </svg>
-          </button>
-          <button class="deals-nav-button next" aria-label="View next deals">
-            <svg class="deals-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
+          </div>
         </div>
 
-        <!-- Deals Carousel -->
-        <div class="deals-carousel" role="list" tabindex="0">
+        <!-- Right: Form + Content -->
+        <div class="price-alerts-content">
+          <h2 id="price-alerts-heading" class="price-alerts-title">Never Miss a Deal</h2>
+          <p class="price-alerts-subtitle">Get instant alerts when prices drop on your favorite routes</p>
 
-          <!-- Deal Card 1: Mumbai → Dubai -->
-          <article class="deal-card" data-deal-id="deal-mumbai-dubai-001" role="listitem">
-            <div class="deal-card-image-wrapper loading">
-              <img class="deal-card-image"
-                data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80 400w,
-                             https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80 800w"
-                alt="Dubai skyline with Burj Khalifa at night" loading="lazy">
-              <div class="deal-card-image-overlay"></div>
-
-              <div class="deal-discount-badge">30% OFF</div>
-
-              <div class="deal-verified-badge">
-                <svg class="deal-verified-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Verified Deal</span>
+          <form class="price-alerts-form" id="priceAlertsForm">
+            <div class="form-group">
+              <label for="alert-email" class="form-label">Email Address</label>
+              <div class="input-with-icon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="alert-email" class="form-input" placeholder="Enter your email" required>
               </div>
             </div>
 
-            <div class="deal-card-content">
-              <!-- Urgency Timer -->
-              <div class="deal-urgency-timer">
-                <svg class="deal-timer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="deal-timer-text">Deal expires in:</span>
-                <span class="deal-timer-countdown" data-end-time="2025-10-15T23:59:59">23:45:30</span>
-              </div>
-
-              <!-- Route -->
-              <div class="deal-route">
-                <h3 class="deal-city">Mumbai</h3>
-                <svg class="deal-route-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-                <h3 class="deal-city">Dubai</h3>
-              </div>
-
-              <!-- Flight Details -->
-              <div class="deal-flight-details">
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Direct Flight
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  3h 30m
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  Round Trip
-                </span>
-              </div>
-
-              <!-- Seats Left -->
-              <div class="deal-seats-left">
-                <svg class="deal-seats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>Only 5 seats left!</span>
-              </div>
-
-              <!-- Pricing -->
-              <div class="deal-pricing">
-                <div class="deal-price-wrapper">
-                  <span class="deal-original-price">₹47,999</span>
-                  <div>
-                    <span class="deal-current-price">₹32,999</span>
-                    <span class="deal-price-suffix">/person</span>
-                  </div>
-                </div>
-                <button class="deal-book-button" aria-label="Book Mumbai to Dubai flight">
-                  <span>Book Now</span>
-                  <svg class="deal-book-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Deal Card 2: Delhi to Paris -->
-          <article class="deal-card" data-deal-id="deal-delhi-paris-002" role="listitem">
-            <div class="deal-card-image-wrapper loading">
-              <img class="deal-card-image"
-                data-src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80 400w,
-                             https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80 800w"
-                alt="Eiffel Tower at sunset in Paris" loading="lazy">
-              <div class="deal-card-image-overlay"></div>
-
-              <div class="deal-discount-badge">25% OFF</div>
-
-              <div class="deal-verified-badge">
-                <svg class="deal-verified-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Verified Deal</span>
+            <div class="form-group">
+              <label for="alert-route" class="form-label">Route (Optional)</label>
+              <div class="input-with-icon">
+                <i class="fas fa-route"></i>
+                <select id="alert-route" class="form-input">
+                  <option value="">All routes</option>
+                  <option value="nyc-lhr">NYC → London</option>
+                  <option value="lax-nrt">LA → Tokyo</option>
+                  <option value="mia-cdg">Miami → Paris</option>
+                  <option value="ord-dxb">Chicago → Dubai</option>
+                  <option value="sfo-sin">SF → Singapore</option>
+                </select>
               </div>
             </div>
 
-            <div class="deal-card-content">
-              <!-- Urgency Timer -->
-              <div class="deal-urgency-timer">
-                <svg class="deal-timer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="deal-timer-text">Deal expires in:</span>
-                <span class="deal-timer-countdown" data-end-time="2025-10-16T23:59:59">47:30:15</span>
-              </div>
+            <button type="submit" class="price-alerts-submit">
+              <i class="fas fa-bell"></i>
+              <span>Get Price Alerts</span>
+            </button>
 
-              <!-- Route -->
-              <div class="deal-route">
-                <h3 class="deal-city">Delhi</h3>
-                <svg class="deal-route-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-                <h3 class="deal-city">Paris</h3>
-              </div>
-
-              <!-- Flight Details -->
-              <div class="deal-flight-details">
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Direct Flight
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  8h 45m
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  Round Trip
-                </span>
-              </div>
-
-              <!-- Seats Left -->
-              <div class="deal-seats-left">
-                <svg class="deal-seats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>Only 8 seats left!</span>
-              </div>
-
-              <!-- Pricing -->
-              <div class="deal-pricing">
-                <div class="deal-price-wrapper">
-                  <span class="deal-original-price">₹61,999</span>
-                  <div>
-                    <span class="deal-current-price">₹45,999</span>
-                    <span class="deal-price-suffix">/person</span>
-                  </div>
-                </div>
-                <button class="deal-book-button" aria-label="Book Delhi to Paris flight">
-                  <span>Book Now</span>
-                  <svg class="deal-book-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
+            <div class="price-alerts-privacy">
+              <i class="fas fa-shield-check"></i>
+              <span>Unsubscribe anytime. No spam, ever.</span>
             </div>
-          </article>
+          </form>
 
-          <!-- Deal Card 3: Bangalore to Bali -->
-          <article class="deal-card" data-deal-id="deal-bangalore-bali-003" role="listitem">
-            <div class="deal-card-image-wrapper loading">
-              <img class="deal-card-image"
-                data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80 400w,
-                             https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80 800w"
-                alt="Rice terraces and temple in Bali, Indonesia" loading="lazy">
-              <div class="deal-card-image-overlay"></div>
-
-              <div class="deal-discount-badge">35% OFF</div>
-
-              <div class="deal-verified-badge">
-                <svg class="deal-verified-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Verified Deal</span>
-              </div>
-            </div>
-
-            <div class="deal-card-content">
-              <!-- Urgency Timer -->
-              <div class="deal-urgency-timer">
-                <svg class="deal-timer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="deal-timer-text">Deal expires in:</span>
-                <span class="deal-timer-countdown" data-end-time="2025-10-17T23:59:59">71:15:45</span>
-              </div>
-
-              <!-- Route -->
-              <div class="deal-route">
-                <h3 class="deal-city">Bangalore</h3>
-                <svg class="deal-route-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-                <h3 class="deal-city">Bali</h3>
-              </div>
-
-              <!-- Flight Details -->
-              <div class="deal-flight-details">
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  1 Stop
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  6h 20m
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  Round Trip
-                </span>
-              </div>
-
-              <!-- Seats Left -->
-              <div class="deal-seats-left">
-                <svg class="deal-seats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>Only 3 seats left!</span>
-              </div>
-
-              <!-- Pricing -->
-              <div class="deal-pricing">
-                <div class="deal-price-wrapper">
-                  <span class="deal-original-price">₹44,599</span>
-                  <div>
-                    <span class="deal-current-price">₹28,999</span>
-                    <span class="deal-price-suffix">/person</span>
-                  </div>
-                </div>
-                <button class="deal-book-button" aria-label="Book Bangalore to Bali flight">
-                  <span>Book Now</span>
-                  <svg class="deal-book-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Deal Card 4: Chennai to Maldives -->
-          <article class="deal-card" data-deal-id="deal-chennai-maldives-004" role="listitem">
-            <div class="deal-card-image-wrapper loading">
-              <img class="deal-card-image"
-                data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80 400w,
-                             https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80 800w"
-                alt="Overwater bungalows in Maldives" loading="lazy">
-              <div class="deal-card-image-overlay"></div>
-
-              <div class="deal-discount-badge">20% OFF</div>
-
-              <div class="deal-verified-badge">
-                <svg class="deal-verified-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Verified Deal</span>
-              </div>
-            </div>
-
-            <div class="deal-card-content">
-              <!-- Urgency Timer -->
-              <div class="deal-urgency-timer">
-                <svg class="deal-timer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="deal-timer-text">Deal expires in:</span>
-                <span class="deal-timer-countdown" data-end-time="2025-10-18T23:59:59">95:40:20</span>
-              </div>
-
-              <!-- Route -->
-              <div class="deal-route">
-                <h3 class="deal-city">Chennai</h3>
-                <svg class="deal-route-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-                <h3 class="deal-city">Maldives</h3>
-              </div>
-
-              <!-- Flight Details -->
-              <div class="deal-flight-details">
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Direct Flight
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  2h 10m
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  Round Trip
-                </span>
-              </div>
-
-              <!-- Seats Left -->
-              <div class="deal-seats-left">
-                <svg class="deal-seats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>Only 12 seats left!</span>
-              </div>
-
-              <!-- Pricing -->
-              <div class="deal-pricing">
-                <div class="deal-price-wrapper">
-                  <span class="deal-original-price">₹1,12,499</span>
-                  <div>
-                    <span class="deal-current-price">₹89,999</span>
-                    <span class="deal-price-suffix">/person</span>
-                  </div>
-                </div>
-                <button class="deal-book-button" aria-label="Book Chennai to Maldives flight">
-                  <span>Book Now</span>
-                  <svg class="deal-book-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Deal Card 5: Mumbai to Bangkok -->
-          <article class="deal-card" data-deal-id="deal-mumbai-bangkok-005" role="listitem">
-            <div class="deal-card-image-wrapper loading">
-              <img class="deal-card-image"
-                data-src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&q=80 400w,
-                             https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80 800w"
-                alt="Phi Phi Islands beach in Thailand" loading="lazy">
-              <div class="deal-card-image-overlay"></div>
-
-              <div class="deal-discount-badge">28% OFF</div>
-
-              <div class="deal-verified-badge">
-                <svg class="deal-verified-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span>Verified Deal</span>
-              </div>
-            </div>
-
-            <div class="deal-card-content">
-              <!-- Urgency Timer -->
-              <div class="deal-urgency-timer">
-                <svg class="deal-timer-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span class="deal-timer-text">Deal expires in:</span>
-                <span class="deal-timer-countdown" data-end-time="2025-10-19T23:59:59">119:25:50</span>
-              </div>
-
-              <!-- Route -->
-              <div class="deal-route">
-                <h3 class="deal-city">Mumbai</h3>
-                <svg class="deal-route-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-                <h3 class="deal-city">Bangkok</h3>
-              </div>
-
-              <!-- Flight Details -->
-              <div class="deal-flight-details">
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-                  Direct Flight
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  4h 45m
-                </span>
-                <span class="deal-detail-pill">
-                  <svg class="deal-detail-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  Round Trip
-                </span>
-              </div>
-
-              <!-- Seats Left -->
-              <div class="deal-seats-left">
-                <svg class="deal-seats-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="12"></line>
-                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-                <span>Only 7 seats left!</span>
-              </div>
-
-              <!-- Pricing -->
-              <div class="deal-pricing">
-                <div class="deal-price-wrapper">
-                  <span class="deal-original-price">₹34,720</span>
-                  <div>
-                    <span class="deal-current-price">₹24,999</span>
-                    <span class="deal-price-suffix">/person</span>
-                  </div>
-                </div>
-                <button class="deal-book-button" aria-label="Book Mumbai to Bangkok flight">
-                  <span>Book Now</span>
-                  <svg class="deal-book-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </article>
-
+          <div class="price-alerts-success" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <p>✓ You're subscribed! Check your email.</p>
+          </div>
         </div>
-
-        <!-- Carousel Navigation Buttons -->
-        <div class="deals-carousel-nav">
-          <button class="deals-nav-button prev" aria-label="View previous deals">
-            <svg class="deals-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <button class="deals-nav-button next" aria-label="View next deals">
-            <svg class="deals-nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-        </div>
-
       </div>
-
-      <!-- View All Deals Link -->
-      <div class="deals-view-all-wrapper">
-        <a href="deals.html" class="deals-view-all-link">
-          <span>View All Deals</span>
-          <svg class="deals-view-all-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
-      </div>
-
     </section>
-    <!-- ========== DEALS SECTION END ========== -->
+    <!-- ========== PRICE ALERTS CTA END ========== -->
 
-
-    <!-- ========== DIVIDER: Deals → Why Choose Us ========== -->
-    <div class="section-divider geometric">
+    <!-- ========== DIVIDER: Price Alerts → Why Choose Us ========== -->
+    <div class="section-divider gradient-bar">
       <div class="geometric-shapes">
         <div class="geometric-shape"></div>
         <div class="geometric-shape"></div>
@@ -2398,14 +2223,6 @@
 
       <div class="payment-security-container">
 
-        <path
-          d="M31.2 22L34.8 10H38.4L34.8 22H31.2ZM52.8 10.4C52 10.1 50.8 9.8 49.2 9.8C45.6 9.8 43.2 11.6 43.2 14.2C43.2 16.2 45 17.2 46.4 17.8C47.8 18.4 48.4 18.8 48.4 19.4C48.4 20.4 47.2 20.8 46 20.8C44.4 20.8 43.6 20.6 42.4 20L41.6 22C42.8 22.4 44.4 22.8 46.4 22.8C50.4 22.8 52.8 21 52.8 18.2C52.8 16.6 51.6 15.4 49.6 14.6C48.4 14 47.6 13.6 47.6 12.8C47.6 12.2 48.4 11.6 49.6 11.6C51.2 11.6 52.4 12 53.2 12.4L52.8 10.4ZM60.4 10L58 17.2C57.6 18.4 56.8 20.8 56.8 20.8H56.4C56.4 20.8 56.4 19.6 56.4 18.4L55.2 10H51.2L54 21.6C54 22 54 22.4 53.6 22.8C52.8 23.6 51.6 24.4 50 25.2L51.2 28C53.6 27.2 56.4 25.6 58 23.2C59.2 21.2 60.8 17.2 62.8 10H60.4ZM24.8 22L28.4 10H32L28.4 22H24.8Z"
-          fill="white" />
-        <path d="M24.8 22L21.2 10H17.6L22.4 22H24.8Z" fill="#F7B600" />
-        </svg>
-        <span class="payment-logo-tooltip">Accepted worldwide</span>
-      </div>
-
       <!-- Mastercard -->
       <div class="payment-logo-wrapper card-logo" role="listitem" aria-label="Payment option: Mastercard">
         <svg width="64" height="32" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2529,7 +2346,6 @@
         <span class="payment-logo-tooltip">Bitcoin & crypto accepted</span>
       </div>
 
-      </div>
       </div>
 
       <!-- ===============================================
@@ -3271,102 +3087,7 @@
     </section>
     <!-- ========== TRAVEL CLASSES SECTION END ========== -->
 
-    <!-- ========== DIVIDER: Trust Indicators → Trust & Comfort ========== -->
-    <div class="section-divider diagonal-stripe"></div>
-
-    <!-- ========== TRUST & COMFORT SECTION START ========== -->
-    <section id="trust-comfort-section" class="home-section bg-secondary-cream">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="home-section-title text-center">
-          <h2 data-aos="fade-up">Fly with Confidence. Book with Destinova.</h2>
-          <p data-aos="fade-up" data-aos-delay="100" class="max-w-3xl">We're more than just a booking site. We're your
-            trusted partner in travel, ensuring every journey is seamless, secure, and spectacular.</p>
-        </div>
-
-        <div class="grid lg:grid-cols-2 gap-12 items-center mt-16">
-          <!-- Left Column: Interactive Checklist -->
-          <div class="trust-checklist-container" data-aos="fade-right" data-aos-delay="200">
-            <div class="trust-checklist-item">
-              <div class="checklist-icon"><i class="fas fa-headset"></i></div>
-              <div class="checklist-content">
-                <h4>24/7 Customer Support</h4>
-                <p>Our global team is always on standby, offering support in 15 languages. <br><strong
-                    class="text-primary-emerald">Avg. Response Time: 2 mins</strong></p>
-              </div>
-            </div>
-            <div class="trust-checklist-item">
-              <div class="checklist-icon"><i class="fas fa-calendar-check"></i></div>
-              <div class="checklist-content">
-                <h4>Free Cancellation</h4>
-                <p>Change of plans? No problem. Cancel free up to 24 hours before your flight.</p>
-              </div>
-            </div>
-            <div class="trust-checklist-item">
-              <div class="checklist-icon"><i class="fas fa-tags"></i></div>
-              <div class="checklist-content">
-                <h4>Price Match Guarantee</h4>
-                <p>Found a better price? We'll not only match it, we'll beat it. That's our promise.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column: Visuals & Social Proof -->
-          <div class="trust-visuals-container" data-aos="fade-left" data-aos-delay="300">
-            <div class="customer-photo-grid">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop"
-                alt="Happy customer 1" class="rounded-full">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop"
-                alt="Happy customer 2" class="rounded-full">
-              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop"
-                alt="Happy customer 3" class="rounded-full">
-              <div class="photo-grid-text">
-                <span class="font-bold text-primary-emerald text-2xl">50k+</span>
-                <span>Happy Travelers</span>
-              </div>
-            </div>
-            <div class="real-time-stats">
-              <div class="stat-item">
-                <span class="stat-value" id="flights-booked-stat">2,847</span>
-                <span class="stat-label">Flights Booked This Week</span>
-              </div>
-              <!-- Activity items will be injected by JS -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Airline Partners & Security -->
-        <div class="trust-footer-container mt-16" data-aos="fade-up" data-aos-delay="400">
-          <h4 class="text-center text-text-slate font-semibold mb-4">Our Trusted Airline & Security Partners</h4>
-          <div class="partner-logos">
-            <img src="https://logodownload.org/wp-content/uploads/2019/09/iata-logo-1.png" alt="IATA Certified"
-              title="IATA Certified">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Norton-logo-2021.svg/2560px-Norton-logo-2021.svg.png"
-              alt="Norton Secured" title="Norton Secured">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal Verified"
-              title="PayPal Verified">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Tripadvisor_logo.svg/2560px-Tripadvisor_logo.svg.png"
-              alt="TripAdvisor" title="TripAdvisor">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Emirates_logo.svg/1200px-Emirates_logo.svg.png"
-              alt="Emirates" title="Emirates">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Qatar_Airways_Logo.svg/1200px-Qatar_Airways_Logo.svg.png"
-              alt="Qatar Airways" title="Qatar Airways">
-          </div>
-          <div class="awards-mentions">
-            <div class="award-item"><i class="fas fa-award"></i> <strong>Skytrax 2024 Winner:</strong> Best Online
-              Travel Agency</div>
-            <div class="award-item"><i class="fas fa-newspaper"></i> <strong>Featured in:</strong> Forbes Travel Guide
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ========== TRUST & COMFORT SECTION END ========== -->
-
-    <!-- ========== DIVIDER: Trust & Comfort → Statistics ========== -->
+    <!-- ========== DIVIDER: Travel Classes → Statistics ========== -->
     <div class="section-divider elegant-text">
       <div class="elegant-text-content">
         <span class="divider-text">Our Impact</span>
@@ -3511,7 +3232,171 @@
     <!-- TESTIMONIALS SECTION REMOVED -->
     <!-- ============================================= -->
 
-    <!-- ========== DIVIDER: Payment → Travel Blog ========== -->
+    <!-- ========== MOBILE APP PROMOTION START ========== -->
+    <section class="mobile-app-section" role="region" aria-labelledby="mobile-app-heading">
+      <div class="mobile-app-container">
+        <!-- Left Side: Content -->
+        <div class="mobile-app-content">
+          <h2 id="mobile-app-heading" class="mobile-app-title">Book Faster on Our Mobile App</h2>
+          <p class="mobile-app-subtitle">Exclusive app-only deals + instant notifications</p>
+
+          <div class="mobile-app-features">
+            <div class="app-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Save up to 20% on app bookings</span>
+            </div>
+            <div class="app-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Get instant price drop alerts</span>
+            </div>
+            <div class="app-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Mobile-only flash sales</span>
+            </div>
+            <div class="app-feature">
+              <i class="fas fa-check-circle"></i>
+              <span>Manage bookings on the go</span>
+            </div>
+          </div>
+
+          <div class="mobile-app-badges">
+            <a href="#" class="app-badge app-store">
+              <i class="fab fa-apple"></i>
+              <div>
+                <span>Download on the</span>
+                <strong>App Store</strong>
+              </div>
+            </a>
+            <a href="#" class="app-badge google-play">
+              <i class="fab fa-google-play"></i>
+              <div>
+                <span>Get it on</span>
+                <strong>Google Play</strong>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: QR Code + Phone Mockup -->
+        <div class="mobile-app-visual">
+          <div class="qr-code-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://destinova.app" alt="Download app QR code" class="qr-code">
+            <p class="qr-label">Scan to download</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ========== MOBILE APP PROMOTION END ========== -->
+
+    <!-- ========== DIVIDER: Mobile App → FAQ ========== -->
+    <div class="section-divider wave-divider">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path class="wave-path" d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z"></path>
+      </svg>
+    </div>
+
+    <!-- ========== FAQ ACCORDION START ========== -->
+    <section class="faq-section" role="region" aria-labelledby="faq-heading">
+      <div class="faq-container">
+        <div class="faq-header">
+          <h2 id="faq-heading" class="faq-title">Frequently Asked Questions</h2>
+          <p class="faq-subtitle">Everything you need to know about booking with us</p>
+        </div>
+
+        <div class="faq-accordion">
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do I book a flight?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Simply enter your departure and destination cities, select your travel dates, choose the number of passengers, and click "Search". You'll see available flights with prices. Select your preferred flight, enter passenger details, and complete payment securely.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I cancel or change my booking?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, you can cancel or modify most bookings through your account dashboard. Cancellation and change fees vary by airline and fare type. Free cancellation is available on select fares up to 24 hours before departure.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What payment methods do you accept?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We accept all major credit/debit cards (Visa, Mastercard, American Express, RuPay), digital wallets (Paytm, PhonePe, Google Pay, PayPal), UPI, net banking, and EMI options. All transactions are secured with 256-bit SSL encryption.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do I add baggage to my booking?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>You can add extra baggage during the booking process or later through "Manage Booking" in your account. Baggage allowances vary by airline and fare class. Pre-purchasing baggage is often cheaper than paying at the airport.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Is my payment information secure?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely. We use bank-grade 256-bit SSL encryption and are PCI DSS Level 1 certified. We never store your complete card details. All transactions are tokenized and processed through secure payment gateways.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do you offer travel insurance?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes, we partner with leading insurance providers to offer comprehensive travel insurance covering trip cancellations, medical emergencies, lost baggage, and flight delays. You can add insurance during checkout.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do I check my flight status?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Use our Flight Status tool by entering your flight number or route. You'll get real-time updates on departures, arrivals, delays, and gate information. We also send SMS/email alerts for any schedule changes.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What if I need special assistance?</span>
+              <i class="fas fa-plus faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We provide special assistance for travelers with disabilities, unaccompanied minors, pregnant passengers, and those requiring medical support. Request assistance during booking or contact our 24/7 support team at least 48 hours before departure.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="faq-cta">
+          <p>Still have questions?</p>
+          <a href="#" class="faq-contact-btn">
+            <i class="fas fa-headset"></i>
+            <span>Contact Support</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- ========== FAQ ACCORDION END ========== -->
+
+    <!-- ========== DIVIDER: FAQ → Travel Blog ========== -->
     <div class="section-divider decorative-line">
       <div class="decorative-line-content">
         <div class="decorative-line-icon">
@@ -4704,6 +4589,15 @@
 
     <!-- Travel Blog Section JS -->
     <script src="../js/travel-blog.js"></script>
+
+    <!-- NEW SECTIONS JS -->
+    <script src="../js/new-sections.js"></script>
+
+    <!-- SECTION OPTIMIZATION JS (Phase 3) -->
+    <script src="../js/section-optimization.js"></script>
+
+    <!-- FINAL POLISH JS (Phase 4) -->
+    <script src="../js/final-polish.js"></script>
 
     <script src="../js/hero-enhancements.js"></script>
 
