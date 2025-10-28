@@ -1,350 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Destinova</title>
-    <meta name="description"
-        content="Get in touch with Destinova. We're here to help with your flight bookings, cancellations, and any other inquiries.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
+    <title>Contact Us | Destinova - Luxury Travel Redefined</title>
+    
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Tailwind CSS (for footer utilities) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                        'secondary-cream': '#FFFBF2',
-                        'accent-gold': '#E5CBAF',
-                        'text-charcoal': '#1C2526',
-                        'text-slate': '#5C6B73',
-                        'background-white': '#FAFAFA',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="../css/contact-us.css">
 </head>
-
 <body>
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
 
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
+    <!-- Crystal Ambient Background -->
+    <div class="crystal-ambient-contact">
+        <div class="ambient-particle particle-1"></div>
+        <div class="ambient-particle particle-2"></div>
+        <div class="ambient-particle particle-3"></div>
+        <div class="ambient-particle particle-4"></div>
+    </div>
 
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
-
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
+    <!-- Premium Glassmorphic Header -->
+    <header class="glass-header-contact">
+        <div class="container-contact">
+            <nav class="header-nav-contact">
+                <a href="/" class="logo-glass-contact">
+                    <div class="logo-crystal-contact">
+                        <div class="logo-shimmer-contact"></div>
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text-contact">
+                        <span class="logo-name">Destinova</span>
+                        <span class="logo-tagline">LUXURY REDEFINED</span>
+                    </div>
                 </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+                
+                <div class="nav-links-glass-contact">
+                    <a href="/" class="nav-link-glass-contact">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                        <span class="nav-glow-contact"></span>
+                    </a>
+                    <a href="/flights" class="nav-link-glass-contact">
+                        <span class="nav-icon"><i class="fas fa-plane"></i></span>
+                        <span class="nav-text">Flights</span>
+                        <span class="nav-glow-contact"></span>
+                    </a>
+                    <a href="/about" class="nav-link-glass-contact">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">About</span>
+                        <span class="nav-glow-contact"></span>
+                    </a>
+                    <a href="/contact" class="nav-link-glass-contact active">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                        <span class="nav-glow-contact"></span>
+                    </a>
+                </div>
+                
+                <div class="header-actions-glass-contact">
+                    <button class="btn-glass-icon-contact">
+                        <i class="fas fa-bell"></i>
+                        <span class="pulse-indicator-contact"></span>
+                    </button>
+                    <div class="user-glass-contact">
+                        <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                        <span class="status-crystal-contact"></span>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-            <li class="header-dropdown">
-                <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                    <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                </ul>
-            </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-                <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                    <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                </ul>
-            </li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-        </ul>
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
-
-    <main class="contact-page-container">
-        <div class="contact-grid">
-            <!-- Left Column: Contact Info -->
-            <div class="contact-info">
-                <h1>Get In Touch</h1>
-                <p>We're here to help with any questions or concerns you may have. Reach out to us through any of the methods below.</p>
-                <ul class="contact-methods-list">
-                    <li class="contact-method-item">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="contact-details">
-                            <strong>Office Address</strong>
-                            <span>123 Skyward Avenue, Aero City, New Delhi, 110037, India</span>
-                            <button class="btn-map" id="open-map-btn">View on Google Maps</button>
-                        </div>
-                    </li>
-                    <li class="contact-method-item clickable" id="copy-email-btn">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <div class="contact-details">
-                            <strong>Email Us</strong>
-                            <span>support@destinova.com</span>
-                        </div>
-                    </li>
-                    <li class="contact-method-item clickable" id="copy-phone-btn">
-                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-                        <div class="contact-details">
-                            <strong>Call Us</strong>
-                            <span>+91 12345 67890</span>
-                        </div>
-                    </li>
-                    <li class="contact-method-item">
-                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
-                        <div class="contact-details">
-                            <strong>Business Hours</strong>
-                            <span>Mon-Fri: 9:00 AM - 6:00 PM</span>
-                            <span>Saturday: 10:00 AM - 4:00 PM</span>
-                            <span>Sunday: Closed</span>
-                        </div>
-                    </li>
-                </ul>
-                <div class="social-media-links">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+    <!-- Main Contact Section -->
+    <section class="contact-section-premium">
+        <div class="container-contact">
+            <!-- Page Title with Glass Effect -->
+            <div class="contact-hero-glass reveal-slide-up">
+                <span class="hero-badge-crystal">
+                    <span class="badge-shimmer-layer"></span>
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Support</span>
+                </span>
+                <h1 class="contact-hero-title">Get In Touch</h1>
+                <p class="contact-hero-subtitle">We're here to help with any questions or concerns you may have</p>
             </div>
 
-            <!-- Right Column: Contact Form -->
-            <div class="contact-form-section">
-                <h2>Send Us a Message</h2>
-                <form id="contact-form" novalidate>
-                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-                    <div class="error-message" id="name-error"></div>
-
-                    <input type="email" id="email" name="email" placeholder="Your Email Address" required>
-                    <div class="error-message" id="email-error"></div>
-
-                    <div class="phone-input-group">
-                        <select id="country-code" name="country-code">
-                            <option value="+91">IN (+91)</option>
-                            <option value="+1">US (+1)</option>
-                            <option value="+44">UK (+44)</option>
-                        </select>
-                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number">
-                    </div>
-                    <div class="error-message" id="phone-error"></div>
-
-                    <select id="subject" name="subject" required>
-                        <option value="">Select a Subject...</option>
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Booking Support">Booking Support</option>
-                        <option value="Cancellation/Refund">Cancellation/Refund</option>
-                        <option value="Technical Issue">Technical Issue</option>
-                        <option value="Feedback">Feedback</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <div class="error-message" id="subject-error"></div>
-
-                    <textarea id="message" name="message" placeholder="Your Message (min. 10 characters)" required minlength="10" maxlength="500"></textarea>
-                    <div class="char-counter" id="char-counter">0/500</div>
-                    <div class="error-message" id="message-error"></div>
-
-                    <label class="privacy-policy-label">
-                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
-                        I agree to the <a href="#">Privacy Policy</a>.
-                    </label>
-                    <div class="error-message" id="privacy-error"></div>
-
-                    <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
-                </form>
-                <div id="success-msg" style="display: none;">
-                    <i class="fas fa-check-circle"></i>
-                    <p><strong>Message sent successfully!</strong><br>We'll respond within 24 hours.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FAQ Section -->
-        <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <div class="faq-question">How do I cancel my booking? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">You can cancel your booking through the "Manage Booking" section on our website. You will need your booking reference number and the last name of the primary passenger. Please note that cancellation fees may apply depending on the fare rules.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What is your refund policy? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">Refunds are processed based on the fare conditions of your ticket. Refundable tickets will be credited back to the original payment method within 7-10 business days. Non-refundable tickets may be eligible for a travel credit.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What is the baggage allowance? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">Baggage allowance varies by travel class and destination. Typically, Economy class allows one checked bag up to 23kg, while Business and First Class offer more generous allowances. You can find specific details on your e-ticket.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How can I check-in online? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">Online check-in opens 48 hours before your flight's departure. Visit the "Check-in" page on our website and enter your booking reference and last name to proceed.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can I select my seat after booking? <i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">Yes, you can select or change your seat through the "Manage Booking" portal. Some seats may require an additional fee depending on your fare type.</div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-screen-2xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
-                <!-- Company Info -->
-                <div class="footer-col xl:col-span-2">
-                    <div class="footer-logo mb-4">
-                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                                aria-hidden="true"></i></h2>
-                    </div>
-                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury
-                        traveler.
-                        Discover a new standard in air travel.
-                    </p>
-                </div>
-                <!-- Quick Links -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-compass" aria-hidden="true"></i> Quick Links</h3>
-                    <nav aria-label="Footer navigation">
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                                        aria-hidden="true"></i> Home</a></li>
-                            <li class="quick-link-item"><a href="booking.html"><i
-                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
-                                    Flight</a></li>
-                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                                        aria-hidden="true"></i> Special Offers</a></li>
-                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                                        aria-hidden="true"></i> Contact</a></li>
-                            <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                                        aria-hidden="true"></i> Flight Status</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Customer Support -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-headset" aria-hidden="true"></i> Customer Support</h3>
-                    <div class="text-gray-300 space-y-3">
-                        <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors"><i
-                                    class="fas fa-envelope mr-2" aria-hidden="true"></i> support@destinova.com</a></p>
-                        <p><a href="tel:+1234567890" class="hover:text-white transition-colors"><i
-                                    class="fas fa-phone mr-2" aria-hidden="true"></i> +91 12345 67890</a></p>
-                        <div class="support-badge"><i class="fas fa-clock mr-2" aria-hidden="true"></i> 24/7 Assistance
+            <!-- Main Grid -->
+            <div class="contact-grid-premium">
+                <!-- Left Column: Contact Info Cards -->
+                <div class="contact-info-column">
+                    <!-- Office Address Card -->
+                    <div class="info-card-crystal reveal-slide-right" data-delay="0">
+                        <div class="info-card-shimmer"></div>
+                        <div class="info-icon-crystal">
+                            <div class="icon-glow-layer"></div>
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
-                    </div>
-                </div>
-                <!-- Stay Connected -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-share-nodes" aria-hidden="true"></i> Stay Connected</h3>
-                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-                        <div class="newsletter-input-wrapper">
-                            <input type="email" placeholder="Your email address" required
-                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                                aria-label="Email address for newsletter">
-                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        <div class="info-content-glass">
+                            <h3>Office Address</h3>
+                            <p>123 Skyward Avenue, Aero City<br>New Delhi, 110037, India</p>
+                            <button class="btn-glass-action" id="open-map-btn">
+                                <span class="btn-shimmer-layer"></span>
+                                <i class="fas fa-map"></i>
+                                <span>View on Google Maps</span>
                             </button>
                         </div>
-                    </form>
-                    <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Facebook" role="listitem"><i class="fab fa-facebook-f"
-                                aria-hidden="true"></i></a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Twitter" role="listitem"><i class="fab fa-twitter"
-                                aria-hidden="true"></i></a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Instagram" role="listitem"><i class="fab fa-instagram"
-                                aria-hidden="true"></i></a>
+                    </div>
+
+                    <!-- Email Card -->
+                    <div class="info-card-crystal reveal-slide-right" data-delay="100">
+                        <div class="info-card-shimmer"></div>
+                        <div class="info-icon-crystal">
+                            <div class="icon-glow-layer"></div>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content-glass">
+                            <h3>Email Us</h3>
+                            <p>support@destinova.com</p>
+                            <button class="btn-glass-action" id="copy-email-btn">
+                                <span class="btn-shimmer-layer"></span>
+                                <i class="fas fa-copy"></i>
+                                <span>Copy Email</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Phone Card -->
+                    <div class="info-card-crystal reveal-slide-right" data-delay="200">
+                        <div class="info-card-shimmer"></div>
+                        <div class="info-icon-crystal">
+                            <div class="icon-glow-layer"></div>
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content-glass">
+                            <h3>Call Us</h3>
+                            <p>+91 12345 67890</p>
+                            <button class="btn-glass-action" id="copy-phone-btn">
+                                <span class="btn-shimmer-layer"></span>
+                                <i class="fas fa-copy"></i>
+                                <span>Copy Phone</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours Card -->
+                    <div class="info-card-crystal reveal-slide-right" data-delay="300">
+                        <div class="info-card-shimmer"></div>
+                        <div class="info-icon-crystal">
+                            <div class="icon-glow-layer"></div>
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content-glass">
+                            <h3>Business Hours</h3>
+                            <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Links Glass -->
+                    <div class="social-links-crystal reveal-slide-right" data-delay="400">
+                        <h4>Connect With Us</h4>
+                        <div class="social-buttons-glass">
+                            <a href="#" class="social-btn-crystal">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-btn-crystal">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-btn-crystal">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-btn-crystal">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Contact Form -->
+                <div class="contact-form-column">
+                    <div class="form-card-crystal reveal-slide-left">
+                        <div class="form-card-shimmer"></div>
+                        
+                        <div class="form-header-glass">
+                            <h2>Send Us a Message</h2>
+                            <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                        </div>
+
+                        <form id="contact-form" class="contact-form-premium">
+                            <!-- Full Name -->
+                            <div class="form-group-crystal">
+                                <label for="fullname">
+                                    <i class="fas fa-user"></i>
+                                    Full Name
+                                </label>
+                                <div class="input-glass-wrapper">
+                                    <input type="text" id="fullname" name="fullname" placeholder="Your Full Name" required>
+                                    <span class="input-focus-border"></span>
+                                </div>
+                                <div class="error-message" id="fullname-error"></div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group-crystal">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    Email Address
+                                </label>
+                                <div class="input-glass-wrapper">
+                                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                                    <span class="input-focus-border"></span>
+                                </div>
+                                <div class="error-message" id="email-error"></div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group-crystal">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i>
+                                    Phone Number
+                                </label>
+                                <div class="phone-input-glass">
+                                    <select id="country-code" name="country-code">
+                                        <option value="+91">IN (+91)</option>
+                                        <option value="+1">US (+1)</option>
+                                        <option value="+44">UK (+44)</option>
+                                        <option value="+61">AU (+61)</option>
+                                    </select>
+                                    <div class="input-glass-wrapper">
+                                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+                                        <span class="input-focus-border"></span>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="phone-error"></div>
+                            </div>
+
+                            <!-- Subject -->
+                            <div class="form-group-crystal">
+                                <label for="subject">
+                                    <i class="fas fa-tag"></i>
+                                    Subject
+                                </label>
+                                <div class="input-glass-wrapper">
+                                    <select id="subject" name="subject" required>
+                                        <option value="">Select a Subject...</option>
+                                        <option value="booking">Booking Inquiry</option>
+                                        <option value="support">Customer Support</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="partnership">Partnership</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <span class="input-focus-border"></span>
+                                </div>
+                                <div class="error-message" id="subject-error"></div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group-crystal">
+                                <label for="message">
+                                    <i class="fas fa-comment-dots"></i>
+                                    Message
+                                </label>
+                                <div class="input-glass-wrapper">
+                                    <textarea id="message" name="message" rows="6" placeholder="Your Message (min. 10 characters)" required></textarea>
+                                    <span class="input-focus-border"></span>
+                                </div>
+                                <div class="char-counter-glass">
+                                    <span id="char-counter">0/500</span>
+                                </div>
+                                <div class="error-message" id="message-error"></div>
+                            </div>
+
+                            <!-- Privacy Policy -->
+                            <div class="form-group-crystal checkbox-group">
+                                <label class="checkbox-glass-label">
+                                    <input type="checkbox" id="privacy" name="privacy" required>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">
+                                        I agree to the <a href="/privacy" target="_blank">Privacy Policy</a>
+                                    </span>
+                                </label>
+                                <div class="error-message" id="privacy-error"></div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-crystal-submit" id="submit-btn">
+                                <span class="btn-submit-shimmer"></span>
+                                <span class="btn-submit-icon"><i class="fas fa-paper-plane"></i></span>
+                                <span class="btn-submit-text">Send Message</span>
+                            </button>
+
+                            <!-- Success Message -->
+                            <div id="success-msg" class="success-message-glass" style="display: none;">
+                                <div class="success-icon-crystal">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="success-content">
+                                    <h3>Message Sent Successfully!</h3>
+                                    <p>We'll get back to you within 24 hours</p>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!-- Footer Bottom -->
-            <div
-                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-                    <span aria-hidden="true">|</span>
-                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
-                </nav>
+        </div>
+    </section>
+
+    <!-- FAQ Section with Glassmorphism -->
+    <section class="faq-section-crystal">
+        <div class="container-contact">
+            <div class="section-header-glass reveal-slide-up">
+                <span class="section-label-crystal">
+                    <span class="label-shimmer-layer"></span>
+                    FAQ
+                </span>
+                <h2 class="section-title-crystal">Frequently Asked Questions</h2>
+                <p class="section-subtitle-glass">Quick answers to common questions</p>
+            </div>
+
+            <div class="faq-accordion-premium">
+                <div class="faq-item-glass reveal-slide-up" data-delay="0">
+                    <div class="faq-question-crystal">
+                        <h3>How do I cancel my booking?</h3>
+                        <div class="faq-icon-crystal">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer-glass">
+                        <p>You can cancel your booking through the "Manage Booking" section on our website. You will need your booking reference number and the last name of the primary passenger. Please note that cancellation fees may apply depending on the fare rules.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-glass reveal-slide-up" data-delay="100">
+                    <div class="faq-question-crystal">
+                        <h3>What is your refund policy?</h3>
+                        <div class="faq-icon-crystal">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer-glass">
+                        <p>Refunds are processed based on the fare conditions of your ticket. Refundable tickets will be credited back to the original payment method within 7-10 business days. Non-refundable tickets may be eligible for a travel credit.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-glass reveal-slide-up" data-delay="200">
+                    <div class="faq-question-crystal">
+                        <h3>What is the baggage allowance?</h3>
+                        <div class="faq-icon-crystal">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer-glass">
+                        <p>Baggage allowance varies by travel class and destination. Typically, Economy class allows one checked bag up to 23kg, while Business and First Class offer more generous allowances. You can find specific details on your e-ticket.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-glass reveal-slide-up" data-delay="300">
+                    <div class="faq-question-crystal">
+                        <h3>How can I check-in online?</h3>
+                        <div class="faq-icon-crystal">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer-glass">
+                        <p>Online check-in opens 48 hours before your flight's departure. Visit the "Check-in" page on our website and enter your booking reference and last name to proceed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item-glass reveal-slide-up" data-delay="400">
+                    <div class="faq-question-crystal">
+                        <h3>Can I select my seat after booking?</h3>
+                        <div class="faq-icon-crystal">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer-glass">
+                        <p>Yes, you can select or change your seat through the "Manage Booking" portal. Some seats may require an additional fee depending on your fare type.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Glass Footer -->
+    <footer class="footer-crystal-contact">
+        <div class="footer-glass-overlay-contact"></div>
+        <div class="container-contact">
+            <div class="footer-content-glass-contact">
+                <div class="footer-brand-crystal-contact">
+                    <div class="footer-logo-glass-contact">
+                        <div class="logo-crystal-contact">
+                            <div class="logo-shimmer-contact"></div>
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="logo-text-contact">
+                            <span class="logo-name">Destinova</span>
+                            <span class="logo-tagline">LUXURY REDEFINED</span>
+                        </div>
+                    </div>
+                    <p class="footer-description-glass-contact">Elevating travel experiences through innovation, transparency, and unwavering commitment to excellence.</p>
+                </div>
+                
+                <div class="footer-links-crystal-contact">
+                    <div class="footer-column-glass-contact">
+                        <h4>Company</h4>
+                        <a href="/about">About Us</a>
+                        <a href="/careers">Careers</a>
+                        <a href="/press">Press</a>
+                    </div>
+                    <div class="footer-column-glass-contact">
+                        <h4>Support</h4>
+                        <a href="/help">Help Center</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/faq">FAQ</a>
+                    </div>
+                    <div class="footer-column-glass-contact">
+                        <h4>Connect</h4>
+                        <a href="tel:+911234567890"><i class="fas fa-phone"></i> +91 123 456 7890</a>
+                        <a href="mailto:support@destinova.com"><i class="fas fa-envelope"></i> support@destinova.com</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-glass-contact">
+                <p>&copy; 2025 Destinova. All rights reserved.</p>
+                <div class="footer-social-crystal-contact">
+                    <a href="#" class="social-crystal-btn-contact"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-crystal-btn-contact"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-crystal-btn-contact"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-crystal-btn-contact"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
     </footer>
-    <!-- FOOTER END -->
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/contact-us.js"></script>
 </body>
-
 </html>

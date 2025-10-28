@@ -1,246 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment History - Destinova</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
+    <title>Payment History | Destinova - Luxury Travel</title>
+    
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Tailwind CSS (for header/footer consistency) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                        'secondary-cream': '#FFFBF2',
-                        'accent-gold': '#E5CBAF',
-                        'text-charcoal': '#1C2526',
-                        'text-slate': '#5C6B73',
-                        'background-white': '#FAFAFA',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for spending visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
     <link rel="stylesheet" href="../css/payment-history.css">
 </head>
-
 <body>
 
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
+    <!-- Elegant Background Pattern -->
+    <div class="elegant-background">
+        <div class="pattern-overlay"></div>
+    </div>
 
-                <a href="signin.html" class="btn header-btn-signin"><i class="fas fa-right-to-bracket"></i><span>Sign In</span></a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle"><span></span><span></span><span></span></button>
-            </div>
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Destinova</span>
+                        <span class="logo-tagline">LUXURY TRAVEL</span>
+                    </div>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="/my-bookings" class="nav-link">
+                        <i class="fas fa-ticket"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <a href="/payment-history" class="nav-link active">
+                        <i class="fas fa-receipt"></i>
+                        <span>Payments</span>
+                    </a>
+                    <a href="/support" class="nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-avatar">
+                            <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                            <span class="user-status"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <!-- Mobile nav links from index.html -->
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
 
-    <main>
-        <div id="payment-history-container">
-            <section class="history-header">
-                <h1>Payment History</h1>
+    <!-- Main Content -->
+    <main class="payment-main">
+        <div class="container">
+            
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-left">
+                    <h1 class="page-title">Payment History</h1>
+                    <p class="page-subtitle">Track and manage all your transactions</p>
+                </div>
                 <div class="header-actions">
-                    <select id="date-range-filter">
-                        <option value="30d">Last 30 Days</option>
-                        <option value="3m">Last 3 Months</option>
-                        <option value="6m">Last 6 Months</option>
-                        <option value="1y">Last Year</option>
-                        <option value="all">All Time</option>
-                        <option value="custom">Custom Range</option>
+                    <button class="btn-secondary" id="export-pdf">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Export to PDF</span>
+                    </button>
+                    <button class="btn-secondary" id="export-excel">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Download Statements</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Summary Cards with Elegant Design -->
+            <div class="summary-grid">
+                <div class="summary-card card-luxury">
+                    <div class="card-header">
+                        <div class="card-icon total">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <span class="card-period">This Year</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-amount" id="total-spent">₹0</div>
+                        <div class="card-label">Total Spent</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            12% from last year
+                        </span>
+                    </div>
+                </div>
+
+                <div class="summary-card card-luxury">
+                    <div class="card-header">
+                        <div class="card-icon transactions">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <span class="card-period">All Time</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-amount" id="total-transactions">0</div>
+                        <div class="card-label">Total Transactions</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="info-text">
+                            <i class="fas fa-check-circle"></i>
+                            All verified
+                        </span>
+                    </div>
+                </div>
+
+                <div class="summary-card card-luxury">
+                    <div class="card-header">
+                        <div class="card-icon average">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="card-period">Average</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-amount" id="avg-transaction">₹0</div>
+                        <div class="card-label">Per Transaction</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="info-text">
+                            <i class="fas fa-info-circle"></i>
+                            Based on all bookings
+                        </span>
+                    </div>
+                </div>
+
+                <div class="summary-card card-luxury">
+                    <div class="card-header">
+                        <div class="card-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <span class="card-period">Pending</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-amount" id="pending-count">0</div>
+                        <div class="card-label">Pending Payments</div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="info-text">
+                            <i class="fas fa-hourglass-half"></i>
+                            Awaiting clearance
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spending Chart -->
+            <div class="chart-section card-luxury">
+                <div class="chart-header">
+                    <h3 class="chart-title">
+                        <i class="fas fa-chart-area"></i>
+                        Spending Overview
+                    </h3>
+                    <div class="chart-filters">
+                        <button class="chart-filter-btn active" data-period="6m">6 Months</button>
+                        <button class="chart-filter-btn" data-period="1y">1 Year</button>
+                        <button class="chart-filter-btn" data-period="all">All Time</button>
+                    </div>
+                </div>
+                <canvas id="spending-chart"></canvas>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters-section card-luxury">
+                <div class="filter-group">
+                    <i class="fas fa-search filter-icon"></i>
+                    <input type="text" id="search-transactions" class="filter-input" 
+                           placeholder="Search by transaction ID, booking ref...">
+                </div>
+                
+                <div class="filter-group">
+                    <i class="fas fa-filter filter-icon"></i>
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">All Statuses</option>
+                        <option value="success">Success</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                        <option value="refunded">Refunded</option>
                     </select>
-                    <button id="export-pdf-btn" class="btn-outline">Export to PDF</button>
-                    <button id="download-statements-btn" class="btn-outline">Download Statements</button>
                 </div>
-            </section>
 
-            <section class="summary-cards">
-                <div class="summary-card">
-                    <div class="card-icon"><i class="fas fa-rupee-sign"></i></div>
-                    <div class="card-content">
-                        <span class="card-amount" id="total-spent">₹0</span>
-                        <span class="card-label">Total Spent This Year</span>
-                    </div>
+                <div class="filter-group">
+                    <i class="fas fa-credit-card filter-icon"></i>
+                    <select id="payment-method-filter" class="filter-select">
+                        <option value="all">All Methods</option>
+                        <option value="card">Card</option>
+                        <option value="upi">UPI</option>
+                        <option value="netbanking">Net Banking</option>
+                        <option value="wallet">Wallet</option>
+                    </select>
                 </div>
-                <div class="summary-card">
-                    <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
-                    <div class="card-content">
-                        <span class="card-amount" id="total-transactions">0</span>
-                        <span class="card-label">Total Transactions</span>
-                    </div>
-                </div>
-                <div class="summary-card">
-                    <div class="card-icon"><i class="fas fa-calculator"></i></div>
-                    <div class="card-content">
-                        <span class="card-amount" id="avg-transaction">₹0</span>
-                        <span class="card-label">Average Transaction</span>
-                    </div>
-                </div>
-                <div class="summary-card">
-                    <div class="card-icon"><i class="fas fa-hourglass-half"></i></div>
-                    <div class="card-content">
-                        <span class="card-amount" id="pending-payments">0</span>
-                        <span class="card-label">Pending Payments</span>
-                    </div>
-                </div>
-            </section>
 
-            <section class="filter-bar">
-                <input type="search" id="search-transactions" placeholder="Search by Booking Ref or Txn ID...">
-                <select id="status-filter">
-                    <option value="all">All Statuses</option>
-                    <option value="Success">Success</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Failed">Failed</option>
-                    <option value="Refunded">Refunded</option>
-                </select>
-                <select id="payment-method-filter">
-                    <option value="all">All Payment Methods</option>
-                    <option value="Card">Card</option>
-                    <option value="UPI">UPI</option>
-                    <option value="Net Banking">Net Banking</option>
-                    <option value="Wallet">Wallet</option>
-                </select>
-                <select id="sort-by">
-                    <option value="date-newest">Sort by: Date (Newest)</option>
-                    <option value="date-oldest">Sort by: Date (Oldest)</option>
-                    <option value="amount-high">Sort by: Amount (High-Low)</option>
-                    <option value="amount-low">Sort by: Amount (Low-High)</option>
-                </select>
-            </section>
-
-            <div id="transactions-list">
-                <!-- Example Transaction Card (to be populated by JS) -->
-                <div class="transaction-card">
-                    <div class="transaction-header">
-                        <span class="transaction-id">Txn ID: PAY_Nf8Kj9sLp3gH</span>
-                        <span class="transaction-date">18 May 2024, 10:30 AM</span>
-                        <span class="status-badge success">Success</span>
-                    </div>
-                    <div class="transaction-body">
-                        <div class="transaction-details">
-                            <p><strong>Booking Ref:</strong> <a href="#">DN-84J5K2</a></p>
-                            <p><strong>Flight:</strong> Delhi (DEL) → Mumbai (BOM)</p>
-                            <p><strong>Travel Date:</strong> 25 Jun 2024</p>
-                            <p><strong>Passengers:</strong> 2 Adults</p>
-                        </div>
-                        <div class="payment-info">
-                            <span class="payment-amount">₹12,550.00</span>
-                            <div class="payment-method">
-                                <i class="fab fa-cc-visa"></i>
-                                <span>Credit Card: **** **** **** 1234</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="transaction-actions">
-                        <button class="action-btn">View Receipt</button>
-                        <button class="action-btn">Download Invoice</button>
-                        <button class="action-btn">Raise Issue</button>
-                        <button class="expand-btn">View Details <i class="fas fa-chevron-down"></i></button>
-                    </div>
-                    <div class="expandable-details">
-                        <!-- Detailed breakdown will be loaded here by JS -->
-                    </div>
+                <div class="filter-group">
+                    <i class="fas fa-sort filter-icon"></i>
+                    <select id="sort-by" class="filter-select">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="amount-desc">Highest Amount</option>
+                        <option value="amount-asc">Lowest Amount</option>
+                    </select>
                 </div>
-                <!-- More cards will be added by JS -->
             </div>
 
-            <div id="empty-state" style="display: none;">
-                <img src="../site-images/empty-history.svg" alt="No payment history" class="empty-illustration">
-                <h2>No Payment History Yet</h2>
-                <p>Your past transactions will appear here once you make a booking.</p>
-                <a href="booking.html" class="btn btn-primary">Book Your First Flight</a>
+            <!-- Transactions List -->
+            <div id="transactions-list" class="transactions-list">
+                <!-- Transactions will be injected here by JavaScript -->
             </div>
 
-            <div id="pagination-container" class="pagination">
-                <!-- Pagination buttons will be generated by JS -->
+            <!-- Pagination -->
+            <div id="pagination-container" class="pagination-container">
+                <!-- Pagination will be injected here -->
             </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <div class="empty-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h3>No transactions found</h3>
+                <p>You haven't made any payments yet or no results match your search criteria.</p>
+                <a href="/flights" class="btn-primary">
+                    <i class="fas fa-search"></i>
+                    <span>Book Your First Flight</span>
+                </a>
+            </div>
+
         </div>
     </main>
 
-    <!-- Invoice Modal -->
-    <div id="invoice-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close-btn">&times;</button>
-            <div class="invoice-header">
-                <img src="../site-images/favicon.png" alt="Destinova Logo" class="invoice-logo">
-                <h2>Tax Invoice</h2>
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-gradient-overlay"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-name">Destinova</span>
+                            <span class="footer-logo-tagline">Luxury Travel Experiences</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner for premium flight bookings.
+                    </p>
+                </div>
+                <div class="footer-links-grid">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="/about">About Us</a>
+                        <a href="/contact">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="/help">Help Center</a>
+                        <a href="/faq">FAQ</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <p><i class="fas fa-phone"></i> 1800-123-456</p>
+                        <p><i class="fas fa-envelope"></i> support@destinova.com</p>
+                    </div>
+                </div>
             </div>
-            <div id="invoice-content-body">
-                <!-- Invoice details will be loaded here by JS -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Destinova. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
             </div>
-            <button id="download-invoice-modal-btn" class="btn-primary">Download PDF</button>
-        </div>
-    </div>
-
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-7xl mx-auto">
-            <!-- Footer content from index.html -->
         </div>
     </footer>
-    <!-- FOOTER END -->
 
-    <script src="../js/index.js"></script>
     <script src="../js/payment-history.js"></script>
 </body>
-
 </html>

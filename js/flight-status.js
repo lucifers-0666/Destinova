@@ -1,266 +1,470 @@
-document.addEventListener('DOMContentLoaded', function () {
+/* ═══════════════════════════════════════════════════════════════════
+   DESTINOVA FLIGHT STATUS - COMPLETE JAVASCRIPT
+   Real-time Tracking with Smooth Animations
+   ═══════════════════════════════════════════════════════════════════ */
 
-    // --- SHARED HEADER/FOOTER LOGIC (from index.js) ---
+'use strict';
 
-    // --- MANAGE MENU VISIBILITY ---
-    function handleManageMenuVisibility() {
-        const isSignedIn = localStorage.getItem('isUserSignedIn') === 'true';
-        const hasBooked = localStorage.getItem('hasBookedTicket') === 'true';
-        const manageMenuDesktop = document.getElementById('manage-menu-desktop');
-        const manageMenuMobile = document.getElementById('manage-menu-mobile');
-        if (isSignedIn && hasBooked) {
-            if (manageMenuDesktop) manageMenuDesktop.classList.remove('manage-menu-hidden');
-            if (manageMenuMobile) manageMenuMobile.classList.remove('manage-menu-hidden');
-        } else {
-            if (manageMenuDesktop) manageMenuDesktop.classList.add('manage-menu-hidden');
-            if (manageMenuMobile) manageMenuMobile.classList.add('manage-menu-hidden');
-        }
-    }
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MOCK FLIGHT DATA (In production, this comes from real-time API)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    // --- ACTIVE PAGE INDICATOR IN NAVBAR ---
-    function setActiveNavLink() {
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = document.querySelectorAll('.header-desktop-nav a, .header-mobile-nav a');
-        navLinks.forEach(link => {
-            const linkPage = link.getAttribute('href').split('/').pop();
-            if (linkPage === currentPage) {
-                link.classList.add('nav-active');
-                const dropdownParent = link.closest('.header-dropdown');
-                if (dropdownParent) {
-                    const parentLink = dropdownParent.querySelector(':scope > a');
-                    if (parentLink) parentLink.classList.add('nav-active');
-                }
-            }
-        });
-    }
-
-    // --- HEADER SCROLL & MOBILE MENU ---
-    function initializeHeader() {
-        const header = document.getElementById('header-main');
-        if (header) {
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('header-scrolled', window.scrollY > 50);
-            });
-        }
-        const menuToggle = document.getElementById('header-menuToggle');
-        const nav = document.getElementById('header-mobile-nav');
-        const overlay = document.getElementById('header-mobileNavOverlay');
-        if (menuToggle && nav && overlay) {
-            const toggleMenu = () => {
-                nav.classList.toggle('header-active');
-                overlay.classList.toggle('header-active');
-                document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
-            };
-            menuToggle.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-        }
-        document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                link.parentElement.classList.toggle('header-open');
-            });
-        });
-    }
-
-    // --- FOOTER SCROLL-IN ANIMATION ---
-    function initializeFooter() {
-        const footer = document.getElementById('destinova-footer');
-        if (footer) {
-            const footerObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        footer.classList.add('in-view');
-                        footerObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            footerObserver.observe(footer);
-        }
-    }
-
-    // Initialize shared components
-    handleManageMenuVisibility();
-    setActiveNavLink();
-    initializeHeader();
-    initializeFooter();
-    AOS.init();
-
-    // --- FLIGHT STATUS PAGE SPECIFIC LOGIC ---
-
-    const searchForm = document.getElementById('status-search-form');
-    const flightNumberInput = document.getElementById('flight-number');
-    const flightDateInput = document.getElementById('flight-date');
-    const resultsContainer = document.getElementById('flight-results');
-    const errorDiv = document.getElementById('form-error');
-    const recentSearchesList = document.getElementById('recent-searches-list');
-
-    // Set date picker to today by default
-    flightDateInput.value = new Date().toISOString().split('T')[0];
-
-    // Mock API response
-    const mockApiData = {
-        'AI202': {
-            airline: { name: 'Air India', logo: 'https://logolook.net/wp-content/uploads/2021/11/Air-India-Logo.png' },
-            flightNumber: 'AI202',
-            route: { from: 'Delhi (DEL)', to: 'Mumbai (BOM)' },
-            status: 'On Time',
-            departure: { scheduled: '2024-05-21T08:00:00Z', actual: '2024-05-21T08:05:00Z', terminal: 'T3', gate: '41B' },
-            arrival: { scheduled: '2024-05-21T10:15:00Z', estimated: '2024-05-21T10:20:00Z', terminal: 'T2', baggage: '05' },
-            aircraft: { type: 'Airbus A321', registration: 'VT-PPN' },
-            delay: { duration: null, reason: null }
+const MOCK_FLIGHTS = {
+    'AI202': {
+        flightNumber: 'AI202',
+        airline: 'Air India',
+        airlineLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Air_India_Logo.svg/200px-Air_India_Logo.svg.png',
+        departure: {
+            city: 'Delhi',
+            code: 'DEL',
+            airport: 'Indira Gandhi International',
+            scheduledTime: '08:00',
+            actualTime: '08:15',
+            terminal: '3',
+            gate: '24A'
         },
-        '6E101': {
-            airline: { name: 'IndiGo', logo: 'https://logolook.net/wp-content/uploads/2022/02/IndiGo-Logo.png' },
-            flightNumber: '6E 101',
-            route: { from: 'Bangalore (BLR)', to: 'Delhi (DEL)' },
-            status: 'Delayed',
-            departure: { scheduled: '2024-05-21T14:00:00Z', actual: '2024-05-21T14:45:00Z', terminal: 'T1', gate: '22' },
-            arrival: { scheduled: '2024-05-21T16:45:00Z', estimated: '2024-05-21T17:30:00Z', terminal: 'T3', baggage: '08' },
-            aircraft: { type: 'Airbus A320neo', registration: 'VT-IZI' },
-            delay: { duration: '45 minutes', reason: 'Air Traffic Congestion' }
-        }
-    };
-
-    function searchFlightStatus(e) {
-        e.preventDefault();
-        const flightNumber = flightNumberInput.value.trim().toUpperCase();
-        const flightDate = flightDateInput.value;
-
-        // Validation
-        if (!/^[A-Z0-9]{2}[0-9]{3,4}$/.test(flightNumber)) {
-            showError('Please enter a valid flight number (e.g., AI202).');
-            return;
-        }
-        showError(''); // Clear error
-
-        showLoadingSkeleton();
-
-        // Mock API call
-        setTimeout(() => {
-            const flightData = mockApiData[flightNumber];
-            if (flightData) {
-                displayFlightResults(flightData);
-                saveToRecentSearches(flightNumber);
-            } else {
-                showError(`Flight ${flightNumber} not found for the selected date.`);
-                resultsContainer.style.display = 'none';
-            }
-        }, 1500); // Simulate network delay
+        arrival: {
+            city: 'Mumbai',
+            code: 'BOM',
+            airport: 'Chhatrapati Shivaji International',
+            scheduledTime: '10:10',
+            estimatedTime: '10:25',
+            terminal: '2',
+            baggage: 'Belt 5'
+        },
+        status: 'delayed',
+        aircraft: 'Boeing 787-8 Dreamliner',
+        delay: '15 minutes',
+        delayReason: 'Air traffic congestion',
+        progress: 35
+    },
+    '6E101': {
+        flightNumber: '6E101',
+        airline: 'IndiGo',
+        airlineLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/IndiGo_Airlines_logo.svg/200px-IndiGo_Airlines_logo.svg.png',
+        departure: {
+            city: 'Mumbai',
+            code: 'BOM',
+            airport: 'Chhatrapati Shivaji International',
+            scheduledTime: '14:30',
+            actualTime: '14:30',
+            terminal: '1',
+            gate: '12'
+        },
+        arrival: {
+            city: 'Bangalore',
+            code: 'BLR',
+            airport: 'Kempegowda International',
+            scheduledTime: '16:00',
+            estimatedTime: '16:00',
+            terminal: '1',
+            baggage: 'Belt 3'
+        },
+        status: 'on-time',
+        aircraft: 'Airbus A320neo',
+        delay: null,
+        delayReason: null,
+        progress: 60
+    },
+    'UK955': {
+        flightNumber: 'UK955',
+        airline: 'Vistara',
+        airlineLogo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Vistara_Logo.svg/200px-Vistara_Logo.svg.png',
+        departure: {
+            city: 'Delhi',
+            code: 'DEL',
+            airport: 'Indira Gandhi International',
+            scheduledTime: '06:00',
+            actualTime: '06:00',
+            terminal: '3',
+            gate: '18'
+        },
+        arrival: {
+            city: 'Goa',
+            code: 'GOI',
+            airport: 'Dabolim Airport',
+            scheduledTime: '08:30',
+            estimatedTime: '08:30',
+            terminal: '1',
+            baggage: 'Belt 1'
+        },
+        status: 'boarding',
+        aircraft: 'Airbus A321neo',
+        delay: null,
+        delayReason: null,
+        progress: 10
     }
+};
 
-    function displayFlightResults(data) {
-        resultsContainer.style.display = 'block';
-        document.getElementById('result-airline-logo').src = data.airline.logo;
-        document.getElementById('result-flight-number').textContent = data.flightNumber;
-        document.getElementById('result-departure-city').textContent = data.route.from;
-        document.getElementById('result-arrival-city').textContent = data.route.to;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// STATE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        const statusBadge = document.getElementById('result-flight-status');
-        statusBadge.textContent = data.status;
-        statusBadge.className = 'flight-status-badge ' + getStatusClass(data.status);
+const STATE = {
+    recentSearches: [],
+    currentFlight: null
+};
 
-        document.getElementById('result-scheduled-departure').textContent = formatTime(data.departure.scheduled);
-        document.getElementById('result-actual-departure').textContent = formatTime(data.departure.actual);
-        document.getElementById('result-departure-gate').textContent = `${data.departure.terminal} / ${data.departure.gate}`;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INITIALIZATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        document.getElementById('result-scheduled-arrival').textContent = formatTime(data.arrival.scheduled);
-        document.getElementById('result-estimated-arrival').textContent = formatTime(data.arrival.estimated);
-        document.getElementById('result-arrival-gate').textContent = `${data.arrival.terminal} / ${data.arrival.baggage}`;
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✈️ Destinova Flight Status - Initialized');
+    
+    loadRecentSearches();
+    setupEventListeners();
+    setDefaultDate();
+    checkURLParams();
+});
 
-        document.getElementById('result-aircraft').textContent = `${data.aircraft.type} (${data.aircraft.registration})`;
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SET DEFAULT DATE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        const delayInfo = document.getElementById('delay-info');
-        if (data.delay.duration) {
-            document.getElementById('result-delay-duration').textContent = data.delay.duration;
-            document.getElementById('result-delay-reason').textContent = data.delay.reason;
-            delayInfo.style.display = 'block';
-        } else {
-            delayInfo.style.display = 'none';
-        }
-
-        calculateFlightProgress(data);
+function setDefaultDate() {
+    const dateInput = document.getElementById('flight-date');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+        dateInput.min = today;
     }
+}
 
-    function calculateFlightProgress(data) {
-        // This is a simplified mock calculation
-        const departureProgress = document.querySelector('.progress-point.departure');
-        const inAirProgress = document.querySelector('.progress-point.in-air');
-        const arrivalProgress = document.querySelector('.progress-point.arrival');
-        const lineFill = document.querySelector('.progress-line-fill');
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CHECK URL PARAMETERS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        // Reset
-        [departureProgress, inAirProgress, arrivalProgress].forEach(p => p.classList.remove('active', 'done'));
-        lineFill.style.width = '0%';
-
-        if (data.status === 'On Time' || data.status === 'Delayed') {
-            departureProgress.classList.add('done');
-            inAirProgress.classList.add('active');
-            lineFill.style.width = '50%'; // Mock progress
-        }
-        // Add more logic for 'Landed', etc.
+function checkURLParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const flightNumber = urlParams.get('flight');
+    const date = urlParams.get('date');
+    
+    if (flightNumber && date) {
+        document.getElementById('flight-number').value = flightNumber;
+        document.getElementById('flight-date').value = date;
+        searchFlight();
     }
+}
 
-    function formatTime(isoString) {
-        if (!isoString) return '--';
-        const date = new Date(isoString);
-        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-    }
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// EVENT LISTENERS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-    function getStatusClass(status) {
-        switch (status.toLowerCase()) {
-            case 'on time': return 'on-time';
-            case 'delayed': return 'delayed';
-            case 'cancelled': return 'cancelled';
-            case 'boarding': return 'boarding';
-            default: return '';
-        }
-    }
-
-    function saveToRecentSearches(flightNumber) {
-        let searches = JSON.parse(localStorage.getItem('flightStatusSearches') || '[]');
-        // Remove if already exists to move it to the front
-        searches = searches.filter(s => s !== flightNumber);
-        searches.unshift(flightNumber);
-        // Keep only the last 5
-        if (searches.length > 5) {
-            searches.pop();
-        }
-        localStorage.setItem('flightStatusSearches', JSON.stringify(searches));
-        loadRecentSearches();
-    }
-
-    function loadRecentSearches() {
-        const searches = JSON.parse(localStorage.getItem('flightStatusSearches') || '[]');
-        recentSearchesList.innerHTML = '';
-        searches.forEach(flightNumber => {
-            const pill = document.createElement('button');
-            pill.className = 'recent-pill';
-            pill.textContent = flightNumber;
-            pill.onclick = () => quickSearch(flightNumber);
-            recentSearchesList.appendChild(pill);
+function setupEventListeners() {
+    // Search form submission
+    const searchForm = document.getElementById('status-search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            searchFlight();
         });
     }
+    
+    // Route tab switching
+    document.querySelectorAll('.route-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            switchRouteTab(e.currentTarget.dataset.tab);
+        });
+    });
+    
+    // Route chip clicks
+    document.querySelectorAll('.route-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            const route = e.currentTarget.dataset.route;
+            showNotification(`Showing flights for ${route}`, 'info');
+        });
+    });
+    
+    // Recent search pills
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('recent-pill')) {
+            const flightNumber = e.target.dataset.flight;
+            const date = e.target.dataset.date;
+            document.getElementById('flight-number').value = flightNumber;
+            document.getElementById('flight-date').value = date;
+            searchFlight();
+        }
+    });
+}
 
-    function quickSearch(flightNumber) {
-        flightNumberInput.value = flightNumber;
-        searchForm.requestSubmit();
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ROUTE TAB SWITCHING
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function switchRouteTab(tab) {
+    // Update active tab button
+    document.querySelectorAll('.route-tab').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+    
+    // Update active content pane
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+    });
+    document.getElementById(`tab-${tab}`).classList.add('active');
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SEARCH FLIGHT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function searchFlight() {
+    const flightNumber = document.getElementById('flight-number').value.trim().toUpperCase();
+    const flightDate = document.getElementById('flight-date').value;
+    const errorDiv = document.getElementById('form-error');
+    
+    // Validation
+    if (!flightNumber || !flightDate) {
+        showError('Please enter both flight number and date');
+        return;
     }
+    
+    // Hide error
+    errorDiv.classList.add('hidden');
+    
+    // Show loading
+    const searchBtn = document.getElementById('status-search-btn');
+    const originalHTML = searchBtn.innerHTML;
+    searchBtn.disabled = true;
+    searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+    
+    // Simulate API call
+    setTimeout(() => {
+        const flight = MOCK_FLIGHTS[flightNumber];
+        
+        if (flight) {
+            displayFlightResults(flight, flightDate);
+            saveToRecentSearches(flightNumber, flightDate);
+            showNotification('Flight status found!', 'success');
+        } else {
+            showError(`Flight ${flightNumber} not found. Try AI202, 6E101, or UK955`);
+        }
+        
+        // Reset button
+        searchBtn.disabled = false;
+        searchBtn.innerHTML = originalHTML;
+    }, 1500);
+}
 
-    function showError(message) {
-        errorDiv.textContent = message;
-        errorDiv.style.display = message ? 'block' : 'none';
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DISPLAY FLIGHT RESULTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function displayFlightResults(flight, date) {
+    STATE.currentFlight = flight;
+    
+    // Show results container
+    const resultsDiv = document.getElementById('flight-results');
+    resultsDiv.classList.remove('hidden');
+    
+    // Populate flight data
+    document.getElementById('result-airline-logo').src = flight.airlineLogo;
+    document.getElementById('result-airline-name').textContent = flight.airline;
+    document.getElementById('result-flight-number').textContent = flight.flightNumber;
+    
+    // Status badge
+    const statusBadge = document.getElementById('result-flight-status');
+    statusBadge.textContent = flight.status.replace('-', ' ');
+    statusBadge.className = `status-badge ${flight.status}`;
+    
+    // Route
+    document.getElementById('result-departure-city').textContent = flight.departure.city;
+    document.getElementById('result-arrival-city').textContent = flight.arrival.city;
+    
+    // Departure details
+    document.getElementById('result-scheduled-departure').textContent = 
+        `${flight.departure.scheduledTime} - ${flight.departure.code}`;
+    document.getElementById('result-actual-departure').textContent = 
+        `${flight.departure.actualTime} - ${flight.departure.code}`;
+    document.getElementById('result-departure-gate').textContent = 
+        `T${flight.departure.terminal} / Gate ${flight.departure.gate}`;
+    
+    // Arrival details
+    document.getElementById('result-scheduled-arrival').textContent = 
+        `${flight.arrival.scheduledTime} - ${flight.arrival.code}`;
+    document.getElementById('result-estimated-arrival').textContent = 
+        `${flight.arrival.estimatedTime} - ${flight.arrival.code}`;
+    document.getElementById('result-arrival-gate').textContent = 
+        `T${flight.arrival.terminal} / ${flight.arrival.baggage}`;
+    
+    // Aircraft
+    document.getElementById('result-aircraft').textContent = flight.aircraft;
+    
+    // Delay info
+    const delayDiv = document.getElementById('delay-info');
+    if (flight.delay) {
+        delayDiv.classList.remove('hidden');
+        document.getElementById('result-delay-duration').textContent = flight.delay;
+        document.getElementById('result-delay-reason').textContent = flight.delayReason;
+    } else {
+        delayDiv.classList.add('hidden');
     }
+    
+    // Update timeline progress
+    updateTimeline(flight.progress);
+    
+    // Scroll to results
+    setTimeout(() => {
+        resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+}
 
-    function showLoadingSkeleton() {
-        // In a real app, you would replace the results content with a skeleton loader
-        resultsContainer.style.display = 'block';
-        resultsContainer.classList.add('skeleton');
-        setTimeout(() => resultsContainer.classList.remove('skeleton'), 1500);
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// UPDATE TIMELINE PROGRESS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function updateTimeline(progress) {
+    const progressBar = document.getElementById('timeline-progress');
+    const points = document.querySelectorAll('.timeline-point');
+    
+    // Update progress bar width
+    setTimeout(() => {
+        progressBar.style.width = `${progress}%`;
+    }, 300);
+    
+    // Activate timeline points based on progress
+    points.forEach((point, index) => {
+        if (progress >= (index * 50)) {
+            point.classList.add('active');
+        } else {
+            point.classList.remove('active');
+        }
+    });
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// RECENT SEARCHES
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function loadRecentSearches() {
+    const saved = localStorage.getItem('recentFlightSearches');
+    if (saved) {
+        STATE.recentSearches = JSON.parse(saved);
+        renderRecentSearches();
     }
+}
 
-    // Event Listeners
-    searchForm.addEventListener('submit', searchFlightStatus);
+function saveToRecentSearches(flightNumber, date) {
+    const search = { flightNumber, date, timestamp: Date.now() };
+    
+    // Remove duplicates
+    STATE.recentSearches = STATE.recentSearches.filter(
+        s => s.flightNumber !== flightNumber || s.date !== date
+    );
+    
+    // Add to beginning
+    STATE.recentSearches.unshift(search);
+    
+    // Keep only last 5
+    STATE.recentSearches = STATE.recentSearches.slice(0, 5);
+    
+    // Save to localStorage
+    localStorage.setItem('recentFlightSearches', JSON.stringify(STATE.recentSearches));
+    
+    renderRecentSearches();
+}
 
-    // Initial Load
-    loadRecentSearches();
-});
+function renderRecentSearches() {
+    const container = document.getElementById('recent-searches-list');
+    const section = document.getElementById('recent-searches');
+    
+    if (STATE.recentSearches.length === 0) {
+        section.classList.add('hidden');
+        return;
+    }
+    
+    section.classList.remove('hidden');
+    
+    container.innerHTML = STATE.recentSearches.map(search => {
+        const date = new Date(search.timestamp);
+        const dateStr = date.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric' 
+        });
+        
+        return `
+            <button class="recent-pill" data-flight="${search.flightNumber}" data-date="${search.date}">
+                <i class="fas fa-plane"></i>
+                ${search.flightNumber} - ${dateStr}
+            </button>
+        `;
+    }).join('');
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ERROR HANDLING
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function showError(message) {
+    const errorDiv = document.getElementById('form-error');
+    errorDiv.textContent = message;
+    errorDiv.classList.remove('hidden');
+    
+    setTimeout(() => {
+        errorDiv.classList.add('hidden');
+    }, 5000);
+}
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// NOTIFICATIONS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 24px;
+        padding: 16px 24px;
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#1d5e33'};
+        color: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(29, 94, 51, 0.3);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+        font-weight: 600;
+        max-width: 300px;
+        font-family: 'Poppins', sans-serif;
+    `;
+    
+    const icon = type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ';
+    notification.innerHTML = `${icon} ${message}`;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Add notification animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// AUTO-REFRESH FLIGHT STATUS (Optional)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Auto-refresh every 60 seconds if a flight is being tracked
+setInterval(() => {
+    if (STATE.currentFlight) {
+        console.log('Auto-refreshing flight status...');
+        // In production, fetch updated data from API
+    }
+}, 60000);
+
+console.log('✈️ Destinova Flight Status - All Systems Active');

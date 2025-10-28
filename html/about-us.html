@@ -1,395 +1,716 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - Destinova</title>
-  <meta name="description"
-    content="Learn about Destinova's mission to provide a premium, seamless booking experience for the modern luxury traveler.">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-    rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Animations -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'primary-emerald': '#1d5e33',
-            'secondary-cream': '#FFFBF2',
-            'accent-gold': '#E5CBAF',
-            'text-charcoal': '#1C2526',
-            'text-slate': '#5C6B73',
-            'background-white': '#FAFAFA',
-          }
-        }
-      }
-    }
-  </script>
-
-  <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/about-us.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Destinova | Redefining Luxury Travel Since 2020</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/about-us.css">
 </head>
-
 <body>
 
-    <!-- HEADER START -->
-  <header id="header-main">
-    <div class="header-nav-container">
-      <div class="header-logo">
-        <h1>Destin<span>ova</span></h1>
-      </div>
-
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
-
-      <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
-
-        <a href="signin.html" class="btn header-btn-signin">
-          <i class="fas fa-right-to-bracket"></i>
-          <span>Sign In</span>
-        </a>
-        <button class="header-mobile-menu-btn" id="header-menuToggle">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+    <!-- Crystal Ambient Background -->
+    <div class="crystal-ambient">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
     </div>
-  </header>
 
-  <nav class="header-mobile-nav" id="header-mobile-nav">
-    <ul>
-      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-      <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-      <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-      <li class="header-dropdown">
-            <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
-        <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                    <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-        </ul>
-      </li>
-      <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-            <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
-        <ul class="header-dropdown-menu">
-                    <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                    <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-        </ul>
-      </li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-    </ul>
-  </nav>
-  <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
+    <!-- Premium Glassmorphic Header -->
+    <header class="glass-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="/" class="logo-glass">
+                    <div class="logo-crystal">
+                        <div class="logo-shimmer"></div>
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Destinova</span>
+                        <span class="logo-tagline">LUXURY REDEFINED</span>
+                    </div>
+                </a>
+                
+                <div class="nav-links-glass">
+                    <a href="/" class="nav-link-glass">
+                        <span class="nav-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Home</span>
+                        <span class="nav-glow"></span>
+                    </a>
+                    <a href="/flights" class="nav-link-glass">
+                        <span class="nav-icon"><i class="fas fa-plane"></i></span>
+                        <span class="nav-text">Flights</span>
+                        <span class="nav-glow"></span>
+                    </a>
+                    <a href="/about" class="nav-link-glass active">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        <span class="nav-text">About</span>
+                        <span class="nav-glow"></span>
+                    </a>
+                    <a href="/contact" class="nav-link-glass">
+                        <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                        <span class="nav-text">Contact</span>
+                        <span class="nav-glow"></span>
+                    </a>
+                </div>
+                
+                <div class="header-actions-glass">
+                    <button class="btn-glass-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="pulse-indicator"></span>
+                    </button>
+                    <div class="user-glass">
+                        <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                        <span class="status-crystal"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-content fade-in">
-                <h1 class="animated-heading">Where will your dreams take you next?</h1>
-                <p>We believe travel is more than just a journey; it's an experience that shapes us. At Destinova, we're here to make that experience seamless, affordable, and unforgettable.</p>
+    <!-- Ultra-Premium Hero with Parallax & Glass -->
+    <section class="hero-crystal">
+        <div class="hero-parallax-bg"></div>
+        <div class="hero-mesh-gradient"></div>
+        
+        <div class="hero-content-crystal">
+            <div class="hero-badge-glass">
+                <span class="badge-shimmer"></span>
+                <i class="fas fa-shield-check"></i>
+                <span>Since 2020</span>
             </div>
-        </section>
+            
+            <h1 class="hero-title-premium">
+                <span class="title-line" data-text="Elevating">Elevating</span>
+                <span class="title-line" data-text="Travel Excellence">Travel Excellence</span>
+            </h1>
+            
+            <p class="hero-subtitle-glass">
+                Where innovation meets luxury in the art of journey
+            </p>
+            
+            <div class="hero-stats-glass">
+                <div class="stat-glass-item">
+                    <div class="stat-crystal-number" data-count="50000">0</div>
+                    <div class="stat-label-glass">Happy Travelers</div>
+                </div>
+                <div class="stat-divider-crystal"></div>
+                <div class="stat-glass-item">
+                    <div class="stat-crystal-number" data-count="150">0</div>
+                    <div class="stat-label-glass">Destinations</div>
+                </div>
+                <div class="stat-divider-crystal"></div>
+                <div class="stat-glass-item">
+                    <div class="stat-crystal-number" data-count="500">0</div>
+                    <div class="stat-label-glass">Airlines</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-crystal">
+            <div class="scroll-line"></div>
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
 
-        <section class="story-section content-section">
-            <div class="container animate-on-scroll">
-                <h2>Our Journey, Your Destination</h2>
-                <p>Destinova was born from a simple idea: flight booking should be exciting, not exhausting. We are a team of passionate travelers and tech innovators dedicated to crafting the perfect platform for wanderers like you. Our mission is to connect you to the world with unparalleled convenience, transparent pricing, and a touch of digital magic.</p>
-                <div class="value-props">
-                    <div class="prop-item">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <h3>Best Deals</h3>
-                        <p>Our smart algorithms find you the best prices, always.</p>
+    <!-- Vision Section with Glassmorphism -->
+    <section class="vision-section-glass">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Our Vision
+                </span>
+                <h2 class="section-title-glass">Crafting Tomorrow's<br>Travel Experience</h2>
+                <p class="section-subtitle-glass">A journey born from passion, powered by innovation</p>
+            </div>
+            
+            <div class="vision-grid-glass">
+                <div class="vision-card-crystal reveal-crystal">
+                    <div class="vision-image-glass">
+                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800" alt="Journey">
+                        <div class="image-overlay-crystal"></div>
                     </div>
-                    <div class="prop-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Transparent Pricing</h3>
-                        <p>No hidden fees. The price you see is the price you pay.</p>
+                    <div class="vision-content-glass">
+                        <h3>The Journey Begins</h3>
+                        <p>Founded in 2020, Destinova emerged from a simple vision: to transform how people experience travel. We saw an industry ripe for innovation and set out to build something extraordinary.</p>
                     </div>
-                    <div class="prop-item">
+                </div>
+                
+                <div class="vision-card-crystal reveal-crystal">
+                    <div class="vision-content-glass">
+                        <h3>Innovation at Heart</h3>
+                        <p>Leveraging cutting-edge AI and machine learning, we've created a platform that doesn't just book flights—it curates experiences, anticipates needs, and elevates every journey.</p>
+                    </div>
+                    <div class="vision-image-glass">
+                        <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800" alt="Innovation">
+                        <div class="image-overlay-crystal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values with Premium Glass Cards -->
+    <section class="values-section-crystal">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Core Values
+                </span>
+                <h2 class="section-title-glass">What Defines Us</h2>
+            </div>
+            
+            <div class="values-grid-crystal">
+                <div class="value-card-premium reveal-crystal">
+                    <div class="value-icon-crystal">
+                        <div class="icon-shimmer-layer"></div>
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Uncompromising Quality</h3>
+                    <p>Every detail meticulously crafted, every experience thoughtfully designed.</p>
+                    <div class="card-crystal-border"></div>
+                </div>
+                
+                <div class="value-card-premium reveal-crystal">
+                    <div class="value-icon-crystal">
+                        <div class="icon-shimmer-layer"></div>
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h3>Trust & Transparency</h3>
+                    <p>Complete pricing clarity with industry-leading security protocols.</p>
+                    <div class="card-crystal-border"></div>
+                </div>
+                
+                <div class="value-card-premium reveal-crystal">
+                    <div class="value-icon-crystal">
+                        <div class="icon-shimmer-layer"></div>
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Relentless Innovation</h3>
+                    <p>Pioneering technology that transforms travel into art.</p>
+                    <div class="card-crystal-border"></div>
+                </div>
+                
+                <div class="value-card-premium reveal-crystal">
+                    <div class="value-icon-crystal">
+                        <div class="icon-shimmer-layer"></div>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Customer Obsession</h3>
+                    <p>Your satisfaction isn't just our goal—it's our obsession.</p>
+                    <div class="card-crystal-border"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team with Ultra-Premium Cards -->
+    <section class="team-section-premium">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Leadership
+                </span>
+                <h2 class="section-title-glass">Visionaries Behind<br>Your Journey</h2>
+            </div>
+            
+            <div class="team-grid-premium">
+                <!-- Founder -->
+                <div class="team-card-crystal reveal-crystal">
+                    <div class="team-image-container">
+                        <div class="image-crystal-frame">
+                            <img src="https://i.pravatar.cc/500?img=12" alt="Zaid Malik">
+                            <div class="image-overlay-premium"></div>
+                            <div class="founder-badge-crystal">
+                                <i class="fas fa-crown"></i>
+                                <span>Founder</span>
+                            </div>
+                        </div>
+                        <div class="social-crystal-links">
+                            <a href="#" class="social-glass-btn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-glass-btn">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-glass-btn">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-info-glass">
+                        <h3>Zaid Malik</h3>
+                        <p class="role-badge-glass">
+                            <span class="role-shimmer"></span>
+                            Founder & CEO
+                        </p>
+                        <p class="member-bio-crystal">
+                            Visionary entrepreneur with 15+ years in travel technology. Passionate about creating seamless, luxurious travel experiences through innovative solutions.
+                        </p>
+                        <div class="member-stats-crystal">
+                            <div class="stat-badge-glass">
+                                <i class="fas fa-award"></i>
+                                <span>15+ Years</span>
+                            </div>
+                            <div class="stat-badge-glass">
+                                <i class="fas fa-globe"></i>
+                                <span>50+ Countries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Co-Founder -->
+                <div class="team-card-crystal reveal-crystal">
+                    <div class="team-image-container">
+                        <div class="image-crystal-frame">
+                            <img src="https://i.pravatar.cc/500?img=33" alt="Ashok Sah">
+                            <div class="image-overlay-premium"></div>
+                            <div class="founder-badge-crystal co-founder">
+                                <i class="fas fa-star"></i>
+                                <span>Co-Founder</span>
+                            </div>
+                        </div>
+                        <div class="social-crystal-links">
+                            <a href="#" class="social-glass-btn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-glass-btn">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-glass-btn">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="team-info-glass">
+                        <h3>Ashok Sah</h3>
+                        <p class="role-badge-glass">
+                            <span class="role-shimmer"></span>
+                            Co-Founder & CTO
+                        </p>
+                        <p class="member-bio-crystal">
+                            Tech visionary and architect of Destinova's cutting-edge platform. Expert in AI, machine learning, and building scalable systems that delight users.
+                        </p>
+                        <div class="member-stats-crystal">
+                            <div class="stat-badge-glass">
+                                <i class="fas fa-code"></i>
+                                <span>20+ Years Tech</span>
+                            </div>
+                            <div class="stat-badge-glass">
+                                <i class="fas fa-trophy"></i>
+                                <span>Tech Pioneer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Timeline Glass -->
+    <section class="timeline-section-crystal">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Our Journey
+                </span>
+                <h2 class="section-title-glass">Milestones of Excellence</h2>
+            </div>
+            
+            <div class="timeline-crystal-container">
+                <div class="timeline-line-crystal"></div>
+                
+                <div class="timeline-item-crystal reveal-crystal">
+                    <div class="timeline-marker-glass">
+                        <div class="marker-pulse"></div>
+                        <span>2020</span>
+                    </div>
+                    <div class="timeline-card-glass">
+                        <div class="timeline-icon-crystal">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>The Genesis</h3>
+                        <p>Destinova founded with a mission to revolutionize luxury travel booking.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item-crystal reveal-crystal">
+                    <div class="timeline-marker-glass">
+                        <div class="marker-pulse"></div>
+                        <span>2021</span>
+                    </div>
+                    <div class="timeline-card-glass">
+                        <div class="timeline-icon-crystal">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>10K Milestone</h3>
+                        <p>Served our 10,000th happy traveler across 50 countries.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item-crystal reveal-crystal">
+                    <div class="timeline-marker-glass">
+                        <div class="marker-pulse"></div>
+                        <span>2023</span>
+                    </div>
+                    <div class="timeline-card-glass">
+                        <div class="timeline-icon-crystal">
+                            <i class="fas fa-mobile-screen"></i>
+                        </div>
+                        <h3>Mobile Excellence</h3>
+                        <p>Launched award-winning mobile app with AI-powered recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item-crystal reveal-crystal">
+                    <div class="timeline-marker-glass">
+                        <div class="marker-pulse"></div>
+                        <span>2025</span>
+                    </div>
+                    <div class="timeline-card-glass">
+                        <div class="timeline-icon-crystal">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Global Leader</h3>
+                        <p>50,000+ travelers, 500+ airline partners, setting new industry standards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section class="trust-section-crystal">
+        <div class="container">
+            <div class="trust-grid-glass">
+                <div class="trust-badge-crystal reveal-crystal">
+                    <div class="badge-icon-glass">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h4>Bank-Level Security</h4>
+                    <p>256-bit SSL encryption</p>
+                </div>
+                
+                <div class="trust-badge-crystal reveal-crystal">
+                    <div class="badge-icon-glass">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h4>Industry Certified</h4>
+                    <p>IATA & ISO accredited</p>
+                </div>
+                
+                <div class="trust-badge-crystal reveal-crystal">
+                    <div class="badge-icon-glass">
                         <i class="fas fa-headset"></i>
-                        <h3>24/7 Support</h3>
-                        <p>Our global support team is always here to help you.</p>
+                    </div>
+                    <h4>24/7 Elite Support</h4>
+                    <p>Always here for you</p>
+                </div>
+                
+                <div class="trust-badge-crystal reveal-crystal">
+                    <div class="badge-icon-glass">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h4>Award Winning</h4>
+                    <p>Best Travel Platform 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Awards & Recognition Section -->
+    <section class="awards-section-crystal">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Recognition
+                </span>
+                <h2 class="section-title-glass">Awards & Achievements</h2>
+            </div>
+            
+            <div class="awards-grid-glass">
+                <div class="award-card-crystal reveal-crystal">
+                    <div class="award-year-badge">2024</div>
+                    <div class="award-icon-glass">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Best Travel Platform</h3>
+                    <p>Travel Tech Excellence Awards</p>
+                </div>
+                
+                <div class="award-card-crystal reveal-crystal">
+                    <div class="award-year-badge">2024</div>
+                    <div class="award-icon-glass">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Innovation Leader</h3>
+                    <p>Global Tech Summit</p>
+                </div>
+                
+                <div class="award-card-crystal reveal-crystal">
+                    <div class="award-year-badge">2023</div>
+                    <div class="award-icon-glass">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Customer Choice</h3>
+                    <p>India Travel Awards</p>
+                </div>
+                
+                <div class="award-card-crystal reveal-crystal">
+                    <div class="award-year-badge">2023</div>
+                    <div class="award-icon-glass">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h3>Security Excellence</h3>
+                    <p>Cyber Security Awards</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Testimonials Carousel Section -->
+    <section class="testimonials-section-premium">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    Testimonials
+                </span>
+                <h2 class="section-title-glass">What Our Travelers Say</h2>
+                <p class="section-subtitle-glass">Real experiences from real travelers</p>
+            </div>
+            
+            <div class="testimonials-carousel-crystal">
+                <button class="carousel-btn prev-btn" id="testimonial-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="testimonials-track">
+                    <div class="testimonial-glass-card active">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"Destinova transformed my travel experience completely. The booking process was seamless, and their customer service exceeded all expectations. Absolutely recommend!"</p>
+                        <div class="testimonial-author-glass">
+                            <img src="https://i.pravatar.cc/100?img=15" alt="Sarah Johnson">
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p>Frequent Traveler</p>
+                            </div>
+                        </div>
+                        <div class="quote-decoration">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-glass-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"The level of transparency and professionalism is unmatched. I've saved both time and money using Destinova. The mobile app is incredibly intuitive!"</p>
+                        <div class="testimonial-author-glass">
+                            <img src="https://i.pravatar.cc/100?img=27" alt="Michael Chen">
+                            <div>
+                                <h4>Michael Chen</h4>
+                                <p>Business Traveler</p>
+                            </div>
+                        </div>
+                        <div class="quote-decoration">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-glass-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-quote">"Finally, a travel platform I can trust! No hidden fees, excellent deals, and the 24/7 support team genuinely cares. Destinova is my go-to for all trips."</p>
+                        <div class="testimonial-author-glass">
+                            <img src="https://i.pravatar.cc/100?img=45" alt="Priya Sharma">
+                            <div>
+                                <h4>Priya Sharma</h4>
+                                <p>Travel Blogger</p>
+                            </div>
+                        </div>
+                        <div class="quote-decoration">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next-btn" id="testimonial-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ultra-Premium CTA -->
+    <section class="cta-section-crystal">
+        <div class="cta-glass-container">
+            <div class="cta-shimmer-bg"></div>
+            <div class="cta-content-premium reveal-crystal">
+                <h2>Begin Your Extraordinary Journey</h2>
+                <p>Join 50,000+ travelers who trust Destinova for their adventures</p>
+                <a href="/flights" class="btn-crystal-premium">
+                    <span class="btn-shimmer"></span>
+                    <span class="btn-text">Explore Destinations</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: FAQ Section with Accordion -->
+    <section class="faq-section-crystal">
+        <div class="container">
+            <div class="section-header-crystal reveal-crystal">
+                <span class="label-glass">
+                    <span class="label-shimmer"></span>
+                    FAQ
+                </span>
+                <h2 class="section-title-glass">Frequently Asked Questions</h2>
+                <p class="section-subtitle-glass">Everything you need to know about Destinova</p>
+            </div>
+            
+            <div class="faq-accordion-glass">
+                <div class="faq-item-crystal reveal-crystal active">
+                    <div class="faq-question">
+                        <h3>What makes Destinova different from other booking platforms?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Destinova combines cutting-edge AI technology with personalized service to deliver a truly luxurious booking experience. We offer complete price transparency, 24/7 support, and exclusive partnerships with 500+ airlines to ensure you always get the best value.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item-crystal reveal-crystal">
+                    <div class="faq-question">
+                        <h3>Is my payment information secure?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We use bank-level 256-bit SSL encryption and are fully PCI DSS compliant. Your payment data is never stored on our servers and all transactions are processed through secure, certified payment gateways.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item-crystal reveal-crystal">
+                    <div class="faq-question">
+                        <h3>What if I need to cancel or modify my booking?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible cancellation policies depending on your fare type. Our 24/7 support team is always available to assist with modifications, cancellations, or any special requests. Most changes can be made instantly through our mobile app or website.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item-crystal reveal-crystal">
+                    <div class="faq-question">
+                        <h3>Do you charge any hidden fees?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Never. Transparency is one of our core values. The price you see during booking is the final price you pay—no surprises, no hidden charges. All taxes, fees, and surcharges are clearly displayed upfront.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item-crystal reveal-crystal">
+                    <div class="faq-question">
+                        <h3>How can I contact customer support?</h3>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our elite support team is available 24/7 through multiple channels: phone (+91 123 456 7891), email (support@destinova.com), live chat on our website and app, or through our social media channels. We're always here to help.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="team-section content-section">
-            <div class="container animate-on-scroll">
-                <h2>Meet the Navigators</h2>
-                <p>The passionate minds charting the course for your next adventure.</p>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <img src="https://i.pravatar.cc/300?img=11" alt="Photo of Jane Doe">
-                        <div class="team-info">
-                            <h3>Jane Doe</h3>
-                            <p>Co-Founder & CEO</p>
+    <!-- Premium Glass Footer -->
+    <footer class="footer-crystal">
+        <div class="footer-glass-overlay"></div>
+        <div class="container">
+            <div class="footer-content-glass">
+                <div class="footer-brand-crystal">
+                    <div class="footer-logo-glass">
+                        <div class="logo-crystal">
+                            <div class="logo-shimmer"></div>
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-name">Destinova</span>
+                            <span class="logo-tagline">LUXURY REDEFINED</span>
                         </div>
                     </div>
-                    <div class="team-card">
-                        <img src="https://i.pravatar.cc/300?img=32" alt="Photo of John Smith">
-                        <div class="team-info">
-                            <h3>John Smith</h3>
-                            <p>Co-Founder & CTO</p>
-                        </div>
+                    <p class="footer-description-glass">Elevating travel experiences through innovation, transparency, and unwavering commitment to excellence.</p>
+                </div>
+                
+                <div class="footer-links-crystal">
+                    <div class="footer-column-glass">
+                        <h4>Company</h4>
+                        <a href="/about">About Us</a>
+                        <a href="/careers">Careers</a>
+                        <a href="/press">Press</a>
                     </div>
-                    <div class="team-card">
-                        <img src="https://i.pravatar.cc/300?img=15" alt="Photo of Emily White">
-                        <div class="team-info">
-                            <h3>Emily White</h3>
-                            <p>Head of Customer Experience</p>
-                        </div>
+                    <div class="footer-column-glass">
+                        <h4>Support</h4>
+                        <a href="/help">Help Center</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/faq">FAQ</a>
+                    </div>
+                    <div class="footer-column-glass">
+                        <h4>Connect</h4>
+                        <a href="tel:+911234567891"><i class="fas fa-phone"></i> +91 123 456 7891</a>
+                        <a href="mailto:hello@destinova.com"><i class="fas fa-envelope"></i> hello@destinova.com</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="tech-section content-section">
-            <div class="container animate-on-scroll">
-                <h2>Innovation in Every Pixel</h2>
-                <p>We leverage cutting-edge technology to make your booking experience fast, secure, and delightful.</p>
-                <div class="tech-features">
-                    <div class="feature">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Real-Time Booking</h3>
-                        <p>Instantly search and book flights from hundreds of airlines worldwide.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>Mobile-First Convenience</h3>
-                        <p>Manage your bookings on the go with our intuitive mobile app.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-lock"></i>
-                        <h3>Secure Payments</h3>
-                        <p>Your data is protected with industry-leading security protocols.</p>
-                    </div>
+            
+            <div class="footer-bottom-glass">
+                <p>&copy; 2025 Destinova. All rights reserved.</p>
+                <div class="footer-social-crystal">
+                    <a href="#" class="social-crystal-btn"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-crystal-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-crystal-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-crystal-btn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-        </section>
-
-        <section class="testimonials-section content-section">
-            <div class="container animate-on-scroll">
-                <h2>Stories from Our Travelers</h2>
-                <div class="testimonial-carousel">
-                    <div class="testimonial-slider">
-                        <div class="testimonial-slide active">
-                            <p>"Booking with Destinova was a breeze! I found the best deal for my trip to Tokyo in minutes. Highly recommended!"</p>
-                            <h4>- Alex Johnson</h4>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <p>"The 24/7 support is a lifesaver. I had to change my flight last minute, and the team was incredibly helpful."</p>
-                            <h4>- Maria Garcia</h4>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                        <div class="testimonial-slide">
-                            <p>"I love the transparent pricing. No surprises at checkout. Finally, a platform I can trust."</p>
-                            <h4>- Sam Chen</h4>
-                            <div class="stars">★★★★★</div>
-                        </div>
-                    </div>
-                    <div class="carousel-nav">
-                        <button class="nav-dot active"></button>
-                        <button class="nav-dot"></button>
-                        <button class="nav-dot"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section content-section">
-            <div class="container animate-on-scroll">
-                <h2>Ready to Explore?</h2>
-                <p>Your next adventure is just a click away.</p>
-                <a href="#" class="cta-button animated-button">Start Your Search</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER START -->
-  <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-    <div class="footer-content max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-        <!-- Company Info -->
-        <div class="footer-col">
-          <div class="footer-logo mb-4">
-            <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                aria-hidden="true"></i></h2>
-          </div>
-          <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-            Discover a new standard in air travel.
-          </p>
         </div>
+    </footer>
 
-        <!-- Quick Links -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-compass" aria-hidden="true"></i>
-            Quick Links
-          </h3>
-          <nav aria-label="Footer navigation">
-            <ul class="space-y-3 text-gray-300">
-              <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                    aria-hidden="true"></i> Home</a></li>
-              <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"
-                    aria-hidden="true"></i> Book a Flight</a></li>
-              <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                    aria-hidden="true"></i> Special Offers</a></li>
-              <li class="quick-link-item"><a href="about-us.html"><i class="fas fa-info-circle link-icon w-5"
-                    aria-hidden="true"></i> About Us</a></li>
-              <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                    aria-hidden="true"></i> Contact</a></li>
-              <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                    aria-hidden="true"></i> Flight Status</a></li>
-              <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                    aria-hidden="true"></i> Manage Booking</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <!-- Customer Support -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-headset" aria-hidden="true"></i>
-            Customer Support
-          </h3>
-          <div class="text-gray-300 space-y-3">
-            <p>
-              <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                support@destinova.com
-              </a>
-            </p>
-            <p>
-              <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                +91 1234567891
-              </a>
-            </p>
-            <div class="support-badge">
-              <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-              24/7 Assistance
-            </div>
-          </div>
-        </div>
-
-        <!-- Stay Connected -->
-        <div class="footer-col">
-          <h3 class="footer-title">
-            <i class="fas fa-share-nodes" aria-hidden="true"></i>
-            Stay Connected
-          </h3>
-          <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-            <div class="newsletter-input-wrapper">
-              <input type="email" placeholder="Your email address" required
-                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                aria-label="Email address for newsletter">
-              <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-              </button>
-            </div>
-          </form>
-          <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Facebook" role="listitem">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Twitter" role="listitem">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on Instagram" role="listitem">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Follow us on LinkedIn" role="listitem">
-              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="social-icon rounded-full flex items-center justify-center"
-              aria-label="Subscribe to our YouTube channel" role="listitem">
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer Bottom -->
-      <div
-        class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-        <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-        <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-          <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-          <span aria-hidden="true">|</span>
-          <a href="#" class="legal-link transition-colors">Terms of Service</a>
-        </nav>
-        <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-          <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-          <span>Trusted by 1M+ Travelers</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
-    <i class="fas fa-plane-up"></i>
-  </a>
-    <!-- FOOTER END -->
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/index.js"></script>
     <script src="../js/about-us.js"></script>
 </body>
-
 </html>

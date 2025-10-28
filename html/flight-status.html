@@ -1,314 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Status - Destinova</title>
-    <meta name="description"
-        content="Track real-time flight status with Destinova. Get live updates on departures, arrivals, delays, and gate information.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
+    <title>Track Your Flight | Destinova - Real-time Flight Status</title>
+    
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Tailwind CSS (for footer utilities) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                        'secondary-cream': '#FFFBF2',
-                        'accent-gold': '#E5CBAF',
-                        'text-charcoal': '#1C2526',
-                        'text-slate': '#5C6B73',
-                        'background-white': '#FAFAFA',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="../css/flight-status.css">
 </head>
-
 <body>
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
 
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
+    <!-- Ripple Background Effect -->
+    <div class="ripple-background">
+        <div class="ripple-circle"></div>
+        <div class="ripple-circle"></div>
+        <div class="ripple-circle"></div>
+    </div>
 
-            <div class="header-actions">
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
+    <!-- Premium Header -->
+    <header class="premium-header">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Destinova</span>
+                        <span class="logo-tagline">LUXURY TRAVEL</span>
+                    </div>
                 </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+                
+                <div class="nav-links">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="/flights" class="nav-link">
+                        <i class="fas fa-plane"></i>
+                        <span>Flights</span>
+                    </a>
+                    <a href="/flight-status" class="nav-link active">
+                        <i class="fas fa-plane-circle-check"></i>
+                        <span>Flight Status</span>
+                    </a>
+                    <a href="/my-bookings" class="nav-link">
+                        <i class="fas fa-ticket"></i>
+                        <span>My Bookings</span>
+                    </a>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-avatar">
+                            <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                            <span class="user-status"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-            <li class="header-dropdown">
-                <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                    <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                </ul>
-            </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-                <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                    <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                </ul>
-            </li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-        </ul>
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
-
-    <main id="flight-status-container">
-        <section class="status-hero">
-            <h1>Track Your Flight</h1>
-            <p>Get real-time flight status updates</p>
-        </section>
-
-        <div class="search-card">
-            <form id="status-search-form">
-                <input type="text" id="flight-number" placeholder="Enter flight number (e.g., AI202)" required>
-                <input type="date" id="flight-date" required>
-                <button type="submit" class="btn-search"><i class="fas fa-search"></i> Search</button>
-            </form>
-            <div id="form-error" class="form-error-message" style="display: none;"></div>
-        </div>
-
-        <div class="recent-searches">
-            <span class="recent-title">Recent:</span>
-            <div id="recent-searches-list">
-                <!-- Recent searches will be populated by JS -->
+    <!-- Hero Section with Floating Search -->
+    <section class="status-hero">
+        <div class="hero-content-wrapper">
+            <div class="hero-text">
+                <h1 class="hero-title">Track Your Flight</h1>
+                <p class="hero-subtitle">Get real-time flight status updates instantly</p>
+            </div>
+            
+            <!-- Floating Search Card -->
+            <div class="search-card-floating">
+                <form id="status-search-form" class="status-search-form">
+                    <div class="form-group">
+                        <label for="flight-number" class="form-label">
+                            <i class="fas fa-plane"></i>
+                            Flight Number
+                        </label>
+                        <input type="text" 
+                               id="flight-number" 
+                               placeholder="e.g., AI202, 6E101" 
+                               class="form-input"
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="flight-date" class="form-label">
+                            <i class="fas fa-calendar"></i>
+                            Date
+                        </label>
+                        <input type="date" 
+                               id="flight-date" 
+                               class="form-input"
+                               required>
+                    </div>
+                    
+                    <button type="submit" class="btn-search-modern" id="status-search-btn">
+                        <span class="btn-text">Search</span>
+                        <i class="fas fa-arrow-right btn-icon-arrow"></i>
+                    </button>
+                </form>
+                
+                <div id="form-error" class="form-error hidden"></div>
             </div>
         </div>
+    </section>
 
-        <div id="flight-results" style="display: none;">
-            <div class="flight-info-card">
-                <div class="info-header">
-                    <div class="airline">
-                        <img id="result-airline-logo" src="" alt="Airline Logo">
-                        <span id="result-flight-number">--</span>
+    <!-- Main Content -->
+    <main class="status-main">
+        <div class="container">
+            
+            <!-- Recent Searches -->
+            <div id="recent-searches" class="recent-searches hidden">
+                <span class="recent-label">
+                    <i class="fas fa-clock-rotate-left"></i>
+                    Recent Searches
+                </span>
+                <div id="recent-searches-list" class="recent-pills-container">
+                    <!-- Pills will be injected here -->
+                </div>
+            </div>
+
+            <!-- Popular Routes Tabs -->
+            <div class="popular-section">
+                <h3 class="section-title">
+                    <i class="fas fa-fire"></i>
+                    Popular Routes
+                </h3>
+                
+                <div class="route-tabs">
+                    <button class="route-tab active" data-tab="domestic">
+                        <i class="fas fa-plane"></i>
+                        Domestic
+                    </button>
+                    <button class="route-tab" data-tab="international">
+                        <i class="fas fa-earth-americas"></i>
+                        International
+                    </button>
+                </div>
+                
+                <div class="route-content">
+                    <div id="tab-domestic" class="tab-pane active">
+                        <div class="route-grid">
+                            <button class="route-chip" data-route="Delhi → Mumbai">Delhi → Mumbai</button>
+                            <button class="route-chip" data-route="Mumbai → Bangalore">Mumbai → Bangalore</button>
+                            <button class="route-chip" data-route="Delhi → Goa">Delhi → Goa</button>
+                            <button class="route-chip" data-route="Chennai → Hyderabad">Chennai → Hyderabad</button>
+                            <button class="route-chip" data-route="Kolkata → Delhi">Kolkata → Delhi</button>
+                        </div>
                     </div>
-                    <div id="result-flight-status" class="flight-status-badge">--</div>
-                </div>
-                <div class="route-info">
-                    <span id="result-departure-city">--</span>
-                    <i class="fas fa-plane"></i>
-                    <span id="result-arrival-city">--</span>
-                </div>
-
-                <div class="progress-indicator">
-                    <div class="progress-point departure done"><span>Departure</span></div>
-                    <div class="progress-line-container"><div class="progress-line-fill"></div></div>
-                    <div class="progress-point in-air"><span>In Air</span></div>
-                    <div class="progress-line-container"><div class="progress-line-fill"></div></div>
-                    <div class="progress-point arrival"><span>Arrival</span></div>
-                </div>
-
-                <div class="detailed-info">
-                    <div class="departure-details">
-                        <h4>Departure</h4>
-                        <p><strong>Scheduled:</strong> <span id="result-scheduled-departure">--</span></p>
-                        <p><strong>Actual:</strong> <span id="result-actual-departure">--</span></p>
-                        <p><strong>Terminal/Gate:</strong> <span id="result-departure-gate">--</span></p>
-                    </div>
-                    <div class="arrival-details">
-                        <h4>Arrival</h4>
-                        <p><strong>Scheduled:</strong> <span id="result-scheduled-arrival">--</span></p>
-                        <p><strong>Estimated:</strong> <span id="result-estimated-arrival">--</span></p>
-                        <p><strong>Terminal/Baggage:</strong> <span id="result-arrival-gate">--</span></p>
-                    </div>
-                </div>
-
-                <div class="extra-info">
-                    <p><strong>Aircraft:</strong> <span id="result-aircraft">--</span></p>
-                    <div id="delay-info" style="display: none;">
-                        <p><strong>Delay:</strong> <span id="result-delay-duration">--</span></p>
-                        <p><strong>Reason:</strong> <span id="result-delay-reason">--</span></p>
+                    
+                    <div id="tab-international" class="tab-pane">
+                        <div class="route-grid">
+                            <button class="route-chip" data-route="Delhi → Dubai">Delhi → Dubai</button>
+                            <button class="route-chip" data-route="Mumbai → London">Mumbai → London</button>
+                            <button class="route-chip" data-route="Delhi → Singapore">Delhi → Singapore</button>
+                            <button class="route-chip" data-route="Bangalore → San Francisco">Bangalore → San Francisco</button>
+                            <button class="route-chip" data-route="Mumbai → New York">Mumbai → New York</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Flight Results -->
+            <div id="flight-results" class="flight-results hidden">
+                <div class="result-card">
+                    
+                    <!-- Flight Header -->
+                    <div class="result-header">
+                        <div class="airline-info">
+                            <img id="result-airline-logo" src="" alt="Airline" class="airline-logo">
+                            <div>
+                                <span id="result-flight-number" class="flight-number-display">--</span>
+                                <p class="airline-subtitle">Operated by <span id="result-airline-name">--</span></p>
+                            </div>
+                        </div>
+                        <div id="result-flight-status" class="status-badge">--</div>
+                    </div>
+
+                    <!-- Flight Route -->
+                    <div class="flight-route">
+                        <div class="route-city">
+                            <span id="result-departure-city" class="city-name">--</span>
+                        </div>
+                        <div class="route-indicator">
+                            <div class="plane-icon-container">
+                                <i class="fas fa-plane plane-icon-animated"></i>
+                            </div>
+                            <div class="route-line"></div>
+                        </div>
+                        <div class="route-city">
+                            <span id="result-arrival-city" class="city-name">--</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Timeline -->
+                    <div class="flight-timeline">
+                        <div class="timeline-point departure-point">
+                            <div class="point-circle"></div>
+                            <span class="point-label">Scheduled</span>
+                        </div>
+                        <div class="timeline-line">
+                            <div class="timeline-progress" id="timeline-progress"></div>
+                        </div>
+                        <div class="timeline-point in-flight-point">
+                            <div class="point-circle"></div>
+                            <span class="point-label">In Flight</span>
+                        </div>
+                        <div class="timeline-line">
+                            <div class="timeline-progress"></div>
+                        </div>
+                        <div class="timeline-point arrival-point">
+                            <div class="point-circle"></div>
+                            <span class="point-label">Landed</span>
+                        </div>
+                    </div>
+
+                    <!-- Flight Details Grid -->
+                    <div class="details-grid">
+                        <div class="detail-column departure-column">
+                            <h4 class="column-title">
+                                <i class="fas fa-plane-departure"></i>
+                                Departure
+                            </h4>
+                            <div class="detail-row">
+                                <span class="detail-label">Scheduled:</span>
+                                <span id="result-scheduled-departure" class="detail-value">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Actual:</span>
+                                <span id="result-actual-departure" class="detail-value highlighted">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Terminal/Gate:</span>
+                                <span id="result-departure-gate" class="detail-value">--</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-column arrival-column">
+                            <h4 class="column-title">
+                                <i class="fas fa-plane-arrival"></i>
+                                Arrival
+                            </h4>
+                            <div class="detail-row">
+                                <span class="detail-label">Scheduled:</span>
+                                <span id="result-scheduled-arrival" class="detail-value">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Estimated:</span>
+                                <span id="result-estimated-arrival" class="detail-value highlighted">--</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Terminal/Baggage:</span>
+                                <span id="result-arrival-gate" class="detail-value">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="additional-info">
+                        <div class="info-badge">
+                            <i class="fas fa-plane-up"></i>
+                            <span>Aircraft: <strong id="result-aircraft">--</strong></span>
+                        </div>
+                        <div id="delay-info" class="delay-alert hidden">
+                            <i class="fas fa-triangle-exclamation"></i>
+                            <div>
+                                <strong>Delay: <span id="result-delay-duration">--</span></strong>
+                                <p>Reason: <span id="result-delay-reason">--</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
-        <div class="popular-routes">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="domestic">Domestic</button>
-                <button class="tab-btn" data-tab="international">International</button>
-            </div>
-            <div id="domestic-routes" class="tab-content active">
-                <!-- Popular domestic routes here -->
-                <a href="#">Delhi ↔ Mumbai</a>
-                <a href="#">Bangalore ↔ Delhi</a>
-                <a href="#">Mumbai ↔ Goa</a>
-            </div>
-            <div id="international-routes" class="tab-content">
-                <!-- Popular international routes here -->
-                <a href="#">Mumbai ↔ Dubai</a>
-                <a href="#">Delhi ↔ London</a>
-                <a href="#">Chennai ↔ Singapore</a>
-            </div>
-        </div>
-
     </main>
 
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-screen-2xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-12 pb-12">
-                <!-- Company Info -->
-                <div class="footer-col xl:col-span-2">
-                    <div class="footer-logo mb-4">
-                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"
-                                aria-hidden="true"></i></h2>
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-gradient-overlay"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-name">Destinova</span>
+                            <span class="footer-logo-tagline">Fly Beyond Ordinary</span>
+                        </div>
                     </div>
-                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury
-                        traveler.
-                        Discover a new standard in air travel.
+                    <p class="footer-description">
+                        Your trusted partner for premium flight bookings and real-time flight tracking.
                     </p>
                 </div>
-                <!-- Quick Links -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-compass" aria-hidden="true"></i> Quick Links</h3>
-                    <nav aria-label="Footer navigation">
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                                        aria-hidden="true"></i> Home</a></li>
-                            <li class="quick-link-item"><a href="booking.html"><i
-                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
-                                    Flight</a></li>
-                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                                        aria-hidden="true"></i> Special Offers</a></li>
-                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                                        aria-hidden="true"></i> Contact</a></li>
-                            <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                                        aria-hidden="true"></i> Flight Status</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Customer Support -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-headset" aria-hidden="true"></i> Customer Support</h3>
-                    <div class="text-gray-300 space-y-3">
-                        <p><a href="mailto:support@destinova.com" class="hover:text-white transition-colors"><i
-                                    class="fas fa-envelope mr-2" aria-hidden="true"></i> support@destinova.com</a></p>
-                        <p><a href="tel:+1234567890" class="hover:text-white transition-colors"><i
-                                    class="fas fa-phone mr-2" aria-hidden="true"></i> +91 1234567891</a></p>
-                        <div class="support-badge"><i class="fas fa-clock mr-2" aria-hidden="true"></i> 24/7 Assistance
-                        </div>
+                <div class="footer-links-grid">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="/">Home</a>
+                        <a href="/flights">Book a Flight</a>
+                        <a href="/special-offers">Special Offers</a>
                     </div>
-                </div>
-                <!-- Stay Connected -->
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-share-nodes" aria-hidden="true"></i> Stay Connected</h3>
-                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-                        <div class="newsletter-input-wrapper">
-                            <input type="email" placeholder="Your email address" required
-                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                                aria-label="Email address for newsletter">
-                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Facebook" role="listitem"><i class="fab fa-facebook-f"
-                                aria-hidden="true"></i></a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Twitter" role="listitem"><i class="fab fa-twitter"
-                                aria-hidden="true"></i></a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Instagram" role="listitem"><i class="fab fa-instagram"
-                                aria-hidden="true"></i></a>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="/help">Help Center</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/faq">FAQ</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Customer Support</h4>
+                        <p><i class="fas fa-phone"></i> +91 1234567891</p>
+                        <p><i class="fas fa-envelope"></i> support@destinova.com</p>
+                        <button class="btn-support">24/7 Assistance</button>
                     </div>
                 </div>
             </div>
-            <!-- Footer Bottom -->
-            <div
-                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-                    <span aria-hidden="true">|</span>
-                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
-                </nav>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Destinova. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
             </div>
         </div>
     </footer>
-    <!-- FOOTER END -->
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/flight-status.js"></script>
 </body>
-
 </html>

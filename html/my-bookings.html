@@ -3,159 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookings - Destinova</title>
+    <title>My Bookings | Destinova - Luxury Travel</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Tailwind CSS (for header/footer consistency) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                        'secondary-cream': '#FFFBF2',
-                        'accent-gold': '#E5CBAF',
-                        'text-charcoal': '#1C2526',
-                        'text-slate': '#5C6B73',
-                        'background-white': '#FAFAFA',
-                    },
-                }
-            }
-        }
-    </script>
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/index.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <link rel="stylesheet" href="../css/my-bookings.css">
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- HEADER (Copied from index.html for consistency) -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo"><h1>Destin<span>ova</span></h1></div>
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-mesh"></div>
+    </div>
+
+    <!-- Premium Header -->
+    <header class="premium-header" id="header-main">
+        <div class="container">
+            <nav class="header-nav">
+                <a href="/" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Destinova</span>
+                        <span class="logo-tagline">LUXURY TRAVEL</span>
+                    </div>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="/flights" class="nav-link">
+                        <i class="fas fa-plane"></i>
+                        <span>Flights</span>
+                    </a>
+                    <a href="/my-bookings" class="nav-link active">
+                        <i class="fas fa-ticket"></i>
+                        <span>My Bookings</span>
+                    </a>
+                    <a href="/support" class="nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
                 </div>
-
-                <a href="signin.html" class="btn header-btn-signin"><i class="fas fa-right-to-bracket"></i><span>Sign In</span></a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle"><span></span><span></span><span></span></button>
-            </div>
+                
+                <div class="header-actions">
+                    <button class="btn-icon" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-menu">
+                        <button class="user-avatar">
+                            <img src="https://i.pravatar.cc/80?img=33" alt="User">
+                            <span class="user-status"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
-    <!-- HEADER END -->
 
-    <main id="bookings-container">
-        <div class="bookings-header">
-            <h1>My Bookings</h1>
-            <div class="filters-container">
-                <select id="filter-status">
-                    <option value="all">All Statuses</option>
-                    <option value="upcoming">Upcoming</option>
-                    <option value="past">Past</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
-                <input type="search" id="search-booking" placeholder="Search by booking ref or destination">
+    <!-- Hero Section -->
+    <section class="bookings-hero">
+        <div id="particles-bookings" class="particles-hero"></div>
+        <div class="hero-content">
+            <h1 class="page-title">My Bookings</h1>
+            <p class="page-subtitle">Manage your trips and view booking history</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="bookings-main">
+        <div class="container">
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon upcoming">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="upcoming-count">0</div>
+                        <div class="stat-label">Upcoming Trips</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card glass-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="past-count">0</div>
+                        <div class="stat-label">Completed Trips</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card glass-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="total-count">0</div>
+                        <div class="stat-label">Total Bookings</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card glass-card">
+                    <div class="stat-icon cancelled">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="cancelled-count">0</div>
+                        <div class="stat-label">Cancelled</div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <nav class="booking-tabs">
-            <button class="tab-btn active" data-tab="upcoming">Upcoming Trips</button>
-            <button class="tab-btn" data-tab="past">Past Trips</button>
-            <button class="tab-btn" data-tab="cancelled">Cancelled Trips</button>
-        </nav>
+            <!-- Filters & Search -->
+            <div class="filters-section glass-card">
+                <div class="filters-left">
+                    <div class="filter-group">
+                        <label for="filter-status" class="filter-label">
+                            <i class="fas fa-filter"></i>
+                            Filter by Status
+                        </label>
+                        <select id="filter-status" class="filter-select">
+                            <option value="all">All Statuses</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="past">Past Trips</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-by" class="filter-label">
+                            <i class="fas fa-sort"></i>
+                            Sort By
+                        </label>
+                        <select id="sort-by" class="filter-select">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="destination">Destination</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="search-group">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-booking" class="search-input" 
+                           placeholder="Search by booking ref, destination...">
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Grid View">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="timeline" title="Timeline View">
+                        <i class="fas fa-timeline"></i>
+                    </button>
+                </div>
+            </div>
 
-        <div id="upcoming-content" class="tab-content active">
-            <!-- Upcoming booking cards will be injected here -->
-        </div>
-        <div id="past-content" class="tab-content">
-            <!-- Past booking cards will be injected here -->
-        </div>
-        <div id="cancelled-content" class="tab-content">
-            <!-- Cancelled booking cards will be injected here -->
-        </div>
+            <!-- Tab Navigation -->
+            <div class="booking-tabs">
+                <button class="tab-btn active" data-tab="upcoming">
+                    <i class="fas fa-clock"></i>
+                    Upcoming Trips
+                </button>
+                <button class="tab-btn" data-tab="past">
+                    <i class="fas fa-history"></i>
+                    Past Trips
+                </button>
+                <button class="tab-btn" data-tab="cancelled">
+                    <i class="fas fa-ban"></i>
+                    Cancelled Trips
+                </button>
+            </div>
 
-        <div class="empty-state hidden">
-            <img src="../site-images/no-bookings.svg" alt="No bookings found illustration" class="empty-state-img">
-            <p>No bookings found for this category.</p>
+            <!-- Bookings Container -->
+            <div id="bookings-container" class="bookings-container grid-view">
+                <!-- Bookings will be injected here by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <h3>No bookings found</h3>
+                <p>You don't have any bookings matching your search criteria.</p>
+                <a href="/flights" class="btn-primary">
+                    <i class="fas fa-search"></i>
+                    <span>Search Flights</span>
+                </a>
+            </div>
+
         </div>
     </main>
 
-    <!-- FOOTER (Copied from index.html for consistency) -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-                <div class="footer-col">
-                    <div class="footer-logo mb-4"><h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2></div>
-                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
+    <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="footer-gradient-overlay"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-name">Destinova</span>
+                            <span class="footer-logo-tagline">Luxury Travel Experiences</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Your trusted partner for premium flight bookings.
+                    </p>
                 </div>
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-compass"></i> Quick Links</h3>
-                    <ul class="space-y-3 text-gray-300">
-                        <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"></i> Home</a></li>
-                        <li class="quick-link-item"><a href="booking.html"><i class="fas fa-plane-departure link-icon w-5"></i> Book a Flight</a></li>
-                        <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"></i> Special Offers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-headset"></i> Customer Support</h3>
-                    <div class="text-gray-300 space-y-3">
-                        <p><a href="mailto:support@destinova.com" class="hover:text-white"><i class="fas fa-envelope mr-2"></i> support@destinova.com</a></p>
-                        <p><a href="tel:+911234567891" class="hover:text-white"><i class="fas fa-phone mr-2"></i> +91 1234567891</a></p>
+                <div class="footer-links-grid">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <a href="/about">About Us</a>
+                        <a href="/contact">Contact</a>
+                        <a href="/careers">Careers</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="/help">Help Center</a>
+                        <a href="/faq">FAQ</a>
+                        <a href="/refund">Refund Policy</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <p><i class="fas fa-phone"></i> 1800-123-456</p>
+                        <p><i class="fas fa-envelope"></i> support@destinova.com</p>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h3 class="footer-title"><i class="fas fa-share-nodes"></i> Stay Connected</h3>
-                    <div class="social-links flex items-center space-x-4"><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a></div>
-                </div>
             </div>
-            <div class="footer-bottom-bar mt-8 flex justify-between items-center">
-                <p class="text-sm text-gray-400">&copy; 2025 Destinova. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Destinova. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
             </div>
         </div>
     </footer>
-    <!-- FOOTER END -->
 
-    <script src="../js/index.js"></script>
     <script src="../js/my-bookings.js"></script>
 </body>
 </html>
