@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Destinova Blog — Flight Expiration, Holds, TTL, Deadlines</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet"/>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <link rel="stylesheet" href="../css/blog.css"/>
+</head>
+<body>
+  <!-- Background layers -->
+  <div class="crystal-backdrop" aria-hidden="true">
+    <div class="crystal-grid"></div>
+    <div class="crystal-mesh"></div>
+    <div class="gold-shimmer"></div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <!-- Reading progress (top) -->
+  <div id="progressBar" role="presentation"></div>
+
+  <!-- Header -->
+  <header class="header-crystal" id="siteHeader">
+    <div class="container">
+      <nav class="nav-crystal" aria-label="Primary">
+        <a href="/" class="brand" aria-label="Destinova Home">
+          <span class="brand-logo" aria-hidden="true">
+            <i class="fas fa-feather-pointed"></i>
+            <span class="logo-shine"></span>
+          </span>
+          <span class="brand-text">
+            <span class="brand-name">Destinova</span>
+            <span class="brand-tag">LUXURY REDEFINED</span>
+          </span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="/" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="/flights" class="nav-link"><i class="fas fa-plane"></i><span>Flights</span></a></li>
+          <li><a href="/offers" class="nav-link"><i class="fas fa-tags"></i><span>Offers</span></a></li>
+          <li><a href="/destinations" class="nav-link"><i class="fas fa-globe"></i><span>Destinations</span></a></li>
+          <li><a href="/blog" class="nav-link active" aria-current="page"><i class="fas fa-newspaper"></i><span>Blog</span></a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn" id="openSearch" aria-label="Open blog search"><i class="fas fa-search"></i></button>
+          <button class="icon-btn" aria-label="Notifications"><i class="fas fa-bell"></i><span class="dot"></span></button>
+          <div class="user-badge" role="button" aria-label="Account">
+            <img src="https://i.pravatar.cc/80?img=34" alt="Profile"/>
+            <span class="online" aria-hidden="true"></span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Feature -->
+  <main id="mainContent">
+    <section class="hero-blog" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-wrap reveal fade-up">
+          <div class="secure-badge"><i class="fas fa-shield-halved"></i><span>Editorial • Fact‑checked</span></div>
+
+          <h1 class="hero-title" id="hero-title">
+            Flight Expiration Guide: Fare Holds, PNR TTL, and Deadlines
+          </h1>
+          <p class="hero-subtitle">
+            Never lose a great fare — understand how price holds, PNR auto‑cancel windows, and ticket validity work together.
+          </p>
+
+          <article class="feature-card crystal parallax-card" id="featurePost" data-id="post-flight-expiration" aria-labelledby="feature-title">
+            <div class="feature-media">
+              <img data-src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?w=1400" alt="Aircraft wing at golden hour"/>
+              <div class="media-glow"></div>
+              <div class="feature-ribbon"><i class="fas fa-gem"></i> Editor’s Pick</div>
+
+              <!-- Countdown: fixed position, no overlap on mobile -->
+              <div class="expiry-countdown" id="expiryCountdown" aria-live="polite">
+                <i class="fas fa-hourglass-half"></i>
+                <span class="label">Fare hold ends in</span>
+                <span class="clock">
+                  <b id="expH">23</b><small>h</small>
+                  <b id="expM">59</b><small>m</small>
+                  <b id="expS">59</b><small>s</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="feature-body">
+              <div class="meta-line" aria-label="Article meta">
+                <span class="chip-mini"><i class="fas fa-route"></i> Guides</span>
+                <span class="chip-mini"><i class="fas fa-clock"></i> <span id="featureRead">8</span> min read</span>
+                <span class="chip-mini"><i class="fas fa-shield-check"></i> Fare rules</span>
+              </div>
+              <h2 class="feature-title" id="feature-title">Lock the Deal: Holds vs. PNR TTL vs. Ticket Validity</h2>
+              <p class="feature-text">
+                Price holds reserve today’s fare for a short window, PNR TTL is when an unpaid booking auto‑cancels, and ticket validity defines how long a paid e‑ticket stays usable.
+              </p>
+              <div class="feature-cta">
+                <button class="btn-primary open-article" data-id="post-flight-expiration">
+                  <span class="btn-shine"></span><i class="fas fa-arrow-right"></i> Read Feature
+                </button>
+                <button class="btn-ghost favorite-btn" data-id="post-flight-expiration"><i class="far fa-heart"></i> Favorite</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category chips -->
+          <div class="chips" role="tablist" aria-label="Blog filters">
+            <button class="chip active" data-chip="all" role="tab" aria-selected="true"><i class="fas fa-layer-group"></i> All</button>
+            <button class="chip" data-chip="holds" role="tab"><i class="fas fa-hourglass"></i> Price Holds</button>
+            <button class="chip" data-chip="ttl" role="tab"><i class="fas fa-timeline"></i> PNR TTL</button>
+            <button class="chip" data-chip="validity" role="tab"><i class="fas fa-ticket"></i> Ticket Validity</button>
+            <button class="chip" data-chip="checkin" role="tab"><i class="fas fa-user-check"></i> Check‑in</button>
+            <button class="chip" data-chip="refunds" role="tab"><i class="fas fa-rotate-left"></i> Refund/No‑Show</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky Quick Bar (height matches header; fixed spacing) -->
+    <div class="sticky-bar" id="stickyBar" aria-label="Quick filters">
+      <div class="container sticky-inner">
+        <div class="mini-field">
+          <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="searchPosts" type="text" placeholder="Search articles, airlines, rules..." aria-label="Search posts"/>
+        </div>
+        <div class="mini-field">
+          <i class="fas fa-icons" aria-hidden="true"></i>
+          <select id="themeSelect" aria-label="Select theme">
+            <option value="all">All</option>
+            <option value="holds">Price Holds</option>
+            <option value="ttl">PNR TTL</option>
+            <option value="validity">Ticket Validity</option>
+            <option value="checkin">Check‑in</option>
+            <option value="refunds">Refund/No‑Show</option>
+          </select>
+        </div>
+        <button class="mini-clear" id="clearFilters" aria-label="Reset filters"><i class="fas fa-rotate-left"></i> Reset</button>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section" aria-labelledby="grid-title">
+      <div class="container">
+        <div class="section-head reveal fade-up">
+          <span class="section-badge"><i class="fas fa-sparkles"></i> Latest Insights</span>
+          <h2 class="section-title" id="grid-title">Expiration Rules That Matter When Booking</h2>
+          <p class="section-subtitle">Short guides that cover holds, TTL, validity, and check‑in cutoffs clearly.</p>
+        </div>
+
+        <div class="blog-grid" id="blogGrid">
+          <article class="post-card crystal reveal tilt parallax-card" data-tags="holds ttl" data-id="post-hold-vs-ttl" aria-labelledby="p1">
+            <div class="post-media">
+              <img data-src="https://images.unsplash.com/photo-1497957569023-cba04537bb9b?w=1000" alt="Boarding gate clock"/>
+              <div class="media-glow"></div>
+            </div>
+            <div class="post-body">
+              <div class="post-top"><span class="chip-mini">Guide</span><span class="post-time">5 min read</span></div>
+              <h3 class="post-title" id="p1">Hold vs. PNR TTL: What Expires First?</h3>
+              <p class="post-excerpt">Holds protect the price; TTL protects inventory — heed the shorter clock.</p>
+              <div class="post-cta">
+                <button class="btn-ghost open-article" data-id="post-hold-vs-ttl"><i class="fas fa-book-open"></i> Read</button>
+                <button class="btn-ghost favorite-btn" data-id="post-hold-vs-ttl"><i class="far fa-heart"></i> Save</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="post-card crystal reveal tilt parallax-card" data-tags="validity refunds" data-id="post-ticket-validity" aria-labelledby="p2">
+            <div class="post-media">
+              <img data-src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1000" alt="Boarding passes with passport"/>
+              <div class="media-glow"></div>
+            </div>
+            <div class="post-body">
+              <div class="post-top"><span class="chip-mini">Guide</span><span class="post-time">6 min read</span></div>
+              <h3 class="post-title" id="p2">Ticket Validity: 1‑Year Myth and the Real Rules</h3>
+              <p class="post-excerpt">Many fares allow up to 12 months from first flight — promos may differ.</p>
+              <div class="post-cta">
+                <button class="btn-ghost open-article" data-id="post-ticket-validity"><i class="fas fa-book-open"></i> Read</button>
+                <button class="btn-ghost favorite-btn" data-id="post-ticket-validity"><i class="far fa-heart"></i> Save</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Airline Policy Matrix -->
+    <section class="policy-section" aria-labelledby="matrix-title">
+      <div class="container">
+        <div class="section-head reveal fade-up">
+          <span class="section-badge"><i class="fas fa-table-list"></i> Airline Policy Matrix</span>
+          <h2 class="section-title" id="matrix-title">Holds, TTL, and Check‑in Deadlines</h2>
+          <p class="section-subtitle">Patterns vary by brand and route; confirm fare rules at checkout.</p>
+        </div>
+
+        <div class="policy-controls">
+          <div class="mini-field">
+            <i class="fas fa-magnifying-glass"></i>
+            <input id="airlineSearch" type="text" placeholder="Search airline..." aria-label="Search airline"/>
+          </div>
+          <div class="mini-field">
+            <i class="fas fa-globe"></i>
+            <select id="regionFilter" aria-label="Filter by region">
+              <option value="all">All Regions</option>
+              <option value="india">India</option>
+              <option value="me">Middle East</option>
+              <option value="eu">Europe</option>
+              <option value="apac">APAC</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Accessible table structure on large screens, stacked cards on small -->
+        <div class="policy-table crystal" role="table" aria-label="Airline policy matrix">
+          <div class="policy-row policy-head" role="row">
+            <div role="columnheader">Airline</div>
+            <div role="columnheader">Price Hold</div>
+            <div role="columnheader">PNR TTL</div>
+            <div role="columnheader">Check‑in Cutoff</div>
+            <div role="columnheader">Notes</div>
+          </div>
+          <div class="policy-body" id="policyBody" role="rowgroup"></div>
+        </div>
+
+        <div class="policy-note">Summaries are for planning; actual fare/brand rules at checkout apply.</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head reveal fade-up">
+          <span class="section-badge"><i class="fas fa-circle-question"></i> FAQ</span>
+          <h2 class="section-title" id="faq-title">Flight Expiration — Quick Answers</h2>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq crystal reveal">
+            <summary>Does “fare expires in 24h” mean my booking is safe?</summary>
+            <p>That clock reflects the price hold; your PNR can purge earlier if TTL is shorter for your fare.</p>
+          </details>
+          <details class="faq crystal reveal">
+            <summary>What if I pay after TTL?</summary>
+            <p>The reservation may be canceled; you must re‑price and re‑book if seats remain.</p>
+          </details>
+          <details class="faq crystal reveal">
+            <summary>Is ticket validity always one year?</summary>
+            <p>No — many standard fares allow up to 12 months, but promotional brands can be stricter.</p>
+          </details>
+          <details class="faq crystal reveal">
+            <summary>When is no‑show triggered?</summary>
+            <p>Missing check‑in/bag‑drop or boarding cutoff can forfeit coupons per fare rules.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" aria-labelledby="news-title">
+      <div class="container">
+        <div class="newsletter-card crystal reveal scale">
+          <div class="newsletter-icon" aria-hidden="true"><i class="fas fa-envelope-open-text"></i></div>
+          <h3 id="news-title">Get Fare‑Hold Alerts and Rule Updates</h3>
+          <p>One premium email weekly — the fastest way to avoid losing great fares.</p>
+          <form id="newsletterForm" class="newsletter-form" aria-label="Newsletter form">
+            <input type="email" placeholder="Enter your email address" required aria-label="Email"/>
+            <button class="btn-primary" type="submit"><span class="btn-shine"></span><i class="fas fa-paper-plane"></i> Subscribe</button>
+          </form>
+          <div id="newsletterSuccess" class="success-msg" role="status"><i class="fas fa-check-circle"></i> Subscribed — watch your inbox.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-crystal">
+    <div class="container footer-wrap">
+      <div class="f-brand">
+        <div class="brand-logo small" aria-hidden="true"><i class="fas fa-feather-pointed"></i><span class="logo-shine"></span></div>
+        <div>
+          <div class="brand-name f">Destinova</div>
+          <div class="brand-tag">LUXURY REDEFINED</div>
+        </div>
+      </div>
+      <nav class="f-links" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <div class="f-social">
+        <a href="#" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Article Modal -->
+  <div class="article-modal" id="articleModal" aria-hidden="true">
+    <div class="article-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="sheet-head">
+        <div class="sheet-meta">
+          <span class="chip-mini">Premium</span>
+          <span class="chip-mini"><i class="fas fa-clock"></i> <span id="modalReadTime">7</span> min read</span>
+        </div>
+        <button class="sheet-close" id="closeArticle" aria-label="Close article"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="sheet-hero">
+        <img id="modalHero" src="" alt=""/>
+        <div class="sheet-glow" aria-hidden="true"></div>
+      </div>
+      <article class="sheet-body">
+        <h2 id="modalTitle">Title</h2>
+        <p id="modalContent">Content</p>
+        <div class="sheet-actions">
+          <button class="btn-ghost copy-link" id="copyLink"><i class="fas fa-link"></i> Copy Link</button>
+          <button class="btn-ghost favorite-btn" id="favModal"><i class="far fa-heart"></i> Favorite</button>
+        </div>
+
+        <div class="comments">
+          <h4>Join the Conversation</h4>
+          <form id="commentForm" class="comment-form" aria-label="Comment form">
+            <input id="commentName" type="text" placeholder="Your name" required aria-label="Name"/>
+            <textarea id="commentText" rows="3" placeholder="Share your thoughts..." required aria-label="Comment"></textarea>
+            <button class="btn-primary" type="submit"><span class="btn-shine"></span><i class="fas fa-message"></i> Post</button>
+          </form>
+          <div id="commentList" class="comment-list"></div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-card crystal" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+      <div class="search-head">
+        <div class="secure-badge sm"><i class="fas fa-shield"></i><span id="overlayTitle">Private Search</span></div>
+        <button class="sheet-close" id="closeSearch" aria-label="Close search"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="search-field">
+        <i class="fas fa-magnifying-glass"></i>
+        <input id="overlaySearchInput" type="text" placeholder="Search the blog..." aria-label="Overlay search"/>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <script src="../js/blog.js"></script>
+</body>
+</html>
