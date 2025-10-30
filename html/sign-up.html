@@ -1,318 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinova Airlines | Sign Up</title>
-    <meta name="description"
-        content="Create an account with Destinova to start booking flights, managing your trips, and receiving exclusive offers.">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
+    <title>Destinova - Create Account</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/sign-up.css">
 </head>
 <body>
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
+    <div class="main-container">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="hero-bg"></div>
+            <div class="gradient-overlay"></div>
 
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
+            <div class="glass-circle circle-1"></div>
+            <div class="glass-circle circle-2"></div>
+            <div class="glass-circle circle-3"></div>
 
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
+            <div class="brand-card">
+                <h1 class="brand-logo-text">Destinova</h1>
+                <p class="brand-tagline">MOUNTAIN VISTA</p>
 
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
-                </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
+                <ul class="benefits-list">
+                    <li class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <span>Book flights to 195+ countries</span>
+                    </li>
+                    <li class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span>256-bit encryption security</span>
+                    </li>
+                    <li class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span>4.9/5 rating by 2.5M+ travelers</span>
+                    </li>
+                    <li class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <span>24/7 customer support</span>
+                    </li>
+                    <li class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <span>Best price guarantee</span>
+                    </li>
+                </ul>
             </div>
         </div>
-    </header>
 
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-            <li class="header-dropdown">
-                <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                    <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                </ul>
-            </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-                <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                    <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                </ul>
-            </li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-        </ul>
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="security-badge">
+                <i class="fas fa-lock"></i>
+                SECURED BY 256-BIT SSL
+            </div>
 
-    <main class="auth-main">
-        <div class="auth-container">
-            <div class="auth-card">
-                <div class="form-header">
-                    <h2 class="form-title">Create Your Account</h2>
-                    <p class="form-subtitle">Join Destinova Airlines today</p>
+            <div class="form-container">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">Destinova</div>
                 </div>
 
-                <form class="auth-form" id="signup-form">
-                    <div class="input-group">
-                        <i class="fas fa-user icon"></i>
-                        <input type="text" id="fullname" required placeholder=" ">
-                        <label for="fullname">Full Name</label>
+                <h1 class="welcome-title">Create Account</h1>
+                <p class="welcome-subtitle">Join 2.5M+ travelers exploring the world. Quick setup, no credit card required.</p>
+
+                <div class="progress-indicator">
+                    <div class="progress-step active"></div>
+                    <div class="progress-step"></div>
+                </div>
+
+                <form id="signupForm" novalidate>
+                    <!-- SECTION 1: Account Information -->
+                    <div class="form-section">
+                        <div class="section-title">
+                            <span class="section-number">1</span>
+                            Account Information
+                        </div>
+
+                        <div class="form-group half">
+                            <div>
+                                <label class="form-label" for="firstName">First Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="firstName"
+                                        name="firstName"
+                                        class="form-input" 
+                                        placeholder="John" 
+                                        autocomplete="given-name"
+                                        required
+                                    >
+                                    <div class="validation-icon success" id="firstNameSuccess">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="error-space">
+                                    <div class="error-message" id="firstNameError">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label" for="lastName">Last Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input 
+                                        type="text" 
+                                        id="lastName"
+                                        name="lastName"
+                                        class="form-input" 
+                                        placeholder="Doe" 
+                                        autocomplete="family-name"
+                                        required
+                                    >
+                                    <div class="validation-icon success" id="lastNameSuccess">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="error-space">
+                                    <div class="error-message" id="lastNameError">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input 
+                                    type="email" 
+                                    id="email"
+                                    name="email"
+                                    class="form-input" 
+                                    placeholder="your.email@example.com" 
+                                    autocomplete="email"
+                                    required
+                                >
+                                <div class="validation-icon success" id="emailSuccess">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="validation-icon error" id="emailErrorIcon">
+                                    <i class="fas fa-exclamation"></i>
+                                </div>
+                            </div>
+                            <div class="error-space">
+                                <div class="error-message" id="emailError">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>Enter a valid email</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="password">Password *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password"
+                                    class="form-input" 
+                                    placeholder="Create a strong password" 
+                                    autocomplete="new-password"
+                                    required
+                                >
+                                <button 
+                                    type="button" 
+                                    class="password-toggle" 
+                                    onclick="togglePassword()"
+                                >
+                                    <i class="fas fa-eye" id="toggleIcon"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength" id="passwordStrength">
+                                <div class="strength-label" id="strengthLabel">Weak</div>
+                                <div class="strength-segments">
+                                    <div class="strength-segment" id="segment1"></div>
+                                    <div class="strength-segment" id="segment2"></div>
+                                    <div class="strength-segment" id="segment3"></div>
+                                </div>
+                            </div>
+                            <div class="error-space">
+                                <div class="error-message" id="passwordError">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>Min 8 characters</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <i class="fas fa-envelope icon"></i>
-                        <input type="email" id="email" required placeholder=" ">
-                        <label for="email">Email Address</label>
+                    <!-- SECTION 2: Personal Details -->
+                    <div class="form-section">
+                        <div class="section-title">
+                            <span class="section-number">2</span>
+                            Personal Details
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number *</label>
+                            <div class="phone-input-group">
+                                <div class="input-wrapper">
+                                    <i class="fas fa-flag input-icon"></i>
+                                    <select id="countryCode" name="countryCode" class="form-select" required>
+                                        <option value="+91">🇮🇳 +91</option>
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+44">🇬🇧 +44</option>
+                                        <option value="+971">🇦🇪 +971</option>
+                                        <option value="+86">🇨🇳 +86</option>
+                                        <option value="+81">🇯🇵 +81</option>
+                                        <option value="+82">🇰🇷 +82</option>
+                                        <option value="+33">🇫🇷 +33</option>
+                                        <option value="+49">🇩🇪 +49</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input 
+                                        type="tel" 
+                                        id="phone"
+                                        name="phone"
+                                        class="form-input" 
+                                        placeholder="9.87654321e+09" 
+                                        autocomplete="tel"
+                                        required
+                                    >
+                                    <div class="validation-icon success" id="phoneSuccess">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="error-space">
+                                <div class="error-message" id="phoneError">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>Enter valid phone</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group half">
+                            <div>
+                                <label class="form-label" for="dob">Date of Birth *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar input-icon"></i>
+                                    <input 
+                                        type="date" 
+                                        id="dob"
+                                        name="dob"
+                                        class="form-input" 
+                                        max="2007-10-27"
+                                        autocomplete="bday"
+                                        required
+                                    >
+                                    <div class="validation-icon success" id="dobSuccess">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                                <div class="error-space">
+                                    <div class="error-message" id="dobError">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <span>Must be 18+</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label" for="gender">Gender *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-venus-mars input-icon"></i>
+                                    <select id="gender" name="gender" class="form-select" required>
+                                        <option value="">Select gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not">Prefer not to say</option>
+                                    </select>
+                                </div>
+                                <div class="error-space"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="country">Country *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-globe input-icon"></i>
+                                <select id="country" name="country" class="form-select" required>
+                                    <option value="">Select your country</option>
+                                    <option value="IN">🇮🇳 India</option>
+                                    <option value="US">🇺🇸 United States</option>
+                                    <option value="GB">🇬🇧 United Kingdom</option>
+                                    <option value="AE">🇦🇪 United Arab Emirates</option>
+                                    <option value="CA">🇨🇦 Canada</option>
+                                    <option value="AU">🇦🇺 Australia</option>
+                                    <option value="SG">🇸🇬 Singapore</option>
+                                    <option value="JP">🇯🇵 Japan</option>
+                                    <option value="CN">🇨🇳 China</option>
+                                    <option value="FR">🇫🇷 France</option>
+                                    <option value="DE">🇩🇪 Germany</option>
+                                </select>
+                            </div>
+                            <div class="error-space"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="currency">Preferred Currency *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-dollar-sign input-icon"></i>
+                                <select id="currency" name="currency" class="form-select" required>
+                                    <option value="INR">INR - Indian Rupee (₹)</option>
+                                    <option value="USD">USD - US Dollar ($)</option>
+                                    <option value="EUR">EUR - Euro (€)</option>
+                                    <option value="GBP">GBP - British Pound (£)</option>
+                                    <option value="AED">AED - UAE Dirham (د.إ)</option>
+                                    <option value="CAD">CAD - Canadian Dollar (C$)</option>
+                                    <option value="AUD">AUD - Australian Dollar (A$)</option>
+                                    <option value="SGD">SGD - Singapore Dollar (S$)</option>
+                                </select>
+                            </div>
+                            <div class="error-space"></div>
+                        </div>
                     </div>
 
-                    <div class="input-group">
-                        <i class="fas fa-lock icon"></i>
-                        <input type="password" id="password" required placeholder=" ">
-                        <label for="password">Password</label>
-                        <i class="fas fa-eye password-toggle"></i>
-                    </div>
-                    
-                    <div class="password-strength-meter">
-                        <div class="strength-bar"></div>
-                        <p class="strength-text"></p>
-                    </div>
+                    <!-- Marketing Preferences -->
+                    <label class="marketing-wrapper" for="marketing">
+                        <input type="checkbox" id="marketing">
+                        <span class="marketing-label">
+                            Send me exclusive travel deals, offers, and destination inspiration
+                        </span>
+                    </label>
 
-                    <div class="input-group">
-                        <i class="fas fa-lock icon"></i>
-                        <input type="password" id="confirm-password" required placeholder=" ">
-                        <label for="confirm-password">Confirm Password</label>
-                    </div>
+                    <!-- Terms & Conditions -->
+                    <label class="terms-wrapper" for="terms">
+                        <input type="checkbox" id="terms" required>
+                        <span class="terms-label">
+                            I agree to the <a href="terms-conditions.html">Terms of Service</a>, <a href="privacy-policy.html">Privacy Policy</a>, and <a href="terms-conditions.html#booking-policy">View Booking Policy</a>Booking Terms</a>
+                        </span>
+                    </label>
 
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="terms">
-                            <span class="checkmark"></span>
-                            I agree to the <a href="#" class="terms-link">Terms & Conditions</a>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Create Account</button>
+                    <button type="submit" class="signup-button" id="signupBtn">
+                        <span class="button-text">Create My Account</span>
+                        <i class="fas fa-arrow-right"></i>
+                        <div class="spinner"></div>
+                    </button>
                 </form>
-                
-                <div class="separator"><span>OR</span></div>
 
-                <div class="social-login">
-                    <button class="social-btn google"><i class="fab fa-google"></i> Sign Up with Google</button>
+                <div class="social-divider">
+                    <span>Or sign up with</span>
                 </div>
 
-                <div class="auth-footer">
-                    <p>Already have an account? <a href="sign-in.html" class="auth-link">Sign In</a></p>
+                <div class="social-buttons">
+                    <button class="social-icon google" aria-label="Sign up with Google">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-icon facebook" aria-label="Sign up with Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-icon apple" aria-label="Sign up with Apple">
+                        <i class="fab fa-apple"></i>
+                    </button>
+                </div>
+
+                <div class="signin-link">
+                    Already have an account? <a href="sign-in.html">Sign In</a>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
-    <!-- FOOTER START -->
-    <footer class="destinova-footer" id="destinova-footer" role="contentinfo">
-        <div class="footer-content max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
-                <div class="footer-col">
-                    <div class="footer-logo mb-4">
-                        <h2>Desti<span class="highlight">nova</span> <i class="fas fa-plane takeoff-plane text-2xl"></i></h2>
-                    </div>
-                    <p class="tagline text-gray-300 text-sm mb-4">Fly Beyond Ordinary.</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        Destinova is committed to providing a premier, seamless booking experience for the modern luxury traveler.
-                        Discover a new standard in air travel.
-                    </p>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-compass"></i>
-                        Quick Links
-                    </h3>
-                    <nav aria-label="Footer navigation">
-                        <ul class="space-y-3 text-gray-300">
-                            <li class="quick-link-item"><a href="index.html"><i class="fas fa-home link-icon w-5"
-                                        aria-hidden="true"></i> Home</a></li>
-                            <li class="quick-link-item"><a href="booking.html"><i
-                                        class="fas fa-plane-departure link-icon w-5" aria-hidden="true"></i> Book a
-                                    Flight</a></li>
-                            <li class="quick-link-item"><a href="offers.html"><i class="fas fa-gift link-icon w-5"
-                                        aria-hidden="true"></i> Special Offers</a></li>
-                            <li class="quick-link-item"><a href="about-us.html"><i
-                                        class="fas fa-info-circle link-icon w-5" aria-hidden="true"></i> About Us</a>
-                            </li>
-                            <li class="quick-link-item"><a href="contact.html"><i class="fas fa-envelope link-icon w-5"
-                                        aria-hidden="true"></i> Contact</a></li>
-                            <li class="quick-link-item"><a href="status.html"><i class="fas fa-plane-up link-icon w-5"
-                                        aria-hidden="true"></i> Flight Status</a></li>
-                            <li class="quick-link-item"><a href="manage.html"><i class="fas fa-briefcase link-icon w-5"
-                                        aria-hidden="true"></i> Manage Booking</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-headset"></i>
-                        Customer Support
-                    </h3>
-                    <div class="text-gray-300 space-y-3">
-                        <p>
-                            <a href="mailto:support@destinova.com" class="hover:text-white transition-colors">
-                                <i class="fas fa-envelope mr-2" aria-hidden="true"></i>
-                                support@destinova.com
-                            </a>
-                        </p>
-                        <p>
-                            <a href="tel:+1234567890" class="hover:text-white transition-colors">
-                                <i class="fas fa-phone mr-2" aria-hidden="true"></i>
-                                +91 1234567891
-                            </a>
-                        </p>
-                        <div class="support-badge">
-                            <i class="fas fa-clock mr-2" aria-hidden="true"></i>
-                            24/7 Assistance
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3 class="footer-title">
-                        <i class="fas fa-share-nodes"></i>
-                        Stay Connected
-                    </h3>
-                    <form class="newsletter-form mb-6" id="newsletter-form" aria-label="Newsletter subscription">
-                        <div class="newsletter-input-wrapper">
-                            <input type="email" placeholder="Your email address" required
-                                class="newsletter-input w-full py-3 pl-4 pr-12 rounded-full text-sm"
-                                aria-label="Email address for newsletter">
-                            <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                    <div class="social-links flex items-center space-x-4" role="list" aria-label="Social media links">
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Facebook" role="listitem">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Twitter" role="listitem">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on Instagram" role="listitem">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Follow us on LinkedIn" role="listitem">
-                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="social-icon rounded-full flex items-center justify-center"
-                            aria-label="Subscribe to our YouTube channel" role="listitem">
-                            <i class="fab fa-youtube" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="footer-bottom-bar mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                <p class="text-sm text-gray-400 mb-4 md:mb-0">&copy; 2025 Destinova. All Rights Reserved.</p>
-                <nav class="legal-links flex items-center space-x-4 text-sm text-gray-400" aria-label="Legal links">
-                    <a href="#" class="legal-link transition-colors">Privacy Policy</a>
-                    <span aria-hidden="true">|</span>
-                    <a href="#" class="legal-link transition-colors">Terms of Service</a>
-                </nav>
-                <div class="trust-badge flex items-center space-x-2 text-sm text-gray-400 mt-4 md:mt-0">
-                    <i class="fas fa-shield-alt text-green-300" aria-hidden="true"></i>
-                    <span>Trusted by 1M+ Travelers</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <a id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">
-        <i class="fas fa-plane-up"></i>
-    </a>
-    <!-- FOOTER END -->
-    
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/index.js"></script>
     <script src="../js/sign-up.js"></script>
 </body>
-
 </html>

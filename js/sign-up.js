@@ -1,215 +1,305 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // =============================================
-    // DYNAMICALLY LOAD HEADER & FOOTER
-    // =============================================
-    const headerPlaceholder = document.getElementById('header-main');
-    const footerPlaceholder = document.getElementById('destinova-footer');
+// Form Validation Functions
+function validateEmail(email) {
+    return /^[\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-    // Assuming header.html and footer.html are in the same 'html' directory
-    if (headerPlaceholder) {
-        fetch('header.html')
-            .then(res => res.text())
-            .then(data => {
-                headerPlaceholder.innerHTML = data;
-                initializeHeaderScripts();
-            });
+function validatePhone(phone) {
+    return /^\d{10}$/.test(phone.replace(/\s/g, ''));
+}
+
+function calculateAge(dob) {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
     }
+    return age;
+}
 
-    if (footerPlaceholder) {
-        fetch('footer.html')
-            .then(res => res.text())
-            .then(data => {
-                footerPlaceholder.innerHTML = data;
-                initializeFooterScripts();
-            });
-    }
-    
-    // =============================================
-    // HEADER SCRIPTS
-    // =============================================
-    function initializeHeaderScripts() {
-        const header = document.getElementById('header-main');
-        if (header) {
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('header-scrolled', window.scrollY > 50);
-            });
-        }
-        const menuToggle = document.getElementById('header-menuToggle');
-        const nav = document.getElementById('header-mobile-nav');
-        const overlay = document.getElementById('header-mobileNavOverlay');
-        if (menuToggle && nav && overlay) {
-            const toggleMenu = () => {
-                nav.classList.toggle('header-active');
-                overlay.classList.toggle('header-active');
-                document.body.style.overflow = nav.classList.contains('header-active') ? 'hidden' : '';
-            };
-            menuToggle.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-        }
-        document.querySelectorAll('.header-mobile-nav .header-dropdown > a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (link.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    link.parentElement.classList.toggle('header-open');
-                }
-            });
-        });
-    }
+// ============================================
+// FIRST NAME VALIDATION
+// ============================================
+const firstName = document.getElementById('firstName');
+const firstNameSuccess = document.getElementById('firstNameSuccess');
+const firstNameError = document.getElementById('firstNameError');
 
-    // =============================================
-    // FOOTER SCRIPTS
-    // =============================================
-    function initializeFooterScripts() {
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) {
-            window.addEventListener('scroll', function() {
-                scrollToTopBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollToTopBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    }
-
-    // =============================================
-    // SHARED AUTH FORM SCRIPTS
-    // =============================================
-    // Password visibility toggle
-    document.querySelectorAll('.password-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const passwordField = this.previousElementSibling.previousElementSibling;
-            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordField.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    });
-
-    function isValidEmail(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function highlightError(input, message) {
-        input.style.borderColor = '#DC2626';
-        let errorDiv = input.parentElement.querySelector('.error-message');
-        if (!errorDiv) {
-            errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            input.parentElement.appendChild(errorDiv);
-        }
-        errorDiv.textContent = message;
-    }
-
-    function removeHighlight(input) {
-        input.style.borderColor = '';
-        const errorDiv = input.parentElement.querySelector('.error-message');
-        if (errorDiv) {
-            errorDiv.remove();
-        }
-    }
-
-    // =============================================
-    // SIGN-IN FORM SPECIFIC LOGIC
-    // =============================================
-    const signInForm = document.getElementById('signin-form');
-    if (signInForm) {
-        signInForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email');
-            const password = document.getElementById('password');
-            let isValid = true;
-
-            if (!isValidEmail(email.value)) {
-                isValid = false;
-                highlightError(email, 'Please enter a valid email address');
-            } else { removeHighlight(email); }
-
-            if (!password.value.trim()) {
-                isValid = false;
-                highlightError(password, 'Password is required');
-            } else { removeHighlight(password); }
-
-            if (isValid) {
-                const submitBtn = this.querySelector('.submit-btn');
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
-                submitBtn.disabled = true;
-                setTimeout(() => {
-                    alert('Signed in successfully! (This is a demo)');
-                    submitBtn.innerHTML = 'Sign In';
-                    submitBtn.disabled = false;
-                }, 1500);
-            }
-        });
-    }
-
-    // =============================================
-    // SIGN-UP FORM SPECIFIC LOGIC
-    // =============================================
-    const signUpForm = document.getElementById('signup-form');
-    if (signUpForm) {
-        const passwordField = document.getElementById('password');
-        const strengthBar = document.querySelector('.strength-bar');
-        const strengthText = document.querySelector('.strength-text');
-
-        passwordField.addEventListener('input', updatePasswordStrength);
-
-        function updatePasswordStrength() {
-            const value = passwordField.value;
-            let strength = 0;
-            if (value.length > 7) strength++; // Length
-            if (value.match(/[A-Z]/)) strength++; // Uppercase
-            if (value.match(/[0-9]/)) strength++; // Numbers
-            if (value.match(/[^A-Za-z0-9]/)) strength++; // Symbols
-
-            strengthBar.className = 'strength-bar';
-            switch (strength) {
-                case 1:
-                case 2:
-                    strengthBar.classList.add('weak');
-                    strengthText.textContent = 'Weak';
-                    break;
-                case 3:
-                    strengthBar.classList.add('medium');
-                    strengthText.textContent = 'Medium';
-                    break;
-                case 4:
-                    strengthBar.classList.add('strong');
-                    strengthText.textContent = 'Strong';
-                    break;
-                default:
-                    strengthText.textContent = '';
-            }
-        }
-
-        signUpForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const fullname = document.getElementById('fullname');
-            const email = document.getElementById('email');
-            const confirmPassword = document.getElementById('confirm-password');
-            const terms = document.getElementById('terms');
-            let isValid = true;
-            
-            // Re-validate all fields on submit
-            if (!fullname.value.trim()) { isValid = false; highlightError(fullname, 'Full name is required'); } else { removeHighlight(fullname); }
-            if (!isValidEmail(email.value)) { isValid = false; highlightError(email, 'Please enter a valid email address'); } else { removeHighlight(email); }
-            if (passwordField.value.length < 8) { isValid = false; highlightError(passwordField, 'Password must be at least 8 characters'); } else { removeHighlight(passwordField); }
-            if (passwordField.value !== confirmPassword.value) { isValid = false; highlightError(confirmPassword, 'Passwords do not match'); } else { removeHighlight(confirmPassword); }
-            
-            if (!terms.checked) {
-                isValid = false;
-                alert('You must agree to the Terms & Conditions.');
-            }
-            
-            if (isValid) {
-                const submitBtn = this.querySelector('.submit-btn');
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
-                submitBtn.disabled = true;
-                setTimeout(() => {
-                    alert('Account created successfully! Redirecting to sign-in... (This is a demo)');
-                    window.location.href = 'sign-in.html';
-                }, 1500);
-            }
-        });
+firstName.addEventListener('blur', function() {
+    if (this.value.trim().length >= 2) {
+        firstNameSuccess.style.display = 'flex';
+        firstNameError.classList.remove('active');
+        this.classList.remove('error');
+    } else if (this.value.trim()) {
+        this.classList.add('error');
+        firstNameError.classList.add('active');
+        firstNameSuccess.style.display = 'none';
     }
 });
+
+// ============================================
+// LAST NAME VALIDATION
+// ============================================
+const lastName = document.getElementById('lastName');
+const lastNameSuccess = document.getElementById('lastNameSuccess');
+const lastNameError = document.getElementById('lastNameError');
+
+lastName.addEventListener('blur', function() {
+    if (this.value.trim().length >= 2) {
+        lastNameSuccess.style.display = 'flex';
+        lastNameError.classList.remove('active');
+        this.classList.remove('error');
+    } else if (this.value.trim()) {
+        this.classList.add('error');
+        lastNameError.classList.add('active');
+        lastNameSuccess.style.display = 'none';
+    }
+});
+
+// ============================================
+// EMAIL VALIDATION
+// ============================================
+const emailInput = document.getElementById('email');
+const emailSuccess = document.getElementById('emailSuccess');
+const emailErrorIcon = document.getElementById('emailErrorIcon');
+const emailError = document.getElementById('emailError');
+
+emailInput.addEventListener('blur', function() {
+    const email = this.value.trim();
+    if (email && validateEmail(email)) {
+        emailSuccess.style.display = 'flex';
+        emailErrorIcon.style.display = 'none';
+        emailError.classList.remove('active');
+        this.classList.remove('error');
+    } else if (email) {
+        this.classList.add('error');
+        emailSuccess.style.display = 'none';
+        emailErrorIcon.style.display = 'flex';
+        emailError.classList.add('active');
+    }
+});
+
+// ============================================
+// PASSWORD TOGGLE
+// ============================================
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleIcon = document.getElementById('toggleIcon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    }
+}
+
+// ============================================
+// PASSWORD STRENGTH INDICATOR
+// ============================================
+const passwordInput = document.getElementById('password');
+const passwordStrength = document.getElementById('passwordStrength');
+const strengthLabel = document.getElementById('strengthLabel');
+const segment1 = document.getElementById('segment1');
+const segment2 = document.getElementById('segment2');
+const segment3 = document.getElementById('segment3');
+
+passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    
+    if (password.length === 0) {
+        passwordStrength.classList.remove('active');
+        return;
+    }
+    
+    passwordStrength.classList.add('active');
+    
+    segment1.classList.remove('filled', 'weak', 'medium', 'strong');
+    segment2.classList.remove('filled', 'weak', 'medium', 'strong');
+    segment3.classList.remove('filled', 'weak', 'medium', 'strong');
+    strengthLabel.classList.remove('weak', 'medium', 'strong');
+    
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/\d/.test(password)) strength++;
+    if (/[^a-zA-Z\d]/.test(password)) strength++;
+    
+    if (password.length <= 5 || strength <= 1) {
+        segment1.classList.add('filled', 'weak');
+        strengthLabel.textContent = 'Weak';
+        strengthLabel.classList.add('weak');
+    } else if (password.length <= 8 || strength <= 2) {
+        segment1.classList.add('filled', 'medium');
+        segment2.classList.add('filled', 'medium');
+        strengthLabel.textContent = 'Medium';
+        strengthLabel.classList.add('medium');
+    } else {
+        segment1.classList.add('filled', 'strong');
+        segment2.classList.add('filled', 'strong');
+        segment3.classList.add('filled', 'strong');
+        strengthLabel.textContent = 'Strong';
+        strengthLabel.classList.add('strong');
+    }
+});
+
+// ============================================
+// PHONE VALIDATION
+// ============================================
+const phone = document.getElementById('phone');
+const phoneSuccess = document.getElementById('phoneSuccess');
+const phoneError = document.getElementById('phoneError');
+
+phone.addEventListener('blur', function() {
+    if (validatePhone(this.value)) {
+        phoneSuccess.style.display = 'flex';
+        phoneError.classList.remove('active');
+        this.classList.remove('error');
+    } else if (this.value.trim()) {
+        this.classList.add('error');
+        phoneError.classList.add('active');
+        phoneSuccess.style.display = 'none';
+    }
+});
+
+// ============================================
+// DATE OF BIRTH VALIDATION
+// ============================================
+const dob = document.getElementById('dob');
+const dobSuccess = document.getElementById('dobSuccess');
+const dobError = document.getElementById('dobError');
+
+dob.addEventListener('change', function() {
+    const age = calculateAge(this.value);
+    if (age >= 18) {
+        dobSuccess.style.display = 'flex';
+        dobError.classList.remove('active');
+        this.classList.remove('error');
+    } else {
+        this.classList.add('error');
+        dobError.classList.add('active');
+        dobSuccess.style.display = 'none';
+    }
+});
+
+// ============================================
+// FORM SUBMISSION
+// ============================================
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const signupBtn = document.getElementById('signupBtn');
+    const termsCheckbox = document.getElementById('terms');
+    
+    let isValid = true;
+    
+    // Validate all fields
+    if (firstName.value.trim().length < 2) {
+        firstName.classList.add('error');
+        firstNameError.classList.add('active');
+        isValid = false;
+    }
+    
+    if (lastName.value.trim().length < 2) {
+        lastName.classList.add('error');
+        lastNameError.classList.add('active');
+        isValid = false;
+    }
+    
+    if (!validateEmail(emailInput.value.trim())) {
+        emailInput.classList.add('error');
+        emailError.classList.add('active');
+        isValid = false;
+    }
+    
+    if (passwordInput.value.length < 8) {
+        passwordInput.classList.add('error');
+        document.getElementById('passwordError').classList.add('active');
+        isValid = false;
+    }
+    
+    if (!validatePhone(phone.value)) {
+        phone.classList.add('error');
+        phoneError.classList.add('active');
+        isValid = false;
+    }
+    
+    if (calculateAge(dob.value) < 18) {
+        dob.classList.add('error');
+        dobError.classList.add('active');
+        isValid = false;
+    }
+    
+    if (!document.getElementById('gender').value) {
+        document.getElementById('gender').classList.add('error');
+        isValid = false;
+    }
+    
+    if (!document.getElementById('country').value) {
+        document.getElementById('country').classList.add('error');
+        isValid = false;
+    }
+    
+    if (!termsCheckbox.checked) {
+        alert('Please agree to the Terms of Service and Privacy Policy');
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        // Scroll to first error
+        const firstError = document.querySelector('.error');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+    }
+    
+    // Update progress
+    document.querySelectorAll('.progress-step')[1].classList.add('active');
+    
+    // Show loading
+    signupBtn.classList.add('loading');
+    signupBtn.disabled = true;
+    
+    setTimeout(() => {
+        signupBtn.classList.remove('loading');
+        signupBtn.disabled = false;
+        alert('Account created successfully! Welcome to Destinova!');
+    }, 2000);
+});
+
+// ============================================
+// AUTO-FILL CURRENCY BASED ON COUNTRY
+// ============================================
+document.getElementById('country').addEventListener('change', function() {
+    const currencyMap = {
+        'IN': 'INR',
+        'US': 'USD',
+        'GB': 'GBP',
+        'AE': 'AED',
+        'CA': 'CAD',
+        'AU': 'AUD',
+        'SG': 'SGD',
+        'JP': 'JPY',
+        'CN': 'CNY',
+        'FR': 'EUR',
+        'DE': 'EUR'
+    };
+    
+    const currency = currencyMap[this.value];
+    if (currency) {
+        document.getElementById('currency').value = currency;
+    }
+});
+// In your other page's JS
+fetch('terms-conditions.html')
+  .then(response => response.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const bookingPolicy = doc.querySelector('#booking-policy');
+    document.getElementById('booking-policy-container').appendChild(bookingPolicy.cloneNode(true));
+  });
