@@ -11,7 +11,7 @@
 ![UPDATED](https://img.shields.io/badge/✨_UPDATED-Premium_Animations-ff69b4?style=for-the-badge)
 ![ENHANCED](https://img.shields.io/badge/🚀_ENHANCED-140K+_Lines-blue?style=for-the-badge)
 
-**A comprehensive flight booking system with 34+ pages, 80+ features, 140,000+ lines of code, built with pure vanilla JavaScript**
+**A comprehensive flight booking system with 30 pages (20 User + 10 Admin), 100+ features, 140,000+ lines of code, built with pure vanilla JavaScript**
 
 [Live Demo](#) • [Features](#-key-features) • [Installation](#-quick-start) • [Documentation](#-project-structure)
 
@@ -21,19 +21,27 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Pages** | 34+ Pages (25 User + 9 Admin) |
-| **Lines of Code** | 140,000+ (Massively Enhanced!) |
-| **Features** | 80+ Interactive |
+| **Total Pages** | 30 Pages (20 User + 10 Admin) — Updated to match current repository files |
+| **Lines of Code** | 140,000+ (Major recent additions & refactors: premium hero, sign-in animations, expanded flight API) |
+| **Features** | 100+ Interactive (expanded from 80+ — new booking UX, search improvements, blog pages, premium animations) |
 | **Airports Database** | 9000+ Worldwide (New!) |
 | **Frameworks** | Zero! Pure Vanilla JS |
 | **Responsive** | 100% Mobile-First |
 | **Admin Panel** | Complete with 10-Tab Settings |
 | **Browser Support** | All Modern Browsers |
-| **Animations** | Premium CSS Animations & Micro-interactions (New!) |
+| **Animations** | Premium CSS Animations & Micro-interactions (Significant recent updates) |
 
+## 👤 User Features
 </div>
 
 ---
+
+## 🔔 Recent updates (Oct 2025)
+- Added a new informational page: `blog.html` for travel content and articles (additional travel content is available as JS templates and may be added as pages later).
+- Introduced hero section variants and premium interactions: `css/hero-redesigned.css`, `css/hero-breathtaking.css` and supporting JS (`js/header-hero-redesign.js`, `js/hero-search-card.js`).
+- Premium sign-in animations and styles (`css/sign-in.css`) with improved authentication UX.
+- Expanded Flight API and Autocomplete: `js/flight-api.js` and `js/airport-autocomplete.js` (large dataset, performance improvements).
+- Small documentation cleanup and page-directory corrections (page counts updated).
 
 ## 👤 User Features
 - **Authentication**: Sign in, sign up, password recovery with email validation + **Premium Animations** (New!)
@@ -44,7 +52,7 @@
 - **Airport Autocomplete**: Smart search across **9000+ airports worldwide** with real-time suggestions (New!)
 - **Flight API Integration**: Live airport data with country, state, city information (New!)
 
-## 🔧 Complete Admin Panel (9 Pages)
+## 🔧 Complete Admin Panel (10 Pages)
 - **Dashboard**: Live statistics, interactive charts (Chart.js), quick actions, activity feed
 - **Bookings Management**: Advanced filters, search, export to CSV, view/edit/cancel operations
 - **Flight Management**: Add/edit/delete flights, pricing, seat availability, route management
@@ -54,6 +62,8 @@
 - **Notification Management**: Send system-wide alerts and notifications to users
 - **Settings (10 Tabs)**: General, Payment (PayPal/Stripe/Razorpay), Email (SMTP), SMS, Flight, User, Security (2FA/Audit), Backup, API, Appearance (Dark Mode/Custom CSS)
 - **Admin Profile**: Personal info, password change, 2FA setup, preferences, activity tracking
+ - **Responsive Design Showcase**: Demonstration of responsive features
+ - **responsive-demo.html**: Responsive design showcase
 
 ---
 
@@ -114,7 +124,7 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 |---------|---------------|
 | 🎨 **Premium Design** | Emerald-gold user theme + Emerald-green admin theme with glassmorphism |
 | ⚡ **Zero Framework** | Pure vanilla JavaScript - no React/Vue/Angular |
-| 📱 **Fully Responsive** | Mobile-first with 4 breakpoints across all 34 pages |
+| 📱 **Fully Responsive** | Mobile-first with 4 breakpoints across all 30 pages |
 | 🔒 **Security First** | Form validation, Luhn algorithm, XSS prevention, input sanitization |
 | 🎭 **Delightful UX** | Confetti animations, QR codes, smooth transitions, loading states |
 | 👔 **Complete Admin Panel** | 9 pages: Dashboard, Bookings, Flights, Users, Reports, Refunds, Notifications, Settings (10 tabs), Profile |
@@ -160,9 +170,13 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 ### Core Booking Pages
 - **Multi-Step Booking Flow** (`booking.html`): 3-step guided process with progress bar
 - **Booking Confirmation** (`booking-confirmation.html`): Confetti effect, QR code, PDF download
-- **Flight Results** (`results.html`): Search results with filtering, sorting, fare calendar
+- **Flight Results (JS-driven view)** (`results.js`): Search results rendered client-side with filtering, sorting, and fare calendar
 - **Seat Selection**: Interactive visual seat map with availability status
 - **Payment** (`payment.html`): Secure payment with card validation
+
+### Content & Hero Enhancements
+- **Hero Variants** (`css/hero-redesigned.css`, `css/hero-breathtaking.css`): Multiple hero layouts and premium interactions (styles + JS helpers)
+-- **Blog / Travel Articles** (`blog.html`): Article listing, single-article templates, tags & categories, related posts
 
 ### User Management
 - **Authentication**: Sign in, sign up, password recovery
@@ -185,9 +199,11 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 - **Flight Status** (`flight-status.html`): Real-time flight tracking
 - **Offers** (`offers.html`): Special deals and promotions
 - **Reviews** (`reviews.html`): Customer testimonials
-- **Travel Classes** (`travel-classes.html`): Class comparison
+<!-- Travel classes page not present in `html/` directory; remove from list or add when created -->
 - **Privacy Policy** (`privacy-policy.html`): Data protection info
 - **Terms & Conditions** (`terms-conditions.html`): Legal terms
+ - **Blog** (`blog.html`): Travel articles, tips, and editorial content
+<!-- Travel-blog page not present as `travel-blog.html`; long-form content is available via `js/travel-blog.js` and can be added as an HTML template later. -->
 
 ### Technical Features
 
@@ -231,6 +247,8 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 - **Flight API System**: Comprehensive airport database with search & autocomplete (New!)
 - **Smart Autocomplete Component**: Reusable airport search with keyboard navigation (New!)
 - **Advanced Hero JavaScript**: 45,000+ lines of premium interactive functionality (New!)
+ - **Hero JavaScript Modules**: `js/header-hero-redesign.js`, `js/hero-search-card.js` — interactive hero systems and particle helpers
+ - **Premium Sign-In Animations**: `css/sign-in.css` and supporting JS for enhanced login UX
 
 #### 🎯 Interactive Features
 - **Live Search**: Debounced search with instant results filtering
@@ -320,42 +338,38 @@ A **production-ready frontend prototype** demonstrating advanced JavaScript, res
 ```
 Air_ticket_booking_mini_project/
 │
-├── 📂 html/                          # User-facing pages (25 pages)
+├── 📂 html/                          # User-facing pages (20 pages)
 │   ├── index.html                    # Landing page with hero & flight search
 │   ├── booking.html                  # Multi-step booking flow (3 steps)
-│   ├── results.html                  # Search results with filters & sorting
 │   ├── booking-confirmation.html     # Confirmation with QR code & confetti
-│   ├── passenger-details.html        # Passenger information form
 │   ├── payment.html                  # Secure payment processing
 │   ├── my-bookings.html              # User booking management dashboard
 │   ├── profile.html                  # User profile & preferences
 │   ├── payment-history.html          # Transaction history & receipts
-│   ├── signin.html                   # User authentication
+│   ├── sign-in.html                  # User authentication
 │   ├── sign-up.html                  # User registration with validation
 │   ├── forgot-password.html          # Password recovery flow
-│   ├── destinations.html             # Travel destination showcase
-│   ├── flight-status.html            # Real-time flight tracking
 │   ├── about-us.html                 # Company information & team
 │   ├── contact-us.html               # Contact form with validation
+│   ├── destinations.html             # Travel destination showcase
 │   ├── faq.html                      # Searchable FAQ with categories
+│   ├── flight-status.html            # Real-time flight tracking
 │   ├── offers.html                   # Special deals & promotions
 │   ├── reviews.html                  # Customer testimonials
-│   ├── travel-classes.html           # Class comparison & features
 │   ├── privacy-policy.html           # GDPR-compliant privacy policy
 │   ├── terms-conditions.html         # Terms of service
-│   ├── header.html                   # Reusable header component
-│   └── footer.html                   # Reusable footer component
+│   └── blog.html                     # Travel blog / articles
 │
 ├── 📂 Admin/                         # Complete Admin Panel (NEW!)
-│   ├── 📂 html/                      # Admin pages (9 pages)
+│   ├── 📂 html/                      # Admin pages (10 pages)
 │   │   ├── admin-dashboard.html      # Main dashboard with statistics & charts
-│   │   ├── manage-bookings.html      # Bookings management with filters & export
+│   │   ├── admin-settings.html       # 10-tab settings (General, Payment, Email, SMS, Flight, User, Security, Backup, API, Appearance)
 │   │   ├── flight-management.html    # Flight CRUD operations
+│   │   ├── manage-bookings.html      # Bookings management with filters & export
 │   │   ├── manage-users.html         # User management & CRUD
 │   │   ├── revenue-reports.html      # Financial analytics & reports
 │   │   ├── refund-management.html    # Refund processing & approval
 │   │   ├── notification-management.html # System notifications
-│   │   ├── admin-settings.html       # 10-tab settings (General, Payment, Email, SMS, Flight, User, Security, Backup, API, Appearance)
 │   │   ├── responsive-demo.html      # Responsive design showcase
 │   │   └── profile.html              # Admin profile & preferences
 │   │
@@ -390,7 +404,7 @@ Air_ticket_booking_mini_project/
 │   ├── my-bookings.css               # Bookings dashboard styles
 │   ├── header.css                    # Header component styles
 │   ├── footer.css                    # Footer component styles
-│   ├── signin-premium-animations.css # Premium sign-in animations (NEW! 17,800+ lines)
+│   ├── sign-in.css                   # Sign-in styles and animations
 │   ├── hero-redesigned.css           # Redesigned hero section styles (NEW!)
 │   ├── hero-breathtaking.css         # Breathtaking hero design (NEW!)
 │   ├── airport-autocomplete.css      # Airport search dropdown (NEW!)
@@ -410,8 +424,8 @@ Air_ticket_booking_mini_project/
 │   ├── sign-up.js                    # Registration with validation
 │   ├── flight-api.js                 # Flight API with 9000+ airports (NEW! 30,700+ lines)
 │   ├── airport-autocomplete.js       # Smart airport search component (NEW! 11,200+ lines)
-│   ├── hero-redesigned.js            # Premium hero section (NEW! 45,800+ lines)
-│   ├── hero-breathtaking.js          # Breathtaking interactions (NEW! 49,400+ lines)
+│   ├── header-hero-redesign.js       # Header & hero interaction helpers
+│   ├── hero-search-card.js           # Hero search card & particle helpers
 │   └── ...                           # Other page-specific scripts
 │
 ├── 📂 site-images/                   # Image assets (100+ files)
@@ -437,7 +451,7 @@ Air_ticket_booking_mini_project/
 **🎫 Booking Flow**: 3-step process, live preview sidebar, interactive seat map, real-time pricing, **smart autocomplete (NEW!)**  
 **🎉 Confirmation**: Confetti animation, dynamic QR codes, PDF export, email integration  
 **🔐 Security**: Form validation, Luhn algorithm, XSS prevention, input sanitization, CSRF protection  
-**👔 Admin Panel**: 9 complete pages, 10-tab settings, Chart.js analytics, user/booking/flight management, responsive demo page  
+**👔 Admin Panel**: 10 complete pages, 10-tab settings, Chart.js analytics, user/booking/flight management, responsive demo page  
 **⚛️ React Components**: Experimental React folder for future mobile/PWA features  
 **⚙️ Settings System**: Multi-gateway payments, email/SMS config, API management, appearance customization  
 **📱 Responsive**: Mobile-first design, 4 breakpoints (mobile/tablet/desktop/large), touch-optimized, dedicated responsive demo and guides  
@@ -447,23 +461,22 @@ Air_ticket_booking_mini_project/
 
 ---
 
-## 🗺️ Complete Page Directory (34 Pages)
+## 🗺️ Complete Page Directory (30 Pages)
 
-### 👥 User Pages (25 Pages in `html/`)
+### 👥 User Pages (20 Pages in `html/`)
 
-**Booking Flow (7)**
-- index.html, hero-redesigned.html (NEW!), results.html, booking.html, passenger-details.html, payment.html, booking-confirmation.html
+**Booking Flow (3)**
+- booking.html, payment.html, booking-confirmation.html
 
 **User Dashboard (6)**
-- signin.html, sign-up.html, forgot-password.html, profile.html, my-bookings.html, payment-history.html
+- sign-in.html, sign-up.html, forgot-password.html, profile.html, my-bookings.html, payment-history.html
 
 **Information (11)**
-- about-us.html, contact-us.html, faq.html, destinations.html, flight-status.html, offers.html, reviews.html, travel-classes.html, privacy-policy.html, terms-conditions.html
+- index.html, about-us.html, contact-us.html, faq.html, destinations.html, flight-status.html, offers.html, reviews.html, privacy-policy.html, terms-conditions.html, blog.html
 
-**Components (2)**
-- header.html, footer.html
+<!-- Components (header/footer) are project-level includes and not present as separate html files in the `html/` folder -->
 
-### 🔧 Admin Panel (9 Pages in `Admin/html/`)
+### 🔧 Admin Panel (10 Pages in `Admin/html/`)
 - admin-dashboard.html - Main dashboard with statistics & charts
 - manage-bookings.html - Complete bookings management with filters & export
 - flight-management.html - Flight CRUD operations & scheduling
@@ -545,12 +558,11 @@ graph TB
 - **Travelers Selector**: Intuitive passenger & class selection
 - **Popular Routes**: One-click route selection
 
-**Files Added:**
-- `html/hero-redesigned.html` (19,072 lines) - Complete hero page
-- `js/hero-redesigned.js` (45,801 lines) - Advanced JavaScript
-- `js/hero-breathtaking.js` (49,409 lines) - Premium interactions
-- `css/hero-redesigned.css` - Stunning visual styles
-- `css/hero-breathtaking.css` - Animation system
+**Files Added (hero & interactions):**
+- `css/hero-redesigned.css` - Redesigned hero styles and particle overlays
+- `css/hero-breathtaking.css` - Additional hero animation styles
+- `js/header-hero-redesign.js` - Header & hero interaction helpers
+- `js/hero-search-card.js` - Hero search card and particle helpers
 
 #### 🎭 **Premium Sign-In Animations**
 - **Matching Quality**: Sign-in page animations matching index page level
@@ -563,7 +575,7 @@ graph TB
 - **Performance Optimized**: GPU-accelerated transforms
 
 **Files Added:**
-- `css/signin-premium-animations.css` (17,811 lines) - Complete animation suite
+- `css/sign-in.css` - Sign-in page styles and animations
 
 #### 📊 Code Statistics Update
 ```
