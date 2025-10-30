@@ -3,325 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Destinova | Premium Flight Booking Experience</title>
-    <meta name="description" content="Welcome back! Sign in to explore amazing flight deals and manage your bookings.">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../site-images/favicon.png">
-    
-    <!-- Fonts - Matching Index Page -->
+    <title>Destinova - Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- AOS Animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Three.js for 3D Background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-emerald': '#1d5e33',
-                        'secondary-cream': '#FFFBF2',
-                        'accent-gold': '#E5CBAF',
-                        'text-charcoal': '#1C2526',
-                        'text-slate': '#5C6B73',
-                        'background-white': '#FAFAFA',
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/header-enhancements.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900" crossorigin>
     <link rel="stylesheet" href="../css/signin.css">
 </head>
 <body>
-    
-    <!-- Decorative Background Elements -->
-    <div class="background-decoration">
-        <div class="decoration-circle circle-1"></div>
-        <div class="decoration-circle circle-2"></div>
-        <div class="decoration-circle circle-3"></div>
-        <div class="decoration-blob blob-1"></div>
-        <div class="decoration-blob blob-2"></div>
-    </div>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div class="success-overlay" id="successOverlay"></div>
 
-    <!-- Animated Airplanes -->
-    <div class="airplane-scene">
-        <div class="airplane plane-1">
-            <svg viewBox="0 0 512 512">
-                <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L277.3 424.9l-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488V392c0-5.3 1.8-10.5 5.1-14.7L362.4 164.7 173.3 268.3 57.8 214.8c-12.4-5.7-19.8-18.8-18.1-31.9s11.1-24.2 23.8-28.2l416-128c12.7-3.9 26.4.6 35.6 11.9zM392 416c0 17.7-14.3 32-32 32H270.5c-12.9 0-24.6-7.8-29.5-19.7l-6.8-16.5 62.3-62.3L392 416z"/>
-            </svg>
-        </div>
-        <div class="airplane plane-2">
-            <svg viewBox="0 0 512 512">
-                <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L277.3 424.9l-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488V392c0-5.3 1.8-10.5 5.1-14.7L362.4 164.7 173.3 268.3 57.8 214.8c-12.4-5.7-19.8-18.8-18.1-31.9s11.1-24.2 23.8-28.2l416-128c12.7-3.9 26.4.6 35.6 11.9zM392 416c0 17.7-14.3 32-32 32H270.5c-12.9 0-24.6-7.8-29.5-19.7l-6.8-16.5 62.3-62.3L392 416z"/>
-            </svg>
-        </div>
-        <div class="airplane plane-3">
-            <svg viewBox="0 0 512 512">
-                <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L277.3 424.9l-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488V392c0-5.3 1.8-10.5 5.1-14.7L362.4 164.7 173.3 268.3 57.8 214.8c-12.4-5.7-19.8-18.8-18.1-31.9s11.1-24.2 23.8-28.2l416-128c12.7-3.9 26.4.6 35.6 11.9zM392 416c0 17.7-14.3 32-32 32H270.5c-12.9 0-24.6-7.8-29.5-19.7l-6.8-16.5 62.3-62.3L392 416z"/>
-            </svg>
-        </div>
-    </div>
-
-    <!-- Floating Stars -->
-    <div class="stars-container">
-        <div class="star star-1">✦</div>
-        <div class="star star-2">✦</div>
-        <div class="star star-3">✦</div>
-        <div class="star star-4">✦</div>
-        <div class="star star-5">✦</div>
-        <div class="star star-6">✦</div>
-    </div>
-
-    <!-- Main Container -->
     <div class="main-container">
-        
-        <!-- Left Panel - Hero Section -->
-        <div class="hero-panel">
-            <div class="hero-content">
-                
-                <!-- Logo -->
-                <div class="logo-section" data-aos="fade-right" data-aos-duration="1000">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="hero-bg"></div>
+            <div class="gradient-overlay"></div>
+
+            <div class="glass-circle circle-1"></div>
+            <div class="glass-circle circle-2"></div>
+            <div class="glass-circle circle-3"></div>
+            <div class="glass-circle circle-4"></div>
+
+            <div class="brand-card">
+                <h1 class="brand-logo-text">Destinova</h1>
+                <p class="brand-tagline">MOUNTAIN VISTA</p>
+                <p class="brand-description">Discover extraordinary destinations and create memories that last forever</p>
+
+                <div class="stats-panel">
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="tripsCount">0</div>
+                        <div class="stat-label">Trips Booked</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="countriesCount">0</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="ratingCount">0.0</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="security-badge">
+                <i class="fas fa-lock"></i>
+                SECURED BY 256-BIT SSL
+            </div>
+
+            <div class="form-container" id="main-content">
+                <div class="logo-section">
                     <div class="logo-icon">
                         <i class="fas fa-plane-departure"></i>
                     </div>
-                    <div class="logo-text">
-                        <h1>Destinova</h1>
-                        <p>Premium Flight Booking</p>
-                    </div>
+                    <div class="logo-text">Destinova</div>
                 </div>
 
-                <!-- Main Hero Text -->
-                <div class="hero-text" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                    <h2 class="gradient-text-hero">Welcome to the website</h2>
-                    <p class="hero-description">
-                        Travel is the only purchase that enriches you in ways money never could. Embark on unforgettable adventures.
-                    </p>
+                <h1 class="welcome-title">Welcome Back!</h1>
+                <p class="welcome-subtitle">Sign in to access your travel dashboard</p>
+
+                <div class="social-proof">
+                    <i class="fas fa-users"></i>
+                    <span>Join 2.5M+ travelers worldwide</span>
                 </div>
 
-                <!-- Hero Image/Illustration -->
-                <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="400" data-aos-duration="1200">
-                    <div class="hero-scene">
-                        <div class="scene-layer layer-mountains">
-                            <svg viewBox="0 0 800 400" class="mountain-svg">
-                                <path d="M0,300 L150,150 L300,250 L450,100 L600,200 L750,120 L800,180 L800,400 L0,400 Z" fill="url(#mountain-gradient-1)" opacity="0.6"/>
-                                <path d="M0,320 L200,180 L400,280 L600,150 L800,250 L800,400 L0,400 Z" fill="url(#mountain-gradient-2)" opacity="0.7"/>
-                                <path d="M0,350 L300,220 L500,320 L800,280 L800,400 L0,400 Z" fill="url(#mountain-gradient-3)" opacity="0.8"/>
-                                <defs>
-                                    <linearGradient id="mountain-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#0d9488;stop-opacity:0.8" />
-                                        <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:0.4" />
-                                    </linearGradient>
-                                    <linearGradient id="mountain-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:0.8" />
-                                        <stop offset="100%" style="stop-color:#2dd4bf;stop-opacity:0.4" />
-                                    </linearGradient>
-                                    <linearGradient id="mountain-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#2dd4bf;stop-opacity:0.9" />
-                                        <stop offset="100%" style="stop-color:#5eead4;stop-opacity:0.5" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+                <div class="error-alert" id="errorAlert" role="alert" aria-live="polite">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorAlertText">Invalid email or password. Please try again.</span>
+                    <button class="error-alert-close" onclick="closeErrorAlert()" aria-label="Close error alert">×</button>
+                </div>
+
+                <form id="signinForm" novalidate>
+                    <!-- EMAIL FIELD -->
+                    <div class="form-group">
+                        <div class="form-label-wrapper">
+                            <label class="form-label" for="email">Email Address *</label>
                         </div>
-                        <div class="scene-layer layer-trees">
-                            <div class="tree tree-1">
-                                <svg viewBox="0 0 100 100">
-                                    <polygon points="50,20 30,50 40,50 20,80 80,80 60,50 70,50" fill="#065f46" opacity="0.8"/>
-                                    <rect x="45" y="80" width="10" height="20" fill="#064e3b" opacity="0.9"/>
-                                </svg>
-                            </div>
-                            <div class="tree tree-2">
-                                <svg viewBox="0 0 100 100">
-                                    <polygon points="50,20 30,50 40,50 20,80 80,80 60,50 70,50" fill="#065f46" opacity="0.8"/>
-                                    <rect x="45" y="80" width="10" height="20" fill="#064e3b" opacity="0.9"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="scene-layer layer-sun">
-                            <div class="sun">
-                                <div class="sun-glow"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Trust Badges -->
-                <div class="trust-badges" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                    <div class="badge" data-aos="flip-left" data-aos-delay="700">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Secure Booking</span>
-                    </div>
-                    <div class="badge" data-aos="flip-left" data-aos-delay="800">
-                        <i class="fas fa-star"></i>
-                        <span>4.9/5 Rating</span>
-                    </div>
-                    <div class="badge" data-aos="flip-left" data-aos-delay="900">
-                        <i class="fas fa-users"></i>
-                        <span>2.4M+ Users</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Right Panel - Sign In Form -->
-        <div class="form-panel">
-            <div class="form-container">
-                
-                <!-- Back to Home -->
-                <a href="index.html" class="back-btn" data-aos="fade-down" data-aos-duration="800">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Back to Home</span>
-                </a>
-
-                <!-- Form Header -->
-                <div class="form-header" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
-                    <h2 class="gradient-text-form">USER LOGIN</h2>
-                    <p>Sign in to continue your journey</p>
-                </div>
-
-                <!-- Sign In Form -->
-                <form id="signin-form" class="signin-form" novalidate>
-                    
-                    <!-- Email Input -->
-                    <div class="form-group" data-aos="fade-left" data-aos-delay="200" data-aos-duration="700">
-                        <label for="email">
-                            <i class="fas fa-envelope"></i>
-                            Email Address
-                        </label>
                         <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
                             <input 
                                 type="email" 
-                                id="email" 
-                                name="email" 
-                                class="form-input"
-                                placeholder="Enter your email"
-                                required
+                                id="email"
+                                name="email"
+                                class="form-input" 
+                                placeholder="your.email@example.com" 
                                 autocomplete="email"
+                                required
+                                aria-describedby="emailError"
                             >
-                            <div class="input-icon">
-                                <i class="fas fa-user"></i>
+                            <div class="validation-icon success" id="emailSuccess">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="validation-icon error" id="emailErrorIcon">
+                                <i class="fas fa-exclamation"></i>
                             </div>
                         </div>
-                        <span class="error-message" id="email-error"></span>
+                        <div class="error-space">
+                            <div class="error-message" id="emailError">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Please enter a valid email address</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Password Input -->
-                    <div class="form-group" data-aos="fade-left" data-aos-delay="300" data-aos-duration="700">
-                        <label for="password">
-                            <i class="fas fa-lock"></i>
-                            Password
-                        </label>
+                    <!-- PASSWORD FIELD -->
+                    <div class="form-group">
+                        <div class="form-label-wrapper">
+                            <label class="form-label" for="password">Password *</label>
+                            <div class="info-icon">
+                                <span>i</span>
+                                <div class="info-tooltip">
+                                    Password must contain:
+                                    <ul>
+                                        <li>At least 8 characters</li>
+                                        <li>One uppercase letter</li>
+                                        <li>One number</li>
+                                        <li>One special character</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
                             <input 
                                 type="password" 
                                 id="password" 
-                                name="password" 
-                                class="form-input"
-                                placeholder="Enter your password"
-                                required
+                                name="password"
+                                class="form-input" 
+                                placeholder="Enter your password" 
                                 autocomplete="current-password"
+                                required
+                                aria-describedby="passwordError"
                             >
-                            <div class="input-icon">
-                                <i class="fas fa-lock"></i>
-                            </div>
-                            <button type="button" class="toggle-password" id="toggle-password" aria-label="Toggle password visibility">
-                                <i class="fas fa-eye" id="password-icon"></i>
+                            <button 
+                                type="button" 
+                                class="password-toggle" 
+                                id="passwordToggle"
+                                onclick="togglePassword()"
+                                aria-label="Show password"
+                            >
+                                <i class="fas fa-eye" id="toggleIcon"></i>
                             </button>
                         </div>
-                        <span class="error-message" id="password-error"></span>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-label" id="strengthLabel">Weak</div>
+                            <div class="strength-segments">
+                                <div class="strength-segment" id="segment1"></div>
+                                <div class="strength-segment" id="segment2"></div>
+                                <div class="strength-segment" id="segment3"></div>
+                            </div>
+                        </div>
+                        <div class="error-space">
+                            <div class="error-message" id="passwordError">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Password must be at least 8 characters</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Remember & Forgot -->
-                    <div class="form-options" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
-                        <label class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <span class="checkbox-custom"></span>
+                    <div class="form-footer">
+                        <label class="checkbox-wrapper" for="remember">
+                            <input type="checkbox" id="remember" autocomplete="off">
                             <span class="checkbox-label">Remember me</span>
                         </label>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
+                        <a href="forgot-password.html" class="forgot-link">
+                            <i class="fas fa-lock"></i>
+                            Forgot your password?
+                        </a>
                     </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn" data-aos="zoom-in" data-aos-delay="500" data-aos-duration="700">
-                        <span class="btn-text">Login</span>
-                        <span class="btn-icon">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                        <div class="btn-loader">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
+                    <button type="submit" class="signin-button" id="signinBtn">
+                        <span class="button-text">Sign In</span>
+                        <i class="fas fa-arrow-right arrow-icon"></i>
+                        <div class="spinner"></div>
+                        <div class="success-check"><i class="fas fa-check"></i></div>
                     </button>
-
-                    <!-- Divider -->
-                    <div class="divider" data-aos="fade-up" data-aos-delay="600" data-aos-duration="600">
-                        <span>or continue with</span>
-                    </div>
-
-                    <!-- Social Login -->
-                    <div class="social-login" data-aos="fade-up" data-aos-delay="700" data-aos-duration="700">
-                        <button type="button" class="social-btn google-btn">
-                            <i class="fab fa-google"></i>
-                            <span>Google</span>
-                        </button>
-                        <button type="button" class="social-btn facebook-btn">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
-                        </button>
-                        <button type="button" class="social-btn apple-btn">
-                            <i class="fab fa-apple"></i>
-                            <span>Apple</span>
-                        </button>
-                    </div>
-
-                    <!-- Sign Up Link -->
-                    <div class="signup-link" data-aos="fade-up" data-aos-delay="800" data-aos-duration="700">
-                        <p>Don't have an account? <a href="sign-up.html">sign up</a></p>
-                    </div>
-
                 </form>
 
+                <div class="social-divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <div class="social-buttons">
+                    <button class="social-icon google" aria-label="Sign in with Google" tabindex="0">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-icon facebook" aria-label="Sign in with Facebook" tabindex="0">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-icon apple" aria-label="Sign in with Apple" tabindex="0">
+                        <i class="fab fa-apple"></i>
+                    </button>
+                    <button class="social-icon biometric" aria-label="Sign in with Biometric" tabindex="0">
+                        <i class="fas fa-fingerprint"></i>
+                    </button>
+                </div>
+
+                <div class="signup-link">
+                    New to Destinova? <a href="sign-up.html">Create Account <span class="signup-arrow">→</span></a>
+                </div>
+
+                <div class="privacy-link">
+                    We protect your privacy. <a href="privacy.html">Learn more</a>
+                </div>
             </div>
         </div>
-
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div class="toast-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="toast-message">
-            <p class="toast-title">Success!</p>
-            <p class="toast-text">Signing you in...</p>
-        </div>
-    </div>
-
-    <!-- JavaScript -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/index.js"></script>
     <script src="../js/signin.js"></script>
 </body>
 </html>
