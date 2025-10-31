@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
 
   <!-- Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -39,16 +39,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Three.js for 3D Background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
   <!-- GSAP Animation Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 
   <!-- Vanta.js for Animated Background -->
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js" defer></script>
 
   <!-- Swiper Carousel -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
   <script>
     tailwind.config = {
@@ -61,6 +61,11 @@
             'text-charcoal': '#1C2526',
             'text-slate': '#5C6B73',
             'background-white': '#FAFAFA',
+            'brand-emerald-50': '#e8f5ed',
+            'brand-emerald-600': '#1a4d2e',
+            'brand-emerald-950': '#0a1f13',
+            'brand-gold-400': '#f4d090',
+            'brand-gold-500': '#e5c189',
           },
           fontFamily: {
             sans: ['Poppins', 'sans-serif'],
@@ -70,11 +75,112 @@
             'fade-in-up': 'fadeInUp 0.6s ease-out',
             'slide-in': 'slideIn 0.5s ease-out',
             'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'shimmer-gold': 'shimmer 3s ease-in-out infinite',
+          },
+          backdropBlur: {
+            '30': '30px',
+          },
+          transitionDuration: {
+            '400': '400ms',
+          },
+          transitionTimingFunction: {
+            'premium': 'cubic-bezier(0.22, 0.61, 0.36, 1)',
           }
         }
+      },
+      corePlugins: {
+        backdropFilter: true,
       }
     }
   </script>
+
+  <style>
+    :root {
+      --brand-emerald-50: #e8f5ed;
+      --brand-emerald-600: #1a4d2e;
+      --brand-emerald-950: #0a1f13;
+      --brand-gold-400: #f4d090;
+      --brand-gold-500: #e5c189;
+    }
+
+    /* Global crystal-surface utility */
+    .crystal-surface {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      position: relative;
+      box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.15),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .crystal-surface::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent);
+    }
+
+    /* Shimmer gold animation */
+    @keyframes shimmer {
+      0%, 100% {
+        background-position: -200% center;
+      }
+      50% {
+        background-position: 200% center;
+      }
+    }
+
+    .shimmer-gold {
+      background: linear-gradient(
+        90deg,
+        var(--brand-gold-500) 0%,
+        var(--brand-gold-400) 25%,
+        #fff 50%,
+        var(--brand-gold-400) 75%,
+        var(--brand-gold-500) 100%
+      );
+      background-size: 200% auto;
+      animation: shimmer 3s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Premium transitions */
+    .transition-premium {
+      transition-duration: 400ms;
+      transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    /* Translucent surfaces */
+    .glass-12 {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
+    .glass-15 {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+
+    .glass-20 {
+      background: rgba(255, 255, 255, 0.20);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+    }
+  </style>
 
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/hero-search-card.css">
@@ -118,31 +224,35 @@
 
 <body>
   <!-- ========== HEADER SECTION START ========== -->
-  <header id="header-main">
+  <header id="header-main" class="crystal-surface fixed top-0 left-0 right-0 z-50 transition-premium overflow-hidden" style="background: rgba(10, 31, 19, 0.35); border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.18); height: 88px; min-height: 88px;">
     <div class="header-nav-container">
       <div class="header-logo">
-        <h1><span>Destin</span><span>ova</span></h1>
+        <h1>
+          <span style="background: linear-gradient(135deg, #1a4d2e 0%, #2d8659 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Destin</span><span class="shimmer-gold">ova</span>
+        </h1>
       </div>
-      <ul class="header-desktop-nav">
-        <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
+  <ul class="header-desktop-nav" role="navigation" aria-label="Primary navigation">
+        <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Flights</span></a></li>
         <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
+        <li><a href="offers.html"><i class="fas fa-tags"></i><span>Offers</span></a></li>
+        <li><a href="flight-status.html"><i class="fas fa-plane"></i><span>Flight Status</span></a></li>
         <li class="header-dropdown">
-          <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i class="fas fa-chevron-down"></i></a>
-          <ul class="header-dropdown-menu">
-            <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-            <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-            <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
+          <a href="#"><i class="fas fa-headset"></i><span>Support</span> <i class="fas fa-chevron-down"></i></a>
+          <ul class="header-dropdown-menu crystal-surface">
+            <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="help.html"><i class="fas fa-life-ring"></i> Help Center</a></li>
           </ul>
         </li>
         <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
           <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-          <ul class="header-dropdown-menu">
+          <ul class="header-dropdown-menu crystal-surface">
+            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-            <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-            <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
             <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
+            <li><a href="saved-flights.html"><i class="fas fa-heart"></i> Saved Payments</a></li>
+            <li class="divider"></li>
+            <li><a href="#" id="logout-btn-desktop"><i class="fas fa-sign-out-alt"></i> Sign Out</a></li>
           </ul>
         </li>
       </ul>
@@ -226,8 +336,14 @@
           </div>
         </div>
 
+        <!-- Primary CTA -->
+        <a href="booking.html" class="btn header-btn-cta transition-premium" style="background: linear-gradient(135deg, var(--brand-gold-500), var(--brand-gold-400)); color: #0a1f13; font-weight: 600; padding: 0.75rem 1.5rem; border-radius: 50px; box-shadow: 0 4px 12px rgba(244, 208, 144, 0.3); border: none;">
+          <i class="fas fa-paper-plane"></i>
+          <span>Book Now</span>
+        </a>
+
         <!-- Sign In Button (Hidden when logged in) -->
-        <a href="signin.html" class="btn header-btn-signin" id="header-signin-btn">
+        <a href="signin.html" class="btn header-btn-signin transition-premium" id="header-signin-btn">
           <i class="fas fa-right-to-bracket"></i>
           <span>Sign In</span>
         </a>
@@ -269,13 +385,37 @@
           </div>
         </div>
 
-        <button class="header-mobile-menu-btn" id="header-menuToggle">
+        <button class="header-mobile-menu-btn" id="header-menuToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="header-mobile-nav">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
   <!-- ========== HEADER SECTION END ========== -->
+  <style>
+    .sticky-header-padding {
+      padding-top: 88px !important;
+    }
+    @media (min-width: 768px) {
+      .sticky-header-padding {
+        padding-top: 104px !important;
+      }
+    }
+    @media (min-width: 1200px) {
+      .sticky-header-padding {
+        padding-top: 120px !important;
+      }
+    }
+    .z-40 {
+      z-index: 40 !important;
+    }
+    .z-30 {
+      z-index: 30 !important;
+    }
+    .z-50 {
+      z-index: 50 !important;
+    }
+  </style>
 
   <!-- ========== MOBILE NAV SECTION START ========== -->
   <nav class="header-mobile-nav" id="header-mobile-nav">
@@ -307,15 +447,31 @@
   <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
   <!-- ========== MAIN CONTENT START ========== -->
   <main id="main-content">
-    <!-- Hero Section -->
-    <div class="hero-section">
+  <!-- Hero Section -->
+  <div class="hero-section sticky-header-padding" style="min-height: 600px;">
       <div class="bg-slider">
-        <div class="bg-slide active"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
+        <picture>
+          <source 
+            type="image/avif"
+            srcset="/images/hero-1-400.avif 400w, /images/hero-1-800.avif 800w, /images/hero-1-1200.avif 1200w, /images/hero-1-1920.avif 1920w"
+            sizes="100vw">
+          <source 
+            type="image/webp"
+            srcset="/images/hero-1-400.webp 400w, /images/hero-1-800.webp 800w, /images/hero-1-1200.webp 1200w, /images/hero-1-1920.webp 1920w"
+            sizes="100vw">
+          <img 
+            src="/images/hero-1-1920.jpg" 
+            alt="Scenic travel destination with airplane"
+            width="1920"
+            height="1080"
+            class="bg-slide active"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high">
+        </picture>
       </div>
 
-      <div class="hero-overlay"></div>
+      <div class="hero-overlay" style="background: linear-gradient(180deg, rgba(10, 31, 19, 0.4) 0%, rgba(10, 31, 19, 0.7) 100%);"></div>
 
       <div class="gold-particles">
         <div class="gold-particle"></div>
@@ -358,15 +514,15 @@
           </div>
           <div class="promo-actions">
             <a href="offers.html" class="view-offers-link">View All Offers</a>
-            <button type="button" class="close-banner-btn" id="closeBanner">
+            <button type="button" class="close-banner-btn" id="closeBanner" aria-label="Close promotional banner">
               <i class="fas fa-xmark"></i>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Floating Search Card -->
-      <div class="neomorphic-search-card" id="searchCard">
+  <!-- Floating Search Card -->
+  <div class="neomorphic-search-card z-40 sticky-header-padding" id="searchCard">
 
         <div class="top-controls">
           <div class="trip-tabs-inline" id="tripTabs">
@@ -385,7 +541,7 @@
             <div class="trip-indicator"></div>
           </div>
 
-          <button type="button" class="recent-btn-inline">
+            <button type="button" class="recent-btn-inline" aria-label="Open recent searches">
             <i class="fas fa-clock-rotate-left"></i>
             <span>Recent Searches</span>
           </button>
@@ -569,13 +725,57 @@
               </div>
             </div>
 
-            <button type="submit" class="search-btn-inline">
-              <i class="fas fa-magnifying-glass"></i>
-              <span>Search</span>
-            </button>
-          </div>
+                <button type="submit" class="search-btn-inline transition-premium" style="position: relative; overflow: hidden;">
+                  <i class="fas fa-magnifying-glass"></i>
+                  <span>Search Flights</span>
+                </button>
+              </div>
 
-        </form>
+            </form>
+
+            <!-- Trust Strip -->
+            <div class="trust-strip" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 2rem; padding: 1.5rem 0; margin-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+              <div class="trust-item transition-premium" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+                <i class="fas fa-shield-check" style="color: var(--brand-gold-400); font-size: 1.25rem;"></i>
+                <span style="font-weight: 500;">Secure Payment</span>
+              </div>
+              <div class="trust-item transition-premium" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+                <i class="fas fa-rotate-left" style="color: var(--brand-gold-400); font-size: 1.25rem;"></i>
+                <a href="#refund-policy" style="color: inherit; text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(255, 255, 255, 0.3); transition: all 0.3s;">Free Cancellation</a>
+              </div>
+              <div class="trust-item transition-premium" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+                <div style="display: flex; gap: 0.125rem;">
+                  <i class="fas fa-star" style="color: var(--brand-gold-400); font-size: 0.875rem;"></i>
+                  <i class="fas fa-star" style="color: var(--brand-gold-400); font-size: 0.875rem;"></i>
+                  <i class="fas fa-star" style="color: var(--brand-gold-400); font-size: 0.875rem;"></i>
+                  <i class="fas fa-star" style="color: var(--brand-gold-400); font-size: 0.875rem;"></i>
+                  <i class="fas fa-star-half-alt" style="color: var(--brand-gold-400); font-size: 0.875rem;"></i>
+                </div>
+                <span style="font-weight: 500;">4.8/5 (50K+ reviews)</span>
+              </div>
+            </div>
+
+        <!-- Trust Strip -->
+        <div class="trust-strip" style="display: flex; align-items: center; justify-content: center; gap: 2rem; padding: 1rem 0; margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <div class="trust-item" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+            <i class="fas fa-shield-check" style="color: var(--brand-gold-400);"></i>
+            <span>Secure Payment</span>
+          </div>
+          <div class="trust-item" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+            <i class="fas fa-rotate-left" style="color: var(--brand-gold-400);"></i>
+            <a href="#" style="color: inherit; text-decoration: underline; text-decoration-color: rgba(255, 255, 255, 0.3);">Refund Policy</a>
+          </div>
+          <div class="trust-item" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.9);">
+            <div style="display: flex; gap: 0.25rem;">
+              <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+              <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+              <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+              <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+              <i class="fas fa-star-half-alt" style="color: var(--brand-gold-400);"></i>
+            </div>
+            <span>4.8/5 Rating</span>
+          </div>
+        </div>
 
       </div>
 
@@ -584,12 +784,12 @@
     <!-- Passenger Modal -->
     <div class="modal-passengers" id="passengersModal" hidden>
       <div class="modal-backdrop"></div>
-      <div class="modal-box">
-        <button type="button" class="modal-close" id="modalClose">
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="passengersModalTitle">
+        <button type="button" class="modal-close" id="modalClose" aria-label="Close passengers modal">
           <i class="fas fa-xmark"></i>
         </button>
 
-        <h3 class="modal-title">Select Passengers</h3>
+        <h3 class="modal-title" id="passengersModalTitle">Select Passengers</h3>
         <p class="modal-subtitle">Choose travelers and cabin class</p>
 
         <div class="modal-section">
@@ -694,12 +894,12 @@
       <div class="trust-bar-container">
         <!-- Partner Airlines Logos -->
         <div class="trust-bar-item partner-logos">
-          <img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" class="airline-logo">
-          <img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" class="airline-logo">
-          <img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" class="airline-logo">
-          <img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways" class="airline-logo">
-          <img src="https://images.kiwi.com/airlines/64/QR.png" alt="Qatar Airways" class="airline-logo">
-          <img src="https://images.kiwi.com/airlines/64/SQ.png" alt="Singapore Airlines" class="airline-logo">
+          <img src="https://images.kiwi.com/airlines/64/EK.png" alt="Emirates" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
+          <img src="https://images.kiwi.com/airlines/64/DL.png" alt="Delta" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
+          <img src="https://images.kiwi.com/airlines/64/UA.png" alt="United" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
+          <img src="https://images.kiwi.com/airlines/64/BA.png" alt="British Airways" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
+          <img src="https://images.kiwi.com/airlines/64/QR.png" alt="Qatar Airways" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
+          <img src="https://images.kiwi.com/airlines/64/SQ.png" alt="Singapore Airlines" class="airline-logo" width="64" height="64" loading="lazy" decoding="async">
         </div>
 
         <!-- Trust Stats -->
@@ -892,24 +1092,30 @@
 
     <!-- ========== DIVIDER: Premium Features → Destinations ========== -->
     <div class="section-divider sparkle">
-      <div class="sparkle-icon">
-        <i class="fas fa-sparkles"></i>
-      </div>
+      <div class="section-divider glass-divider gradient-bar" aria-hidden="true" style="height: 2px; width: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, var(--brand-gold-400) 50%, rgba(255,255,255,0.12) 100%); margin: 0 auto 2rem auto; border-radius: 1px;"></div>
     </div>
 
-    <!-- ========== POPULAR DESTINATIONS SECTION START ========== -->
-    <section class="popular-destinations-section" id="popular-destinations" role="region"
-      aria-labelledby="destinations-heading">
+    <!-- ========== EXPLORE DESTINATIONS MODULE START ========== -->
+    <section class="explore-destinations-section crystal-surface" id="explore-destinations" role="region"
+  aria-labelledby="destinations-heading" class="py-16 md:py-20 lg:py-24 container max-w-7xl px-4 sm:px-6 lg:px-8 crystal-surface" style="margin: 0 auto;">
 
       <!-- Section Header -->
-      <div class="destinations-header">
+      <div class="destinations-header" style="text-align: center; margin-bottom: 3rem;">
         <div class="destinations-heading-group">
-          <div class="destinations-eyebrow">
+          <div class="destinations-eyebrow" style="color: var(--brand-gold-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
             <span class="eyebrow-dot"></span>
-            TRENDING NOW
+            DISCOVER THE WORLD
           </div>
-          <h2 class="destinations-main-heading" id="destinations-heading">Popular Destinations</h2>
-          <p class="destinations-subtitle">Handpicked destinations with exclusive deals</p>
+          <h2 class="destinations-main-heading" id="destinations-heading" style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Explore Destinations</h2>
+          <p class="destinations-subtitle" style="color: rgba(255, 255, 255, 0.8); font-size: 1.125rem;">Browse by category and find your perfect getaway</p>
+        </div>
+
+        <!-- Destination Tabs -->
+        <div class="destination-tabs" style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+          <button class="destination-tab active" data-tab="featured" style="padding: 0.75rem 1.5rem; border-radius: 50px; background: var(--brand-emerald-600); color: white; border: none; cursor: pointer; transition: all 0.3s; font-weight: 500;">Featured</button>
+          <button class="destination-tab" data-tab="weekend" style="padding: 0.75rem 1.5rem; border-radius: 50px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s; font-weight: 500;">Weekend</button>
+          <button class="destination-tab" data-tab="budget" style="padding: 0.75rem 1.5rem; border-radius: 50px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s; font-weight: 500;">Budget</button>
+          <button class="destination-tab" data-tab="international" style="padding: 0.75rem 1.5rem; border-radius: 50px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s; font-weight: 500;">International</button>
         </div>
         <a href="destinations.html" class="view-all-destinations-link" aria-label="View all destinations">
           <span>View All Destinations</span>
@@ -930,14 +1136,28 @@
       <div class="destinations-grid">
 
         <!-- Destination 1: PARIS, FRANCE (Large Featured) -->
-        <article class="destination-card large-featured" data-destination-id="paris-france" tabindex="0">
-          <div class="destination-image-wrapper loading">
-            <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80 800w,
-                           https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80 1200w"
-              alt="Eiffel Tower at sunset in Paris, France" loading="lazy">
-            <div class="destination-image-overlay"></div>
+        <article class="destination-card large-featured transition-premium" data-destination-id="paris-france" tabindex="0" style="position: relative; border-radius: var(--border-radius-card); overflow: hidden; cursor: pointer;">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow" style="position: relative; aspect-ratio: 16/9;">
+            <picture>
+              <source 
+                type="image/avif"
+                srcset="/images/paris-400.avif 400w, /images/paris-800.avif 800w, /images/paris-1200.avif 1200w"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
+              <source 
+                type="image/webp"
+                srcset="/images/paris-400.webp 400w, /images/paris-800.webp 800w, /images/paris-1200.webp 1200w"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw">
+              <img 
+                class="destination-image"
+                src="/images/paris-800.jpg"
+                alt="Eiffel Tower at sunset in Paris, France"
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            </picture>
+            <div class="destination-image-overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);"></div>
           </div>
 
           <div class="deal-badge">Save 25%</div>
@@ -967,17 +1187,17 @@
               <span class="feature-pill">Romantic</span>
             </div>
 
-            <div class="destination-pricing">
+            <div class="destination-pricing" style="display: flex; align-items: center; justify-content: space-between; margin-top: 1.5rem;">
               <div class="price-display">
-                <span class="price-label">Starting from</span>
+                <span class="price-label" style="display: block; font-size: 0.75rem; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">from</span>
                 <div>
-                  <span class="price-amount">₹45,999</span>
-                  <span class="price-suffix">/person</span>
+                  <span class="price-amount" style="font-size: 1.75rem; font-weight: 700; color: var(--brand-gold-400);">₹45,999</span>
+                  <span class="price-suffix" style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">/person</span>
                 </div>
               </div>
-              <button class="destination-cta-button" aria-label="View deals for Paris">
-                <span>View Deals</span>
-                <svg class="cta-button-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              <button class="destination-cta-button transition-premium" aria-label="Quick book Paris" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--brand-gold-500), var(--brand-gold-400)); color: #0a1f13; border: none; border-radius: 50px; font-weight: 600; font-size: 0.9375rem; cursor: pointer; box-shadow: 0 4px 12px rgba(244, 208, 144, 0.3); display: flex; align-items: center; gap: 0.5rem;">
+                <span>Quick Book</span>
+                <svg style="width: 16px; height: 16px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
@@ -989,11 +1209,11 @@
 
         <!-- Destination 2: MALDIVES -->
         <article class="destination-card standard" data-destination-id="maldives" tabindex="0">
-          <div class="destination-image-wrapper loading">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow loading">
             <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80 800w"
-              alt="Overwater bungalows in Maldives" loading="lazy">
+              src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80"
+              srcset="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80 400w, https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80 800w"
+              alt="Overwater bungalows in Maldives" width="800" height="600" loading="lazy" style="object-fit: cover; object-position: center; aspect-ratio: 4/5;">
             <div class="destination-image-overlay"></div>
           </div>
 
@@ -1056,11 +1276,11 @@
 
         <!-- Destination 3: DUBAI, UAE -->
         <article class="destination-card standard" data-destination-id="dubai-uae" tabindex="0">
-          <div class="destination-image-wrapper loading">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow loading">
             <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80 800w"
-              alt="Burj Khalifa skyline at night in Dubai" loading="lazy">
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
+              srcset="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80 400w, https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80 800w"
+              alt="Burj Khalifa skyline at night in Dubai" width="800" height="600" loading="lazy" style="object-fit: cover; object-position: center; aspect-ratio: 4/5;">
             <div class="destination-image-overlay"></div>
           </div>
 
@@ -1111,11 +1331,11 @@
 
         <!-- Destination 4: BALI, INDONESIA -->
         <article class="destination-card standard" data-destination-id="bali-indonesia" tabindex="0">
-          <div class="destination-image-wrapper loading">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow loading">
             <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80 800w"
-              alt="Rice terraces and temple in Bali, Indonesia" loading="lazy">
+              src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80"
+              srcset="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80 400w, https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80 800w"
+              alt="Rice terraces and temple in Bali, Indonesia" width="800" height="600" loading="lazy" style="object-fit: cover; object-position: center; aspect-ratio: 4/5;">
             <div class="destination-image-overlay"></div>
           </div>
 
@@ -1168,11 +1388,11 @@
 
         <!-- Destination 5: SWITZERLAND -->
         <article class="destination-card standard" data-destination-id="switzerland" tabindex="0">
-          <div class="destination-image-wrapper loading">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow loading">
             <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80 800w"
-              alt="Alpine mountains and lake in Switzerland" loading="lazy">
+              src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80"
+              srcset="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&q=80 400w, https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80 800w"
+              alt="Alpine mountains and lake in Switzerland" width="800" height="600" loading="lazy" style="object-fit: cover; object-position: center; aspect-ratio: 4/5;">
             <div class="destination-image-overlay"></div>
           </div>
 
@@ -1223,11 +1443,11 @@
 
         <!-- Destination 6: THAILAND -->
         <article class="destination-card standard" data-destination-id="thailand" tabindex="0">
-          <div class="destination-image-wrapper loading">
+          <div class="destination-image-wrapper rounded-2xl ring-1 ring-white/15 border border-white/20 crystal-surface three-layer-crystal-shadow loading">
             <img class="destination-image"
-              data-src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80" data-srcset="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&q=80 400w,
-                           https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80 800w"
-              alt="Phi Phi Islands beach in Thailand" loading="lazy">
+              src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80"
+              srcset="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&q=80 400w, https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80 800w"
+              alt="Phi Phi Islands beach in Thailand" width="800" height="600" loading="lazy" style="object-fit: cover; object-position: center; aspect-ratio: 4/5;">
             <div class="destination-image-overlay"></div>
           </div>
 
@@ -1295,34 +1515,121 @@
     </section>
     <!-- ========== POPULAR DESTINATIONS SECTION END ========== -->
 
-    <!-- ========== TRIP INSPIRATION BY CATEGORY START ========== -->
-    <section class="trip-inspiration-section" id="trip-inspiration" role="region" aria-labelledby="inspiration-heading">
-      <div class="inspiration-container">
-        <!-- Section Header -->
-        <div class="inspiration-header">
-          <h2 id="inspiration-heading" class="inspiration-title">Find Your Perfect Getaway</h2>
-          <p class="inspiration-subtitle">Curated collections for every traveler</p>
-        </div>
+    <!-- ========== TOP DEALS MODULE START ========== -->
+  <section class="top-deals-section crystal-surface card-normalized py-16 md:py-20 lg:py-24 container max-w-7xl px-4 sm:px-6 lg:px-8" id="top-deals" role="region" aria-labelledby="deals-heading" style="margin: 0 auto;">
 
-        <!-- Tab Navigation -->
-        <div class="inspiration-tabs" role="tablist">
-          <button class="inspiration-tab active" role="tab" aria-selected="true" data-category="beach">
-            <i class="fas fa-umbrella-beach"></i>
-            <span>Beach Escapes</span>
-          </button>
-          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="city">
-            <i class="fas fa-city"></i>
-            <span>City Adventures</span>
-          </button>
-          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="mountain">
-            <i class="fas fa-mountain"></i>
-            <span>Mountain Retreats</span>
-          </button>
-          <button class="inspiration-tab" role="tab" aria-selected="false" data-category="romantic">
-            <i class="fas fa-heart"></i>
-            <span>Romantic Getaways</span>
-          </button>
+      <!-- Section Header -->
+      <div class="deals-header" style="text-align: center; margin-bottom: 3rem;">
+        <div class="deals-eyebrow" style="color: var(--brand-gold-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; margin-bottom: 0.75rem;">
+          <i class="fas fa-fire" style="margin-right: 0.5rem;"></i>
+          LIMITED TIME OFFERS
         </div>
+        <h2 id="deals-heading" style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #fff;">Top Deals</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Exclusive discounts on popular routes and airlines</p>
+      </div>
+
+      <!-- Deal Category Tabs -->
+      <div class="deal-tabs" role="tablist" aria-label="Deal categories" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+        <button class="deal-tab active transition-premium" role="tab" aria-selected="true" data-tab="airlines" style="padding: 0.875rem 2rem; border-radius: 50px; background: var(--brand-emerald-600); color: white; border: none; cursor: pointer; font-weight: 600; font-size: 0.9375rem; box-shadow: 0 4px 12px rgba(26, 77, 46, 0.3);">
+          <i class="fas fa-plane" style="margin-right: 0.5rem;"></i>By Airlines
+        </button>
+        <button class="deal-tab transition-premium" role="tab" aria-selected="false" data-tab="routes" style="padding: 0.875rem 2rem; border-radius: 50px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; font-weight: 600; font-size: 0.9375rem;">
+          <i class="fas fa-route" style="margin-right: 0.5rem;"></i>By Routes
+        </button>
+        <button class="deal-tab transition-premium" role="tab" aria-selected="false" data-tab="seasonal" style="padding: 0.875rem 2rem; border-radius: 50px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; font-weight: 600; font-size: 0.9375rem;">
+          <i class="fas fa-calendar-alt" style="margin-right: 0.5rem;"></i>Seasonal
+        </button>
+      </div>
+
+      <!-- Deal Cards Grid -->
+      <div class="deals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+        <!-- Deal Card 1 -->
+        <article class="deal-card transition-premium" style="background: rgba(255, 255, 255, 0.08); border-radius: var(--border-radius-card); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.12); position: relative; overflow: hidden;">
+          <div class="deal-badge" style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #dc2626, #f97316); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);">
+            Save 35%
+          </div>
+          <div class="deal-route" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+            Delhi → Dubai
+          </div>
+          <div class="deal-airline" style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem; margin-bottom: 1rem;">
+            <i class="fas fa-plane" style="margin-right: 0.5rem;"></i>Emirates
+          </div>
+          <div class="deal-pricing" style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem;">
+            <span class="original-price" style="text-decoration: line-through; color: rgba(255, 255, 255, 0.5); font-size: 1rem;">₹32,999</span>
+            <span class="deal-price" style="font-size: 2rem; font-weight: 700; color: var(--brand-gold-400);">₹21,499</span>
+          </div>
+          <div class="deal-expires" style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>Ends in 3 days
+          </div>
+          <button class="deal-cta transition-premium" style="width: 100%; padding: 0.875rem; background: linear-gradient(135deg, var(--brand-gold-500), var(--brand-gold-400)); color: #0a1f13; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(244, 208, 144, 0.3);">
+            Book Now
+          </button>
+        </article>
+
+        <!-- Deal Card 2 -->
+        <article class="deal-card transition-premium" style="background: rgba(255, 255, 255, 0.08); border-radius: var(--border-radius-card); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.12); position: relative; overflow: hidden;">
+          <div class="deal-badge" style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #dc2626, #f97316); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);">
+            Save 40%
+          </div>
+          <div class="deal-route" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+            Mumbai → London
+          </div>
+          <div class="deal-airline" style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem; margin-bottom: 1rem;">
+            <i class="fas fa-plane" style="margin-right: 0.5rem;"></i>British Airways
+          </div>
+          <div class="deal-pricing" style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem;">
+            <span class="original-price" style="text-decoration: line-through; color: rgba(255, 255, 255, 0.5); font-size: 1rem;">₹65,999</span>
+            <span class="deal-price" style="font-size: 2rem; font-weight: 700; color: var(--brand-gold-400);">₹39,599</span>
+          </div>
+          <div class="deal-expires" style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>Ends in 5 days
+          </div>
+          <button class="deal-cta transition-premium" style="width: 100%; padding: 0.875rem; background: linear-gradient(135deg, var(--brand-gold-500), var(--brand-gold-400)); color: #0a1f13; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(244, 208, 144, 0.3);">
+            Book Now
+          </button>
+        </article>
+
+        <!-- Deal Card 3 -->
+        <article class="deal-card transition-premium" style="background: rgba(255, 255, 255, 0.08); border-radius: var(--border-radius-card); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.12); position: relative; overflow: hidden;">
+          <div class="deal-badge" style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #dc2626, #f97316); color: white; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);">
+            Save 30%
+          </div>
+          <div class="deal-route" style="font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+            Delhi → Singapore
+          </div>
+          <div class="deal-airline" style="color: rgba(255, 255, 255, 0.7); font-size: 0.875rem; margin-bottom: 1rem;">
+            <i class="fas fa-plane" style="margin-right: 0.5rem;"></i>Singapore Airlines
+          </div>
+          <div class="deal-pricing" style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem;">
+            <span class="original-price" style="text-decoration: line-through; color: rgba(255, 255, 255, 0.5); font-size: 1rem;">₹42,999</span>
+            <span class="deal-price" style="font-size: 2rem; font-weight: 700; color: var(--brand-gold-400);">₹30,099</span>
+          </div>
+          <div class="deal-expires" style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem; margin-bottom: 1.5rem;">
+            <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>Ends in 7 days
+          </div>
+          <button class="deal-cta transition-premium" style="width: 100%; padding: 0.875rem; background: linear-gradient(135deg, var(--brand-gold-500), var(--brand-gold-400)); color: #0a1f13; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(244, 208, 144, 0.3);">
+            Book Now
+          </button>
+        </article>
+      </div>
+
+      <!-- View All CTA -->
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="offers.html" class="transition-premium" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50px; color: #fff; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+          View All Deals
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+    <!-- ========== TOP DEALS MODULE END ========== -->
+
+    <!-- ========== DIVIDER ========== -->
+    <div class="section-divider sparkle">
+      <div class="section-divider glass-divider gradient-bar" aria-hidden="true" style="height: 2px; width: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, var(--brand-gold-400) 50%, rgba(255,255,255,0.12) 100%); margin: 0 auto 2rem auto; border-radius: 1px;"></div>
+    </div>
+
+    <!-- REMOVED: Trip Inspiration section (consolidated into Destinations and Deals) -->
 
         <!-- Content Panels -->
         <div class="inspiration-content">
@@ -1330,7 +1637,7 @@
           <div class="inspiration-panel active" data-panel="beach">
             <div class="inspiration-grid">
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Maldives</h3>
                   <p>Sun, sand & serenity</p>
@@ -1339,7 +1646,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Phuket" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Phuket" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Phuket</h3>
                   <p>Tropical paradise awaits</p>
@@ -1348,7 +1655,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Bora Bora</h3>
                   <p>Overwater bungalow luxury</p>
@@ -1357,7 +1664,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80" alt="Cancun" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80" alt="Cancun" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Cancun</h3>
                   <p>Caribbean dreams</p>
@@ -1366,7 +1673,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80" alt="Seychelles" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80" alt="Seychelles" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Seychelles</h3>
                   <p>Pristine island beauty</p>
@@ -1375,7 +1682,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Santorini</h3>
                   <p>Greek island magic</p>
@@ -1390,7 +1697,7 @@
           <div class="inspiration-panel" data-panel="city">
             <div class="inspiration-grid">
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Paris</h3>
                   <p>City of lights & love</p>
@@ -1399,7 +1706,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" alt="London" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" alt="London" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>London</h3>
                   <p>History meets modernity</p>
@@ -1408,7 +1715,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80" alt="New York" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80" alt="New York" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>New York</h3>
                   <p>The city that never sleeps</p>
@@ -1417,7 +1724,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=800&q=80" alt="Tokyo" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=800&q=80" alt="Tokyo" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Tokyo</h3>
                   <p>Tradition meets innovation</p>
@@ -1426,7 +1733,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Dubai" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80" alt="Dubai" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Dubai</h3>
                   <p>Luxury & adventure</p>
@@ -1435,7 +1742,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" alt="Barcelona" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" alt="Barcelona" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Barcelona</h3>
                   <p>Art, culture & beaches</p>
@@ -1450,7 +1757,7 @@
           <div class="inspiration-panel" data-panel="mountain">
             <div class="inspiration-grid">
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80" alt="Swiss Alps" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&q=80" alt="Swiss Alps" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Swiss Alps</h3>
                   <p>Majestic peaks & valleys</p>
@@ -1459,7 +1766,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Nepal Himalayas" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Nepal Himalayas" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Nepal</h3>
                   <p>Himalayan adventures</p>
@@ -1468,7 +1775,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Colorado Rockies" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Colorado Rockies" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Colorado</h3>
                   <p>Rocky Mountain high</p>
@@ -1477,7 +1784,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="New Zealand Alps" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80" alt="New Zealand Alps" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>New Zealand</h3>
                   <p>Southern Alps beauty</p>
@@ -1486,7 +1793,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Patagonia" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Patagonia" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Patagonia</h3>
                   <p>Wild frontier</p>
@@ -1495,7 +1802,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Austrian Alps" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Austrian Alps" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Austria</h3>
                   <p>Alpine charm</p>
@@ -1510,7 +1817,7 @@
           <div class="inspiration-panel" data-panel="romantic">
             <div class="inspiration-grid">
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80" alt="Paris" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Paris</h3>
                   <p>Romance at every corner</p>
@@ -1519,7 +1826,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80" alt="Venice" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80" alt="Venice" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Venice</h3>
                   <p>Gondola rides & gelato</p>
@@ -1528,7 +1835,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80" alt="Maldives" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Maldives</h3>
                   <p>Private island escapes</p>
@@ -1537,7 +1844,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1540202404-a2f9f34cd1b4?w=800&q=80" alt="Santorini" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Santorini</h3>
                   <p>Sunset & white villages</p>
@@ -1546,7 +1853,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Bora Bora" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Bora Bora</h3>
                   <p>Overwater paradise</p>
@@ -1555,7 +1862,7 @@
                 </div>
               </article>
               <article class="inspiration-card">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Bali" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Bali" width="800" height="600" loading="lazy" decoding="async">
                 <div class="inspiration-overlay">
                   <h3>Bali</h3>
                   <p>Tropical romance</p>
@@ -1570,15 +1877,101 @@
     </section>
     <!-- ========== TRIP INSPIRATION BY CATEGORY END ========== -->
 
-    <!-- ========== DIVIDER: Inspiration → Price Alerts ========== -->
-    <div class="section-divider sparkle">
-      <div class="sparkle-icon">
-        <i class="fas fa-sparkles"></i>
+    <!-- ========== TESTIMONIALS & SOCIAL PROOF START ========== -->
+  <section class="testimonials-section crystal-surface card-normalized py-16 md:py-20 lg:py-24 container max-w-7xl px-4 sm:px-6 lg:px-8" style="margin: 0 auto;">
+      <div class="testimonials-header" style="text-align: center; margin-bottom: 3rem;">
+        <div style="color: var(--brand-gold-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; margin-bottom: 0.75rem;">
+          <i class="fas fa-star" style="margin-right: 0.5rem;"></i>
+          TRUSTED BY TRAVELERS
+        </div>
+        <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: #fff;">What Our Customers Say</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">Real reviews from real travelers</p>
       </div>
+
+      <!-- Testimonials Grid -->
+      <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+
+        <!-- Testimonial Card 1 -->
+        <article class="testimonial-card glass-12 card-normalized transition-premium" style="padding: 2rem;">
+          <div class="rating" style="display: flex; gap: 0.25rem; margin-bottom: 1rem;">
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+          </div>
+          <blockquote style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            "Best flight booking experience ever! Saved ₹15,000 on my Dubai trip. The interface is so intuitive and the deals are genuine."
+          </blockquote>
+          <div class="author" style="display: flex; align-items: center; gap: 1rem;">
+            <img src="https://i.pravatar.cc/60?img=33" alt="Amit Patel" width="48" height="48" style="border-radius: 50%; border: 2px solid var(--brand-gold-400);" loading="lazy">
+            <div>
+              <div style="font-weight: 600; color: #fff;">Amit Patel</div>
+              <div style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Business Traveler • Verified</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial Card 2 -->
+        <article class="testimonial-card glass-12 card-normalized transition-premium" style="padding: 2rem;">
+          <div class="rating" style="display: flex; gap: 0.25rem; margin-bottom: 1rem;">
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+          </div>
+          <blockquote style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            "Destinova made our honeymoon planning effortless. Instant confirmation, best prices, and their support team went above and beyond!"
+          </blockquote>
+          <div class="author" style="display: flex; align-items: center; gap: 1rem;">
+            <img src="https://i.pravatar.cc/60?img=47" alt="Priya Sharma" width="48" height="48" style="border-radius: 50%; border: 2px solid var(--brand-gold-400);" loading="lazy">
+            <div>
+              <div style="font-weight: 600; color: #fff;">Priya & Raj Sharma</div>
+              <div style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Honeymooners • Verified</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Testimonial Card 3 -->
+        <article class="testimonial-card glass-12 card-normalized transition-premium" style="padding: 2rem;">
+          <div class="rating" style="display: flex; gap: 0.25rem; margin-bottom: 1rem;">
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+            <i class="fas fa-star" style="color: var(--brand-gold-400);"></i>
+          </div>
+          <blockquote style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            "As a frequent flyer, I've tried many platforms. Destinova's price alerts and flexible cancellation policy are game-changers."
+          </blockquote>
+          <div class="author" style="display: flex; align-items: center; gap: 1rem;">
+            <img src="https://i.pravatar.cc/60?img=28" alt="Sarah Johnson" width="48" height="48" style="border-radius: 50%; border: 2px solid var(--brand-gold-400);" loading="lazy">
+            <div>
+              <div style="font-weight: 600; color: #fff;">Sarah Johnson</div>
+              <div style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.6);">Frequent Flyer • Verified</div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- See All Reviews Link -->
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="reviews.html" class="transition-premium" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--brand-gold-400); text-decoration: none; font-weight: 600; font-size: 1rem;">
+          See All 50,000+ Reviews
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+    <!-- ========== TESTIMONIALS & SOCIAL PROOF END ========== -->
+
+    <!-- ========== DIVIDER ========== -->
+    <div class="section-divider gradient-bar">
+      <div class="section-divider glass-divider gradient-bar" aria-hidden="true" style="height: 2px; width: 100%; background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, var(--brand-gold-400) 50%, rgba(255,255,255,0.12) 100%); margin: 0 auto 2rem auto; border-radius: 1px;"></div>
     </div>
 
     <!-- ========== PRICE ALERTS CTA START ========== -->
-    <section class="price-alerts-section" role="region" aria-labelledby="price-alerts-heading">
+  <section class="price-alerts-section crystal-surface card-normalized py-16 md:py-20 lg:py-24 container max-w-4xl px-4 sm:px-6 lg:px-8" role="region" aria-labelledby="price-alerts-heading" style="margin: 0 auto;">
       <div class="price-alerts-container">
         <!-- Left: Visual/Illustration -->
         <div class="price-alerts-visual">
@@ -2760,7 +3153,7 @@
 
                 <!-- Hero Image with Parallax -->
                 <div class="panel-hero-image">
-                  <img src="/site-images/EC-P1.jpg" alt="Modern Economy Class cabin" loading="lazy">
+                  <img src="/site-images/EC-P1.jpg" alt="Modern Economy Class cabin" width="800" height="600" loading="lazy" decoding="async">
                   <div class="image-overlay"></div>
                 </div>
 
@@ -2868,7 +3261,7 @@
               <div class="panel-3d-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
 
                 <div class="panel-hero-image">
-                  <img src="/site-images/BC-P4.jpg" alt="Spacious Business Class seat" loading="lazy">
+                  <img src="/site-images/BC-P4.jpg" alt="Spacious Business Class seat" width="800" height="600" loading="lazy" decoding="async">
                   <div class="image-overlay"></div>
                 </div>
 
@@ -2972,7 +3365,7 @@
               <div class="panel-3d-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
 
                 <div class="panel-hero-image">
-                  <img src="/site-images/FC-P1.webp" alt="Luxurious First Class suite" loading="lazy">
+                  <img src="/site-images/FC-P1.webp" alt="Luxurious First Class suite" width="800" height="600" loading="lazy" decoding="async">
                   <div class="image-overlay"></div>
                 </div>
 
@@ -3147,73 +3540,73 @@
         <div class="partners-grid" data-aos="fade-up" data-aos-delay="200">
           <!-- Partner Logo 1 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/EK.png" alt="Emirates" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/EK.png" alt="Emirates" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Emirates</span>
           </div>
 
           <!-- Partner Logo 2 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/DL.png" alt="Delta Airlines" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/DL.png" alt="Delta Airlines" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Delta</span>
           </div>
 
           <!-- Partner Logo 3 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/UA.png" alt="United Airlines" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/UA.png" alt="United Airlines" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">United</span>
           </div>
 
           <!-- Partner Logo 4 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/AA.png" alt="American Airlines" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/AA.png" alt="American Airlines" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">American</span>
           </div>
 
           <!-- Partner Logo 5 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/BA.png" alt="British Airways" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/BA.png" alt="British Airways" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">British Airways</span>
           </div>
 
           <!-- Partner Logo 6 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/LH.png" alt="Lufthansa" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/LH.png" alt="Lufthansa" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Lufthansa</span>
           </div>
 
           <!-- Partner Logo 7 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/AF.png" alt="Air France" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/AF.png" alt="Air France" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Air France</span>
           </div>
 
           <!-- Partner Logo 8 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/QR.png" alt="Qatar Airways" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/QR.png" alt="Qatar Airways" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Qatar Airways</span>
           </div>
 
           <!-- Partner Logo 9 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/SQ.png" alt="Singapore Airlines" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/SQ.png" alt="Singapore Airlines" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Singapore</span>
           </div>
 
           <!-- Partner Logo 10 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/EY.png" alt="Etihad Airways" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/EY.png" alt="Etihad Airways" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Etihad</span>
           </div>
 
           <!-- Partner Logo 11 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/TK.png" alt="Turkish Airlines" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/TK.png" alt="Turkish Airlines" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Turkish</span>
           </div>
 
           <!-- Partner Logo 12 -->
           <div class="partner-logo-item">
-            <img src="https://images.kiwi.com/airlines/128/CX.png" alt="Cathay Pacific" loading="lazy">
+            <img src="https://images.kiwi.com/airlines/128/CX.png" alt="Cathay Pacific" width="128" height="128" loading="lazy" decoding="async">
             <span class="partner-name">Cathay Pacific</span>
           </div>
         </div>
@@ -3231,59 +3624,49 @@
     <!-- ============================================= -->
     <!-- TESTIMONIALS SECTION REMOVED -->
     <!-- ============================================= -->
+    <!-- Duplicate testimonials section removed for deduplication -->
 
-    <!-- ========== MOBILE APP PROMOTION START ========== -->
-    <section class="mobile-app-section" role="region" aria-labelledby="mobile-app-heading">
-      <div class="mobile-app-container">
-        <!-- Left Side: Content -->
-        <div class="mobile-app-content">
-          <h2 id="mobile-app-heading" class="mobile-app-title">Book Faster on Our Mobile App</h2>
-          <p class="mobile-app-subtitle">Exclusive app-only deals + instant notifications</p>
+    <!-- ========== DIVIDER ========== -->
+    <div class="section-divider wave-divider">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path class="wave-path" d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z"></path>
+      </svg>
+    </div>
 
-          <div class="mobile-app-features">
-            <div class="app-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Save up to 20% on app bookings</span>
-            </div>
-            <div class="app-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Get instant price drop alerts</span>
-            </div>
-            <div class="app-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Mobile-only flash sales</span>
-            </div>
-            <div class="app-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Manage bookings on the go</span>
-            </div>
-          </div>
+    <!-- ========== MOBILE APP BANNER START ========== -->
+    <section class="mobile-app-banner crystal-surface card-normalized" style="max-width: 1100px; margin: 4rem auto; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
 
-          <div class="mobile-app-badges">
-            <a href="#" class="app-badge app-store">
-              <i class="fab fa-apple"></i>
-              <div>
-                <span>Download on the</span>
-                <strong>App Store</strong>
-              </div>
-            </a>
-            <a href="#" class="app-badge google-play">
-              <i class="fab fa-google-play"></i>
-              <div>
-                <span>Get it on</span>
-                <strong>Google Play</strong>
-              </div>
-            </a>
-          </div>
+      <!-- Content -->
+      <div style="flex: 1; min-width: 300px;">
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(244, 208, 144, 0.1); color: var(--brand-gold-400); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">
+          <i class="fas fa-mobile-alt"></i>
+          MOBILE APP
         </div>
+        <h2 style="font-size: 1.75rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem;">Book Faster In-App</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1rem; margin-bottom: 1.5rem;">Exclusive deals + instant notifications on your phone</p>
 
-        <!-- Right Side: QR Code + Phone Mockup -->
-        <div class="mobile-app-visual">
-          <div class="qr-code-container">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://destinova.app" alt="Download app QR code" class="qr-code">
-            <p class="qr-label">Scan to download</p>
-          </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="app-badge transition-premium" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.5rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: #fff; text-decoration: none;">
+            <i class="fab fa-apple" style="font-size: 1.5rem;"></i>
+            <div style="text-align: left;">
+              <div style="font-size: 0.75rem; opacity: 0.8;">Download on the</div>
+              <div style="font-weight: 600;">App Store</div>
+            </div>
+          </a>
+          <a href="#" class="app-badge transition-premium" style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.5rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: #fff; text-decoration: none;">
+            <i class="fab fa-google-play" style="font-size: 1.5rem;"></i>
+            <div style="text-align: left;">
+              <div style="font-size: 0.75rem; opacity: 0.8;">Get it on</div>
+              <div style="font-weight: 600;">Google Play</div>
+            </div>
+          </a>
         </div>
+      </div>
+
+      <!-- QR Code -->
+      <div style="text-align: center;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://destinova.app" alt="Scan to download Destinova app" width="150" height="150" style="border-radius: 12px; border: 4px solid rgba(255, 255, 255, 0.1);" loading="lazy">
+        <p style="margin-top: 0.75rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.7);">Scan to download</p>
       </div>
     </section>
     <!-- ========== MOBILE APP PROMOTION END ========== -->
@@ -3479,7 +3862,7 @@
               data-aos-delay="200">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80"
-                  alt="Paris Eiffel Tower at sunset" class="blog-card-image" loading="lazy">
+                  alt="Paris Eiffel Tower at sunset" class="blog-card-image" width="1200" height="800" loading="lazy" decoding="async">
                 <div class="blog-card-image-overlay"></div>
 
                 <span class="blog-card-category-badge">Destination Guides</span>
@@ -3494,8 +3877,8 @@
 
                 <div class="blog-card-content-overlay">
                   <h3 class="blog-card-title-large">Ultimate Guide to Exploring Paris on a Budget</h3>
-                  <p class="blog-card-excerpt-large">Discover how to experience the City of Light without breaking the
-                    bank. From hidden gems to money-saving tips, we've got you covered.</p>
+                  <p class="blog-card-excerpt-large" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Discover how to experience the City of Light without breaking the bank. From hidden gems to money-saving tips, we've got you covered.</p>
+                  <p class="blog-card-excerpt-large" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Discover how to experience the City of Light without breaking the bank. From hidden gems to money-saving tips, we've got you covered.</p>
 
                   <div class="blog-card-author-section">
                     <img src="https://i.pravatar.cc/150?img=5" alt="Sophie Martin" class="blog-author-avatar">
@@ -3521,7 +3904,7 @@
             <article class="blog-card" data-category="adventure" data-aos="fade-up" data-aos-delay="250">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
-                  alt="Hidden beach in Southeast Asia" class="blog-card-image" loading="lazy">
+                  alt="Hidden beach in Southeast Asia" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3550,8 +3933,8 @@
                   </span>
                 </div>
                 <h3 class="blog-card-title">10 Hidden Beaches in Southeast Asia You Must Visit</h3>
-                <p class="blog-card-excerpt">Escape the crowds and discover pristine shores where turquoise waters meet
-                  powdery white sand. These secret beaches offer paradise without the tourist rush.</p>
+                <p class="blog-card-excerpt" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Escape the crowds and discover pristine shores where turquoise waters meet powdery white sand. These secret beaches offer paradise without the tourist rush.</p>
+                <p class="blog-card-excerpt" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Escape the crowds and discover pristine shores where turquoise waters meet powdery white sand. These secret beaches offer paradise without the tourist rush.</p>
                 <div class="blog-card-footer">
                   <div class="blog-card-author">
                     <img src="https://i.pravatar.cc/150?img=12" alt="Alex Chen" class="blog-author-avatar-small">
@@ -3574,7 +3957,7 @@
             <article class="blog-card" data-category="tips" data-aos="fade-up" data-aos-delay="300">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=800&q=80"
-                  alt="Organized travel suitcase" class="blog-card-image" loading="lazy">
+                  alt="Organized travel suitcase" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3603,8 +3986,8 @@
                   </span>
                 </div>
                 <h3 class="blog-card-title">How to Pack Light for a 2-Week European Trip</h3>
-                <p class="blog-card-excerpt">Master the art of minimalist travel with our proven packing strategies.
-                  Learn how to fit everything you need into a single carry-on bag.</p>
+                <p class="blog-card-excerpt" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Master the art of minimalist travel with our proven packing strategies. Learn how to fit everything you need into a single carry-on bag.</p>
+                <p class="blog-card-excerpt" style="display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Master the art of minimalist travel with our proven packing strategies. Learn how to fit everything you need into a single carry-on bag.</p>
                 <div class="blog-card-footer">
                   <div class="blog-card-author">
                     <img src="https://i.pravatar.cc/150?img=33" alt="Emma Thompson" class="blog-author-avatar-small">
@@ -3627,7 +4010,7 @@
             <article class="blog-card blog-card-tall" data-category="culture" data-aos="fade-up" data-aos-delay="350">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80"
-                  alt="Bangkok street food night market" class="blog-card-image" loading="lazy">
+                  alt="Bangkok street food night market" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3693,7 +4076,7 @@
             <article class="blog-card" data-category="tips" data-aos="fade-up" data-aos-delay="450">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
-                  alt="Solo traveler on mountain peak" class="blog-card-image" loading="lazy">
+                  alt="Solo traveler on mountain peak" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3746,7 +4129,7 @@
             <article class="blog-card" data-category="budget" data-aos="fade-up" data-aos-delay="500">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
-                  alt="Dubai skyline at dusk" class="blog-card-image" loading="lazy">
+                  alt="Dubai skyline at dusk" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3799,7 +4182,7 @@
             <article class="blog-card blog-card-tall" data-category="culture" data-aos="fade-up" data-aos-delay="550">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80"
-                  alt="Traditional Japanese temple" class="blog-card-image" loading="lazy">
+                  alt="Traditional Japanese temple" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3852,7 +4235,7 @@
             <article class="blog-card" data-category="guides" data-aos="fade-up" data-aos-delay="600">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80"
-                  alt="Maldives overwater bungalows" class="blog-card-image" loading="lazy">
+                  alt="Maldives overwater bungalows" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3905,7 +4288,7 @@
             <article class="blog-card" data-category="adventure" data-aos="fade-up" data-aos-delay="650">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                  alt="Himalayan mountain landscape" class="blog-card-image" loading="lazy">
+                  alt="Himalayan mountain landscape" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -3958,7 +4341,7 @@
             <article class="blog-card" data-category="tips" data-aos="fade-up" data-aos-delay="700">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
-                  alt="Airplane window view of clouds" class="blog-card-image" loading="lazy">
+                  alt="Airplane window view of clouds" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -4011,7 +4394,7 @@
             <article class="blog-card" data-category="guides" data-aos="fade-up" data-aos-delay="750">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=800&q=80"
-                  alt="Swiss alpine train journey" class="blog-card-image" loading="lazy">
+                  alt="Swiss alpine train journey" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -4064,7 +4447,7 @@
             <article class="blog-card" data-category="budget" data-aos="fade-up" data-aos-delay="800">
               <div class="blog-card-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80"
-                  alt="Digital nomad working on laptop at beach" class="blog-card-image" loading="lazy">
+                  alt="Digital nomad working on laptop at beach" class="blog-card-image" width="800" height="600" loading="lazy" decoding="async">
                 <button class="blog-bookmark-btn" aria-label="Bookmark article">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
@@ -4222,10 +4605,10 @@
   <footer role="contentinfo" aria-label="Site footer">
 
     <!-- ═══════════════════════════════════════════════════════════════════════════════
-         PART 1: NEWSLETTER HERO SECTION
+         NEWSLETTER SECTION (Single consolidated capture)
          ═══════════════════════════════════════════════════════════════════════════════ -->
 
-    <section class="footer-newsletter-hero" aria-labelledby="newsletter-heading">
+    <section class="footer-newsletter-hero crystal-surface" aria-labelledby="newsletter-heading" style="margin: 4rem auto; max-width: 1400px; padding: 4rem 3rem; position: relative; overflow: hidden;">
       <!-- Decorative Background Elements -->
       <div class="newsletter-bg-decoration newsletter-bg-decoration-1" aria-hidden="true"></div>
       <div class="newsletter-bg-decoration newsletter-bg-decoration-2" aria-hidden="true"></div>
@@ -4348,69 +4731,6 @@
               </div>
             </div>
 
-            <!-- Interests Checkboxes (Optional - Expandable) -->
-            <div class="newsletter-interests-section">
-              <button type="button" class="interests-toggle-button" aria-expanded="false">
-                <span>Customize your interests</span>
-                <span class="interests-toggle-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
-                </span>
-              </button>
-
-              <div class="interests-grid">
-                <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" name="interest" value="beach">
-                  <div class="checkbox-box">
-                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <span class="checkbox-label">Beach Destinations</span>
-                </label>
-
-                <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" name="interest" value="adventure">
-                  <div class="checkbox-box">
-                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <span class="checkbox-label">Adventure Travel</span>
-                </label>
-
-                <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" name="interest" value="budget">
-                  <div class="checkbox-box">
-                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <span class="checkbox-label">Budget Deals</span>
-                </label>
-
-                <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" name="interest" value="luxury">
-                  <div class="checkbox-box">
-                    <svg class="checkbox-checkmark" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                      stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </div>
-                  <span class="checkbox-label">Luxury Getaways</span>
-                </label>
-              </div>
-            </div>
-
             <!-- Submit Button -->
             <button type="submit" class="newsletter-submit-btn">
               <span class="btn-text">Subscribe Now</span>
@@ -4464,6 +4784,71 @@
 
       </div>
     </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════════════
+         FOOTER NAVIGATION
+         ═══════════════════════════════════════════════════════════════════════════════ -->
+    <div class="footer-navigation" style="max-width: 1400px; margin: 0 auto; padding: 4rem 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem;">
+
+      <!-- Column 1: Company -->
+      <div class="footer-column">
+        <h3 style="color: var(--brand-gold-400); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Company</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="#about" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">About Us</a></li>
+          <li><a href="#blog" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Blog</a></li>
+          <li><a href="#careers" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Careers</a></li>
+          <li><a href="#press" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Press</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Help -->
+      <div class="footer-column">
+        <h3 style="color: var(--brand-gold-400); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Help</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="#faq" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">FAQ</a></li>
+          <li><a href="#contact" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Contact</a></li>
+          <li><a href="help.html" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Support Center</a></li>
+          <li><a href="#live-chat" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Live Chat</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Legal -->
+      <div class="footer-column">
+        <h3 style="color: var(--brand-gold-400); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Legal</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="#privacy" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Privacy Policy</a></li>
+          <li><a href="#terms" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Terms of Service</a></li>
+          <li><a href="#refund" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Refund Policy</a></li>
+          <li><a href="#cookies" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Travel Tools -->
+      <div class="footer-column">
+        <h3 style="color: var(--brand-gold-400); font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem;">Travel Tools</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li><a href="flight-status.html" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Flight Status</a></li>
+          <li><a href="#price-alerts" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Price Alerts</a></li>
+          <li><a href="my-bookings.html" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">My Bookings</a></li>
+          <li><a href="destinations.html" class="transition-premium" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9375rem;">Destinations</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom" style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem 3rem; max-width: 1400px; margin: 0 auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+        <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.875rem;">
+          © 2025 Destinova. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#" class="transition-premium" style="color: rgba(255, 255, 255, 0.6); font-size: 1.25rem;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="transition-premium" style="color: rgba(255, 255, 255, 0.6); font-size: 1.25rem;" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="transition-premium" style="color: rgba(255, 255, 255, 0.6); font-size: 1.25rem;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="transition-premium" style="color: rgba(255, 255, 255, 0.6); font-size: 1.25rem;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
 
     <!-- Quick Search Modal -->
     <div class="quick-search-modal" id="quick-search-modal">
