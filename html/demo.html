@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinova - Luxury Flight Booking</title>
+    
+    <!-- ============================================
+         PREMIUM FONTS
+         ============================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <!-- ============================================
+         TAILWIND CSS
+         ============================================ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- ============================================
+         GSAP LIBRARY
+         ============================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- ============================================
+         LENIS SMOOTH SCROLL
+         ============================================ -->
+    <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@latest"></script>
+    
+    <!-- ============================================
+         TAILWIND CONFIG - LUXURY PALETTE
+         ============================================ -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luxury-emerald': '#1a5f44',
+                        'luxury-emerald-dark': '#144f36',
+                        'luxury-gold': '#d4af37',
+                        'luxury-gold-dark': '#c4991f',
+                        'luxury-cream': '#f8f6f2',
+                        'luxury-charcoal': '#2c2c2c',
+                        'luxury-accent': '#e5c048'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- ============================================
+         PREMIUM STYLING & ANIMATIONS
+         ============================================ -->
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+        
+        /* ============================================
+           PHASE 1: HEADER BASE STYLES
+           ============================================ */
+        
+        header {
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(0px);
+            background: transparent;
+            border-bottom: 1px solid rgba(212, 175, 55, 0);
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+            will-change: backdrop-filter, background, border-color, box-shadow;
+        }
+        
+        /* Scrolled state with glassmorphism */
+        header.header-scrolled {
+            background: linear-gradient(135deg, 
+                rgba(26, 95, 68, 0.92) 0%, 
+                rgba(20, 75, 54, 0.90) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            height: 70px;
+        }
+        
+        header.header-scrolled nav {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+        }
+        
+        /* ============================================
+           PHASE 2: LOGO & BRANDING
+           ============================================ */
+        
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateX(0);
+            }
+        }
+        
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        .logo-container {
+            animation: logoEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            font-size: 32px;
+            animation: logoFloat 4s ease-in-out infinite;
+            transition: all 300ms ease-out;
+            will-change: transform;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 26px;
+            letter-spacing: 0.15em;
+            color: #1a5f44;
+            transition: all 300ms ease-out;
+        }
+        
+        .logo-tagline {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: #d4af37;
+            font-weight: 600;
+            margin-top: -4px;
+            opacity: 0;
+            transition: opacity 300ms ease-out;
+        }
+        
+        .logo-container:hover .logo-icon {
+            color: #d4af37;
+            transform: scale(1.2) translateY(0px);
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+        }
+        
+        .logo-container:hover .logo-text {
+            color: #d4af37;
+            letter-spacing: 0.2em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .logo-container:hover .logo-tagline {
+            opacity: 1;
+        }
+        
+        header.header-scrolled .logo-text {
+            color: #f8f6f2;
+        }
+        
+        header.header-scrolled .logo-icon {
+            color: #f8f6f2;
+        }
+        
+        /* ============================================
+           PHASE 3: NAVIGATION MENU
+           ============================================ */
+        
+        @keyframes navItemEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        nav ul {
+            animation: navItemEntrance 600ms ease-out backwards;
+            animation-delay: 300ms;
+        }
+        
+        .nav-item {
+            position: relative;
+            padding: 8px 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #2c2c2c;
+            cursor: pointer;
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 0.01em;
+        }
+        
+        /* Gradient underline on hover */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                #d4af37 50%, 
+                transparent 100%);
+            transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .nav-item:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        
+        .nav-item:hover {
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Chevron animation */
+        .dropdown-chevron {
+            transition: transform 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            will-change: transform;
+        }
+        
+        .nav-item:hover .dropdown-chevron {
+            transform: rotate(180deg);
+        }
+        
+        header.header-scrolled .nav-item {
+            color: #f8f6f2;
+        }
+        
+        header.header-scrolled .nav-item:hover {
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* ============================================
+           PHASE 4: DROPDOWN MENU GLASSMORPHISM
+           ============================================ */
+        
+        .dropdown-menu {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px) scale(0.92);
+            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            
+            /* Glassmorphism effect */
+            background: rgba(248, 246, 242, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            
+            padding: 16px;
+            min-width: 240px;
+            z-index: 100;
+            pointer-events: none;
+            will-change: transform, opacity, visibility;
+        }
+        
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        
+        /* Dropdown divider with gradient */
+        .dropdown-divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 50%, 
+                transparent 100%);
+            margin: 10px 0;
+        }
+        
+        /* ============================================
+           PHASE 5: DROPDOWN ITEMS PREMIUM STYLE
+           ============================================ */
+        
+        @keyframes dropdownItemEntrance {
+            0% {
+                opacity: 0;
+                transform: translateX(-12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .dropdown-item {
+            position: relative;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            animation: dropdownItemEntrance 200ms ease-out backwards;
+        }
+        
+        .dropdown-item:nth-child(1) { animation-delay: 100ms; }
+        .dropdown-item:nth-child(2) { animation-delay: 140ms; }
+        .dropdown-item:nth-child(3) { animation-delay: 180ms; }
+        .dropdown-item:nth-child(4) { animation-delay: 220ms; }
+        .dropdown-item:nth-child(5) { animation-delay: 260ms; }
+        
+        /* Left accent bar on hover */
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) scaleY(0);
+            width: 3px;
+            height: 60%;
+            background: linear-gradient(180deg, #d4af37, #e5c048);
+            transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 2px;
+        }
+        
+        .dropdown-item:hover::before {
+            transform: translateY(-50%) scaleY(1);
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(6px);
+            padding-left: 20px;
+        }
+        
+        .dropdown-item .material-symbols-rounded {
+            font-size: 18px;
+            color: #1a5f44;
+            transition: all 280ms ease-out;
+            will-change: color, transform;
+        }
+        
+        .dropdown-item:hover .material-symbols-rounded {
+            color: #d4af37;
+            transform: scale(1.15) translateY(-1px);
+        }
+        
+        .dropdown-link {
+            color: #2c2c2c;
+            transition: color 280ms ease-out;
+            text-decoration: none;
+        }
+        
+        .dropdown-item:hover .dropdown-link {
+            color: #1a5f44;
+        }
+        
+        /* ============================================
+           PHASE 6: BUTTON SYSTEM - PREMIUM CTA
+           ============================================ */
+        
+        /* Register Button - Metallic Gold */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            50% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+        
+        .btn-register {
+            position: relative;
+            padding: 13px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 0.02em;
+            
+            /* Metallic gradient */
+            background: linear-gradient(135deg, #d4af37 0%, #e5c048 50%, #d4af37 100%);
+            background-size: 200% auto;
+            
+            box-shadow: 
+                0 4px 20px rgba(212, 175, 55, 0.3),
+                inset -1px -1px 3px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+            
+            color: #2c2c2c;
+            will-change: transform, box-shadow;
+            overflow: hidden;
+        }
+        
+        .btn-register::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.3), 
+                transparent 70%);
+            transform: rotate(45deg);
+            animation: shimmer-move 3s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes shimmer-move {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .btn-register:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 8px 35px rgba(212, 175, 55, 0.5),
+                0 0 60px rgba(212, 175, 55, 0.3),
+                inset -1px -1px 3px rgba(0, 0, 0, 0.1),
+                inset 1px 1px 3px rgba(255, 255, 255, 0.5);
+            background-position: 200% center;
+        }
+        
+        .btn-register:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+        
+        /* Sign In Button - Ghost Luxury */
+        .btn-sign-in {
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 0.02em;
+            
+            background: transparent;
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            color: #2c2c2c;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            position: relative;
+            overflow: hidden;
+            will-change: all;
+        }
+        
+        .btn-sign-in::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            transform: translate(-50%, -50%);
+            transition: width 400ms ease-out, height 400ms ease-out;
+            z-index: -1;
+        }
+        
+        .btn-sign-in:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .btn-sign-in:hover {
+            border-color: #d4af37;
+            color: #1a5f44;
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .btn-sign-in span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Button responsiveness on scroll */
+        header.header-scrolled .btn-sign-in {
+            color: #f8f6f2;
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        header.header-scrolled .btn-sign-in:hover {
+            color: #d4af37;
+        }
+        
+        /* ============================================
+           PHASE 7: MOBILE HAMBURGER
+           ============================================ */
+        
+        .hamburger-line {
+            height: 2.5px;
+            width: 24px;
+            background: #2c2c2c;
+            border-radius: 2px;
+            transition: all 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            will-change: transform, opacity;
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translateY(10px);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translateY(-10px);
+        }
+        
+        header.header-scrolled .hamburger-line {
+            background: #f8f6f2;
+        }
+        
+        /* ============================================
+           PHASE 8: MOBILE MENU
+           ============================================ */
+        
+        #mobile-menu {
+            background: linear-gradient(135deg, 
+                rgba(26, 95, 68, 0.98) 0%, 
+                rgba(20, 75, 54, 0.98) 100%);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            
+            position: fixed;
+            top: 90px;
+            left: 0;
+            right: 0;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 99;
+            padding: 24px;
+        }
+        
+        #mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-nav-item {
+            padding: 18px;
+            color: #f8f6f2;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            cursor: pointer;
+            transition: all 280ms ease-out;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        #mobile-menu.open .mobile-nav-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        #mobile-menu.open .mobile-nav-item:nth-child(1) { transition-delay: 50ms; }
+        #mobile-menu.open .mobile-nav-item:nth-child(2) { transition-delay: 100ms; }
+        #mobile-menu.open .mobile-nav-item:nth-child(3) { transition-delay: 150ms; }
+        #mobile-menu.open .mobile-nav-item:nth-child(4) { transition-delay: 200ms; }
+        #mobile-menu.open .mobile-nav-item:nth-child(5) { transition-delay: 250ms; }
+        #mobile-menu.open .mobile-nav-item:nth-child(6) { transition-delay: 300ms; }
+        
+        .mobile-nav-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding-left: 24px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* ============================================
+           PHASE 9: ACCESSIBILITY
+           ============================================ */
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* ============================================
+           PHASE 10: RESPONSIVE DESIGN
+           ============================================ */
+        
+        @media (max-width: 1024px) {
+            .logo-text { font-size: 22px; }
+            .nav-item { padding: 6px 12px; font-size: 14px; }
+        }
+        
+        @media (max-width: 768px) {
+            .logo-text { font-size: 20px; }
+            .btn-register, .btn-sign-in { 
+                padding: 11px 26px; 
+                font-size: 14px; 
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-luxury-cream">
+
+    <!-- ============================================
+         PREMIUM HEADER
+         ============================================ -->
+    <header class="fixed top-0 left-0 w-full z-50 h-[90px]">
+        <nav class="max-w-[1400px] mx-auto px-12 h-full flex items-center justify-between">
+            
+            <!-- ========== LEFT: LOGO ========== -->
+            <div class="logo-container">
+                <span class="logo-icon material-symbols-rounded">flight_takeoff</span>
+                <div>
+                    <div class="logo-text">DESTINOVA</div>
+                    <div class="logo-tagline">LUXURY TRAVEL</div>
+                </div>
+            </div>
+            
+            <!-- ========== CENTER: DESKTOP NAV ========== -->
+            <ul class="hidden lg:flex gap-2 items-center">
+                
+                <!-- HOME -->
+                <li class="nav-item">
+                    <a href="index.html">Home</a>
+                </li>
+                
+                <!-- BOOK -->
+                <li class="nav-item relative group">
+                    <button class="flex items-center gap-1 focus:outline-none">
+                        Book
+                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
+                    </button>
+                    
+                    <ul class="dropdown-menu left-0 mt-6 top-full">
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">flight</span>
+                            <a href="booking.html" class="dropdown-link">New Booking</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">schedule</span>
+                            <a href="flight-status.html" class="dropdown-link">Flight Status</a>
+                        </li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">map</span>
+                            <a href="destinations.html" class="dropdown-link">Destinations</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- MY TRIPS -->
+                <li class="nav-item relative group">
+                    <button class="flex items-center gap-1 focus:outline-none">
+                        My Trips
+                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
+                    </button>
+                    
+                    <ul class="dropdown-menu left-0 mt-6 top-full">
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">confirmation_number</span>
+                            <a href="my-bookings.html" class="dropdown-link">My Bookings</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">credit_card</span>
+                            <a href="payment-history.html" class="dropdown-link">Payment History</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <!-- OFFERS -->
+                <li class="nav-item">
+                    <a href="offers.html">Offers</a>
+                </li>
+                
+                <!-- MORE -->
+                <li class="nav-item relative group">
+                    <button class="flex items-center gap-1 focus:outline-none">
+                        More
+                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
+                    </button>
+                    
+                    <ul class="dropdown-menu left-0 mt-6 top-full">
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">info</span>
+                            <a href="about-us.html" class="dropdown-link">About Us</a>
+                        </li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">mail</span>
+                            <a href="contact-us.html" class="dropdown-link">Contact Us</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">help</span>
+                            <a href="faq.html" class="dropdown-link">FAQ</a>
+                        </li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">article</span>
+                            <a href="blog.html" class="dropdown-link">Blog</a>
+                        </li>
+                        <li class="dropdown-item flex items-center gap-3">
+                            <span class="material-symbols-rounded">star</span>
+                            <a href="reviews.html" class="dropdown-link">Reviews</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- ========== RIGHT: CTA BUTTONS ========== -->
+            <div class="hidden md:flex gap-3 items-center">
+                <button class="btn-sign-in">
+                    <span>Sign In</span>
+                </button>
+                <button class="btn-register">
+                    Register
+                </button>
+            </div>
+            
+            <!-- ========== MOBILE: HAMBURGER ========== -->
+            <button class="hamburger lg:hidden flex flex-col gap-1.5 z-50 focus:outline-none" id="hamburger" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== MOBILE MENU ========== -->
+    <div id="mobile-menu">
+        <a href="index.html" class="mobile-nav-item block">Home</a>
+        <button onclick="toggleMobileDropdown('book-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
+            Book
+            <span class="material-symbols-rounded text-lg" id="book-mobile-icon">expand_more</span>
+        </button>
+        <div id="book-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
+            <a href="booking.html" class="block text-white/80 text-sm hover:text-gold-champagne">New Booking</a>
+            <a href="flight-status.html" class="block text-white/80 text-sm hover:text-gold-champagne">Flight Status</a>
+            <a href="destinations.html" class="block text-white/80 text-sm hover:text-gold-champagne">Destinations</a>
+        </div>
+        
+        <button onclick="toggleMobileDropdown('trips-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
+            My Trips
+            <span class="material-symbols-rounded text-lg" id="trips-mobile-icon">expand_more</span>
+        </button>
+        <div id="trips-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
+            <a href="my-bookings.html" class="block text-white/80 text-sm hover:text-gold-champagne">My Bookings</a>
+            <a href="payment-history.html" class="block text-white/80 text-sm hover:text-gold-champagne">Payment History</a>
+        </div>
+        
+        <a href="offers.html" class="mobile-nav-item block">Offers</a>
+        
+        <button onclick="toggleMobileDropdown('more-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
+            More
+            <span class="material-symbols-rounded text-lg" id="more-mobile-icon">expand_more</span>
+        </button>
+        <div id="more-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
+            <a href="about-us.html" class="block text-white/80 text-sm hover:text-gold-champagne">About Us</a>
+            <a href="contact-us.html" class="block text-white/80 text-sm hover:text-gold-champagne">Contact Us</a>
+            <a href="faq.html" class="block text-white/80 text-sm hover:text-gold-champagne">FAQ</a>
+            <a href="blog.html" class="block text-white/80 text-sm hover:text-gold-champagne">Blog</a>
+            <a href="reviews.html" class="block text-white/80 text-sm hover:text-gold-champagne">Reviews</a>
+        </div>
+    </div>
+
+    <!-- ============================================
+         DEMO HERO
+         ============================================ -->
+    <main>
+        <section class="pt-[90px] min-h-screen bg-gradient-to-br from-luxury-emerald via-luxury-emerald-dark to-[#0f4d38] flex items-center justify-center text-center px-6">
+            <div>
+                <h1 class="font-serif text-6xl md:text-8xl font-bold text-luxury-cream mb-6">DESTINOVA</h1>
+                <p class="text-2xl md:text-3xl text-luxury-gold mb-8">Luxury Flight Booking Experience</p>
+                <p class="text-lg text-luxury-cream/70">Scroll down to experience premium animations</p>
+            </div>
+        </section>
+        
+        <section class="min-h-screen bg-luxury-cream flex items-center justify-center text-center px-6">
+            <div>
+                <h2 class="font-serif text-5xl font-bold text-luxury-charcoal mb-6">Glassmorphic Header</h2>
+                <p class="text-xl text-luxury-charcoal/70">Notice the premium backdrop blur effect</p>
+            </div>
+        </section>
+        
+        <section class="min-h-screen bg-gradient-to-br from-luxury-cream to-white flex items-center justify-center text-center px-6">
+            <div>
+                <h2 class="font-serif text-5xl font-bold text-luxury-charcoal mb-6">Scroll Back</h2>
+                <p class="text-xl text-luxury-charcoal/70">All animations smooth and refined</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         JAVASCRIPT - GSAP & LENIS INTEGRATION
+         ============================================ -->
+    <script>
+        // ============================================
+        // GSAP PLUGIN REGISTRATION
+        // ============================================
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // ============================================
+        // LENIS SMOOTH SCROLL
+        // ============================================
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+            wheelMultiplier: 1
+        });
+        
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        
+        // ============================================
+        // HEADER SCROLL EFFECT
+        // ============================================
+        const header = document.querySelector('header');
+        let lastScrollY = 0;
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            lastScrollY = scrollY;
+        }, { passive: true });
+        
+        // ============================================
+        // HAMBURGER MENU TOGGLE
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Close menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+            });
+        });
+        
+        // ============================================
+        // MOBILE DROPDOWN TOGGLE
+        // ============================================
+        function toggleMobileDropdown(id) {
+            const dropdown = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            
+            if (dropdown.classList.contains('hidden')) {
+                dropdown.classList.remove('hidden');
+                gsap.to(icon, { rotation: 180, duration: 0.3 });
+            } else {
+                dropdown.classList.add('hidden');
+                gsap.to(icon, { rotation: 0, duration: 0.3 });
+            }
+        }
+        
+        // ============================================
+        // BUTTON CLICK ANIMATIONS
+        // ============================================
+        document.querySelectorAll('.btn-register, .btn-sign-in').forEach(btn => {
+            btn.addEventListener('click', function() {
+                gsap.to(this, {
+                    scale: 0.95,
+                    duration: 0.1,
+                    yoyo: true,
+                    repeat: 1
+                });
+            });
+        });
+        
+        console.log('✨ Destinova Premium Header Initialized');
+        console.log('🎯 Features: Glassmorphism, Smooth Scroll, GSAP Animations');
+    </script>
+</body>
+</html>
