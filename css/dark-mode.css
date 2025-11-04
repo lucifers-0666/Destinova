@@ -1,0 +1,505 @@
+/* ===============================================
+   DESTINOVA DARK MODE STYLES
+   Optimized for OLED screens and low-light environments
+   =============================================== */
+
+/* ===============================================
+   DARK MODE COLOR VARIABLES
+   =============================================== */
+[data-theme="dark"] {
+    /* Background Colors */
+    --bg-primary: #0F1419;
+    --bg-secondary: #1C2526;
+    --bg-tertiary: #263238;
+    --bg-white: #1C2526;
+    --bg-light: #263238;
+    --bg-soft: #37474F;
+    
+    /* Text Colors */
+    --text-primary: #E8EAED;
+    --text-charcoal: #E8EAED;
+    --text-slate: #B4C0C9;
+    --text-muted: #8A9BA8;
+    --text-secondary: #B4C0C9;
+    
+    /* Brand Colors (Adjusted for dark backgrounds) */
+    --primary-emerald: #3a9c60;
+    --emerald-dark: #2a7d4a;
+    --emerald-light: #4ab574;
+    --gold-rich: #d4b591;
+    --gold-dark: #c9a877;
+    --champagne-gold: #e0c8a8;
+    
+    /* UI Colors */
+    --divider: #37474F;
+    --border-light: #37474F;
+    --overlay-dark: rgba(15, 20, 25, 0.9);
+    
+    /* Shadows (Lighter for dark mode) */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.8);
+    
+    /* Status Colors (Adjusted) */
+    --success: #4ade80;
+    --error: #f87171;
+    --warning: #fbbf24;
+    --info: #60a5fa;
+}
+
+/* ===============================================
+   GLOBAL ADJUSTMENTS
+   =============================================== */
+[data-theme="dark"] body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .container {
+    background-color: transparent;
+}
+
+/* ===============================================
+   HERO SECTION
+   =============================================== */
+[data-theme="dark"] .hero-section {
+    background: linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(28, 37, 38, 0.95) 100%),
+                url('../site-images/hero-bg.jpg') center/cover;
+}
+
+[data-theme="dark"] .hero-overlay {
+    background: linear-gradient(135deg, rgba(15, 20, 25, 0.7) 0%, rgba(42, 125, 74, 0.3) 100%);
+}
+
+[data-theme="dark"] .premium-badge {
+    background: linear-gradient(135deg, rgba(58, 156, 96, 0.2), rgba(212, 181, 145, 0.2));
+    border: 1px solid rgba(58, 156, 96, 0.3);
+}
+
+[data-theme="dark"] .hero-title {
+    color: var(--text-primary);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   FLOATING SEARCH CARD
+   =============================================== */
+[data-theme="dark"] .floating-search-card {
+    background: rgba(28, 37, 38, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(58, 156, 96, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .search-tabs {
+    background-color: rgba(38, 50, 56, 0.5);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .tab-button {
+    color: var(--text-slate);
+}
+
+[data-theme="dark"] .tab-button.active {
+    background-color: var(--primary-emerald);
+    color: white;
+}
+
+[data-theme="dark"] .search-input-wrapper {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .search-input {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .search-input::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .swap-button {
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--divider);
+}
+
+[data-theme="dark"] .swap-button:hover {
+    background-color: var(--primary-emerald);
+    border-color: var(--primary-emerald);
+}
+
+[data-theme="dark"] .btn-search-flights {
+    background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-dark));
+}
+
+/* ===============================================
+   CARDS & SURFACES
+   =============================================== */
+[data-theme="dark"] .destination-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .offer-card,
+[data-theme="dark"] .testimonial-card,
+[data-theme="dark"] .blog-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--divider);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .destination-card:hover,
+[data-theme="dark"] .feature-card:hover,
+[data-theme="dark"] .offer-card:hover,
+[data-theme="dark"] .blog-card:hover {
+    border-color: var(--primary-emerald);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+}
+
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .destination-name,
+[data-theme="dark"] .offer-title,
+[data-theme="dark"] .blog-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .card-description,
+[data-theme="dark"] .destination-location,
+[data-theme="dark"] .offer-description {
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   BADGES & TAGS
+   =============================================== */
+[data-theme="dark"] .badge-premium,
+[data-theme="dark"] .badge-new,
+[data-theme="dark"] .badge-hot {
+    background-color: rgba(58, 156, 96, 0.2);
+    color: var(--primary-emerald);
+    border: 1px solid var(--primary-emerald);
+}
+
+[data-theme="dark"] .discount-badge {
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.9), rgba(239, 68, 68, 0.9));
+}
+
+[data-theme="dark"] .trending-badge {
+    background-color: rgba(239, 68, 68, 0.9);
+}
+
+/* ===============================================
+   BUTTONS
+   =============================================== */
+[data-theme="dark"] .btn-primary {
+    background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-dark));
+}
+
+[data-theme="dark"] .btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background-color: var(--bg-soft);
+    border-color: var(--primary-emerald);
+}
+
+[data-theme="dark"] .btn-outline {
+    border: 2px solid var(--primary-emerald);
+    color: var(--primary-emerald);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    background-color: var(--primary-emerald);
+    color: white;
+}
+
+/* ===============================================
+   SECTIONS
+   =============================================== */
+[data-theme="dark"] .section-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .section-subtitle {
+    color: var(--text-slate);
+}
+
+[data-theme="dark"] .section-light {
+    background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .section-white {
+    background-color: var(--bg-primary);
+}
+
+/* ===============================================
+   MODALS
+   =============================================== */
+[data-theme="dark"] .modal-backdrop {
+    background-color: rgba(15, 20, 25, 0.8);
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .modal-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-close {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .modal-close:hover {
+    background-color: var(--primary-emerald);
+}
+
+/* ===============================================
+   FORMS
+   =============================================== */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--divider);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+    border-color: var(--primary-emerald);
+    box-shadow: 0 0 0 3px rgba(58, 156, 96, 0.2);
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .form-label {
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   AUTOCOMPLETE DROPDOWN
+   =============================================== */
+[data-theme="dark"] .autocomplete-dropdown {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--divider);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .autocomplete-header {
+    background-color: rgba(38, 50, 56, 0.5);
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .autocomplete-item {
+    border-bottom: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .autocomplete-item:hover,
+[data-theme="dark"] .autocomplete-item.selected {
+    background-color: rgba(58, 156, 96, 0.15);
+}
+
+[data-theme="dark"] .airport-icon {
+    background-color: rgba(58, 156, 96, 0.2);
+}
+
+[data-theme="dark"] .airport-city {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .airport-name {
+    color: var(--text-muted);
+}
+
+/* ===============================================
+   TOAST NOTIFICATIONS
+   =============================================== */
+[data-theme="dark"] .toast {
+    background-color: var(--bg-tertiary);
+    border-left: 4px solid;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .toast span {
+    color: var(--text-primary);
+}
+
+/* ===============================================
+   NAVIGATION
+   =============================================== */
+[data-theme="dark"] .navbar {
+    background-color: rgba(28, 37, 38, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .nav-link {
+    color: var(--text-slate);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+    color: var(--primary-emerald);
+}
+
+/* ===============================================
+   FOOTER
+   =============================================== */
+[data-theme="dark"] .footer-placeholder {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--divider);
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   TRUST INDICATORS
+   =============================================== */
+[data-theme="dark"] .trust-indicator {
+    background-color: rgba(58, 156, 96, 0.1);
+    border: 1px solid rgba(58, 156, 96, 0.2);
+}
+
+[data-theme="dark"] .trust-number {
+    color: var(--primary-emerald);
+}
+
+[data-theme="dark"] .trust-label {
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   FAQ ACCORDION
+   =============================================== */
+[data-theme="dark"] .faq-item {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .faq-question {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .faq-answer {
+    color: var(--text-slate);
+    border-top: 1px solid var(--divider);
+}
+
+/* ===============================================
+   PROMO BANNER
+   =============================================== */
+[data-theme="dark"] .promo-banner {
+    background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-dark));
+}
+
+/* ===============================================
+   RECOMMENDATION BANNER
+   =============================================== */
+[data-theme="dark"] .recommendation-banner {
+    background: linear-gradient(135deg, rgba(58, 156, 96, 0.15), rgba(212, 181, 145, 0.15));
+    border-left: 4px solid var(--gold-rich);
+}
+
+/* ===============================================
+   IMAGES & MEDIA
+   =============================================== */
+[data-theme="dark"] img {
+    opacity: 0.9;
+    transition: opacity var(--transition-fast);
+}
+
+[data-theme="dark"] img:hover {
+    opacity: 1;
+}
+
+[data-theme="dark"] .destination-image,
+[data-theme="dark"] .offer-image,
+[data-theme="dark"] .blog-image {
+    filter: brightness(0.85);
+}
+
+[data-theme="dark"] .destination-card:hover .destination-image,
+[data-theme="dark"] .offer-card:hover .offer-image,
+[data-theme="dark"] .blog-card:hover .blog-image {
+    filter: brightness(1);
+}
+
+/* ===============================================
+   SCROLLBAR (Dark Mode)
+   =============================================== */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-soft);
+    border-radius: 5px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-emerald);
+}
+
+/* ===============================================
+   PWA INSTALL BANNER (Dark Mode)
+   =============================================== */
+[data-theme="dark"] .pwa-install-banner {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--divider);
+}
+
+[data-theme="dark"] .banner-text h3 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .banner-text p {
+    color: var(--text-slate);
+}
+
+/* ===============================================
+   ACCESSIBILITY (High Contrast Elements)
+   =============================================== */
+[data-theme="dark"] .focus-visible {
+    outline: 3px solid var(--primary-emerald);
+    outline-offset: 3px;
+}
+
+/* ===============================================
+   REDUCED MOTION (Dark Mode)
+   =============================================== */
+@media (prefers-reduced-motion: reduce) {
+    [data-theme="dark"] * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===============================================
+   PRINT STYLES (Dark Mode Override)
+   =============================================== */
+@media print {
+    [data-theme="dark"] {
+        --bg-primary: white;
+        --text-primary: black;
+    }
+}

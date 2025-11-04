@@ -1,0 +1,1492 @@
+/* ===================================================================
+   DESTINOVA PREMIUM HEADER - TRUE TRANSPARENCY VERSION
+   Inspired by: Apple.com, Stripe.com, Emirates.com
+   Features: Near-invisible initial state, text-only navigation,
+            premium glass dropdowns, smart scroll behavior
+   =================================================================== */
+
+/* ===================================================================
+   CSS CUSTOM PROPERTIES - Theme Foundation
+   =================================================================== */
+:root {
+  /* Core Colors */
+  --primary-emerald: #1d5e33;
+  --emerald-dark: #14482a;
+  --emerald-light: #2a7a4a;
+  --gold-rich: #c9a877;
+  --gold-dark: #b8975e;
+  --gold-light: #d4b78a;
+  --gold-rgb: 201, 168, 119;
+  --emerald-rgb: 29, 94, 51;
+  
+  /* Neutrals */
+  --text-charcoal: #1C2526;
+  --text-slate: #64748b;
+  --cream: #FAF9F6;
+  --white-pure: #FFFFFF;
+  
+  /* Transparency Levels - KEY FOR GLASSMORPHISM */
+  --glass-transparent: rgba(255, 255, 255, 0.02);
+  --glass-light: rgba(255, 255, 255, 0.08);
+  --glass-medium: rgba(255, 255, 255, 0.95);
+  --glass-heavy: rgba(255, 255, 255, 0.98);
+  --glass-solid: rgba(29, 94, 51, 0.95);
+  
+  /* Blur Levels */
+  --blur-minimal: blur(8px);
+  --blur-medium: blur(20px);
+  --blur-heavy: blur(30px);
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 32px rgba(29, 94, 51, 0.08);
+  --shadow-lg: 0 16px 48px rgba(29, 94, 51, 0.12);
+  --shadow-emerald: 0 8px 32px rgba(29, 94, 51, 0.12);
+  --shadow-gold: 0 8px 24px rgba(201, 168, 119, 0.3);
+  
+  /* Animation Timing */
+  --ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elegant: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast: 0.2s;
+  --duration-base: 0.3s;
+  --duration-slow: 0.4s;
+  --duration-breath: 3s;
+  
+  /* Spacing */
+  --header-height: 80px;
+  --header-height-scrolled: 64px;
+  --nav-gap: 2.5rem;
+  --dropdown-offset: 10px;
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] {
+  --glass-transparent: rgba(28, 37, 38, 0.02);
+  --glass-light: rgba(28, 37, 38, 0.08);
+  --glass-medium: rgba(28, 37, 38, 0.95);
+  --glass-heavy: rgba(28, 37, 38, 0.98);
+  --text-charcoal: #FAF9F6;
+  --cream: #1C2526;
+}
+
+/* ===================================================================
+   SCROLL PROGRESS INDICATOR
+   =================================================================== */
+.scroll-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-emerald), var(--gold-rich));
+  box-shadow: 0 0 8px rgba(201, 168, 119, 0.5);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  z-index: 1001;
+  width: 100%;
+}
+
+/* ===================================================================
+   HEADER BASE - TRUE TRANSPARENCY
+   =================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  
+  /* INITIAL STATE: Near-invisible transparency */
+  background: var(--glass-transparent);
+  backdrop-filter: var(--blur-minimal) saturate(1.1);
+  border-bottom: 1px solid rgba(201, 168, 119, 0.15);
+  
+  /* Smooth transitions for all state changes */
+  transition: 
+    background var(--duration-slow) var(--ease-smooth),
+    backdrop-filter var(--duration-slow) var(--ease-smooth),
+    transform var(--duration-slow) var(--ease-smooth),
+    box-shadow var(--duration-slow) var(--ease-smooth),
+    padding var(--duration-base) var(--ease-smooth);
+  
+  /* Floating effect */
+  transform: translateY(0);
+  will-change: transform, background, backdrop-filter;
+  
+  /* Performance optimization */
+  contain: layout style paint;
+}
+
+/* Text Legibility Enhancement on Transparent State */
+.site-header:not(.header-scrolled) .nav-link,
+.site-header:not(.header-scrolled) .logo-text {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* ===================================================================
+   SCROLLED STATE - Solid & Elevated
+   =================================================================== */
+.site-header.header-scrolled {
+  background: var(--glass-solid);
+  backdrop-filter: var(--blur-medium) saturate(1.3);
+  box-shadow: var(--shadow-emerald);
+  border-bottom-color: rgba(201, 168, 119, 0.3);
+}
+
+.site-header.header-scrolled .header-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.site-header.header-scrolled .logo-icon {
+  transform: scale(0.9);
+}
+
+.site-header.header-scrolled .nav-link,
+.site-header.header-scrolled .logo-text {
+  color: var(--white-pure);
+  text-shadow: none;
+}
+
+/* ===================================================================
+   SMART SCROLL BEHAVIOR - Hide/Show Header
+   =================================================================== */
+.site-header.header-hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
+}
+
+.site-header.header-visible {
+  transform: translateY(0);
+  animation: slideDown 0.4s var(--ease-elegant);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===================================================================
+   HEADER CONTAINER - Flexbox Layout
+   =================================================================== */
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  transition: padding var(--duration-base) var(--ease-smooth);
+}
+
+/* ===================================================================
+   LOGO SECTION - Breathing Animation
+   =================================================================== */
+.header-left {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.logo-link:hover {
+  transform: rotate(-2deg) scale(1.05);
+}
+
+.logo-link:hover .logo-icon {
+  filter: drop-shadow(0 0 12px rgba(201, 168, 119, 0.6));
+}
+
+/* Logo Icon with Breathing Animation */
+.logo-icon {
+  font-size: 28px;
+  display: block;
+  transition: transform var(--duration-base) var(--ease-smooth);
+  animation: breathe var(--duration-breath) ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+/* Logo Text */
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-charcoal);
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.logo-link:hover .logo-main {
+  background: linear-gradient(135deg, var(--primary-emerald), var(--gold-rich));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.logo-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-rich);
+  opacity: 0.8;
+}
+
+/* ===================================================================
+   NAVIGATION - TEXT ONLY, NO BOXES!
+   =================================================================== */
+.header-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Navigation Links - Pure Text Style */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--text-charcoal);
+  
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  
+  transition: 
+    color var(--duration-base) var(--ease-smooth),
+    letter-spacing var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+  
+  /* GPU acceleration */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Animated Underline - Hidden by Default */
+.link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-emerald), var(--gold-rich));
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform var(--duration-base) var(--ease-smooth);
+  border-radius: 2px;
+}
+
+/* Hover Effects - Gradient Text + Underline + Glow */
+.nav-link:hover {
+  color: transparent;
+  background: linear-gradient(135deg, var(--primary-emerald), var(--gold-rich));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 20px rgba(201, 168, 119, 0.3));
+}
+
+.nav-link:hover .link-underline {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Active Page Indicator */
+.nav-link.active {
+  color: var(--primary-emerald);
+  font-weight: 600;
+}
+
+.nav-link.active .link-underline {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--primary-emerald);
+}
+
+/* Dropdown Button Specific Styles */
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dropdown-icon {
+  transition: transform var(--duration-base) var(--ease-smooth);
+  opacity: 0.7;
+}
+
+.dropdown-btn:hover .dropdown-icon,
+.dropdown-btn[aria-expanded="true"] .dropdown-icon {
+  opacity: 1;
+}
+
+.dropdown-btn[aria-expanded="true"] .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Offers Link - Special Treatment with Star */
+.offers-link {
+  position: relative;
+}
+
+.offer-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 0.25rem;
+  color: var(--gold-rich);
+  animation: starPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes starPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+.offers-link:hover .offer-badge {
+  animation: starRotateGlow 0.6s var(--ease-bounce);
+  filter: drop-shadow(0 0 8px var(--gold-rich));
+}
+
+@keyframes starRotateGlow {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+/* ===================================================================
+   DROPDOWN MENUS - PREMIUM GLASS CARDS
+   =================================================================== */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--dropdown-offset));
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  
+  /* Premium Glass Effect */
+  background: var(--glass-heavy);
+  backdrop-filter: var(--blur-heavy) saturate(1.5);
+  border: 1px solid rgba(201, 168, 119, 0.2);
+  border-radius: 16px;
+  
+  /* Multi-Layer Shadow for Depth */
+  box-shadow: 
+    0 8px 32px rgba(29, 94, 51, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  /* Transform for animation */
+  transform: translateX(-50%) translateY(-10px) scale(0.95);
+  
+  transition: 
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth),
+    visibility var(--duration-base);
+  
+  /* Performance */
+  contain: layout style paint;
+  will-change: transform, opacity;
+  z-index: 100;
+}
+
+/* Show dropdown when parent has aria-expanded="true" */
+.nav-dropdown [aria-expanded="true"] + .dropdown-menu,
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Inner highlight for crystal effect */
+.dropdown-inner {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.dropdown-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+}
+
+/* ===================================================================
+   DROPDOWN ITEMS - Staggered Cascade Animation
+   =================================================================== */
+.dropdown-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  margin: 0.25rem 0;
+  
+  color: var(--text-charcoal);
+  text-decoration: none;
+  border-radius: 12px;
+  
+  background: transparent;
+  
+  /* Smooth transitions */
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth),
+    padding-left var(--duration-base) var(--ease-smooth);
+  
+  /* Initial state for staggered animation */
+  opacity: 0;
+  animation: dropdownItemFadeIn var(--duration-base) var(--ease-smooth) forwards;
+}
+
+/* Staggered Animation Delays */
+.dropdown-link:nth-child(1) { animation-delay: 0.05s; }
+.dropdown-link:nth-child(2) { animation-delay: 0.10s; }
+.dropdown-link:nth-child(3) { animation-delay: 0.15s; }
+.dropdown-link:nth-child(4) { animation-delay: 0.20s; }
+.dropdown-link:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes dropdownItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover State - NO BOX, just subtle fill + slide */
+.dropdown-link:hover {
+  background: rgba(201, 168, 119, 0.08);
+  transform: translateX(8px);
+  padding-left: 1.5rem;
+}
+
+/* Icon Styling */
+.dropdown-link-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-emerald);
+  transition: 
+    color var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth);
+}
+
+.dropdown-link:hover .dropdown-link-icon {
+  color: var(--gold-rich);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Text Content */
+.dropdown-link-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.dropdown-link-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-charcoal);
+  transition: color var(--duration-base) var(--ease-smooth);
+}
+
+.dropdown-link-desc {
+  font-size: 12px;
+  color: var(--text-slate);
+  font-weight: 400;
+}
+
+.dropdown-link:hover .dropdown-link-title {
+  color: var(--primary-emerald);
+}
+
+/* Dropdown Divider */
+.dropdown-divider {
+  height: 1px;
+  margin: 0.75rem 0;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(201, 168, 119, 0.3) 50%,
+    transparent
+  );
+}
+
+/* ===================================================================
+   RIGHT SECTION - Icons & Auth
+   =================================================================== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Icon Buttons */
+.header-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-charcoal);
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth),
+    color var(--duration-base) var(--ease-smooth);
+}
+
+.header-scrolled .header-icon-btn {
+  color: var(--white-pure);
+}
+
+.header-icon-btn:hover {
+  background: rgba(201, 168, 119, 0.1);
+  transform: scale(1.1);
+}
+
+.header-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* Search Button with Pulse Effect */
+.search-btn {
+  position: relative;
+}
+
+.icon-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--gold-rich);
+  opacity: 0;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+/* Dark Mode Toggle */
+.theme-toggle {
+  position: relative;
+}
+
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transition: 
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth);
+}
+
+.sun-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.moon-icon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.5);
+}
+
+[data-theme="dark"] .sun-icon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.5);
+}
+
+[data-theme="dark"] .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ===================================================================
+   AUTH SECTION - Sign In & Register
+   =================================================================== */
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Sign In Button - Glass Border Style */
+.sign-in-btn {
+  position: relative;
+  padding: 0.625rem 1.5rem;
+  
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-charcoal);
+  text-decoration: none;
+  
+  background: rgba(201, 168, 119, 0.1);
+  border: 1.5px solid var(--gold-rich);
+  border-radius: 24px;
+  
+  overflow: hidden;
+  cursor: pointer;
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth),
+    color var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.header-scrolled .sign-in-btn {
+  color: var(--white-pure);
+  border-color: var(--white-pure);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sign-in-btn:hover {
+  background: linear-gradient(135deg, var(--gold-rich), var(--gold-dark));
+  color: var(--white-pure);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+  border-color: transparent;
+}
+
+/* Button Shine Effect */
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s var(--ease-smooth);
+}
+
+.sign-in-btn:hover .btn-shine {
+  left: 100%;
+}
+
+/* Register Button - Gradient Fill */
+.register-btn {
+  position: relative;
+  padding: 0.625rem 1.5rem;
+  
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white-pure);
+  text-decoration: none;
+  
+  background: linear-gradient(135deg, var(--primary-emerald), var(--emerald-light));
+  border: none;
+  border-radius: 24px;
+  
+  overflow: hidden;
+  cursor: pointer;
+  
+  transition: 
+    transform var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.register-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-emerald);
+}
+
+.register-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Button Glow Effect */
+.btn-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--gold-rich), var(--primary-emerald));
+  opacity: 0;
+  filter: blur(8px);
+  z-index: -1;
+  transition: opacity var(--duration-base) var(--ease-smooth);
+}
+
+.register-btn:hover .btn-glow {
+  opacity: 0.6;
+}
+
+/* ===================================================================
+   USER PROFILE MENU (When Logged In)
+   =================================================================== */
+.user-menu {
+  position: relative;
+}
+
+.profile-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem;
+  
+  background: rgba(201, 168, 119, 0.08);
+  border: 1.5px solid rgba(201, 168, 119, 0.3);
+  border-radius: 24px;
+  cursor: pointer;
+  
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-charcoal);
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.header-scrolled .profile-btn {
+  color: var(--white-pure);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.profile-btn:hover {
+  background: rgba(201, 168, 119, 0.15);
+  border-color: var(--gold-rich);
+  transform: translateY(-2px);
+}
+
+/* Profile Avatar with Gradient Ring */
+.profile-avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: linear-gradient(135deg, var(--primary-emerald), var(--gold-rich));
+  border-radius: 50%;
+  
+  overflow: hidden;
+}
+
+.profile-avatar svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white-pure);
+  z-index: 1;
+}
+
+/* Avatar Ripple Effect */
+.avatar-ripple {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(201, 168, 119, 0.4) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: 
+    opacity 0.3s var(--ease-smooth),
+    transform 0.3s var(--ease-smooth);
+}
+
+.profile-btn:active .avatar-ripple {
+  opacity: 1;
+  transform: scale(1.4);
+  animation: ripple 0.6s var(--ease-smooth);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Rotate gradient ring on hover */
+.profile-avatar::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(45deg, 
+    var(--gold-rich), 
+    var(--primary-emerald), 
+    var(--gold-rich)
+  );
+  border-radius: 50%;
+  z-index: 0;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.profile-btn:hover .profile-avatar::before {
+  transform: rotate(90deg);
+}
+
+.profile-name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* User Dropdown - Same glass style as nav dropdowns */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  
+  background: var(--glass-heavy);
+  backdrop-filter: var(--blur-heavy) saturate(1.5);
+  border: 1px solid rgba(201, 168, 119, 0.2);
+  border-radius: 16px;
+  
+  box-shadow: 
+    0 8px 32px rgba(29, 94, 51, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-10px) scale(0.95);
+  
+  transition: 
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth),
+    visibility var(--duration-base);
+  
+  z-index: 100;
+}
+
+.user-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Logout Button */
+.logout-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin: 0.25rem 0;
+  
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  
+  font-size: 14px;
+  font-weight: 500;
+  color: #dc2626;
+  text-align: left;
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.logout-link:hover {
+  background: rgba(220, 38, 38, 0.08);
+  transform: translateX(8px);
+}
+
+.logout-link .dropdown-link-icon {
+  color: #dc2626;
+}
+
+/* ===================================================================
+   HAMBURGER MENU (Mobile Trigger)
+   =================================================================== */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.1);
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 2px;
+  background: var(--text-charcoal);
+  border-radius: 2px;
+  transition: 
+    transform var(--duration-base) var(--ease-smooth),
+    opacity var(--duration-base) var(--ease-smooth),
+    background var(--duration-base) var(--ease-smooth);
+}
+
+.header-scrolled .hamburger-line {
+  background: var(--white-pure);
+}
+
+/* Animated X when open */
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===================================================================
+   MOBILE MENU - Full-Screen Elegant Overlay
+   =================================================================== */
+.mobile-menu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  background: rgba(29, 94, 51, 0.98);
+  backdrop-filter: blur(40px) saturate(1.5);
+  
+  padding: 2rem;
+  overflow-y: auto;
+  
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  transition: 
+    opacity var(--duration-slow) var(--ease-smooth),
+    visibility var(--duration-slow);
+  
+  z-index: 999;
+}
+
+.mobile-menu.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Mobile Menu Header */
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(201, 168, 119, 0.3);
+}
+
+.mobile-menu-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white-pure);
+  margin: 0;
+}
+
+.close-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  
+  font-size: 24px;
+  color: var(--white-pure);
+  cursor: pointer;
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* Mobile Links - Fly in from right */
+.mobile-link {
+  display: block;
+  padding: 1rem 1.25rem;
+  margin: 0.5rem 0;
+  
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white-pure);
+  text-decoration: none;
+  
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border-left: 3px solid transparent;
+  
+  opacity: 0;
+  transform: translateX(100%);
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth),
+    padding-left var(--duration-base) var(--ease-smooth),
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth);
+}
+
+/* Staggered entrance when menu opens */
+.mobile-menu.show .mobile-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-menu.show .mobile-link:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.show .mobile-link:nth-child(2) { transition-delay: 0.10s; }
+.mobile-menu.show .mobile-link:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.show .mobile-link:nth-child(4) { transition-delay: 0.20s; }
+.mobile-menu.show .mobile-link:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu.show .mobile-link:nth-child(6) { transition-delay: 0.30s; }
+.mobile-menu.show .mobile-link:nth-child(7) { transition-delay: 0.35s; }
+.mobile-menu.show .mobile-link:nth-child(8) { transition-delay: 0.40s; }
+
+.mobile-link:hover,
+.mobile-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: var(--gold-rich);
+  padding-left: 1.75rem;
+}
+
+/* Mobile Dropdown Buttons */
+.mobile-dropdown-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  margin: 0.5rem 0;
+  
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white-pure);
+  text-align: left;
+  
+  background: rgba(201, 168, 119, 0.15);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.mobile-dropdown-btn:hover {
+  background: rgba(201, 168, 119, 0.25);
+  transform: translateX(5px);
+}
+
+/* Mobile Submenu */
+.mobile-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-base) var(--ease-smooth);
+}
+
+.mobile-submenu.show {
+  max-height: 500px;
+}
+
+.mobile-submenu .mobile-link {
+  margin-left: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 15px;
+}
+
+/* Mobile Menu Divider */
+.mobile-menu-divider {
+  height: 1px;
+  margin: 1.5rem 0;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(201, 168, 119, 0.4) 50%,
+    transparent
+  );
+}
+
+/* Mobile Auth Buttons */
+.mobile-auth-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  
+  border-radius: 12px;
+  cursor: pointer;
+  
+  transition: 
+    transform var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.mobile-auth-btn.primary {
+  background: linear-gradient(135deg, var(--gold-rich), var(--gold-dark));
+  color: var(--white-pure);
+  border: none;
+}
+
+.mobile-auth-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white-pure);
+  border: 1.5px solid var(--white-pure);
+}
+
+.mobile-auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-user-name {
+  color: var(--white-pure);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.mobile-logout-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white-pure);
+  
+  background: rgba(220, 38, 38, 0.8);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  
+  transition: 
+    background var(--duration-base) var(--ease-smooth),
+    transform var(--duration-fast) var(--ease-smooth);
+}
+
+.mobile-logout-btn:hover {
+  background: rgba(220, 38, 38, 1);
+  transform: translateY(-2px);
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN - Breakpoints
+   =================================================================== */
+
+/* Tablet and below - Hide desktop nav, show hamburger */
+@media (max-width: 1199px) {
+  .header-nav {
+    display: none;
+  }
+  
+  .hamburger-btn {
+    display: flex;
+  }
+  
+  .nav-list {
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile - Adjust sizes */
+@media (max-width: 767px) {
+  :root {
+    --header-height: 64px;
+    --header-height-scrolled: 56px;
+  }
+  
+  .header-container {
+    padding: 1rem 1.5rem;
+  }
+  
+  .site-header.header-scrolled .header-container {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .logo-main {
+    font-size: 20px;
+  }
+  
+  .logo-tagline {
+    font-size: 9px;
+  }
+  
+  .header-right {
+    gap: 0.5rem;
+  }
+  
+  .header-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .auth-buttons {
+    gap: 0.5rem;
+  }
+  
+  .sign-in-btn,
+  .register-btn {
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+  }
+  
+  .mobile-menu {
+    top: var(--header-height);
+    padding: 1.5rem;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+  .logo-tagline,
+  .profile-name {
+    display: none;
+  }
+  
+  .header-icon-btn:not(.hamburger-btn) {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .auth-buttons .sign-in-btn {
+    padding: 0.5rem 0.875rem;
+  }
+  
+  .register-btn {
+    padding: 0.5rem 0.875rem;
+  }
+}
+
+/* ===================================================================
+   ACCESSIBILITY - Focus States & Reduced Motion
+   =================================================================== */
+
+/* Custom Focus Rings */
+.nav-link:focus-visible,
+.header-icon-btn:focus-visible,
+.auth-btn:focus-visible,
+.profile-btn:focus-visible {
+  outline: 2px solid var(--gold-rich);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Keyboard Navigation Indicator */
+.dropdown-link:focus-visible {
+  background: rgba(201, 168, 119, 0.15);
+  outline: 2px solid var(--gold-rich);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .logo-icon {
+    animation: none;
+  }
+  
+  .icon-pulse {
+    animation: none;
+    display: none;
+  }
+  
+  .offer-badge {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .site-header {
+    border-bottom: 2px solid currentColor;
+  }
+  
+  .nav-link {
+    outline: 1px solid transparent;
+  }
+  
+  .nav-link:hover {
+    outline-color: currentColor;
+  }
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+@media print {
+  .site-header {
+    position: static;
+    background: white;
+    box-shadow: none;
+    border-bottom: 2px solid black;
+  }
+  
+  .header-nav,
+  .header-right,
+  .hamburger-btn,
+  .mobile-menu {
+    display: none;
+  }
+}

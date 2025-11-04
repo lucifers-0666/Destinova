@@ -1,0 +1,242 @@
+/* ===================================================================
+   DESTINOVA FOOTER COMPONENT STYLES
+   Theme: Emerald Green (#10B981) + Champagne Gold (#D4AF37)
+   =================================================================== */
+
+/* Root Variables */
+:root {
+  --primary-emerald: #10B981;
+  --primary-emerald-dark: #059669;
+  --champagne-gold: #D4AF37;
+  --gold-hover: #C19B2E;
+  --text-charcoal: #1F2937;
+  --text-secondary: #6B7280;
+  --bg-white: #FFFFFF;
+  --bg-light: #F9FAFB;
+  --bg-dark: #111827;
+  --border-light: #E5E7EB;
+  --transition-base: all 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --text-charcoal: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --bg-white: #1F2937;
+  --bg-light: #111827;
+  --bg-dark: #0F172A;
+  --border-light: #374151;
+}
+
+/* ===================================================================
+   FOOTER BASE
+   =================================================================== */
+
+.site-footer {
+  background: var(--bg-dark);
+  color: #D1D5DB;
+  padding: 3rem 0 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ===================================================================
+   FOOTER TOP
+   =================================================================== */
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* Footer Logo & Tagline */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo .logo-icon {
+  font-size: 1.75rem;
+}
+
+.footer-logo .logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-emerald), var(--champagne-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footer-tagline {
+  color: #9CA3AF;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+}
+
+/* Social Links */
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  color: var(--primary-emerald);
+  transition: var(--transition-base);
+}
+
+.social-link:hover {
+  background: var(--primary-emerald);
+  border-color: var(--primary-emerald);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Footer Columns */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: #9CA3AF;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: var(--transition-base);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--primary-emerald);
+  transform: translateX(5px);
+}
+
+/* ===================================================================
+   FOOTER BOTTOM
+   =================================================================== */
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom-left {
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  color: #9CA3AF;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-legal-link {
+  color: #9CA3AF;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: var(--transition-base);
+}
+
+.footer-legal-link:hover {
+  color: var(--champagne-gold);
+}
+
+.footer-separator {
+  color: #4B5563;
+  font-size: 0.875rem;
+}
+
+/* ===================================================================
+   RESPONSIVE BREAKPOINTS
+   =================================================================== */
+
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 0 1rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-tagline {
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-bottom-right {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 2rem 0 1rem;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+}
