@@ -15,28 +15,19 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/index.css"> <!-- For header consistency -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/privacy-policy.css">
 </head>
 
 <body>
 
-    <!-- Simplified Header -->
-    <header id="header-main" class="header-scrolled simplified-header">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1><a href="index.html">Destin<span>ova</span></a></h1>
-            </div>
-            <nav class="simplified-nav">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a>
-                <a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a>
-                <a href="offers.html"><i class="fas fa-tags"></i> Deals</a>
-                <a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Header Component -->
+    <div id="header-container"></div>
 
     <div class="privacy-container">
         <!-- Sidebar Navigation -->
@@ -227,6 +218,38 @@
             <button id="cookie-accept-all-btn">Accept All</button>
         </div>
     </div>
+
+    <!-- Load Header Component -->
+    <script>
+        console.log('🔄 Starting header load...');
+        console.log('📍 Current page:', window.location.href);
+        
+        // Load Header Component
+        fetch('header.html')
+            .then(res => {
+                console.log('📡 Fetch response:', res.status, res.statusText);
+                if (!res.ok) throw new Error(`Header fetch failed: ${res.status}`);
+                return res.text();
+            })
+            .then(html => {
+                console.log('✅ Header HTML received, length:', html.length);
+                document.getElementById('header-container').innerHTML = html;
+                console.log('✅ Header HTML inserted into DOM');
+                
+                // Load header JavaScript after HTML is inserted
+                const headerScript = document.createElement('script');
+                headerScript.src = '../js/header.js';
+                headerScript.onload = () => console.log('✅ Header JS loaded successfully');
+                headerScript.onerror = () => console.error('❌ Failed to load header.js');
+                document.body.appendChild(headerScript);
+            })
+            .catch(err => {
+                console.error('❌ Error loading header:', err);
+                // Fallback: show error message
+                document.getElementById('header-container').innerHTML = 
+                    '<div style="background: #f44336; color: white; padding: 1rem; text-align: center;">⚠️ Header failed to load: ' + err.message + '</div>';
+            });
+    </script>
 
     <script src="../js/privacy-policy.js"></script>
 </body>

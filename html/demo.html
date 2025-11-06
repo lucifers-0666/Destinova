@@ -1,758 +1,1095 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Destinova - Luxury Flight Booking</title>
-    
+    <title>Destinova - Book Flights, Hotels & Holiday Packages</title>
+
     <!-- ============================================
          PREMIUM FONTS
          ============================================ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+
     <!-- ============================================
          TAILWIND CSS
          ============================================ -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- ============================================
          GSAP LIBRARY
          ============================================ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
+
     <!-- ============================================
-         LENIS SMOOTH SCROLL
-         ============================================ -->
-    <script src="https://cdn.jsdelivr.net/gh/darkroomengineering/lenis@latest"></script>
-    
-    <!-- ============================================
-         TAILWIND CONFIG - LUXURY PALETTE
-         ============================================ -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'luxury-emerald': '#1a5f44',
-                        'luxury-emerald-dark': '#144f36',
-                        'luxury-gold': '#d4af37',
-                        'luxury-gold-dark': '#c4991f',
-                        'luxury-cream': '#f8f6f2',
-                        'luxury-charcoal': '#2c2c2c',
-                        'luxury-accent': '#e5c048'
-                    },
-                    fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
-                        'sans': ['Inter', 'sans-serif'],
-                        'poppins': ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- ============================================
-         PREMIUM STYLING & ANIMATIONS
+         CSS VARIABLES & STYLES
          ============================================ -->
     <style>
+        :root {
+            --emerald-primary: #1d5e33;
+            --emerald-dark: #164426;
+            --champagne-gold: #E5CBAF;
+            --gold-dark: #c9a877;
+            --gold-medium: #d4af37;
+            --white: #ffffff;
+            --cream-bg: #FFFBF2;
+            --charcoal: #1C2526;
+            --slate: #5C6B73;
+        }
+
         * {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Poppins', 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--cream-bg) 0%, #FEFCF8 100%);
+            color: var(--charcoal);
         }
-        
+
         /* ============================================
-           PHASE 1: HEADER BASE STYLES
+           HEADER - TRANSPARENT TO SOLID
            ============================================ */
-        
+
         header {
-            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            backdrop-filter: blur(0px);
             background: transparent;
-            border-bottom: 1px solid rgba(212, 175, 55, 0);
-            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
-            will-change: backdrop-filter, background, border-color, box-shadow;
+            backdrop-filter: blur(0px);
+            transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-bottom: 1px solid rgba(229, 203, 175, 0);
+            box-shadow: none;
+            padding: 14px 24px;
+            height: auto;
         }
-        
-        /* Scrolled state with glassmorphism */
+
         header.header-scrolled {
-            background: linear-gradient(135deg, 
-                rgba(26, 95, 68, 0.92) 0%, 
-                rgba(20, 75, 54, 0.90) 100%);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            height: 70px;
+            background: linear-gradient(135deg,
+                    rgba(29, 94, 51, 0.92) 0%,
+                    rgba(22, 68, 38, 0.90) 100%);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+            border-bottom: 1px solid rgba(229, 203, 175, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            padding: 12px 24px;
         }
-        
-        header.header-scrolled nav {
-            padding-top: 10px !important;
-            padding-bottom: 10px !important;
-        }
-        
-        /* ============================================
-           PHASE 2: LOGO & BRANDING
-           ============================================ */
-        
-        @keyframes logoEntrance {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateX(0);
-            }
-        }
-        
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
-        }
-        
-        .logo-container {
-            animation: logoEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+
+        nav {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* ============================================
+           LOGO
+           ============================================ */
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             cursor: pointer;
-        }
-        
-        .logo-icon {
-            font-size: 32px;
-            animation: logoFloat 4s ease-in-out infinite;
             transition: all 300ms ease-out;
-            will-change: transform;
+            flex-shrink: 0;
         }
-        
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            animation: logoFloat 5s ease-in-out infinite;
+            color: var(--champagne-gold);
+            stroke-width: 1.5;
+            flex-shrink: 0;
+        }
+
         .logo-text {
             font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            font-size: 26px;
-            letter-spacing: 0.15em;
-            color: #1a5f44;
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: 0.03em;
+            color: var(--champagne-gold);
             transition: all 300ms ease-out;
         }
-        
-        .logo-tagline {
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            color: #d4af37;
-            font-weight: 600;
-            margin-top: -4px;
-            opacity: 0;
-            transition: opacity 300ms ease-out;
-        }
-        
+
         .logo-container:hover .logo-icon {
-            color: #d4af37;
-            transform: scale(1.2) translateY(0px);
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+            color: var(--gold-dark);
+            transform: scale(1.15);
         }
-        
+
         .logo-container:hover .logo-text {
-            color: #d4af37;
-            letter-spacing: 0.2em;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            color: var(--gold-dark);
+            letter-spacing: 0.05em;
         }
-        
-        .logo-container:hover .logo-tagline {
-            opacity: 1;
-        }
-        
-        header.header-scrolled .logo-text {
-            color: #f8f6f2;
-        }
-        
+
+        header.header-scrolled .logo-text,
         header.header-scrolled .logo-icon {
-            color: #f8f6f2;
+            color: var(--white);
         }
-        
+
+        header.header-scrolled .logo-container:hover .logo-text,
+        header.header-scrolled .logo-container:hover .logo-icon {
+            color: var(--champagne-gold);
+        }
+
         /* ============================================
-           PHASE 3: NAVIGATION MENU
+           CENTERED NAVIGATION
            ============================================ */
-        
-        @keyframes navItemEntrance {
-            0% {
-                opacity: 0;
-                transform: translateY(-15px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
+
+        .nav-center {
+            display: none;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-center {
+                display: flex;
             }
         }
-        
-        nav ul {
-            animation: navItemEntrance 600ms ease-out backwards;
-            animation-delay: 300ms;
+
+        .nav-item-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
-        
+
         .nav-item {
             position: relative;
-            padding: 8px 16px;
-            font-size: 15px;
-            font-weight: 500;
-            color: #2c2c2c;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255, 255, 255, 0.90);
             cursor: pointer;
             transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.01em;
+            letter-spacing: 0.02em;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-decoration: none;
+            border: none;
+            background: none;
         }
-        
-        /* Gradient underline on hover */
+
+        /* Modern hover background */
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(229, 203, 175, 0.2), rgba(229, 203, 175, 0.05));
+            border-radius: 8px;
+            transform: translateX(-100%);
+            transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .nav-item:hover::before {
+            transform: translateX(0);
+        }
+
+        /* Modern underline effect */
         .nav-item::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 6px;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
-            width: 50%;
+            width: 70%;
             height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                #d4af37 50%, 
-                transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, var(--champagne-gold) 50%, transparent 100%);
             transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 2px;
         }
-        
+
         .nav-item:hover::after {
             transform: translateX(-50%) scaleX(1);
         }
-        
+
+        .nav-item svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+            transition: all 300ms ease-out;
+        }
+
         .nav-item:hover {
-            color: #d4af37;
-            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            color: var(--champagne-gold);
             transform: translateY(-2px);
         }
-        
-        /* Chevron animation */
-        .dropdown-chevron {
-            transition: transform 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            will-change: transform;
+
+        .nav-item:hover svg {
+            color: var(--champagne-gold);
+            transform: scale(1.1) rotate(5deg);
         }
-        
+
+        .dropdown-chevron {
+            width: 14px;
+            height: 14px;
+            transition: transform 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
         .nav-item:hover .dropdown-chevron {
             transform: rotate(180deg);
         }
-        
-        header.header-scrolled .nav-item {
-            color: #f8f6f2;
+
+        .badge-hot {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
         }
-        
-        header.header-scrolled .nav-item:hover {
-            color: #d4af37;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
         }
-        
+
         /* ============================================
-           PHASE 4: DROPDOWN MENU GLASSMORPHISM
+           DROPDOWN MENUS - FIXED
            ============================================ */
-        
+
         .dropdown-menu {
             position: absolute;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-15px) scale(0.92);
-            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            
-            /* Glassmorphism effect */
-            background: rgba(248, 246, 242, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            
-            padding: 16px;
-            min-width: 240px;
-            z-index: 100;
+            transform: translateY(-12px) scale(0.94);
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+            border: 1px solid rgba(26, 95, 68, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+
+            padding: 8px;
+            min-width: 220px;
+            z-index: 1000;
             pointer-events: none;
-            will-change: transform, opacity, visibility;
+            left: 0;
+            top: calc(100% + 8px);
+            margin-top: 0;
+            list-style: none;
         }
-        
-        .nav-item:hover .dropdown-menu {
+
+        .nav-item-wrapper:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0) scale(1);
             pointer-events: auto;
         }
-        
-        /* Dropdown divider with gradient */
+
+        .dropdown-item {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            color: var(--charcoal);
+            transition: all 250ms ease-out;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            cursor: pointer;
+            margin-bottom: 3px;
+            position: relative;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .dropdown-item a {
+            text-decoration: none;
+            color: inherit;
+            flex: 1;
+        }
+
+        .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(26, 95, 68, 0.08);
+            transform: translateX(6px);
+            color: var(--emerald-primary);
+        }
+
+        .dropdown-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--emerald-primary);
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+            transition: all 250ms ease-out;
+        }
+
+        .dropdown-item:hover svg {
+            color: var(--champagne-gold);
+            transform: scale(1.1);
+        }
+
         .dropdown-divider {
             height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(212, 175, 55, 0.4) 50%, 
-                transparent 100%);
-            margin: 10px 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(26, 95, 68, 0.15) 50%, transparent 100%);
+            margin: 6px 0;
+            list-style: none;
         }
-        
+
         /* ============================================
-           PHASE 5: DROPDOWN ITEMS PREMIUM STYLE
+           UTILITY BAR WITH DROPDOWNS
            ============================================ */
-        
-        @keyframes dropdownItemEntrance {
-            0% {
-                opacity: 0;
-                transform: translateX(-12px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
+
+        .utility-bar {
+            display: none;
+            gap: 12px;
+            align-items: center;
+            padding-right: 12px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            margin-right: 12px;
+        }
+
+        @media (min-width: 1280px) {
+            .utility-bar {
+                display: flex;
             }
         }
-        
-        .dropdown-item {
+
+        .utility-item-wrapper {
             position: relative;
-            padding: 14px 16px;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            overflow: hidden;
-            animation: dropdownItemEntrance 200ms ease-out backwards;
+            display: flex;
+            align-items: center;
         }
-        
-        .dropdown-item:nth-child(1) { animation-delay: 100ms; }
-        .dropdown-item:nth-child(2) { animation-delay: 140ms; }
-        .dropdown-item:nth-child(3) { animation-delay: 180ms; }
-        .dropdown-item:nth-child(4) { animation-delay: 220ms; }
-        .dropdown-item:nth-child(5) { animation-delay: 260ms; }
-        
-        /* Left accent bar on hover */
-        .dropdown-item::before {
+
+        .utility-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 300ms ease-out;
+            border-radius: 6px;
+            white-space: nowrap;
+            position: relative;
+            border: none;
+            background: none;
+        }
+
+        .utility-item::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%) scaleY(0);
-            width: 3px;
-            height: 60%;
-            background: linear-gradient(180deg, #d4af37, #e5c048);
+            inset: 0;
+            background: rgba(229, 203, 175, 0.15);
+            border-radius: 6px;
+            transform: scaleX(0);
+            transform-origin: left;
             transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-radius: 2px;
+            z-index: -1;
         }
-        
-        .dropdown-item:hover::before {
-            transform: translateY(-50%) scaleY(1);
+
+        .utility-item:hover::before {
+            transform: scaleX(1);
         }
-        
-        .dropdown-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateX(6px);
-            padding-left: 20px;
+
+        .utility-item:hover {
+            color: var(--champagne-gold);
         }
-        
-        .dropdown-item .material-symbols-rounded {
-            font-size: 18px;
-            color: #1a5f44;
-            transition: all 280ms ease-out;
-            will-change: color, transform;
+
+        .utility-item svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            transition: all 300ms ease-out;
         }
-        
-        .dropdown-item:hover .material-symbols-rounded {
-            color: #d4af37;
-            transform: scale(1.15) translateY(-1px);
+
+        .utility-item:hover svg {
+            transform: rotate(10deg) scale(1.1);
         }
-        
-        .dropdown-link {
-            color: #2c2c2c;
-            transition: color 280ms ease-out;
+
+        /* Utility dropdown */
+        .utility-dropdown {
+            position: absolute;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px) scale(0.95);
+            transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px) saturate(150%);
+            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            border: 1px solid rgba(26, 95, 68, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+            padding: 6px;
+            min-width: 180px;
+            z-index: 1001;
+            pointer-events: none;
+            left: 0;
+            top: calc(100% + 6px);
+            margin-top: 0;
+            list-style: none;
+        }
+
+        .utility-item-wrapper:hover .utility-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .utility-option {
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--charcoal);
+            cursor: pointer;
+            transition: all 200ms ease-out;
+            margin-bottom: 2px;
+            list-style: none;
+        }
+
+        .utility-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .utility-option:hover {
+            background: rgba(26, 95, 68, 0.1);
+            color: var(--emerald-primary);
+            transform: translateX(4px);
+        }
+
+        .help-btn {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 300ms ease-out;
+        }
+
+        .help-btn:hover {
+            background: var(--champagne-gold);
+            color: var(--emerald-primary);
+        }
+
+        /* ============================================
+           AUTH BUTTONS - GOLD GRADIENT
+           ============================================ */
+
+        .btn-group {
+            display: none;
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 1280px) {
+            .btn-group {
+                display: flex;
+            }
+        }
+
+        .btn-sign-in {
+            padding: 8px 18px;
+            border-radius: 6px;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            background: transparent;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 300ms ease-out;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
             text-decoration: none;
         }
-        
-        .dropdown-item:hover .dropdown-link {
-            color: #1a5f44;
-        }
-        
-        /* ============================================
-           PHASE 6: BUTTON SYSTEM - PREMIUM CTA
-           ============================================ */
-        
-        /* Register Button - Metallic Gold */
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            50% { background-position: 200% center; }
-            100% { background-position: -200% center; }
-        }
-        
-        .btn-register {
-            position: relative;
-            padding: 13px 36px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            border: none;
-            cursor: pointer;
-            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.02em;
-            
-            /* Metallic gradient */
-            background: linear-gradient(135deg, #d4af37 0%, #e5c048 50%, #d4af37 100%);
-            background-size: 200% auto;
-            
-            box-shadow: 
-                0 4px 20px rgba(212, 175, 55, 0.3),
-                inset -1px -1px 3px rgba(0, 0, 0, 0.1),
-                inset 1px 1px 3px rgba(255, 255, 255, 0.4);
-            
-            color: #2c2c2c;
-            will-change: transform, box-shadow;
-            overflow: hidden;
-        }
-        
-        .btn-register::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(255, 255, 255, 0.3), 
-                transparent 70%);
-            transform: rotate(45deg);
-            animation: shimmer-move 3s infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes shimmer-move {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .btn-register:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 
-                0 8px 35px rgba(212, 175, 55, 0.5),
-                0 0 60px rgba(212, 175, 55, 0.3),
-                inset -1px -1px 3px rgba(0, 0, 0, 0.1),
-                inset 1px 1px 3px rgba(255, 255, 255, 0.5);
-            background-position: 200% center;
-        }
-        
-        .btn-register:active {
-            transform: translateY(-1px) scale(1.02);
-        }
-        
-        /* Sign In Button - Ghost Luxury */
-        .btn-sign-in {
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.02em;
-            
-            background: transparent;
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            color: #2c2c2c;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            
-            position: relative;
-            overflow: hidden;
-            will-change: all;
-        }
-        
+
         .btn-sign-in::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.15);
-            transform: translate(-50%, -50%);
-            transition: width 400ms ease-out, height 400ms ease-out;
+            inset: 0;
+            background: rgba(229, 203, 175, 0.1);
+            transform: scale(0);
+            border-radius: 6px;
+            transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: -1;
         }
-        
+
         .btn-sign-in:hover::before {
-            width: 400px;
-            height: 400px;
+            transform: scale(1);
         }
-        
+
         .btn-sign-in:hover {
-            border-color: #d4af37;
-            color: #1a5f44;
-            background: rgba(212, 175, 55, 0.08);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
-            transform: translateY(-2px);
+            border-color: var(--champagne-gold);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-        
-        .btn-sign-in span {
+
+        .btn-sign-in svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* REGISTER BUTTON - GOLD GRADIENT (NO ORANGE) */
+        .btn-register {
+            padding: 9px 22px;
+            border-radius: 6px;
+            border: none;
+            background: linear-gradient(135deg, #E5CBAF 0%, #d4af37 50%, #c9a877 100%);
+            color: var(--emerald-primary);
+            font-weight: 700;
+            font-size: 12px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+            text-decoration: none;
         }
-        
-        /* Button responsiveness on scroll */
-        header.header-scrolled .btn-sign-in {
-            color: #f8f6f2;
-            border-color: rgba(212, 175, 55, 0.5);
+
+        .btn-register::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            animation: shimmer 3s infinite;
         }
-        
-        header.header-scrolled .btn-sign-in:hover {
-            color: #d4af37;
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
         }
-        
+
+        .btn-register:hover {
+            background: linear-gradient(135deg, #f5e8d8 0%, #E5CBAF 50%, #d4af37 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+            color: var(--emerald-dark);
+        }
+
+        .btn-register svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+        }
+
         /* ============================================
-           PHASE 7: MOBILE HAMBURGER
+           HAMBURGER & MOBILE
            ============================================ */
-        
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 50;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 1024px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
         .hamburger-line {
-            height: 2.5px;
-            width: 24px;
-            background: #2c2c2c;
+            width: 20px;
+            height: 2px;
+            background: var(--white);
             border-radius: 2px;
-            transition: all 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            will-change: transform, opacity;
+            transition: all 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        
+
         .hamburger.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translateY(10px);
+            transform: rotate(45deg) translateY(8px);
         }
-        
+
         .hamburger.active .hamburger-line:nth-child(2) {
             opacity: 0;
-            transform: scale(0);
         }
-        
+
         .hamburger.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translateY(-10px);
+            transform: rotate(-45deg) translateY(-8px);
         }
-        
-        header.header-scrolled .hamburger-line {
-            background: #f8f6f2;
-        }
-        
-        /* ============================================
-           PHASE 8: MOBILE MENU
-           ============================================ */
-        
+
         #mobile-menu {
-            background: linear-gradient(135deg, 
-                rgba(26, 95, 68, 0.98) 0%, 
-                rgba(20, 75, 54, 0.98) 100%);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            
+            display: none;
+            background: linear-gradient(135deg, rgba(26, 95, 68, 0.98) 0%, rgba(20, 85, 60, 0.98) 100%);
+            backdrop-filter: blur(25px) saturate(150%);
+            -webkit-backdrop-filter: blur(25px) saturate(150%);
+            border-bottom: 1px solid rgba(229, 203, 175, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+
             position: fixed;
-            top: 90px;
+            top: 72px;
             left: 0;
             right: 0;
-            max-height: calc(100vh - 90px);
+            max-height: calc(100vh - 72px);
             overflow-y: auto;
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 99;
-            padding: 24px;
+            padding: 16px;
         }
-        
+
         #mobile-menu.open {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
+            display: block;
         }
-        
+
         .mobile-nav-item {
-            padding: 18px;
-            color: #f8f6f2;
-            font-size: 16px;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 12px 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(229, 203, 175, 0.15);
             cursor: pointer;
-            transition: all 280ms ease-out;
-            opacity: 0;
-            transform: translateX(-20px);
+            transition: all 300ms ease-out;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 4px;
+            text-decoration: none;
         }
-        
-        #mobile-menu.open .mobile-nav-item {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        #mobile-menu.open .mobile-nav-item:nth-child(1) { transition-delay: 50ms; }
-        #mobile-menu.open .mobile-nav-item:nth-child(2) { transition-delay: 100ms; }
-        #mobile-menu.open .mobile-nav-item:nth-child(3) { transition-delay: 150ms; }
-        #mobile-menu.open .mobile-nav-item:nth-child(4) { transition-delay: 200ms; }
-        #mobile-menu.open .mobile-nav-item:nth-child(5) { transition-delay: 250ms; }
-        #mobile-menu.open .mobile-nav-item:nth-child(6) { transition-delay: 300ms; }
-        
+
         .mobile-nav-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: #d4af37;
-            padding-left: 24px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background: rgba(229, 203, 175, 0.15);
+            color: var(--champagne-gold);
+            padding-left: 18px;
         }
-        
+
         /* ============================================
-           PHASE 9: ACCESSIBILITY
+           HERO SECTION
            ============================================ */
-        
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* ============================================
-           PHASE 10: RESPONSIVE DESIGN
-           ============================================ */
-        
-        @media (max-width: 1024px) {
-            .logo-text { font-size: 22px; }
-            .nav-item { padding: 6px 12px; font-size: 14px; }
-        }
-        
-        @media (max-width: 768px) {
-            .logo-text { font-size: 20px; }
-            .btn-register, .btn-sign-in { 
-                padding: 11px 26px; 
-                font-size: 14px; 
-            }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(26, 95, 68, 0.7) 0%, rgba(20, 85, 60, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200&h=600&fit=crop') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
         }
     </style>
 </head>
 
-<body class="bg-luxury-cream">
+<body>
 
     <!-- ============================================
-         PREMIUM HEADER
+         HEADER
          ============================================ -->
-    <header class="fixed top-0 left-0 w-full z-50 h-[90px]">
-        <nav class="max-w-[1400px] mx-auto px-12 h-full flex items-center justify-between">
-            
-            <!-- ========== LEFT: LOGO ========== -->
-            <div class="logo-container">
-                <span class="logo-icon material-symbols-rounded">flight_takeoff</span>
-                <div>
-                    <div class="logo-text">DESTINOVA</div>
-                    <div class="logo-tagline">LUXURY TRAVEL</div>
+    <header class="fixed top-0 left-0 w-full z-50">
+        <nav>
+            <!-- LOGO -->
+            <a href="index.html" class="logo-container">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor">
+                    <path
+                        d="M10.5 1.5h3m0 0L21 10.5M13.5 1.5L3 10.5m0 0v9a1.5 1.5 0 001.5 1.5h15a1.5 1.5 0 001.5-1.5v-9m-18 0h18" />
+                </svg>
+                <span class="logo-text hidden sm:inline">DESTINOVA</span>
+            </a>
+
+            <!-- CENTERED PRIMARY NAVIGATION -->
+            <div class="nav-center">
+                <!-- HOME -->
+                <div class="nav-item-wrapper">
+                    <a href="index.html" class="nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                        <span>Home</span>
+                    </a>
+                </div>
+
+                <!-- BOOK DROPDOWN -->
+                <div class="nav-item-wrapper">
+                    <button class="nav-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path
+                                d="M10.5 1.5h3m0 0L21 10.5M13.5 1.5L3 10.5m0 0v9a1.5 1.5 0 001.5 1.5h15a1.5 1.5 0 001.5-1.5v-9m-18 0h18" />
+                        </svg>
+                        <span>Book</span>
+                        <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                            <a href="booking.html">New Booking</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="9" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                            <a href="flight-status.html">Flight Status</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            <a href="destinations.html">Destinations</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <a href="booking-confirmation.html">My Bookings</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <a href="profile.html">My Profile</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- MY TRIPS DROPDOWN -->
+                <div class="nav-item-wrapper">
+                    <button class="nav-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <span>My Trips</span>
+                        <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            </svg>
+                            <a href="my-bookings.html">My Bookings</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <a href="booking.html">Bookings</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <path d="M1 10h22" />
+                            </svg>
+                            <a href="payment-history.html">Payment History</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- OFFERS -->
+                <div class="nav-item-wrapper">
+                    <a href="offers.html" class="nav-item relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <path d="M9 11l3 3L21 5" />
+                        </svg>
+                        <span>Offers</span>
+                        <span class="badge-hot">HOT</span>
+                    </a>
+                </div>
+
+                <!-- EXPLORE DROPDOWN -->
+                <div class="nav-item-wrapper">
+                    <button class="nav-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <span>Explore</span>
+                        <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                            </svg>
+                            <a href="travel-blog.html">Travel Blog</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            </svg>
+                            <a href="destinations.html">Destinations</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <a href="reviews.html">Reviews</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            </svg>
+                            <a href="blog.html">Blog</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4m0-4h.01" />
+                            </svg>
+                            <a href="why-choose-us.html">Why Choose Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- HELP DROPDOWN -->
+                <div class="nav-item-wrapper">
+                    <button class="nav-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01" />
+                        </svg>
+                        <span>Help</span>
+                        <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+                            </svg>
+                            <a href="contact-us.html">Contact Us</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01" />
+                            </svg>
+                            <a href="faq.html">FAQ</a>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            </svg>
+                            <a href="privacy-policy.html">Privacy Policy</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            </svg>
+                            <a href="terms-conditions.html">Terms & Conditions</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            <a href="offline.html">Offline Support</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
-            <!-- ========== CENTER: DESKTOP NAV ========== -->
-            <ul class="hidden lg:flex gap-2 items-center">
-                
-                <!-- HOME -->
-                <li class="nav-item">
-                    <a href="index.html">Home</a>
-                </li>
-                
-                <!-- BOOK -->
-                <li class="nav-item relative group">
-                    <button class="flex items-center gap-1 focus:outline-none">
-                        Book
-                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
+
+            <!-- UTILITY BAR WITH DROPDOWNS -->
+            <div class="utility-bar">
+                <!-- LANGUAGE -->
+                <div class="utility-item-wrapper">
+                    <button class="utility-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                        </svg>
+                        <span>EN</span>
                     </button>
-                    
-                    <ul class="dropdown-menu left-0 mt-6 top-full">
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">flight</span>
-                            <a href="booking.html" class="dropdown-link">New Booking</a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">schedule</span>
-                            <a href="flight-status.html" class="dropdown-link">Flight Status</a>
-                        </li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">map</span>
-                            <a href="destinations.html" class="dropdown-link">Destinations</a>
-                        </li>
+
+                    <ul class="utility-dropdown">
+                        <li class="utility-option" onclick="changeLanguage('en')">English</li>
+                        <li class="utility-option" onclick="changeLanguage('hi')">हिंदी</li>
+                        <li class="utility-option" onclick="changeLanguage('es')">Español</li>
+                        <li class="utility-option" onclick="changeLanguage('fr')">Français</li>
+                        <li class="utility-option" onclick="changeLanguage('de')">Deutsch</li>
+                        <li class="utility-option" onclick="changeLanguage('pt')">Português</li>
+                        <li class="utility-option" onclick="changeLanguage('ja')">日本語</li>
                     </ul>
-                </li>
-                
-                <!-- MY TRIPS -->
-                <li class="nav-item relative group">
-                    <button class="flex items-center gap-1 focus:outline-none">
-                        My Trips
-                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
+                </div>
+
+                <!-- CURRENCY -->
+                <div class="utility-item-wrapper">
+                    <button class="utility-item" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                        </svg>
+                        <span>INR</span>
                     </button>
-                    
-                    <ul class="dropdown-menu left-0 mt-6 top-full">
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">confirmation_number</span>
-                            <a href="my-bookings.html" class="dropdown-link">My Bookings</a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">credit_card</span>
-                            <a href="payment-history.html" class="dropdown-link">Payment History</a>
-                        </li>
+
+                    <ul class="utility-dropdown">
+                        <li class="utility-option" onclick="changeCurrency('INR')">INR - Indian Rupee</li>
+                        <li class="utility-option" onclick="changeCurrency('USD')">USD - US Dollar</li>
+                        <li class="utility-option" onclick="changeCurrency('EUR')">EUR - Euro</li>
+                        <li class="utility-option" onclick="changeCurrency('GBP')">GBP - British Pound</li>
+                        <li class="utility-option" onclick="changeCurrency('JPY')">JPY - Japanese Yen</li>
+                        <li class="utility-option" onclick="changeCurrency('AED')">AED - UAE Dirham</li>
+                        <li class="utility-option" onclick="changeCurrency('SGD')">SGD - Singapore Dollar</li>
                     </ul>
-                </li>
-                
-                <!-- OFFERS -->
-                <li class="nav-item">
-                    <a href="offers.html">Offers</a>
-                </li>
-                
-                <!-- MORE -->
-                <li class="nav-item relative group">
-                    <button class="flex items-center gap-1 focus:outline-none">
-                        More
-                        <span class="dropdown-chevron material-symbols-rounded">expand_more</span>
-                    </button>
-                    
-                    <ul class="dropdown-menu left-0 mt-6 top-full">
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">info</span>
-                            <a href="about-us.html" class="dropdown-link">About Us</a>
-                        </li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">mail</span>
-                            <a href="contact-us.html" class="dropdown-link">Contact Us</a>
-                        </li>
-                        <li class="dropdown-divider"></li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">help</span>
-                            <a href="faq.html" class="dropdown-link">FAQ</a>
-                        </li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">article</span>
-                            <a href="blog.html" class="dropdown-link">Blog</a>
-                        </li>
-                        <li class="dropdown-item flex items-center gap-3">
-                            <span class="material-symbols-rounded">star</span>
-                            <a href="reviews.html" class="dropdown-link">Reviews</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <!-- ========== RIGHT: CTA BUTTONS ========== -->
-            <div class="hidden md:flex gap-3 items-center">
-                <button class="btn-sign-in">
-                    <span>Sign In</span>
-                </button>
-                <button class="btn-register">
-                    Register
-                </button>
+                </div>
+
+                <!-- HELP -->
+                <a href="contact-us.html" class="help-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                    </svg>
+                    <span>Help</span>
+                </a>
             </div>
-            
-            <!-- ========== MOBILE: HAMBURGER ========== -->
-            <button class="hamburger lg:hidden flex flex-col gap-1.5 z-50 focus:outline-none" id="hamburger" aria-label="Toggle menu">
+
+            <!-- AUTH BUTTONS -->
+            <div class="btn-group">
+                <a href="sign-in.html" class="btn-sign-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span>Sign In</span>
+                </a>
+
+                <a href="sign-up.html" class="btn-register">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                        <circle cx="10.5" cy="7" r="4" />
+                        <line x1="20" y1="8" x2="20" y2="14" />
+                        <line x1="23" y1="11" x2="17" y2="11" />
+                    </svg>
+                    <span>Register</span>
+                </a>
+            </div>
+
+            <!-- HAMBURGER -->
+            <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -760,165 +1097,225 @@
         </nav>
     </header>
 
-    <!-- ========== MOBILE MENU ========== -->
+    <!-- MOBILE MENU -->
     <div id="mobile-menu">
-        <a href="index.html" class="mobile-nav-item block">Home</a>
-        <button onclick="toggleMobileDropdown('book-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
-            Book
-            <span class="material-symbols-rounded text-lg" id="book-mobile-icon">expand_more</span>
-        </button>
-        <div id="book-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
-            <a href="booking.html" class="block text-white/80 text-sm hover:text-gold-champagne">New Booking</a>
-            <a href="flight-status.html" class="block text-white/80 text-sm hover:text-gold-champagne">Flight Status</a>
-            <a href="destinations.html" class="block text-white/80 text-sm hover:text-gold-champagne">Destinations</a>
-        </div>
-        
-        <button onclick="toggleMobileDropdown('trips-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
-            My Trips
-            <span class="material-symbols-rounded text-lg" id="trips-mobile-icon">expand_more</span>
-        </button>
-        <div id="trips-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
-            <a href="my-bookings.html" class="block text-white/80 text-sm hover:text-gold-champagne">My Bookings</a>
-            <a href="payment-history.html" class="block text-white/80 text-sm hover:text-gold-champagne">Payment History</a>
-        </div>
-        
-        <a href="offers.html" class="mobile-nav-item block">Offers</a>
-        
-        <button onclick="toggleMobileDropdown('more-mobile')" class="mobile-nav-item w-full text-left flex justify-between">
-            More
-            <span class="material-symbols-rounded text-lg" id="more-mobile-icon">expand_more</span>
-        </button>
-        <div id="more-mobile" class="hidden pl-6 space-y-2 my-2 border-l border-emerald-400/30">
-            <a href="about-us.html" class="block text-white/80 text-sm hover:text-gold-champagne">About Us</a>
-            <a href="contact-us.html" class="block text-white/80 text-sm hover:text-gold-champagne">Contact Us</a>
-            <a href="faq.html" class="block text-white/80 text-sm hover:text-gold-champagne">FAQ</a>
-            <a href="blog.html" class="block text-white/80 text-sm hover:text-gold-champagne">Blog</a>
-            <a href="reviews.html" class="block text-white/80 text-sm hover:text-gold-champagne">Reviews</a>
+        <a href="index.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+            <span>Home</span>
+        </a>
+
+        <a href="booking.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M10.5 1.5h3m0 0L21 10.5M13.5 1.5L3 10.5" />
+            </svg>
+            <span>Book Flights</span>
+        </a>
+
+        <a href="my-bookings.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+            </svg>
+            <span>My Trips</span>
+        </a>
+
+        <a href="offers.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <path d="M9 11l3 3L21 5" />
+            </svg>
+            <span>Offers</span>
+        </a>
+
+        <a href="travel-blog.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg>
+            <span>Travel Blog</span>
+        </a>
+
+        <a href="contact-us.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3m.08 4h.01" />
+            </svg>
+            <span>Help & Support</span>
+        </a>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.2); margin: 12px 0; padding-top: 12px;">
+            <a href="sign-in.html" class="mobile-nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span>Sign In</span>
+            </a>
+
+            <a href="sign-up.html" class="mobile-nav-item" style="background: rgba(212, 175, 55, 0.2);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="10.5" cy="7" r="4" />
+                    <line x1="20" y1="8" x2="20" y2="14" />
+                    <line x1="23" y1="11" x2="17" y2="11" />
+                </svg>
+                <span>Register</span>
+            </a>
         </div>
     </div>
 
     <!-- ============================================
-         DEMO HERO
+         HERO SECTION
          ============================================ -->
-    <main>
-        <section class="pt-[90px] min-h-screen bg-gradient-to-br from-luxury-emerald via-luxury-emerald-dark to-[#0f4d38] flex items-center justify-center text-center px-6">
-            <div>
-                <h1 class="font-serif text-6xl md:text-8xl font-bold text-luxury-cream mb-6">DESTINOVA</h1>
-                <p class="text-2xl md:text-3xl text-luxury-gold mb-8">Luxury Flight Booking Experience</p>
-                <p class="text-lg text-luxury-cream/70">Scroll down to experience premium animations</p>
+    <section class="hero-section pt-20 min-h-screen flex items-center justify-center text-center px-6">
+        <div
+            style="background: radial-gradient(circle at center, rgba(29, 94, 51, 0.3) 0%, rgba(22, 68, 38, 0.6) 100%); position: absolute; inset: 0;">
+        </div>
+
+        <div style="position: relative; z-index: 2;">
+            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6">
+                Book Your Dream Flight
+            </h1>
+
+            <p class="text-xl md:text-2xl text-champagne-gold mb-4">
+                Find the best deals on flights, hotels & packages
+            </p>
+
+            <p class="text-base md:text-lg text-white/80 mb-12">
+                Explore destinations worldwide with Destinova
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="booking.html" class="btn-register px-8 py-3 text-base">
+                    Explore Flights
+                </a>
+                <a href="why-choose-us.html" class="btn-sign-in px-8 py-3 text-base border-2">
+                    Learn More
+                </a>
             </div>
-        </section>
-        
-        <section class="min-h-screen bg-luxury-cream flex items-center justify-center text-center px-6">
-            <div>
-                <h2 class="font-serif text-5xl font-bold text-luxury-charcoal mb-6">Glassmorphic Header</h2>
-                <p class="text-xl text-luxury-charcoal/70">Notice the premium backdrop blur effect</p>
-            </div>
-        </section>
-        
-        <section class="min-h-screen bg-gradient-to-br from-luxury-cream to-white flex items-center justify-center text-center px-6">
-            <div>
-                <h2 class="font-serif text-5xl font-bold text-luxury-charcoal mb-6">Scroll Back</h2>
-                <p class="text-xl text-luxury-charcoal/70">All animations smooth and refined</p>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- ============================================
-         JAVASCRIPT - GSAP & LENIS INTEGRATION
+         DEMO CONTENT
+         ============================================ -->
+    <section class="py-20 px-6 bg-cream-bg">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                Why Choose Destinova?
+            </h2>
+
+            <p class="text-lg text-slate mb-12">
+                Experience premium flight booking with industry-leading features
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-5xl mb-4">✈️</div>
+                    <h3 class="font-bold text-xl mb-2 text-charcoal">Best Prices</h3>
+                    <p class="text-slate">Find the lowest fares guaranteed</p>
+                </div>
+
+                <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-5xl mb-4">🎫</div>
+                    <h3 class="font-bold text-xl mb-2 text-charcoal">24/7 Support</h3>
+                    <p class="text-slate">Round-the-clock customer assistance</p>
+                </div>
+
+                <div class="p-8 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h3 class="font-bold text-xl mb-2 text-charcoal">Global Reach</h3>
+                    <p class="text-slate">Book flights to 200+ destinations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         JAVASCRIPT - FIXED DROPDOWN
          ============================================ -->
     <script>
-        // ============================================
-        // GSAP PLUGIN REGISTRATION
-        // ============================================
         gsap.registerPlugin(ScrollTrigger);
-        
-        // ============================================
-        // LENIS SMOOTH SCROLL
-        // ============================================
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true,
-            smoothTouch: false,
-            wheelMultiplier: 1
-        });
-        
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-        
-        // ============================================
-        // HEADER SCROLL EFFECT
-        // ============================================
+
         const header = document.querySelector('header');
-        let lastScrollY = 0;
-        
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Scroll detection
         window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            
-            if (scrollY > 50) {
+            if (window.scrollY > 50) {
                 header.classList.add('header-scrolled');
             } else {
                 header.classList.remove('header-scrolled');
             }
-            
-            lastScrollY = scrollY;
         }, { passive: true });
-        
-        // ============================================
-        // HAMBURGER MENU TOGGLE
-        // ============================================
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
+
+        // Mobile hamburger
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('open');
         });
-        
-        // Close menu on link click
+
+        // Close mobile menu when clicking on a link
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('open');
             });
         });
-        
-        // ============================================
-        // MOBILE DROPDOWN TOGGLE
-        // ============================================
-        function toggleMobileDropdown(id) {
-            const dropdown = document.getElementById(id);
-            const icon = document.getElementById(id + '-icon');
-            
-            if (dropdown.classList.contains('hidden')) {
-                dropdown.classList.remove('hidden');
-                gsap.to(icon, { rotation: 180, duration: 0.3 });
-            } else {
-                dropdown.classList.add('hidden');
-                gsap.to(icon, { rotation: 0, duration: 0.3 });
-            }
-        }
-        
-        // ============================================
-        // BUTTON CLICK ANIMATIONS
-        // ============================================
-        document.querySelectorAll('.btn-register, .btn-sign-in').forEach(btn => {
-            btn.addEventListener('click', function() {
-                gsap.to(this, {
-                    scale: 0.95,
-                    duration: 0.1,
-                    yoyo: true,
-                    repeat: 1
+
+        // Close dropdowns on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item-wrapper') && !e.target.closest('.utility-item-wrapper')) {
+                document.querySelectorAll('.dropdown-menu, .utility-dropdown').forEach(menu => {
+                    menu.style.opacity = '0';
+                    menu.style.visibility = 'hidden';
+                    menu.style.pointerEvents = 'none';
                 });
+            }
+        });
+
+        // Fix dropdown selection - prevent closing on dropdown item click
+        document.querySelectorAll('.dropdown-item, .utility-option').forEach(item => {
+            item.addEventListener('click', (e) => {
+                // Allow link navigation
+                if (item.tagName === 'A' || item.querySelector('a')) {
+                    const link = item.querySelector('a') || item;
+                    if (link.href) {
+                        window.location.href = link.href;
+                    }
+                }
             });
         });
-        
-        console.log('✨ Destinova Premium Header Initialized');
-        console.log('🎯 Features: Glassmorphism, Smooth Scroll, GSAP Animations');
+
+        // Language change
+        function changeLanguage(lang) {
+            const langNames = {
+                'en': 'EN', 'hi': 'HI', 'es': 'ES', 'fr': 'FR', 'de': 'DE', 'pt': 'PT', 'ja': 'JA'
+            };
+            const langButton = document.querySelector('.utility-bar .utility-item');
+            if (langButton) {
+                langButton.querySelector('span').textContent = langNames[lang] || 'EN';
+            }
+            console.log('Language changed to:', lang);
+        }
+
+        // Currency change
+        function changeCurrency(currency) {
+            const currencySymbols = {
+                'INR': 'INR', 'USD': 'USD', 'EUR': 'EUR', 'GBP': 'GBP', 'JPY': 'JPY', 'AED': 'AED', 'SGD': 'SGD'
+            };
+            const currencyButtons = document.querySelectorAll('.utility-bar .utility-item');
+            if (currencyButtons[1]) {
+                currencyButtons[1].querySelector('span').textContent = currencySymbols[currency] || 'INR';
+            }
+            console.log('Currency changed to:', currency);
+        }
+
+        console.log('✈️ Destinova - Premium Flight Header v2.0 - Ready');
     </script>
 </body>
+
 </html>

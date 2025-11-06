@@ -1,698 +1,485 @@
-/* ===================================================================
-   DESTINOVA PREMIUM HEADER - JavaScript Controller
-   Features: Smart scroll, Scroll progress, Magnetic hover, Auth management
-   =================================================================== */
+/**
+ * ============================================
+ * HEADER.JS - Modern Navigation Header 2025
+ * ============================================
+ * Features:
+ * - Scroll progress bar
+ * - Header shrink on scroll with backdrop blur
+ * - Mobile menu toggle with off-canvas slide
+ * - Expandable search bar
+ * - Dropdown interactions
+ * - Active page detection
+ * - Mobile accordion menus
+ * - Keyboard navigation (Tab, Escape)
+ * - Click outside to close
+ * - Smooth animations and transitions
+ * ============================================
+ */
 
-(function() {
-  'use strict';
-
-  // ===================================================================
-  // STATE MANAGEMENT
-  // ===================================================================
+document.addEventListener('DOMContentLoaded', function() {
   
-  const HeaderState = {
-    // Scroll tracking
-    lastScrollY: 0,
-    scrollDirection: 'none',
-    isScrolling: false,
-    scrollTimeout: null,
-    ticking: false,
+  // ============================================
+  // SCROLL PROGRESS BAR
+  // ============================================
+  const scrollProgressBar = document.getElementById('scroll-progress-bar');
+  
+  function updateScrollProgress() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrolled = window.scrollY;
+    const progress = (scrolled / documentHeight) * 100;
     
-    // UI State
-    isUserLoggedIn: false,
-    userName: '',
-    currentPage: '',
-    isDarkMode: false,
-    
-    // Dropdown state
-    activeDropdown: null,
-    
-    // Mobile menu state
-    isMobileMenuOpen: false,
-    
-    init() {
-      this.loadAuthState();
-      this.loadDarkMode();
-      this.detectCurrentPage();
-      this.lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
-    },
-    
-    loadAuthState() {
-      const isSignedIn = localStorage.getItem('isUserSignedIn') === 'true';
-      const userDetails = JSON.parse(localStorage.getItem('userDetails') || '{}');
-      
-      this.isUserLoggedIn = isSignedIn;
-      this.userName = userDetails.name || userDetails.email || 'User';
-    },
-    
-    loadDarkMode() {
-      this.isDarkMode = localStorage.getItem('theme') === 'dark';
-      const theme = this.isDarkMode ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', theme);
-    },
-    
-    detectCurrentPage() {
-      const path = window.location.pathname;
-      const page = path.split('/').pop().replace('.html', '') || 'index';
-      this.currentPage = page;
-    },
-    
-    setScrollDirection(direction) {
-      this.scrollDirection = direction;
+    if (scrollProgressBar) {
+      scrollProgressBar.style.width = `${Math.min(progress, 100)}%`;
     }
-  };
-
-  // ===================================================================
-  // SCROLL PROGRESS INDICATOR
-  // ===================================================================
+  }
   
-  const ScrollProgress = {
-    progressBar: null,
-    
-    init() {
-      this.progressBar = document.getElementById('scrollProgress');
-      if (!this.progressBar) return;
-      
-      window.addEventListener('scroll', () => this.update(), { passive: true });
-      this.update();
-    },
-    
-    update() {
-      if (!this.progressBar) return;
-      
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-      const clampedPercent = Math.min(Math.max(scrollPercent, 0), 100);
-      
-      this.progressBar.style.transform = `scaleX(${clampedPercent / 100})`;
-    }
-  };
+  // Update on scroll
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress(); // Initial call
 
-  // ===================================================================
-  // SMART STICKY HEADER - Hide on scroll down, show on scroll up
-  // ===================================================================
+
+  // ============================================
+  // HEADER SHRINK & BACKDROP BLUR ON SCROLL
+  // ============================================
+  const mainHeader = document.getElementById('main-header');
+  const navContainer = document.getElementById('nav-container');
+  const utilityBarTop = document.getElementById('utility-bar-top');
+  let lastScrollY = window.scrollY;
+  let ticking = false;
   
-  const SmartSticky = {
-    header: null,
-    scrollThreshold: 50,
-    hideThreshold: 150,
-    lastScrollY: 0,
+  function handleHeaderScroll() {
+    const scrollY = window.scrollY;
     
-    init() {
-      this.header = document.getElementById('site-header');
-      if (!this.header) return;
-      
-      // Debounced scroll handler for performance
-      let scrollTimeout;
-      window.addEventListener('scroll', () => {
-        if (scrollTimeout) {
-          window.cancelAnimationFrame(scrollTimeout);
-        }
-        
-        scrollTimeout = window.requestAnimationFrame(() => {
-          this.handleScroll();
-        });
-      }, { passive: true });
-      
-      // Initial check
-      this.handleScroll();
-    },
-    
-    handleScroll() {
-      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Add scrolled class after threshold
-      if (currentScrollY > this.scrollThreshold) {
-        this.header.classList.add('header-scrolled');
-      } else {
-        this.header.classList.remove('header-scrolled');
+    if (scrollY > 100) {
+      // Scrolled state
+      if (mainHeader) {
+        mainHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        mainHeader.style.backdropFilter = 'blur(10px)';
+      }
+      if (navContainer) {
+        navContainer.style.height = '60px';
       }
       
-      // Smart hide/show behavior
-      if (currentScrollY > this.hideThreshold) {
-        if (currentScrollY > this.lastScrollY) {
-          // Scrolling DOWN - Hide header
-          this.header.classList.add('header-hidden');
-          this.header.classList.remove('header-visible');
-          HeaderState.setScrollDirection('down');
-        } else {
-          // Scrolling UP - Show header
-          this.header.classList.remove('header-hidden');
-          this.header.classList.add('header-visible');
-          HeaderState.setScrollDirection('up');
-        }
-      } else {
-        // Near top - Always show
-        this.header.classList.remove('header-hidden');
-        this.header.classList.remove('header-visible');
-        HeaderState.setScrollDirection('none');
+      // Hide utility bar when scrolling
+      if (utilityBarTop) {
+        utilityBarTop.style.transform = 'translateY(-100%)';
+        utilityBarTop.style.opacity = '0';
+      }
+    } else {
+      // Top state
+      if (mainHeader) {
+        mainHeader.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+        mainHeader.style.backdropFilter = 'none';
+      }
+      if (navContainer) {
+        navContainer.style.height = '70px';
       }
       
-      this.lastScrollY = currentScrollY;
+      // Show utility bar at top
+      if (utilityBarTop) {
+        utilityBarTop.style.transform = 'translateY(0)';
+        utilityBarTop.style.opacity = '1';
+      }
     }
-  };
-
-  // ===================================================================
-  // DROPDOWN MENU MANAGEMENT
-  // ===================================================================
-  
-  const DropdownManager = {
-    dropdowns: [],
     
-    init() {
-      // Find all dropdown buttons
-      const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+  
+  function requestHeaderTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleHeaderScroll);
+      ticking = true;
+    }
+  }
+  
+  window.addEventListener('scroll', requestHeaderTick, { passive: true });
+  handleHeaderScroll(); // Initial call
+
+
+  // ============================================
+  // ACTIVE PAGE DETECTION
+  // ============================================
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navItems = document.querySelectorAll('.nav-item[data-page]');
+  
+  navItems.forEach(item => {
+    const page = item.getAttribute('data-page');
+    if (currentPage.includes(page) || (currentPage === '' && page === 'index')) {
+      // Add active state with glow effect
+      item.classList.add('active-page');
+      item.style.background = 'linear-gradient(135deg, rgba(29, 94, 51, 0.1), rgba(29, 94, 51, 0.05))';
+      item.style.boxShadow = '0 0 20px rgba(29, 94, 51, 0.15)';
+      item.style.borderRadius = '8px';
       
-      dropdownBtns.forEach(btn => {
-        const menu = btn.nextElementSibling;
-        if (!menu || !menu.classList.contains('dropdown-menu')) return;
+      // Make underline always visible for active page
+      const underline = item.querySelector('span[class*="absolute bottom-0"]');
+      if (underline) {
+        underline.style.width = '70%';
+      }
+    }
+  });
+
+
+  // ============================================
+  // EXPANDABLE SEARCH BAR
+  // ============================================
+  const searchToggleBtn = document.getElementById('search-toggle-btn');
+  const searchBarExpanded = document.getElementById('search-bar-expanded');
+  const headerSearchInput = document.getElementById('header-search-input');
+  let searchBarOpen = false;
+  
+  if (searchToggleBtn && searchBarExpanded) {
+    searchToggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      searchBarOpen = !searchBarOpen;
+      
+      if (searchBarOpen) {
+        searchBarExpanded.classList.remove('invisible', 'opacity-0', '-translate-y-2');
+        searchBarExpanded.classList.add('visible', 'opacity-100', 'translate-y-0');
         
-        this.dropdowns.push({ btn, menu });
+        // Focus input after animation
+        setTimeout(() => {
+          if (headerSearchInput) headerSearchInput.focus();
+        }, 100);
+      } else {
+        closeSearchBar();
+      }
+    });
+    
+    // Close on click outside
+    document.addEventListener('click', function(e) {
+      if (searchBarOpen && !searchBarExpanded.contains(e.target) && e.target !== searchToggleBtn) {
+        closeSearchBar();
+      }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchBarOpen) {
+        closeSearchBar();
+      }
+    });
+    
+    function closeSearchBar() {
+      searchBarExpanded.classList.add('invisible', 'opacity-0', '-translate-y-2');
+      searchBarExpanded.classList.remove('visible', 'opacity-100', 'translate-y-0');
+      searchBarOpen = false;
+    }
+  }
+
+
+  // ============================================
+  // MOBILE MENU TOGGLE
+  // ============================================
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const hamburgerLines = document.querySelectorAll('.hamburger-line');
+  let mobileMenuOpen = false;
+  
+  function openMobileMenu() {
+    mobileMenuOpen = true;
+    if (mobileMenu) mobileMenu.style.transform = 'translateX(0)';
+    if (mobileMenuBackdrop) {
+      mobileMenuBackdrop.classList.remove('invisible', 'opacity-0');
+      mobileMenuBackdrop.classList.add('visible', 'opacity-100');
+    }
+    document.body.style.overflow = 'hidden'; // Prevent scroll
+    
+    // Animate hamburger to X
+    if (hamburgerLines.length === 3) {
+      hamburgerLines[0].style.transform = 'rotate(45deg) translateY(8px)';
+      hamburgerLines[1].style.opacity = '0';
+      hamburgerLines[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+    }
+    
+    // Update ARIA
+    if (mobileMenuToggle) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'true');
+    }
+  }
+  
+  function closeMobileMenu() {
+    mobileMenuOpen = false;
+    if (mobileMenu) mobileMenu.style.transform = 'translateX(100%)';
+    if (mobileMenuBackdrop) {
+      mobileMenuBackdrop.classList.add('invisible', 'opacity-0');
+      mobileMenuBackdrop.classList.remove('visible', 'opacity-100');
+    }
+    document.body.style.overflow = ''; // Restore scroll
+    
+    // Reset hamburger
+    if (hamburgerLines.length === 3) {
+      hamburgerLines[0].style.transform = 'none';
+      hamburgerLines[1].style.opacity = '1';
+      hamburgerLines[2].style.transform = 'none';
+    }
+    
+    // Update ARIA
+    if (mobileMenuToggle) {
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+  
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (mobileMenuOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+  
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+  }
+  
+  if (mobileMenuBackdrop) {
+    mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+  }
+  
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileMenuOpen) {
+      closeMobileMenu();
+    }
+  });
+
+
+  // ============================================
+  // MOBILE ACCORDION MENUS
+  // ============================================
+  const mobileAccordions = document.querySelectorAll('.mobile-accordion');
+  
+  mobileAccordions.forEach(accordion => {
+    const trigger = accordion.querySelector('.mobile-accordion-trigger');
+    const content = accordion.querySelector('.mobile-accordion-content');
+    const chevron = accordion.querySelector('.mobile-chevron');
+    
+    if (trigger && content) {
+      trigger.addEventListener('click', function() {
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
         
-        // Click handler
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          this.toggle(btn, menu);
-        });
-        
-        // Keyboard navigation
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.toggle(btn, menu);
-          } else if (e.key === 'Escape') {
-            this.close(btn, menu);
-          }
-        });
-        
-        // Close on click outside
-        document.addEventListener('click', (e) => {
-          if (!btn.contains(e.target) && !menu.contains(e.target)) {
-            this.close(btn, menu);
-          }
-        });
-        
-        // Dropdown link keyboard navigation
-        const links = menu.querySelectorAll('.dropdown-link, .logout-link');
-        links.forEach((link, index) => {
-          link.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowDown') {
-              e.preventDefault();
-              const next = links[index + 1];
-              if (next) next.focus();
-            } else if (e.key === 'ArrowUp') {
-              e.preventDefault();
-              const prev = links[index - 1];
-              if (prev) prev.focus();
-              else btn.focus();
-            } else if (e.key === 'Escape') {
-              e.preventDefault();
-              this.close(btn, menu);
-              btn.focus();
+        // Close all other accordions
+        mobileAccordions.forEach(otherAccordion => {
+          if (otherAccordion !== accordion) {
+            const otherContent = otherAccordion.querySelector('.mobile-accordion-content');
+            const otherChevron = otherAccordion.querySelector('.mobile-chevron');
+            if (otherContent) {
+              otherContent.style.maxHeight = '0';
             }
-          });
+            if (otherChevron) {
+              otherChevron.style.transform = 'rotate(0deg)';
+            }
+          }
         });
-      });
-    },
-    
-    toggle(btn, menu) {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      
-      // Close all other dropdowns first
-      this.closeAll();
-      
-      if (!isOpen) {
-        this.open(btn, menu);
-      }
-    },
-    
-    open(btn, menu) {
-      btn.setAttribute('aria-expanded', 'true');
-      menu.classList.add('show');
-      HeaderState.activeDropdown = { btn, menu };
-      
-      // Focus first link
-      setTimeout(() => {
-        const firstLink = menu.querySelector('.dropdown-link, .logout-link');
-        if (firstLink) firstLink.focus();
-      }, 100);
-    },
-    
-    close(btn, menu) {
-      btn.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('show');
-      if (HeaderState.activeDropdown?.btn === btn) {
-        HeaderState.activeDropdown = null;
-      }
-    },
-    
-    closeAll() {
-      this.dropdowns.forEach(({ btn, menu }) => {
-        this.close(btn, menu);
-      });
-    }
-  };
-
-  // ===================================================================
-  // PROFILE MENU (User Dropdown)
-  // ===================================================================
-  
-  const ProfileMenu = {
-    init() {
-      const profileBtn = document.getElementById('profile-btn');
-      const profileDropdown = document.getElementById('user-dropdown');
-      
-      if (!profileBtn || !profileDropdown) return;
-      
-      // Toggle dropdown
-      profileBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = profileDropdown.classList.contains('show');
         
-        // Close other dropdowns
-        DropdownManager.closeAll();
-        
-        if (!isOpen) {
-          profileDropdown.classList.add('show');
-          profileBtn.setAttribute('aria-expanded', 'true');
+        // Toggle current accordion
+        if (isOpen) {
+          content.style.maxHeight = '0';
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
         } else {
-          profileDropdown.classList.remove('show');
-          profileBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-      
-      // Close on click outside
-      document.addEventListener('click', (e) => {
-        if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
-          profileDropdown.classList.remove('show');
-          profileBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-      
-      // Keyboard navigation
-      profileBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          profileBtn.click();
-        } else if (e.key === 'Escape') {
-          profileDropdown.classList.remove('show');
-          profileBtn.setAttribute('aria-expanded', 'false');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
         }
       });
     }
-  };
+  });
 
-  // ===================================================================
-  // MOBILE MENU MANAGEMENT
-  // ===================================================================
+
+  // ============================================
+  // DROPDOWN STAGGERED ANIMATION
+  // ============================================
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
   
-  const MobileMenu = {
-    hamburgerBtn: null,
-    mobileMenu: null,
-    closeBtn: null,
-    
-    init() {
-      this.hamburgerBtn = document.getElementById('hamburger-btn');
-      this.mobileMenu = document.getElementById('mobile-menu');
-      this.closeBtn = document.getElementById('mobile-close');
+  dropdownItems.forEach((item, index) => {
+    item.style.animationDelay = `${index * 50}ms`;
+  });
+
+
+  // ============================================
+  // KEYBOARD NAVIGATION FOR DROPDOWNS
+  // ============================================
+  const dropdownTriggers = document.querySelectorAll('.nav-item-wrapper button');
+  
+  dropdownTriggers.forEach(trigger => {
+    trigger.addEventListener('keydown', function(e) {
+      const dropdown = this.parentElement.querySelector('.dropdown-menu');
       
-      if (!this.hamburgerBtn || !this.mobileMenu) return;
-      
-      // Hamburger button
-      this.hamburgerBtn.addEventListener('click', () => this.toggle());
-      
-      // Close button
-      if (this.closeBtn) {
-        this.closeBtn.addEventListener('click', () => this.close());
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        // Toggle dropdown visibility
+        if (dropdown) {
+          const isVisible = !dropdown.classList.contains('invisible');
+          if (isVisible) {
+            dropdown.classList.add('invisible', 'opacity-0');
+            dropdown.classList.remove('visible', 'opacity-100');
+          } else {
+            dropdown.classList.remove('invisible', 'opacity-0');
+            dropdown.classList.add('visible', 'opacity-100');
+            
+            // Focus first item
+            const firstLink = dropdown.querySelector('a, button');
+            if (firstLink) firstLink.focus();
+          }
+        }
       }
       
-      // Mobile dropdown buttons
-      const dropdownBtns = document.querySelectorAll('.mobile-dropdown-btn');
-      dropdownBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const menuId = btn.getAttribute('data-menu') + '-submenu';
-          const submenu = document.getElementById(menuId);
+      if (e.key === 'Escape') {
+        if (dropdown) {
+          dropdown.classList.add('invisible', 'opacity-0');
+          dropdown.classList.remove('visible', 'opacity-100');
+        }
+        this.focus();
+      }
+    });
+  });
+
+
+  // ============================================
+  // LANGUAGE & CURRENCY SELECTOR (TOP BAR)
+  // ============================================
+  const langButtons = document.querySelectorAll('[data-lang]');
+  const currencyButtons = document.querySelectorAll('[data-currency]');
+  
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      const langSelector = document.getElementById('lang-selector-top');
+      if (langSelector) {
+        const langText = langSelector.querySelector('span');
+        if (langText) {
+          langText.textContent = lang.toUpperCase();
+        }
+      }
+      
+      // Store in localStorage
+      localStorage.setItem('selectedLanguage', lang);
+      
+      // Here you would typically load language resources
+      console.log('Language changed to:', lang);
+    });
+  });
+  
+  currencyButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const currency = this.getAttribute('data-currency');
+      const currencySelector = document.getElementById('currency-selector-top');
+      if (currencySelector) {
+        const currencyText = currencySelector.querySelector('span');
+        if (currencyText) {
+          currencyText.textContent = currency;
+        }
+      }
+      
+      // Store in localStorage
+      localStorage.setItem('selectedCurrency', currency);
+      
+      // Here you would typically update prices
+      console.log('Currency changed to:', currency);
+    });
+  });
+  
+  // Load saved preferences
+  const savedLang = localStorage.getItem('selectedLanguage');
+  const savedCurrency = localStorage.getItem('selectedCurrency');
+  
+  if (savedLang) {
+    const langSelector = document.getElementById('lang-selector-top');
+    if (langSelector) {
+      const langText = langSelector.querySelector('span');
+      if (langText) langText.textContent = savedLang.toUpperCase();
+    }
+  }
+  
+  if (savedCurrency) {
+    const currencySelector = document.getElementById('currency-selector-top');
+    if (currencySelector) {
+      const currencyText = currencySelector.querySelector('span');
+      if (currencyText) currencyText.textContent = savedCurrency;
+    }
+  }
+
+
+  // ============================================
+  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // ============================================
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+  
+  anchorLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && href !== '') {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
           
-          if (submenu) {
-            const isOpen = submenu.classList.contains('show');
-            submenu.classList.toggle('show');
-            btn.textContent = btn.textContent.replace(isOpen ? '▴' : '▾', isOpen ? '▾' : '▴');
+          // Close mobile menu if open
+          if (mobileMenuOpen) {
+            closeMobileMenu();
           }
-        });
-      });
-      
-      // Close on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && HeaderState.isMobileMenuOpen) {
-          this.close();
+          
+          // Smooth scroll
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
-      });
-      
-      // Close on link click
-      const mobileLinks = this.mobileMenu.querySelectorAll('.mobile-link');
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          // Delay close to allow navigation
-          setTimeout(() => this.close(), 200);
-        });
-      });
-    },
-    
-    toggle() {
-      if (HeaderState.isMobileMenuOpen) {
-        this.close();
-      } else {
-        this.open();
       }
-    },
-    
-    open() {
-      this.mobileMenu.classList.add('show');
-      this.hamburgerBtn.setAttribute('aria-expanded', 'true');
-      HeaderState.isMobileMenuOpen = true;
-      
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
-      
-      // Close desktop dropdowns
-      DropdownManager.closeAll();
-    },
-    
-    close() {
-      this.mobileMenu.classList.remove('show');
-      this.hamburgerBtn.setAttribute('aria-expanded', 'false');
-      HeaderState.isMobileMenuOpen = false;
-      
-      // Restore body scroll
-      document.body.style.overflow = '';
-    }
-  };
+    });
+  });
 
-  // ===================================================================
-  // AUTH UI MANAGEMENT
-  // ===================================================================
-  
-  const AuthUI = {
-    init() {
-      this.updateUI();
-      this.setupLogoutHandlers();
-    },
-    
-    updateUI() {
-      // Desktop auth section
-      const authGuest = document.getElementById('auth-guest');
-      const authUser = document.getElementById('auth-user');
-      const userNameDisplay = document.getElementById('user-name-display');
-      
-      // Mobile auth section
-      const mobileAuthGuest = document.getElementById('mobile-auth-guest');
-      const mobileAuthUser = document.getElementById('mobile-auth-user');
-      const mobileUserName = document.getElementById('mobile-user-name');
-      
-      if (HeaderState.isUserLoggedIn) {
-        // Show user menu, hide guest buttons
-        if (authGuest) authGuest.style.display = 'none';
-        if (authUser) authUser.style.display = 'flex';
-        if (userNameDisplay) userNameDisplay.textContent = HeaderState.userName;
-        
-        if (mobileAuthGuest) mobileAuthGuest.style.display = 'none';
-        if (mobileAuthUser) mobileAuthUser.style.display = 'block';
-        if (mobileUserName) mobileUserName.textContent = `Hello, ${HeaderState.userName}`;
-      } else {
-        // Show guest buttons, hide user menu
-        if (authGuest) authGuest.style.display = 'flex';
-        if (authUser) authUser.style.display = 'none';
-        
-        if (mobileAuthGuest) mobileAuthGuest.style.display = 'block';
-        if (mobileAuthUser) mobileAuthUser.style.display = 'none';
-      }
-    },
-    
-    setupLogoutHandlers() {
-      // Desktop logout
-      const logoutBtn = document.getElementById('logout-btn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => this.handleLogout());
-      }
-      
-      // Mobile logout
-      const mobileLogoutBtn = document.getElementById('mobile-logout');
-      if (mobileLogoutBtn) {
-        mobileLogoutBtn.addEventListener('click', () => this.handleLogout());
-      }
-    },
-    
-    handleLogout() {
-      // Clear auth data
-      localStorage.removeItem('isUserSignedIn');
-      localStorage.removeItem('userDetails');
-      
-      // Show confirmation
-      if (confirm('Are you sure you want to sign out?')) {
-        // Redirect to home
-        window.location.href = 'index.html';
-      } else {
-        // Restore state if cancelled
-        HeaderState.loadAuthState();
-      }
-    }
-  };
 
-  // ===================================================================
-  // ACTIVE PAGE HIGHLIGHTING
-  // ===================================================================
-  
-  const ActivePage = {
-    init() {
-      // Highlight current page in navigation
-      const currentPage = HeaderState.currentPage;
-      
-      // Desktop nav links
-      const navLinks = document.querySelectorAll('.nav-link[data-page]');
-      navLinks.forEach(link => {
-        const page = link.getAttribute('data-page');
-        if (page === currentPage) {
-          link.classList.add('active');
-        }
-      });
-      
-      // Dropdown links
-      const dropdownLinks = document.querySelectorAll('.dropdown-link[data-page]');
-      dropdownLinks.forEach(link => {
-        const page = link.getAttribute('data-page');
-        if (page === currentPage) {
-          link.classList.add('active');
-          // Also highlight parent dropdown
-          const parentDropdown = link.closest('.nav-dropdown');
-          if (parentDropdown) {
-            const parentBtn = parentDropdown.querySelector('.dropdown-btn');
-            if (parentBtn) parentBtn.classList.add('active');
-          }
-        }
-      });
-      
-      // Mobile links
-      const mobileLinks = document.querySelectorAll('.mobile-link[data-page]');
-      mobileLinks.forEach(link => {
-        const page = link.getAttribute('data-page');
-        if (page === currentPage) {
-          link.classList.add('active');
-        }
-      });
-    }
-  };
-
-  // ===================================================================
-  // DARK MODE TOGGLE
-  // ===================================================================
-  
-  const DarkMode = {
-    toggleBtn: null,
+  // ============================================
+  // FOCUS TRAP FOR MOBILE MENU (ACCESSIBILITY)
+  // ============================================
+  function trapFocus(element) {
+    const focusableElements = element.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input, select'
+    );
     
-    init() {
-      this.toggleBtn = document.getElementById('dark-mode-toggle');
-      if (!this.toggleBtn) return;
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    element.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
       
-      this.toggleBtn.addEventListener('click', () => this.toggle());
-      
-      // Keyboard support
-      this.toggleBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
           e.preventDefault();
-          this.toggle();
+          lastElement.focus();
         }
-      });
-    },
-    
-    toggle() {
-      HeaderState.isDarkMode = !HeaderState.isDarkMode;
-      const theme = HeaderState.isDarkMode ? 'dark' : 'light';
-      
-      // Update DOM
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // Save to localStorage
-      localStorage.setItem('theme', theme);
-      
-      // Dispatch custom event for other scripts
-      window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
-    }
-  };
-
-  // ===================================================================
-  // SEARCH BUTTON HANDLER
-  // ===================================================================
-  
-  const SearchButton = {
-    init() {
-      const searchBtn = document.getElementById('search-btn');
-      if (!searchBtn) return;
-      
-      searchBtn.addEventListener('click', () => {
-        // You can implement search overlay here
-        // For now, redirect to booking page with search focus
-        const currentPath = window.location.pathname;
-        if (!currentPath.includes('booking.html')) {
-          window.location.href = 'booking.html';
-        } else {
-          // Focus search input if on booking page
-          const searchInput = document.querySelector('input[type="text"]');
-          if (searchInput) searchInput.focus();
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
         }
-      });
-    }
-  };
-
-  // ===================================================================
-  // RIPPLE EFFECT ON AVATAR CLICK
-  // ===================================================================
-  
-  const RippleEffect = {
-    init() {
-      const profileBtn = document.getElementById('profile-btn');
-      if (!profileBtn) return;
-      
-      profileBtn.addEventListener('click', () => {
-        const ripple = profileBtn.querySelector('.avatar-ripple');
-        if (!ripple) return;
-        
-        // Reset animation
-        ripple.style.animation = 'none';
-        
-        // Trigger reflow
-        void ripple.offsetWidth;
-        
-        // Restart animation
-        ripple.style.animation = 'ripple 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)';
-      });
-    }
-  };
-
-  // ===================================================================
-  // MAGNETIC HOVER EFFECT (Subtle cursor follow)
-  // ===================================================================
-  
-  const MagneticHover = {
-    elements: [],
-    
-    init() {
-      // Apply to buttons and important links
-      const magneticElements = document.querySelectorAll('.auth-btn, .header-icon-btn, .logo-link');
-      
-      magneticElements.forEach(el => {
-        this.elements.push(el);
-        
-        el.addEventListener('mousemove', (e) => this.handleMove(e, el));
-        el.addEventListener('mouseleave', () => this.handleLeave(el));
-      });
-    },
-    
-    handleMove(e, el) {
-      const rect = el.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      const deltaX = (e.clientX - centerX) * 0.15;
-      const deltaY = (e.clientY - centerY) * 0.15;
-      
-      el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    },
-    
-    handleLeave(el) {
-      el.style.transform = '';
-    }
-  };
-
-  // ===================================================================
-  // PERFORMANCE MONITORING (Optional)
-  // ===================================================================
-  
-  const Performance = {
-    init() {
-      // Log header initialization time in development
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        const perfData = window.performance.timing;
-        const loadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log(`🚀 Header initialized in ${loadTime}ms`);
       }
-    }
-  };
-
-  // ===================================================================
-  // MAIN INITIALIZATION
-  // ===================================================================
+    });
+  }
   
-  function initializeHeader() {
-    // Initialize state first
-    HeaderState.init();
-    
-    // Initialize all modules
-    ScrollProgress.init();
-    SmartSticky.init();
-    DropdownManager.init();
-    ProfileMenu.init();
-    MobileMenu.init();
-    AuthUI.init();
-    ActivePage.init();
-    DarkMode.init();
-    SearchButton.init();
-    RippleEffect.init();
-    MagneticHover.init();
-    Performance.init();
-    
-    console.log('✈️ Destinova Premium Header Loaded');
+  if (mobileMenu) {
+    trapFocus(mobileMenu);
   }
 
-  // ===================================================================
-  // START WHEN DOM IS READY
-  // ===================================================================
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeHeader);
-  } else {
-    initializeHeader();
-  }
 
-  // ===================================================================
-  // EXPOSE UTILITIES FOR OTHER SCRIPTS
-  // ===================================================================
-  
-  window.DestinovaHeader = {
-    closeAllDropdowns: () => DropdownManager.closeAll(),
-    closeMobileMenu: () => MobileMenu.close(),
-    refreshAuth: () => {
-      HeaderState.loadAuthState();
-      AuthUI.updateUI();
-    },
-    getScrollProgress: () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      return (scrollTop / (documentHeight - windowHeight)) * 100;
-    }
-  };
+  // ============================================
+  // CONSOLE LOG (DEVELOPMENT ONLY)
+  // ============================================
+  console.log('✅ Header navigation initialized successfully!');
+  console.log('✈️ Destinova - Modern 2025 Header with Trending Effects');
 
-})();
+});

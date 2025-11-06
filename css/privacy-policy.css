@@ -22,17 +22,6 @@ body {
     background-color: var(--background-light-gray);
 }
 
-/* Simplified Header (reusing from terms-conditions.css) */
-.simplified-header {
-    background: white !important;
-    box-shadow: var(--shadow-md);
-    padding: 12px 0 !important;
-}
-.simplified-header .header-logo h1 a { color: var(--primary-emerald) !important; }
-.simplified-header .simplified-nav { display: flex; gap: 25px; }
-.simplified-header .simplified-nav a { color: var(--text-slate); font-weight: 500; text-decoration: none; transition: color 0.2s; }
-.simplified-header .simplified-nav a:hover { color: var(--primary-emerald); }
-
 /* Main Layout */
 .privacy-container {
     display: flex;
