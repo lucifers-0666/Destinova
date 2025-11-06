@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micro-Interactions Demo - Destinova</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/micro-interactions.css">
+</head>
+<body class="bg-gray-50 p-8">
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <div class="max-w-6xl mx-auto space-y-12">
+        
+        <!-- Header -->
+        <div class="text-center space-y-4">
+            <h1 class="text-4xl font-bold text-gray-900">✨ Micro-Interactions Demo</h1>
+            <p class="text-gray-600">Test all animations and interactions</p>
+        </div>
+
+        <!-- Section 1: Button Hover Effects -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">1. Button Hover Effects</h2>
+            <p class="text-gray-600">Hover over buttons to see lift effect and shadow enhancement</p>
+            
+            <div class="flex flex-wrap gap-4">
+                <button class="btn-hover px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold">
+                    Primary Button
+                </button>
+                <button class="btn-hover px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold">
+                    Secondary Button
+                </button>
+                <button class="btn-hover px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold">
+                    <i class="fas fa-download mr-2"></i>
+                    With Icon
+                </button>
+                <button class="btn-hover px-6 py-3 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-lg font-semibold">
+                    Gradient Button
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 2: Card Hover Effects -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">2. Card Hover Effects</h2>
+            <p class="text-gray-600">Hover over cards to see scale and glow effect</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card-hover bg-gradient-to-br from-emerald-50 to-blue-50 p-6 rounded-xl border-2 border-emerald-200">
+                    <div class="text-4xl mb-4">🏖️</div>
+                    <h3 class="font-bold text-lg mb-2">Bali, Indonesia</h3>
+                    <p class="text-gray-600 text-sm">From ₹45,999</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl border-2 border-blue-200">
+                    <div class="text-4xl mb-4">🏙️</div>
+                    <h3 class="font-bold text-lg mb-2">Dubai, UAE</h3>
+                    <p class="text-gray-600 text-sm">From ₹62,999</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border-2 border-purple-200">
+                    <div class="text-4xl mb-4">🗼</div>
+                    <h3 class="font-bold text-lg mb-2">Paris, France</h3>
+                    <p class="text-gray-600 text-sm">From ₹72,999</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Icon Animations -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">3. Icon Animations</h2>
+            <p class="text-gray-600">Hover over icons to see different animations</p>
+            
+            <div class="flex flex-wrap gap-8 items-center justify-center">
+                <div class="text-center">
+                    <i class="fas fa-arrow-down icon-bounce text-5xl text-emerald-600 mb-2"></i>
+                    <p class="text-sm text-gray-600">Bounce</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-heart icon-pulse text-5xl text-red-600 mb-2"></i>
+                    <p class="text-sm text-gray-600">Pulse</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-sync icon-rotate text-5xl text-blue-600 mb-2"></i>
+                    <p class="text-sm text-gray-600">Rotate</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-star icon-pulse text-5xl text-yellow-500 mb-2"></i>
+                    <p class="text-sm text-gray-600">Pulse</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-chevron-right icon-bounce text-5xl text-purple-600 mb-2"></i>
+                    <p class="text-sm text-gray-600">Bounce</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Form Focus Glow -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">4. Form Focus Glow</h2>
+            <p class="text-gray-600">Click on inputs to see focus glow effect</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" placeholder="Your Name" class="input-focus px-4 py-3 border-2 border-gray-300 rounded-lg">
+                <input type="email" placeholder="Your Email" class="input-focus px-4 py-3 border-2 border-gray-300 rounded-lg">
+                <input type="date" class="input-focus px-4 py-3 border-2 border-gray-300 rounded-lg">
+                <select class="input-focus px-4 py-3 border-2 border-gray-300 rounded-lg">
+                    <option>Select Destination</option>
+                    <option>Bali</option>
+                    <option>Dubai</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Section 5: Success Confetti -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">5. Success Confetti</h2>
+            <p class="text-gray-600">Click buttons to trigger confetti and toast notifications</p>
+            
+            <div class="flex flex-wrap gap-4">
+                <button onclick="showSuccess(); showToast('🎉 Booking confirmed!', 'success')" 
+                        class="btn-hover px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold">
+                    Show Success Confetti
+                </button>
+                <button onclick="showToast('✓ Item saved!', 'success')" 
+                        class="btn-hover px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold">
+                    Success Toast
+                </button>
+                <button onclick="showToast('✕ Error occurred', 'error')" 
+                        class="btn-hover px-6 py-3 bg-red-600 text-white rounded-lg font-semibold">
+                    Error Toast
+                </button>
+                <button onclick="showToast('ℹ Information', 'info')" 
+                        class="btn-hover px-6 py-3 bg-cyan-600 text-white rounded-lg font-semibold">
+                    Info Toast
+                </button>
+                <button onclick="showToast('⚠ Warning!', 'warning')" 
+                        class="btn-hover px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold">
+                    Warning Toast
+                </button>
+            </div>
+        </section>
+
+        <!-- Section 6: Scroll Animations -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">6. Scroll Animations</h2>
+            <p class="text-gray-600">Scroll down to see animations trigger</p>
+            
+            <div class="space-y-8 pt-8">
+                <div class="animate-on-scroll fade-up bg-emerald-100 p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-2">Fade Up Animation</h3>
+                    <p class="text-gray-600">This element fades up when scrolled into view</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="animate-on-scroll slide-left bg-blue-100 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2">Slide Left</h3>
+                        <p class="text-gray-600">Slides from left</p>
+                    </div>
+                    <div class="animate-on-scroll slide-right bg-purple-100 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg mb-2">Slide Right</h3>
+                        <p class="text-gray-600">Slides from right</p>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll stagger-children grid grid-cols-4 gap-4">
+                    <div class="bg-red-100 p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">1</div>
+                        <p class="text-sm">Stagger</p>
+                    </div>
+                    <div class="bg-orange-100 p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">2</div>
+                        <p class="text-sm">Stagger</p>
+                    </div>
+                    <div class="bg-yellow-100 p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">3</div>
+                        <p class="text-sm">Stagger</p>
+                    </div>
+                    <div class="bg-green-100 p-4 rounded-lg text-center">
+                        <div class="text-3xl mb-2">4</div>
+                        <p class="text-sm">Stagger</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Counter Animation -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">7. Counter Animation</h2>
+            <p class="text-gray-600">Scroll to see numbers animate from 0</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8">
+                <div class="text-center">
+                    <div class="counter text-5xl font-bold text-emerald-600 mb-2">50000</div>
+                    <p class="text-gray-600">Happy Travelers</p>
+                </div>
+                <div class="text-center">
+                    <div class="counter text-5xl font-bold text-blue-600 mb-2">500</div>
+                    <p class="text-gray-600">Destinations</p>
+                </div>
+                <div class="text-center">
+                    <div class="counter text-5xl font-bold text-purple-600 mb-2">4.8</div>
+                    <p class="text-gray-600">Rating</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-orange-600 mb-2">24/7</div>
+                    <p class="text-gray-600">Support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Progress Bar -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">8. Progress Bar Animation</h2>
+            <p class="text-gray-600">Scroll to see progress bars fill</p>
+            
+            <div class="space-y-6 pt-8">
+                <div class="animate-on-scroll">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700 font-semibold">Customer Satisfaction</span>
+                        <span class="text-gray-600">98%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="98"></div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700 font-semibold">Booking Success Rate</span>
+                        <span class="text-gray-600">95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="95"></div>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-700 font-semibold">Return Customers</span>
+                        <span class="text-gray-600">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="87"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Skeleton Loading -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">9. Skeleton Loading</h2>
+            <p class="text-gray-600">Shimmer effect while content loads</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="skeleton skeleton-card"></div>
+                    <div class="skeleton skeleton-text"></div>
+                    <div class="skeleton skeleton-text" style="width: 80%"></div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="skeleton skeleton-circle"></div>
+                    <div class="flex-1 space-y-2">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="skeleton skeleton-text"></div>
+                        <div class="skeleton skeleton-button"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Button Loading State -->
+        <section class="bg-white p-8 rounded-xl shadow-lg space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900">10. Button Loading State</h2>
+            <p class="text-gray-600">Click to see loading spinner</p>
+            
+            <div class="flex flex-wrap gap-4">
+                <button id="loadingBtn1" class="btn-hover px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold">
+                    Click to Load
+                </button>
+                <button id="loadingBtn2" class="btn-hover px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold">
+                    Process Payment
+                </button>
+                <button id="loadingBtn3" class="btn-hover px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold">
+                    Confirm Booking
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="text-center text-gray-600 py-8">
+            <p>✨ All animations are production-ready and optimized</p>
+            <p class="text-sm mt-2">Built for <strong>Destinova</strong> Flight Booking Platform</p>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/index.js"></script>
+    
+    <script>
+        // Button loading demos
+        document.getElementById('loadingBtn1').addEventListener('click', async function() {
+            setLoading(this, true);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            setLoading(this, false);
+            showToast('✓ Operation completed!', 'success');
+        });
+
+        document.getElementById('loadingBtn2').addEventListener('click', async function() {
+            setLoading(this, true);
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            setLoading(this, false);
+            showSuccess();
+            showToast('💳 Payment processed!', 'success');
+        });
+
+        document.getElementById('loadingBtn3').addEventListener('click', async function() {
+            setLoading(this, true);
+            await new Promise(resolve => setTimeout(resolve, 2500));
+            setLoading(this, false);
+            showSuccess();
+            showToast('🎉 Booking confirmed!', 'success');
+        });
+    </script>
+
+</body>
+</html>
