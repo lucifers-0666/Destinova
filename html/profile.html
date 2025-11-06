@@ -50,89 +50,8 @@
 </head>
 
 <body class="bg-slate-50">
-    <!-- HEADER START -->
-    <header id="header-main">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1>Destin<span>ova</span></h1>
-            </div>
-
-            <ul class="header-desktop-nav">
-                <li><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></li>
-                <li><a href="booking.html"><i class="fas fa-plane-departure"></i><span>Book Flights</span></a></li>
-                <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i><span>Destinations</span></a></li>
-                <li class="header-dropdown">
-                    <a href="#"><i class="fas fa-compass"></i><span>Explore</span> <i
-                            class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                        <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                        <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                        <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                    </ul>
-                </li>
-                <li class="header-dropdown manage-menu-hidden" id="manage-menu-desktop">
-                    <a href="#"><i class="fas fa-user-circle"></i><span>My Account</span> <i class="fas fa-chevron-down"></i></a>
-                    <ul class="header-dropdown-menu">
-                        <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                        <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                        <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                    </ul>
-                </li>
-                <li><a href="offers.html"><i class="fas fa-tags"></i><span>Deals</span></a></li>
-            </ul>
-
-            <div class="header-actions">
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-switcher-btn"><i class="fas fa-globe"></i> EN</button>
-                    <ul class="language-switcher-menu">
-                        <li><a href="#" data-lang="en">English (EN)</a></li>
-                        <li><a href="#" data-lang="es">Español (ES)</a></li>
-                        <li><a href="#" data-lang="fr">Français (FR)</a></li>
-                    </ul>
-                </div>
-
-                <a href="signin.html" class="btn header-btn-signin">
-                    <i class="fas fa-right-to-bracket"></i>
-                    <span>Sign In</span>
-                </a>
-                <button class="header-mobile-menu-btn" id="header-menuToggle">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <nav class="header-mobile-nav" id="header-mobile-nav">
-        <ul>
-            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a></li>
-            <li><a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a></li>
-            <li class="header-dropdown">
-                <a href="#"><i class="fas fa-compass"></i> Explore <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="travel-classes.html"><i class="fas fa-couch"></i> Travel Classes</a></li>
-                    <li><a href="offers.html"><i class="fas fa-tags"></i> Special Offers</a></li>
-                    <li><a href="#"><i class="fas fa-book-open"></i> Travel Guides</a></li>
-                    <li><a href="reviews.html"><i class="fas fa-star"></i> Reviews</a></li>
-                </ul>
-            </li>
-            <li class="header-dropdown manage-menu-hidden" id="manage-menu-mobile">
-                <a href="#"><i class="fas fa-user-circle"></i> My Account <i class="fas fa-chevron-down"></i></a>
-                <ul class="header-dropdown-menu">
-                    <li><a href="my-bookings.html"><i class="fas fa-suitcase-rolling"></i> My Bookings</a></li>
-                    <li><a href="flight-status.html"><i class="fas fa-plane"></i> Flight Status</a></li>
-                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="payment-history.html"><i class="fas fa-credit-card"></i> Payment History</a></li>
-                </ul>
-            </li>
-            <li><a href="offers.html"><i class="fas fa-tags"></i> Deals</a></li>
-        </ul>
-    </nav>
-    <div class="header-mobile-nav-overlay" id="header-mobileNavOverlay"></div>
-    <!-- HEADER END -->
+    <!-- MODERN HEADER CONTAINER -->
+    <div id="header-container"></div>
 
     <main class="pt-24 pb-24">
         <!-- Profile Header -->
@@ -391,6 +310,42 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/profile.js"></script>
+
+    <!-- Load Modern Header Component -->
+    <script>
+        (async function() {
+            try {
+                console.log('🔄 Starting header load...');
+                
+                // Load Header CSS
+                const headerCSS = document.createElement('link');
+                headerCSS.rel = 'stylesheet';
+                headerCSS.href = '../css/header.css';
+                headerCSS.onload = () => console.log('✅ Header CSS loaded successfully');
+                headerCSS.onerror = () => console.error('❌ Failed to load header.css');
+                document.head.appendChild(headerCSS);
+
+                // Load Header Component
+                const response = await fetch('header.html');
+                if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
+                
+                const html = await response.text();
+                document.getElementById('header-container').innerHTML = html;
+                console.log('✅ Header HTML loaded successfully');
+                
+                // Load header JavaScript
+                const headerScript = document.createElement('script');
+                headerScript.src = '../js/header.js';
+                headerScript.onload = () => console.log('✅ Header JS loaded successfully');
+                headerScript.onerror = () => console.error('❌ Failed to load header.js');
+                document.body.appendChild(headerScript);
+                
+            } catch (error) {
+                console.error('❌ Failed to load header:', error);
+                document.getElementById('header-container').innerHTML = '<div style="background: #fee; color: #c00; padding: 1rem; text-align: center;">Failed to load header. Please refresh the page.</div>';
+            }
+        })();
+    </script>
 </body>
 
 </html>

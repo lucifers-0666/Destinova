@@ -20,7 +20,6 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/privacy-policy.css">
 </head>
 
@@ -219,10 +218,20 @@
         </div>
     </div>
 
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
     <!-- Load Header Component -->
     <script>
         console.log('🔄 Starting header load...');
         console.log('📍 Current page:', window.location.href);
+        
+        // Load Header CSS
+        const headerCSS = document.createElement('link');
+        headerCSS.rel = 'stylesheet';
+        headerCSS.href = '../css/header.css';
+        headerCSS.onload = () => console.log('✅ Header CSS loaded successfully');
+        document.head.appendChild(headerCSS);
         
         // Load Header Component
         fetch('header.html')
@@ -248,6 +257,44 @@
                 // Fallback: show error message
                 document.getElementById('header-container').innerHTML = 
                     '<div style="background: #f44336; color: white; padding: 1rem; text-align: center;">⚠️ Header failed to load: ' + err.message + '</div>';
+            });
+    </script>
+
+    <!-- Load Footer Component -->
+    <script>
+        console.log('🔄 Starting footer load...');
+        
+        // Load Footer Component
+        fetch('footer.html')
+            .then(res => {
+                console.log('📡 Footer fetch response:', res.status, res.statusText);
+                if (!res.ok) throw new Error(`Footer fetch failed: ${res.status}`);
+                return res.text();
+            })
+            .then(html => {
+                console.log('✅ Footer HTML received, length:', html.length);
+                document.getElementById('footer-container').innerHTML = html;
+                console.log('✅ Footer HTML inserted into DOM');
+                
+                // Load footer CSS
+                const footerCSS = document.createElement('link');
+                footerCSS.rel = 'stylesheet';
+                footerCSS.href = '../css/footer.css';
+                footerCSS.onload = () => console.log('✅ Footer CSS loaded successfully');
+                document.head.appendChild(footerCSS);
+                
+                // Load footer JavaScript after HTML is inserted
+                const footerScript = document.createElement('script');
+                footerScript.src = '../js/footer.js';
+                footerScript.onload = () => console.log('✅ Footer JS loaded successfully');
+                footerScript.onerror = () => console.error('❌ Failed to load footer.js');
+                document.body.appendChild(footerScript);
+            })
+            .catch(err => {
+                console.error('❌ Error loading footer:', err);
+                // Fallback: show error message
+                document.getElementById('footer-container').innerHTML = 
+                    '<div style="background: #f44336; color: white; padding: 1rem; text-align: center;">⚠️ Footer failed to load: ' + err.message + '</div>';
             });
     </script>
 

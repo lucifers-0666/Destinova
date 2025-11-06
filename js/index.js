@@ -2083,84 +2083,42 @@ function debounce(fn, ms) {
 
   const currencySelector = document.getElementById('currencySelector');
   const languageSelector = document.getElementById('languageSelector');
-  const liveChatBtn = document.getElementById('liveChatBtn');
-  const whatsappBtn = document.getElementById('whatsappBtn');
-  const footerSubscribeForm = document.getElementById('footerSubscribeForm');
-
-  // Currency selector
-  if (currencySelector) {
+  
+  // NOTE: Old footer handlers removed - now handled by footer.js
+  // The new luxury footer uses luxuryCurrencySelector, luxuryLanguageSelector, 
+  // liveChatCard, whatsappCard, and luxuryNewsletterForm
+  
+  // Keep legacy currency selector for backward compatibility (if exists on other pages)
+  if (currencySelector && currencySelector.id !== 'luxuryCurrencySelector') {
     currencySelector.addEventListener('change', (e) => {
       const currency = e.target.value;
       localStorage.setItem('selectedCurrency', currency);
       showToast(`Currency changed to ${currency}`);
-      
-      // In a real app, update prices across the site
       console.log('Currency changed to:', currency);
     });
 
-    // Load saved currency
     const savedCurrency = localStorage.getItem('selectedCurrency');
     if (savedCurrency) {
       currencySelector.value = savedCurrency;
     }
   }
 
-  // Language selector
-  if (languageSelector) {
+  // Keep legacy language selector for backward compatibility (if exists on other pages)
+  if (languageSelector && languageSelector.id !== 'luxuryLanguageSelector') {
     languageSelector.addEventListener('change', (e) => {
       const language = e.target.value;
       localStorage.setItem('selectedLanguage', language);
       showToast(`Language changed to ${e.target.options[e.target.selectedIndex].textContent}`);
-      
-      // In a real app, change content language
       console.log('Language changed to:', language);
     });
 
-    // Load saved language
     const savedLanguage = localStorage.getItem('selectedLanguage');
     if (savedLanguage) {
       languageSelector.value = savedLanguage;
     }
   }
 
-  // Live chat button
-  if (liveChatBtn) {
-    liveChatBtn.addEventListener('click', () => {
-      showToast('Opening live chat...');
-      // In a real app, open live chat widget
-      console.log('Live chat clicked');
-    });
-  }
-
-  // WhatsApp button
-  if (whatsappBtn) {
-    whatsappBtn.addEventListener('click', () => {
-      // Open WhatsApp with pre-filled message
-      const message = encodeURIComponent('Hi! I need help with booking.');
-      window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
-    });
-  }
-
-  // Footer subscribe form
-  if (footerSubscribeForm) {
-    footerSubscribeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const emailInput = footerSubscribeForm.querySelector('input[type="email"]');
-      const email = emailInput.value;
-
-      if (!email || !email.includes('@')) {
-        showToast('Please enter a valid email');
-        return;
-      }
-
-      localStorage.setItem('footerSubscribed', 'true');
-      showToast('✓ Subscribed to newsletter!');
-      emailInput.value = '';
-    });
-  }
-
-  // Smooth scroll for footer links
+  // Smooth scroll for footer links (keep for any remaining anchor links)
   document.querySelectorAll('footer a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
