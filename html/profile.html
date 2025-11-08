@@ -45,7 +45,7 @@
         }
     </script>
 
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/profile.css">
 </head>
 
@@ -308,7 +308,8 @@
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="../js/indes.js"></script>
+    
     <script src="../js/profile.js"></script>
 
     <!-- Load Modern Header Component -->
@@ -345,6 +346,58 @@
                 document.getElementById('header-container').innerHTML = '<div style="background: #fee; color: #c00; padding: 1rem; text-align: center;">Failed to load header. Please refresh the page.</div>';
             }
         })();
+    </script>
+
+     <!-- Login State Management Script -->
+    <script>
+        // Check if user is logged in (from localStorage or session)
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userName = localStorage.getItem('userName') || 'Guest';
+
+            const authLinks = document.getElementById('auth-links');
+            const userInfo = document.getElementById('user-info');
+            const accountNavItem = document.getElementById('account-nav-item');
+            const userDisplayName = document.getElementById('user-display-name');
+
+            if (isLoggedIn) {
+                // User is logged in
+                if (authLinks) authLinks.style.display = 'none';
+                if (userInfo) userInfo.style.display = 'flex';
+                if (accountNavItem) accountNavItem.style.display = 'block';
+                if (userDisplayName) userDisplayName.textContent = userName;
+            } else {
+                // User is not logged in
+                if (authLinks) authLinks.style.display = 'flex';
+                if (userInfo) userInfo.style.display = 'none';
+                if (accountNavItem) accountNavItem.style.display = 'none';
+            }
+        }
+
+        // Logout function
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userName');
+            window.location.href = '../html/index.html';
+        }
+
+        // Run on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkLoginStatus);
+        } else {
+            checkLoginStatus();
+        }
+
+        // Attach logout handler
+        setTimeout(() => {
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleLogout();
+                });
+            }
+        }, 100);
     </script>
 </body>
 
