@@ -21,65 +21,8 @@
 </head>
 <body>
 
-    <!-- ═══════════════════════════════════════════════════════════════════
-         PREMIUM HEADER
-         ═══════════════════════════════════════════════════════════════════ -->
-    <header class="premium-header">
-        <div class="container">
-            <nav class="header-nav">
-                <a href="/" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
-                    <div class="logo-text">
-                        <span class="logo-name">Destinova</span>
-                        <span class="logo-tagline">LUXURY TRAVEL</span>
-                    </div>
-                </a>
-                
-                <div class="nav-links">
-                    <a href="/flights" class="nav-link">
-                        <i class="fas fa-plane"></i>
-                        <span>Flights</span>
-                    </a>
-                    <a href="/hotels" class="nav-link">
-                        <i class="fas fa-hotel"></i>
-                        <span>Hotels</span>
-                    </a>
-                    <a href="/packages" class="nav-link">
-                        <i class="fas fa-suitcase-rolling"></i>
-                        <span>Packages</span>
-                    </a>
-                    <a href="/offers" class="nav-link">
-                        <i class="fas fa-tag"></i>
-                        <span>Offers</span>
-                    </a>
-                </div>
-                
-                <div class="header-actions">
-                    <button class="btn-icon" title="Support">
-                        <i class="fas fa-headset"></i>
-                    </button>
-                    <button class="btn-icon" title="Notifications">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">2</span>
-                    </button>
-                    <div class="user-menu">
-                        <button class="user-avatar">
-                            <img src="https://i.pravatar.cc/80?img=33" alt="User">
-                            <span class="user-status"></span>
-                        </button>
-                    </div>
-                </div>
-                
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
+    <!-- MODERN HEADER CONTAINER -->
+    <div id="header-container"></div>
 
     <!-- Background Effects -->
     <div class="background-effects">
@@ -939,5 +882,41 @@
     <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
 
     <script src="../js/booking.js"></script>
+
+    <!-- Load Modern Header Component -->
+    <script>
+        (async function() {
+            try {
+                console.log('🔄 Starting header load...');
+                
+                // Load Header CSS
+                const headerCSS = document.createElement('link');
+                headerCSS.rel = 'stylesheet';
+                headerCSS.href = '../css/header.css';
+                headerCSS.onload = () => console.log('✅ Header CSS loaded successfully');
+                headerCSS.onerror = () => console.error('❌ Failed to load header.css');
+                document.head.appendChild(headerCSS);
+
+                // Load Header Component
+                const response = await fetch('header.html');
+                if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
+                
+                const html = await response.text();
+                document.getElementById('header-container').innerHTML = html;
+                console.log('✅ Header HTML loaded successfully');
+                
+                // Load header JavaScript
+                const headerScript = document.createElement('script');
+                headerScript.src = '../js/header.js';
+                headerScript.onload = () => console.log('✅ Header JS loaded successfully');
+                headerScript.onerror = () => console.error('❌ Failed to load header.js');
+                document.body.appendChild(headerScript);
+                
+            } catch (error) {
+                console.error('❌ Failed to load header:', error);
+                document.getElementById('header-container').innerHTML = '<div style="background: #fee; color: #c00; padding: 1rem; text-align: center;">Failed to load header. Please refresh the page.</div>';
+            }
+        })();
+    </script>
 </body>
 </html>

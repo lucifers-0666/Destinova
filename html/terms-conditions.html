@@ -8,6 +8,8 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../site-images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
@@ -22,21 +24,8 @@
 
 <body>
 
-    <!-- Simplified Header -->
-    <header id="header-main" class="header-scrolled simplified-header">
-        <div class="header-nav-container">
-            <div class="header-logo">
-                <h1><a href="index.html">Destin<span>ova</span></a></h1>
-            </div>
-            <nav class="simplified-nav">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="booking.html"><i class="fas fa-plane-departure"></i> Book Flights</a>
-                <a href="destinations.html"><i class="fas fa-map-marked-alt"></i> Destinations</a>
-                <a href="offers.html"><i class="fas fa-tags"></i> Deals</a>
-                <a href="contact-us.html"><i class="fas fa-headset"></i> Contact Us</a>
-            </nav>
-        </div>
-    </header>
+    <!-- MODERN HEADER CONTAINER -->
+    <div id="header-container"></div>
 
     <div class="terms-container">
         <!-- Sidebar Navigation -->
@@ -150,6 +139,42 @@
     </footer>
 
     <script src="../js/terms-conditions.js"></script>
+
+    <!-- Load Modern Header Component -->
+    <script>
+        (async function() {
+            try {
+                console.log('🔄 Starting header load...');
+                
+                // Load Header CSS
+                const headerCSS = document.createElement('link');
+                headerCSS.rel = 'stylesheet';
+                headerCSS.href = '../css/header.css';
+                headerCSS.onload = () => console.log('✅ Header CSS loaded successfully');
+                headerCSS.onerror = () => console.error('❌ Failed to load header.css');
+                document.head.appendChild(headerCSS);
+
+                // Load Header Component
+                const response = await fetch('header.html');
+                if (!response.ok) throw new Error(`Header fetch failed: ${response.status}`);
+                
+                const html = await response.text();
+                document.getElementById('header-container').innerHTML = html;
+                console.log('✅ Header HTML loaded successfully');
+                
+                // Load header JavaScript
+                const headerScript = document.createElement('script');
+                headerScript.src = '../js/header.js';
+                headerScript.onload = () => console.log('✅ Header JS loaded successfully');
+                headerScript.onerror = () => console.error('❌ Failed to load header.js');
+                document.body.appendChild(headerScript);
+                
+            } catch (error) {
+                console.error('❌ Failed to load header:', error);
+                document.getElementById('header-container').innerHTML = '<div style="background: #fee; color: #c00; padding: 1rem; text-align: center;">Failed to load header. Please refresh the page.</div>';
+            }
+        })();
+    </script>
 </body>
 
 </html>

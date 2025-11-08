@@ -51,250 +51,6 @@
   }
   
   // ============================================
-  // 2. DESTINATION AUTOCOMPLETE
-  // ============================================
-  
-  const destinations = [
-    'Bali, Indonesia', 'Dubai, UAE', 'Maldives', 'Paris, France', 
-    'Tokyo, Japan', 'Rome, Italy', 'New York, USA', 'London, UK',
-    'Singapore', 'Bangkok, Thailand', 'Sydney, Australia', 'Barcelona, Spain',
-    'Istanbul, Turkey', 'Amsterdam, Netherlands', 'Prague, Czech Republic'
-  ];
-  
-  const destinationInput = document.getElementById('destinationInput');
-  const autocompleteList = document.getElementById('autocompleteList');
-  
-  let debounceTimer = null;
-  
-  function showAutocomplete(value) {
-    if (!value || value.length < 2) {
-      autocompleteList.hidden = true;
-      return;
-    }
-    
-    const filtered = destinations.filter(dest => 
-      dest.toLowerCase().includes(value.toLowerCase())
-    );
-    
-    if (filtered.length === 0) {
-      autocompleteList.hidden = true;
-      return;
-    }
-    
-    autocompleteList.innerHTML = filtered
-      .map(dest => `<div class="autocomplete-item" role="option">${dest}</div>`)
-      .join('');
-    
-    autocompleteList.hidden = false;
-    
-    // Add click handlers
-    autocompleteList.querySelectorAll('.autocomplete-item').forEach(item => {
-      item.addEventListener('click', () => {
-        destinationInput.value = item.textContent;
-        autocompleteList.hidden = true;
-      });
-    });
-  }
-  
-  if (destinationInput) {
-    destinationInput.addEventListener('input', (e) => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        showAutocomplete(e.target.value);
-      }, 300);
-    });
-    
-    // Close autocomplete on outside click
-    document.addEventListener('click', (e) => {
-      if (!destinationInput.contains(e.target) && !autocompleteList.contains(e.target)) {
-        autocompleteList.hidden = true;
-      }
-    });
-    
-    // Keyboard navigation
-    destinationInput.addEventListener('keydown', (e) => {
-      const items = autocompleteList.querySelectorAll('.autocomplete-item');
-      if (items.length === 0) return;
-      
-      let currentIndex = -1;
-      items.forEach((item, index) => {
-        if (item.classList.contains('active')) currentIndex = index;
-      });
-      
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        const nextIndex = (currentIndex + 1) % items.length;
-        items.forEach(item => item.classList.remove('active'));
-        items[nextIndex].classList.add('active');
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        const prevIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
-        items.forEach(item => item.classList.remove('active'));
-        items[prevIndex].classList.add('active');
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (currentIndex >= 0) {
-          destinationInput.value = items[currentIndex].textContent;
-          autocompleteList.hidden = true;
-        }
-      } else if (e.key === 'Escape') {
-        autocompleteList.hidden = true;
-      }
-    });
-  }
-  
-  // ============================================
-  // 3. DATE PICKER SETUP
-  // ============================================
-  
-  const checkInDate = document.getElementById('checkInDate');
-  const checkOutDate = document.getElementById('checkOutDate');
-  const today = new Date().toISOString().split('T')[0];
-  
-  if (checkInDate) {
-    checkInDate.setAttribute('min', today);
-    checkInDate.value = today;
-    
-    checkInDate.addEventListener('change', (e) => {
-      if (checkOutDate) {
-        checkOutDate.setAttribute('min', e.target.value);
-        
-        // Auto-set checkout to next day if empty
-        if (!checkOutDate.value) {
-          const nextDay = new Date(e.target.value);
-          nextDay.setDate(nextDay.getDate() + 1);
-          checkOutDate.value = nextDay.toISOString().split('T')[0];
-        }
-      }
-    });
-  }
-  
-  if (checkOutDate) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    checkOutDate.value = tomorrow.toISOString().split('T')[0];
-  }
-  
-  // ============================================
-  // 4. GUESTS SELECTOR DROPDOWN
-  // ============================================
-  
-  const guestsButton = document.getElementById('guestsButton');
-  const guestsDropdown = document.getElementById('guestsDropdown');
-  const guestsText = document.getElementById('guestsText');
-  
-  let guestCounts = { adults: 1, children: 0 };
-  
-  if (guestsButton && guestsDropdown) {
-    guestsButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      guestsDropdown.hidden = !guestsDropdown.hidden;
-    });
-    
-    // Close dropdown on outside click
-    document.addEventListener('click', (e) => {
-      if (!guestsButton.contains(e.target) && !guestsDropdown.contains(e.target)) {
-        guestsDropdown.hidden = true;
-      }
-    });
-    
-    // Counter buttons
-    document.querySelectorAll('.counter-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const action = btn.getAttribute('data-action');
-        const type = btn.getAttribute('data-type');
-        const countElement = document.getElementById(`${type}Count`);
-        
-        let currentValue = parseInt(countElement.textContent);
-        
-        if (action === 'inc') {
-          currentValue++;
-        } else if (action === 'dec' && currentValue > 0) {
-          if (type === 'adults' && currentValue === 1) return; // At least 1 adult
-          currentValue--;
-        }
-        
-        countElement.textContent = currentValue;
-        guestCounts[type] = currentValue;
-        
-        // Update guests text
-        updateGuestsText();
-      });
-    });
-    
-    function updateGuestsText() {
-      const parts = [];
-      if (guestCounts.adults > 0) {
-        parts.push(`${guestCounts.adults} Adult${guestCounts.adults > 1 ? 's' : ''}`);
-      }
-      if (guestCounts.children > 0) {
-        parts.push(`${guestCounts.children} Child${guestCounts.children > 1 ? 'ren' : ''}`);
-      }
-      guestsText.textContent = parts.join(', ');
-    }
-  }
-  
-  // ============================================
-  // 5. TRENDING PILLS NAVIGATION
-  // ============================================
-  
-  const trendingPills = document.querySelectorAll('.trending-pill');
-  
-  trendingPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const destination = pill.getAttribute('data-destination');
-      if (destinationInput) {
-        destinationInput.value = destination;
-        destinationInput.focus();
-      }
-    });
-  });
-  
-  // ============================================
-  // 6. HERO SEARCH FORM SUBMISSION
-  // ============================================
-  
-  const heroSearchForm = document.getElementById('heroSearchForm');
-  
-  if (heroSearchForm) {
-    heroSearchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const destination = destinationInput?.value;
-      const checkIn = checkInDate?.value;
-      const checkOut = checkOutDate?.value;
-      
-      // Basic validation
-      if (!destination) {
-        alert('Please enter a destination');
-        destinationInput?.focus();
-        return;
-      }
-      
-      if (!checkIn || !checkOut) {
-        alert('Please select check-in and check-out dates');
-        return;
-      }
-      
-      // Store search data and redirect
-      const searchData = {
-        destination,
-        checkIn,
-        checkOut,
-        guests: guestCounts,
-        timestamp: Date.now()
-      };
-      
-      localStorage.setItem('lastSearch', JSON.stringify(searchData));
-      
-      // Redirect to results page (adjust URL as needed)
-      alert(`✈️ Searching flights to ${destination}...`);
-      // window.location.href = `results.html?dest=${encodeURIComponent(destination)}&checkin=${checkIn}&checkout=${checkOut}`;
-    });
-  }
-  
-  // ============================================
   // 7. LIVE BOOKING COUNTER ANIMATION
   // ============================================
   
@@ -815,86 +571,6 @@ document.head.appendChild(style);
 })();
 
 // ============================================
-// TRAVEL INSPIRATION FEED FUNCTIONALITY
-// ============================================
-
-(function() {
-  'use strict';
-
-  // Engagement Buttons (Like, Comment, Save, Share)
-  const engagementBtns = document.querySelectorAll('.engagement-btn');
-
-  engagementBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const action = btn.dataset.action;
-      const metricCount = btn.querySelector('.metric-count');
-
-      if (action === 'like') {
-        btn.classList.toggle('liked');
-        const currentCount = parseInt(metricCount.textContent.replace('k', '')) * 1000;
-        metricCount.textContent = `${((currentCount + (btn.classList.contains('liked') ? 1 : -1)) / 1000).toFixed(1)}k`;
-      } else if (action === 'comment') {
-        alert('Opening comments...');
-      } else if (action === 'save') {
-        btn.classList.toggle('saved');
-        alert(btn.classList.contains('saved') ? 'Story saved!' : 'Story unsaved');
-      } else if (action === 'share') {
-        alert('Share options: WhatsApp, Instagram, Email, Copy link');
-      }
-    });
-  });
-
-  // Plan Similar Trip Buttons
-  const planTripBtns = document.querySelectorAll('.story-plan-trip-btn');
-  planTripBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.inspiration-story-card');
-      const destination = card.querySelector('.story-destination-badge').textContent.trim();
-      alert(`Planning trip to ${destination}...`);
-      // Pre-fill booking form with destination
-    });
-  });
-
-  // Upload Story Button
-  const uploadStoryBtn = document.querySelector('.upload-story-btn');
-  if (uploadStoryBtn) {
-    uploadStoryBtn.addEventListener('click', () => {
-      alert('Story upload modal opening...\n\nSteps:\n1. Select image/video\n2. Add destination & dates\n3. Add budget & description\n4. Publish!');
-    });
-  }
-
-  // View Breakdown Buttons
-  const viewBreakdownBtns = document.querySelectorAll('.view-breakdown-btn');
-  viewBreakdownBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      alert('Full budget breakdown modal opening...');
-    });
-  });
-
-  // Horizontal Scroll with Snap
-  const feedContainer = document.querySelector('.inspiration-feed-container');
-  if (feedContainer) {
-    // Touch swipe support
-    let startX = 0;
-    let scrollLeft = 0;
-
-    feedContainer.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].pageX - feedContainer.offsetLeft;
-      scrollLeft = feedContainer.scrollLeft;
-    });
-
-    feedContainer.addEventListener('touchmove', (e) => {
-      const x = e.touches[0].pageX - feedContainer.offsetLeft;
-      const walk = (x - startX) * 2;
-      feedContainer.scrollLeft = scrollLeft - walk;
-    });
-  }
-
-})();
-
-// ============================================
 // FLEXIBLE BOOKING OPTIONS FUNCTIONALITY
 // ============================================
 
@@ -956,213 +632,6 @@ document.head.appendChild(style);
 })();
 
 // ============================================
-// GROUP TRAVEL PLANNER: Voting, Itinerary, Group Creation
-// ============================================
-(function(){
-  'use strict';
-
-  // Debounced voting for shared wishlist
-  const voteButtons = document.querySelectorAll('.btn-vote');
-  const VOTE_KEY = 'groupPlannerVotes_v1';
-  let voteState = JSON.parse(localStorage.getItem(VOTE_KEY) || '{}');
-
-  function saveVotes() { localStorage.setItem(VOTE_KEY, JSON.stringify(voteState)); }
-
-  function updateVoteUI() {
-    // For demo, update any mini counts present
-    document.querySelectorAll('.mini-dest-card').forEach((card,i)=>{
-      const span = card.querySelector('.text-sm');
-      // No strict mapping in demo; keep visual consistent
-    });
-  }
-
-  // simple debounce
-  function debounce(fn, ms){ let id; return (...args)=>{ clearTimeout(id); id=setTimeout(()=>fn(...args), ms); }; }
-
-  const applyVote = debounce((action)=>{
-    // action: 'inc' or 'dec' - demo: toggle a demo counter
-    const demoKey = 'demo_shared_wishlist_count';
-    let val = parseInt(localStorage.getItem(demoKey) || '20',10);
-    if(action==='inc') val++; else if(action==='dec' && val>0) val--;
-    localStorage.setItem(demoKey, String(val));
-    updateVoteUI();
-  }, 500);
-
-  voteButtons.forEach(btn => {
-    btn.addEventListener('click', (e)=>{
-      const cls = btn.classList.contains('vote-plus') ? 'inc' : 'dec';
-      applyVote(cls);
-      btn.classList.add('active');
-      setTimeout(()=>btn.classList.remove('active'),250);
-    });
-  });
-
-  // Drag & drop itinerary
-  const itContainer = document.querySelector('.mini-itinerary');
-  if(itContainer){
-    let dragEl = null;
-    itContainer.addEventListener('dragstart', (e)=>{
-      dragEl = e.target;
-      e.dataTransfer.effectAllowed = 'move';
-      e.target.classList.add('dragging');
-    });
-    itContainer.addEventListener('dragend', (e)=>{
-      if(e.target) e.target.classList.remove('dragging');
-      dragEl = null;
-    });
-    itContainer.addEventListener('dragover', (e)=>{
-      e.preventDefault();
-      const after = getDragAfterElement(itContainer, e.clientY);
-      if(after == null) itContainer.appendChild(dragEl);
-      else itContainer.insertBefore(dragEl, after);
-    });
-
-    function getDragAfterElement(container, y){
-      const draggableElements = [...container.querySelectorAll('.it-item:not(.dragging)')];
-      return draggableElements.reduce((closest, child)=>{
-        const box = child.getBoundingClientRect();
-        const offset = y - box.top - box.height/2;
-        if(offset < 0 && offset > closest.offset) return { offset: offset, element: child };
-        return closest;
-      }, { offset: Number.NEGATIVE_INFINITY }).element;
-    }
-  }
-
-  // Create Group CTA -> lightweight modal flow using prompts (demo)
-  const createGroupBtn = document.getElementById('createGroupBtn');
-  if(createGroupBtn){
-    createGroupBtn.addEventListener('click', ()=>{
-      const tripName = prompt('Trip name (e.g., Goa Getaway 2025)');
-      if(!tripName) return;
-      const dest = prompt('Destination');
-      if(!dest) return;
-      const dates = prompt('Dates (start - end)');
-      const size = prompt('Group size (1-20)', '4');
-
-      const group = { id: 'grp_'+Date.now(), tripName, dest, dates, size: parseInt(size||4,10), created: Date.now() };
-      // save to localStorage
-      const groups = JSON.parse(localStorage.getItem('userGroups') || '[]');
-      groups.push(group);
-      localStorage.setItem('userGroups', JSON.stringify(groups));
-
-      alert('Group created! Opening Trip Dashboard...');
-      // redirect placeholder
-      // window.location.href = 'group-dashboard.html?gid='+encodeURIComponent(group.id);
-    });
-  }
-
-})();
-
-// ============================================
-// LOCAL EXPERIENCES: Filters, Booking, Modal
-// ============================================
-(function(){
-  'use strict';
-
-  const filterButtons = document.querySelectorAll('#experienceFilters .filter-pill');
-  const experienceCards = document.querySelectorAll('#experiencesGrid .experience-card');
-
-  const activeFilters = new Set();
-  const applyFilters = debounce(()=>{
-    const filters = Array.from(activeFilters);
-    experienceCards.forEach(card=>{
-      const cat = card.getAttribute('data-category') || '';
-      if(filters.length===0 || filters.includes(cat)) card.style.display = '';
-      else card.style.display = 'none';
-    });
-  }, 300);
-
-  filterButtons.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const f = btn.getAttribute('data-filter');
-      btn.classList.toggle('active');
-      if(btn.classList.contains('active')) activeFilters.add(f); else activeFilters.delete(f);
-      applyFilters();
-    });
-  });
-
-  // Booking actions
-  document.querySelectorAll('.btn-book-quick').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      const card = btn.closest('.experience-card');
-      const title = card.querySelector('h3').textContent;
-      alert(`Instantly booked: ${title} — confirmation will be sent via email.`);
-    });
-  });
-
-  document.querySelectorAll('.btn-request').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const card = btn.closest('.experience-card');
-      const title = card.querySelector('h3').textContent;
-      alert(`Request sent to local guide for: ${title}. They will confirm shortly.`);
-    });
-  });
-
-})();
-
-// ============================================
-// SUSTAINABILITY: Carbon Calc, Offsets, GreenPoints
-// ============================================
-(function(){
-  'use strict';
-
-  const carbonDestination = document.getElementById('carbonDestination');
-  const carbonResults = document.getElementById('carbonResults');
-  const carbonKg = document.getElementById('carbonKg');
-  const treeCount = document.getElementById('treeCount');
-  const offsetNowBtn = document.getElementById('offsetNowBtn');
-  const addOffsetBtn = document.getElementById('addOffsetBtn');
-
-  const transportRadios = document.getElementsByName('transport');
-
-  function getTransportMode(){
-    for(const r of transportRadios) if(r.checked) return r.value;
-    return 'flight';
-  }
-
-  function calcCO2(mode){
-    // Demo values (round-trip estimate)
-    const map = { flight:245, train:82, bus:45, car:150 };
-    return map[mode] || 100;
-  }
-
-  function updateCarbon(){
-    const mode = getTransportMode();
-    const kg = calcCO2(mode);
-    if(carbonResults) carbonResults.classList.remove('hidden');
-    if(carbonKg) carbonKg.textContent = `${kg} kg CO2`;
-    if(treeCount) treeCount.textContent = String(Math.max(1, Math.round(kg/15)));
-  }
-
-  if(carbonDestination){
-    carbonDestination.addEventListener('change', updateCarbon);
-  }
-  Array.from(transportRadios).forEach(r=>r.addEventListener('change', updateCarbon));
-
-  if(offsetNowBtn){
-    offsetNowBtn.addEventListener('click', ()=>{
-      // Demo: add 10 GreenPoints and show success
-      const pts = parseInt(localStorage.getItem('greenPoints')||'0',10) + 10;
-      localStorage.setItem('greenPoints', String(pts));
-      alert('✅ 15 trees planted in your name! You earned +10 GreenPoints.');
-      // update progress (if exists)
-      const prog = document.getElementById('greenProgress');
-      if(prog){ prog.style.width = Math.min(100, (pts/500)*100)+'%'; }
-    });
-  }
-
-  if(addOffsetBtn){
-    addOffsetBtn.addEventListener('click', ()=>{
-      alert('Carbon offset added to booking (+₹500)');
-    });
-  }
-
-  // initial update
-  updateCarbon();
-
-})();
-
-// ============================================
 // ENHANCED CATEGORY SECTION FUNCTIONALITY
 // ============================================
 (function() {
@@ -1216,97 +685,56 @@ document.head.appendChild(style);
 })();
 
 // ============================================
-// TRAVEL INSURANCE COMPARISON FUNCTIONALITY
+// DYNAMIC PRICING CALENDAR FUNCTIONALITY - REMOVED
+// ============================================
+// (Section removed as calendar feature was deleted from homepage)
+
+// ============================================
+// UTILITY: SHOW TOAST NOTIFICATION
+// ============================================
+function showToast(message) {
+  const toastContainer = document.getElementById('toastContainer');
+  if (!toastContainer) return;
+
+  const toast = document.createElement('div');
+  toast.className = 'bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg mb-3 animate-fade-in';
+  toast.textContent = message;
+  
+  toastContainer.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-20px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+// Helper function for debouncing
+function debounce(fn, ms) {
+  let id;
+  return (...args) => {
+    clearTimeout(id);
+    id = setTimeout(() => fn(...args), ms);
+  };
+}
+
+// ============================================
+// MULTI-DESTINATION ROUTE OPTIMIZER - REMOVED
+// ============================================
+// (Section removed as route optimizer feature was deleted from homepage)
+
+// ============================================
+// NEWSLETTER WITH QUIZ - REMOVED
+// ============================================
+// (Section removed as newsletter quiz feature was deleted from homepage)
+
+// ============================================
+// CONTINUE WITH REMAINING FUNCTIONALITY
 // ============================================
 (function() {
   'use strict';
 
-  const coverageViewBtn = document.getElementById('coverageViewBtn');
-  const scenarioViewBtn = document.getElementById('scenarioViewBtn');
-  const coverageView = document.getElementById('coverageView');
-  const scenarioView = document.getElementById('scenarioView');
-  const insuranceCTAs = document.querySelectorAll('.insurance-cta-btn');
-
-  // State
-  let selectedPlan = null;
-  let insuranceAdded = false;
-
-  // Toggle between views
-  function switchView(viewType) {
-    if (viewType === 'coverage') {
-      coverageView.classList.remove('hidden');
-      scenarioView.classList.add('hidden');
-      coverageViewBtn.classList.add('active');
-      coverageViewBtn.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
-      coverageViewBtn.classList.remove('border-gray-300', 'text-gray-600');
-      scenarioViewBtn.classList.remove('active');
-      scenarioViewBtn.classList.add('border-gray-300', 'text-gray-600');
-      scenarioViewBtn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
-    } else {
-      coverageView.classList.add('hidden');
-      scenarioView.classList.remove('hidden');
-      scenarioViewBtn.classList.add('active');
-      scenarioViewBtn.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
-      scenarioViewBtn.classList.remove('border-gray-300', 'text-gray-600');
-      coverageViewBtn.classList.remove('active');
-      coverageViewBtn.classList.add('border-gray-300', 'text-gray-600');
-      coverageViewBtn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
-    }
-  }
-
-  if (coverageViewBtn) {
-    coverageViewBtn.addEventListener('click', () => switchView('coverage'));
-  }
-
-  if (scenarioViewBtn) {
-    scenarioViewBtn.addEventListener('click', () => switchView('scenario'));
-  }
-
-  // Plan selection
-  insuranceCTAs.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      const plans = ['basic', 'standard', 'premium'];
-      const prices = [299, 599, 999];
-      selectedPlan = plans[index];
-      insuranceAdded = true;
-
-      // Store in localStorage
-      localStorage.setItem('selectedInsurance', JSON.stringify({
-        plan: selectedPlan,
-        price: prices[index]
-      }));
-
-      // Show confirmation
-      showToast(`${selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1)} insurance plan added! ₹${prices[index]}`);
-
-      // Track analytics
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'insurance_selected', {
-          'event_category': 'conversion',
-          'event_label': selectedPlan,
-          'value': prices[index]
-        });
-      }
-    });
-  });
-
-})();
-
-// ============================================
-// DYNAMIC PRICING CALENDAR FUNCTIONALITY
-// ============================================
-(function() {
-  'use strict';
-
-  const calendarDays = document.getElementById('calendarDays');
-  const currentMonthYear = document.getElementById('currentMonthYear');
-  const prevMonthBtn = document.getElementById('prevMonth');
-  const nextMonthBtn = document.getElementById('nextMonth');
-  const flexibleDatesCheckbox = document.getElementById('flexibleDatesCheckbox');
-  const viewWeekendsBtn = document.getElementById('viewWeekendsBtn');
-  const browseMonthBtn = document.getElementById('browseMonthBtn');
-  const flexibleResultsTable = document.getElementById('flexibleResultsTable');
-  const flexibleResultsBody = document.getElementById('flexibleResultsBody');
+  // Secure booking and price alert buttons (if they exist elsewhere)
   const secureBookingBtn = document.getElementById('secureBookingBtn');
   const priceAlertBtn = document.getElementById('priceAlertBtn');
 

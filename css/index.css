@@ -5363,193 +5363,6 @@ caption {
     margin-top: 0.5rem;
 }
 
-/* Hero Search Container */
-.hero-search-container {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.hero-search-form {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-/* Search Fields Grid */
-.search-fields-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr) auto;
-    gap: 1rem;
-    align-items: end;
-}
-
-.search-field-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.search-field-icon {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #10b981;
-    z-index: 2;
-}
-
-.search-field-input {
-    width: 100%;
-    padding: 0.875rem 1rem 0.875rem 3rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    font-size: 0.9375rem;
-    transition: all 0.3s;
-    outline: none;
-}
-
-.search-field-input:focus {
-    border-color: #10b981;
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-}
-
-.search-field-input::placeholder {
-    color: #9ca3af;
-}
-
-/* Guests Button */
-.guests-button {
-    text-align: left;
-    background: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.guests-dropdown {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    z-index: 20;
-}
-
-.guests-selector {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.guest-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Autocomplete Dropdown */
-.autocomplete-dropdown {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    left: 0;
-    right: 0;
-    max-height: 300px;
-    overflow-y: auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    z-index: 20;
-    padding: 0.5rem 0;
-}
-
-.autocomplete-item {
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-.autocomplete-item:hover {
-    background: #f3f4f6;
-}
-
-/* Hero Search Button */
-.hero-search-button {
-    padding: 0 2rem;
-    height: 52px;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s;
-    white-space: nowrap;
-}
-
-.hero-search-button:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-}
-
-.hero-search-button:active {
-    transform: scale(0.98);
-}
-
-/* Trending Pills */
-.trending-pills {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.trending-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #6b7280;
-}
-
-.trending-pill {
-    padding: 0.5rem 1.25rem;
-    border: 2px solid #d1fae5;
-    background: rgba(236, 253, 245, 0.3);
-    color: #10b981;
-    border-radius: 50px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.trending-pill:hover {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: #10b981;
-    transform: scale(1.05);
-}
-
-.trending-pill:active {
-    animation: pillPulse 0.3s ease;
-}
-
-@keyframes pillPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
 /* Live Booking Badge */
 .live-booking-badge {
     position: absolute;
@@ -5974,16 +5787,6 @@ caption {
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-    .search-fields-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .hero-search-button {
-        grid-column: 1 / -1;
-        width: 100%;
-        justify-content: center;
-    }
-    
     .floating-icon-1, .floating-icon-3 {
         display: none;
     }
@@ -6007,25 +5810,11 @@ caption {
         font-size: 2rem;
     }
     
-    .search-fields-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-search-form {
-        padding: 1.5rem 1rem;
-    }
-    
     .live-booking-badge {
         bottom: 1rem;
         left: 50%;
         right: auto;
         transform: translateX(-50%);
-    }
-    
-    .trending-pills {
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding-bottom: 0.5rem;
     }
     
     .trust-stats-grid {
