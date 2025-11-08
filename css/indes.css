@@ -3153,10 +3153,1330 @@ html {
     display: none !important;
   }
 }
+/* 3 step process css end here */
+
+
+/* ===============================================
+   FARE CALENDAR - PRODUCTION STYLES
+   =============================================== */
+
+/* Floating Planes */
+.floating-planes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.plane-icon {
+  position: absolute;
+  color: #1d5e33;
+  animation: float-plane 20s ease-in-out infinite;
+}
+
+.plane-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.plane-2 { top: 60%; right: 15%; animation-delay: 7s; }
+.plane-3 { bottom: 30%; left: 70%; animation-delay: 14s; }
+
+@keyframes float-plane {
+  0%, 100% { transform: translate(0, 0) rotate(-45deg); }
+  50% { transform: translate(50px, -30px) rotate(-40deg); }
+}
+
+/* Smart Badge Enhancement */
+.smart-badge {
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced Depth Shadows */
+.shadow-depth {
+  box-shadow: 
+    0 8px 32px rgba(29, 94, 51, 0.12),
+    0 0 0 1px rgba(29, 94, 51, 0.08);
+}
+
+/* Calendar Container Entrance */
+.calendar-entrance {
+  animation: calendar-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes calendar-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Prediction Card Entrance */
+.prediction-entrance {
+  animation: slide-in-right 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced Glassmorphism */
+.price-prediction-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(29, 94, 51, 0.15);
+}
+
+/* Hover Lift Effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-lift:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 94, 51, 0.25);
+}
+
+.hover-lift-strong {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-lift-strong:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 12px 32px rgba(29, 94, 51, 0.35);
+}
+
+/* Arrow Glow Effect */
+.arrow-glow {
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter 0.3s ease;
+}
+
+.month-nav-btn:hover .arrow-glow {
+  filter: drop-shadow(0 0 6px rgba(42, 125, 74, 0.6));
+}
+
+/* Rotate Icon Animation */
+.rotate-icon {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.change-route-btn:hover .rotate-icon {
+  transform: rotate(180deg);
+}
+
+/* Weekend Header Styling */
+.weekend-header {
+  color: #2a7d4a;
+  font-weight: 700;
+}
+
+/* Calendar Day Cell */
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Staggered Entrance Animation */
+.calendar-day {
+  animation: day-entrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+@keyframes day-entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Generate delays for each day */
+.calendar-day:nth-child(1) { animation-delay: 0.05s; }
+.calendar-day:nth-child(2) { animation-delay: 0.1s; }
+.calendar-day:nth-child(3) { animation-delay: 0.15s; }
+.calendar-day:nth-child(4) { animation-delay: 0.2s; }
+.calendar-day:nth-child(5) { animation-delay: 0.25s; }
+.calendar-day:nth-child(6) { animation-delay: 0.3s; }
+.calendar-day:nth-child(7) { animation-delay: 0.35s; }
+.calendar-day:nth-child(8) { animation-delay: 0.4s; }
+.calendar-day:nth-child(9) { animation-delay: 0.45s; }
+.calendar-day:nth-child(10) { animation-delay: 0.5s; }
+.calendar-day:nth-child(11) { animation-delay: 0.55s; }
+.calendar-day:nth-child(12) { animation-delay: 0.6s; }
+.calendar-day:nth-child(13) { animation-delay: 0.65s; }
+.calendar-day:nth-child(14) { animation-delay: 0.7s; }
+.calendar-day:nth-child(15) { animation-delay: 0.75s; }
+.calendar-day:nth-child(16) { animation-delay: 0.8s; }
+.calendar-day:nth-child(17) { animation-delay: 0.85s; }
+.calendar-day:nth-child(18) { animation-delay: 0.9s; }
+.calendar-day:nth-child(19) { animation-delay: 0.95s; }
+.calendar-day:nth-child(20) { animation-delay: 1s; }
+.calendar-day:nth-child(21) { animation-delay: 1.05s; }
+.calendar-day:nth-child(22) { animation-delay: 1.1s; }
+.calendar-day:nth-child(23) { animation-delay: 1.15s; }
+.calendar-day:nth-child(24) { animation-delay: 1.2s; }
+.calendar-day:nth-child(25) { animation-delay: 1.25s; }
+.calendar-day:nth-child(26) { animation-delay: 1.3s; }
+.calendar-day:nth-child(27) { animation-delay: 1.35s; }
+.calendar-day:nth-child(28) { animation-delay: 1.4s; }
+.calendar-day:nth-child(29) { animation-delay: 1.45s; }
+.calendar-day:nth-child(30) { animation-delay: 1.5s; }
+.calendar-day:nth-child(31) { animation-delay: 1.55s; }
+
+/* Enhanced Hover State */
+.calendar-day:hover {
+  transform: scale(1.08) translateZ(20px);
+  box-shadow: 0 12px 28px rgba(29, 94, 51, 0.15);
+  background: linear-gradient(135deg, #e8f4ed 0%, #f5e8d8 100%);
+  border-color: #E5CBAF;
+  z-index: 10;
+}
+
+.calendar-day .day-number {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1d5e33;
+  margin-bottom: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.calendar-day:hover .day-number {
+  color: #c9a877;
+  font-weight: 800;
+}
+
+.calendar-day .price {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #164426;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.calendar-day:hover .price {
+  color: #c9a877;
+  transform: scale(1.1);
+}
+
+/* Weekend Days Styling */
+.calendar-day.weekend {
+  background: linear-gradient(135deg, #e8f4ed 0%, #f0f8f4 100%);
+  border: 1px solid rgba(42, 125, 74, 0.1);
+}
+
+/* Best Price Day with Crown */
+.calendar-day.best-price {
+  background: linear-gradient(135deg, #1d5e33 0%, #2a7d4a 100%);
+  border: 2px solid #E5CBAF;
+  box-shadow: 0 0 0 3px rgba(229, 203, 175, 0.3), 0 8px 24px rgba(29, 94, 51, 0.3);
+  animation: best-price-glow 2s ease-in-out infinite;
+}
+
+@keyframes best-price-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(229, 203, 175, 0.3), 0 8px 24px rgba(29, 94, 51, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(229, 203, 175, 0.5), 0 12px 32px rgba(29, 94, 51, 0.5);
+  }
+}
+
+.calendar-day.best-price .day-number,
+.calendar-day.best-price .price {
+  color: #f5e8d8;
+}
+
+/* Crown Badge on Best Day */
+.calendar-day.best-price::before {
+  content: '👑';
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-size: 1.5rem;
+  animation: crown-bounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(201, 168, 119, 0.5));
+  z-index: 10;
+}
+
+@keyframes crown-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-15deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-10deg);
+  }
+}
+
+/* Price Trend Arrows */
+.trend-arrow {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+}
+
+.trend-arrow.up {
+  color: #dc3545;
+  animation: float-up 2s ease-in-out infinite;
+}
+
+.trend-arrow.down {
+  color: #2a7d4a;
+  animation: float-down 2s ease-in-out infinite;
+}
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes float-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Selected Day State */
+.calendar-day.selected {
+  background: radial-gradient(circle at center, #1d5e33 0%, #2a7d4a 100%);
+  border: 2px solid #E5CBAF;
+  animation: select-bounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.4);
+}
+
+@keyframes select-bounce {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.calendar-day.selected .day-number,
+.calendar-day.selected .price {
+  color: white;
+}
+
+.calendar-day.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: #c9a877;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: white;
+  font-weight: bold;
+  animation: checkmark-appear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes checkmark-appear {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Bell Icon Shake */
+.bell-icon {
+  transition: transform 0.5s ease;
+}
+
+.price-alert-btn:hover .bell-icon {
+  animation: bell-shake 0.5s ease;
+}
+
+@keyframes bell-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.price-alert-btn.active {
+  background: #2a7d4a !important;
+  border-color: #2a7d4a !important;
+  color: white !important;
+}
+
+/* Crown Icon Animation */
+.crown-icon {
+  animation: crown-rotate 3s ease-in-out infinite;
+}
+
+@keyframes crown-rotate {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Best Day Banner Entrance */
+.best-day-banner {
+  animation: fade-in-up 0.6s ease-out 0.5s backwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AI Thinking Animation */
+.ai-thinking {
+  animation: ai-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(29, 94, 51, 0.7);
+    background: linear-gradient(135deg, #1d5e33 0%, #2a7d4a 100%);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(29, 94, 51, 0);
+    background: linear-gradient(135deg, #2a7d4a 0%, #3a9c60 100%);
+  }
+}
+
+/* Pulse Scale Animations */
+.pulse-scale {
+  animation: pulse-scale 2s ease-in-out infinite;
+}
+
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.pulse-scale-button {
+  animation: pulse-scale-button 2s ease-in-out infinite;
+}
+
+@keyframes pulse-scale-button {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(29, 94, 51, 0.3);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(29, 94, 51, 0.5);
+  }
+}
+
+/* Confidence Meter Animation */
+.confidence-fill {
+  width: 0%;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.confidence-fill.animate {
+  width: 92%;
+}
+
+/* Trend Arrow Animations */
+.trend-arrow-up {
+  animation: pulse-up 2s ease-in-out infinite;
+}
+
+.trend-arrow-down {
+  animation: pulse-down 2s ease-in-out infinite;
+}
+
+@keyframes pulse-up {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-3px); opacity: 0.7; }
+}
+
+@keyframes pulse-down {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(3px); opacity: 0.7; }
+}
+
+/* Tooltip */
+.price-tooltip {
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: bottom center;
+  animation: tooltip-appear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes tooltip-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calendar-day {
+    padding: 0.5rem;
+  }
+  
+  .calendar-day .day-number {
+    font-size: 0.875rem;
+  }
+  
+  .calendar-day .price {
+    font-size: 0.75rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/*  FARE CALENDAR  css end here*/
 
 
 
 
+/* Travel Dates */
+/* ===============================================
+   BAGGAGE & SEAT COST ESTIMATOR - STYLES
+   =============================================== */
+
+/* Enhanced Depth Shadows */
+.shadow-depth {
+  box-shadow: 
+    0 12px 48px rgba(29, 94, 51, 0.08),
+    0 0 0 1px rgba(29, 94, 51, 0.05);
+}
+
+/* Section Entrance Animation */
+.section-entrance {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Route Card Animation */
+.route-card {
+  animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Customize Panel */
+.customize-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Option Cards */
+.option-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.option-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(229, 203, 175, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.option-card:hover::before {
+  left: 100%;
+}
+
+.option-card:hover {
+  transform: translateX(4px);
+  border-color: #E5CBAF;
+  background: linear-gradient(to right, rgba(245, 232, 216, 0.2), white);
+}
+
+.option-card:hover svg,
+.option-card:hover .font-semibold {
+  transform: scale(1.1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Custom Radio Buttons */
+.radio-input {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #d1d5db;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.radio-input:checked {
+  border-color: #1d5e33;
+  background: radial-gradient(circle, #2a7d4a 0%, #1d5e33 100%);
+  animation: radioSelect 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes radioSelect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.radio-input:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #f5e8d8;
+  border-radius: 50%;
+  animation: checkmarkAppear 0.3s ease;
+}
+
+@keyframes checkmarkAppear {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Custom Toggle Switches */
+.toggle-input {
+  appearance: none;
+  width: 52px;
+  height: 28px;
+  background: #d1d5db;
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.toggle-input::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-input:checked {
+  background: linear-gradient(90deg, #2a7d4a, #3a9c60);
+}
+
+.toggle-input:checked::before {
+  left: 27px;
+  background: #f5e8d8;
+}
+
+.toggle-input:active::before {
+  animation: toggleBounce 0.3s ease;
+}
+
+@keyframes toggleBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.9); }
+}
+
+/* Toggle Card Hover */
+.toggle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(29, 94, 51, 0.12);
+}
+
+/* Fare Cards */
+.fare-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.fare-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(229, 203, 175, 0.15) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.fare-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Shine Effect */
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    transparent 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.fare-card:hover .card-shine {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* Best Value Card Enhancement */
+.fare-card-best {
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(42, 125, 74, 0.2);
+}
+
+.fare-card-best:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 25px 70px rgba(42, 125, 74, 0.3);
+}
+
+/* Best Badge Animation */
+.best-badge {
+  animation: bounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s backwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px) scale(0.8);
+  }
+  50% {
+    transform: translate(-50%, 5px) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* Price Animation */
+.total-price {
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.total-price.price-flash {
+  animation: priceFlash 0.6s ease;
+}
+
+@keyframes priceFlash {
+  0%, 100% {
+    color: inherit;
+    transform: scale(1);
+  }
+  50% {
+    color: #c9a877;
+    transform: scale(1.15);
+  }
+}
+
+.fare-card .total-price {
+  animation: pricePulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pricePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Select Fare Button */
+.select-fare-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.select-fare-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.select-fare-btn:active::before {
+  width: 400px;
+  height: 400px;
+}
+
+.select-fare-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(29, 94, 51, 0.4);
+}
+
+/* Smart Tip Animation */
+.smart-tip-container {
+  animation: tipSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes tipSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bulb-icon {
+  animation: bulbGlow 2s ease-in-out infinite;
+}
+
+@keyframes bulbGlow {
+  0%, 100% {
+    filter: brightness(1);
+    box-shadow: 0 4px 12px rgba(201, 168, 119, 0.3);
+  }
+  50% {
+    filter: brightness(1.2);
+    box-shadow: 0 6px 20px rgba(201, 168, 119, 0.6);
+  }
+}
+
+/* Timer Animation */
+.timer-display {
+  animation: timerPulse 1s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.timer-display.urgent {
+  color: #dc3545;
+  animation: timerUrgent 0.5s ease-in-out infinite;
+}
+
+@keyframes timerUrgent {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* Lock Icon Animation */
+.lock-icon {
+  animation: lockShake 3s ease-in-out infinite;
+}
+
+@keyframes lockShake {
+  0%, 95%, 100% { transform: rotate(0deg); }
+  96%, 98% { transform: rotate(-5deg); }
+  97%, 99% { transform: rotate(5deg); }
+}
+
+/* Achievement Toast */
+#achievement-toast {
+  animation: toastSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#achievement-toast.hide {
+  animation: toastSlideOut 0.4s ease-out forwards;
+}
+
+@keyframes toastSlideOut {
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* Floating Animation for Various Elements */
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Bounce Subtle */
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Pulse Subtle */
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .fare-card-best {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .fare-cards-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .fare-card {
+    min-width: 280px;
+    scroll-snap-align: center;
+  }
+  
+  .fare-card-best {
+    transform: scale(1);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus States */
+.radio-input:focus,
+.toggle-input:focus,
+.select-fare-btn:focus {
+  outline: 3px solid #2a7d4a;
+  outline-offset: 4px;
+}
+
+/* Print Styles */
+@media print {
+  .smart-tip-container,
+  #achievement-toast,
+  #calculator-confetti {
+    display: none !important;
+  }
+}
+
+/* Loading State */
+.fare-card.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.fare-card.loading .total-price::after {
+  content: '...';
+  animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+/* ------ Main Shadow & Depth ------ */
+.shadow-main {
+  box-shadow: 0 8px 32px rgba(29, 94, 51, 0.08);
+}
+.shadow-card, .fare-card {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(29,94,51,0.1);
+}
+.shadow-card-best {
+  box-shadow: 0 8px 28px rgba(42, 125, 74, 0.13);
+}
+.shadow-selected, .option-container.selected {
+  box-shadow: 0 4px 12px rgba(29, 94, 51, 0.15);
+}
+
+/* ------ Layout ------ */
+.fare-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 28px;
+  border: 2px solid #e0e0e0;
+  transition: box-shadow .35s, transform .35s, border .25s;
+  position: relative;
+}
+.fare-card-best {
+  background: #e8f4ed;
+  border: 3px solid #2a7d4a;
+  transform: scale(1.05);
+}
+.fare-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(29,94,51,0.15);
+}
+.best-value-badge {
+  top: 0.8rem;
+  right: 1rem;
+  left: auto!important;
+  transform: none!important;
+  font-size: 0.98rem;
+  z-index: 2;
+  background: linear-gradient(90deg,#E5CBAF,#faeedc 120%);
+  color: #164426;
+  border-radius: 9999px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1.5px solid #f6efdf;
+}
+
+.option-container {
+  transition: transform 300ms, background 300ms, box-shadow 250ms;
+}
+.option-container:hover, .option-container.selected {
+  background: linear-gradient(135deg, #f5e8d8 80%, #fff 100%);
+  transform: translateX(4px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(29,94,51,0.15);
+  border-color: #2a7d4a;
+  z-index: 2;
+}
+
+/* ------ Radiobuttons ------ */
+.radio-input {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #cbd5e1;
+  border-radius: 50%;
+  background: #fff;
+  margin-right: 8px;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+.radio-input:checked {
+  border: 3px solid #2a7d4a;
+  box-shadow: 0 0 0 2px #e8f4ed;
+}
+.radio-input:checked::after {
+  content:'';
+  width: 10px;
+  height: 10px;
+  background: #2a7d4a;
+  display: block;
+  border-radius: 9999px;
+  position: absolute;
+  top: 5px; left: 5px;
+}
+
+/* ------ Toggle Switch Animated ------ */
+.toggle-input {
+  appearance: none;
+  width: 60px;
+  height: 32px;
+  background: #e5cbaf;
+  border-radius: 16px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.toggle-input:checked {
+  background: linear-gradient(90deg,#2a7d4a 50%,#3a9c60 100%);
+}
+.toggle-input::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1.5px 4.5px 0.5px #d9dbe7;
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  transition: left 0.25s cubic-bezier(.65,2,.39,.85), background 0.3s;
+}
+.toggle-input:checked::before {
+  left: 29px;
+  background: #f5e8d8;
+}
+.toggle-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+}
+
+/* ------ Hover/Focus Effects ------ */
+.select-fare-btn, .select-btn {
+  transition: .3s all;
+  outline: none;
+  font-weight: 600;
+}
+.select-fare-btn:hover, .select-btn:hover {
+  background: linear-gradient(135deg, #2a7d4a 20%, #3a9c60 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(29,94,51,0.15);
+}
+
+.select-fare-btn:active {
+  transform: scale(.95);
+}
+.select-fare-btn:focus, .option-container:focus-within {
+  outline: 3px solid #2a7d4a;
+  outline-offset: 4px;
+}
+
+.shadow-selected {
+  box-shadow:0 4px 12px rgba(29,94,51,0.16);
+}
+.fare-card.selected {
+  border: 4px solid #2a7d4a;
+}
+
+.fare-card .total-price {
+  transition: background 0.4s, color 0.4s, transform 0.3s;
+  border-radius: 6px;
+  background: transparent;
+}
+.fare-card .total-price.price-flash {
+  background: #e8f4ed;
+  color: #2a7d4a;
+  animation: priceFlash 0.8s;
+  transform: scale(1.08);
+}
+@keyframes priceFlash {
+  0% {background: #e8f4ed;}
+  35%{background: #c9a877; color:#fff;}
+  90%{background: #e8f4ed;}
+  100%{background: transparent;}
+}
+
+/* ------ Spacing/Fonts/Hierarchy ------ */
+.customize-panel h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+.fare-card h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.fare-card .base-price, .fare-card .total-price {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.select-fare-btn {font-size: 1.125rem;}
+.option-container .font-bold {font-weight: 500;}
+
+/* ------ Smart Tip ------ */
+.smart-tip-container {
+  margin-top: 2rem;
+  animation: tipSlideIn 0.5s ease;
+}
+.smart-tip {
+  border: 2px solid #2a7d4a;
+  background: linear-gradient(90deg,#e8f4ed 60%, #fff 100%);
+  color:#164426;
+  font-size: 1em;
+  font-weight: 600;
+  display: flex; align-items: center;
+}
+.smart-tip .bulb-icon {
+  animation: bulbGlow 2s ease-in-out infinite;
+}
+
+@keyframes tipSlideIn {
+  from{opacity: 0; transform:translateY(16px);}
+  to{opacity: 1; transform:translateY(0);}
+}
+@keyframes bulbGlow {
+  0%,100% { filter:brightness(1);}
+  55%{filter:brightness(1.13);}
+}
+@keyframes bounce-subtle {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
+}
+
+/* ------ Animations ------ */
+@keyframes sparkle {
+  from { opacity:.5; transform:scale(.93);}
+  50%{opacity:1; transform:scale(1.1);}
+  to { opacity:.5; transform:scale(.93);}
+}
+.sparkle-icon { animation: sparkle 1.5s infinite; }
+
+/* ------ Comparison Tooltip ------ */
+.card-tooltip {
+  position: absolute;
+  top:35px;
+  right:18px;
+  z-index:30;
+  background: rgba(255,255,255,0.90);
+  border-radius: 14px;
+  border: 2px solid #E5CBAF;
+  box-shadow: 0 6px 24px rgba(201, 168, 119, 0.09);
+  padding:14px 20px;
+  min-width:170px;
+  color:#164426;
+  font-size:.98rem;
+  font-weight:600;
+  opacity:0;
+  pointer-events: none;
+  transition: opacity .22s;
+}
+.fare-card:hover .card-tooltip { opacity: 1; pointer-events: auto; }
+.card-tooltip .cdt { 
+  display: flex; justify-content: space-between; margin-bottom:2px;
+}
+.card-tooltip .cdt-head { border-bottom:1px solid #E5CBAF; margin:8px 0;}
+.card-tooltip .cdt-foot { font-weight: 700;}
+
+@media (max-width: 900px){
+  .grid.md\:grid-cols-3 {grid-template-columns:1fr!important;}
+}
+
+/* ------ Responsive ------ */
+@media (max-width: 768px){
+  .fare-card { min-width: 290px; }
+  .grid.md\:grid-cols-3 { grid-template-columns: repeat(3,minmax(0,1fr)); overflow-x:auto; }
+  .fare-card { scroll-snap-align: center;}
+}
+
+
+/* COST CALCULATOR css end here */
+
+
+/* Visa & Entry Rules Checker Section css start here */
+
+
+
+
+
+/*  Visa & Entry Rules Checker Section css end here */
 
 
 
