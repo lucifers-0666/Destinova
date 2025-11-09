@@ -2894,3 +2894,639 @@ document.addEventListener("DOMContentLoaded", function () {
     photo.addEventListener('blur', hideTooltip);
   });
 });
+
+// social proof section js end here
+
+// why choose us  section js start here
+
+// ===============================================
+//  WHY CHOOSE US SECTION - INTERACTIVE FEATURES
+// ===============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // 1. Typing Effect for Subtitle
+  const typingElement = document.querySelector('.typing-text');
+  if (typingElement) {
+    const text = typingElement.getAttribute('data-typing-text') || '';
+    const cursor = typingElement.querySelector('.typing-cursor');
+    let charIndex = 0;
+    
+    // Clear initial content
+    typingElement.textContent = '';
+    if (cursor) {
+      typingElement.appendChild(cursor);
+    }
+    
+    function typeCharacter() {
+      if (charIndex < text.length) {
+        const textNode = document.createTextNode(text.charAt(charIndex));
+        if (cursor) {
+          typingElement.insertBefore(textNode, cursor);
+        } else {
+          typingElement.appendChild(textNode);
+        }
+        charIndex++;
+        
+        // Variable speed for natural typing
+        const speed = Math.random() * 50 + 30;
+        setTimeout(typeCharacter, speed);
+      } else {
+        // Stop cursor blinking after typing completes
+        setTimeout(() => {
+          if (cursor) {
+            cursor.style.animation = 'none';
+            cursor.style.opacity = '0';
+          }
+        }, 2000);
+      }
+    }
+    
+    // Start typing after a brief delay
+    setTimeout(() => {
+      typeCharacter();
+    }, 800);
+  }
+  
+  // 2. Scroll-Triggered Animation with Intersection Observer
+  const whyChooseSection = document.querySelector('.why-choose-us-section');
+  const whyChooseCards = document.querySelectorAll('.why-choose-card');
+  
+  if (whyChooseSection && 'IntersectionObserver' in window) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px',
+      threshold: 0.2
+    };
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Trigger card animations
+          whyChooseCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.style.animation = `cardSlideIn 0.7s ease-out forwards`;
+            }, index * 120); // 120ms stagger delay
+          });
+          
+          // Unobserve after animation triggers
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    sectionObserver.observe(whyChooseSection);
+  }
+  
+  // 3. Card Keyboard Navigation
+  whyChooseCards.forEach((card, index) => {
+    // Add keyboard event listeners
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+      
+      // Arrow key navigation
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextCard = whyChooseCards[index + 1] || whyChooseCards[0];
+        nextCard.focus();
+      }
+      
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevCard = whyChooseCards[index - 1] || whyChooseCards[whyChooseCards.length - 1];
+        prevCard.focus();
+      }
+    });
+    
+    // Optional: Add click interaction (e.g., log analytics or open modal)
+    card.addEventListener('click', () => {
+      console.log(`Card clicked: ${card.querySelector('.card-title').textContent}`);
+      
+      // Add a subtle click effect
+      card.style.transform = 'scale(0.98) translateY(-8px)';
+      setTimeout(() => {
+        card.style.transform = '';
+      }, 150);
+    });
+  });
+  
+  // 4. Enhanced Hover Effects with Mouse Position Tracking
+  whyChooseCards.forEach(card => {
+    const cardGlow = card.querySelector('.card-glow');
+    
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      // Update glow position based on mouse
+      if (cardGlow) {
+        cardGlow.style.background = `radial-gradient(
+          circle at ${x}% ${y}%,
+          rgba(29, 94, 51, 0.5),
+          rgba(201, 168, 119, 0.4),
+          rgba(58, 156, 96, 0.3)
+        )`;
+      }
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      // Reset to default gradient
+      if (cardGlow) {
+        cardGlow.style.background = `linear-gradient(
+          135deg,
+          rgba(29, 94, 51, 0.4),
+          rgba(201, 168, 119, 0.4),
+          rgba(58, 156, 96, 0.4)
+        )`;
+      }
+    });
+  });
+  
+  // 5. Stats Counter Animation
+  const statValues = document.querySelectorAll('.stat-value');
+  
+  if (statValues.length > 0 && 'IntersectionObserver' in window) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statElement = entry.target;
+          const finalText = statElement.textContent.trim();
+          
+          // Extract number from text (e.g., "500K+" -> 500)
+          const numMatch = finalText.match(/(\d+)/);
+          if (numMatch) {
+            const targetNum = parseInt(numMatch[1]);
+            const suffix = finalText.replace(/\d+/, '');
+            
+            animateCounter(statElement, 0, targetNum, suffix, 2000);
+          }
+          
+          statsObserver.unobserve(statElement);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    statValues.forEach(stat => statsObserver.observe(stat));
+  }
+  
+  function animateCounter(element, start, end, suffix, duration) {
+    const range = end - start;
+    const increment = range / (duration / 16); // 60fps
+    let current = start;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= end) {
+        current = end;
+        clearInterval(timer);
+      }
+      element.textContent = Math.floor(current) + suffix;
+    }, 16);
+  }
+  
+  // 6. Performance Optimization: Reduce animations on low-power devices
+  if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+    document.body.classList.add('reduce-animations');
+  }
+  
+  // 7. Focus Management for Accessibility
+  const whyChooseHeading = document.getElementById('why-choose-heading');
+  if (whyChooseHeading) {
+    // Announce section when it comes into view
+    if ('IntersectionObserver' in window) {
+      const a11yObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Screen readers will announce the heading
+            whyChooseHeading.setAttribute('aria-live', 'polite');
+            setTimeout(() => {
+              whyChooseHeading.removeAttribute('aria-live');
+            }, 2000);
+            a11yObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      a11yObserver.observe(whyChooseSection);
+    }
+  }
+  
+  // 8. Prefers Reduced Motion Support
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Disable animations for users who prefer reduced motion
+    whyChooseCards.forEach(card => {
+      card.style.animation = 'none';
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    });
+    
+    const icons = document.querySelectorAll('.card-icon');
+    icons.forEach(icon => {
+      icon.style.animation = 'none';
+      icon.style.opacity = '1';
+      icon.style.transform = 'none';
+    });
+  }
+});
+
+// why choose us  section js end here
+
+// ===============================================
+//  WHY CHOOSE US REVOLUTIONARY - 3D INTERACTIONS
+// ===============================================
+
+class WhyChooseUsRevolutionary {
+  constructor() {
+    this.section = document.getElementById('whyChooseUs');
+    if (!this.section) return;
+    
+    this.cards = document.querySelectorAll('.glass-card');
+    this.canvas = document.getElementById('particleCanvas');
+    this.customCursor = document.getElementById('customCursor');
+    this.counters = document.querySelectorAll('.badge-count, .counter-text');
+    
+    this.particles = [];
+    this.mouseX = 0;
+    this.mouseY = 0;
+    this.isHovering = false;
+    
+    this.init();
+  }
+  
+  init() {
+    this.setupCanvas();
+    this.createParticles();
+    this.animateParticles();
+    this.initHoverEffects();
+    this.initCustomCursor();
+    this.observeIntersection();
+    this.initKeyboardNav();
+    this.initMagneticEffect();
+    
+    // Check for reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.disableAnimations();
+    }
+  }
+  
+  // ━━━ CANVAS PARTICLE SYSTEM ━━━
+  setupCanvas() {
+    if (!this.canvas) return;
+    
+    this.ctx = this.canvas.getContext('2d');
+    this.resizeCanvas();
+    
+    window.addEventListener('resize', () => this.resizeCanvas());
+  }
+  
+  resizeCanvas() {
+    this.canvas.width = this.section.offsetWidth;
+    this.canvas.height = this.section.offsetHeight;
+  }
+  
+  createParticles() {
+    const particleCount = 50;
+    const shapes = ['circle', 'triangle', 'hexagon'];
+    const colors = ['rgba(29, 94, 51, 0.3)', 'rgba(201, 168, 119, 0.3)', 'rgba(42, 125, 74, 0.3)'];
+    
+    for (let i = 0; i < particleCount; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 4 + 2,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        shape: shapes[Math.floor(Math.random() * shapes.length)],
+        color: colors[Math.floor(Math.random() * colors.length)],
+        opacity: Math.random() * 0.5 + 0.2,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.02
+      });
+    }
+  }
+  
+  animateParticles() {
+    if (!this.ctx) return;
+    
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    this.particles.forEach(particle => {
+      // Update position
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+      particle.rotation += particle.rotationSpeed;
+      
+      // Wrap around edges
+      if (particle.x < 0) particle.x = this.canvas.width;
+      if (particle.x > this.canvas.width) particle.x = 0;
+      if (particle.y < 0) particle.y = this.canvas.height;
+      if (particle.y > this.canvas.height) particle.y = 0;
+      
+      // Mouse interaction
+      const dx = this.mouseX - particle.x;
+      const dy = this.mouseY - particle.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 100) {
+        const force = (100 - distance) / 100;
+        particle.x -= dx * force * 0.02;
+        particle.y -= dy * force * 0.02;
+      }
+      
+      // Draw particle
+      this.ctx.save();
+      this.ctx.translate(particle.x, particle.y);
+      this.ctx.rotate(particle.rotation);
+      this.ctx.globalAlpha = particle.opacity;
+      this.ctx.fillStyle = particle.color;
+      
+      switch(particle.shape) {
+        case 'circle':
+          this.ctx.beginPath();
+          this.ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+          this.ctx.fill();
+          break;
+          
+        case 'triangle':
+          this.ctx.beginPath();
+          this.ctx.moveTo(0, -particle.size);
+          this.ctx.lineTo(particle.size, particle.size);
+          this.ctx.lineTo(-particle.size, particle.size);
+          this.ctx.closePath();
+          this.ctx.fill();
+          break;
+          
+        case 'hexagon':
+          this.ctx.beginPath();
+          for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const x = particle.size * Math.cos(angle);
+            const y = particle.size * Math.sin(angle);
+            if (i === 0) this.ctx.moveTo(x, y);
+            else this.ctx.lineTo(x, y);
+          }
+          this.ctx.closePath();
+          this.ctx.fill();
+          break;
+      }
+      
+      this.ctx.restore();
+    });
+    
+    requestAnimationFrame(() => this.animateParticles());
+  }
+  
+  // ━━━ 3D TILT HOVER EFFECT ━━━
+  initHoverEffects() {
+    this.cards.forEach(card => {
+      card.addEventListener('mouseenter', (e) => {
+        this.isHovering = true;
+      });
+      
+      card.addEventListener('mousemove', (e) => {
+        this.handle3DTilt(card, e);
+      });
+      
+      card.addEventListener('mouseleave', (e) => {
+        this.isHovering = false;
+        this.reset3DTilt(card);
+      });
+      
+      // Click ripple effect
+      card.addEventListener('click', (e) => {
+        this.createRipple(card, e);
+      });
+      
+      // Icon bounce on hover
+      const icon = card.querySelector('.icon-svg');
+      if (icon) {
+        card.addEventListener('mouseenter', () => {
+          icon.style.animation = 'none';
+          setTimeout(() => {
+            icon.style.animation = '';
+          }, 10);
+        });
+      }
+    });
+    
+    // Track mouse position for particles
+    this.section.addEventListener('mousemove', (e) => {
+      const rect = this.section.getBoundingClientRect();
+      this.mouseX = e.clientX - rect.left;
+      this.mouseY = e.clientY - rect.top;
+    });
+  }
+  
+  handle3DTilt(card, e) {
+    const rect = card.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+    
+    const rotateX = (mouseY / (rect.height / 2)) * -10;
+    const rotateY = (mouseX / (rect.width / 2)) * 10;
+    
+    card.style.transform = `
+      translateY(-20px) 
+      translateZ(40px) 
+      rotateX(${rotateX}deg) 
+      rotateY(${rotateY}deg) 
+      scale(1.04)
+    `;
+  }
+  
+  reset3DTilt(card) {
+    card.style.transform = '';
+  }
+  
+  createRipple(card, e) {
+    const ripple = card.querySelector('.ripple-effect');
+    if (!ripple) return;
+    
+    const rect = card.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    
+    ripple.style.animation = 'none';
+    setTimeout(() => {
+      ripple.style.animation = 'ripple 0.6s ease-out';
+    }, 10);
+  }
+  
+  // ━━━ CUSTOM CURSOR ━━━
+  initCustomCursor() {
+    if (!this.customCursor) return;
+    
+    this.section.addEventListener('mousemove', (e) => {
+      this.customCursor.style.left = e.clientX + 'px';
+      this.customCursor.style.top = e.clientY + 'px';
+    });
+    
+    this.cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        this.customCursor.classList.add('active');
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        this.customCursor.classList.remove('active');
+      });
+    });
+  }
+  
+  // ━━━ MAGNETIC EFFECT ━━━
+  initMagneticEffect() {
+    const magneticDistance = 100;
+    
+    document.addEventListener('mousemove', (e) => {
+      this.cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        if (distance < magneticDistance && !this.isHovering) {
+          const force = (magneticDistance - distance) / magneticDistance;
+          const moveX = deltaX * force * 0.1;
+          const moveY = deltaY * force * 0.1;
+          
+          card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        } else if (!this.isHovering) {
+          card.style.transform = '';
+        }
+      });
+    });
+  }
+  
+  // ━━━ INTERSECTION OBSERVER ━━━
+  observeIntersection() {
+    const options = {
+      threshold: 0.2,
+      rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.startCounterAnimations();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    
+    observer.observe(this.section);
+  }
+  
+  // ━━━ COUNTER ANIMATIONS ━━━
+  startCounterAnimations() {
+    this.counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+      
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.floor(current).toLocaleString();
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target.toLocaleString();
+        }
+      };
+      
+      updateCounter();
+    });
+  }
+  
+  // ━━━ KEYBOARD NAVIGATION ━━━
+  initKeyboardNav() {
+    this.cards.forEach((card, index) => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+        
+        // Arrow key navigation
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          const nextCard = this.cards[index + 1] || this.cards[0];
+          nextCard.focus();
+        }
+        
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prevCard = this.cards[index - 1] || this.cards[this.cards.length - 1];
+          prevCard.focus();
+        }
+      });
+      
+      // Visual feedback for keyboard focus
+      card.addEventListener('focus', () => {
+        if (!card.matches(':hover')) {
+          card.style.transform = 'translateY(-10px) scale(1.02)';
+        }
+      });
+      
+      card.addEventListener('blur', () => {
+        if (!card.matches(':hover')) {
+          card.style.transform = '';
+        }
+      });
+    });
+  }
+  
+  // ━━━ DISABLE ANIMATIONS FOR REDUCED MOTION ━━━
+  disableAnimations() {
+    this.particles = [];
+    if (this.ctx) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+    
+    this.cards.forEach(card => {
+      card.style.animation = 'none';
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    });
+    
+    const floatingElements = this.section.querySelectorAll('.floating-badge, .geometric-decoration');
+    floatingElements.forEach(el => {
+      el.style.animation = 'none';
+    });
+  }
+  
+  // ━━━ DESTROY METHOD ━━━
+  destroy() {
+    window.removeEventListener('resize', this.resizeCanvas);
+    // Remove all event listeners
+    this.cards.forEach(card => {
+      card.replaceWith(card.cloneNode(true));
+    });
+  }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new WhyChooseUsRevolutionary();
+  });
+} else {
+  new WhyChooseUsRevolutionary();
+}
+
+// why choose us revolutionary section js end here
+
