@@ -2404,6 +2404,493 @@ document.head.appendChild(style);
 
 // Visa & Entry Rules Checker Section js strat here
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Floating particles: randomize duration/delay for each for organic look
+  const particles = document.querySelectorAll('.floating-particles .particle');
+  particles.forEach(particle => {
+    const duration = 12 + Math.random() * 8; // 12-20s
+    const delay = Math.random() * duration;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `${delay}s`;
+  });
+
+  // Parallax lens flare movement
+  const section = document.getElementById('visa-entry-rules-checker');
+  const flares = document.querySelectorAll('.lens-flare');
+  const maxTranslateX = 12; // max horizontal move px
+  let ticking = false;
+
+  function updateParallax(event) {
+    if (ticking) return;
+    window.requestAnimationFrame(() => {
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const mouseX = event && event.clientX ? event.clientX : window.innerWidth / 2;
+      const mouseY = event && event.clientY ? event.clientY : window.innerHeight / 2;
+      const moveX = (mouseX - centerX) / rect.width;
+      const moveY = (mouseY - centerY) / rect.height;
+      flares.forEach((flare, idx) => {
+        const intensity = (idx + 1) / flares.length;
+        const translateX = maxTranslateX * intensity * moveX;
+        const translateY = maxTranslateX * intensity * moveY * 0.5;
+        flare.style.transform = `translate(${translateX}px, ${translateY}px)`;
+      });
+      ticking = false;
+    });
+    ticking = true;
+  }
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    window.addEventListener('mousemove', updateParallax);
+    window.addEventListener('scroll', (e) => updateParallax({ clientX: window.innerWidth/2, clientY: window.innerHeight/2 }));
+  }
+
+  // Accessible radio button visual and aria selection for purpose buttons
+  document.querySelectorAll('.purpose-btn').forEach((btn, i, group) => {
+    btn.addEventListener('click', () => {
+      group.forEach(b => b.classList.remove('selected','bg-[#e8f4ed]','border-[#2a7d4a]','shadow'));
+      btn.classList.add('selected','bg-[#e8f4ed]','border-[#2a7d4a]','shadow');
+      btn.blur();
+    });
+  });
+
+  // Dismiss passport expiry alert
+  document.querySelectorAll('.passport-expiry-alert button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.passport-expiry-alert').style.display = 'none';
+    });
+  });
+
+  // Animate dropdown arrow on focus
+  document.querySelectorAll('select').forEach(sel => {
+    sel.addEventListener('focus', function () {
+      this.parentNode.querySelector('svg').classList.add('rotate-180');
+    });
+    sel.addEventListener('blur', function () {
+      this.parentNode.querySelector('svg').classList.remove('rotate-180');
+    });
+  });
+
+  // Accessible focus highlights for all main controls
+  document.querySelectorAll('input, select, button, a').forEach(el => {
+    el.addEventListener('focus', function () {
+      this.style.outline = '3px solid #2a7d4a';
+      this.style.outlineOffset = '2px';
+    });
+    el.addEventListener('blur', function () {
+      this.style.outline = 'none';
+    });
+  });
+
+  // Announce status on input change
+  Array.from(document.querySelectorAll('input, select')).forEach(el => {
+    el.addEventListener('input', () => {
+      const live = document.querySelector('[role="alert"][aria-live]');
+      if (live) {
+        live.setAttribute('aria-atomic', 'true');
+        live.setAttribute('tabindex', '-1');
+        live.focus();
+      }
+    });
+  });
+});
 
 
 // Visa & Entry Rules Checker Section end here
+
+
+// price alert  section start here 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Radio button active styles toggle
+  document.querySelectorAll('input[type=radio][name=price-alert]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('input[type=radio][name=price-alert]').forEach(r => 
+        r.parentNode.classList.remove('font-bold', 'text-[#2a7d4a]')
+      );
+      if (radio.checked) {
+        radio.parentNode.classList.add('font-bold', 'text-[#2a7d4a]');
+      }
+    });
+  });
+
+  // Price input field pulse focus
+  document.querySelectorAll('.price-input').forEach(input => {
+    input.addEventListener('focus', () => {
+      input.classList.add('ring', 'ring-[#2a7d4a]/20');
+    });
+    input.addEventListener('blur', () => {
+      input.classList.remove('ring', 'ring-[#2a7d4a]/20');
+    });
+  });
+
+  // Custom checkbox interaction
+  document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const label = checkbox.parentNode;
+      if (checkbox.checked) {
+        label.querySelector('.checked-indicator').classList.remove('hidden');
+      } else {
+        label.querySelector('.checked-indicator').classList.add('hidden');
+      }
+    });
+  });
+
+  // Animated graph line drawing
+  const graphLine = document.querySelector('.graph-line');
+  if (graphLine) {
+    const length = graphLine.getTotalLength();
+    graphLine.style.strokeDasharray = length;
+    graphLine.style.strokeDashoffset = length;
+    setTimeout(() => {
+      graphLine.style.transition = 'stroke-dashoffset 1.2s ease-in-out';
+      graphLine.style.strokeDashoffset = 0;
+    }, 500);
+  }
+
+  // Animate price number on update
+  const priceDisplay = document.querySelector('.saved-search-price');
+  if (priceDisplay) {
+    const oldPrice = parseInt(priceDisplay.textContent.replace(/[^0-9]/g, '')) || 0;
+    const newPrice = 340; // Example new price
+    let step = (newPrice - oldPrice) / 60;
+    let current = oldPrice;
+    let count = 0;
+    const countInterval = setInterval(() => {
+      current += step;
+      priceDisplay.textContent = `$${Math.round(current)}`;
+      count++;
+      if (count >= 60) {
+        clearInterval(countInterval);
+        // Flash green bg and fade out
+        priceDisplay.style.backgroundColor = '#e8f4ed';
+        setTimeout(() => priceDisplay.style.backgroundColor = 'transparent', 800);
+      }
+    }, 20);
+  }
+
+  // Bell icon shake animation on CTA hover
+  document.querySelectorAll('.primary-cta').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.classList.add('animate-bellShake');
+    });
+    btn.addEventListener('animationend', () => {
+      btn.classList.remove('animate-bellShake');
+    });
+  });
+
+  // Accessibility: Focus outlines are manage by CSS, add aria live announce on input changes
+  const liveRegion = document.createElement('div');
+  liveRegion.setAttribute('aria-live', 'polite');
+  liveRegion.setAttribute('aria-atomic', 'true');
+  liveRegion.style.position = 'absolute';
+  liveRegion.style.left = '-9999px';
+  document.body.appendChild(liveRegion);
+
+  document.querySelectorAll('input, select').forEach(input => {
+    input.addEventListener('change', () => {
+      liveRegion.textContent = 'Price alert options updated';
+    });
+  });
+
+  // Active Alerts: Edit, Pause, Delete button handlers (example shows alert)
+  document.querySelectorAll('.alert-card button').forEach(button => {
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      alert(`Action: ${button.textContent.trim()}`);
+    });
+  });
+
+});
+// price alert section end here
+
+// scocail proof section js start here
+
+document.addEventListener("DOMContentLoaded", function () {
+  
+  // --- SVG Sprite Check (for cross-browser <use> support) ---
+  // This is a common pattern, not in the prompt but good practice.
+  // If you are sure about your environment, you can remove it.
+  (function(d, u) {
+    var x = new XMLHttpRequest();
+    var b = d.body;
+    x.open('GET', u, true);
+    x.send();
+    x.onload = function() {
+      var s = d.createElement('div');
+      s.style.display = 'none';
+      s.innerHTML = x.responseText;
+      b.insertBefore(s, b.firstChild);
+    }
+  })(document, ''); // In a real setup, you'd load a sprite file. Since it's inline, it's fine.
+
+
+  // --- Animated Rating Stars and Countup ---
+  const countupElem = document.querySelector('.countup[data-value]');
+  if (countupElem) {
+    const endVal = parseFloat(countupElem.dataset.value);
+    let curr = 0, frames = 38, step = endVal / frames, frame = 0;
+    function animateNum() {
+      curr += step; frame++;
+      countupElem.textContent = Math.min(curr, endVal).toFixed(1);
+      if (frame < frames) requestAnimationFrame(animateNum);
+      else countupElem.textContent = endVal.toFixed(1);
+    }
+    animateNum();
+  }
+  
+  // --- Animate rating bars when visible ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        document.querySelectorAll('.rating-bar-bar').forEach((bar, idx) => {
+          setTimeout(() => {
+            const fill = bar.querySelector('.rating-bar-fill');
+            fill.style.width = bar.dataset.end || '0%';
+          }, idx * 60);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.38 });
+  const breakdown = document.querySelector('.rating-breakdown');
+  breakdown && observer.observe(breakdown);
+
+  // --------- Review Carousel ---------
+  const carouselCards = [
+    {
+      stars: 5,
+      title: "Best Flight Deal Ever!",
+      text: "Saved $200 on my Paris trip! The booking process was seamless and customer support was fantastic. Highly recommend!",
+      name: "Sarah M.",
+      location: "New York",
+      photo: "https://randomuser.me/api/portraits/women/71.jpg",
+      verified: true,
+      ago: "2 weeks ago",
+      route: "NYC → Paris"
+    },
+    {
+      stars: 5,
+      title: "Absolutely Amazing Experience!",
+      text: "Found a $385 flight to Paris when others were charging $585! Easy booking, instant confirmation, and great customer service.",
+      name: "Jennifer T.",
+      location: "Los Angeles",
+      photo: "https://randomuser.me/api/portraits/women/50.jpg",
+      verified: true,
+      ago: "1 week ago",
+      route: "LAX → Tokyo"
+    },
+    {
+      stars: 4,
+      title: "Great value, minor delays",
+      text: "Saved big on my flight but check-in took a bit longer than expected. Overall, happy with the booking process.",
+      name: "Michael R.",
+      location: "Chicago",
+      photo: "https://randomuser.me/api/portraits/men/22.jpg",
+      verified: true,
+      ago: "3 days ago",
+      route: "ORD → London"
+    }
+  ];
+  let carouselIndex = 0;
+  const carouselCard = document.querySelector(".review-card");
+  const leftBtn = document.querySelector(".nav-arrow.left");
+  const rightBtn = document.querySelector(".nav-arrow.right");
+  const dotsWrap = document.querySelector('.carousel-dots');
+
+  // Dots creation (idempotent)
+  if (dotsWrap && dotsWrap.children.length !== carouselCards.length) {
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < carouselCards.length; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.tabIndex = 0;
+      dot.setAttribute('role', 'button');
+      dot.setAttribute('aria-label', `Go to review ${i + 1}`);
+      dotsWrap.appendChild(dot);
+    }
+  }
+  const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
+
+  // *** UPDATED updateCarousel function ***
+  function updateCarousel(idx) {
+    if (!carouselCard) return;
+    
+    let c = carouselCards[idx];
+    
+    // Generate star HTML using the new SVG sprite
+    let starHtml = '';
+    for (let i = 0; i < 5; i++) {
+      starHtml += `
+        <svg class="star-icon ${i < c.stars ? 'filled' : ''}" viewBox="0 0 20 20">
+          <use href="#star-icon"></use>
+        </svg>`;
+    }
+
+    carouselCard.innerHTML = `
+      <div style="display: flex; gap: 0.25rem; margin-bottom: 0.75rem;">
+        ${starHtml}
+      </div>
+      
+      <h3 style="font-size: 1.25rem; font-weight: 600; color: #064e3b; margin-bottom: 0.75rem;">
+        "${c.title}"
+      </h3>
+      
+      <p style="color: #374151; line-height: 1.6; margin-bottom: 1rem; flex-grow: 1;">
+        ${c.text}
+      </p>
+      
+      <div style="display: flex; align-items: center; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+        <img src="${c.photo}" alt="${c.name}" style="width: 3rem; height: 3rem; border-radius: 9999px; object-fit: cover;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <p style="font-weight: 600; color: #064e3b;">${c.name}</p>
+            <span style="color: #6b7280;">•</span>
+            <p style="color: #4b5563;">${c.location}</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">
+            ${c.verified ? `
+              <span style="display: flex; align-items: center; gap: 0.25rem; color: #059669;">
+                <svg style="width: 1rem; height: 1rem;" viewBox="0 0 20 20">
+                  <use href="#check-badge-icon"></use>
+                </svg>
+                Verified
+              </span>
+              <span>•</span>
+            ` : ''}
+            <span>${c.ago}</span>
+            <span>•</span>
+            <span style="display: flex; align-items: center; gap: 0.25rem;">
+              <svg style="width: 1rem; height: 1rem;" viewBox="0 0 20 20">
+                <use href="#airplane-icon"></use>
+              </svg>
+              ${c.route}
+            </span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Set active dot
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+  }
+  
+  // Navigation Arrows
+  leftBtn && leftBtn.addEventListener('click', () => {
+    carouselIndex = (carouselIndex - 1 + carouselCards.length) % carouselCards.length;
+    updateCarousel(carouselIndex);
+  });
+  rightBtn && rightBtn.addEventListener('click', () => {
+    carouselIndex = (carouselIndex + 1) % carouselCards.length;
+    updateCarousel(carouselIndex);
+  });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      carouselIndex = i;
+      updateCarousel(carouselIndex);
+    });
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        carouselIndex = i;
+        updateCarousel(carouselIndex);
+      }
+    });
+  });
+  // Auto-play carousel
+  let autoCarousel = setInterval(() => {
+    carouselIndex = (carouselIndex + 1) % carouselCards.length;
+    updateCarousel(carouselIndex);
+  }, 6000);
+  
+  const carouselContainer = document.querySelector('.review-carousel-container');
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', () => clearInterval(autoCarousel));
+    carouselContainer.addEventListener('mouseleave', () => {
+      autoCarousel = setInterval(() => {
+        carouselIndex = (carouselIndex + 1) % carouselCards.length;
+        updateCarousel(carouselIndex);
+      }, 6000);
+    });
+  }
+  updateCarousel(0); // Initial call
+
+  // ---- Live Booking Activity ----
+  const liveBookings = [
+    { flag: '🇯🇵', city: 'Tokyo', time: '2 min ago' },
+    { flag: '🇬🇧', city: 'London', time: '5 min ago' },
+    { flag: '🇫🇷', city: 'Paris', time: '8 min ago' },
+    { flag: '🇮🇹', city: 'Rome', time: '12 min ago' },
+    { flag: '🇮🇳', city: 'Delhi', time: '17 min ago' },
+    { flag: '🇪🇸', city: 'Madrid', time: '20 min ago' }
+  ];
+  const liveWrap = document.querySelector('.live-activity-section');
+  let liveIdx = 0;
+
+  // *** UPDATED renderLive function ***
+  function renderLive() {
+    if (!liveWrap) return;
+    
+    let bookingHtml = '';
+    const bookingsToShow = liveBookings.slice(liveIdx, liveIdx + 4);
+    if (liveIdx + 4 > liveBookings.length) {
+      bookingsToShow.push(...liveBookings.slice(0, (liveIdx + 4) % liveBookings.length));
+    }
+    
+    bookingHtml = bookingsToShow.map(item => `
+      <div class="live-booking-item">
+        <div class="live-booking-location">
+          <span class="live-booking-flag">${item.flag}</span>
+          <span class="live-booking-city">${item.city}</span>
+        </div>
+        <span class="live-booking-time">Booked ${item.time}</span>
+      </div>
+    `).join('');
+
+    liveWrap.innerHTML = `
+      <div class="live-header">
+        <span class="live-pulse">
+          <span class="live-pulse-ping"></span>
+          <span class="live-pulse-dot"></span>
+        </span>
+        <span class="live-label">LIVE</span>
+        <span class="live-text">234 people booking right now</span>
+      </div>
+      
+      <div class="live-bookings-list">
+        ${bookingHtml}
+      </div>
+    `;
+  }
+  
+  renderLive(); // Initial call
+  setInterval(() => {
+    liveIdx = (liveIdx + 1) % liveBookings.length;
+    renderLive();
+  }, 6100);
+
+  // --- Customer photo tooltips ---
+  document.querySelectorAll('.customer-photo').forEach(photo => {
+    const tooltip = photo.querySelector('.photo-tooltip');
+    if (!tooltip) return;
+    const msg = photo.dataset.location || '';
+    tooltip.innerText = msg;
+    
+    const showTooltip = () => {
+      tooltip.style.opacity = 1;
+      tooltip.style.pointerEvents = 'auto';
+    };
+    const hideTooltip = () => {
+      tooltip.style.opacity = 0;
+      tooltip.style.pointerEvents = 'none';
+    };
+
+    photo.addEventListener('mouseenter', showTooltip);
+    photo.addEventListener('mouseleave', hideTooltip);
+    photo.addEventListener('focus', showTooltip);
+    photo.addEventListener('blur', hideTooltip);
+  });
+});
