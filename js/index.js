@@ -159,6 +159,37 @@
         }
       });
     }
+
+    // Popular Routes Quick Fill
+    document.querySelectorAll('.popular-route-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const from = this.dataset.from;
+        const to = this.dataset.to;
+        
+        // Fill search form
+        const fromInput = document.getElementById('fromInput');
+        const toInput = document.getElementById('toInput');
+        
+        if (fromInput) fromInput.value = from;
+        if (toInput) toInput.value = to;
+        
+        // Smooth scroll to search form
+        document.getElementById('searchForm').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // Add pulse effect
+        const searchCard = document.getElementById('searchCard');
+        if (searchCard) {
+          searchCard.style.animation = 'cardPulse 0.6s ease';
+          setTimeout(() => {
+            searchCard.style.animation = '';
+          }, 600);
+        }
+      });
+    });
   
 // floting search Bar Js End here
 
@@ -412,6 +443,214 @@ document.head.appendChild(style);
 
 
 // destionation section js ends here
+
+// ============================================
+// FLASH DEALS COUNTDOWN TIMERS
+// ============================================
+
+(function() {
+  'use strict';
+  
+  function initFlashDeals() {
+    const timers = document.querySelectorAll('.flash-timer');
+    
+    if (timers.length === 0) return;
+    
+    timers.forEach(timer => {
+      const countdownElement = timer.querySelector('.countdown');
+      if (!countdownElement) return;
+      
+      // Set a random end time (between 2-24 hours from now)
+      const hoursLeft = Math.floor(Math.random() * 22) + 2;
+      const endTime = new Date(Date.now() + hoursLeft * 60 * 60 * 1000);
+      
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = endTime - now;
+        
+        if (distance < 0) {
+          countdownElement.textContent = 'EXPIRED';
+          countdownElement.style.color = '#9ca3af';
+          return;
+        }
+        
+        const hours = Math.floor(distance / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        countdownElement.textContent = 
+          `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        // Add urgency color when less than 2 hours
+        if (distance < 2 * 60 * 60 * 1000) {
+          countdownElement.style.color = '#ef4444';
+          countdownElement.style.animation = 'urgentPulse 1s ease-in-out infinite';
+        }
+      }
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    });
+    
+    // Grab Deal button handlers
+    const grabBtns = document.querySelectorAll('.flash-grab-btn');
+    grabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const card = this.closest('.flash-deal-card');
+        const destination = card.querySelector('.flash-destination').textContent;
+        const price = card.querySelector('.flash-price-now').textContent;
+        
+        // Add to cart animation
+        this.innerHTML = '<i class="fas fa-check"></i> <span>Added to Cart!</span>';
+        this.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        
+        setTimeout(() => {
+          alert(`🎉 Flash Deal Added!\n\n${destination}\nPrice: ${price}\n\nProceed to checkout?`);
+        }, 500);
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlashDeals);
+  } else {
+    initFlashDeals();
+  }
+  
+  // Add urgentPulse animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes urgentPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+  `;
+  document.head.appendChild(style);
+  
+})();
+
+// flash deals section js ends here
+
+// ============================================
+// FAQ SECTION - ACCORDION & SEARCH
+// ============================================
+
+(function() {
+  'use strict';
+  
+  function initFAQ() {
+    // Accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          }
+        });
+        
+        // Toggle current item
+        if (isActive) {
+          item.classList.remove('active');
+          question.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('active');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById('faqSearchInput');
+    
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        
+        faqItems.forEach(item => {
+          const questionText = item.querySelector('.faq-question-text').textContent.toLowerCase();
+          const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+          
+          if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+            item.style.display = 'block';
+            
+            // Auto-expand if searching
+            if (searchTerm.length > 0) {
+              item.classList.add('active');
+              item.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+            }
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        // Show "no results" message if needed
+        const visibleItems = Array.from(faqItems).filter(item => item.style.display !== 'none');
+        
+        if (visibleItems.length === 0 && searchTerm.length > 0) {
+          // Could add a "no results" message here
+          console.log('No FAQ results found');
+        }
+      });
+    }
+    
+    // Helpful buttons
+    const helpfulButtons = document.querySelectorAll('.faq-helpful-btn');
+    
+    helpfulButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const isYes = this.classList.contains('yes');
+        const faqItem = this.closest('.faq-item');
+        const question = faqItem.querySelector('.faq-question-text').textContent;
+        
+        // Visual feedback
+        this.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+        
+        // Log feedback (in production, send to analytics)
+        console.log(`FAQ Feedback: "${question}" was ${isYes ? 'helpful' : 'not helpful'}`);
+        
+        // Show thank you message
+        const feedbackMsg = document.createElement('span');
+        feedbackMsg.textContent = isYes ? '✓ Thank you!' : 'We\'ll improve this answer';
+        feedbackMsg.style.color = isYes ? '#10b981' : '#f59e0b';
+        feedbackMsg.style.fontWeight = '600';
+        feedbackMsg.style.marginLeft = '8px';
+        feedbackMsg.style.fontSize = '13px';
+        
+        const helpfulDiv = this.closest('.faq-helpful');
+        
+        // Remove existing feedback
+        const existingFeedback = helpfulDiv.querySelector('span:last-child');
+        if (existingFeedback && existingFeedback !== helpfulDiv.firstElementChild) {
+          existingFeedback.remove();
+        }
+        
+        helpfulDiv.appendChild(feedbackMsg);
+      });
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFAQ);
+  } else {
+    initFAQ();
+  }
+  
+})();
+
+// faq section js ends here
 
 
 // how it
@@ -1933,101 +2172,868 @@ document.head.appendChild(style);
 
 // Visa & Entry Rules Checker Section js strat here
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Floating particles: randomize duration/delay for each for organic look
-  const particles = document.querySelectorAll('.floating-particles .particle');
-  particles.forEach(particle => {
-    const duration = 12 + Math.random() * 8; // 12-20s
-    const delay = Math.random() * duration;
-    particle.style.animationDuration = `${duration}s`;
-    particle.style.animationDelay = `${delay}s`;
-  });
+(function() {
+  'use strict';
 
-  // Parallax lens flare movement
-  const section = document.getElementById('visa-entry-rules-checker');
-  const flares = document.querySelectorAll('.lens-flare');
-  const maxTranslateX = 12; // max horizontal move px
-  let ticking = false;
+  document.addEventListener('DOMContentLoaded', initializeVisaChecker);
 
-  function updateParallax(event) {
-    if (ticking) return;
-    window.requestAnimationFrame(() => {
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const mouseX = event && event.clientX ? event.clientX : window.innerWidth / 2;
-      const mouseY = event && event.clientY ? event.clientY : window.innerHeight / 2;
-      const moveX = (mouseX - centerX) / rect.width;
-      const moveY = (mouseY - centerY) / rect.height;
-      flares.forEach((flare, idx) => {
-        const intensity = (idx + 1) / flares.length;
-        const translateX = maxTranslateX * intensity * moveX;
-        const translateY = maxTranslateX * intensity * moveY * 0.5;
-        flare.style.transform = `translate(${translateX}px, ${translateY}px)`;
+  function initializeVisaChecker() {
+    // Initialize all components
+    initFloatingParticles();
+    initParallaxEffects();
+    initPurposeButtons();
+    initSlider();
+    initCloseButtons();
+    initFormInteractions();
+    initAccessibility();
+    initSaveButtons();
+  }
+
+  // Floating particles animation
+  function initFloatingParticles() {
+    const particles = document.querySelectorAll('.floating-particles .particle');
+    particles.forEach(particle => {
+      const duration = 12 + Math.random() * 8;
+      const delay = Math.random() * duration;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+    });
+  }
+
+  // Parallax lens flare effects
+  function initParallaxEffects() {
+    const section = document.getElementById('visa-entry-rules-checker');
+    const flares = document.querySelectorAll('.lens-flare');
+    const maxTranslateX = 12;
+    let ticking = false;
+
+    function updateParallax(event) {
+      if (ticking) return;
+      window.requestAnimationFrame(() => {
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const mouseX = event && event.clientX ? event.clientX : window.innerWidth / 2;
+        const mouseY = event && event.clientY ? event.clientY : window.innerHeight / 2;
+        const moveX = (mouseX - centerX) / rect.width;
+        const moveY = (mouseY - centerY) / rect.height;
+        flares.forEach((flare, idx) => {
+          const intensity = (idx + 1) / flares.length;
+          const translateX = maxTranslateX * intensity * moveX;
+          const translateY = maxTranslateX * intensity * moveY * 0.5;
+          flare.style.transform = `translate(${translateX}px, ${translateY}px)`;
+        });
+        ticking = false;
       });
-      ticking = false;
-    });
-    ticking = true;
+      ticking = true;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      window.addEventListener('mousemove', updateParallax);
+      window.addEventListener('scroll', () => updateParallax({ 
+        clientX: window.innerWidth / 2, 
+        clientY: window.innerHeight / 2 
+      }));
+    }
   }
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-    window.addEventListener('mousemove', updateParallax);
-    window.addEventListener('scroll', (e) => updateParallax({ clientX: window.innerWidth/2, clientY: window.innerHeight/2 }));
+
+  // Purpose button toggle
+  function initPurposeButtons() {
+    const purposeButtons = document.querySelectorAll('.purpose-btn');
+    purposeButtons.forEach((btn, i, group) => {
+      btn.addEventListener('click', function() {
+        group.forEach(b => {
+          b.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        
+        // Add smooth feedback animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
   }
 
-  // Accessible radio button visual and aria selection for purpose buttons
-  document.querySelectorAll('.purpose-btn').forEach((btn, i, group) => {
-    btn.addEventListener('click', () => {
-      group.forEach(b => b.classList.remove('selected','bg-[#e8f4ed]','border-[#2a7d4a]','shadow'));
-      btn.classList.add('selected','bg-[#e8f4ed]','border-[#2a7d4a]','shadow');
-      btn.blur();
-    });
-  });
+  // Slider with live value update
+  function initSlider() {
+    const slider = document.getElementById('staySlider');
+    const valueDisplay = document.getElementById('stayValue');
+    
+    if (slider && valueDisplay) {
+      slider.addEventListener('input', function() {
+        const days = this.value;
+        valueDisplay.textContent = `${days} ${days === '1' ? 'day' : 'days'}`;
+        
+        // Update slider track fill
+        const percentage = ((days - this.min) / (this.max - this.min)) * 100;
+        this.style.background = `linear-gradient(to right, #10b981 0%, #10b981 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`;
+      });
+      
+      // Trigger initial update
+      slider.dispatchEvent(new Event('input'));
+    }
+  }
 
-  // Dismiss passport expiry alert
-  document.querySelectorAll('.passport-expiry-alert button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      btn.closest('.passport-expiry-alert').style.display = 'none';
+  // Close alert buttons
+  function initCloseButtons() {
+    const closeButtons = document.querySelectorAll('.close-alert-btn');
+    closeButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const alert = this.closest('.passport-expiry-alert');
+        if (alert) {
+          alert.style.opacity = '0';
+          alert.style.transform = 'translateX(-20px)';
+          setTimeout(() => {
+            alert.style.display = 'none';
+          }, 300);
+        }
+      });
     });
-  });
+  }
 
-  // Animate dropdown arrow on focus
-  document.querySelectorAll('select').forEach(sel => {
-    sel.addEventListener('focus', function () {
-      this.parentNode.querySelector('svg').classList.add('rotate-180');
+  // Form interactions and validation
+  function initFormInteractions() {
+    // Select dropdowns
+    const selects = document.querySelectorAll('.visa-select');
+    selects.forEach(select => {
+      select.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+      });
+      
+      select.addEventListener('blur', function() {
+        this.parentElement.classList.remove('focused');
+      });
+      
+      select.addEventListener('change', function() {
+        // Add change animation
+        this.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
     });
-    sel.addEventListener('blur', function () {
-      this.parentNode.querySelector('svg').classList.remove('rotate-180');
-    });
-  });
 
-  // Accessible focus highlights for all main controls
-  document.querySelectorAll('input, select, button, a').forEach(el => {
-    el.addEventListener('focus', function () {
-      this.style.outline = '3px solid #2a7d4a';
-      this.style.outlineOffset = '2px';
+    // Resource links
+    const resourceLinks = document.querySelectorAll('.resource-link');
+    resourceLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Add click feedback
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
     });
-    el.addEventListener('blur', function () {
-      this.style.outline = 'none';
-    });
-  });
+  }
 
-  // Announce status on input change
-  Array.from(document.querySelectorAll('input, select')).forEach(el => {
-    el.addEventListener('input', () => {
-      const live = document.querySelector('[role="alert"][aria-live]');
-      if (live) {
-        live.setAttribute('aria-atomic', 'true');
-        live.setAttribute('tabindex', '-1');
-        live.focus();
-      }
+  // Accessibility enhancements
+  function initAccessibility() {
+    // Focus visible for keyboard navigation
+    const focusableElements = document.querySelectorAll(
+      '#visa-entry-rules-checker input, #visa-entry-rules-checker select, #visa-entry-rules-checker button, #visa-entry-rules-checker a'
+    );
+    
+    focusableElements.forEach(el => {
+      el.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+          this.classList.add('keyboard-focus');
+        }
+      });
+      
+      el.addEventListener('mousedown', function() {
+        this.classList.remove('keyboard-focus');
+      });
     });
-  });
-});
+
+    // Announce changes to screen readers
+    const formInputs = document.querySelectorAll('#visa-entry-rules-checker input, #visa-entry-rules-checker select');
+    formInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const liveRegion = document.querySelector('.visa-results-card');
+        if (liveRegion) {
+          liveRegion.setAttribute('aria-atomic', 'true');
+        }
+      });
+    });
+  }
+
+  // Save and Email buttons
+  function initSaveButtons() {
+    const saveTripBtn = document.querySelector('.save-trip-btn');
+    const emailReqBtn = document.querySelector('.email-req-btn');
+    
+    if (saveTripBtn) {
+      saveTripBtn.addEventListener('click', function() {
+        // Add success feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Saved!</span>
+        `;
+        this.style.background = 'linear-gradient(to right, #047857, #059669)';
+        
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.style.background = '';
+        }, 2000);
+      });
+    }
+    
+    if (emailReqBtn) {
+      emailReqBtn.addEventListener('click', function() {
+        // Add sending feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px] animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+          </svg>
+          <span>Sending...</span>
+        `;
+        
+        setTimeout(() => {
+          this.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Sent!</span>
+          `;
+          
+          setTimeout(() => {
+            this.innerHTML = originalText;
+          }, 1500);
+        }, 1500);
+      });
+    }
+  }
+
+})();
 
 
 // Visa & Entry Rules Checker Section end here
 
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PRICE TRACKING SECTION - ENHANCED FUNCTIONALITY
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+(function() {
+  'use strict';
+
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    initPriceTracking();
+  });
+
+  function initPriceTracking() {
+    // Initialize all sub-modules
+    initRadioButtons();
+    initCheckboxes();
+    initPriceInput();
+    initActionButtons();
+    initChartInteractions();
+    initActiveAlerts();
+    initAnimations();
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // RADIO BUTTON CARD SELECTION
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initRadioButtons() {
+    const radioOptions = document.querySelectorAll('.price-radio-option');
+    const radioInputs = document.querySelectorAll('input[type="radio"][name="price-alert"]');
+
+    radioOptions.forEach((option, index) => {
+      option.addEventListener('click', function() {
+        // Remove selected class from all options
+        radioOptions.forEach(opt => opt.classList.remove('radio-selected'));
+        
+        // Add selected class to clicked option
+        this.classList.add('radio-selected');
+        
+        // Check the corresponding radio input
+        const radioInput = this.querySelector('input[type="radio"]');
+        if (radioInput) {
+          radioInput.checked = true;
+        }
+
+        // Animate selection
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+
+        // Enable/disable price input based on selection
+        const priceInput = document.querySelector('.price-input');
+        if (index === 0 && priceInput) {
+          priceInput.removeAttribute('disabled');
+          priceInput.focus();
+        } else if (priceInput) {
+          priceInput.setAttribute('disabled', 'true');
+        }
+      });
+
+      // Keyboard accessibility
+      option.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+
+    // Handle radio input change directly
+    radioInputs.forEach(radio => {
+      radio.addEventListener('change', function() {
+        const parentOption = this.closest('.price-radio-option');
+        if (parentOption && !parentOption.classList.contains('radio-selected')) {
+          parentOption.click();
+        }
+      });
+    });
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // CHECKBOX VALIDATION & ANIMATION
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initCheckboxes() {
+    const checkboxOptions = document.querySelectorAll('.checkbox-option');
+    const checkboxInputs = document.querySelectorAll('.checkbox-option input[type="checkbox"]');
+
+    checkboxOptions.forEach(option => {
+      option.addEventListener('click', function(e) {
+        // Don't trigger if clicking on the input itself
+        if (e.target.type === 'checkbox') return;
+
+        const checkbox = this.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+          checkbox.checked = !checkbox.checked;
+          
+          // Trigger change event manually
+          const event = new Event('change', { bubbles: true });
+          checkbox.dispatchEvent(event);
+        }
+      });
+    });
+
+    checkboxInputs.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const indicator = this.nextElementSibling;
+        const checkIcon = indicator?.querySelector('.check-icon');
+
+        if (this.checked) {
+          // Show check icon
+          if (checkIcon) {
+            checkIcon.style.display = 'block';
+          }
+          
+          // Validate at least one is checked
+          validateCheckboxes();
+        } else {
+          // Hide check icon
+          if (checkIcon) {
+            checkIcon.style.display = 'none';
+          }
+          
+          // Ensure at least one remains checked
+          const allCheckboxes = document.querySelectorAll('.checkbox-option input[type="checkbox"]');
+          const anyChecked = Array.from(allCheckboxes).some(cb => cb.checked);
+          
+          if (!anyChecked) {
+            this.checked = true;
+            if (checkIcon) {
+              checkIcon.style.display = 'block';
+            }
+            showNotification('At least one notification method must be selected', 'warning');
+          }
+        }
+      });
+    });
+
+    // Initial state setup
+    checkboxInputs.forEach(checkbox => {
+      const indicator = checkbox.nextElementSibling;
+      const checkIcon = indicator?.querySelector('.check-icon');
+      if (checkIcon) {
+        checkIcon.style.display = checkbox.checked ? 'block' : 'none';
+      }
+    });
+  }
+
+  function validateCheckboxes() {
+    const checkboxes = document.querySelectorAll('.checkbox-option input[type="checkbox"]');
+    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+    return anyChecked;
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // PRICE INPUT VALIDATION
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initPriceInput() {
+    const priceInput = document.querySelector('.price-input');
+    if (!priceInput) return;
+
+    // Format input on blur
+    priceInput.addEventListener('blur', function() {
+      const value = parseInt(this.value);
+      
+      if (isNaN(value) || value < 1000) {
+        this.value = '1000';
+        this.classList.add('error');
+        setTimeout(() => this.classList.remove('error'), 500);
+        showNotification('Minimum price is ₹1,000', 'error');
+      } else if (value > 999999) {
+        this.value = '999999';
+        this.classList.add('error');
+        setTimeout(() => this.classList.remove('error'), 500);
+        showNotification('Maximum price is ₹9,99,999', 'error');
+      } else {
+        this.value = value;
+        this.classList.remove('error');
+      }
+    });
+
+    // Allow only numeric input
+    priceInput.addEventListener('keypress', function(e) {
+      if (e.key < '0' || e.key > '9') {
+        e.preventDefault();
+      }
+    });
+
+    // Real-time validation
+    priceInput.addEventListener('input', function() {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      
+      if (this.value.length > 6) {
+        this.value = this.value.slice(0, 6);
+      }
+    });
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ACTION BUTTONS (CREATE ALERT & EMAIL)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initActionButtons() {
+    const createAlertBtn = document.querySelector('.primary-cta');
+    const emailDealBtn = document.querySelector('.secondary-cta');
+
+    if (createAlertBtn) {
+      createAlertBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Validate form
+        if (!validateForm()) {
+          return;
+        }
+
+        // Show loading state
+        this.classList.add('loading');
+        this.disabled = true;
+        const originalText = this.innerHTML;
+        this.innerHTML = '<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" opacity="0.75"/></svg> Creating Alert...';
+
+        // Simulate API call
+        setTimeout(() => {
+          this.classList.remove('loading');
+          this.disabled = false;
+          this.innerHTML = originalText;
+          
+          showNotification('Price alert created successfully!', 'success');
+          
+          // Confetti effect
+          if (typeof confetti !== 'undefined') {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          }
+        }, 1500);
+      });
+    }
+
+    if (emailDealBtn) {
+      emailDealBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Show email input modal or inline form
+        const email = prompt('Enter your email address:');
+        
+        if (email && validateEmail(email)) {
+          this.classList.add('loading');
+          const originalText = this.innerHTML;
+          this.innerHTML = '<svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" opacity="0.75"/></svg> Sending...';
+
+          setTimeout(() => {
+            this.classList.remove('loading');
+            this.innerHTML = originalText;
+            showNotification(`Deal sent to ${email}!`, 'success');
+          }, 1200);
+        } else if (email) {
+          showNotification('Please enter a valid email address', 'error');
+        }
+      });
+    }
+  }
+
+  function validateForm() {
+    // Check if a radio option is selected
+    const radioSelected = document.querySelector('input[type="radio"][name="price-alert"]:checked');
+    if (!radioSelected) {
+      showNotification('Please select a price tracking option', 'error');
+      return false;
+    }
+
+    // If "price below" is selected, validate the price input
+    if (radioSelected.closest('.price-radio-option').classList.contains('radio-selected')) {
+      const priceInput = document.querySelector('.price-input');
+      const firstOption = document.querySelector('.price-radio-option');
+      
+      if (firstOption.classList.contains('radio-selected')) {
+        const price = parseInt(priceInput.value);
+        if (isNaN(price) || price < 1000 || price > 999999) {
+          priceInput.classList.add('error');
+          setTimeout(() => priceInput.classList.remove('error'), 500);
+          showNotification('Please enter a valid price between ₹1,000 and ₹9,99,999', 'error');
+          return false;
+        }
+      }
+    }
+
+    // Validate at least one checkbox is selected
+    if (!validateCheckboxes()) {
+      showNotification('Please select at least one notification method', 'error');
+      return false;
+    }
+
+    return true;
+  }
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // CHART INTERACTIONS & TOOLTIPS
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initChartInteractions() {
+    const chart = document.getElementById('price-history-chart');
+    if (!chart) return;
+
+    const circles = chart.querySelectorAll('circle');
+    let tooltip = document.querySelector('.chart-tooltip');
+
+    // Create tooltip if it doesn't exist
+    if (!tooltip) {
+      tooltip = document.createElement('div');
+      tooltip.className = 'chart-tooltip';
+      tooltip.innerHTML = `
+        <div class="chart-tooltip-date"></div>
+        <div class="chart-tooltip-price"></div>
+      `;
+      document.body.appendChild(tooltip);
+    }
+
+    // Sample price data (in real app, this would come from backend)
+    const priceData = [
+      { date: 'Feb 1', price: 27775 },
+      { date: 'Feb 6', price: 30450 },
+      { date: 'Feb 11', price: 24900 },
+      { date: 'Feb 16', price: 30450 },
+      { date: 'Feb 21', price: 35670 },
+      { date: 'Feb 26', price: 33250 },
+      { date: 'Mar 1', price: 37300 },
+      { date: 'Mar 3', price: 31900 }
+    ];
+
+    circles.forEach((circle, index) => {
+      // Mouse enter
+      circle.addEventListener('mouseenter', function(e) {
+        const data = priceData[index] || { date: 'Unknown', price: 0 };
+        
+        // Update tooltip content
+        tooltip.querySelector('.chart-tooltip-date').textContent = data.date;
+        tooltip.querySelector('.chart-tooltip-price').textContent = `₹${data.price.toLocaleString('en-IN')}`;
+        
+        // Show tooltip
+        tooltip.classList.add('show');
+        
+        // Position tooltip
+        const rect = circle.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        tooltip.style.left = `${rect.left + rect.width / 2 - tooltipRect.width / 2}px`;
+        tooltip.style.top = `${rect.top - tooltipRect.height - 12}px`;
+
+        // Highlight circle
+        circle.setAttribute('r', '12');
+        circle.style.filter = 'drop-shadow(0 0 8px rgba(42, 125, 74, 0.8))';
+      });
+
+      // Mouse leave
+      circle.addEventListener('mouseleave', function() {
+        tooltip.classList.remove('show');
+        
+        // Reset circle
+        circle.setAttribute('r', '8');
+        circle.style.filter = '';
+      });
+    });
+
+    // Animate chart line on load
+    const polyline = chart.querySelector('.graph-line');
+    if (polyline) {
+      polyline.style.strokeDasharray = '1000';
+      polyline.style.strokeDashoffset = '1000';
+      
+      setTimeout(() => {
+        polyline.style.transition = 'stroke-dashoffset 1.5s ease-in-out';
+        polyline.style.strokeDashoffset = '0';
+      }, 500);
+    }
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ACTIVE ALERTS CRUD OPERATIONS
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initActiveAlerts() {
+    const alertCards = document.querySelectorAll('.alert-card');
+
+    alertCards.forEach(card => {
+      // Edit button
+      const editBtn = card.querySelector('button:nth-child(1)');
+      if (editBtn) {
+        editBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          handleEditAlert(card);
+        });
+      }
+
+      // Pause button
+      const pauseBtn = card.querySelector('button:nth-child(2)');
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          handlePauseAlert(card);
+        });
+      }
+
+      // Delete button
+      const deleteBtn = card.querySelector('button:nth-child(3)');
+      if (deleteBtn) {
+        deleteBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          handleDeleteAlert(card);
+        });
+      }
+    });
+  }
+
+  function handleEditAlert(card) {
+    const targetPriceSpan = card.querySelector('span:has(svg[class*="c9a877"]) + span, .font-semibold.text-\\[#1d5e33\\]');
+    if (!targetPriceSpan) {
+      showNotification('Cannot edit alert at this time', 'error');
+      return;
+    }
+
+    const currentPrice = targetPriceSpan.textContent.replace(/[^0-9]/g, '');
+    const newPrice = prompt('Enter new target price:', currentPrice);
+
+    if (newPrice !== null && newPrice.trim() !== '') {
+      const price = parseInt(newPrice);
+      if (!isNaN(price) && price >= 1000 && price <= 999999) {
+        targetPriceSpan.textContent = `₹${price.toLocaleString('en-IN')}`;
+        showNotification('Alert updated successfully!', 'success');
+        
+        // Animate update
+        card.style.transform = 'scale(1.02)';
+        setTimeout(() => {
+          card.style.transform = '';
+        }, 300);
+      } else {
+        showNotification('Please enter a valid price', 'error');
+      }
+    }
+  }
+
+  function handlePauseAlert(card) {
+    const badge = card.querySelector('.w-9.h-9.rounded-full');
+    if (!badge) return;
+
+    const isPaused = badge.classList.contains('bg-gray-400');
+
+    if (isPaused) {
+      // Resume alert
+      badge.classList.remove('bg-gray-400');
+      badge.classList.add('bg-[#2a7d4a]', 'animate-pulse');
+      badge.textContent = 'ON';
+      card.style.opacity = '1';
+      showNotification('Alert resumed', 'success');
+    } else {
+      // Pause alert
+      badge.classList.remove('bg-[#2a7d4a]', 'animate-pulse');
+      badge.classList.add('bg-gray-400');
+      badge.textContent = '||';
+      card.style.opacity = '0.7';
+      showNotification('Alert paused', 'info');
+    }
+  }
+
+  function handleDeleteAlert(card) {
+    const confirmed = confirm('Are you sure you want to delete this alert?');
+    
+    if (confirmed) {
+      // Animate removal
+      card.style.transform = 'translateX(100%)';
+      card.style.opacity = '0';
+      card.style.transition = 'all 0.4s ease';
+
+      setTimeout(() => {
+        card.remove();
+        showNotification('Alert deleted successfully', 'success');
+        
+        // Update alert count
+        updateAlertCount();
+      }, 400);
+    }
+  }
+
+  function updateAlertCount() {
+    const alertCards = document.querySelectorAll('.alert-card');
+    const countBadge = document.querySelector('.bg-\\[#2a7d4a\\].text-white.rounded-full.px-3');
+    if (countBadge) {
+      countBadge.textContent = alertCards.length;
+    }
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ANIMATIONS & SCROLL EFFECTS
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function initAnimations() {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe cards and elements
+    const elementsToAnimate = document.querySelectorAll('#price-alerts-section .card-depth, #price-alerts-section .smart-insight');
+    elementsToAnimate.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Stats card hover effects
+    const statCards = document.querySelectorAll('#price-alerts-section .grid-cols-3 > div');
+    statCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-6px) scale(1.03)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+      });
+    });
+  }
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // NOTIFICATION SYSTEM
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `price-tracking-notification ${type}`;
+    
+    const icons = {
+      success: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+      error: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      warning: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      info: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+    };
+    
+    notification.innerHTML = `
+      ${icons[type] || icons.info}
+      <span>${message}</span>
+    `;
+    
+    // Add styles
+    Object.assign(notification.style, {
+      position: 'fixed',
+      top: '20px',
+      right: '20px',
+      background: type === 'success' ? '#10b981' : 
+                  type === 'error' ? '#ef4444' :
+                  type === 'warning' ? '#f59e0b' : '#3b82f6',
+      color: 'white',
+      padding: '12px 20px',
+      borderRadius: '8px',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      fontWeight: '600',
+      fontSize: '0.9375rem',
+      zIndex: '10000',
+      animation: 'slideInRight 0.3s ease',
+      maxWidth: '400px'
+    });
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+      notification.style.animation = 'slideOutRight 0.3s ease';
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 3000);
+  }
+
+  // Add notification animations to document
+  if (!document.getElementById('price-tracking-notification-styles')) {
+    const style = document.createElement('style');
+    style.id = 'price-tracking-notification-styles';
+    style.textContent = `
+      @keyframes slideInRight {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+})();
 
 // price alert  section start here 
 
@@ -2171,22 +3177,69 @@ document.addEventListener("DOMContentLoaded", function () {
     animateNum();
   }
   
-  // --- Animate rating bars when visible ---
-  const observer = new IntersectionObserver((entries) => {
+  // --- Animate Stats Counters ---
+  const statNumbers = document.querySelectorAll('.stat-value[data-target]');
+  const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        document.querySelectorAll('.rating-bar-bar').forEach((bar, idx) => {
-          setTimeout(() => {
-            const fill = bar.querySelector('.rating-bar-fill');
-            fill.style.width = bar.dataset.end || '0%';
-          }, idx * 60);
-        });
-        observer.disconnect();
+      if (entry.isIntersecting) {
+        const statElement = entry.target;
+        const target = statElement.getAttribute('data-target');
+        
+        // Parse target value (handle decimals like 4.8)
+        const isDecimal = target.includes('.');
+        const targetNum = parseFloat(target);
+        const suffix = statElement.textContent.replace(/[\d.]+/, '').trim(); // Get any suffix like "K+", "/5.0", etc.
+        
+        animateStatCounter(statElement, 0, targetNum, suffix, isDecimal, 2000);
+        statsObserver.unobserve(statElement);
       }
     });
-  }, { threshold: 0.38 });
-  const breakdown = document.querySelector('.rating-breakdown');
-  breakdown && observer.observe(breakdown);
+  }, { threshold: 0.3 });
+  
+  statNumbers.forEach(stat => statsObserver.observe(stat));
+  
+  function animateStatCounter(element, start, end, suffix, isDecimal, duration) {
+    const range = end - start;
+    const frames = 60; // 60fps for smooth animation
+    const increment = range / frames;
+    let current = start;
+    let frame = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      frame++;
+      
+      if (current >= end || frame >= frames) {
+        current = end;
+        clearInterval(timer);
+      }
+      
+      // Format number based on type
+      const displayValue = isDecimal ? current.toFixed(1) : Math.floor(current);
+      element.textContent = displayValue + suffix;
+    }, duration / frames);
+  }
+  
+  // --- Animate Rating Bars ---
+  const ratingBarsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        document.querySelectorAll('.rating-bar-bar[data-end]').forEach((bar, idx) => {
+          setTimeout(() => {
+            const fill = bar.querySelector('.rating-bar-fill');
+            const endPercent = bar.dataset.end;
+            if (fill && endPercent) {
+              fill.style.width = endPercent + '%';
+            }
+          }, idx * 100); // Stagger animation by 100ms per bar
+        });
+        ratingBarsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const ratingCard = document.querySelector('.rating-card');
+  ratingCard && ratingBarsObserver.observe(ratingCard);
 
   // --------- Review Carousel ---------
   const carouselCards = [
