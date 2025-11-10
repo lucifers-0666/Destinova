@@ -1366,6 +1366,136 @@
     flex-shrink: 0;
 }
 
+/* ============================================
+   FEATURES SECTION
+   ============================================ */
+
+.features-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
+    position: relative;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1d5e33, transparent);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(29, 94, 51, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #1d5e33, #2a7d4a);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #1d5e33;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #1d5e33 0%, #2a7d4a 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(29, 94, 51, 0.2);
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(29, 94, 51, 0.3);
+}
+
+.feature-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.feature-description {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .features-section {
+        padding: 3rem 0;
+    }
+    
+    .features-grid {
+        gap: 1.5rem;
+    }
+    
+    .feature-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+    
+    .feature-title {
+        font-size: 1.25rem;
+    }
+    
+    .feature-description {
+        font-size: 0.9375rem;
+    }
+}
+
+/* feature section end here */
+
 /* destination section css start here */
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -2037,81 +2167,6 @@
     padding: 2rem;
 }
 /* destination css end here */
-
-/* ===============================================
-   SECTION 3: KEY FEATURES GRID
-   =============================================== */
-.features-section {
-    padding: var(--section-padding) 0;
-    background-color:#d4b591;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--grid-gap);
-}
-
-.feature-card {
-    text-align: center;
-    padding: 40px 24px;
-    border-radius: var(--radius-lg);
-    transition: var(--transition-normal);
-}
-
-.feature-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-}
-
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    background-color: var(--primary-emerald);
-    color:#c9a877;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    margin: 0 auto 24px;
-}
-
-.feature-title {
-    font-family: var(--font-serif);
-    font-size: 22px;
-    font-weight: 600;
-    color:#164426;
-    margin-bottom: 12px;
-}
-
-.feature-description {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #1d5e33;
-}
-/* feature section css end here   */
-
-/* ===============================================
-   SECTION 6: BROWSE BY CATEGORY (ENHANCED)
-   =============================================== */
-
-/* Mobile optimizations for category cards */
-@media (max-width: 768px) {
-    .category-card-enhanced {
-        height: 16rem !important; /* h-64 */
-    }
-    
-    .category-stats {
-        opacity: 1 !important;
-    }
-}
-/* css end here  */
-
-
-
-
-
 
 /* Book Your Flight in 3 Easy Steps css start here   */
 
@@ -4473,11 +4528,11 @@ html {
 /* Visa & Entry Rules Checker Section css start here */
 
 
-/* Animated Background Layers */
+/* Animated Background Layers - PERMANENT FIX: Force backgrounds to stay behind */
 .diagonal-gradient {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 1 !important;
   pointer-events: none;
   background: linear-gradient(120deg, #e8f4ed 0%, #fff 60%, #f5e8d8 100%);
   opacity: 0.7;
@@ -4490,7 +4545,7 @@ html {
 }
 .morphing-blob {
   position: absolute;
-  left: 50%; top: 45%; z-index:2;
+  left: 50%; top: 45%; z-index: 2 !important;
   width: 750px; height: 550px;
   transform: translate(-50%,-55%);
   mix-blend-mode: lighten;
@@ -4499,6 +4554,7 @@ html {
   opacity: 0.35;
   border-radius: 48% 52% 51% 49% / 47% 51% 57% 53%;
   animation: blobMorph 21s cubic-bezier(.89,.11,.82,.77) infinite alternate;
+  pointer-events: none;
 }
 @keyframes blobMorph {
   0% {
@@ -4516,7 +4572,7 @@ html {
 }
 .hex-grid {
   opacity: 0.08;
-  z-index: 1;
+  z-index: 1 !important;
   pointer-events: none;
   animation: hexPulse 12s cubic-bezier(.3,.8,.4,1) infinite alternate;
 }
@@ -4526,7 +4582,7 @@ html {
 }
 .floating-particles {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  z-index: 3; pointer-events: none;
+  z-index: 3 !important; pointer-events: none;
 }
 .particle {
   position: absolute;
@@ -4553,6 +4609,8 @@ html {
   opacity: 0.13;
   mix-blend-mode: screen;
   will-change: transform;
+  z-index: 2 !important;
+  pointer-events: none;
 }
 .flare-1 {
   width: 120px; height: 120px; top: 10%; left: 15%;
@@ -4578,6 +4636,75 @@ html {
   .diagonal-gradient, .morphing-blob, .hex-grid, .floating-particles, .lens-flare { animation: none !important; }
 }
 
+/* =====================================================
+   VISA SECTION - PERMANENT Z-INDEX FIX
+   Ensures content always appears above animated backgrounds
+   ===================================================== */
+
+/* Main section container */
+#visa-entry-rules-checker {
+  position: relative;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 600px;
+  z-index: 1;
+}
+
+/* Background layers (lowest z-index) */
+#visa-entry-rules-checker .diagonal-gradient {
+  z-index: 1 !important;
+}
+
+#visa-entry-rules-checker .morphing-blob {
+  z-index: 2 !important;
+}
+
+#visa-entry-rules-checker .hex-grid {
+  z-index: 1 !important;
+}
+
+#visa-entry-rules-checker .floating-particles {
+  z-index: 3 !important;
+}
+
+#visa-entry-rules-checker .lens-flare {
+  z-index: 2 !important;
+}
+
+/* Content containers (higher z-index than backgrounds) */
+#visa-entry-rules-checker > div:not(.absolute) {
+  position: relative;
+  z-index: 10 !important;
+}
+
+/* Heading and subtitle */
+#visa-entry-rules-checker h2,
+#visa-entry-rules-checker p {
+  position: relative;
+  z-index: 11 !important;
+}
+
+/* Form cards and result cards (highest z-index) */
+#visa-entry-rules-checker .glass-card,
+#visa-entry-rules-checker .results-card {
+  position: relative;
+  z-index: 15 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* All interactive elements inside the section */
+#visa-entry-rules-checker input,
+#visa-entry-rules-checker select,
+#visa-entry-rules-checker button,
+#visa-entry-rules-checker label,
+#visa-entry-rules-checker .smart-alert {
+  position: relative;
+  z-index: 16 !important;
+}
+
 /* Frosted Glass Card */
 .glass-card {
   background: rgba(255,255,255,0.74);
@@ -4585,6 +4712,8 @@ html {
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   border: 1.6px solid rgba(229,203,175,0.18);
+  position: relative;
+  z-index: 15;
 }
 
 /* Form Inputs and Custom Styles */
@@ -5724,223 +5853,8 @@ input[type="range"]:focus { outline: 3px solid #2a7d4a; }
 
 /* partner section end here */
 
-
 /* why choose us section start here */
 
-/* ===============================================
-   WHY CHOOSE US SECTION - GLASSMORPHIC DESIGN
-   =============================================== */
-
-/* Section Base */
-.why-choose-us-section {
-  position: relative;
-  background: linear-gradient(135deg, #e8f4ed 0%, #f8fcfa 50%, #f5e8d8 100%);
-}
-
-/* Animated Wave Background */
-.wave-background {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.wave-layer {
-  position: absolute;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(90deg, 
-    rgba(29, 94, 51, 0.03) 0%, 
-    rgba(58, 156, 96, 0.05) 50%, 
-    rgba(29, 94, 51, 0.03) 100%);
-  animation: waveFlow 20s ease-in-out infinite;
-}
-
-.wave-layer-1 {
-  animation-duration: 25s;
-  opacity: 0.6;
-}
-
-.wave-layer-2 {
-  animation-duration: 30s;
-  animation-delay: -10s;
-  opacity: 0.4;
-}
-
-@keyframes waveFlow {
-  0%, 100% {
-    transform: translateX(0) translateY(0);
-  }
-  25% {
-    transform: translateX(-10%) translateY(5%);
-  }
-  50% {
-    transform: translateX(-20%) translateY(0);
-  }
-  75% {
-    transform: translateX(-10%) translateY(-5%);
-  }
-}
-
-/* Gradient Morph Effect */
-.gradient-morph {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 50%, 
-    rgba(29, 94, 51, 0.08) 0%, 
-    transparent 50%),
-    radial-gradient(circle at 70% 50%, 
-    rgba(229, 203, 175, 0.06) 0%, 
-    transparent 50%);
-  animation: morphGradient 15s ease-in-out infinite alternate;
-}
-
-@keyframes morphGradient {
-  0% {
-    opacity: 0.3;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.1) rotate(5deg);
-  }
-  100% {
-    opacity: 0.3;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-/* Section Header - Typing Effect */
-.typing-text {
-  position: relative;
-  display: inline-block;
-  min-height: 1.5em;
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out 0.3s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-.typing-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: #2a7d4a;
-  margin-left: 4px;
-  animation: blink 1s step-start infinite;
-  vertical-align: text-bottom;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Cards Wrapper with Shimmer */
-.cards-wrapper {
-  position: relative;
-  padding: 2rem 0;
-}
-
-.shimmer-overlay {
-  position: absolute;
-  inset: -20%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(229, 203, 175, 0.15) 20%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(229, 203, 175, 0.15) 80%,
-    transparent 100%
-  );
-  transform: translateX(-100%);
-  animation: shimmerSlide 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes shimmerSlide {
-  0% {
-    transform: translateX(-100%);
-  }
-  50%, 100% {
-    transform: translateX(200%);
-  }
-}
-
-/* Glassmorphic Card Base */
-.why-choose-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 2px solid rgba(229, 203, 175, 0.3);
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 
-    0 8px 32px rgba(29, 94, 51, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  opacity: 0;
-  transform: translateY(40px);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-/* Staggered Animation on Scroll */
-.why-choose-card[data-card-index="0"] {
-  animation: cardSlideIn 0.7s ease-out 0.1s forwards;
-}
-
-.why-choose-card[data-card-index="1"] {
-  animation: cardSlideIn 0.7s ease-out 0.22s forwards;
-}
-
-.why-choose-card[data-card-index="2"] {
-  animation: cardSlideIn 0.7s ease-out 0.34s forwards;
-}
-
-.why-choose-card[data-card-index="3"] {
-  animation: cardSlideIn 0.7s ease-out 0.46s forwards;
-}
-
-@keyframes cardSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-40px) translateY(20px);
-  }
-  60% {
-    transform: translateX(5px) translateY(-5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) translateY(0);
-  }
-}
-
-/* Card Glow Effect */
-.card-glow {
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(
-    135deg,
-    rgba(29, 94, 51, 0.4),
-    rgba(201, 168, 119, 0.4),
-    rgba(58, 156, 96, 0.4)
-  );
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  filter: blur(12px);
-  z-index: -1;
-}
-
-/* Hover Effects */
 .why-choose-card:hover,
 .why-choose-card:focus {
   transform: scale(1.04) translateY(-8px);
