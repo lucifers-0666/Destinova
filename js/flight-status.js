@@ -210,7 +210,7 @@ function switchRouteTab(tab) {
 // SEARCH FLIGHT
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-function searchFlight() {
+async function searchFlight() {
     const flightNumber = document.getElementById('flight-number').value.trim().toUpperCase();
     const flightDate = document.getElementById('flight-date').value;
     const errorDiv = document.getElementById('form-error');
@@ -230,22 +230,101 @@ function searchFlight() {
     searchBtn.disabled = true;
     searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
     
-    // Simulate API call
-    setTimeout(() => {
-        const flight = MOCK_FLIGHTS[flightNumber];
-        
-        if (flight) {
-            displayFlightResults(flight, flightDate);
-            saveToRecentSearches(flightNumber, flightDate);
-            showNotification('Flight status found!', 'success');
-        } else {
-            showError(`Flight ${flightNumber} not found. Try AI202, 6E101, or UK955`);
+    // Try API first, then fallback to mock data
+    let flight = null;
+    
+    // Try new FlightsAPI first
+    if (typeof FlightsAPI !== 'undefined') {
+        try {
+            const response = await FlightsAPI.getFlightStatus(flightNumber, flightDate);
+            
+            if (response.success && response.data) {
+                flight = transformApiFlightStatus(response.data);
+            }
+        } catch (error) {
+            console.log('FlightsAPI error:', error);
         }
-        
-        // Reset button
-        searchBtn.disabled = false;
-        searchBtn.innerHTML = originalHTML;
-    }, 1500);
+    }
+    
+    // Fallback to legacy API
+    if (!flight && typeof window.DestinovaAPI !== 'undefined') {
+        try {
+            // Use the search endpoint with flightNumber filter
+            const response = await window.DestinovaAPI.Flight.search({ flightNumber: flightNumber });
+            
+            if (response.data && response.data.flights && response.data.flights.length > 0) {
+                flight = transformApiFlightStatus(response.data.flights[0]);
+            }
+        } catch (error) {
+            console.log('Legacy API unavailable or error:', error);
+        }
+    }
+    
+    // Fallback to mock data
+    if (!flight) {
+        flight = MOCK_FLIGHTS[flightNumber];
+    }
+    
+    // Reset button
+    searchBtn.disabled = false;
+    searchBtn.innerHTML = originalHTML;
+    
+    if (flight) {
+        displayFlightResults(flight, flightDate);
+        saveToRecentSearches(flightNumber, flightDate);
+        showNotification('Flight status found!', 'success');
+    } else {
+        showError(`Flight ${flightNumber} not found. Try AI202, 6E101, or UK955`);
+    }
+}
+
+// Transform API flight data to display format
+function transformApiFlightStatus(apiFlight) {
+    const origin = apiFlight.origin || {};
+    const destination = apiFlight.destination || {};
+    const departureTime = apiFlight.departureTime ? new Date(apiFlight.departureTime) : new Date();
+    const arrivalTime = apiFlight.arrivalTime ? new Date(apiFlight.arrivalTime) : new Date();
+    
+    return {
+        flightNumber: apiFlight.flightNumber,
+        airline: apiFlight.airline,
+        airlineLogo: apiFlight.airlineLogo || 'https://via.placeholder.com/200x50?text=' + (apiFlight.airline || 'Airline'),
+        departure: {
+            city: origin.city || origin.name || (typeof apiFlight.origin === 'string' ? apiFlight.origin : 'Origin'),
+            code: origin.code || (typeof apiFlight.origin === 'string' ? apiFlight.origin.substring(0, 3).toUpperCase() : 'XXX'),
+            airport: origin.airport || (origin.city || 'Origin') + ' International',
+            scheduledTime: departureTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            actualTime: (apiFlight.actualDepartureTime ? new Date(apiFlight.actualDepartureTime) : departureTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            terminal: apiFlight.departureTerminal || 'T1',
+            gate: apiFlight.departureGate || 'TBD'
+        },
+        arrival: {
+            city: destination.city || destination.name || (typeof apiFlight.destination === 'string' ? apiFlight.destination : 'Destination'),
+            code: destination.code || (typeof apiFlight.destination === 'string' ? apiFlight.destination.substring(0, 3).toUpperCase() : 'XXX'),
+            airport: destination.airport || (destination.city || 'Destination') + ' International',
+            scheduledTime: arrivalTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            estimatedTime: (apiFlight.estimatedArrivalTime ? new Date(apiFlight.estimatedArrivalTime) : arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+            terminal: apiFlight.arrivalTerminal || 'T1',
+            baggage: apiFlight.baggageBelt || 'TBD'
+        },
+        status: apiFlight.status || 'on-time',
+        aircraft: apiFlight.aircraft || 'Boeing 737',
+        delay: apiFlight.delayMinutes ? `${apiFlight.delayMinutes} minutes` : null,
+        delayReason: apiFlight.delayReason || null,
+        progress: calculateFlightProgress(departureTime, arrivalTime)
+    };
+}
+
+// Calculate flight progress percentage
+function calculateFlightProgress(departureTime, arrivalTime) {
+    const now = new Date();
+    const totalDuration = arrivalTime - departureTime;
+    const elapsed = now - departureTime;
+    
+    if (now < departureTime) return 0;
+    if (now > arrivalTime) return 100;
+    
+    return Math.round((elapsed / totalDuration) * 100);
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

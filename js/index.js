@@ -134,10 +134,72 @@
       modal.setAttribute('hidden', 'hidden');
     });
     
-    // Form
-    document.getElementById('searchForm').addEventListener('submit', function(e) {
+    // Form - Search Flights with Backend API
+    document.getElementById('searchForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('✈️ Searching flights...');
+      
+      // Get form values
+      const fromInput = document.getElementById('fromInput');
+      const toInput = document.getElementById('toInput');
+      const departInput = document.getElementById('departInput');
+      const returnInput = document.getElementById('returnInput');
+      const tripType = document.querySelector('.trip-tab.active')?.getAttribute('data-type') || 'roundtrip';
+      
+      // Validate inputs
+      if (!fromInput.value || !toInput.value || !departInput.value) {
+        alert('Please fill in all required fields');
+        return;
+      }
+      
+      // Get airport codes from the input values (e.g., "New Delhi (DEL)" -> "DEL")
+      const fromMatch = fromInput.value.match(/\(([A-Z]{3})\)/);
+      const toMatch = toInput.value.match(/\(([A-Z]{3})\)/);
+      
+      const from = fromMatch ? fromMatch[1] : fromInput.value;
+      const to = toMatch ? toMatch[1] : toInput.value;
+      
+      // Prepare search params
+      const searchParams = {
+        from: from,
+        to: to,
+        date: departInput.value,
+        returnDate: tripType === 'roundtrip' ? returnInput.value : undefined,
+        passengers: counts.adults + counts.children + counts.seniors,
+        class: selectedClass
+      };
+      
+      // Save to recent searches
+      const recentSearches = JSON.parse(localStorage.getItem('flightSearches') || '[]');
+      recentSearches.unshift({ from, to, date: departInput.value, timestamp: Date.now() });
+      localStorage.setItem('flightSearches', JSON.stringify(recentSearches.slice(0, 10)));
+      localStorage.setItem('lastSearch', JSON.stringify(searchParams));
+      
+      // Check if API is available
+      if (typeof window.DestinovaAPI !== 'undefined') {
+        try {
+          // Show loading state
+          const searchBtn = document.querySelector('#searchForm button[type="submit"]');
+          if (searchBtn) {
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+          }
+          
+          // Call API
+          const results = await window.DestinovaAPI.Flight.search(searchParams);
+          
+          // Store results and redirect
+          localStorage.setItem('flightSearchResults', JSON.stringify(results));
+          window.location.href = `booking.html?from=${from}&to=${to}&date=${departInput.value}`;
+          
+        } catch (error) {
+          console.error('Flight search error:', error);
+          // Fallback - redirect with params even if API fails
+          window.location.href = `booking.html?from=${from}&to=${to}&date=${departInput.value}`;
+        }
+      } else {
+        // API not loaded, redirect with params
+        window.location.href = `booking.html?from=${from}&to=${to}&date=${departInput.value}`;
+      }
     });
 
     // Recent Searches Button

@@ -1,0 +1,27 @@
+<!-- 
+  Google Analytics 4 Tracking Snippet
+  
+  Instructions:
+  1. Replace G-XXXXXXXXXX with your actual Measurement ID
+  2. Add this snippet to the <head> section of all HTML pages
+  3. For SPAs, also trigger pageview events on route changes
+-->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    // Enhanced measurement (automatically tracks scrolls, outbound clicks, etc.)
+    'send_page_view': true,
+    // Anonymize IP for GDPR compliance
+    'anonymize_ip': true,
+    // Cookie settings
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+</script>
+
+<!-- Store measurement ID for JavaScript access -->
+<meta name="ga-measurement-id" content="G-XXXXXXXXXX">

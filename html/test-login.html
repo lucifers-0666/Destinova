@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login - Destinova</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #059669;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #059669;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #047857;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #059669;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #dc2626;
+        }
+        .info {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: 1px solid #6366f1;
+            margin-bottom: 20px;
+        }
+        pre {
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Destinova Login Test</h1>
+        
+        <div class="message info" style="display: block;">
+            <strong>Test Credentials:</strong><br>
+            Email: john@example.com<br>
+            Password: password123
+        </div>
+
+        <form id="testForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="john@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" value="password123" required>
+            </div>
+            
+            <button type="submit" id="submitBtn">Test Login</button>
+        </form>
+
+        <div id="result" class="message"></div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script>
+        const form = document.getElementById('testForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            result.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Testing...';
+            
+            try {
+                // Check if API is loaded
+                if (typeof window.DestinovaAPI === 'undefined') {
+                    throw new Error('DestinovaAPI is not loaded');
+                }
+                
+                console.log('Calling DestinovaAPI.Auth.login...');
+                const response = await window.DestinovaAPI.Auth.login(email, password);
+                
+                console.log('Login successful:', response);
+                
+                result.className = 'message success';
+                result.style.display = 'block';
+                result.innerHTML = `
+                    <strong>✅ Login Successful!</strong><br><br>
+                    <strong>User:</strong> ${response.user.firstName} ${response.user.lastName}<br>
+                    <strong>Email:</strong> ${response.user.email}<br>
+                    <strong>Role:</strong> ${response.user.role}<br>
+                    <strong>Token:</strong> ${response.token.substring(0, 50)}...<br><br>
+                    <pre>${JSON.stringify(response, null, 2)}</pre>
+                `;
+                
+                submitBtn.textContent = '✅ Success!';
+                submitBtn.style.background = '#059669';
+                
+            } catch (error) {
+                console.error('Login failed:', error);
+                
+                result.className = 'message error';
+                result.style.display = 'block';
+                result.innerHTML = `
+                    <strong>❌ Login Failed</strong><br><br>
+                    <strong>Error:</strong> ${error.message}<br><br>
+                    <pre>${JSON.stringify(error, null, 2)}</pre>
+                `;
+                
+                submitBtn.textContent = 'Try Again';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Check API connection on load
+        window.addEventListener('load', async () => {
+            console.log('Checking API connection...');
+            console.log('DestinovaAPI available:', typeof window.DestinovaAPI !== 'undefined');
+            
+            if (typeof window.DestinovaAPI !== 'undefined') {
+                console.log('DestinovaAPI methods:', Object.keys(window.DestinovaAPI));
+            }
+        });
+    </script>
+</body>
+</html>

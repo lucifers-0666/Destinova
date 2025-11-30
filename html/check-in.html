@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Check in online and get your boarding pass">
+  <title>Online Check-In | Destinova</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/site-images/favicon.ico" type="image/x-icon">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/dark-mode.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+      min-height: 100vh;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 80px 20px 60px;
+      text-align: center;
+      color: white;
+    }
+
+    .page-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .check-in-container {
+      max-width: 800px;
+      margin: -40px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Search Form */
+    .search-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .search-card h2 {
+      font-size: 1.5rem;
+      color: #1a1a2e;
+      margin-bottom: 10px;
+    }
+
+    .search-card p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .search-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .search-tab {
+      padding: 10px 25px;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-tab.active {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .search-form {
+      display: none;
+    }
+
+    .search-form.active {
+      display: block;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input {
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .search-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Results Section */
+    .results-section {
+      display: none;
+    }
+
+    .results-section.show {
+      display: block;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .result-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .result-header h3 {
+      font-size: 1.3rem;
+    }
+
+    .result-header .status {
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    .result-header .status.ready {
+      background: #4ade80;
+      color: #166534;
+    }
+
+    .result-header .status.not-ready {
+      background: #fbbf24;
+      color: #92400e;
+    }
+
+    .result-header .status.checked {
+      background: #22c55e;
+      color: white;
+    }
+
+    .flight-details {
+      padding: 25px;
+    }
+
+    .flight-route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    .airport {
+      text-align: center;
+    }
+
+    .airport-code {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1a1a2e;
+    }
+
+    .airport-city {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .route-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #667eea;
+    }
+
+    .route-line .line {
+      width: 80px;
+      height: 2px;
+      background: #667eea;
+    }
+
+    .route-line i {
+      font-size: 1.2rem;
+    }
+
+    .flight-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .info-item {
+      text-align: center;
+    }
+
+    .info-item label {
+      display: block;
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .info-item span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    /* Passengers Section */
+    .passengers-section {
+      padding: 25px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .passengers-section h4 {
+      color: #1a1a2e;
+      margin-bottom: 15px;
+    }
+
+    .passenger-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .passenger-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .passenger-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .passenger-name i {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .passenger-name span {
+      font-weight: 500;
+    }
+
+    .passenger-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .passenger-status.checked-in {
+      color: #22c55e;
+    }
+
+    .passenger-status.pending {
+      color: #f59e0b;
+    }
+
+    /* Check-in Actions */
+    .check-in-actions {
+      padding: 25px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .check-in-btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .check-in-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .check-in-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .check-in-btn.secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .check-in-btn.secondary:hover {
+      background: #e0e0e0;
+      box-shadow: none;
+    }
+
+    /* Boarding Pass Preview */
+    .boarding-pass-section {
+      display: none;
+    }
+
+    .boarding-pass-section.show {
+      display: block;
+    }
+
+    .boarding-pass-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .boarding-pass {
+      padding: 0;
+    }
+
+    .bp-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bp-header h3 {
+      font-size: 1.2rem;
+    }
+
+    .bp-content {
+      padding: 25px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    .bp-main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bp-passenger {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1a1a2e;
+    }
+
+    .bp-route {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bp-airport {
+      text-align: center;
+    }
+
+    .bp-airport .code {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a1a2e;
+    }
+
+    .bp-airport .city {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .bp-info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .bp-info {
+      text-align: center;
+    }
+
+    .bp-info label {
+      display: block;
+      font-size: 0.7rem;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .bp-info span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .bp-info span.highlight {
+      color: #667eea;
+      font-size: 1.3rem;
+    }
+
+    .bp-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      border-left: 2px dashed #e0e0e0;
+    }
+
+    .bp-qr img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 10px;
+    }
+
+    .bp-ref {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .bp-ref strong {
+      color: #1a1a2e;
+    }
+
+    .bp-actions {
+      display: flex;
+      gap: 15px;
+      padding: 20px;
+      background: #f8f9fa;
+      justify-content: center;
+    }
+
+    .bp-actions button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .bp-actions .download-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .bp-actions .email-btn {
+      background: white;
+      color: #333;
+      border: 2px solid #e0e0e0;
+    }
+
+    .bp-actions .print-btn {
+      background: white;
+      color: #333;
+      border: 2px solid #e0e0e0;
+    }
+
+    /* Messages */
+    .message {
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .message.show {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .message.success {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .message.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .message.info {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    /* Loading */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .loading-overlay.show {
+      display: flex;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f0f0f0;
+      border-top-color: #667eea;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Tips Section */
+    .tips-section {
+      margin-top: 30px;
+    }
+
+    .tips-card {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .tips-card h3 {
+      color: #1a1a2e;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tips-card h3 i {
+      color: #667eea;
+    }
+
+    .tips-list {
+      list-style: none;
+    }
+
+    .tips-list li {
+      padding: 10px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #555;
+    }
+
+    .tips-list li i {
+      color: #22c55e;
+      margin-top: 3px;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #0f0f1e;
+    }
+
+    body.dark-mode .search-card,
+    body.dark-mode .result-card,
+    body.dark-mode .boarding-pass-card,
+    body.dark-mode .tips-card {
+      background: #1a1a2e;
+    }
+
+    body.dark-mode .search-card h2,
+    body.dark-mode .result-header h3,
+    body.dark-mode .airport-code,
+    body.dark-mode .info-item span,
+    body.dark-mode .passenger-name span,
+    body.dark-mode .bp-passenger,
+    body.dark-mode .bp-airport .code,
+    body.dark-mode .bp-info span,
+    body.dark-mode .tips-card h3 {
+      color: white;
+    }
+
+    body.dark-mode .search-card p,
+    body.dark-mode .airport-city,
+    body.dark-mode .info-item label,
+    body.dark-mode .bp-airport .city,
+    body.dark-mode .bp-info label,
+    body.dark-mode .tips-list li {
+      color: #aaa;
+    }
+
+    body.dark-mode .search-tab {
+      background: #252540;
+      color: #aaa;
+    }
+
+    body.dark-mode .form-group input {
+      background: #252540;
+      border-color: #3a3a5c;
+      color: white;
+    }
+
+    body.dark-mode .flight-info-grid,
+    body.dark-mode .passenger-item {
+      background: #252540;
+    }
+
+    body.dark-mode .check-in-btn.secondary {
+      background: #252540;
+      color: white;
+    }
+
+    body.dark-mode .bp-qr {
+      border-color: #3a3a5c;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .flight-route {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .route-line {
+        transform: rotate(90deg);
+      }
+
+      .bp-content {
+        grid-template-columns: 1fr;
+      }
+
+      .bp-qr {
+        border-left: none;
+        border-top: 2px dashed #e0e0e0;
+        padding-left: 0;
+        padding-top: 20px;
+      }
+
+      .bp-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bp-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Component -->
+  <div id="header-container"></div>
+  
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <p>Processing your check-in...</p>
+  </div>
+  
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1><i class="fas fa-plane-departure"></i> Online Check-In</h1>
+    <p>Check in 24 hours before departure and get your boarding pass</p>
+  </section>
+  
+  <!-- Main Content -->
+  <div class="check-in-container">
+    <!-- Message -->
+    <div class="message" id="message">
+      <i class="fas fa-info-circle"></i>
+      <span id="messageText"></span>
+    </div>
+    
+    <!-- Search Card -->
+    <div class="search-card">
+      <h2>Find Your Booking</h2>
+      <p>Enter your booking details to check in</p>
+      
+      <div class="search-tabs">
+        <button class="search-tab active" data-tab="reference">
+          <i class="fas fa-ticket-alt"></i> Booking Reference
+        </button>
+        <button class="search-tab" data-tab="flight">
+          <i class="fas fa-plane"></i> Flight Number
+        </button>
+      </div>
+      
+      <!-- Search by Reference -->
+      <form class="search-form active" id="referenceForm" data-form="reference">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookingRef">Booking Reference / PNR</label>
+            <input type="text" id="bookingRef" placeholder="e.g., ABC123" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Enter last name" required>
+          </div>
+        </div>
+        <button type="submit" class="search-btn" id="searchRefBtn">
+          <i class="fas fa-search"></i> Find Booking
+        </button>
+      </form>
+      
+      <!-- Search by Flight -->
+      <form class="search-form" id="flightForm" data-form="flight">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <label for="flightNumber">Flight Number</label>
+            <input type="text" id="flightNumber" placeholder="e.g., AI101" required>
+          </div>
+        </div>
+        <button type="submit" class="search-btn" id="searchFlightBtn">
+          <i class="fas fa-search"></i> Find Booking
+        </button>
+      </form>
+    </div>
+    
+    <!-- Results Section -->
+    <div class="results-section" id="resultsSection">
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <h3><i class="fas fa-plane"></i> <span id="flightNum">AI 101</span></h3>
+          <span class="status" id="checkInStatus">Ready to Check-in</span>
+        </div>
+        
+        <div class="flight-details">
+          <div class="flight-route">
+            <div class="airport">
+              <div class="airport-code" id="originCode">DEL</div>
+              <div class="airport-city" id="originCity">New Delhi</div>
+            </div>
+            <div class="route-line">
+              <div class="line"></div>
+              <i class="fas fa-plane"></i>
+              <div class="line"></div>
+            </div>
+            <div class="airport">
+              <div class="airport-code" id="destCode">BOM</div>
+              <div class="airport-city" id="destCity">Mumbai</div>
+            </div>
+          </div>
+          
+          <div class="flight-info-grid">
+            <div class="info-item">
+              <label>Date</label>
+              <span id="travelDate">25 Jan 2025</span>
+            </div>
+            <div class="info-item">
+              <label>Departure</label>
+              <span id="depTime">09:30</span>
+            </div>
+            <div class="info-item">
+              <label>Arrival</label>
+              <span id="arrTime">11:45</span>
+            </div>
+            <div class="info-item">
+              <label>Time Until Departure</label>
+              <span id="timeUntil">12h 30m</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Passengers -->
+        <div class="passengers-section">
+          <h4><i class="fas fa-users"></i> Passengers</h4>
+          <div class="passenger-list" id="passengerList">
+            <!-- Passengers will be rendered here -->
+          </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="check-in-actions">
+          <button class="check-in-btn" id="checkInBtn" disabled>
+            <i class="fas fa-check-circle"></i> Complete Check-In
+          </button>
+          <button class="check-in-btn secondary" id="selectSeatsBtn">
+            <i class="fas fa-chair"></i> Select Seats
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Boarding Pass Section -->
+    <div class="boarding-pass-section" id="boardingPassSection">
+      <div class="boarding-pass-card">
+        <div class="boarding-pass" id="boardingPassContainer">
+          <!-- Boarding passes will be rendered here -->
+        </div>
+        <div class="bp-actions">
+          <button class="download-btn" id="downloadBpBtn">
+            <i class="fas fa-download"></i> Download PDF
+          </button>
+          <button class="email-btn" id="emailBpBtn">
+            <i class="fas fa-envelope"></i> Email to Me
+          </button>
+          <button class="print-btn" id="printBpBtn">
+            <i class="fas fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Tips Section -->
+    <div class="tips-section">
+      <div class="tips-card">
+        <h3><i class="fas fa-lightbulb"></i> Check-In Tips</h3>
+        <ul class="tips-list">
+          <li>
+            <i class="fas fa-check"></i>
+            Online check-in opens 24 hours before departure and closes 1 hour before
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            Have your boarding pass ready on your phone or print it before arriving at the airport
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            If you have checked baggage, arrive at the airport at least 2 hours before departure
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            Keep a valid photo ID ready for verification at the airport
+          </li>
+          <li>
+            <i class="fas fa-check"></i>
+            Select your preferred seats during check-in for a more comfortable journey
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer Component -->
+  <div id="footer-container"></div>
+  
+  <!-- Scripts -->
+  <script src="/js/header.js"></script>
+  <script src="/js/footer.js"></script>
+  <script src="/js/theme-manager.js"></script>
+  <script src="/js/check-in.js"></script>
+</body>
+</html>

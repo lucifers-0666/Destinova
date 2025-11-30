@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Set up price alerts for flights and get notified when prices drop">
+    <title>Price Alerts | Destinova</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../site-images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+        
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary, #1a5f4a);
+            margin-bottom: 12px;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Create Alert Section */
+        .create-alert-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .alert-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 6px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary, #1a5f4a);
+            box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+        }
+        
+        .create-btn {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary, #1a5f4a), var(--primary-dark, #134436));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+        
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(26, 95, 74, 0.3);
+        }
+        
+        /* Alerts List */
+        .alerts-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .alerts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .alert-count {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .alerts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        /* Alert Card */
+        .alert-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-card:hover {
+            background: #f0f4f3;
+            transform: translateX(5px);
+        }
+        
+        .alert-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary, #1a5f4a), var(--primary-dark, #134436));
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+        
+        .alert-details {
+            flex: 1;
+        }
+        
+        .alert-route {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        
+        .alert-route .arrow {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .alert-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .alert-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .alert-meta i {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .alert-price {
+            text-align: right;
+            margin-right: 20px;
+        }
+        
+        .price-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .price-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .current-price {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .price-down {
+            color: #2e7d32;
+        }
+        
+        .price-up {
+            color: #c62828;
+        }
+        
+        .alert-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .alert-action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .alert-action-btn.edit {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .alert-action-btn.edit:hover {
+            background: #bbdefb;
+        }
+        
+        .alert-action-btn.delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .alert-action-btn.delete:hover {
+            background: #ffcdd2;
+        }
+        
+        .alert-action-btn.toggle {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .alert-action-btn.toggle.paused {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: #666;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .info-box i {
+            font-size: 1.5rem;
+            color: var(--primary, #1a5f4a);
+            margin-top: 2px;
+        }
+        
+        .info-box h4 {
+            font-size: 1rem;
+            color: #2e7d32;
+            margin-bottom: 6px;
+        }
+        
+        .info-box p {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.5;
+        }
+        
+        /* Loading */
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .loading-spinner::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e0e0e0;
+            border-top-color: var(--primary, #1a5f4a);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .alert-card {
+                flex-wrap: wrap;
+            }
+            
+            .alert-price {
+                text-align: left;
+                width: 100%;
+                margin: 16px 0 0 76px;
+            }
+            
+            .alert-actions {
+                margin-top: 16px;
+                margin-left: 76px;
+            }
+            
+            .alert-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1><i class="fas fa-bell"></i> Price Alerts</h1>
+            <p>Get notified instantly when flight prices drop to your target price. Never miss a deal!</p>
+        </div>
+        
+        <!-- Create Alert Section -->
+        <div class="create-alert-section">
+            <h2 class="section-title">
+                <i class="fas fa-plus-circle"></i> Create New Alert
+            </h2>
+            
+            <div class="info-box">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <h4>How it works</h4>
+                    <p>Set your target price for a route and we'll monitor prices 24/7. When the price drops to or below your target, we'll notify you via email so you can book at the best price.</p>
+                </div>
+            </div>
+            
+            <form class="alert-form" id="create-alert-form">
+                <div class="form-group">
+                    <label>From</label>
+                    <input type="text" id="alert-from" placeholder="City or Airport" required>
+                </div>
+                <div class="form-group">
+                    <label>To</label>
+                    <input type="text" id="alert-to" placeholder="City or Airport" required>
+                </div>
+                <div class="form-group">
+                    <label>Travel Date</label>
+                    <input type="date" id="alert-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Target Price (₹)</label>
+                    <input type="number" id="alert-price" placeholder="5000" min="500" required>
+                </div>
+                <div class="form-group">
+                    <label>Class</label>
+                    <select id="alert-class">
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First Class</option>
+                    </select>
+                </div>
+                <button type="submit" class="create-btn">
+                    <i class="fas fa-bell"></i> Create Alert
+                </button>
+            </form>
+        </div>
+        
+        <!-- Active Alerts -->
+        <div class="alerts-section">
+            <div class="alerts-header">
+                <h2 class="section-title">
+                    <i class="fas fa-list"></i> Your Alerts
+                </h2>
+                <span class="alert-count" id="alert-count">0 active alerts</span>
+            </div>
+            
+            <div class="alerts-list" id="alerts-list">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/component-loader.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth-check.js"></script>
+    <script src="../js/price-alerts.js"></script>
+</body>
+</html>

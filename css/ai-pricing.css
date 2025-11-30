@@ -1,0 +1,459 @@
+/* ═══════════════════════════════════════════════════════════════════
+   AI PRICING DISPLAY STYLES
+   CSS for AI-powered dynamic pricing UI components
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AI PRICE CONTAINER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.ai-price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 12px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-price-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AI BADGE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.ai-price-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-price-badge.ai-powered {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.ai-price-badge.rule-based {
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+  color: white;
+}
+
+.ai-price-badge .ai-icon {
+  font-size: 12px;
+}
+
+.ai-price-badge .ai-label {
+  font-size: 10px;
+}
+
+/* Mini badge for compact displays */
+.ai-badge-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 10px;
+  cursor: help;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE COMPARISON
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.price-comparison {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.original-price {
+  font-size: 14px;
+  color: #868e96;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #d4edda;
+  color: #155724;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(40, 167, 69, 0);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PREDICTED PRICE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.predicted-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #212529;
+  line-height: 1;
+}
+
+.predicted-price.has-discount {
+  color: #28a745;
+}
+
+/* Compact price display */
+.ai-price-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ai-price-compact .price-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #212529;
+}
+
+.ai-price-compact .trend-mini {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE TREND
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.price-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.price-trend.trend-rising {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.price-trend.trend-falling {
+  background: #d4edda;
+  color: #155724;
+}
+
+.price-trend.trend-stable {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.trend-icon {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.trend-label {
+  font-weight: 500;
+}
+
+/* Animated trend icons */
+.trend-rising .trend-icon {
+  animation: bounce-up 1s ease-in-out infinite;
+}
+
+.trend-falling .trend-icon {
+  animation: bounce-down 1s ease-in-out infinite;
+}
+
+@keyframes bounce-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE DISCLAIMER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.price-disclaimer {
+  font-size: 10px;
+  color: #868e96;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.price-disclaimer small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.price-disclaimer small::before {
+  content: 'ℹ️';
+  font-size: 10px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LOADING STATE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.ai-price-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  color: #868e96;
+  font-size: 13px;
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e9ecef;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE HISTORY CHART
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.price-history-container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.price-history-container h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #212529;
+}
+
+#price-chart {
+  width: 100%;
+  height: 200px;
+}
+
+.no-history {
+  text-align: center;
+  color: #868e96;
+  padding: 40px 20px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE CARD IN FLIGHT RESULTS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.flight-card .ai-price-container {
+  min-width: 160px;
+}
+
+.flight-card .predicted-price {
+  font-size: 24px;
+}
+
+/* Flight result specific styles */
+.flight-result-price {
+  position: relative;
+}
+
+.flight-result-price .ai-price-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE UPDATE NOTIFICATION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.price-update-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slide-in 0.3s ease-out;
+}
+
+.price-update-notification .icon {
+  font-size: 18px;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE ALERT INTEGRATION
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.set-price-alert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #667eea;
+  color: #667eea;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.set-price-alert-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+.set-price-alert-btn .bell-icon {
+  font-size: 14px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DARK MODE SUPPORT
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+[data-theme="dark"] .ai-price-container {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .predicted-price {
+  color: #f7fafc;
+}
+
+[data-theme="dark"] .predicted-price.has-discount {
+  color: #68d391;
+}
+
+[data-theme="dark"] .original-price {
+  color: #a0aec0;
+}
+
+[data-theme="dark"] .price-disclaimer {
+  color: #a0aec0;
+}
+
+[data-theme="dark"] .price-trend.trend-stable {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .price-history-container {
+  background: #2d3748;
+  border-color: #4a5568;
+}
+
+[data-theme="dark"] .price-history-container h3 {
+  color: #f7fafc;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE ADJUSTMENTS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@media (max-width: 768px) {
+  .ai-price-container {
+    align-items: center;
+    padding: 10px;
+  }
+
+  .predicted-price {
+    font-size: 22px;
+  }
+
+  .flight-card .predicted-price {
+    font-size: 20px;
+  }
+
+  .ai-price-badge {
+    padding: 3px 8px;
+  }
+
+  .ai-price-badge .ai-label {
+    font-size: 9px;
+  }
+
+  .price-update-notification {
+    left: 20px;
+    right: 20px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-price-container {
+    padding: 8px;
+  }
+
+  .predicted-price {
+    font-size: 20px;
+  }
+
+  .price-comparison {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .price-trend {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+}

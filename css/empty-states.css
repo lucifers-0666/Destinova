@@ -1,0 +1,408 @@
+/* ===========================================
+   EMPTY STATES STYLES
+   =========================================== */
+
+/* Base Empty State Container */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  min-height: 300px;
+}
+
+.empty-state-compact {
+  min-height: 200px;
+  padding: 2rem 1.5rem;
+}
+
+.empty-state-full {
+  min-height: 60vh;
+}
+
+/* Empty State Icon */
+.empty-state-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted, #999);
+  opacity: 0.6;
+}
+
+.empty-state-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.empty-state-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Animated Icon */
+.empty-state-icon-animated {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Empty State Title */
+.empty-state-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.75rem;
+}
+
+/* Empty State Description */
+.empty-state-description {
+  font-size: 1rem;
+  color: var(--text-secondary, #666);
+  max-width: 400px;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Empty State Action Button */
+.empty-state-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--primary-color, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.empty-state-action:hover {
+  background: var(--primary-hover, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.empty-state-action-secondary {
+  background: transparent;
+  color: var(--primary-color, #3b82f6);
+  border: 2px solid var(--primary-color, #3b82f6);
+}
+
+.empty-state-action-secondary:hover {
+  background: var(--primary-color, #3b82f6);
+  color: white;
+}
+
+/* Multiple Actions */
+.empty-state-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ===========================================
+   SPECIFIC EMPTY STATE TYPES
+   =========================================== */
+
+/* No Search Results */
+.empty-state-no-results {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 16px;
+  margin: 1rem 0;
+}
+
+.empty-state-no-results .empty-state-icon {
+  color: var(--warning-color, #f59e0b);
+}
+
+/* No Bookings */
+.empty-state-no-bookings .empty-state-icon {
+  color: var(--primary-color, #3b82f6);
+}
+
+/* No Flights */
+.empty-state-no-flights .empty-state-icon {
+  color: var(--info-color, #0ea5e9);
+}
+
+/* Empty Cart */
+.empty-state-empty-cart .empty-state-icon {
+  color: var(--secondary-color, #64748b);
+}
+
+/* No Reviews */
+.empty-state-no-reviews .empty-state-icon {
+  color: var(--warning-color, #f59e0b);
+}
+
+/* No Notifications */
+.empty-state-no-notifications .empty-state-icon {
+  color: var(--success-color, #10b981);
+}
+
+/* Error State */
+.empty-state-error {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-radius: 16px;
+}
+
+.empty-state-error .empty-state-icon {
+  color: var(--error-color, #ef4444);
+}
+
+.empty-state-error .empty-state-title {
+  color: var(--error-color, #ef4444);
+}
+
+/* Offline State */
+.empty-state-offline {
+  background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+  border-radius: 16px;
+}
+
+.empty-state-offline .empty-state-icon {
+  color: var(--warning-color, #f59e0b);
+}
+
+/* Coming Soon */
+.empty-state-coming-soon {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 16px;
+}
+
+.empty-state-coming-soon .empty-state-icon {
+  color: var(--info-color, #0ea5e9);
+}
+
+/* ===========================================
+   EMPTY STATE WITH ILLUSTRATION
+   =========================================== */
+
+.empty-state-illustration {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 2rem;
+}
+
+/* Plane illustration for no flights */
+.illustration-plane {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.illustration-plane::before {
+  content: '✈️';
+  font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: plane-fly 4s ease-in-out infinite;
+}
+
+@keyframes plane-fly {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(-10deg);
+  }
+  50% {
+    transform: translate(-50%, -60%) rotate(10deg);
+  }
+}
+
+/* Calendar illustration for no bookings */
+.illustration-calendar::before {
+  content: '📅';
+  font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Search illustration */
+.illustration-search::before {
+  content: '🔍';
+  font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: search-bounce 2s ease-in-out infinite;
+}
+
+@keyframes search-bounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* ===========================================
+   INLINE SVG ICONS FOR EMPTY STATES
+   =========================================== */
+
+/* These can be used with inline SVG */
+.empty-icon-plane {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.empty-icon-booking {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.empty-icon-search {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ===========================================
+   TIPS/SUGGESTIONS SECTION
+   =========================================== */
+
+.empty-state-tips {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+  width: 100%;
+  max-width: 500px;
+}
+
+.empty-state-tips-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.empty-state-tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.empty-state-tips-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+}
+
+.empty-state-tips-list li::before {
+  content: '💡';
+  flex-shrink: 0;
+}
+
+/* ===========================================
+   DARK MODE SUPPORT
+   =========================================== */
+
+[data-theme="dark"] .empty-state {
+  background: var(--card-bg-dark, #1e1e1e);
+}
+
+[data-theme="dark"] .empty-state-title {
+  color: var(--text-primary-dark, #f5f5f5);
+}
+
+[data-theme="dark"] .empty-state-description {
+  color: var(--text-secondary-dark, #a0a0a0);
+}
+
+[data-theme="dark"] .empty-state-no-results {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+[data-theme="dark"] .empty-state-error {
+  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+}
+
+[data-theme="dark"] .empty-state-offline {
+  background: linear-gradient(135deg, #422006 0%, #713f12 100%);
+}
+
+[data-theme="dark"] .empty-state-coming-soon {
+  background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+}
+
+/* ===========================================
+   RESPONSIVE ADJUSTMENTS
+   =========================================== */
+
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 2rem 1rem;
+    min-height: 250px;
+  }
+  
+  .empty-state-icon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .empty-state-title {
+    font-size: 1.25rem;
+  }
+  
+  .empty-state-description {
+    font-size: 0.9rem;
+  }
+  
+  .empty-state-illustration {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .empty-state-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .empty-state-action {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .empty-state-full {
+    min-height: 50vh;
+  }
+  
+  .empty-state-icon {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .empty-state-title {
+    font-size: 1.125rem;
+  }
+}

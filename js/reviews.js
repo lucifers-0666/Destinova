@@ -20,9 +20,34 @@ document.addEventListener('DOMContentLoaded', function () {
     // In a real app, this would be a fetch call to a server.
     const mockApi = {
         fetchReviews: async () => {
-            // Simulate API delay
+            // Try real API first
+            if (window.DestinovaAPI && window.DestinovaAPI.Review) {
+                try {
+                    const response = await DestinovaAPI.Review.list();
+                    if (response.success && response.reviews && response.reviews.length > 0) {
+                        return response.reviews.map(review => ({
+                            id: review._id || review.id,
+                            author: review.userName || review.author || 'Anonymous',
+                            avatar: review.userAvatar || `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 50)}.jpg`,
+                            location: review.location || 'Unknown Location',
+                            memberSince: review.memberSince || 2024,
+                            rating: review.rating || 5,
+                            date: review.createdAt || review.date || new Date().toISOString(),
+                            flight: review.flight || { route: 'N/A', number: 'N/A', date: 'N/A', class: 'Economy' },
+                            title: review.title || 'Great Experience',
+                            text: review.text || review.comment || '',
+                            helpful: review.helpful || { up: 0, down: 0 },
+                            isVerified: review.isVerified !== undefined ? review.isVerified : true,
+                            adminResponse: review.adminResponse || null,
+                        }));
+                    }
+                } catch (error) {
+                    console.log('API not available, using mock data:', error.message);
+                }
+            }
+            
+            // Fallback: Generate mock data for demo
             await new Promise(resolve => setTimeout(resolve, 500));
-            // Generate more mock data for pagination
             const sampleReviews = Array.from({ length: 50 }, (_, i) => ({
                 id: i + 1,
                 author: `Traveler ${i + 1}`,
@@ -42,6 +67,21 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         submitReview: async (reviewData) => {
             console.log("Submitting review:", reviewData);
+            
+            // Try real API first
+            if (window.DestinovaAPI && window.DestinovaAPI.Review) {
+                try {
+                    const response = await DestinovaAPI.Review.create(reviewData);
+                    if (response.success) {
+                        return { success: true, message: "Review submitted successfully." };
+                    }
+                    throw new Error(response.message || 'Failed to submit review');
+                } catch (error) {
+                    console.log('API error, using fallback:', error.message);
+                }
+            }
+            
+            // Fallback to mock
             await new Promise(resolve => setTimeout(resolve, 1000));
             return { success: true, message: "Review submitted for moderation." };
         }

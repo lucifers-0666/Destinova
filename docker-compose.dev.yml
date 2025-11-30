@@ -1,0 +1,100 @@
+# ================================
+# Destinova - Development Docker Compose
+# Includes hot reload and dev tools
+# ================================
+
+services:
+  # ===================
+  # Application (Development)
+  # ===================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: destinova-app-dev
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongodb:27017/destinova-dev
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - destinova-dev-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+
+  # ===================
+  # MongoDB (Development)
+  # ===================
+  mongodb:
+    image: mongo:7-jammy
+    container_name: destinova-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-dev-data:/data/db
+    networks:
+      - destinova-dev-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ===================
+  # Redis (Development)
+  # ===================
+  redis:
+    image: redis:7-alpine
+    container_name: destinova-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - destinova-dev-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ===================
+  # Mongo Express (Database Admin UI)
+  # ===================
+  mongo-express:
+    image: mongo-express:latest
+    container_name: destinova-mongo-express-dev
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=pass
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - destinova-dev-network
+
+# ===================
+# Networks
+# ===================
+networks:
+  destinova-dev-network:
+    driver: bridge
+
+# ===================
+# Volumes
+# ===================
+volumes:
+  mongodb-dev-data:
+    name: destinova-mongodb-dev-data

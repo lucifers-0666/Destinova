@@ -328,7 +328,145 @@ function applySorting() {
 // ============================================
 // DESTINATION CARDS
 // ============================================
-function initDestinationCards() {
+async function initDestinationCards() {
+    const grid = document.getElementById('destinationsGrid');
+    if (!grid) return;
+
+    // Show loading state if empty (or keep static as placeholder until loaded)
+    // grid.innerHTML = '<div class="loading-spinner">Loading destinations...</div>';
+
+    try {
+        let destinations = null;
+        
+        // Try new DestinationsAPI first
+        if (typeof DestinationsAPI !== 'undefined') {
+            try {
+                const response = await DestinationsAPI.getAllDestinations();
+                if (response.success && response.data) {
+                    destinations = response.data.destinations || response.data;
+                }
+            } catch (error) {
+                console.log('DestinationsAPI error:', error);
+            }
+        }
+        
+        // Fallback to legacy API
+        if (!destinations && typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Destination) {
+            try {
+                destinations = await window.DestinovaAPI.Destination.getAll();
+            } catch (error) {
+                console.warn('Legacy API error:', error);
+            }
+        }
+        
+        if (!destinations) {
+            console.warn('No API available, using static content');
+            setupDestinationCardListeners();
+            return;
+        }
+        
+        if (Array.isArray(destinations) && destinations.length > 0) {
+            // Clear grid
+            grid.innerHTML = '';
+
+            destinations.forEach(dest => {
+                const card = createDestinationCard(dest);
+                grid.appendChild(card);
+            });
+        }
+
+        // Re-attach listeners
+        setupDestinationCardListeners();
+
+    } catch (error) {
+        console.error('Failed to load destinations:', error);
+        // Fallback to static content
+        setupDestinationCardListeners();
+    }
+}
+
+function createDestinationCard(dest) {
+    const article = document.createElement('article');
+    article.className = 'destination-card-clean';
+    article.dataset.price = dest.price || 1000; 
+    article.dataset.duration = 'week'; 
+    article.dataset.style = 'city'; 
+    article.dataset.season = 'all-year'; 
+
+    article.innerHTML = `
+        <div class="card-image-wrapper">
+            <img src="${dest.image || 'https://via.placeholder.com/800'}" 
+                 alt="${dest.name}" 
+                 loading="lazy">
+            <div class="card-image-overlay"></div>
+            
+            <button class="wishlist-btn" data-destination="${dest._id}" aria-label="Add to wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+            
+            ${dest.featured ? `
+            <span class="seasonal-tag">
+                <i class="fas fa-fire"></i>
+                TRENDING
+            </span>` : ''}
+
+            <div class="quick-preview">
+                <h4>Highlights</h4>
+                <ul>
+                    ${dest.attractions ? dest.attractions.slice(0, 3).map(attr => `<li><i class="fas fa-check"></i> ${attr}</li>`).join('') : ''}
+                </ul>
+                <button class="btn-primary-gold btn-view-details" data-destination="${dest._id}">
+                    <i class="fas fa-arrow-right"></i>
+                    View Full Details
+                </button>
+            </div>
+        </div>
+
+        <div class="card-content-section">
+            <div class="card-header-row">
+                <h3 class="destination-title">${dest.name}</h3>
+                <div class="destination-rating">
+                    <i class="fas fa-star"></i>
+                    <span class="rating-value">${dest.popularityScore ? (dest.popularityScore / 20).toFixed(1) : '4.5'}</span>
+                    <span class="rating-count">(${Math.floor(Math.random() * 1000)})</span>
+                </div>
+            </div>
+
+            <div class="destination-meta-tags">
+                <span class="meta-tag">
+                    <i class="fas fa-flag"></i>
+                    ${dest.country}
+                </span>
+                <span class="meta-tag">
+                    <i class="fas fa-calendar"></i>
+                    ${dest.bestTimeToVisit || 'All Year'}
+                </span>
+                <span class="meta-tag">
+                    <i class="fas fa-temperature-half"></i>
+                    ${dest.averageTemp || '25°C'}
+                </span>
+            </div>
+
+            <div class="destination-highlights">
+                <p>${dest.description ? dest.description.substring(0, 100) + '...' : ''}</p>
+            </div>
+
+            <div class="card-footer-row">
+                <div class="price-block">
+                    <span class="price-label">From</span>
+                    <span class="price-value">$${dest.price || '999'}</span>
+                    <span class="price-period">/ person</span>
+                </div>
+                <button class="btn-book-now" data-destination="${dest._id}">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    `;
+    return article;
+}
+
+function setupDestinationCardListeners() {
     // View details buttons
     const viewDetailsBtns = document.querySelectorAll('.btn-view-details');
     viewDetailsBtns.forEach(btn => {
@@ -336,7 +474,7 @@ function initDestinationCards() {
             const destination = this.dataset.destination;
             console.log('View details:', destination);
             // window.location.href = `destination-detail.html?id=${destination}`;
-            showNotification(`Loading ${destination} details...`);
+            showNotification(`Loading details...`);
         });
     });
     
@@ -347,6 +485,25 @@ function initDestinationCards() {
             console.log('Book now clicked');
             showNotification('Redirecting to booking... ✈️');
             // window.location.href = 'booking.html';
+        });
+    });
+    
+    // Wishlist buttons (re-attach if needed, though initWishlist might handle it globally if it uses delegation)
+    // But here we attach directly
+    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+    wishlistBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (this.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                showNotification('Added to wishlist! ❤️');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                showNotification('Removed from wishlist');
+            }
         });
     });
 }

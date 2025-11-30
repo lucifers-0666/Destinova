@@ -63,8 +63,41 @@ function setupEventListeners() {
 }
 
 // Load bookings data
-function loadBookingsData() {
-    // Mock data - Replace with actual API call
+async function loadBookingsData() {
+    // Try real API first
+    try {
+        if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Admin) {
+            const response = await window.DestinovaAPI.Admin.getAllBookings();
+            if (response && response.bookings && response.bookings.length > 0) {
+                bookingsData = response.bookings.map(booking => ({
+                    id: booking._id || booking.id || `BK${Math.random().toString(36).substr(2, 6)}`,
+                    passenger: {
+                        name: booking.user?.name || 'Unknown',
+                        email: booking.user?.email || 'N/A',
+                        avatar: booking.user?.profileImage || `https://ui-avatars.com/api/?name=${booking.user?.name || 'User'}&background=random`
+                    },
+                    flight: {
+                        from: booking.flight?.origin || 'N/A',
+                        to: booking.flight?.destination || 'N/A',
+                        flight: booking.flight?.flightNumber || 'N/A'
+                    },
+                    travelDate: booking.journeyDate ? new Date(booking.journeyDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A',
+                    class: 'Economy', // Default
+                    amount: booking.totalPrice || 0,
+                    status: booking.bookingStatus || 'pending',
+                    bookedOn: booking.createdAt ? new Date(booking.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A'
+                }));
+                filteredBookings = [...bookingsData];
+                renderBookingsTable();
+                updateStats();
+                return;
+            }
+        }
+    } catch (error) {
+        console.log('Admin API not available, using mock data:', error.message);
+    }
+    
+    // Fallback to mock data
     bookingsData = generateMockBookings(50);
     filteredBookings = [...bookingsData];
     renderBookingsTable();

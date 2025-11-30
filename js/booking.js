@@ -1107,20 +1107,97 @@ function handlePaymentConfirmation() {
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Processing Payment...</span>';
     
-    setTimeout(() => {
-        triggerConfetti();
-        showNotification('🎉 Payment Successful!', 'success');
+    // Collect passenger data
+    const passengers = [];
+    for (let i = 1; i <= STATE.passengerCount; i++) {
+        const passengerId = `passenger-${i}`;
+        const firstName = document.getElementById(`${passengerId}-first-name`)?.value || '';
+        const lastName = document.getElementById(`${passengerId}-last-name`)?.value || '';
+        const email = document.getElementById(`${passengerId}-email`)?.value || '';
+        const phone = document.getElementById(`${passengerId}-phone`)?.value || '';
         
+        passengers.push({
+            firstName,
+            lastName,
+            email,
+            phone,
+            type: 'adult'
+        });
+    }
+    
+    // Get flight info from localStorage or URL
+    const lastSearch = JSON.parse(localStorage.getItem('lastSearch') || '{}');
+    const prices = calculatePrices();
+    
+    // Prepare booking data
+    const bookingData = {
+        flights: lastSearch.flightId ? [lastSearch.flightId] : [],
+        passengers: passengers,
+        class: lastSearch.class || 'economy',
+        pricing: {
+            baseFare: prices.baseFare,
+            taxes: prices.taxes,
+            total: prices.total
+        },
+        insurance: STATE.insuranceSelected,
+        seats: Array.from(STATE.selectedSeats.keys())
+    };
+    
+    // Check if API is available
+    if (typeof window.DestinovaAPI !== 'undefined') {
+        // Adapt data for backend
+        const apiBookingData = {
+            flightId: lastSearch.flightId || '64f1b2c3e4b0a1a2b3c4d5e6', // Fallback ID if testing
+            passengers: passengers,
+            journeyDate: lastSearch.departureDate || new Date().toISOString()
+        };
+
+        window.DestinovaAPI.Booking.createFlightBooking(apiBookingData)
+            .then(response => {
+                // Booking created successfully
+                triggerConfetti();
+                showNotification('🎉 Payment Successful!', 'success');
+                
+                // Store booking reference
+                localStorage.setItem('lastBookingRef', response.data._id);
+                localStorage.setItem('hasBookedTicket', 'true');
+                
+                setTimeout(() => {
+                    alert(
+                        '🎉 Booking Confirmed!\n\n' +
+                        `Your booking reference: ${response.data._id}\n` +
+                        'E-tickets have been sent to your email.\n\n' +
+                        'Thank you for choosing Destinova!'
+                    );
+                    window.location.href = 'booking-confirmation.html';
+                }, 1000);
+            })
+            .catch(error => {
+                console.error('Booking error:', error);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-lock"></i> <span>Confirm & Pay</span>';
+                showNotification('Booking failed: ' + (error.message || 'Please try again'), 'error');
+            });
+    } else {
+        // Fallback for demo mode
         setTimeout(() => {
-            alert(
-                '🎉 Booking Confirmed!\n\n' +
-                'Your booking reference: DEST1NOVA\n' +
-                'E-tickets have been sent to your email.\n\n' +
-                'Thank you for choosing Destinova!'
-            );
-            window.location.href = '/';
-        }, 1000);
-    }, 2500);
+            triggerConfetti();
+            showNotification('🎉 Payment Successful!', 'success');
+            
+            localStorage.setItem('lastBookingRef', 'DEST' + Date.now());
+            localStorage.setItem('hasBookedTicket', 'true');
+            
+            setTimeout(() => {
+                alert(
+                    '🎉 Booking Confirmed!\n\n' +
+                    'Your booking reference: DEST' + Date.now() + '\n' +
+                    'E-tickets have been sent to your email.\n\n' +
+                    'Thank you for choosing Destinova!'
+                );
+                window.location.href = 'booking-confirmation.html';
+            }, 1000);
+        }, 2500);
+    }
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

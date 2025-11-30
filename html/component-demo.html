@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <title>Destinova - Component Demo Page</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Global Variables -->
+  <link rel="stylesheet" href="../css/variables.css">
+
+  <!-- Header CSS - External -->
+  <link rel="stylesheet" href="../css/header.css?v=20251128">
+  
+  <!-- Footer CSS - External -->
+  <link rel="stylesheet" href="../css/footer.css?v=20251128">
+
+  <style>
+    /* Page specific styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .main-content {
+      padding-top: 140px; /* Account for fixed header */
+      min-height: 100vh;
+    }
+
+    .demo-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .demo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1d5e33;
+      margin-bottom: 1rem;
+    }
+
+    .demo-subtitle {
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 3rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .info-card h3 {
+      color: #1d5e33;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .info-card p {
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .code-block {
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+
+    .code-block code {
+      color: #98c379;
+    }
+
+    .highlight {
+      color: #e5c07b;
+    }
+
+    .comment {
+      color: #5c6370;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===================================
+       HEADER PLACEHOLDER
+       The header component will be loaded here
+       =================================== -->
+  <div id="header-placeholder"></div>
+
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="main-content">
+    <section class="demo-section">
+      <h1 class="demo-title">🎉 Component Demo Page</h1>
+      <p class="demo-subtitle">This page demonstrates how to use the separate header and footer components</p>
+
+      <div class="info-card">
+        <h3>📁 File Structure</h3>
+        <p>The header and footer are now in separate files:</p>
+        <div class="code-block">
+          <code>
+html/<br>
+├── components/<br>
+│   ├── header.html    <span class="comment">// Header HTML component</span><br>
+│   └── footer.html    <span class="comment">// Footer HTML component</span><br>
+css/<br>
+├── header.css         <span class="comment">// Header styles</span><br>
+├── footer.css         <span class="comment">// Footer styles</span><br>
+js/<br>
+├── header.js          <span class="comment">// Header JavaScript</span><br>
+├── footer.js          <span class="comment">// Footer JavaScript</span><br>
+├── component-loader.js <span class="comment">// Auto-loader script</span>
+          </code>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>🔧 Method 1: Direct Include (Recommended)</h3>
+        <p>Simply add the CSS and placeholder divs, then include the component loader:</p>
+        <div class="code-block">
+          <code>
+<span class="comment">&lt;!-- In your &lt;head&gt; section --&gt;</span><br>
+&lt;link rel="stylesheet" href="<span class="highlight">../css/header.css</span>"&gt;<br>
+&lt;link rel="stylesheet" href="<span class="highlight">../css/footer.css</span>"&gt;<br><br>
+
+<span class="comment">&lt;!-- At the top of your &lt;body&gt; --&gt;</span><br>
+&lt;div id="<span class="highlight">header-placeholder</span>"&gt;&lt;/div&gt;<br><br>
+
+<span class="comment">&lt;!-- Your page content here --&gt;</span><br><br>
+
+<span class="comment">&lt;!-- At the bottom of your &lt;body&gt; --&gt;</span><br>
+&lt;div id="<span class="highlight">footer-placeholder</span>"&gt;&lt;/div&gt;<br><br>
+
+<span class="comment">&lt;!-- Load the component loader --&gt;</span><br>
+&lt;script src="<span class="highlight">../js/component-loader.js</span>"&gt;&lt;/script&gt;
+          </code>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>📋 Method 2: Fetch and Insert (This Page)</h3>
+        <p>Or fetch and insert the components manually:</p>
+        <div class="code-block">
+          <code>
+<span class="comment">// Fetch header</span><br>
+fetch('<span class="highlight">../html/components/header.html</span>')<br>
+  .then(response => response.text())<br>
+  .then(html => {<br>
+    document.getElementById('header-placeholder').innerHTML = html;<br>
+  });<br><br>
+
+<span class="comment">// Fetch footer</span><br>
+fetch('<span class="highlight">../html/components/footer.html</span>')<br>
+  .then(response => response.text())<br>
+  .then(html => {<br>
+    document.getElementById('footer-placeholder').innerHTML = html;<br>
+  });
+          </code>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>✨ Benefits</h3>
+        <ul style="list-style: disc; padding-left: 1.5rem; color: #555;">
+          <li style="margin-bottom: 0.5rem;">Single source of truth for header and footer</li>
+          <li style="margin-bottom: 0.5rem;">Easy to update across all pages</li>
+          <li style="margin-bottom: 0.5rem;">Separate CSS files for better organization</li>
+          <li style="margin-bottom: 0.5rem;">Consistent styling across your site</li>
+          <li style="margin-bottom: 0.5rem;">Faster development and maintenance</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ===================================
+       FOOTER PLACEHOLDER
+       The footer component will be loaded here
+       =================================== -->
+  <div id="footer-placeholder"></div>
+
+
+  <!-- Load API Client First -->
+  <script src="../js/api.js"></script>
+  
+  <!-- Fetch and load header component -->
+  <script>
+    // Helper to load script
+    function loadScript(src, callback) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.onload = callback;
+      document.body.appendChild(script);
+    }
+
+    // Load Header
+    fetch('../html/components/header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header-placeholder').innerHTML = html;
+        
+        // Load header.js after HTML is inserted
+        loadScript('../js/header.js?v=' + Date.now(), function() {
+          console.log('Header script loaded');
+          if (typeof initHeader === 'function') {
+            // Small delay to ensure DOM is ready
+            setTimeout(initHeader, 50);
+          } else {
+            console.error('initHeader function not found');
+          }
+        });
+      })
+      .catch(err => console.error('Failed to load header:', err));
+
+    // Load Footer
+    fetch('../html/components/footer.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+        
+        // Load footer.js after HTML is inserted
+        loadScript('../js/footer.js?v=' + Date.now(), function() {
+          console.log('Footer script loaded');
+          if (typeof LuxuryFooter === 'function') {
+             // Small delay to ensure DOM is ready
+            setTimeout(() => new LuxuryFooter(), 50);
+          } else {
+            console.error('LuxuryFooter class not found');
+          }
+        });
+      })
+      .catch(err => console.error('Failed to load footer:', err));
+  </script>
+
+  <!-- Initialize AOS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true
+      });
+    });
+  </script>
+</body>
+
+</html>

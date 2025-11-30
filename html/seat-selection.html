@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Seats - Destinova</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/seat-selection.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header Component -->
+  <div id="header-container"></div>
+
+  <main class="seat-selection-page">
+    <div class="container">
+      <!-- Progress Steps -->
+      <div class="booking-progress">
+        <div class="progress-step completed">
+          <span class="step-number">1</span>
+          <span class="step-label">Search</span>
+        </div>
+        <div class="progress-line completed"></div>
+        <div class="progress-step completed">
+          <span class="step-number">2</span>
+          <span class="step-label">Passengers</span>
+        </div>
+        <div class="progress-line active"></div>
+        <div class="progress-step active">
+          <span class="step-number">3</span>
+          <span class="step-label">Seats</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <span class="step-number">4</span>
+          <span class="step-label">Payment</span>
+        </div>
+      </div>
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1><i class="fas fa-chair"></i> Select Your Seats</h1>
+        <p>Choose your preferred seats for a comfortable journey</p>
+      </div>
+
+      <!-- Flight Info Bar -->
+      <div class="flight-info-bar" id="flightInfoBar">
+        <div class="flight-route">
+          <span class="origin" id="originCity">---</span>
+          <i class="fas fa-plane"></i>
+          <span class="destination" id="destCity">---</span>
+        </div>
+        <div class="flight-details">
+          <span><i class="fas fa-hashtag"></i> <span id="flightNumber">---</span></span>
+          <span><i class="fas fa-calendar"></i> <span id="flightDate">---</span></span>
+          <span><i class="fas fa-clock"></i> <span id="flightTime">---</span></span>
+        </div>
+      </div>
+
+      <div class="seat-selection-container">
+        <!-- Left Panel: Seat Map -->
+        <div class="seat-map-panel">
+          <div class="aircraft-header">
+            <div class="aircraft-nose"></div>
+            <div class="cockpit-label">COCKPIT</div>
+          </div>
+
+          <!-- Seat Legend -->
+          <div class="seat-legend">
+            <div class="legend-item">
+              <span class="legend-seat available"></span>
+              <span>Available</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-seat booked"></span>
+              <span>Booked</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-seat selected"></span>
+              <span>Your Selection</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-seat locked"></span>
+              <span>Locked</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-seat exit-row"></span>
+              <span>Exit Row (+₹500)</span>
+            </div>
+          </div>
+
+          <!-- Seat Grid Container -->
+          <div class="seat-grid-wrapper">
+            <div class="seat-labels-row">
+              <span class="row-number"></span>
+              <span class="seat-label">A</span>
+              <span class="seat-label">B</span>
+              <span class="seat-label">C</span>
+              <span class="seat-label aisle"></span>
+              <span class="seat-label">D</span>
+              <span class="seat-label">E</span>
+              <span class="seat-label">F</span>
+            </div>
+            <div class="seat-grid" id="seatGrid">
+              <!-- Seats will be dynamically generated -->
+              <div class="loading-seats">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Loading seat map...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="aircraft-footer">
+            <div class="aircraft-tail"></div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Selection Details -->
+        <div class="selection-panel">
+          <!-- Passenger Selection -->
+          <div class="passenger-selection-card">
+            <h3><i class="fas fa-user"></i> Assign Seats to Passengers</h3>
+            <div class="passenger-list" id="passengerList">
+              <!-- Passengers will be listed here -->
+            </div>
+          </div>
+
+          <!-- Seat Pricing Info -->
+          <div class="pricing-info-card">
+            <h3><i class="fas fa-tag"></i> Seat Pricing</h3>
+            <div class="pricing-grid">
+              <div class="pricing-item">
+                <span class="pricing-label">Standard Seat</span>
+                <span class="pricing-value">Free</span>
+              </div>
+              <div class="pricing-item">
+                <span class="pricing-label">Window Seat (A, F)</span>
+                <span class="pricing-value">+₹200</span>
+              </div>
+              <div class="pricing-item">
+                <span class="pricing-label">Aisle Seat (C, D)</span>
+                <span class="pricing-value">+₹200</span>
+              </div>
+              <div class="pricing-item">
+                <span class="pricing-label">Exit Row (Row 10, 20)</span>
+                <span class="pricing-value">+₹500</span>
+              </div>
+              <div class="pricing-item">
+                <span class="pricing-label">Front Rows (1-5)</span>
+                <span class="pricing-value">+₹300</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected Seats Summary -->
+          <div class="selection-summary-card">
+            <h3><i class="fas fa-list-check"></i> Selected Seats</h3>
+            <div class="selected-seats-list" id="selectedSeatsList">
+              <p class="no-selection">No seats selected yet</p>
+            </div>
+            <div class="seats-total">
+              <span>Seat Charges:</span>
+              <span id="seatChargesTotal">₹0</span>
+            </div>
+          </div>
+
+          <!-- Lock Timer Warning -->
+          <div class="lock-timer-card" id="lockTimerCard" style="display: none;">
+            <i class="fas fa-clock"></i>
+            <span>Seats locked for: <strong id="lockTimer">10:00</strong></span>
+            <p>Complete payment before timer expires</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button class="btn btn-secondary" id="skipSeatsBtn">
+              <i class="fas fa-forward"></i> Skip Seat Selection
+            </button>
+            <button class="btn btn-primary" id="confirmSeatsBtn" disabled>
+              <i class="fas fa-check"></i> Confirm Seats
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Component -->
+  <div id="footer-container"></div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="../js/component-loader.js"></script>
+  <script src="../js/seat-selection.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadComponent('header-container', 'components/header.html');
+      loadComponent('footer-container', 'components/footer.html');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinova - Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="font" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900" crossorigin>
+    <link rel="stylesheet" href="/css/sign-in.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div class="success-overlay" id="successOverlay"></div>
+
+    <div class="main-container">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="hero-bg"></div>
+            <div class="gradient-overlay"></div>
+
+            <div class="glass-circle circle-1"></div>
+            <div class="glass-circle circle-2"></div>
+            <div class="glass-circle circle-3"></div>
+            <div class="glass-circle circle-4"></div>
+
+            <div class="brand-card">
+                <h1 class="brand-logo-text">Destinova</h1>
+                <p class="brand-tagline">MOUNTAIN VISTA</p>
+                <p class="brand-description">Discover extraordinary destinations and create memories that last forever</p>
+
+                <div class="stats-panel">
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="tripsCount">0</div>
+                        <div class="stat-label">Trips Booked</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="countriesCount">0</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon-wrapper">
+                            <svg class="stat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                            </svg>
+                        </div>
+                        <div class="stat-number" id="ratingCount">0.0</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="security-badge">
+                <i class="fas fa-lock"></i>
+                SECURED BY 256-BIT SSL
+            </div>
+
+            <div class="form-container" id="main-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <div class="logo-text">Destinova</div>
+                </div>
+
+                <h1 class="welcome-title">Welcome Back!</h1>
+                <p class="welcome-subtitle">Sign in to access your travel dashboard</p>
+
+                <div class="social-proof">
+                    <i class="fas fa-users"></i>
+                    <span>Join 2.5M+ travelers worldwide</span>
+                </div>
+
+                <div class="error-alert" id="errorAlert" role="alert" aria-live="polite">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="errorAlertText">Invalid email or password. Please try again.</span>
+                    <button class="error-alert-close" onclick="closeErrorAlert()" aria-label="Close error alert">×</button>
+                </div>
+
+                <form id="signinForm" novalidate>
+                    <!-- EMAIL FIELD -->
+                    <div class="form-group">
+                        <div class="form-label-wrapper">
+                            <label class="form-label" for="email">Email Address *</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input 
+                                type="email" 
+                                id="email"
+                                name="email"
+                                class="form-input" 
+                                placeholder="your.email@example.com" 
+                                autocomplete="email"
+                                required
+                                aria-describedby="emailError"
+                            >
+                            <div class="validation-icon success" id="emailSuccess">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="validation-icon error" id="emailErrorIcon">
+                                <i class="fas fa-exclamation"></i>
+                            </div>
+                        </div>
+                        <div class="error-space">
+                            <div class="error-message" id="emailError">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Please enter a valid email address</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD FIELD -->
+                    <div class="form-group">
+                        <div class="form-label-wrapper">
+                            <label class="form-label" for="password">Password *</label>
+                            <div class="info-icon">
+                                <span>i</span>
+                                <div class="info-tooltip">
+                                    Password must contain:
+                                    <ul>
+                                        <li>At least 8 characters</li>
+                                        <li>One uppercase letter</li>
+                                        <li>One number</li>
+                                        <li>One special character</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password"
+                                class="form-input" 
+                                placeholder="Enter your password" 
+                                autocomplete="current-password"
+                                required
+                                aria-describedby="passwordError"
+                            >
+                            <button 
+                                type="button" 
+                                class="password-toggle" 
+                                id="passwordToggle"
+                                onclick="togglePassword()"
+                                aria-label="Show password"
+                            >
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-label" id="strengthLabel">Weak</div>
+                            <div class="strength-segments">
+                                <div class="strength-segment" id="segment1"></div>
+                                <div class="strength-segment" id="segment2"></div>
+                                <div class="strength-segment" id="segment3"></div>
+                            </div>
+                        </div>
+                        <div class="error-space">
+                            <div class="error-message" id="passwordError">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>Password must be at least 8 characters</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <label class="checkbox-wrapper" for="remember">
+                            <input type="checkbox" id="remember" autocomplete="off">
+                            <span class="checkbox-label">Remember me</span>
+                        </label>
+                        <a href="forgot-password.html" class="forgot-link">
+                            <i class="fas fa-lock"></i>
+                            Forgot your password?
+                        </a>
+                    </div>
+
+                    <button type="submit" class="signin-button" id="signinBtn">
+                        <span class="button-text">Sign In</span>
+                        <i class="fas fa-arrow-right arrow-icon"></i>
+                        <div class="spinner"></div>
+                        <div class="success-check"><i class="fas fa-check"></i></div>
+                    </button>
+                </form>
+
+                <div class="social-divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <div class="social-buttons">
+                    <button class="social-icon google" aria-label="Sign in with Google" tabindex="0">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-icon facebook" aria-label="Sign in with Facebook" tabindex="0">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-icon apple" aria-label="Sign in with Apple" tabindex="0">
+                        <i class="fab fa-apple"></i>
+                    </button>
+                    <button class="social-icon biometric" aria-label="Sign in with Biometric" tabindex="0">
+                        <i class="fas fa-fingerprint"></i>
+                    </button>
+                </div>
+
+                <div class="signup-link">
+                    New to Destinova? <a href="/sign-up">Create Account <span class="signup-arrow">→</span></a>
+                </div>
+
+                <div class="privacy-link">
+                    We protect your privacy. <a href="/privacy-policy">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load API client before sign-in.js -->
+    <script src="/js/api.js"></script>
+    <script src="/js/sign-in.js"></script>
+</body>
+</html>

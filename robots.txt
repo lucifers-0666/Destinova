@@ -1,0 +1,60 @@
+# Destinova Robots.txt
+# https://destinova.com/robots.txt
+
+# Allow all crawlers to index the site
+User-agent: *
+
+# Allow crawling of main pages
+Allow: /
+Allow: /html/
+Allow: /css/
+Allow: /js/
+Allow: /site-images/
+
+# Disallow crawling of sensitive areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /Admin/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /logs/
+Disallow: /uploads/
+Disallow: /*.json$
+Disallow: /*.ts$
+Disallow: /html/sign-in.html
+Disallow: /html/sign-up.html
+Disallow: /html/forgot-password.html
+Disallow: /html/profile.html
+Disallow: /html/my-bookings.html
+Disallow: /html/payment.html
+Disallow: /html/payment-history.html
+Disallow: /html/booking.html
+Disallow: /html/booking-confirmation.html
+
+# Crawl delay (be gentle to the server)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://destinova.com/sitemap.xml
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific directives
+User-agent: Bingbot
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

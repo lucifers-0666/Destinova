@@ -130,8 +130,11 @@ const STATE = {
 // INITIALIZATION
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     console.log('💳 Destinova Payment History - Initialized');
+    
+    // Try to load payments from API
+    await loadPaymentsFromAPI();
     
     updateSummaryCards();
     initializeChart();
@@ -139,6 +142,34 @@ document.addEventListener('DOMContentLoaded', function() {
     applyFilters();
     renderTransactions();
 });
+
+// Load payments from API
+async function loadPaymentsFromAPI() {
+    if (typeof window.DestinovaAPI !== 'undefined') {
+        try {
+            const response = await window.DestinovaAPI.Payment.getHistory();
+            if (response.payments && response.payments.length > 0) {
+                // Transform API response to match our format
+                STATE.allPayments = response.payments.map(payment => ({
+                    id: payment.transactionId || payment._id,
+                    bookingRef: payment.bookingId || 'N/A',
+                    amount: payment.amount || 0,
+                    status: payment.status || 'pending',
+                    date: payment.createdAt || new Date().toISOString(),
+                    method: payment.method || 'card',
+                    methodDetails: payment.cardDetails ? `Card ****${payment.cardDetails.last4Digits}` : payment.method,
+                    flightRoute: 'Flight details',
+                    travelDate: new Date().toISOString().split('T')[0],
+                    passengers: 1
+                }));
+                console.log('✅ Loaded payments from API:', STATE.allPayments.length);
+            }
+        } catch (error) {
+            console.error('Failed to load payments from API:', error);
+            // Keep using MOCK_PAYMENTS as fallback
+        }
+    }
+}
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // UPDATE SUMMARY CARDS

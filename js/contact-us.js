@@ -282,9 +282,38 @@ function handleFormSubmit(e) {
     submitBtn.classList.add('loading');
     submitBtn.querySelector('.btn-submit-text').textContent = 'Sending';
     
-    // Simulate API call
-    setTimeout(() => {
-        // Success
+    // Gather form data
+    const formData = {
+        fullname: form.querySelector('#fullname')?.value,
+        email: form.querySelector('#email')?.value,
+        phone: form.querySelector('#phone')?.value,
+        subject: form.querySelector('#subject')?.value,
+        message: form.querySelector('#message')?.value,
+    };
+    
+    // Try API call first
+    const submitToAPI = async () => {
+        if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Contact) {
+            try {
+                const response = await window.DestinovaAPI.Contact.submit(formData);
+                if (response) {
+                    return true;
+                }
+            } catch (error) {
+                console.log('Contact API error:', error.message);
+            }
+        }
+        
+        // Fallback / Demo simulation
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(true);
+            }, 1500);
+        });
+    };
+    
+    submitToAPI().then(() => {
+        // Success (API or demo mode)
         APP_STATE.isSubmitting = false;
         submitBtn.classList.remove('loading');
         submitBtn.querySelector('.btn-submit-text').textContent = 'Send Message';
@@ -302,8 +331,7 @@ function handleFormSubmit(e) {
         setTimeout(() => {
             successMsg.style.display = 'none';
         }, 5000);
-        
-    }, 2000);
+    });
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

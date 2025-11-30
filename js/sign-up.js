@@ -264,11 +264,51 @@ document.getElementById('signupForm').addEventListener('submit', function(e) {
     signupBtn.classList.add('loading');
     signupBtn.disabled = true;
     
-    setTimeout(() => {
+    // Prepare user data for API
+    const userData = {
+        firstName: firstName.value.trim(),
+        lastName: lastName.value.trim(),
+        email: emailInput.value.trim(),
+        password: passwordInput.value,
+        phone: document.getElementById('countryCode').value + phone.value.trim(),
+        dateOfBirth: dob.value,
+        gender: document.getElementById('gender').value,
+        nationality: document.getElementById('country').value,
+        preferences: {
+            currency: document.getElementById('currency').value,
+            language: 'en',
+            newsletter: document.getElementById('marketing').checked
+        }
+    };
+    
+    // Call API to register user
+    if (typeof window.DestinovaAPI !== 'undefined') {
+        window.DestinovaAPI.Auth.signup(userData)
+            .then(response => {
+                signupBtn.classList.remove('loading');
+                signupBtn.disabled = false;
+                
+                // Show success message
+                alert('🎉 Account created successfully! Welcome to Destinova, ' + response.user.firstName + '!');
+                
+                // Redirect to home page
+                window.location.href = 'index.html';
+            })
+            .catch(error => {
+                signupBtn.classList.remove('loading');
+                signupBtn.disabled = false;
+                
+                // Show error message
+                const errorMessage = error.message || 'Registration failed. Please try again.';
+                alert('❌ ' + errorMessage);
+            });
+    } else {
+        // Fallback for when API is not loaded
+        console.error('DestinovaAPI not loaded');
         signupBtn.classList.remove('loading');
         signupBtn.disabled = false;
-        alert('Account created successfully! Welcome to Destinova!');
-    }, 2000);
+        alert('System error: Please refresh the page and try again.');
+    }
 });
 
 // ============================================

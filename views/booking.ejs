@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Booking | Destinova - Luxury Travel</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Particles.js for Hero Animations -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/booking.css">
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-mesh"></div>
+    </div>
+
+    <!-- Timer Bar with Cancel Button -->
+    <div class="timer-bar glass-dark" id="timer-bar">
+        <div class="container timer-container">
+            <div class="timer-left">
+                <i class="fas fa-clock timer-icon"></i>
+                <span class="timer-text">
+                    Your seats are held for: 
+                    <strong id="countdown-display" class="countdown-time">14:59</strong>
+                </span>
+            </div>
+            <div class="timer-right">
+                <div class="auto-save-badge">
+                    <i class="fas fa-cloud-check"></i>
+                    <span>Draft Saved</span>
+                </div>
+                <button class="btn-close-timer" onclick="closeTimerBar()" title="Dismiss">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Hero Section with Particles -->
+    <section class="booking-hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80" 
+                 alt="Airplane" class="hero-bg-image">
+            <div class="hero-gradient-overlay"></div>
+            <div id="particles-js" class="particles-container"></div>
+        </div>
+        <div class="hero-content fade-slide-up">
+            <div class="airplane-trail">
+                <i class="fas fa-plane airplane-icon"></i>
+                <svg class="dotted-path" width="200" height="4">
+                    <line x1="0" y1="2" x2="200" y2="2" stroke="rgba(229, 203, 175, 0.6)" 
+                          stroke-width="2" stroke-dasharray="5,5" />
+                </svg>
+            </div>
+            <h1 class="hero-title">Finalize Your Journey</h1>
+            <p class="hero-subtitle">
+                <span class="hero-time">Complete in ~3 minutes</span>
+                <span class="hero-divider">•</span>
+                <span class="hero-autosave">Auto-saved <i class="fas fa-check-circle"></i></span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Progress Stepper -->
+    <div class="container progress-section">
+        <div class="progress-stepper">
+            <div class="progress-step active" data-step="1">
+                <div class="step-circle">
+                    <span class="step-number">1</span>
+                    <i class="fas fa-check step-checkmark"></i>
+                </div>
+                <span class="step-label">Passenger Details</span>
+            </div>
+            <div class="progress-connector">
+                <div class="connector-line"></div>
+                <div class="connector-fill"></div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-circle">
+                    <span class="step-number">2</span>
+                    <i class="fas fa-check step-checkmark"></i>
+                </div>
+                <span class="step-label">Seat Selection</span>
+            </div>
+            <div class="progress-connector">
+                <div class="connector-line"></div>
+                <div class="connector-fill"></div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-circle">
+                    <span class="step-number">3</span>
+                    <i class="fas fa-check step-checkmark"></i>
+                </div>
+                <span class="step-label">Review & Payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Booking Container -->
+    <div class="container booking-container">
+        <div class="booking-grid">
+            
+            <!-- Left Column: Booking Forms -->
+            <main class="booking-main stagger-children">
+                
+                <!-- ═══════════════════════════════════════════════════════════════
+                     STEP 1: PASSENGER DETAILS
+                     ═══════════════════════════════════════════════════════════════ -->
+                <div class="step-container" id="step-1">
+                    <div class="step-header scale-in">
+                        <h2 class="step-title">Passenger Details</h2>
+                        <p class="step-description">Enter information exactly as it appears on government-issued ID</p>
+                    </div>
+
+                    <!-- Passenger Forms Container -->
+                    <div id="passenger-forms" class="forms-wrapper">
+                        <!-- Forms added dynamically by JS -->
+                    </div>
+
+                    <!-- Add Passenger Button -->
+                    <button type="button" class="add-passenger-btn btn-magnetic" id="add-passenger-btn">
+                        <div class="add-passenger-content">
+                            <div class="add-icon-wrapper">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="add-text">
+                                <strong>Add Another Passenger</strong>
+                                <span class="capacity-text">
+                                    Up to 9 passengers • <span id="slots-remaining">8 slots remaining</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="magnetic-ripple"></div>
+                    </button>
+
+                    <!-- Travel Insurance Card with Remove Button -->
+                    <div class="insurance-card glass-card card-shine" id="insurance-card">
+                        <div class="insurance-badge-wrapper">
+                            <span class="recommended-badge shimmer-effect">RECOMMENDED</span>
+                        </div>
+                        <button class="btn-remove-insurance" onclick="removeInsurance()" title="Remove Insurance">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="insurance-header">
+                            <div class="insurance-icon-circle">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div class="insurance-title-block">
+                                <h3>Protect Your Trip</h3>
+                                <p class="insurance-price">Just ₹900/person for complete peace of mind</p>
+                            </div>
+                        </div>
+                        <div class="insurance-benefits-grid">
+                            <div class="benefit-card">
+                                <i class="fas fa-ban"></i>
+                                <span>Trip cancellation up to ₹50,000</span>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-heartbeat"></i>
+                                <span>Medical emergency coverage</span>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-suitcase-rolling"></i>
+                                <span>Lost baggage protection</span>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-headset"></i>
+                                <span>24/7 travel assistance</span>
+                            </div>
+                        </div>
+                        <div class="insurance-actions">
+                            <button type="button" class="btn btn-primary btn-insurance-yes" id="insurance-yes">
+                                <i class="fas fa-shield-check"></i>
+                                <span>Yes, Protect My Trip</span>
+                            </button>
+                            <button type="button" class="btn btn-ghost btn-insurance-no" id="insurance-no">
+                                No, I'll risk it
+                            </button>
+                        </div>
+                        <input type="hidden" id="insurance-value" value="no">
+                    </div>
+
+                    <!-- Contact Details Section -->
+                    <div class="contact-section glass-card">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-envelope-circle-check"></i>
+                            </div>
+                            <div class="section-title-block">
+                                <h3>Where should we send your tickets?</h3>
+                                <p>You'll receive your e-tickets and booking confirmation here</p>
+                            </div>
+                        </div>
+                        
+                        <label class="checkbox-custom">
+                            <input type="checkbox" id="use-passenger-contact">
+                            <span class="checkbox-mark"></span>
+                            <span class="checkbox-label">Use Passenger 1's email and phone</span>
+                        </label>
+
+                        <div class="contact-form-grid">
+                            <div class="input-group">
+                                <input type="email" class="input-field" id="contact-email" 
+                                       placeholder=" " required>
+                                <label class="input-label">Email Address</label>
+                                <i class="input-icon fas fa-envelope"></i>
+                                <div class="input-validation-icon"></div>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="tel" class="input-field phone-input" id="contact-phone" 
+                                       placeholder=" " maxlength="10" required>
+                                <label class="input-label">Phone Number</label>
+                                <i class="input-icon fas fa-phone"></i>
+                                <span class="phone-prefix">+91</span>
+                                <div class="input-validation-icon"></div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" id="verify-email-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Verification Code</span>
+                        </button>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-ghost" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back to Search</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-magnetic" onclick="nextStep(2)">
+                            <span>Continue to Seat Selection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════
+                     STEP 2: SEAT SELECTION
+                     ═══════════════════════════════════════════════════════════════ -->
+                <div class="step-container hidden" id="step-2">
+                    <div class="step-header scale-in">
+                        <h2 class="step-title">Select Your Seats</h2>
+                        <p class="step-description">Choose the perfect spot for your journey</p>
+                    </div>
+
+                    <!-- Airplane Visualization -->
+                    <div class="airplane-diagram glass-card">
+                        <div class="airplane-section">
+                            <i class="fas fa-angles-left"></i>
+                            <span class="section-name">Front</span>
+                            <span class="section-note">Quick exit</span>
+                        </div>
+                        <div class="airplane-section wing-marker">
+                            <i class="fas fa-plane-up"></i>
+                            <span class="section-name">Wing</span>
+                            <span class="section-note">Smoother ride</span>
+                        </div>
+                        <div class="airplane-section">
+                            <i class="fas fa-angles-right"></i>
+                            <span class="section-name">Rear</span>
+                            <span class="section-note">Quieter</span>
+                        </div>
+                    </div>
+
+                    <!-- Seat Controls with Legend -->
+                    <div class="seat-controls glass-card">
+                        <div class="seat-legend">
+                            <div class="legend-item">
+                                <div class="legend-color premium"></div>
+                                <span>Preferred seat</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color frequent"></div>
+                                <span>Frequent flyer seat</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color exit-row"></div>
+                                <span>Exit row seat</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color standard"></div>
+                                <span>Standard seat</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color taken"></div>
+                                <span>Unavailable</span>
+                            </div>
+                        </div>
+                        <div class="seat-filters">
+                            <button class="filter-btn active" data-filter="all">All Seats</button>
+                            <button class="filter-btn" data-filter="available">Available</button>
+                            <button class="filter-btn" data-filter="premium">Premium</button>
+                        </div>
+                    </div>
+
+                    <!-- Seat Map Container -->
+                    <div class="seat-map-wrapper glass-card">
+                        <div class="seat-map-header">
+                            <span class="map-label">FRONT</span>
+                        </div>
+                        
+                        <div class="seat-map-grid" id="seat-map"></div>
+                        
+                        <div class="seat-map-footer">
+                            <div class="facility-marker">
+                                <i class="fas fa-restroom"></i>
+                                <span>Lavatory</span>
+                            </div>
+                            <div class="facility-marker">
+                                <i class="fas fa-utensils"></i>
+                                <span>Galley</span>
+                            </div>
+                            <span class="map-label">REAR</span>
+                        </div>
+                    </div>
+
+                    <!-- Selected Seats Panel -->
+                    <div class="selected-seats-panel glass-card">
+                        <h3 class="panel-title">
+                            <i class="fas fa-ticket"></i>
+                            Your Selected Seats
+                        </h3>
+                        <div id="selected-seats-display" class="seats-display-empty">
+                            <i class="fas fa-chair empty-icon"></i>
+                            <p>No seats selected yet</p>
+                        </div>
+                        <div class="seat-tip">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Popular choice: Window seats near the front</span>
+                        </div>
+                    </div>
+
+                    <!-- Auto-Assign Card -->
+                    <div class="auto-assign-card glass-card card-shine">
+                        <i class="fas fa-wand-magic-sparkles auto-icon"></i>
+                        <div class="auto-content">
+                            <h4>Auto-assign Best Available Seats (Free)</h4>
+                            <p>We'll assign seats together when possible • Based on: ✓ Together ✓ Aisle preference</p>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="auto-assign-btn">
+                            Auto-Assign
+                        </button>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="step-navigation">
+                        <button type="button" class="btn btn-ghost" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-magnetic" onclick="nextStep(3)">
+                            <span>Continue to Payment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════════
+                     STEP 3: REVIEW & PAYMENT (ENHANCED)
+                     ═══════════════════════════════════════════════════════════════ -->
+                <div class="step-container hidden" id="step-3">
+                    <div class="step-header scale-in">
+                        <h2 class="step-title">Review & Payment</h2>
+                        <p class="step-description">Confirm your details and complete booking</p>
+                    </div>
+
+                    <!-- Flight Summary -->
+                    <div class="flight-summary-card glass-card card-elevated">
+                        <div class="card-header-row">
+                            <h3 class="card-title">
+                                <i class="fas fa-plane-departure"></i>
+                                Your Flight
+                            </h3>
+                            <button class="btn-link" onclick="window.history.back()">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+                        <div class="flight-route-visual">
+                            <div class="route-city">
+                                <div class="city-code">DEL</div>
+                                <div class="city-name">New Delhi</div>
+                            </div>
+                            <div class="route-path-animated">
+                                <div class="route-line"></div>
+                                <i class="fas fa-plane route-plane"></i>
+                            </div>
+                            <div class="route-city">
+                                <div class="city-code">BOM</div>
+                                <div class="city-name">Mumbai</div>
+                            </div>
+                        </div>
+                        <div class="flight-quick-info">
+                            <div class="info-item">
+                                <span class="info-label">Departure</span>
+                                <span class="info-value">08:00 AM</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Arrival</span>
+                                <span class="info-value">10:10 AM</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Date</span>
+                                <span class="info-value">Jun 10, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passengers Card -->
+                    <div class="passengers-card glass-card card-elevated">
+                        <div class="card-header-row">
+                            <h3 class="card-title">
+                                <i class="fas fa-users"></i>
+                                Passengers (<span id="passenger-count">1</span>)
+                            </h3>
+                            <button class="btn-link" onclick="prevStep(1)">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+                        <div id="passengers-review-list" class="passengers-list"></div>
+                    </div>
+
+                    <!-- ENHANCED Payment Method Card -->
+                    <div class="payment-card glass-card">
+                        <h3 class="card-title">
+                            <i class="fas fa-credit-card"></i>
+                            Payment Method
+                        </h3>
+                        
+                        <!-- Payment Method Selection -->
+                        <div class="payment-methods-grid">
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment" value="card" checked>
+                                <div class="method-content">
+                                    <i class="fas fa-credit-card method-icon"></i>
+                                    <span class="method-name">Card</span>
+                                    <div class="method-checkmark">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment" value="upi">
+                                <div class="method-content">
+                                    <i class="fas fa-mobile-screen method-icon"></i>
+                                    <span class="method-name">UPI</span>
+                                    <div class="method-checkmark">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment" value="netbanking">
+                                <div class="method-content">
+                                    <i class="fas fa-building-columns method-icon"></i>
+                                    <span class="method-name">Net Banking</span>
+                                    <div class="method-checkmark">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-method-option">
+                                <input type="radio" name="payment" value="wallet">
+                                <div class="method-content">
+                                    <i class="fas fa-wallet method-icon"></i>
+                                    <span class="method-name">Wallet</span>
+                                    <div class="method-checkmark">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- CARD Payment Form -->
+                        <div class="payment-form-wrapper" id="card-payment-form">
+                            <div class="input-group">
+                                <input type="text" class="input-field" id="card-number" 
+                                       placeholder=" " maxlength="19" required>
+                                <label class="input-label">Card Number</label>
+                                <i class="input-icon fas fa-credit-card"></i>
+                                <div class="card-brand-logo" id="card-brand"></div>
+                            </div>
+
+                            <div class="input-row-split">
+                                <div class="input-group">
+                                    <input type="text" class="input-field" id="card-expiry" 
+                                           placeholder=" " maxlength="5" required>
+                                    <label class="input-label">MM/YY</label>
+                                    <i class="input-icon fas fa-calendar"></i>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="input-field" id="card-cvv" 
+                                           placeholder=" " maxlength="3" required>
+                                    <label class="input-label">CVV</label>
+                                    <i class="input-icon fas fa-lock"></i>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <input type="text" class="input-field" id="card-name" 
+                                       placeholder=" " required>
+                                <label class="input-label">Cardholder Name</label>
+                                <i class="input-icon fas fa-user"></i>
+                            </div>
+                        </div>
+
+                        <!-- UPI Payment Form -->
+                        <div class="payment-form-wrapper hidden" id="upi-payment-form">
+                            <div class="payment-providers">
+                                <h4 class="providers-title">Select UPI App</h4>
+                                <div class="providers-grid">
+                                    <label class="provider-option">
+                                        <input type="radio" name="upi-provider" value="gpay">
+                                        <div class="provider-box">
+                                            <i class="fab fa-google-pay provider-icon"></i>
+                                            <span>Google Pay</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="upi-provider" value="paytm">
+                                        <div class="provider-box">
+                                            <i class="fas fa-mobile-alt provider-icon"></i>
+                                            <span>Paytm</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="upi-provider" value="phonepe">
+                                        <div class="provider-box">
+                                            <i class="fas fa-phone provider-icon"></i>
+                                            <span>PhonePe</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="upi-provider" value="paypal">
+                                        <div class="provider-box">
+                                            <i class="fab fa-paypal provider-icon"></i>
+                                            <span>PayPal</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <input type="text" class="input-field" id="upi-id" 
+                                       placeholder=" " required>
+                                <label class="input-label">UPI ID</label>
+                                <i class="input-icon fas fa-at"></i>
+                            </div>
+                        </div>
+
+                        <!-- Net Banking Form -->
+                        <div class="payment-form-wrapper hidden" id="netbanking-payment-form">
+                            <div class="payment-providers">
+                                <h4 class="providers-title">Select Your Bank</h4>
+                                <div class="providers-grid-banks">
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="sbi">
+                                        <div class="provider-box">
+                                            <i class="fas fa-university provider-icon"></i>
+                                            <span>SBI</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="hdfc">
+                                        <div class="provider-box">
+                                            <i class="fas fa-building provider-icon"></i>
+                                            <span>HDFC</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="icici">
+                                        <div class="provider-box">
+                                            <i class="fas fa-landmark provider-icon"></i>
+                                            <span>ICICI</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="axis">
+                                        <div class="provider-box">
+                                            <i class="fas fa-university provider-icon"></i>
+                                            <span>Axis</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="kotak">
+                                        <div class="provider-box">
+                                            <i class="fas fa-building-columns provider-icon"></i>
+                                            <span>Kotak</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="bank" value="other">
+                                        <div class="provider-box">
+                                            <i class="fas fa-ellipsis provider-icon"></i>
+                                            <span>Other</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wallet Form -->
+                        <div class="payment-form-wrapper hidden" id="wallet-payment-form">
+                            <div class="payment-providers">
+                                <h4 class="providers-title">Select Wallet</h4>
+                                <div class="providers-grid">
+                                    <label class="provider-option">
+                                        <input type="radio" name="wallet" value="paytm">
+                                        <div class="provider-box">
+                                            <i class="fas fa-wallet provider-icon"></i>
+                                            <span>Paytm Wallet</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="wallet" value="mobikwik">
+                                        <div class="provider-box">
+                                            <i class="fas fa-mobile-alt provider-icon"></i>
+                                            <span>Mobikwik</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="wallet" value="freecharge">
+                                        <div class="provider-box">
+                                            <i class="fas fa-bolt provider-icon"></i>
+                                            <span>Freecharge</span>
+                                        </div>
+                                    </label>
+                                    <label class="provider-option">
+                                        <input type="radio" name="wallet" value="amazonpay">
+                                        <div class="provider-box">
+                                            <i class="fab fa-amazon-pay provider-icon"></i>
+                                            <span>Amazon Pay</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Badges -->
+                        <div class="security-badges">
+                            <div class="security-badge">
+                                <i class="fas fa-lock"></i>
+                                <div class="badge-text">
+                                    <strong>256-bit SSL</strong>
+                                    <span>Encryption</span>
+                                </div>
+                            </div>
+                            <div class="security-badge">
+                                <i class="fas fa-shield-check"></i>
+                                <div class="badge-text">
+                                    <strong>PCI DSS</strong>
+                                    <span>Compliant</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="terms-card glass-card">
+                        <label class="checkbox-custom required-checkbox">
+                            <input type="checkbox" id="terms-checkbox" required>
+                            <span class="checkbox-mark"></span>
+                            <span class="checkbox-label">
+                                I agree to the Terms & Conditions, Privacy Policy, and Cancellation Policy
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Final CTA -->
+                    <div class="final-cta-section">
+                        <button type="button" class="btn btn-ghost" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                        <button type="button" class="btn-hero btn-magnetic glow-on-hover" id="confirm-payment-btn">
+                            <i class="fas fa-lock"></i>
+                            <span>Confirm & Pay <strong id="final-total-amount">₹21,600</strong></span>
+                        </button>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Right Column: Sticky Order Summary -->
+            <aside class="booking-sidebar">
+                <div class="sidebar-sticky glass-card">
+                    <div class="summary-header">
+                        <h3 class="summary-title">
+                            <i class="fas fa-receipt"></i>
+                            Price Summary
+                        </h3>
+                        <div class="booking-id-badge">
+                            <span>ID:</span>
+                            <strong>DEST1NOVA</strong>
+                        </div>
+                    </div>
+
+                    <div class="summary-price-list">
+                        <div class="summary-row">
+                            <span>Base Fare (2 Adults)</span>
+                            <span>₹18,000</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Taxes & Fees</span>
+                            <span>₹3,600</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Seat Selection</span>
+                            <span id="sidebar-seat-cost">₹0</span>
+                        </div>
+                        <div class="summary-row insurance-row-sidebar hidden">
+                            <span>
+                                <i class="fas fa-shield-halved"></i>
+                                Insurance
+                            </span>
+                            <span id="sidebar-insurance-cost">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>TOTAL AMOUNT</span>
+                        <span class="total-amount" id="sidebar-total">₹21,600</span>
+                    </div>
+
+                    <button type="button" class="btn btn-primary btn-full-width glow-on-hover" 
+                            onclick="document.getElementById('confirm-payment-btn')?.click()">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure Checkout</span>
+                    </button>
+
+                    <div class="social-proof-badges">
+                        <div class="proof-badge">
+                            <i class="fas fa-users"></i>
+                            <span><strong>12,450</strong> bookings today</span>
+                        </div>
+                        <div class="proof-badge">
+                            <i class="fas fa-star"></i>
+                            <span><strong>4.8★</strong> (12,450 reviews)</span>
+                        </div>
+                    </div>
+
+                    <div class="live-activity">
+                        <div class="activity-pulse"></div>
+                        <span id="live-activity-text">Sarah from Delhi booked 5 min ago</span>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- Help Widget -->
+    <div class="help-widget">
+        <button class="help-toggle" id="help-toggle" onclick="toggleHelp()">
+            <i class="fas fa-comments"></i>
+            <span class="help-badge">Help</span>
+            <div class="pulse-ring"></div>
+        </button>
+        <div class="help-panel glass-card hidden" id="help-panel">
+            <div class="help-header">
+                <h4>Need Assistance?</h4>
+                <button class="close-btn" onclick="toggleHelp()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="help-content">
+                <div class="quick-actions">
+                    <button class="quick-action-btn">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Live Chat</span>
+                    </button>
+                    <button class="quick-action-btn">
+                        <i class="fas fa-phone"></i>
+                        <span>Call: 1800-XXX-XXXX</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+    <!-- API Client -->
+    <script src="/js/api.js"></script>
+    <script src="/js/booking.js"></script>
+</body>
+</html>

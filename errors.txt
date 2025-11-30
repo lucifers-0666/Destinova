@@ -1,0 +1,367 @@
+﻿src/config/env.ts(5,10): error TS6133: 'required' is declared but its value is never read.
+src/controllers/adminController.ts(19,54): error TS6133: 'req' is declared but its value is never read.
+src/controllers/adminController.ts(245,8): error TS2551: Property 'isBlocked' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'isLocked'?
+src/controllers/adminController.ts(246,8): error TS2339: Property 'blockReason' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/adminController.ts(247,8): error TS2339: Property 'blockedAt' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/adminController.ts(252,21): error TS2551: Property 'isBlocked' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'isLocked'?
+src/controllers/adminController.ts(398,5): error TS2322: Type '"processed"' is not assignable to type '"pending" | "processing" | "completed" | "rejected"'.
+src/controllers/adminController.ts(399,26): error TS2339: Property 'processedAt' does not exist on type 'ICancellation'.
+src/controllers/adminController.ts(403,26): error TS2339: Property 'rejectionReason' does not exist on type 'ICancellation'.
+src/controllers/adminController.ts(501,40): error TS7030: Not all code paths return a value.
+src/controllers/adminController.ts(852,53): error TS6133: 'req' is declared but its value is never read.
+src/controllers/authController.ts(88,33): error TS2352: Conversion of type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }' to type 'IUser & { _id: string; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property '_id' are incompatible.
+    Type 'ObjectId' is not comparable to type 'ObjectId & string'.
+      Type 'ObjectId' is not comparable to type 'string'.
+src/controllers/authController.ts(135,12): error TS2551: Property 'isDeleted' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean '$isDeleted'?
+src/controllers/authController.ts(140,33): error TS2352: Conversion of type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }' to type 'IUser & { _id: string; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property '_id' are incompatible.
+    Type 'ObjectId' is not comparable to type 'ObjectId & string'.
+      Type 'ObjectId' is not comparable to type 'string'.
+src/controllers/authController.ts(155,26): error TS2339: Property 'profilePicture' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/authController.ts(190,8): error TS2339: Property 'resetPasswordToken' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/authController.ts(191,8): error TS2339: Property 'resetPasswordExpires' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/authController.ts(231,8): error TS2339: Property 'resetPasswordToken' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/authController.ts(232,8): error TS2339: Property 'resetPasswordExpires' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/authController.ts(236,33): error TS2352: Conversion of type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }' to type 'IUser & { _id: string; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property '_id' are incompatible.
+    Type 'ObjectId' is not comparable to type 'ObjectId & string'.
+      Type 'ObjectId' is not comparable to type 'string'.
+src/controllers/authController.ts(304,23): error TS2551: Property 'isDeleted' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean '$isDeleted'?
+src/controllers/authController.ts(312,35): error TS2352: Conversion of type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }' to type 'IUser & { _id: string; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property '_id' are incompatible.
+    Type 'ObjectId' is not comparable to type 'ObjectId & string'.
+      Type 'ObjectId' is not comparable to type 'string'.
+src/controllers/bookingController.ts(3,19): error TS6133: 'IBooking' is declared but its value is never read.
+src/controllers/bookingController.ts(5,1): error TS6133: 'User' is declared but its value is never read.
+src/controllers/bookingController.ts(87,14): error TS2339: Property 'seatsAvailable' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/bookingController.ts(91,50): error TS2339: Property 'seatsAvailable' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/bookingController.ts(98,54): error TS2339: Property 'price' does not exist on type 'number'.
+src/controllers/bookingController.ts(100,44): error TS2339: Property 'first' does not exist on type 'ISeatConfiguration'.
+src/controllers/bookingController.ts(111,5): error TS2769: No overload matches this call.
+  Overload 1 of 5, '(docs: { _id?: ObjectIdQueryTypeCasting | undefined; bookingReference?: StringQueryTypeCasting | undefined; pnr?: StringQueryTypeCasting | undefined; ... 121 more ...; validateSync?: { ...; } | undefined; }[], options?: CreateOptions | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'bookingReference' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; bookingReference?: StringQueryTypeCasting | undefined; pnr?: StringQueryTypeCasting | undefined; ... 121 more ...; validateSync?: { ...; } | undefined; }[]'.
+src/controllers/bookingController.ts(142,10): error TS2339: Property 'seatsAvailable' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/bookingController.ts(146,33): error TS2339: Property '_id' does not exist on type 'never'.
+src/controllers/bookingController.ts(153,55): error TS2339: Property '_id' does not exist on type 'never'.
+src/controllers/bookingController.ts(155,61): error TS2339: Property '_id' does not exist on type 'never'.
+src/controllers/bookingController.ts(161,24): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(162,9): error TS2739: Type '{ cancelledAt: Date; reason: string; cancelledBy: "system"; }' is missing the following properties from type 'ICancellation': refundAmount, refundStatus, cancellationFee
+src/controllers/bookingController.ts(168,42): error TS2339: Property '_id' does not exist on type 'never'.
+src/controllers/bookingController.ts(174,17): error TS2339: Property 'populate' does not exist on type 'never'.
+src/controllers/bookingController.ts(178,30): error TS2339: Property 'paymentDeadline' does not exist on type 'never'.
+src/controllers/bookingController.ts(272,15): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(297,44): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(298,33): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(301,11): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(307,5): error TS2353: Object literal may only specify known properties, and 'refundPercentage' does not exist in type 'ICancellation'.
+src/controllers/bookingController.ts(325,21): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(327,31): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(488,23): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/bookingController.ts(495,26): error TS2339: Property 'seatClass' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/checkInController.ts(8,1): error TS6133: 'Flight' is declared but its value is never read.
+src/controllers/checkInController.ts(10,10): error TS2614: Module '"../services/emailService.js"' has no exported member 'sendEmail'. Did you mean to use 'import sendEmail from "../services/emailService.js"' instead?
+src/controllers/checkInController.ts(11,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/controllers/checkInController.ts(143,29): error TS6133: 'passengerIds' is declared but its value is never read.
+src/controllers/destinationController.ts(46,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(68,12): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(109,12): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(115,48): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(120,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(129,45): error TS2339: Property 'code' does not exist on type 'Document<unknown, {}, IDestination, {}, DefaultSchemaOptions> & IDestination & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/destinationController.ts(130,40): error TS2339: Property 'code' does not exist on type 'Document<unknown, {}, IDestination, {}, DefaultSchemaOptions> & IDestination & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/destinationController.ts(147,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(162,50): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(171,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(175,12): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(181,48): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(187,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(202,12): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(208,56): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(217,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(231,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/destinationController.ts(246,47): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(268,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(273,5): error TS2769: No overload matches this call.
+  Overload 1 of 5, '(docs: { _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }[], options?: CreateOptions | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'name' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }[]'.
+  Overload 2 of 5, '(doc: { _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'name' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }'.
+  Overload 3 of 5, '(...docs: { _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }[]): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'name' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; city?: StringQueryTypeCasting | undefined; country?: StringQueryTypeCasting | undefined; ... 106 more ...; validateSync?: { ...; } | undefined; }'.
+src/controllers/destinationController.ts(290,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(297,47): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(302,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(307,68): error TS2339: Property 'code' does not exist on type 'Document<unknown, {}, IDestination, {}, DefaultSchemaOptions> & IDestination & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/destinationController.ts(314,9): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(331,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(338,47): error TS7030: Not all code paths return a value.
+src/controllers/destinationController.ts(343,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(350,36): error TS2339: Property 'code' does not exist on type 'Document<unknown, {}, IDestination, {}, DefaultSchemaOptions> & IDestination & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/destinationController.ts(351,41): error TS2339: Property 'code' does not exist on type 'Document<unknown, {}, IDestination, {}, DefaultSchemaOptions> & IDestination & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/destinationController.ts(357,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(367,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/destinationController.ts(374,56): error TS6133: 'req' is declared but its value is never read.
+src/controllers/destinationController.ts(407,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/flightController.ts(2,18): error TS6133: 'IFlight' is declared but its value is never read.
+src/controllers/flightController.ts(22,5): error TS6133: 'returnDate' is declared but its value is never read.
+src/controllers/flightController.ts(92,49): error TS2339: Property 'price' does not exist on type 'number'.
+src/controllers/flightController.ts(93,62): error TS2339: Property 'first' does not exist on type 'ISeatConfiguration'.
+src/controllers/flightController.ts(94,40): error TS2339: Property 'first' does not exist on type 'ISeatConfiguration'.
+src/controllers/flightController.ts(132,49): error TS2339: Property 'available' does not exist on type 'number'.
+src/controllers/flightController.ts(133,51): error TS2339: Property 'available' does not exist on type 'number'.
+src/controllers/flightController.ts(134,38): error TS2339: Property 'first' does not exist on type 'ISeatConfiguration'.
+src/controllers/flightController.ts(271,45): error TS2339: Property 'estimatedDepartureTime' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/flightController.ts(273,15): error TS2339: Property 'estimatedDepartureTime' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/flightController.ts(285,18): error TS2339: Property 'gate' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/flightController.ts(286,22): error TS2339: Property 'terminal' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/hotelController.ts(37,41): error TS6133: 'req' is declared but its value is never read.
+src/controllers/multiCityController.ts(33,7): error TS6133: 'cabinClass' is declared but its value is never read.
+src/controllers/multiCityController.ts(115,58): error TS6133: 'index' is declared but its value is never read.
+src/controllers/multiCityController.ts(285,31): error TS6133: 'cabinClass' is declared but its value is never read.
+src/controllers/paymentController.ts(3,19): error TS6133: 'IPayment' is declared but its value is never read.
+src/controllers/paymentController.ts(16,3): error TS2322: Type '"2025-04-30.basil"' is not assignable to type '"2025-02-24.acacia"'.
+src/controllers/paymentController.ts(43,15): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(47,15): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(52,15): error TS2551: Property 'paymentDeadline' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'. Did you mean 'paymentDate'?
+src/controllers/paymentController.ts(52,55): error TS2551: Property 'paymentDeadline' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'. Did you mean 'paymentDate'?
+src/controllers/paymentController.ts(66,32): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(67,23): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(80,29): error TS2769: No overload matches this call.
+  Overload 1 of 5, '(docs: { _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }[], options?: CreateOptions | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'user' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }[]'.
+  Overload 2 of 5, '(doc: { _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'gateway' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }'.
+  Overload 3 of 5, '(...docs: { _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }[]): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'gateway' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; paymentId?: StringQueryTypeCasting | undefined; orderId?: StringQueryTypeCasting | undefined; ... 109 more ...; validateSync?: { ...; } | undefined; }'.
+src/controllers/paymentController.ts(83,23): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(84,25): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(91,13): error TS2339: Property 'gatewayPaymentId' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(99,21): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(100,23): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(135,11): error TS2339: Property 'paidAt' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(137,5): error TS2353: Object literal may only specify known properties, and 'last4' does not exist in type 'ICardDetails'.
+src/controllers/paymentController.ts(145,11): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(147,11): error TS2551: Property 'payment' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'. Did you mean 'paymentId'?
+src/controllers/paymentController.ts(151,43): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(160,21): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(164,30): error TS2339: Property 'gatewayPaymentId' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(167,23): error TS2339: Property 'paidAt' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(202,31): error TS2339: Property 'gatewayPaymentId' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(218,7): error TS2322: Type '"processed"' is not assignable to type '"pending" | "processing" | "completed" | "failed" | "initiated"'.
+src/controllers/paymentController.ts(224,5): error TS2322: Type '"refunded" | "partially_refunded"' is not assignable to type '"partial" | "cancelled" | "pending" | "completed" | "failed" | "refunded"'.
+  Type '"partially_refunded"' is not assignable to type '"partial" | "cancelled" | "pending" | "completed" | "failed" | "refunded"'.
+src/controllers/paymentController.ts(268,43): error TS7030: Not all code paths return a value.
+src/controllers/paymentController.ts(290,17): error TS2339: Property 'paidAt' does not exist on type 'Document<unknown, {}, IPayment, {}, DefaultSchemaOptions> & IPayment & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(294,32): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/paymentController.ts(295,19): error TS2339: Property 'status' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/priceAlertController.ts(6,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/controllers/priceAlertController.ts(11,46): error TS7030: Not all code paths return a value.
+src/controllers/priceAlertController.ts(49,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(61,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(77,51): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(77,123): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(120,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(172,45): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(172,94): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(188,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/priceAlertController.ts(203,42): error TS7030: Not all code paths return a value.
+src/controllers/priceAlertController.ts(213,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(238,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/priceAlertController.ts(248,41): error TS7030: Not all code paths return a value.
+src/controllers/priceAlertController.ts(259,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(277,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(284,41): error TS7030: Not all code paths return a value.
+src/controllers/priceAlertController.ts(294,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(299,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(306,48): error TS6133: 'req' is declared but its value is never read.
+src/controllers/priceAlertController.ts(348,43): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(348,91): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(403,47): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(403,93): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(411,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(428,45): error TS7030: Not all code paths return a value.
+src/controllers/priceAlertController.ts(433,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/priceAlertController.ts(495,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/priceAlertController.ts(498,37): error TS2551: Property 'price' does not exist on type 'Document<unknown, {}, IFlight, {}, DefaultSchemaOptions> & IFlight & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'prices'?
+src/controllers/priceAlertController.ts(584,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/priceAlertController.ts(663,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/refundController.ts(9,1): error TS6133: 'Payment' is declared but its value is never read.
+src/controllers/refundController.ts(18,10): error TS2614: Module '"../services/emailService.js"' has no exported member 'sendEmail'. Did you mean to use 'import sendEmail from "../services/emailService.js"' instead?
+src/controllers/refundController.ts(51,88): error TS2345: Argument of type '{ refundId: string; status: "pending" | "processing" | "completed" | "rejected" | "failed" | "approved" | "under_review"; }' is not assignable to parameter of type 'string'.
+src/controllers/refundController.ts(83,22): error TS2551: Property 'payment' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'. Did you mean 'paymentId'?
+src/controllers/refundController.ts(84,36): error TS2339: Property 'totalPrice' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/refundController.ts(109,5): error TS2741: Property 'cancellationFee' is missing in type '{ cancelledAt: Date; cancelledBy: any; reason: any; refundAmount: number; refundStatus: "pending"; }' but required in type 'ICancellation'.
+src/controllers/refundController.ts(124,12): error TS2339: Property 'addTimelineEvent' does not exist on type 'Document<unknown, {}, IRefund, {}, DefaultSchemaOptions> & IRefund & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/refundController.ts(145,74): error TS2339: Property 'totalPrice' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/refundController.ts(171,31): error TS2339: Property 'totalPrice' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/refundController.ts(366,5): error TS2322: Type '"approved"' is not assignable to type '"pending" | "processing" | "completed" | "rejected"'.
+src/controllers/refundController.ts(447,26): error TS2339: Property 'rejectionReason' does not exist on type 'ICancellation'.
+src/controllers/refundController.ts(484,26): error TS6133: 'notes' is declared but its value is never read.
+src/controllers/refundController.ts(513,7): error TS2322: Type '"processed"' is not assignable to type '"pending" | "processing" | "completed" | "rejected"'.
+src/controllers/refundController.ts(514,28): error TS2339: Property 'processedAt' does not exist on type 'ICancellation'.
+src/controllers/reviewController.ts(11,42): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(24,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(32,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(38,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(50,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(55,31): error TS2769: No overload matches this call.
+  Overload 1 of 5, '(docs: { _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }[], options?: CreateOptions | undefined): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'user' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }[]'.
+  Overload 2 of 5, '(doc: { _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'airline' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }'.
+  Overload 3 of 5, '(...docs: { _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }[]): Promise<...>', gave the following error.
+    Object literal may only specify known properties, and 'airline' does not exist in type '{ _id?: ObjectIdQueryTypeCasting | undefined; user?: ObjectIdQueryTypeCasting | undefined; booking?: ObjectIdQueryTypeCasting | undefined; ... 100 more ...; validateSync?: { ...; } | undefined; }'.
+src/controllers/reviewController.ts(71,26): error TS2339: Property 'class' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/reviewController.ts(80,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(137,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/reviewController.ts(187,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/reviewController.ts(218,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/reviewController.ts(233,43): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(240,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(244,12): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/reviewController.ts(250,42): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(261,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(272,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(280,26): error TS2339: Property 'categories' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/reviewController.ts(280,51): error TS2339: Property 'categories' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/reviewController.ts(288,28): error TS18048: 'review.flight' is possibly 'undefined'.
+src/controllers/reviewController.ts(291,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(298,42): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(311,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(315,20): error TS18048: 'review.flight' is possibly 'undefined'.
+src/controllers/reviewController.ts(322,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(329,40): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(337,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(342,31): error TS2551: Property 'helpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(343,5): error TS7006: Parameter 'id' implicitly has an 'any' type.
+src/controllers/reviewController.ts(345,33): error TS2551: Property 'unhelpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(346,5): error TS7006: Parameter 'id' implicitly has an 'any' type.
+src/controllers/reviewController.ts(352,14): error TS2551: Property 'helpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(355,14): error TS2551: Property 'unhelpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(360,14): error TS2551: Property 'unhelpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(363,14): error TS2551: Property 'helpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(370,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(371,28): error TS2551: Property 'helpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(372,30): error TS2551: Property 'unhelpfulVotes' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'helpfulVoters'?
+src/controllers/reviewController.ts(380,42): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(381,9): error TS6133: 'reason' is declared but its value is never read.
+src/controllers/reviewController.ts(387,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(397,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(441,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/reviewController.ts(460,44): error TS7030: Not all code paths return a value.
+src/controllers/reviewController.ts(465,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(473,7): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(481,12): error TS2551: Property 'moderationNote' does not exist on type 'Document<unknown, {}, IReview, {}, DefaultSchemaOptions> & IReview & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean 'moderationNotes'?
+src/controllers/reviewController.ts(488,30): error TS18048: 'review.flight' is possibly 'undefined'.
+src/controllers/reviewController.ts(492,5): error TS2554: Expected 3-5 arguments, but got 2.
+src/controllers/reviewController.ts(530,51): error TS6133: 'req' is declared but its value is never read.
+src/controllers/reviewController.ts(595,5): error TS2554: Expected 3-5 arguments, but got 1.
+src/controllers/userController.ts(129,26): error TS2339: Property 'profilePicture' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(171,8): error TS2551: Property 'isDeleted' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean '$isDeleted'?
+src/controllers/userController.ts(172,8): error TS2339: Property 'deletedAt' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(173,8): error TS2339: Property 'deletionReason' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(291,90): error TS2551: Property 'notifications' does not exist on type 'IUserPreferences'. Did you mean 'smsNotifications'?
+src/controllers/userController.ts(311,10): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(311,32): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(317,8): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(317,30): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(318,8): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(321,71): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(339,8): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(339,30): error TS2339: Property 'savedAddresses' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'.
+src/controllers/userController.ts(383,34): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/userController.ts(388,13): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/controllers/userController.ts(389,13): error TS2339: Property 'pricing' does not exist on type 'Document<unknown, {}, IBooking, {}, DefaultSchemaOptions> & IBooking & Required<{ _id: ObjectId; }> & { ...; }'.
+src/middleware/auth.ts(41,14): error TS2551: Property 'isDeleted' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean '$isDeleted'?
+src/middleware/auth.ts(66,3): error TS6133: 'res' is declared but its value is never read.
+src/middleware/auth.ts(79,27): error TS2551: Property 'isDeleted' does not exist on type 'Document<unknown, {}, IUser, {}, DefaultSchemaOptions> & IUser & Required<{ _id: ObjectId; }> & { __v: number; }'. Did you mean '$isDeleted'?
+src/middleware/authMiddleware.ts(5,11): error TS2430: Interface 'AuthRequest' incorrectly extends interface 'Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+  Types of property 'user' are incompatible.
+    Type 'IUser | undefined' is not assignable to type '(IUser & { _id: string; }) | undefined'.
+      Type 'IUser' is not assignable to type 'IUser & { _id: string; }'.
+        Type 'IUser' is not assignable to type '{ _id: string; }'.
+          Types of property '_id' are incompatible.
+            Type 'ObjectId' is not assignable to type 'string'.
+src/middleware/authMiddleware.ts(30,54): error TS6133: 'res' is declared but its value is never read.
+src/middleware/errorHandler.ts(204,9): error TS2698: Spread types may only be created from object types.
+src/middleware/errorMiddleware.ts(9,40): error TS6133: 'req' is declared but its value is never read.
+src/middleware/errorMiddleware.ts(9,69): error TS6133: 'next' is declared but its value is never read.
+src/middleware/rateLimiter.ts(35,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(54,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(76,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(95,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(114,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(133,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(152,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(171,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(190,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(213,13): error TS6133: 'req' is declared but its value is never read.
+src/middleware/rateLimiter.ts(236,15): error TS6133: 'req' is declared but its value is never read.
+src/middleware/requestLogger.ts(39,44): error TS2345: Argument of type '() => void' is not assignable to parameter of type 'BufferEncoding'.
+src/middleware/requestLogger.ts(41,42): error TS2345: Argument of type 'BufferEncoding | undefined' is not assignable to parameter of type 'BufferEncoding'.
+  Type 'undefined' is not assignable to type 'BufferEncoding'.
+src/middleware/uploadImage.ts(138,3): error TS6133: 'req' is declared but its value is never read.
+src/middleware/uploadImage.ts(139,3): error TS6133: 'res' is declared but its value is never read.
+src/models/Booking.ts(84,18): error TS2430: Interface 'IBooking' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+  Types of property 'isModified' are incompatible.
+    Type 'boolean' is not assignable to type '{ <T extends string | number | symbol>(path?: T | T[] | undefined, options?: { ignoreAtomics?: boolean | undefined; } | null | undefined): boolean; (path?: string | string[] | undefined, options?: { ...; } | ... 1 more ... | undefined): boolean; }'.
+src/models/Booking.ts(512,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Destination.ts(324,3): error TS2353: Object literal may only specify known properties, and 'isNew' does not exist in type '{ _id?: SchemaDefinitionProperty<ObjectId, IDestination, Document<unknown, {}, IDestination, { id: string; }, ResolveSchemaOptions<DefaultSchemaOptions>> & Omit<...> & { ...; }> | undefined; ... 52 more ...; viewCount?: SchemaDefinitionProperty<...> | undefined; }'.
+src/models/Destination.ts(380,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Flight.ts(426,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Insurance.ts(221,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Notification.ts(278,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Notification.ts(403,3): error TS2322: Type 'MergeType<Document<unknown, any, INotification, any, DefaultSchemaOptions> & INotification & Required<{ _id: ObjectId; }> & { ...; }, Omit<...>>[]' is not assignable to type 'INotification[]'.
+  Type 'MergeType<Document<unknown, any, INotification, any, DefaultSchemaOptions> & INotification & Required<{ _id: ObjectId; }> & { ...; }, Omit<...>>' is not assignable to type 'INotification'.
+    Types of property 'user' are incompatible.
+      Type 'ObjectId | undefined' is not assignable to type 'ObjectId'.
+        Type 'undefined' is not assignable to type 'ObjectId'.
+src/models/Payment.ts(418,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/PriceAlert.ts(259,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/PriceAlert.ts(335,41): error TS7006: Parameter 'acc' implicitly has an 'any' type.
+src/models/PriceAlert.ts(335,46): error TS7006: Parameter 'item' implicitly has an 'any' type.
+src/models/PriceAlert.ts(397,5): error TS1117: An object literal cannot have multiple properties with the same name.
+src/models/Refund.ts(6,38): error TS6133: 'Model' is declared but its value is never read.
+src/models/Refund.ts(233,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Review.ts(310,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/Review.ts(361,5): error TS7006: Parameter 'r' implicitly has an 'any' type.
+src/models/User.ts(210,25): error TS6133: 'doc' is declared but its value is never read.
+src/models/User.ts(211,14): error TS2790: The operand of a 'delete' operator must be optional.
+src/models/User.ts(212,14): error TS2790: The operand of a 'delete' operator must be optional.
+src/models/User.ts(235,12): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/User.ts(242,5): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/User.ts(244,5): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/models/User.ts(261,3): error TS2349: This expression is not callable.
+  Type 'SaveOptions' has no call signatures.
+src/routes/checkInRoutes.ts(14,10): error TS2305: Module '"../middleware/auth.js"' has no exported member 'authenticate'.
+src/routes/checkInRoutes.ts(14,10): error TS6133: 'authenticate' is declared but its value is never read.
+src/routes/insuranceRoutes.ts(16,10): error TS2305: Module '"../middleware/authMiddleware.js"' has no exported member 'authenticateToken'.
+src/routes/insuranceRoutes.ts(16,29): error TS2724: '"../middleware/authMiddleware.js"' has no exported member named 'isAdmin'. Did you mean 'admin'?
+src/routes/multiCityRoutes.ts(12,10): error TS2305: Module '"../middleware/authMiddleware.js"' has no exported member 'authenticateToken'.
+src/routes/multiCityRoutes.ts(12,10): error TS6133: 'authenticateToken' is declared but its value is never read.
+src/routes/refundRoutes.ts(18,23): error TS2305: Module '"../middleware/auth.js"' has no exported member 'authenticate'.
+src/routes/refundRoutes.ts(20,10): error TS6133: 'validateMongoId' is declared but its value is never read.
+src/routes/reviewRoutes.ts(16,23): error TS6133: 'optionalAuth' is declared but its value is never read.
+src/seeders/seed.ts(1,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/seeders/seedDestinations.ts(1,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/seeders/seedHotels.ts(1,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/seeders/seedUsers.ts(1,1): error TS6133: 'mongoose' is declared but its value is never read.
+src/services/boardingPassService.ts(6,25): error TS2307: Cannot find module 'pdfkit' or its corresponding type declarations.
+src/services/boardingPassService.ts(7,20): error TS2307: Cannot find module 'qrcode' or its corresponding type declarations.
+src/services/boardingPassService.ts(141,28): error TS2339: Property 'title' does not exist on type 'IPassenger'.
+src/services/boardingPassService.ts(366,51): error TS2339: Property 'title' does not exist on type 'IPassenger'.
+src/validators/authValidator.ts(1,16): error TS6133: 'param' is declared but its value is never read.
+src/validators/authValidator.ts(1,23): error TS6133: 'query' is declared but its value is never read.

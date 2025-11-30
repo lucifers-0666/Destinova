@@ -1,0 +1,44 @@
+:root {
+  /* Emerald Green Palette */
+  --primary-emerald: #1d5e33;
+  --emerald-dark: #164426;
+  --emerald-light: #2a7d4a;
+  --emerald-lighter: #3a9c60;
+  --emerald-pale: #e8f4ed;
+  
+  /* Gold Palette */
+  --champagne-gold: #E5CBAF;
+  --gold-dark: #d4b591;
+  --gold-light: #f0ddc7;
+  --gold-shimmer: #f5e8d8;
+  --gold-rich: #c9a877;
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --background-cream: #FFFBF2;
+  
+  --text-charcoal: #1C2526;
+  --text-slate: #5C6B73;
+  --text-muted: #8B9BA5;
+  
+  /* Gradients */
+  --gradient-emerald: linear-gradient(135deg, #164426 0%, #1d5e33 50%, #2a7d4a 100%);
+  --gradient-gold: linear-gradient(135deg, #c9a877 0%, #E5CBAF 50%, #f0ddc7 100%);
+  
+  /* Effects */
+  --crystal-glass: rgba(255, 255, 255, 0.15);
+  --crystal-border: rgba(229, 203, 175, 0.4);
+  --crystal-glow: 0 0 40px rgba(229, 203, 175, 0.6), 0 0 80px rgba(29, 94, 51, 0.3);
+  --blur-heavy: blur(40px);
+  
+  /* Shadows */
+  --shadow-emerald: 0 20px 60px rgba(29, 94, 51, 0.35);
+  --shadow-gold: 0 20px 60px rgba(229, 203, 175, 0.4);
+  --shadow-mixed: 0 30px 90px rgba(29, 94, 51, 0.3), 0 30px 90px rgba(229, 203, 175, 0.4);
+  
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Header Specific (mapping to match header.css if needed) */
+  --emerald-primary: var(--primary-emerald);
+}

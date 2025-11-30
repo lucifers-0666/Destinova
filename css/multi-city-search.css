@@ -1,0 +1,418 @@
+/**
+ * Multi-City Search Styles
+ */
+
+/* Multi-City Container */
+.multi-city-search {
+  background: var(--bg-card, #fff);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.multi-city-legs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Individual Leg */
+.multi-city-leg {
+  background: var(--bg-light, #f8f9fa);
+  border-radius: 10px;
+  padding: 16px;
+  position: relative;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.multi-city-leg:hover {
+  border-color: var(--primary-light, rgba(102, 126, 234, 0.3));
+}
+
+.multi-city-leg:focus-within {
+  border-color: var(--primary-color, #667eea);
+}
+
+.leg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.leg-number {
+  font-weight: 600;
+  color: var(--primary-color, #667eea);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.leg-number::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color, #667eea);
+  border-radius: 50%;
+}
+
+.btn-remove-leg {
+  background: none;
+  border: none;
+  color: var(--danger-color, #dc3545);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.btn-remove-leg:hover {
+  background: rgba(220, 53, 69, 0.1);
+}
+
+/* Leg Fields */
+.leg-fields {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.field-group {
+  flex: 1;
+  position: relative;
+}
+
+.field-group label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary, #666);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.field-group label i {
+  margin-right: 4px;
+  color: var(--primary-color, #667eea);
+}
+
+.field-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--bg-card, #fff);
+}
+
+.field-group input:focus {
+  outline: none;
+  border-color: var(--primary-color, #667eea);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.field-group input[readonly] {
+  background: var(--bg-disabled, #e9ecef);
+  color: var(--text-muted, #999);
+  cursor: not-allowed;
+}
+
+.origin-field {
+  flex: 1.2;
+}
+
+.destination-field {
+  flex: 1.2;
+}
+
+.date-field {
+  flex: 0.8;
+  min-width: 140px;
+}
+
+/* Swap Button */
+.btn-swap-cities {
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+}
+
+.btn-swap-cities:hover {
+  background: var(--primary-color, #667eea);
+  border-color: var(--primary-color, #667eea);
+  color: white;
+  transform: rotate(180deg);
+}
+
+/* Add City Button */
+.btn-add-city {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 2px dashed var(--border-color, #e0e0e0);
+  border-radius: 10px;
+  color: var(--text-secondary, #666);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 20px;
+}
+
+.btn-add-city:hover {
+  border-color: var(--primary-color, #667eea);
+  color: var(--primary-color, #667eea);
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.btn-add-city i {
+  margin-right: 8px;
+}
+
+/* Passenger Selector */
+.multi-city-passengers {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--bg-light, #f8f9fa);
+  border-radius: 10px;
+}
+
+.passenger-selector label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a2e);
+  margin-bottom: 12px;
+}
+
+.passenger-controls {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.passenger-type {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.passenger-type > span {
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+  min-width: 90px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.counter-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--bg-light, #f8f9fa);
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter-btn:hover {
+  background: var(--primary-color, #667eea);
+  color: white;
+}
+
+.counter span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text-primary, #1a1a2e);
+}
+
+/* Search Button */
+.btn-search-multi {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--primary-color, #667eea) 0%, var(--primary-dark, #764ba2) 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-search-multi:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Trip Type Selector */
+.trip-type-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: var(--bg-light, #f8f9fa);
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.trip-type-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-secondary, #666);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.trip-type-btn:hover {
+  color: var(--primary-color, #667eea);
+}
+
+.trip-type-btn.active {
+  background: var(--bg-card, #fff);
+  color: var(--primary-color, #667eea);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+
+.trip-type-btn i {
+  font-size: 0.85rem;
+}
+
+/* Connection Line */
+.multi-city-leg::after {
+  content: '';
+  position: absolute;
+  left: 27px;
+  bottom: -16px;
+  width: 2px;
+  height: 16px;
+  background: var(--primary-light, rgba(102, 126, 234, 0.3));
+  z-index: 1;
+}
+
+.multi-city-leg:last-child::after {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .leg-fields {
+    flex-wrap: wrap;
+  }
+  
+  .field-group {
+    flex: 1 1 100%;
+  }
+  
+  .origin-field,
+  .destination-field {
+    flex: 1 1 calc(50% - 30px);
+  }
+  
+  .btn-swap-cities {
+    order: -1;
+    flex: 0 0 36px;
+    margin-bottom: 0;
+    align-self: flex-end;
+    margin-bottom: 4px;
+  }
+  
+  .date-field {
+    flex: 1 1 100%;
+    margin-top: 8px;
+  }
+  
+  .passenger-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .passenger-type {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .multi-city-search {
+    padding: 16px;
+  }
+  
+  .multi-city-leg {
+    padding: 12px;
+  }
+  
+  .origin-field,
+  .destination-field {
+    flex: 1 1 100%;
+  }
+  
+  .btn-swap-cities {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    z-index: 2;
+    background: var(--bg-card, #fff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .multi-city-search {
+    background: var(--bg-card-dark, #1e1e2d);
+  }
+  
+  .multi-city-leg {
+    background: var(--bg-dark, #16162a);
+  }
+  
+  .field-group input {
+    background: var(--bg-card-dark, #1e1e2d);
+    border-color: var(--border-dark, #333);
+    color: var(--text-light, #fff);
+  }
+  
+  .multi-city-passengers {
+    background: var(--bg-dark, #16162a);
+  }
+  
+  .counter {
+    background: var(--bg-card-dark, #1e1e2d);
+    border-color: var(--border-dark, #333);
+  }
+}

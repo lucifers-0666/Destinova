@@ -105,14 +105,125 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentFilter = 'all';
     let currentSort = 'date-desc';
     let searchQuery = '';
+
+    // Fetch bookings from API
+    async function fetchBookings() {
+        // Try new API first
+        if (typeof BookingsAPI !== 'undefined') {
+            try {
+                const response = await BookingsAPI.getUserBookings();
+                if (response && response.success && response.data) {
+                    const apiBookings = response.data.bookings || response.data;
+                    bookings = Array.isArray(apiBookings) ? apiBookings.map(transformBooking) : [];
+                    updateStats();
+                    renderBookings();
+                    return;
+                }
+            } catch (error) {
+                console.error('Failed to fetch bookings from API:', error);
+            }
+        }
+        
+        // Fallback to old API
+        if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Booking) {
+            try {
+                const response = await window.DestinovaAPI.Booking.list();
+                if (response && response.data) {
+                    bookings = response.data.map(transformBooking);
+                    updateStats();
+                    renderBookings();
+                    return;
+                }
+            } catch (error) {
+                console.error('Failed to fetch from legacy API:', error);
+            }
+        }
+        
+        // Final fallback to sample data
+        console.warn('API not available, using sample data');
+        bookings = sampleBookings;
+        updateStats();
+        renderBookings();
+    }
+
+    // Transform API booking response to display format
+    function transformBooking(b) {
+        const flight = b.flight || {};
+        const origin = flight.origin || b.origin || {};
+        const destination = flight.destination || b.destination || {};
+        
+        // Determine status
+        let status = b.bookingStatus || b.status || 'upcoming';
+        if (status === 'confirmed') {
+            const journeyDate = new Date(b.journeyDate || flight.departureTime);
+            status = journeyDate > new Date() ? 'upcoming' : 'past';
+        }
+        
+        return {
+            id: b.bookingReference || b._id || b.id,
+            status: status,
+            origin: { 
+                code: origin.code || origin.airportCode || 'UNK', 
+                name: origin.city || origin.name || 'Unknown' 
+            },
+            destination: { 
+                code: destination.code || destination.airportCode || 'UNK', 
+                name: destination.city || destination.name || 'Unknown' 
+            },
+            date: b.journeyDate || flight.departureTime?.split('T')[0] || new Date().toISOString().split('T')[0],
+            time: flight.departureTime?.split('T')[1]?.substring(0, 5) || '00:00',
+            airline: flight.airline || 'Airline',
+            flightNumber: flight.flightNumber || 'FL000',
+            class: b.cabinClass || b.class || 'Economy',
+            passengers: b.passengers ? b.passengers.length : 1,
+            price: b.totalPrice || b.pricing?.total || 0,
+            bookingDate: b.createdAt?.split('T')[0] || new Date().toISOString().split('T')[0]
+        };
+    }
+
+    fetchBookings();
     
-    // Load bookings from localStorage or use sample data
-    let bookings = loadBookings();
+    // Load bookings from API or localStorage
+    let bookings = [];
     
-    function loadBookings() {
+    async function loadBookings() {
+        // Try new API first
+        if (typeof BookingsAPI !== 'undefined') {
+            try {
+                const response = await BookingsAPI.getUserBookings();
+                if (response.success && response.data) {
+                    const apiBookings = response.data.bookings || response.data;
+                    if (Array.isArray(apiBookings) && apiBookings.length > 0) {
+                        return apiBookings.map(transformBooking);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load bookings from API:', error);
+            }
+        }
+        
+        // Fallback to legacy API
+        if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Booking) {
+            try {
+                const response = await window.DestinovaAPI.Booking.list();
+                if (response.bookings && response.bookings.length > 0) {
+                    return response.bookings.map(transformBooking);
+                }
+            } catch (error) {
+                console.error('Failed to load from legacy API:', error);
+            }
+        }
+        
+        // Fallback to localStorage or sample data
         const stored = localStorage.getItem('userBookings');
         return stored ? JSON.parse(stored) : sampleBookings;
     }
+    
+    // Initialize bookings
+    loadBookings().then(data => {
+        bookings = data;
+        renderBookings();
+    });
     
     function saveBookings() {
         localStorage.setItem('userBookings', JSON.stringify(bookings));

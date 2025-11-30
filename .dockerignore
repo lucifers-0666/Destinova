@@ -1,0 +1,78 @@
+# Docker files
+Dockerfile
+Dockerfile.dev
+docker-compose*.yml
+.docker/
+docker/
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node modules
+node_modules
+
+# Test files
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+__tests__
+coverage
+.nyc_output
+
+# Development files
+.env*
+.editorconfig
+.eslintrc*
+.prettierrc*
+tsconfig.json
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Documentation (optional - uncomment if you want docs in image)
+# docs/
+# *.md
+
+# Build artifacts
+dist
+build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+tmp
+temp
+*.tmp
+
+# Package manager lock files (keep package-lock.json)
+yarn.lock
+pnpm-lock.yaml
+
+# Admin panel source (if building separately)
+# Admin/
+
+# Test utilities
+jest.config.*
+vitest.config.*
+
+# TypeScript source (we copy compiled dist)
+src/**/*.ts
+
+# SSL certificates (mount as volumes instead)
+ssl/
+*.pem
+*.key
+*.crt

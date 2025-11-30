@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Booking Confirmed | Destinova - Luxury Travel</title>
     
     <!-- Fonts -->
@@ -16,6 +19,9 @@
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
+    <!-- Lottie Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.10.5/lottie.min.js"></script>
+    
     <!-- QR Code Generator -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
@@ -26,7 +32,7 @@
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    <link rel="stylesheet" href="../css/booking-confirmation.css">
+    <link rel="stylesheet" href="../css/booking-confirmation.css?v=2.1">
 </head>
 <body>
 
@@ -35,53 +41,24 @@
         <div class="gradient-mesh"></div>
     </div>
 
-    <!-- Premium Header -->
-    <header class="premium-header" id="header-main">
-        <div class="container">
-            <nav class="header-nav">
-                <a href="/" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
-                    <div class="logo-text">
-                        <span class="logo-name">Destinova</span>
-                        <span class="logo-tagline">LUXURY TRAVEL</span>
-                    </div>
-                </a>
-                
-                <div class="nav-links">
-                    <a href="/" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                    <a href="/my-bookings" class="nav-link">
-                        <i class="fas fa-ticket"></i>
-                        <span>My Bookings</span>
-                    </a>
-                    <a href="/support" class="nav-link">
-                        <i class="fas fa-headset"></i>
-                        <span>Support</span>
-                    </a>
-                </div>
-                
-                <div class="header-actions">
-                    <div class="user-menu">
-                        <button class="user-avatar">
-                            <img src="https://i.pravatar.cc/80?img=33" alt="User">
-                            <span class="user-status"></span>
-                        </button>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
     <!-- Success Hero with Particles -->
     <section class="success-hero">
         <div id="particles-success" class="particles-success"></div>
+        
+        <!-- Animated Background Mesh -->
+        <div class="hero-bg-effects">
+            <div class="mesh-gradient"></div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        
         <div class="hero-content">
-            <div class="success-checkmark">
-                <i class="fas fa-check"></i>
+            <!-- Lottie Checkmark Animation Container -->
+            <div class="lottie-checkmark-container">
+                <div id="lottie-animation"></div>
             </div>
             
             <h1 class="success-title">Booking Confirmed!</h1>
@@ -89,28 +66,34 @@
                 Thank you for choosing Destinova. Your e-ticket has been sent to your email address.
             </p>
             
-            <div id="booking-ref-container" class="booking-ref-container">
-                <span id="booking-ref" class="booking-ref">DEST1NOVA</span>
-                <button id="copy-ref-btn" class="copy-ref-btn" title="Copy Reference">
-                    <i class="fas fa-copy"></i>
-                </button>
-                <span id="copy-tooltip" class="copy-tooltip">Copied!</span>
+            <!-- Enhanced Booking Reference Card with 3D Tilt -->
+            <div id="booking-ref-container" class="booking-ref-container glass-morphism booking-ref-tilt">
+                <div class="booking-ref-inner">
+                    <span class="booking-ref-label">Booking Reference</span>
+                    <div class="booking-ref-display">
+                        <span id="booking-ref" class="booking-ref">DEST1NOVA</span>
+                        <button id="copy-ref-btn" class="copy-ref-btn magnetic-btn" title="Copy Reference">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <span id="copy-tooltip" class="copy-tooltip">Copied!</span>
+                </div>
             </div>
 
-            <!-- Social Share -->
+            <!-- Social Share with Magnetic Effects -->
             <div class="social-share">
                 <span class="share-label">Share your journey:</span>
                 <div class="share-buttons">
-                    <button class="share-btn" title="Share on Twitter">
+                    <button class="share-btn magnetic-btn" title="Share on Twitter">
                         <i class="fab fa-twitter"></i>
                     </button>
-                    <button class="share-btn" title="Share on Facebook">
+                    <button class="share-btn magnetic-btn" title="Share on Facebook">
                         <i class="fab fa-facebook"></i>
                     </button>
-                    <button class="share-btn" title="Share on WhatsApp">
+                    <button class="share-btn magnetic-btn" title="Share on WhatsApp">
                         <i class="fab fa-whatsapp"></i>
                     </button>
-                    <button class="share-btn" title="Share on Instagram">
+                    <button class="share-btn magnetic-btn" title="Share on Instagram">
                         <i class="fab fa-instagram"></i>
                     </button>
                 </div>
@@ -143,77 +126,187 @@
                         </div>
                     </div>
 
-                    <!-- Flight Path -->
-                    <div class="flight-path-details">
-                        <div class="flight-segment departure">
-                            <div class="city-code">DEL</div>
-                            <div class="city-name">New Delhi</div>
-                            <div class="airport-name">Indira Gandhi Int'l</div>
-                            <div class="flight-time">08:00</div>
-                            <div class="flight-date">15 Mar, 2025</div>
-                            <div class="terminal-gate">Terminal: 3, Gate: 24A</div>
-                        </div>
-
-                        <div class="flight-info">
-                            <div class="flight-path-animated">
-                                <div class="path-line"></div>
-                                <i class="fas fa-plane path-plane"></i>
+                    <!-- Flight Path - Timeline Design -->
+                    <div class="flight-path-container">
+                        <div class="flight-path-details glass-morphism flight-details-slide">
+                            <div class="flight-segment departure animate-on-scroll">
+                                <div class="city-code flip-card">DEL</div>
+                                <div class="city-name">New Delhi</div>
+                                <div class="airport-name">Indira Gandhi Int'l</div>
+                                <div class="flight-time-block">
+                                    <div class="flight-time">08:00</div>
+                                    <div class="flight-date">15 Mar, 2025</div>
+                                </div>
+                                <div class="terminal-gate">
+                                    <i class="fas fa-map-pin"></i>
+                                    <span>Terminal: 3, Gate: 24A</span>
+                                </div>
                             </div>
-                            <div class="duration">2h 10m</div>
-                            <div class="stops">Non-stop</div>
+
+                            <div class="flight-path-timeline">
+                                <div class="timeline-start-dot pulse-dot"></div>
+                                <div class="timeline-line drawing-line animated-plane-line"></div>
+                                <div class="flight-path-animated">
+                                    <svg class="animated-plane" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(50,50)">
+                                            <!-- Plane Trail -->
+                                            <path class="plane-trail" d="M -30 0 Q -10 -3 0 0 Q 10 3 30 0" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                                            <!-- Plane Body -->
+                                            <circle r="8" fill="currentColor"/>
+                                            <!-- Wings -->
+                                            <path d="M -8 0 L -25 -5 L -25 5 Z" fill="currentColor"/>
+                                            <path d="M 8 0 L 25 -5 L 25 5 Z" fill="currentColor"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="timeline-end-dot pulse-dot"></div>
+                            </div>
+
+                            <div class="flight-duration-info">
+                                <div class="duration-badge pulse-badge">
+                                    <i class="fas fa-clock"></i>
+                                    <span class="duration"><span class="time-counter" data-target="2">0</span>h <span class="time-counter" data-target="10">0</span>m</span>
+                                </div>
+                                <div class="stops-badge pulse-badge">
+                                    <i class="fas fa-route"></i>
+                                    <span>Non-stop</span>
+                                </div>
+                            </div>
+
+                            <div class="flight-segment arrival animate-on-scroll" style="animation-delay: 0.1s">
+                                <div class="city-code flip-card">BOM</div>
+                                <div class="city-name">Mumbai</div>
+                                <div class="airport-name">Chhatrapati Shivaji Int'l</div>
+                                <div class="flight-time-block">
+                                    <div class="flight-time">10:10</div>
+                                    <div class="flight-date">15 Mar, 2025</div>
+                                </div>
+                                <div class="terminal-gate">
+                                    <i class="fas fa-map-pin"></i>
+                                    <span>Terminal: 2</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="flight-segment arrival">
-                            <div class="city-code">BOM</div>
-                            <div class="city-name">Mumbai</div>
-                            <div class="airport-name">Chhatrapati Shivaji Int'l</div>
-                            <div class="flight-time">10:10</div>
-                            <div class="flight-date">15 Mar, 2025</div>
-                            <div class="terminal-gate">Terminal: 2</div>
+                        <!-- Quick Details Grid -->
+                        <div class="flight-quick-details quick-details-stagger">
+                            <div class="quick-detail-card neumorphic">
+                                <i class="fas fa-plane"></i>
+                                <span class="label">Flight</span>
+                                <span class="value">DN 789</span>
+                            </div>
+                            <div class="quick-detail-card neumorphic">
+                                <i class="fas fa-chair"></i>
+                                <span class="label">Seat</span>
+                                <span class="value">12A</span>
+                            </div>
+                            <div class="quick-detail-card neumorphic">
+                                <i class="fas fa-door-open"></i>
+                                <span class="label">Gate</span>
+                                <span class="value">TBA</span>
+                            </div>
+                            <div class="quick-detail-card neumorphic">
+                                <i class="fas fa-building"></i>
+                                <span class="label">Terminal</span>
+                                <span class="value">3</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Passenger Details -->
-                    <div class="passenger-details">
-                        <h3 class="section-title">
-                            <i class="fas fa-users"></i>
-                            Passenger Information
-                        </h3>
-                        <div class="passenger-grid">
-                            <div class="passenger-item">
-                                <div class="passenger-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="passenger-info">
-                                    <div class="passenger-name">Diwakar Monga</div>
-                                    <div class="passenger-meta">
-                                        <span><i class="fas fa-chair"></i> Seat: 12A</span>
-                                        <span><i class="fas fa-plane-up"></i> Economy</span>
-                                        <span><i class="fas fa-suitcase"></i> 2x23kg</span>
+                    <!-- Passenger Details - Accordion Design -->
+                    <div class="passenger-details-section glass-morphism passenger-accordion">
+                        <div class="passenger-header" id="passenger-toggle">
+                            <h3 class="section-title">
+                                <i class="fas fa-users"></i>
+                                Passenger Information
+                            </h3>
+                            <button class="passenger-toggle-btn">
+                                <span class="toggle-text">View Details</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="passenger-content" id="passenger-content">
+                            <div class="passenger-grid">
+                                <div class="passenger-item passenger-card-hover">
+                                    <div class="passenger-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="passenger-info">
+                                        <div class="passenger-name">Diwakar Monga</div>
+                                        <div class="passenger-meta">
+                                            <span><i class="fas fa-chair"></i> Seat: 12A</span>
+                                            <span><i class="fas fa-plane-up"></i> Economy</span>
+                                            <span><i class="fas fa-suitcase"></i> 2x23kg</span>
+                                        </div>
+                                    </div>
+                                    <div class="passenger-status shimmer-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Confirmed</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Ticket Footer -->
+                    <!-- Ticket Footer - Enhanced QR and Payment -->
                     <div class="ticket-footer">
-                        <div class="qr-section">
-                            <div id="qr-code-container" class="qr-code"></div>
-                            <p class="qr-instruction">Scan this QR code at the gate for boarding.<br>Have a wonderful journey!</p>
+                        <!-- QR Code Section with Glassmorphism -->
+                        <div class="qr-section glass-morphism qr-interactive">
+                            <div class="qr-header">
+                                <i class="fas fa-qrcode"></i>
+                                <h4>Your Boarding Pass</h4>
+                            </div>
+                            <div class="qr-container qr-zoom-hover">
+                                <div class="qr-corners">
+                                    <div class="corner top-left"></div>
+                                    <div class="corner top-right"></div>
+                                    <div class="corner bottom-left"></div>
+                                    <div class="corner bottom-right"></div>
+                                </div>
+                                <div id="qr-code-container" class="qr-code"></div>
+                                <div class="qr-scan-line"></div>
+                            </div>
+                            <p class="qr-instruction">
+                                <i class="fas fa-info-circle"></i>
+                                Scan this QR code at the gate for boarding
+                            </p>
                         </div>
-                        <div class="booking-details">
-                            <div class="detail-row">
-                                <span class="detail-label">Booking Date:</span>
-                                <span class="detail-value">28 Oct, 2025</span>
+
+                        <!-- Payment Summary with Neumorphism -->
+                        <div class="booking-details glass-morphism">
+                            <div class="payment-header">
+                                <h4>Payment Summary</h4>
+                                <i class="fas fa-check-circle success-icon"></i>
                             </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Payment Method:</span>
-                                <span class="detail-value">Card ****1234</span>
+                            
+                            <div class="payment-breakdown staggered-payment-items">
+                                <div class="payment-row payment-fade-in">
+                                    <span class="payment-label">Base Fare</span>
+                                    <span class="payment-amount">₹<span class="amount-counter" data-target="18500">0</span></span>
+                                </div>
+                                <div class="payment-row payment-fade-in">
+                                    <span class="payment-label">Taxes & Fees</span>
+                                    <span class="payment-amount">₹<span class="amount-counter" data-target="2600">0</span></span>
+                                </div>
+                                <div class="payment-row payment-fade-in">
+                                    <span class="payment-label">Convenience Charge</span>
+                                    <span class="payment-amount">₹<span class="amount-counter" data-target="500">0</span></span>
+                                </div>
+                                <div class="payment-divider"></div>
+                                <div class="payment-row total-row payment-highlight">
+                                    <span class="payment-label">Total Paid</span>
+                                    <span class="payment-amount total-amount">
+                                        ₹<span class="total-counter" data-target="21600">0</span>
+                                        <span class="sparkle-icon">✨</span>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Total Paid:</span>
-                                <span class="detail-value highlight">₹21,600</span>
+
+                            <div class="payment-method">
+                                <i class="fas fa-credit-card"></i>
+                                <span class="card-info">•••• <span class="reveal-digits">3234</span></span>
+                                <span class="payment-date">28 Oct, 2025</span>
                             </div>
                         </div>
                     </div>
@@ -222,87 +315,131 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="btn-action btn-primary" id="download-ticket-btn">
+            <div class="action-buttons action-buttons-enhance">
+                <button class="btn-action btn-primary btn-ripple" id="download-ticket-btn">
                     <i class="fas fa-download"></i>
                     <span>Download Ticket</span>
                 </button>
-                <button class="btn-action" id="email-ticket-btn">
+                <button class="btn-action btn-ripple" id="email-ticket-btn">
                     <i class="fas fa-envelope"></i>
                     <span>Email Ticket</span>
                 </button>
-                <button class="btn-action" id="add-to-calendar-btn">
+                <button class="btn-action btn-ripple" id="add-to-calendar-btn">
                     <i class="fas fa-calendar-plus"></i>
                     <span>Add to Calendar</span>
                 </button>
-                <button class="btn-action" id="print-btn">
+                <button class="btn-action btn-ripple" id="print-btn">
                     <i class="fas fa-print"></i>
                     <span>Print</span>
                 </button>
             </div>
 
-            <!-- What's Next Section -->
-            <div class="next-steps glass-card">
-                <h3 class="section-title">
-                    <i class="fas fa-list-check"></i>
-                    What's Next?
-                </h3>
-                <ul class="checklist">
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Web check-in opens 24 hours before your flight.</strong>
-                            <p>Save time at the airport by checking in online.</p>
+            <!-- What's Next Section - Timeline Redesign -->
+            <div class="next-steps glass-card timeline-container">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-list-check"></i>
+                        What's Next?
+                    </h3>
+                    <p class="section-subtitle">Follow these steps for a smooth travel experience</p>
+                </div>
+                
+                <div class="timeline timeline-animated">
+                    <div class="timeline-step timeline-slide-in">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot pulse"></div>
+                            <div class="timeline-connector"></div>
                         </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Arrive at the airport at least 2 hours before departure.</strong>
-                            <p>Domestic flights require 2 hours, international 3 hours.</p>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">24 hours</div>
+                            <h4 class="timeline-title">Web Check-in Opens</h4>
+                            <p class="timeline-text">Save time at the airport by checking in online.</p>
+                            <button class="timeline-cta">
+                                <span>Check-in Now</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
                         </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Carry a valid government-issued photo ID.</strong>
-                            <p>Passport, Aadhar Card, or Driver's License required.</p>
+                    </div>
+
+                    <div class="timeline-step timeline-slide-in">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-connector"></div>
                         </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Download the Destinova mobile app.</strong>
-                            <p>Get real-time flight updates and mobile boarding passes.</p>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">2 hours</div>
+                            <h4 class="timeline-title">Arrive at Airport</h4>
+                            <p class="timeline-text">Domestic flights require 2 hours, international 3 hours before departure.</p>
+                            <span class="location-info">
+                                <i class="fas fa-map-pin"></i>
+                                Terminal 3, New Delhi
+                            </span>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+
+                    <div class="timeline-step timeline-slide-in">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-connector"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">Before Boarding</div>
+                            <h4 class="timeline-title">Valid Photo ID Required</h4>
+                            <p class="timeline-text">Passport, Aadhar Card, or Driver's License required.</p>
+                            <button class="timeline-cta secondary">
+                                <span>View Requirements</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step timeline-slide-in">
+                        <div class="timeline-marker">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">Real-time Updates</div>
+                            <h4 class="timeline-title">Download Destinova App</h4>
+                            <p class="timeline-text">Get real-time flight updates and mobile boarding passes.</p>
+                            <div class="app-download-buttons">
+                                <button class="download-btn">
+                                    <i class="fab fa-apple"></i>
+                                    <span>iOS</span>
+                                </button>
+                                <button class="download-btn">
+                                    <i class="fab fa-google-play"></i>
+                                    <span>Android</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Travel Tips -->
-            <div class="travel-tips glass-card">
+            <div class="travel-tips glass-card tips-stagger">
                 <h3 class="section-title">
                     <i class="fas fa-lightbulb"></i>
                     Travel Tips
                 </h3>
                 <div class="tips-grid">
-                    <div class="tip-card">
-                        <i class="fas fa-bag-shopping"></i>
+                    <div class="tip-card tip-card-animate">
+                        <i class="fas fa-bag-shopping tip-icon-float"></i>
                         <h4>Baggage</h4>
                         <p>Pack smart! Check our baggage policy for size and weight limits.</p>
                     </div>
-                    <div class="tip-card">
-                        <i class="fas fa-shield-virus"></i>
+                    <div class="tip-card tip-card-animate">
+                        <i class="fas fa-shield-virus tip-icon-float"></i>
                         <h4>Health & Safety</h4>
                         <p>Review current travel restrictions and health requirements.</p>
                     </div>
-                    <div class="tip-card">
-                        <i class="fas fa-mobile-screen"></i>
+                    <div class="tip-card tip-card-animate">
+                        <i class="fas fa-mobile-screen tip-icon-float"></i>
                         <h4>Stay Connected</h4>
                         <p>Enable flight mode and enjoy in-flight WiFi services.</p>
                     </div>
-                    <div class="tip-card">
-                        <i class="fas fa-utensils"></i>
+                    <div class="tip-card tip-card-animate">
+                        <i class="fas fa-utensils tip-icon-float"></i>
                         <h4>In-Flight Dining</h4>
                         <p>Pre-order meals for a premium dining experience.</p>
                     </div>
@@ -319,83 +456,61 @@
                 <h3>Plan Your Next Trip</h3>
                 <p>Explore amazing destinations and exclusive deals</p>
             </div>
-            <div class="destination-cards-container">
-                <div class="destination-card-promo">
+            <div class="destination-cards-container destination-cards-parallax">
+                <div class="destination-card-promo destination-3d-tilt">
                     <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&h=500&fit=crop" alt="Tokyo">
                     <div class="promo-overlay">
                         <h4>Tokyo</h4>
                         <p>From ₹45,000</p>
+                        <div class="price-badge-bounce">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="destination-card-promo">
+                <div class="destination-card-promo destination-3d-tilt">
                     <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&h=500&fit=crop" alt="Rome">
                     <div class="promo-overlay">
                         <h4>Rome</h4>
                         <p>From ₹55,000</p>
+                        <div class="price-badge-bounce">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="destination-card-promo">
+                <div class="destination-card-promo destination-3d-tilt">
                     <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=500&fit=crop" alt="Dubai">
                     <div class="promo-overlay">
                         <h4>Dubai</h4>
                         <p>From ₹35,000</p>
+                        <div class="price-badge-bounce">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="premium-footer">
-        <div class="footer-gradient-overlay"></div>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo-section">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">
-                            <i class="fas fa-plane-departure"></i>
-                        </div>
-                        <div class="footer-logo-text">
-                            <span class="footer-logo-name">Destinova</span>
-                            <span class="footer-logo-tagline">Luxury Travel Experiences</span>
-                        </div>
-                    </div>
-                    <p class="footer-description">
-                        Your trusted partner for premium flight bookings. Experience seamless travel with world-class service.
-                    </p>
-                </div>
-                <div class="footer-links-grid">
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <a href="/about">About Us</a>
-                        <a href="/contact">Contact</a>
-                        <a href="/careers">Careers</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <a href="/help">Help Center</a>
-                        <a href="/faq">FAQ</a>
-                        <a href="/refund">Refund Policy</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Contact</h4>
-                        <p><i class="fas fa-phone"></i> 1800-123-456</p>
-                        <p><i class="fas fa-envelope"></i> support@destinova.com</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Destinova. All rights reserved.</p>
-                <div class="payment-methods">
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-amex"></i>
-                    <i class="fab fa-cc-paypal"></i>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../js/booking-confirmation.js"></script>
+    <script src="../js/booking-confirmation.js?v=2.1"></script>
+    <script>
+        // Force cache clearing on version mismatch
+        window.addEventListener('load', function() {
+            const currentVersion = '2.1';
+            const storedVersion = localStorage.getItem('destNovaVersion');
+            if (storedVersion !== currentVersion) {
+                localStorage.setItem('destNovaVersion', currentVersion);
+                // Clear service worker cache
+                if ('caches' in window) {
+                    caches.keys().then(names => {
+                        names.forEach(name => caches.delete(name));
+                    });
+                }
+                // Clear browser cache
+                if (window.location.search === '') {
+                    window.location.search = '?nocache=' + Date.now();
+                }
+            }
+        });
+    </script>
 </body>
 </html>

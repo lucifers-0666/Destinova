@@ -41,13 +41,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadUsers() {
         showSkeletonLoader();
-        // API Simulation
-        setTimeout(() => {
-            usersData = mockUsers;
-            filteredUsers = [...usersData];
-            updateStatistics();
-            renderUsers();
-        }, 1000);
+        
+        // Try real API first
+        const loadFromAPI = async () => {
+            try {
+                if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Admin) {
+                    const response = await window.DestinovaAPI.Admin.getAllUsers();
+                    if (response && response.users && response.users.length > 0) {
+                        usersData = response.users.map(user => ({
+                            id: user._id,
+                            name: user.name || `${user.firstName} ${user.lastName}`,
+                            email: user.email,
+                            phone: user.phone || 'N/A',
+                            avatar: user.profileImage || `https://ui-avatars.com/api/?name=${user.name || 'User'}&background=random`,
+                            registrationDate: new Date(user.createdAt).toISOString().split('T')[0],
+                            lastLogin: new Date().toISOString(), // Mock for now
+                            totalBookings: user.totalBookings || 0,
+                            totalSpent: user.totalSpent || 0,
+                            role: user.role || 'user',
+                            status: 'active' // Mock for now
+                        }));
+                        filteredUsers = [...usersData];
+                        renderTable(filteredUsers);
+                        updatePagination();
+                        updateSelectedCount();
+                        return true;
+                    }
+                }
+            } catch (error) {
+                console.log('Admin API not available, using mock data:', error.message);
+            }
+            return false;
+        };
+
+        loadFromAPI().then(success => {
+            if (!success) {
+                // Fallback to mock data
+                usersData = mockUsers;
+                filteredUsers = [...usersData];
+                renderTable(filteredUsers);
+                updatePagination();
+                updateSelectedCount();
+            }
+        });
+    }
+                        usersData = response.users.map((user, i) => ({
+                            id: user._id || user.id || (1001 + i),
+                            name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.name || `User ${1001 + i}`,
+                            email: user.email || `user${1001 + i}@destinova.com`,
+                            phone: user.phone || 'N/A',
+                            avatar: user.avatar || `https://randomuser.me/api/portraits/${i % 2 === 0 ? 'men' : 'women'}/${i % 100}.jpg`,
+                            registrationDate: user.createdAt ? new Date(user.createdAt).toISOString().split('T')[0] : 'N/A',
+                            lastLogin: user.lastLogin || user.createdAt || new Date().toISOString(),
+                            totalBookings: user.totalBookings || 0,
+                            totalSpent: user.totalSpent || '0.00',
+                            role: user.role || 'Customer',
+                            status: user.status || 'active',
+                        }));
+                        filteredUsers = [...usersData];
+                        updateStatistics();
+                        renderUsers();
+                        return true;
+                    }
+                }
+            } catch (error) {
+                console.log('Admin API not available, using mock data:', error.message);
+            }
+            return false;
+        };
+        
+        loadFromAPI().then(success => {
+            if (!success) {
+                // Fallback to mock data
+                setTimeout(() => {
+                    usersData = mockUsers;
+                    filteredUsers = [...usersData];
+                    updateStatistics();
+                    renderUsers();
+                }, 1000);
+            }
+        });
     }
 
     function renderUsers() {

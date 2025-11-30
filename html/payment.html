@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure payment for your Destinova flight booking">
+    <title>Payment | Destinova</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../site-images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/payment-security.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+        
+        /* Progress Steps */
+        .booking-progress {
+            background: white;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 80px;
+        }
+        
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .progress-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: #e0e0e0;
+            z-index: 1;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .progress-step.completed .step-number {
+            background: var(--primary, #1a5f4a);
+            color: white;
+        }
+        
+        .progress-step.active .step-number {
+            background: var(--secondary, #f0b429);
+            color: white;
+            box-shadow: 0 0 0 4px rgba(240, 180, 41, 0.2);
+        }
+        
+        .step-label {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .progress-step.active .step-label {
+            color: var(--primary, #1a5f4a);
+            font-weight: 600;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+        }
+        
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, var(--primary, #1a5f4a), var(--primary-dark, #134436));
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-header i {
+            font-size: 1.25rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .section-body {
+            padding: 24px;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary, #1a5f4a);
+            background: #f8faf9;
+        }
+        
+        .payment-method.active {
+            border-color: var(--primary, #1a5f4a);
+            background: linear-gradient(135deg, #e8f5e9, #f5fff7);
+        }
+        
+        .payment-method input[type="radio"] {
+            display: none;
+        }
+        
+        .payment-method .radio-custom {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method.active .radio-custom {
+            border-color: var(--primary, #1a5f4a);
+        }
+        
+        .payment-method.active .radio-custom::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--primary, #1a5f4a);
+            border-radius: 50%;
+        }
+        
+        .payment-method-icon {
+            width: 48px;
+            height: 48px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .payment-method-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        
+        .payment-method-info p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* Card Form */
+        .card-form {
+            display: none;
+        }
+        
+        .card-form.active {
+            display: block;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 6px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary, #1a5f4a);
+            box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+        }
+        
+        /* Stripe Elements */
+        #card-element {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        #card-element.StripeElement--focus {
+            border-color: var(--primary, #1a5f4a);
+            box-shadow: 0 0 0 3px rgba(26, 95, 74, 0.1);
+        }
+        
+        #card-element.StripeElement--invalid {
+            border-color: #dc3545;
+        }
+        
+        #card-errors {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+        
+        /* Saved Cards */
+        .saved-cards {
+            margin-bottom: 20px;
+        }
+        
+        .saved-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .saved-card:hover {
+            border-color: var(--primary, #1a5f4a);
+        }
+        
+        .saved-card.selected {
+            border-color: var(--primary, #1a5f4a);
+            background: #f8faf9;
+        }
+        
+        .card-brand-icon {
+            font-size: 2rem;
+            color: #333;
+        }
+        
+        .saved-card-info {
+            flex: 1;
+        }
+        
+        .saved-card-info .card-number {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .saved-card-info .card-expiry {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 20px 0;
+            color: #999;
+            font-size: 0.875rem;
+        }
+        
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+        
+        /* UPI/Wallet Forms */
+        .upi-form,
+        .wallet-form,
+        .netbanking-form {
+            display: none;
+        }
+        
+        .upi-form.active,
+        .wallet-form.active,
+        .netbanking-form.active {
+            display: block;
+        }
+        
+        .upi-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        
+        .upi-input-wrapper .form-group {
+            flex: 1;
+        }
+        
+        .verify-btn {
+            padding: 14px 24px;
+            background: var(--primary, #1a5f4a);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .verify-btn:hover {
+            background: var(--primary-dark, #134436);
+        }
+        
+        /* Wallet Options */
+        .wallet-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        
+        .wallet-option {
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .wallet-option:hover {
+            border-color: var(--primary, #1a5f4a);
+        }
+        
+        .wallet-option.selected {
+            border-color: var(--primary, #1a5f4a);
+            background: #f8faf9;
+        }
+        
+        .wallet-option img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
+        .wallet-option span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Bank Options */
+        .bank-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .bank-option {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .bank-option:hover {
+            border-color: var(--primary, #1a5f4a);
+        }
+        
+        .bank-option.selected {
+            border-color: var(--primary, #1a5f4a);
+            background: #f8faf9;
+        }
+        
+        .bank-option img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 24px;
+        }
+        
+        .security-badge i {
+            font-size: 1.5rem;
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .security-badge p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* Order Summary Sidebar */
+        .order-summary {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .flight-info-compact {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .flight-route-compact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .route-airports {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .route-arrow {
+            color: #999;
+        }
+        
+        .flight-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .flight-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Passengers List */
+        .passengers-list {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .passengers-list h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .passenger-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            font-size: 0.875rem;
+            color: #555;
+        }
+        
+        .passenger-item i {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        /* Price Summary */
+        .price-summary {
+            padding: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .price-row .label {
+            color: #666;
+        }
+        
+        .price-row .value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .price-divider {
+            height: 1px;
+            background: #eee;
+            margin: 16px 0;
+        }
+        
+        .price-row.total {
+            font-size: 1.1rem;
+        }
+        
+        .price-row.total .label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .price-row.total .value {
+            font-weight: 700;
+            color: var(--primary, #1a5f4a);
+            font-size: 1.3rem;
+        }
+        
+        /* Pay Button */
+        .pay-section {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .pay-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--secondary, #f0b429), #e6a820);
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .pay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(240, 180, 41, 0.4);
+        }
+        
+        .pay-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .pay-btn .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+        
+        .pay-btn.loading .spinner {
+            display: block;
+        }
+        
+        .pay-btn.loading .btn-text {
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .terms-note {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .terms-note a {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: static;
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+            
+            .progress-container::before {
+                display: none;
+            }
+            
+            .wallet-options,
+            .bank-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Progress Steps -->
+    <div class="booking-progress">
+        <div class="progress-container">
+            <div class="progress-step completed">
+                <div class="step-number"><i class="fas fa-check"></i></div>
+                <span class="step-label">Search</span>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-number"><i class="fas fa-check"></i></div>
+                <span class="step-label">Select Flight</span>
+            </div>
+            <div class="progress-step completed">
+                <div class="step-number"><i class="fas fa-check"></i></div>
+                <span class="step-label">Passenger Details</span>
+            </div>
+            <div class="progress-step active">
+                <div class="step-number">4</div>
+                <span class="step-label">Payment</span>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">5</div>
+                <span class="step-label">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <!-- Payment Methods -->
+            <div class="section-card">
+                <div class="section-header">
+                    <i class="fas fa-credit-card"></i>
+                    <h2>Payment Method</h2>
+                </div>
+                <div class="section-body">
+                    <div class="payment-methods">
+                        <label class="payment-method active" data-method="card">
+                            <input type="radio" name="payment-method" value="card" checked>
+                            <span class="radio-custom"></span>
+                            <div class="payment-method-icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="payment-method-info">
+                                <h4>Credit / Debit Card</h4>
+                                <p>Visa, Mastercard, Amex, RuPay</p>
+                            </div>
+                        </label>
+                        
+                        <label class="payment-method" data-method="upi">
+                            <input type="radio" name="payment-method" value="upi">
+                            <span class="radio-custom"></span>
+                            <div class="payment-method-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="payment-method-info">
+                                <h4>UPI</h4>
+                                <p>Google Pay, PhonePe, Paytm</p>
+                            </div>
+                        </label>
+                        
+                        <label class="payment-method" data-method="wallet">
+                            <input type="radio" name="payment-method" value="wallet">
+                            <span class="radio-custom"></span>
+                            <div class="payment-method-icon"><i class="fas fa-wallet"></i></div>
+                            <div class="payment-method-info">
+                                <h4>Digital Wallets</h4>
+                                <p>Paytm, MobiKwik, Amazon Pay</p>
+                            </div>
+                        </label>
+                        
+                        <label class="payment-method" data-method="netbanking">
+                            <input type="radio" name="payment-method" value="netbanking">
+                            <span class="radio-custom"></span>
+                            <div class="payment-method-icon"><i class="fas fa-university"></i></div>
+                            <div class="payment-method-info">
+                                <h4>Net Banking</h4>
+                                <p>All major banks supported</p>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Card Payment Form -->
+                    <div class="card-form active" id="card-form">
+                        <!-- Saved Cards Section -->
+                        <div class="saved-cards" id="saved-cards" style="display: none;">
+                            <!-- Saved cards will be loaded here -->
+                        </div>
+                        
+                        <div class="or-divider" id="or-divider" style="display: none;">Or pay with a new card</div>
+                        
+                        <!-- Stripe Card Element -->
+                        <div class="form-group">
+                            <label>Card Details</label>
+                            <div id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        
+                        <div class="form-row" style="margin-top: 16px;">
+                            <div class="form-group">
+                                <label>Name on Card</label>
+                                <input type="text" id="card-name" placeholder="John Doe">
+                            </div>
+                        </div>
+                        
+                        <label class="form-group" style="flex-direction: row; align-items: center; gap: 10px; margin-top: 16px;">
+                            <input type="checkbox" id="save-card" style="width: auto;">
+                            <span style="font-size: 0.875rem;">Save card for future payments</span>
+                        </label>
+                    </div>
+                    
+                    <!-- UPI Payment Form -->
+                    <div class="upi-form" id="upi-form">
+                        <div class="upi-input-wrapper">
+                            <div class="form-group">
+                                <label>UPI ID</label>
+                                <input type="text" id="upi-id" placeholder="yourname@upi">
+                            </div>
+                            <button class="verify-btn" onclick="verifyUPI()">Verify</button>
+                        </div>
+                        <div class="or-divider">Or select an app</div>
+                        <div class="wallet-options">
+                            <div class="wallet-option" data-wallet="gpay">
+                                <i class="fab fa-google-pay" style="font-size: 2rem;"></i>
+                                <span>Google Pay</span>
+                            </div>
+                            <div class="wallet-option" data-wallet="phonepe">
+                                <i class="fas fa-mobile-alt" style="font-size: 2rem; color: #5f259f;"></i>
+                                <span>PhonePe</span>
+                            </div>
+                            <div class="wallet-option" data-wallet="paytm">
+                                <i class="fas fa-wallet" style="font-size: 2rem; color: #00BAF2;"></i>
+                                <span>Paytm</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wallet Payment Form -->
+                    <div class="wallet-form" id="wallet-form">
+                        <p style="margin-bottom: 16px; color: #666;">Select your preferred wallet:</p>
+                        <div class="wallet-options">
+                            <div class="wallet-option" data-wallet="paytm-wallet">
+                                <i class="fas fa-wallet" style="font-size: 2rem; color: #00BAF2;"></i>
+                                <span>Paytm</span>
+                            </div>
+                            <div class="wallet-option" data-wallet="mobikwik">
+                                <i class="fas fa-wallet" style="font-size: 2rem; color: #ea5155;"></i>
+                                <span>MobiKwik</span>
+                            </div>
+                            <div class="wallet-option" data-wallet="amazon">
+                                <i class="fab fa-amazon" style="font-size: 2rem; color: #ff9900;"></i>
+                                <span>Amazon Pay</span>
+                            </div>
+                            <div class="wallet-option" data-wallet="freecharge">
+                                <i class="fas fa-bolt" style="font-size: 2rem; color: #8b2b8b;"></i>
+                                <span>FreeCharge</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Net Banking Form -->
+                    <div class="netbanking-form" id="netbanking-form">
+                        <p style="margin-bottom: 16px; color: #666;">Popular Banks:</p>
+                        <div class="bank-options">
+                            <div class="bank-option" data-bank="hdfc">
+                                <i class="fas fa-university" style="color: #004c8f;"></i>
+                                <span>HDFC Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="icici">
+                                <i class="fas fa-university" style="color: #f37920;"></i>
+                                <span>ICICI Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="sbi">
+                                <i class="fas fa-university" style="color: #22409a;"></i>
+                                <span>SBI</span>
+                            </div>
+                            <div class="bank-option" data-bank="axis">
+                                <i class="fas fa-university" style="color: #800000;"></i>
+                                <span>Axis Bank</span>
+                            </div>
+                            <div class="bank-option" data-bank="kotak">
+                                <i class="fas fa-university" style="color: #ed1c24;"></i>
+                                <span>Kotak</span>
+                            </div>
+                            <div class="bank-option" data-bank="yes">
+                                <i class="fas fa-university" style="color: #0066b3;"></i>
+                                <span>Yes Bank</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Or select your bank:</label>
+                            <select id="bank-select">
+                                <option value="">-- Select Bank --</option>
+                                <option value="hdfc">HDFC Bank</option>
+                                <option value="icici">ICICI Bank</option>
+                                <option value="sbi">State Bank of India</option>
+                                <option value="axis">Axis Bank</option>
+                                <option value="kotak">Kotak Mahindra Bank</option>
+                                <option value="yes">Yes Bank</option>
+                                <option value="pnb">Punjab National Bank</option>
+                                <option value="bob">Bank of Baroda</option>
+                                <option value="idbi">IDBI Bank</option>
+                                <option value="canara">Canara Bank</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>Your payment is secured with 256-bit SSL encryption. We never store your card details on our servers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="order-summary section-card">
+            <div class="section-header">
+                <i class="fas fa-receipt"></i>
+                <h2>Order Summary</h2>
+            </div>
+            
+            <!-- Flight Info -->
+            <div class="flight-info-compact">
+                <div class="flight-route-compact">
+                    <span class="route-airports">
+                        <span id="origin-code">DEL</span>
+                        <span class="route-arrow">→</span>
+                        <span id="dest-code">BOM</span>
+                    </span>
+                </div>
+                <div class="flight-meta">
+                    <span><i class="fas fa-calendar"></i> <span id="flight-date">--</span></span>
+                    <span><i class="fas fa-clock"></i> <span id="flight-time">--</span></span>
+                    <span><i class="fas fa-plane"></i> <span id="flight-number">--</span></span>
+                </div>
+            </div>
+            
+            <!-- Passengers -->
+            <div class="passengers-list">
+                <h4><i class="fas fa-users"></i> Passengers</h4>
+                <div id="passengers-summary">
+                    <!-- Passenger list will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Price Breakdown -->
+            <div class="price-summary">
+                <div class="price-row">
+                    <span class="label">Base Fare</span>
+                    <span class="value" id="summary-base">₹0</span>
+                </div>
+                <div class="price-row">
+                    <span class="label">Taxes & Fees</span>
+                    <span class="value" id="summary-taxes">₹0</span>
+                </div>
+                <div class="price-row" id="summary-addons-row" style="display: none;">
+                    <span class="label">Add-ons</span>
+                    <span class="value" id="summary-addons">₹0</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-row total">
+                    <span class="label">Total</span>
+                    <span class="value" id="summary-total">₹0</span>
+                </div>
+            </div>
+            
+            <!-- Pay Button -->
+            <div class="pay-section">
+                <button class="pay-btn" id="pay-btn" onclick="processPayment()">
+                    <span class="spinner"></span>
+                    <span class="btn-text"><i class="fas fa-lock"></i> Pay ₹<span id="pay-amount">0</span></span>
+                </button>
+                <p class="terms-note">
+                    By clicking Pay, you agree to our <a href="terms-conditions.html">Terms</a> and <a href="privacy-policy.html">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/component-loader.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth-check.js"></script>
+    <script src="../js/payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Management - Destinova Admin</title>
+    <link rel="icon" type="image/png" href="../../site-images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+    <link rel="stylesheet" href="../css/admin-responsive.css">
+    <style>
+        /* Flight Management Specific Styles */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-content h1 {
+            font-size: 1.8rem;
+            color: #1a3a2a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-content p {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(45, 90, 61, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e5e5;
+        }
+
+        /* Stats Cards */
+        .flight-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d5a3d;
+        }
+
+        .stat-scheduled { color: #3b82f6; }
+        .stat-ontime { color: #22c55e; }
+        .stat-delayed { color: #f59e0b; }
+        .stat-cancelled { color: #ef4444; }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Filters Bar */
+        .filters-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .filters-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            padding: 10px 14px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 150px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: #2d5a3d;
+        }
+
+        .search-input {
+            min-width: 250px;
+        }
+
+        /* Bulk Actions */
+        .bulk-actions {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .bulk-actions.show {
+            display: flex;
+        }
+
+        .bulk-action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bulk-action-btn.cancel {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .bulk-action-btn.activate {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .bulk-action-btn.delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .flights-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .flights-table th,
+        .flights-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .flights-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #1a3a2a;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .flights-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .flight-number {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flight-number strong {
+            color: #1a3a2a;
+        }
+
+        .flight-number small {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .route {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .route-code {
+            font-weight: 600;
+            color: #2d5a3d;
+        }
+
+        .route-cities {
+            display: block;
+            color: #888;
+            font-size: 0.75rem;
+        }
+
+        .datetime {
+            font-size: 0.9rem;
+        }
+
+        .datetime small {
+            color: #666;
+        }
+
+        .price {
+            font-weight: 600;
+            color: #2d5a3d;
+        }
+
+        .seats-info {
+            min-width: 100px;
+        }
+
+        .seats-bar {
+            height: 8px;
+            background: #e5e5e5;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .seats-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-scheduled {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .status-on-time {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-delayed {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status-boarding {
+            background: #fae8ff;
+            color: #86198f;
+        }
+
+        .actions-cell {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 8px;
+            background: #f5f5f5;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #2d5a3d;
+            color: white;
+        }
+
+        .btn-icon.btn-danger:hover {
+            background: #ef4444;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 20px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: #f5f5f5;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: #2d5a3d;
+            color: white;
+        }
+
+        .page-btn.active {
+            background: #2d5a3d;
+            color: white;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-size: 1.3rem;
+            color: #1a3a2a;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 14px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2d5a3d;
+        }
+
+        .form-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .form-section h4 {
+            margin-bottom: 15px;
+            color: #1a3a2a;
+        }
+
+        .modal-footer {
+            padding: 20px 25px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .modal-cancel {
+            padding: 12px 24px;
+            border: 2px solid #e5e5e5;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .modal-submit {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3a2a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f0f0f0;
+            border-top-color: #2d5a3d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 3000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .notification-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .notification-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .notification-info {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .flights-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .filters-row {
+                flex-direction: column;
+            }
+
+            .filter-group input,
+            .filter-group select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-left">
+            <button class="sidebar-toggle" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+            <div class="logo"><h1>Destin<span>ova</span></h1></div>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search flights..." autocomplete="off">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="notification-bell" id="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">2</span>
+            </div>
+            <div class="admin-profile" id="admin-profile">
+                <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Admin" class="profile-avatar">
+                <div class="profile-info">
+                    <span class="profile-name">Admin User</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="../../html/index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li><a href="manage-bookings.html"><i class="fas fa-suitcase"></i><span>Bookings Management</span></a></li>
+                <li class="active"><a href="flight-management.html"><i class="fas fa-plane-departure"></i><span>Flight Management</span></a></li>
+                <li><a href="manage-users.html"><i class="fas fa-users"></i><span>User Management</span></a></li>
+                <li><a href="revenue-reports.html"><i class="fas fa-chart-line"></i><span>Revenue Reports</span></a></li>
+                <li><a href="refund-management.html"><i class="fas fa-undo-alt"></i><span>Refund Management</span></a></li>
+                <li><a href="notification-management.html"><i class="fas fa-bell"></i><span>Notification Management</span></a></li>
+                <li><a href="admin-settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-signout">
+            <a href="../../html/index.html" onclick="return confirm('Are you sure you want to sign out?')">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="header-content">
+                <h1><i class="fas fa-plane-departure"></i> Flight Management</h1>
+                <p>Manage flights, schedules, pricing, and availability</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="exportFlightsBtn">
+                    <i class="fas fa-file-export"></i> Export
+                </button>
+                <button class="btn btn-secondary" id="refreshFlightsBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <button class="btn btn-primary" id="addFlightBtn">
+                    <i class="fas fa-plus"></i> Add Flight
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="flight-stats" id="flightStats">
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Total Flights</span>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label>Search</label>
+                    <input type="text" id="flightSearch" class="search-input" placeholder="Flight number, route...">
+                </div>
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="scheduled">Scheduled</option>
+                        <option value="on-time">On Time</option>
+                        <option value="delayed">Delayed</option>
+                        <option value="boarding">Boarding</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Airline</label>
+                    <select id="airlineFilter">
+                        <option value="">All Airlines</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>From Date</label>
+                    <input type="date" id="dateFromFilter">
+                </div>
+                <div class="filter-group">
+                    <label>To Date</label>
+                    <input type="date" id="dateToFilter">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="bulk-actions" id="bulkActionsDropdown">
+            <span><strong id="selectedCount">0</strong> selected</span>
+            <button class="bulk-action-btn activate" data-action="activate">
+                <i class="fas fa-check"></i> Activate
+            </button>
+            <button class="bulk-action-btn cancel" data-action="cancel">
+                <i class="fas fa-ban"></i> Cancel
+            </button>
+            <button class="bulk-action-btn delete" data-action="delete">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+        </div>
+
+        <!-- Flights Table -->
+        <div class="table-container">
+            <table class="flights-table" id="flightsTable">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>Flight</th>
+                        <th>Route</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                        <th>Price</th>
+                        <th>Seats</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="flightsTbody">
+                    <!-- Flights will be rendered here -->
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Flight Modal -->
+    <div class="modal-overlay" id="flightModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Flight</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="flightForm">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="formFlightNumber">Flight Number *</label>
+                            <input type="text" id="formFlightNumber" name="flightNumber" required placeholder="e.g., AI-101">
+                        </div>
+                        <div class="form-group">
+                            <label for="formAirline">Airline *</label>
+                            <select id="formAirline" name="airline" required>
+                                <option value="">Select Airline</option>
+                                <option value="AI">Air India</option>
+                                <option value="UK">Vistara</option>
+                                <option value="6E">IndiGo</option>
+                                <option value="SG">SpiceJet</option>
+                                <option value="G8">GoFirst</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formOrigin">Origin Airport *</label>
+                            <input type="text" id="formOrigin" name="origin" required placeholder="e.g., DEL">
+                        </div>
+                        <div class="form-group">
+                            <label for="formDestination">Destination Airport *</label>
+                            <input type="text" id="formDestination" name="destination" required placeholder="e.g., BOM">
+                        </div>
+                        <div class="form-group">
+                            <label for="formDepartureDate">Departure Date *</label>
+                            <input type="date" id="formDepartureDate" name="departureDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formDepartureTime">Departure Time *</label>
+                            <input type="time" id="formDepartureTime" name="departureTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formArrivalDate">Arrival Date *</label>
+                            <input type="date" id="formArrivalDate" name="arrivalDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formArrivalTime">Arrival Time *</label>
+                            <input type="time" id="formArrivalTime" name="arrivalTime" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Pricing (₹)</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="formEconomyPrice">Economy Price *</label>
+                                <input type="number" id="formEconomyPrice" name="economyPrice" required min="0" placeholder="4500">
+                            </div>
+                            <div class="form-group">
+                                <label for="formBusinessPrice">Business Price</label>
+                                <input type="number" id="formBusinessPrice" name="businessPrice" min="0" placeholder="12000">
+                            </div>
+                            <div class="form-group">
+                                <label for="formFirstPrice">First Class Price</label>
+                                <input type="number" id="formFirstPrice" name="firstPrice" min="0" placeholder="25000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Seat Configuration</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="formEconomySeats">Economy Seats *</label>
+                                <input type="number" id="formEconomySeats" name="economySeats" required min="0" placeholder="150">
+                            </div>
+                            <div class="form-group">
+                                <label for="formBusinessSeats">Business Seats</label>
+                                <input type="number" id="formBusinessSeats" name="businessSeats" min="0" placeholder="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="formFirstSeats">First Class Seats</label>
+                                <input type="number" id="formFirstSeats" name="firstSeats" min="0" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Additional Info</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="formAircraft">Aircraft Type</label>
+                                <input type="text" id="formAircraft" name="aircraft" placeholder="e.g., Airbus A320">
+                            </div>
+                            <div class="form-group">
+                                <label for="formStatus">Status</label>
+                                <select id="formStatus" name="status">
+                                    <option value="scheduled">Scheduled</option>
+                                    <option value="on-time">On Time</option>
+                                    <option value="delayed">Delayed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="modal-cancel">Cancel</button>
+                    <button type="submit" class="modal-submit">Save Flight</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script src="../js/admin-sidebar-init.js"></script>
+    <script src="../js/flight-management.js"></script>
+</body>
+</html>

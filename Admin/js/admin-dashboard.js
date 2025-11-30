@@ -117,11 +117,40 @@ function setupEventListeners() {
 }
 
 // Load Dashboard Statistics
-function loadDashboardStats() {
-    // Simulate API call - Replace with actual API endpoint
-    // fetch('/api/admin/dashboard/stats')
+async function loadDashboardStats() {
+    // Try real API first
+    try {
+        if (typeof window.DestinovaAPI !== 'undefined' && window.DestinovaAPI.Admin) {
+            const response = await window.DestinovaAPI.Admin.getDashboardStats();
+            if (response && response.stats) {
+                const stats = response.stats;
+                
+                // Animate counters
+                animateCounter('total-bookings', 0, stats.todayBookings || 0, 2000);
+                animateCounter('total-revenue', 0, stats.totalRevenue || 0, 2000);
+                animateCounter('active-flights', 0, stats.activeFlights || 0, 2000);
+                animateCounter('registered-users', 0, stats.registeredUsers || 0, 2000);
+                
+                // Update trends
+                if (document.getElementById('bookings-trend')) {
+                    document.getElementById('bookings-trend').textContent = `+${stats.bookingsTrend || 0}%`;
+                }
+                if (document.getElementById('revenue-trend')) {
+                    document.getElementById('revenue-trend').textContent = `+${stats.revenueTrend || 0}%`;
+                }
+                if (document.getElementById('new-users-today')) {
+                    document.getElementById('new-users-today').textContent = `+${stats.newUsersToday || 0}`;
+                }
+                
+                dashboardData.stats = stats;
+                return;
+            }
+        }
+    } catch (error) {
+        console.log('Admin API not available, using mock data:', error.message);
+    }
     
-    // Mock data
+    // Fallback to mock data
     const stats = {
         todayBookings: 147,
         bookingsTrend: 12.5,

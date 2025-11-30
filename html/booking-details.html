@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your booking details on Destinova">
+    <title>Booking Details | Destinova</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../site-images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            max-width: 1000px;
+            margin: 100px auto 40px;
+            padding: 20px;
+        }
+        
+        /* Booking Card */
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .booking-header {
+            background: linear-gradient(135deg, var(--primary, #1a5f4a), var(--primary-dark, #134436));
+            color: white;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .booking-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0L60 20H80L65 35L75 55L50 45L25 55L35 35L20 20H40L50 0Z' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") no-repeat;
+            background-size: contain;
+            opacity: 0.5;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .booking-ref {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .booking-ref strong {
+            font-size: 1.3rem;
+            display: block;
+            margin-top: 4px;
+        }
+        
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.confirmed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-badge.upcoming {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+        
+        .status-badge.completed {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .status-badge.cancelled {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        /* Flight Route */
+        .flight-route {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .route-city {
+            text-align: center;
+        }
+        
+        .city-code {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .city-name {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .route-line {
+            flex: 1;
+            max-width: 200px;
+            position: relative;
+            text-align: center;
+        }
+        
+        .route-line .duration {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        
+        .route-line .line {
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+            position: relative;
+        }
+        
+        .route-line .line::before {
+            content: '✈';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+        }
+        
+        .route-line .stops {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+        
+        /* Flight Info */
+        .flight-info-section {
+            padding: 30px;
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .info-item {
+            text-align: center;
+        }
+        
+        .info-item label {
+            display: block;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 4px;
+        }
+        
+        .info-item .value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        /* Passengers Section */
+        .passengers-section {
+            padding: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary, #1a5f4a);
+        }
+        
+        .passenger-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .passenger-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .passenger-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--primary, #1a5f4a);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .passenger-details {
+            flex: 1;
+        }
+        
+        .passenger-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .passenger-info {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .passenger-seat {
+            padding: 6px 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Price Section */
+        .price-section {
+            padding: 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .price-row .label {
+            color: #666;
+        }
+        
+        .price-row .value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .price-divider {
+            height: 1px;
+            background: #ddd;
+            margin: 16px 0;
+        }
+        
+        .price-row.total .label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .price-row.total .value {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary, #1a5f4a);
+        }
+        
+        /* Actions Section */
+        .actions-section {
+            padding: 30px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(135deg, var(--primary, #1a5f4a), var(--primary-dark, #134436));
+            color: white;
+            border: none;
+        }
+        
+        .action-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(26, 95, 74, 0.3);
+        }
+        
+        .action-btn.secondary {
+            background: white;
+            color: var(--primary, #1a5f4a);
+            border: 2px solid var(--primary, #1a5f4a);
+        }
+        
+        .action-btn.secondary:hover {
+            background: #f8faf9;
+        }
+        
+        .action-btn.danger {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+        
+        .action-btn.danger:hover {
+            background: #fff5f5;
+        }
+        
+        /* Loading State */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e0e0e0;
+            border-top-color: var(--primary, #1a5f4a);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .flight-info-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .flight-route {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .route-line {
+                transform: rotate(90deg);
+                width: 100px;
+            }
+            
+            .actions-section {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="booking-card" id="booking-card">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="../js/component-loader.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/auth-check.js"></script>
+    <script src="../js/booking-details.js"></script>
+</body>
+</html>

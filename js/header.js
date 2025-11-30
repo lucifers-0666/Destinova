@@ -75,6 +75,7 @@ function initHeader() {
     windowWidth: window.innerWidth,
     isLoggedIn: false,
     userName: 'Guest',
+    headerTheme: 'auto'
   };
 
   // ===================================
@@ -108,6 +109,39 @@ function initHeader() {
    */
   function getScrollPosition() {
     return window.pageYOffset || document.documentElement.scrollTop;
+  }
+
+  const HERO_SECTION_SELECTORS = [
+    '.hero-section',
+    '.enhanced-hero',
+    '.premium-hero',
+    '.hero-banner',
+    '.hero-area'
+  ];
+
+  function heroSectionExists() {
+    return HERO_SECTION_SELECTORS.some(selector => document.querySelector(selector));
+  }
+
+  function resolveHeaderTheme() {
+    if (!elementExists(elements.header)) return 'auto';
+    const declaredTheme = (elements.header.dataset.headerTheme || 'auto').toLowerCase();
+    if (declaredTheme === 'auto') {
+      return heroSectionExists() ? 'transparent' : 'standalone';
+    }
+    return declaredTheme;
+  }
+
+  function applyHeaderTheme() {
+    const theme = resolveHeaderTheme();
+    const useStandalone = theme === 'standalone';
+    state.headerTheme = theme;
+    if (elementExists(elements.header)) {
+      elements.header.classList.toggle('standalone-mode', useStandalone);
+    }
+    if (elementExists(elements.mainHeader)) {
+      elements.mainHeader.classList.toggle('standalone-mode', useStandalone);
+    }
   }
 
   // ===================================
@@ -625,6 +659,7 @@ function initHeader() {
     closeAllDropdowns();
     
     state.windowWidth = newWidth;
+    applyHeaderTheme();
   }, 250);
 
   // ===================================
@@ -715,6 +750,8 @@ function initHeader() {
       return;
     }
     
+    applyHeaderTheme();
+
     // Check login status
     checkLoginStatus();
     

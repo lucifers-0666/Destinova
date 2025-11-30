@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Book premium flights with Destinova. Discover exclusive destinations, best prices, and world-class service. 24/7 support, instant confirmation, secure booking. Your journey starts here.">
+  <meta name="keywords"
+    content="flight booking, cheap flights, airline tickets, premium travel, luxury flights, travel deals, exclusive destinations, 24/7 support, instant confirmation">
+  <meta name="author" content="Destinova">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://destinova.com/">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#1d5e33" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1419" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Destinova">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Destinova">
+
+  <!-- Open Graph Meta Tags (Enhanced) -->
+  <meta property="og:title" content="Destinova - Premium Flight Booking | Exclusive Travel Deals">
+  <meta property="og:description"
+    content="Experience premium travel with Destinova. Book luxury flights to 500+ destinations worldwide. Best price guarantee, 24/7 support, instant confirmation. Start your journey today.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://destinova.com/">
+  <meta property="og:image" content="https://destinova.com/site-images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Destinova">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card Meta Tags (Enhanced) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@destinova">
+  <meta name="twitter:creator" content="@destinova">
+  <meta name="twitter:title" content="Destinova - Premium Flight Booking | Exclusive Travel Deals">
+  <meta name="twitter:description"
+    content="Book premium flights with world-class service. 500+ destinations, best prices, 24/7 support. Your luxury travel partner.">
+  <meta name="twitter:image" content="https://destinova.com/site-images/twitter-card.png">
+  <meta name="twitter:image:alt" content="Destinova - Premium Flight Booking Platform">
+
+  <title>Destinova - Premium Flight Booking | Exclusive Travel Deals & Luxury Flights</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="152x152" href="/site-images/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/site-images/icon-180x180.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/site-images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/site-images/favicon-16x16.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="/css/header.css?v=20251110_FINAL">
+
+  <link rel="stylesheet" href="/css/index.css?v=20251110_FINAL">
+  <link rel="stylesheet" href="/css/footer.css?v=20251110_FINAL">
+</head>
+  
+<body>
+  
+  <%- include('partials/header') %>
+
+  <div class="hero-section">
+    <div class="bg-slider">
+      <div class="bg-slide active"></div>
+      <div class="bg-slide"></div>
+      <div class="bg-slide"></div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="gold-particles">
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+      <div class="gold-particle"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        <span>Premium Travel Excellence</span>
+      </div>
+
+      <h1 class="hero-title">
+        Your Journey Starts Here
+        <span class="hero-title-accent">Book with Destinova</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Experience premium travel with Destinova. Discover exclusive destinations
+        and book flights with world-class service.
+      </p>
+    </div>
+  </div>
+
+  <!-- Search Container with Promo Attached -->
+  <div class="search-container">
+
+    <!-- Promo Banner - ATTACHED TO TOP OF CARD -->
+    <div class="promo-banner-separate" id="promoBanner">
+      <div class="promo-banner-card">
+        <div class="promo-content">
+          <i class="fas fa-tags"></i>
+          <span>Use code</span>
+          <span class="promo-code-highlight">FLY15</span>
+          <span>for 15% off on your next booking!</span>
+        </div>
+        <div class="promo-actions">
+          <a href="#" class="view-offers-link">View All Offers</a>
+          <button type="button" class="close-banner-btn" id="closeBanner">
+            <i class="fas fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Search Card (JOINED with promo) -->
+    <div class="neomorphic-search-card" id="searchCard">
+
+      <div class="top-controls">
+        <div class="trip-tabs-inline" id="tripTabs">
+          <button type="button" class="trip-tab active" data-type="round">
+            <i class="fas fa-repeat"></i>
+            <span>Round Trip</span>
+          </button>
+          <button type="button" class="trip-tab" data-type="oneway">
+            <i class="fas fa-arrow-right"></i>
+            <span>One Way</span>
+          </button>
+          <button type="button" class="trip-tab" data-type="multi">
+            <i class="fas fa-route"></i>
+            <span>Multi-City</span>
+          </button>
+          <div class="trip-indicator"></div>
+        </div>
+
+        <button type="button" class="recent-btn-inline">
+          <i class="fas fa-clock-rotate-left"></i>
+          <span>Recent Searches</span>
+        </button>
+      </div>
+
+      <form id="searchForm">
+
+        <div class="inline-inputs-row">
+
+          <div class="inline-input-box" style="position: relative;">
+            <div class="inline-input-header">
+              <i class="fas fa-plane-departure inline-input-icon"></i>
+              <span class="inline-input-label">From</span>
+            </div>
+            <input type="text" class="inline-input-field" placeholder="e.g., Delhi" required>
+            <div class="field-subtext-inline">Enter origin city or airport</div>
+
+            <div class="swap-icon-inline">
+              <i class="fas fa-right-left"></i>
+            </div>
+          </div>
+
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-plane-arrival inline-input-icon"></i>
+              <span class="inline-input-label">To</span>
+            </div>
+            <div class="field-value-inline">Mumbai</div>
+            <div class="field-subtext-inline">BOM, Chhatrapati Shivaji International Airport</div>
+          </div>
+
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-calendar-days inline-input-icon"></i>
+              <span class="inline-input-label">Departure</span>
+            </div>
+            <input type="date" class="inline-input-field" id="departInput" required>
+          </div>
+
+          <div class="inline-input-box" id="returnBox">
+            <div class="inline-input-header">
+              <i class="fas fa-calendar-check inline-input-icon"></i>
+              <span class="inline-input-label">Return</span>
+            </div>
+            <input type="date" class="inline-input-field" id="returnInput">
+          </div>
+
+          <div class="inline-input-box">
+            <div class="inline-input-header">
+              <i class="fas fa-user-group inline-input-icon"></i>
+              <span class="inline-input-label">Travellers & Class</span>
+            </div>
+            <button type="button" class="inline-passengers-btn" id="passengersTrigger">
+              <span id="passengersText">1 Adult, Economy</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="fare-type-row">
+          <div class="fare-type-label-inline">Select a fare type:</div>
+          <div class="fare-chips-inline">
+
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn active" data-fare="regular">
+                <i class="fas fa-ticket"></i>
+                <span>Regular</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Regular Fare</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Standard booking</li>
+                  <li><i class="fas fa-circle-check"></i> All age groups</li>
+                  <li><i class="fas fa-circle-check"></i> Flexible cancellation</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="student">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Student</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Student Discount</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Up to 10% off</li>
+                  <li><i class="fas fa-circle-check"></i> Extra baggage</li>
+                  <li><i class="fas fa-circle-check"></i> Valid ID required</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="senior">
+                <i class="fas fa-person-cane"></i>
+                <span>Senior</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Senior Citizen</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> 6-15% discount</li>
+                  <li><i class="fas fa-circle-check"></i> Priority boarding</li>
+                  <li><i class="fas fa-circle-check"></i> Wheelchair assistance</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="armed">
+                <i class="fas fa-shield-halved"></i>
+                <span>Armed Forces</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Armed Forces</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Up to 50% off</li>
+                  <li><i class="fas fa-circle-check"></i> Free seat selection</li>
+                  <li><i class="fas fa-circle-check"></i> Extra baggage</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="fare-chip-inline">
+              <button type="button" class="fare-chip-btn" data-fare="corporate">
+                <i class="fas fa-building"></i>
+                <span>Corporate</span>
+                <i class="fas fa-circle-info info-icon-small"></i>
+              </button>
+              <div class="fare-tooltip-inline">
+                <div class="tooltip-title-inline">Corporate Travel</div>
+                <ul class="tooltip-benefits-inline">
+                  <li><i class="fas fa-circle-check"></i> Volume discounts</li>
+                  <li><i class="fas fa-circle-check"></i> GST invoice</li>
+                  <li><i class="fas fa-circle-check"></i> Dedicated support</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bottom-row">
+          <div class="options-inline">
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Direct flights only</span>
+            </label>
+
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Search nearby airports</span>
+            </label>
+
+            <label class="checkbox-inline">
+              <input type="checkbox">
+              <span class="checkbox-box-inline"></span>
+              <span>Flexible Dates (±3 days)</span>
+            </label>
+
+            <div class="currency-inline">
+              <span class="currency-label-inline">INR</span>
+              <select class="currency-select-inline">
+                <option value="INR">🇮🇳 INR</option>
+                <option value="USD">🇺🇸 USD</option>
+                <option value="EUR">🇪🇺 EUR</option>
+                <option value="GBP">🇬🇧 GBP</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="search-btn-inline">
+            <i class="fas fa-magnifying-glass"></i>
+            <span>Search</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- Popular Routes Quick Links -->
+    <div class="popular-routes-bar" data-aos="fade-up" data-aos-delay="200">
+      <div class="popular-routes-content">
+        <span class="popular-routes-label">🔥 Popular Routes:</span>
+        <div class="popular-routes-links">
+          <a href="#" class="popular-route-link" data-from="New York" data-to="London" data-price="₹35,250">
+            NYC → London <span class="route-price">₹35,250</span>
+          </a>
+          <a href="#" class="popular-route-link" data-from="New York" data-to="Paris" data-price="₹31,900">
+            NYC → Paris <span class="route-price">₹31,900</span>
+          </a>
+          <a href="#" class="popular-route-link" data-from="New York" data-to="Tokyo" data-price="₹53,900">
+            NYC → Tokyo <span class="route-price">₹53,900</span>
+          </a>
+          <a href="#" class="popular-route-link" data-from="Los Angeles" data-to="London" data-price="₹39,350">
+            LAX → London <span class="route-price">₹39,350</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Micro-Elements -->
+    <div class="trust-micro-elements" data-aos="fade-up" data-aos-delay="300">
+      <div class="trust-micro-item">
+        <i class="fas fa-lock"></i>
+        <span>Secure Booking</span>
+      </div>
+      <div class="trust-micro-divider"></div>
+      <div class="trust-micro-item">
+        <i class="fas fa-star"></i>
+        <span>4.8/5 Rating</span>
+      </div>
+      <div class="trust-micro-divider"></div>
+      <div class="trust-micro-item">
+        <i class="fas fa-users"></i>
+        <span>500K+ Travelers</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-passengers" id="passengersModal" hidden>
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="modalClose">
+        <i class="fas fa-xmark"></i>
+      </button>
+
+      <h3 class="modal-title">Select Passengers</h3>
+      <p class="modal-subtitle">Choose travelers and cabin class</p>
+
+      <div class="modal-section">
+        <h4 class="section-label">Passengers</h4>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Infants</span>
+            <span class="passenger-age">Under 2 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="infants">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="infantsCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="infants">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Children</span>
+            <span class="passenger-age">2 – 11 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="children">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="childrenCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="children">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Adults</span>
+            <span class="passenger-age">18 – 59 years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="adults">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="adultsCount">1</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="adults">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="passenger-row">
+          <div class="passenger-info">
+            <span class="passenger-name">Seniors</span>
+            <span class="passenger-age">60+ years</span>
+          </div>
+          <div class="counter-controls">
+            <button type="button" class="counter-btn" data-action="dec" data-cat="seniors">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="counter-value" id="seniorsCount">0</span>
+            <button type="button" class="counter-btn" data-action="inc" data-cat="seniors">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <h4 class="section-label">Cabin Class</h4>
+        <div class="class-grid">
+          <button type="button" class="class-card active" data-class="economy">
+            <i class="fas fa-couch"></i>
+            <span>Economy</span>
+          </button>
+          <button type="button" class="class-card" data-class="premium">
+            <i class="fas fa-loveseat"></i>
+            <span>Premium</span>
+          </button>
+          <button type="button" class="class-card" data-class="business">
+            <i class="fas fa-briefcase"></i>
+            <span>Business</span>
+          </button>
+          <button type="button" class="class-card" data-class="first">
+            <i class="fas fa-crown"></i>
+            <span>First Class</span>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="modal-done" id="modalDone">
+        <i class="fas fa-circle-check"></i>
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- floating bar section end here -->
+
+
+  <!-- Trust metrics strip section start here -->
+
+  <section class="trust-statistics-bar" id="trustBar">
+    <div class="trust-stats-container">
+
+      <!-- Statistics Grid -->
+      <div class="trust-stats-grid">
+
+        <!-- Stat 1: Happy Travelers -->
+        <div class="trust-stat-item" data-aos="fade-up" data-aos-delay="0">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <div class="stat-number" data-target="50000">0</div>
+          <div class="stat-label">Happy Travelers</div>
+        </div>
+
+        <!-- Stat 2: Flights Booked -->
+        <div class="trust-stat-item" data-aos="fade-up" data-aos-delay="100">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13" />
+            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+          <div class="stat-number" data-target="12000">0</div>
+          <div class="stat-label">Flights Booked</div>
+        </div>
+
+        <!-- Stat 3: Destinations -->
+        <div class="trust-stat-item" data-aos="fade-up" data-aos-delay="200">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          <div class="stat-number" data-target="500">0</div>
+          <div class="stat-label">Destinations</div>
+        </div>
+
+        <!-- Stat 4: Support Rating -->
+        <div class="trust-stat-item" data-aos="fade-up" data-aos-delay="300">
+          <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+          <div class="stat-number" data-target="4.9">0</div>
+          <div class="stat-label">Support Rating</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <%- include('partials/footer') %>
+
+  <!-- Scripts -->
+  <script src="/js/header.js"></script>
+  <script src="/js/footer.js"></script>
+  <script src="/js/index.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/animations.js"></script>
+  <script src="/js/interactive.js"></script>
+  <script src="/js/performance.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/pwa-installer.js"></script>
+
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+
+</html>

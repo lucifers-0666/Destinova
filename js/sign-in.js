@@ -255,11 +255,21 @@ form.addEventListener('submit', function(e) {
     signinBtn.classList.add('loading');
     signinBtn.disabled = true;
     
-    // Simulate API call
-    setTimeout(() => {
-        const success = Math.random() > 0.3; // 70% success rate for demo
-        
-        if (success) {
+    // Check if API is loaded
+    if (typeof window.DestinovaAPI === 'undefined') {
+        console.error('DestinovaAPI not loaded!');
+        signinBtn.classList.remove('loading');
+        signinBtn.disabled = false;
+        document.getElementById('errorAlertText').textContent = 'System error: API not loaded. Please refresh the page.';
+        errorAlert.classList.add('active');
+        return;
+    }
+    
+    console.log('Attempting login with:', email);
+    
+    // Real API call to backend
+    window.DestinovaAPI.Auth.login(email, password)
+        .then(response => {
             // Show success checkmark
             signinBtn.classList.remove('loading');
             signinBtn.classList.add('success');
@@ -270,25 +280,31 @@ form.addEventListener('submit', function(e) {
                 
                 setTimeout(() => {
                     successOverlay.classList.remove('active');
-                    alert('Success! Redirecting to dashboard...');
-                    signinBtn.classList.remove('success');
-                    signinBtn.disabled = false;
+                    
+                    // Redirect based on user role
+                    if (response.user.role === 'admin' || response.user.role === 'agent') {
+                        window.location.href = '../Admin/html/admin-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
                 }, 800);
             }, 500);
-        } else {
+        })
+        .catch(error => {
             // Show error
             signinBtn.classList.remove('loading');
             signinBtn.disabled = false;
             
             failedAttempts++;
+            const errorMessage = error.message || 'Invalid email or password. Please try again.';
+            document.getElementById('errorAlertText').textContent = errorMessage;
             errorAlert.classList.add('active');
             
             // Auto-dismiss after 5 seconds
             setTimeout(() => {
                 errorAlert.classList.remove('active');
             }, 5000);
-        }
-    }, 2000);
+        });
 });
 
 // Parallax effect

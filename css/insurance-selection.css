@@ -1,0 +1,568 @@
+/**
+ * Insurance Selection Styles
+ */
+
+/* Insurance Section */
+.insurance-section {
+  background: var(--bg-card, #fff);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.insurance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.insurance-title h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.25rem;
+  color: var(--text-primary, #1a1a2e);
+  margin: 0 0 4px 0;
+}
+
+.insurance-title h3 i {
+  color: var(--primary-color, #667eea);
+}
+
+.insurance-title p {
+  color: var(--text-secondary, #666);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.btn-info {
+  background: transparent;
+  border: 1px solid var(--border-color, #e0e0e0);
+  color: var(--text-secondary, #666);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-info:hover {
+  background: var(--bg-light, #f8f9fa);
+  color: var(--primary-color, #667eea);
+  border-color: var(--primary-color, #667eea);
+}
+
+/* Insurance Plans Grid */
+.insurance-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+/* Plan Card */
+.plan-card {
+  position: relative;
+  border: 2px solid var(--border-color, #e0e0e0);
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-card, #fff);
+}
+
+.plan-card:hover {
+  border-color: var(--primary-color, #667eea);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.plan-card.selected {
+  border-color: var(--primary-color, #667eea);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+.plan-card.popular {
+  border-color: var(--success-color, #28a745);
+}
+
+.plan-card.popular.selected {
+  border-color: var(--primary-color, #667eea);
+}
+
+/* Popular Badge */
+.popular-badge {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Plan Header */
+.plan-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.plan-header input[type="radio"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color, #667eea);
+}
+
+.plan-title {
+  flex: 1;
+}
+
+.plan-title h4 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.plan-title p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #666);
+}
+
+.plan-price {
+  text-align: right;
+}
+
+.price-amount {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color, #667eea);
+}
+
+.price-unit {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #666);
+}
+
+.total-price {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted, #999);
+  margin-top: 4px;
+}
+
+/* Plan Coverage */
+.plan-coverage {
+  margin-bottom: 12px;
+}
+
+.coverage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-light, #f8f9fa);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+}
+
+.coverage-header span {
+  color: var(--text-secondary, #666);
+}
+
+.coverage-header strong {
+  color: var(--primary-color, #667eea);
+}
+
+.coverage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coverage-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border-light, #f0f0f0);
+}
+
+.coverage-list li:last-child {
+  border-bottom: none;
+}
+
+.coverage-list li i {
+  color: var(--success-color, #28a745);
+  font-size: 0.75rem;
+}
+
+.coverage-list li span:first-of-type {
+  flex: 1;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.coverage-amount {
+  color: var(--text-secondary, #666);
+  font-size: 0.8rem;
+}
+
+/* View Details Button */
+.btn-view-details {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-color, #e0e0e0);
+  color: var(--text-secondary, #666);
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-view-details:hover {
+  background: var(--bg-light, #f8f9fa);
+  color: var(--primary-color, #667eea);
+}
+
+/* No Insurance Option */
+.no-insurance-option {
+  margin-top: 16px;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.radio-card:hover {
+  border-color: var(--text-secondary, #666);
+}
+
+.radio-card.selected {
+  border-color: var(--text-secondary, #666);
+  background: var(--bg-light, #f8f9fa);
+}
+
+.radio-card input[type="radio"] {
+  width: 18px;
+  height: 18px;
+}
+
+.radio-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary, #666);
+}
+
+.radio-content i {
+  color: var(--danger-color, #dc3545);
+}
+
+/* Insurance Summary */
+.insurance-summary {
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 8px;
+}
+
+.summary-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-label {
+  font-weight: 500;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.summary-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-color, #667eea);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--bg-card, #fff);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary, #666);
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color, #e0e0e0);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Insurance Details Modal */
+.plan-description {
+  color: var(--text-secondary, #666);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.plan-features,
+.coverage-details,
+.plan-exclusions {
+  margin-bottom: 24px;
+}
+
+.plan-features h4,
+.coverage-details h4,
+.plan-exclusions h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: var(--text-primary, #1a1a2e);
+  margin-bottom: 12px;
+}
+
+.plan-features h4 i {
+  color: var(--success-color, #28a745);
+}
+
+.coverage-details h4 i {
+  color: var(--primary-color, #667eea);
+}
+
+.plan-exclusions h4 i {
+  color: var(--danger-color, #dc3545);
+}
+
+.plan-features ul,
+.plan-exclusions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.plan-features li,
+.plan-exclusions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.plan-features li i {
+  color: var(--success-color, #28a745);
+}
+
+.coverage-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coverage-table th,
+.coverage-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.coverage-table th {
+  background: var(--bg-light, #f8f9fa);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary, #666);
+}
+
+.coverage-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary-color, #667eea);
+}
+
+/* Why Insurance Modal */
+.benefit-list {
+  margin-bottom: 24px;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light, #f0f0f0);
+}
+
+.benefit-item:last-child {
+  border-bottom: none;
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.benefit-icon i {
+  font-size: 1.25rem;
+  color: var(--primary-color, #667eea);
+}
+
+.benefit-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.benefit-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary, #666);
+  line-height: 1.5;
+}
+
+.stats-section {
+  background: var(--bg-light, #f8f9fa);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.stats-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 1rem;
+  color: var(--text-primary, #1a1a2e);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color, #667eea);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #666);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .insurance-plans {
+    grid-template-columns: 1fr;
+  }
+  
+  .insurance-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn-info {
+    align-self: flex-start;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .modal {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .insurance-section {
+    background: var(--bg-card-dark, #1e1e2d);
+  }
+  
+  .plan-card {
+    background: var(--bg-card-dark, #1e1e2d);
+  }
+  
+  .plan-card.selected {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+  }
+}
